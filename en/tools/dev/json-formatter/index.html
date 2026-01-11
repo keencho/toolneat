@@ -90,41 +90,60 @@
     .json-collapsed > .json-ellipsis { display: inline; }
     .json-ellipsis { display: none; color: #6e7781; }
 
-    /* Editor sizing - Full viewport height approach */
+    /* Editor sizing - Grid layout */
     .json-container {
-      display: flex;
-      flex-direction: column;
-      height: calc(100vh - 280px);
-      min-height: 500px;
-      max-height: 900px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
     @media (min-width: 1024px) {
       .json-container {
-        flex-direction: row;
-        height: calc(100vh - 250px);
-        min-height: 600px;
+        grid-template-columns: 1fr 1fr;
       }
     }
     .json-panel {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
+      display: block;
     }
     #json-input {
-      flex: 1;
-      min-height: 250px;
-      resize: none;
-      overflow-y: auto;
-      font-size: 11px !important;
+      display: block;
+      width: 100%;
+      height: 250px;
+      min-height: 150px;
+      resize: vertical;
+      overflow: auto;
+      font-size: 11px;
       line-height: 1.5;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      background-color: #f9fafb;
+    }
+    .dark #json-input {
+      border-color: #374151;
+      background-color: #111827;
+      color: #f3f4f6;
+    }
+    #json-input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
     #json-output {
-      flex: 1;
-      min-height: 250px;
+      display: block;
+      width: 100%;
+      height: 250px;
+      min-height: 150px;
+      resize: vertical;
       overflow: auto;
-      font-size: 11px !important;
+      font-size: 11px;
       line-height: 1.5;
+    }
+    @media (min-width: 1024px) {
+      #json-input,
+      #json-output {
+        height: 600px;
+        min-height: 400px;
+      }
     }
   </style>
 </head>
@@ -197,7 +216,7 @@
             </div>
             <textarea
               id="json-input"
-              class="textarea font-mono text-sm leading-relaxed"
+              class="font-mono"
               placeholder='{"name": "value", "items": [1, 2, 3]}'
             ></textarea>
           </div>
@@ -222,6 +241,39 @@
       <div class="ad-container mt-6">
 
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is JSON Formatter?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A JSON Formatter (also called JSON Beautifier or JSON Pretty Printer) is a tool that transforms raw JSON data into a well-structured, readable format with proper indentation and syntax highlighting. JSON (JavaScript Object Notation) is the most popular data interchange format used in web APIs and configuration files. This tool helps developers validate JSON syntax, visualize data structures, and debug API responses quickly.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Paste your JSON data into the input area on the left side of the tool.</li>
+            <li>With "Live" mode enabled, formatting happens automatically. Otherwise, click the "Format" button.</li>
+            <li>Choose your preferred indentation (Tab, 2 spaces, or 4 spaces) and enable "Sort Keys" to alphabetize object keys.</li>
+            <li>Use "Expand All" or "Collapse All" buttons to control the visibility of nested structures in the output.</li>
+            <li>Click "Copy" to copy the formatted JSON, or "Minify" to compress JSON by removing whitespace.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What causes "Invalid JSON" errors?</h4>
+              <p>Common JSON syntax errors include: missing or extra commas, unquoted keys or values, single quotes instead of double quotes, trailing commas after the last item, comments (JSON doesn't support comments), and unescaped special characters in strings. The error message will indicate the approximate position of the problem to help you locate and fix it.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between formatting and minifying JSON?</h4>
+              <p>Formatting (beautifying) adds indentation and line breaks to make JSON human-readable, which is helpful for debugging and understanding data structures. Minifying removes all unnecessary whitespace to reduce file size, which is preferred for production environments and API responses to minimize bandwidth usage and improve load times.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my JSON data sent to a server?</h4>
+              <p>No, this tool processes all JSON data locally in your browser using JavaScript. Your data never leaves your computer, making it safe to use with sensitive or confidential information. The formatting, validation, and all other operations are performed entirely client-side.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 

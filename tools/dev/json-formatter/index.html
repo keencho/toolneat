@@ -86,41 +86,60 @@
     .json-collapsed > .json-ellipsis { display: inline; }
     .json-ellipsis { display: none; color: #6e7781; }
 
-    /* Editor sizing - Full viewport height approach */
+    /* Editor sizing - Grid layout */
     .json-container {
-      display: flex;
-      flex-direction: column;
-      height: calc(100vh - 280px);
-      min-height: 500px;
-      max-height: 900px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
     @media (min-width: 1024px) {
       .json-container {
-        flex-direction: row;
-        height: calc(100vh - 250px);
-        min-height: 600px;
+        grid-template-columns: 1fr 1fr;
       }
     }
     .json-panel {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
+      display: block;
     }
     #json-input {
-      flex: 1;
-      min-height: 250px;
-      resize: none;
-      overflow-y: auto;
-      font-size: 11px !important;
+      display: block;
+      width: 100%;
+      height: 250px;
+      min-height: 150px;
+      resize: vertical;
+      overflow: auto;
+      font-size: 11px;
       line-height: 1.5;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      background-color: #f9fafb;
+    }
+    .dark #json-input {
+      border-color: #374151;
+      background-color: #111827;
+      color: #f3f4f6;
+    }
+    #json-input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
     #json-output {
-      flex: 1;
-      min-height: 250px;
+      display: block;
+      width: 100%;
+      height: 250px;
+      min-height: 150px;
+      resize: vertical;
       overflow: auto;
-      font-size: 11px !important;
+      font-size: 11px;
       line-height: 1.5;
+    }
+    @media (min-width: 1024px) {
+      #json-input,
+      #json-output {
+        height: 600px;
+        min-height: 400px;
+      }
     }
   </style>
 </head>
@@ -193,7 +212,7 @@
             </div>
             <textarea
               id="json-input"
-              class="textarea font-mono text-sm leading-relaxed"
+              class="font-mono"
               placeholder='{"name": "value", "items": [1, 2, 3]}'
               data-i18n-placeholder="tools.jsonFormatter.placeholder"
             ></textarea>
@@ -214,6 +233,40 @@
           </div>
         </div>
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">JSON 포맷터란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>JSON(JavaScript Object Notation) 포맷터는 압축되거나 읽기 어려운 JSON 데이터를 보기 좋게 정리하고 문법 오류를 검출하는 도구입니다. API 응답 분석, 설정 파일 편집, 디버깅 등 개발 작업에서 필수적으로 사용됩니다. 구문 강조와 접기/펼치기 기능으로 복잡한 중첩 구조도 쉽게 파악할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>왼쪽 입력창에 JSON 데이터를 붙여넣거나 입력합니다.</li>
+            <li>실시간 모드가 활성화되어 있으면 자동으로 포맷팅됩니다.</li>
+            <li>들여쓰기 크기(Tab, 2, 4)를 선택하여 출력 형식을 조정합니다.</li>
+            <li>'키 정렬' 옵션으로 객체의 키를 알파벳 순으로 정렬할 수 있습니다.</li>
+            <li>'압축' 버튼으로 공백을 제거한 최소 크기의 JSON을 생성합니다.</li>
+            <li>접기/펼치기 토글로 중첩된 객체나 배열을 숨기거나 표시합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 유효하지 않은 JSON이라고 나오면 어떻게 해야 하나요?</h4>
+              <p>에러 메시지에 표시된 줄과 열 위치를 확인하세요. 흔한 오류로는 마지막 항목 뒤의 쉼표, 작은따옴표 사용, 따옴표 없는 키, 주석 포함 등이 있습니다. JSON은 엄격한 형식을 요구합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: JSON과 JavaScript 객체의 차이점은?</h4>
+              <p>JSON은 JavaScript 객체보다 엄격합니다. 모든 키와 문자열 값은 반드시 큰따옴표로 감싸야 하며, 함수, undefined, 주석은 허용되지 않습니다. 또한 후행 쉼표도 허용되지 않습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 대용량 JSON 파일도 처리할 수 있나요?</h4>
+              <p>500KB까지는 구문 강조와 함께 표시됩니다. 그 이상의 대용량 파일은 성능을 위해 간단한 형식으로 표시되지만, 유효성 검사와 포맷팅은 계속 수행됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-6">

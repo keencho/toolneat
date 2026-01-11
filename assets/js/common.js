@@ -8,8 +8,8 @@
   const getTheme = () => {
     const saved = localStorage.getItem('theme');
     if (saved) return saved;
-    // Default to light (not system preference)
-    return 'light';
+    // Default to dark (not system preference)
+    return 'dark';
   };
 
   // Apply theme to document

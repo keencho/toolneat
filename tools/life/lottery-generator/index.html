@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로또 번호 생성기 - Toolneat</title>
+  <meta name="description" content="행운의 로또 번호를 생성하세요. 한국 로또 6/45 번호를 무작위로 생성합니다.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/life/lottery-generator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/lottery-generator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/lottery-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/lottery-generator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="로또 번호 생성기 - Toolneat">
+  <meta property="og:description" content="행운의 로또 번호를 생성하세요. 한국 로또 6/45 번호를 무작위로 생성합니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/life/lottery-generator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    /* Lottery Ball Styles */
+    .lottery-ball {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      position: relative;
+      box-shadow:
+        inset -8px -8px 20px rgba(0, 0, 0, 0.3),
+        inset 8px 8px 20px rgba(255, 255, 255, 0.4),
+        4px 4px 10px rgba(0, 0, 0, 0.3);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .lottery-ball::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      width: 15px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      transform: rotate(-30deg);
+    }
+
+    .lottery-ball.ball-yellow { background: linear-gradient(145deg, #fcd34d, #f59e0b); }
+    .lottery-ball.ball-blue { background: linear-gradient(145deg, #60a5fa, #2563eb); }
+    .lottery-ball.ball-red { background: linear-gradient(145deg, #f87171, #dc2626); }
+    .lottery-ball.ball-gray { background: linear-gradient(145deg, #9ca3af, #6b7280); }
+    .lottery-ball.ball-green { background: linear-gradient(145deg, #4ade80, #16a34a); }
+
+    .lottery-ball.bonus {
+      border: 3px solid #fbbf24;
+      box-shadow:
+        inset -8px -8px 20px rgba(0, 0, 0, 0.3),
+        inset 8px 8px 20px rgba(255, 255, 255, 0.4),
+        4px 4px 10px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(251, 191, 36, 0.6);
+    }
+
+    /* Ball Animation */
+    @keyframes ballAppear {
+      0% {
+        opacity: 0;
+        transform: scale(0) translateY(-50px);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.3) translateY(0);
+      }
+      70% {
+        transform: scale(0.9) translateY(0);
+      }
+      85% {
+        transform: scale(1.1) translateY(0);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .lottery-ball.animate {
+      animation: ballAppear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+
+    /* Generate Button Animation */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .btn-generate {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn-generate:hover:not(:disabled) {
+      transform: scale(1.02);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-generate.spinning .btn-icon {
+      animation: spin 1s linear infinite;
+    }
+
+    .btn-generate:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* Ball Container */
+    .balls-container {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      min-height: 80px;
+      padding: 20px;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      border-radius: 16px;
+      border: 2px dashed #cbd5e1;
+    }
+
+    .dark .balls-container {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-color: #475569;
+    }
+
+    .bonus-separator {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      color: #94a3b8;
+      font-weight: 300;
+      margin: 0 8px;
+    }
+
+    /* History Section */
+    .history-item {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 12px;
+      background: #f8fafc;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      transition: all 0.2s;
+    }
+
+    .dark .history-item {
+      background: #1e293b;
+    }
+
+    .history-item:hover {
+      transform: translateX(4px);
+    }
+
+    .history-ball {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: white;
+      box-shadow:
+        inset -4px -4px 10px rgba(0, 0, 0, 0.2),
+        inset 4px 4px 10px rgba(255, 255, 255, 0.3),
+        2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .history-ball.ball-yellow { background: linear-gradient(145deg, #fcd34d, #f59e0b); }
+    .history-ball.ball-blue { background: linear-gradient(145deg, #60a5fa, #2563eb); }
+    .history-ball.ball-red { background: linear-gradient(145deg, #f87171, #dc2626); }
+    .history-ball.ball-gray { background: linear-gradient(145deg, #9ca3af, #6b7280); }
+    .history-ball.ball-green { background: linear-gradient(145deg, #4ade80, #16a34a); }
+
+    .history-ball.bonus {
+      border: 2px solid #fbbf24;
+    }
+
+    .history-separator {
+      color: #94a3b8;
+      font-size: 1.25rem;
+    }
+
+    .history-number {
+      font-size: 0.75rem;
+      color: #64748b;
+      min-width: 24px;
+    }
+
+    /* Sound Toggle */
+    .sound-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sound-toggle input {
+      display: none;
+    }
+
+    .sound-icon {
+      width: 24px;
+      height: 24px;
+      transition: all 0.2s;
+    }
+
+    .sound-toggle:hover .sound-icon {
+      transform: scale(1.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .lottery-ball {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+      }
+
+      .lottery-ball::before {
+        top: 6px;
+        left: 10px;
+        width: 12px;
+        height: 8px;
+      }
+
+      .balls-container {
+        gap: 8px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          로또 번호 생성기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          행운의 로또 번호를 생성하세요. 1부터 45까지의 숫자 중 6개의 번호와 보너스 번호 1개를 무작위로 생성합니다.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Sound Toggle -->
+        <div class="flex justify-end mb-4">
+          <label class="sound-toggle">
+            <input type="checkbox" id="sound-toggle">
+            <svg id="sound-on-icon" class="sound-icon text-gray-600 dark:text-gray-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+            </svg>
+            <svg id="sound-off-icon" class="sound-icon text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+            </svg>
+            <span class="text-sm text-gray-600 dark:text-gray-400">효과음</span>
+          </label>
+        </div>
+
+        <!-- Ball Display Area -->
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 text-center">당첨 번호</h2>
+          <div id="balls-container" class="balls-container">
+            <p class="text-gray-400 dark:text-gray-500 text-center w-full">버튼을 눌러 번호를 생성하세요</p>
+          </div>
+        </div>
+
+        <!-- Generate Button -->
+        <button id="generate-btn" class="btn btn-primary btn-generate w-full py-4 text-lg font-semibold flex items-center justify-center gap-3">
+          <svg class="btn-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          번호 생성하기
+        </button>
+
+        <!-- History Section -->
+        <div id="history-section" class="mt-8 hidden">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">이전 생성 기록</h3>
+            <button id="clear-history" class="text-sm text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors">
+              기록 삭제
+            </button>
+          </div>
+          <div id="history-list"></div>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+        <h3 class="font-medium text-blue-800 dark:text-blue-300 mb-2">번호 색상 안내</h3>
+        <div class="flex flex-wrap gap-4 text-sm text-blue-700 dark:text-blue-400">
+          <span class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-500"></span>
+            1-10
+          </span>
+          <span class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-blue-600"></span>
+            11-20
+          </span>
+          <span class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded-full bg-gradient-to-br from-red-400 to-red-600"></span>
+            21-30
+          </span>
+          <span class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded-full bg-gradient-to-br from-gray-400 to-gray-600"></span>
+            31-40
+          </span>
+          <span class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded-full bg-gradient-to-br from-green-400 to-green-600"></span>
+            41-45
+          </span>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">로또 번호 생성기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>로또 번호 생성기는 한국 로또 6/45 게임에서 사용되는 번호를 무작위로 생성해주는 도구입니다. 1부터 45까지의 숫자 중 중복 없이 6개의 당첨 번호와 1개의 보너스 번호를 생성합니다.</p>
+          <p class="mt-3">생성된 번호는 실제 로또 추첨과 동일한 확률로 무작위 선택되며, 재미있는 애니메이션 효과와 함께 번호가 하나씩 나타납니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>'번호 생성하기' 버튼을 클릭합니다</li>
+            <li>애니메이션과 함께 6개의 당첨 번호와 보너스 번호가 순서대로 나타납니다</li>
+            <li>생성된 번호는 자동으로 기록에 저장됩니다 (최대 5개)</li>
+            <li>효과음 버튼으로 소리를 켜거나 끌 수 있습니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 생성된 번호로 당첨될 확률은 얼마인가요?</h4>
+              <p>로또 1등 당첨 확률은 약 814만분의 1입니다. 이 생성기로 만든 번호도 직접 선택한 번호와 동일한 확률을 가집니다. 어떤 번호 조합이든 당첨 확률은 같습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 번호 색상은 어떤 기준인가요?</h4>
+              <p>한국 로또에서 사용하는 공식 색상입니다: 1-10 노랑, 11-20 파랑, 21-30 빨강, 31-40 회색, 41-45 초록.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 보너스 번호란 무엇인가요?</h4>
+              <p>보너스 번호는 2등 당첨 판정에 사용됩니다. 6개 중 5개가 일치하고 보너스 번호까지 맞으면 2등에 당첨됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Audio Context for sound effects
+      let audioContext = null;
+
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        return audioContext;
+      }
+
+      function playBallSound(frequency = 600, duration = 0.1) {
+        if (!soundToggle.checked) return;
+
+        try {
+          const ctx = initAudio();
+          const oscillator = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+
+          oscillator.connect(gainNode);
+          gainNode.connect(ctx.destination);
+
+          oscillator.frequency.value = frequency;
+          oscillator.type = 'sine';
+
+          gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+
+          oscillator.start(ctx.currentTime);
+          oscillator.stop(ctx.currentTime + duration);
+        } catch (e) {
+          console.log('Audio not available');
+        }
+      }
+
+      function playBonusSound() {
+        if (!soundToggle.checked) return;
+
+        try {
+          const ctx = initAudio();
+          const frequencies = [523, 659, 784, 1047];
+
+          frequencies.forEach((freq, i) => {
+            setTimeout(() => {
+              const oscillator = ctx.createOscillator();
+              const gainNode = ctx.createGain();
+
+              oscillator.connect(gainNode);
+              gainNode.connect(ctx.destination);
+
+              oscillator.frequency.value = freq;
+              oscillator.type = 'sine';
+
+              gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
+              gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+
+              oscillator.start(ctx.currentTime);
+              oscillator.stop(ctx.currentTime + 0.15);
+            }, i * 80);
+          });
+        } catch (e) {
+          console.log('Audio not available');
+        }
+      }
+
+      // Elements
+      const generateBtn = document.getElementById('generate-btn');
+      const ballsContainer = document.getElementById('balls-container');
+      const historySection = document.getElementById('history-section');
+      const historyList = document.getElementById('history-list');
+      const clearHistoryBtn = document.getElementById('clear-history');
+      const soundToggle = document.getElementById('sound-toggle');
+      const soundOnIcon = document.getElementById('sound-on-icon');
+      const soundOffIcon = document.getElementById('sound-off-icon');
+
+      // State
+      let isGenerating = false;
+      let history = JSON.parse(localStorage.getItem('lotteryHistory') || '[]');
+
+      // Get ball color class
+      function getBallColorClass(num) {
+        if (num <= 10) return 'ball-yellow';
+        if (num <= 20) return 'ball-blue';
+        if (num <= 30) return 'ball-red';
+        if (num <= 40) return 'ball-gray';
+        return 'ball-green';
+      }
+
+      // Generate random numbers
+      function generateNumbers() {
+        const numbers = [];
+        while (numbers.length < 7) {
+          const num = Math.floor(Math.random() * 45) + 1;
+          if (!numbers.includes(num)) {
+            numbers.push(num);
+          }
+        }
+        // Sort first 6 numbers, keep bonus separate
+        const mainNumbers = numbers.slice(0, 6).sort((a, b) => a - b);
+        const bonus = numbers[6];
+        return { main: mainNumbers, bonus };
+      }
+
+      // Create ball element
+      function createBallElement(num, isBonus = false, isSmall = false) {
+        const ball = document.createElement('div');
+        ball.className = `${isSmall ? 'history-ball' : 'lottery-ball'} ${getBallColorClass(num)}${isBonus ? ' bonus' : ''}`;
+        ball.textContent = num;
+        return ball;
+      }
+
+      // Animate balls
+      async function animateBalls(numbers) {
+        ballsContainer.innerHTML = '';
+
+        // Animate main numbers
+        for (let i = 0; i < numbers.main.length; i++) {
+          const ball = createBallElement(numbers.main[i]);
+          ballsContainer.appendChild(ball);
+
+          await new Promise(resolve => setTimeout(resolve, 100));
+          ball.classList.add('animate');
+          playBallSound(400 + i * 50);
+
+          await new Promise(resolve => setTimeout(resolve, 400));
+        }
+
+        // Add separator
+        const separator = document.createElement('span');
+        separator.className = 'bonus-separator';
+        separator.textContent = '+';
+        ballsContainer.appendChild(separator);
+
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        // Animate bonus number
+        const bonusBall = createBallElement(numbers.bonus, true);
+        ballsContainer.appendChild(bonusBall);
+
+        await new Promise(resolve => setTimeout(resolve, 100));
+        bonusBall.classList.add('animate');
+        playBonusSound();
+      }
+
+      // Add to history
+      function addToHistory(numbers) {
+        history.unshift(numbers);
+        if (history.length > 5) {
+          history = history.slice(0, 5);
+        }
+        localStorage.setItem('lotteryHistory', JSON.stringify(history));
+        renderHistory();
+      }
+
+      // Render history
+      function renderHistory() {
+        if (history.length === 0) {
+          historySection.classList.add('hidden');
+          return;
+        }
+
+        historySection.classList.remove('hidden');
+        historyList.innerHTML = '';
+
+        history.forEach((item, index) => {
+          const historyItem = document.createElement('div');
+          historyItem.className = 'history-item';
+
+          const numberSpan = document.createElement('span');
+          numberSpan.className = 'history-number';
+          numberSpan.textContent = `#${index + 1}`;
+          historyItem.appendChild(numberSpan);
+
+          item.main.forEach(num => {
+            historyItem.appendChild(createBallElement(num, false, true));
+          });
+
+          const separator = document.createElement('span');
+          separator.className = 'history-separator';
+          separator.textContent = '+';
+          historyItem.appendChild(separator);
+
+          historyItem.appendChild(createBallElement(item.bonus, true, true));
+
+          historyList.appendChild(historyItem);
+        });
+      }
+
+      // Generate button click
+      generateBtn.addEventListener('click', async () => {
+        if (isGenerating) return;
+
+        isGenerating = true;
+        generateBtn.disabled = true;
+        generateBtn.classList.add('spinning');
+
+        const numbers = generateNumbers();
+        await animateBalls(numbers);
+        addToHistory(numbers);
+
+        generateBtn.classList.remove('spinning');
+        generateBtn.disabled = false;
+        isGenerating = false;
+      });
+
+      // Clear history
+      clearHistoryBtn.addEventListener('click', () => {
+        history = [];
+        localStorage.removeItem('lotteryHistory');
+        renderHistory();
+      });
+
+      // Sound toggle
+      soundToggle.addEventListener('change', () => {
+        if (soundToggle.checked) {
+          soundOnIcon.classList.remove('hidden');
+          soundOffIcon.classList.add('hidden');
+          // Initialize audio context on user interaction
+          initAudio();
+        } else {
+          soundOnIcon.classList.add('hidden');
+          soundOffIcon.classList.remove('hidden');
+        }
+      });
+
+      // Initialize
+      renderHistory();
+    })();
+  </script>
+</body>
+</html>

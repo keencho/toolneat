@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spin the Wheel - Toolneat</title>
+  <meta name="description" content="Spin the wheel for random selection. Useful for picking one option randomly from multiple choices.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/roulette/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/roulette/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/roulette/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/roulette/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Spin the Wheel - Toolneat">
+  <meta property="og:description" content="Spin the wheel for random selection.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/roulette/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>localStorage.setItem('toolneat-lang', 'en');</script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <style>
+    .wheel-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .dark .wheel-section {
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    }
+
+    .wheel-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin-bottom: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .wheel-container {
+        width: 350px;
+        height: 350px;
+      }
+    }
+
+    .wheel-canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 0 0 8px #374151, 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .dark .wheel-canvas {
+      box-shadow: 0 0 0 8px #4b5563, 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    .pointer {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 35px solid #ef4444;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+      z-index: 10;
+    }
+
+    .spin-btn {
+      background: linear-gradient(145deg, #3b82f6, #2563eb);
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 700;
+      padding: 1rem 3rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+      transition: all 0.3s ease;
+    }
+    .spin-btn:hover:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    }
+    .spin-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .result-box {
+      background: linear-gradient(145deg, #10b981, #059669);
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      animation: resultPop 0.5s ease;
+      margin-top: 1.5rem;
+    }
+    @keyframes resultPop {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .item-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: #f3f4f6;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+    }
+    .dark .item-tag {
+      background: #374151;
+    }
+    .item-tag .remove-btn {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+      line-height: 1;
+    }
+    .item-tag .remove-btn:hover {
+      background: #dc2626;
+    }
+
+    .preset-btn {
+      padding: 0.5rem 1rem;
+      background: #e5e7eb;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dark .preset-btn {
+      background: #374151;
+      color: #e5e7eb;
+    }
+    .preset-btn:hover {
+      background: #d1d5db;
+    }
+    .dark .preset-btn:hover {
+      background: #4b5563;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      z-index: 1000;
+      animation: confettiFall 3s ease-out forwards;
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Spin the Wheel
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Spin the wheel for random selection
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Wheel Section (Top) -->
+        <div class="wheel-section">
+          <div class="wheel-container">
+            <div class="pointer"></div>
+            <canvas id="wheel-canvas" class="wheel-canvas"></canvas>
+          </div>
+          <button id="spin-btn" class="spin-btn" disabled>SPIN</button>
+        </div>
+
+        <!-- Result Display -->
+        <div id="result-container" class="hidden">
+          <div class="result-box">
+            <p class="text-sm opacity-80 mb-1">Result</p>
+            <p id="result-text" class="text-2xl font-bold"></p>
+          </div>
+        </div>
+
+        <!-- Item Management Section (Bottom) -->
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Manage Items</h3>
+
+          <!-- Add Item -->
+          <div class="flex gap-2 mb-4">
+            <input
+              type="text"
+              id="item-input"
+              class="input flex-1"
+              placeholder="Enter item and click Add"
+              maxlength="20"
+            >
+            <button id="add-btn" class="btn btn-primary">Add</button>
+          </div>
+
+          <!-- Item Tags -->
+          <div id="items-container" class="flex flex-wrap gap-2 mb-4 min-h-[40px] p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <p id="empty-message" class="text-gray-400 text-sm">Add items (minimum 2)</p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-2 mb-4">
+            <button id="clear-btn" class="btn btn-secondary">Clear All</button>
+          </div>
+
+          <!-- Presets -->
+          <div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Quick presets:</p>
+            <div class="flex flex-wrap gap-2">
+              <button class="preset-btn" data-items="Pizza,Burger,Sushi,Tacos">Food Menu</button>
+              <button class="preset-btn" data-items="1,2,3,4,5,6">Numbers 1-6</button>
+              <button class="preset-btn" data-items="Rock,Paper,Scissors">Rock Paper Scissors</button>
+              <button class="preset-btn" data-items="Yes,No">Yes/No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Spin the Wheel?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Spin the Wheel is a fun random selection tool. Use it when you need to pick one option randomly from multiple choices, like deciding what to eat for lunch or picking a winner.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Enter text in the input field and click 'Add' button</li>
+            <li>Add at least 2 items to enable the 'SPIN' button</li>
+            <li>Click 'SPIN' to spin the wheel</li>
+            <li>When the wheel stops, the result will be displayed</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">FAQ</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: How many items can I add?</h4>
+              <p>You can add up to 12 items.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is the result truly random?</h4>
+              <p>Yes, completely random. Each item has an equal probability of being selected.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const COLORS = [
+        '#ef4444', '#f97316', '#eab308', '#22c55e', '#14b8a6', '#3b82f6',
+        '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16', '#f43f5e', '#6366f1'
+      ];
+      const MAX_ITEMS = 12;
+
+      let items = [];
+      let isSpinning = false;
+      let currentRotation = 0;
+
+      const canvas = document.getElementById('wheel-canvas');
+      const ctx = canvas.getContext('2d');
+      const spinBtn = document.getElementById('spin-btn');
+      const itemInput = document.getElementById('item-input');
+      const addBtn = document.getElementById('add-btn');
+      const itemsContainer = document.getElementById('items-container');
+      const emptyMessage = document.getElementById('empty-message');
+      const clearBtn = document.getElementById('clear-btn');
+      const resultContainer = document.getElementById('result-container');
+      const resultText = document.getElementById('result-text');
+
+      function initCanvas() {
+        const container = canvas.parentElement;
+        const size = Math.min(container.offsetWidth, container.offsetHeight);
+        canvas.width = size * 2;
+        canvas.height = size * 2;
+        canvas.style.width = size + 'px';
+        canvas.style.height = size + 'px';
+        ctx.scale(2, 2);
+        drawWheel();
+      }
+
+      function drawWheel() {
+        const size = canvas.width / 2;
+        const cx = size / 2;
+        const cy = size / 2;
+        const radius = size / 2 - 4;
+
+        ctx.clearRect(0, 0, size, size);
+
+        if (items.length === 0) {
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+          ctx.fillStyle = '#e5e7eb';
+          ctx.fill();
+          ctx.fillStyle = '#9ca3af';
+          ctx.font = 'bold 16px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('Add items', cx, cy);
+          return;
+        }
+
+        const sliceAngle = (Math.PI * 2) / items.length;
+
+        items.forEach((item, i) => {
+          const startAngle = i * sliceAngle - Math.PI / 2;
+          const endAngle = startAngle + sliceAngle;
+
+          // Draw slice
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.arc(cx, cy, radius, startAngle, endAngle);
+          ctx.closePath();
+          ctx.fillStyle = COLORS[i % COLORS.length];
+          ctx.fill();
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // Draw text
+          ctx.save();
+          ctx.translate(cx, cy);
+          ctx.rotate(startAngle + sliceAngle / 2);
+          ctx.textAlign = 'right';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = '#fff';
+          ctx.font = 'bold 14px sans-serif';
+
+          let text = item.length > 8 ? item.slice(0, 7) + '…' : item;
+          ctx.fillText(text, radius - 15, 0);
+          ctx.restore();
+        });
+
+        // Center circle
+        ctx.beginPath();
+        ctx.arc(cx, cy, 20, 0, Math.PI * 2);
+        ctx.fillStyle = '#1f2937';
+        ctx.fill();
+      }
+
+      function updateUI() {
+        // Update items display
+        itemsContainer.innerHTML = '';
+        if (items.length === 0) {
+          emptyMessage.style.display = 'block';
+          itemsContainer.appendChild(emptyMessage);
+        } else {
+          emptyMessage.style.display = 'none';
+          items.forEach((item, i) => {
+            const tag = document.createElement('div');
+            tag.className = 'item-tag';
+            tag.innerHTML = `
+              <span style="color: ${COLORS[i % COLORS.length]}; font-weight: 600;">${escapeHtml(item)}</span>
+              <button class="remove-btn" data-index="${i}">&times;</button>
+            `;
+            itemsContainer.appendChild(tag);
+          });
+        }
+
+        // Update spin button
+        spinBtn.disabled = items.length < 2 || isSpinning;
+
+        // Redraw wheel
+        drawWheel();
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      function addItem(text) {
+        const trimmed = text.trim();
+        if (!trimmed) return;
+        if (items.length >= MAX_ITEMS) {
+          toast.warning(`Maximum ${MAX_ITEMS} items allowed.`);
+          return;
+        }
+        if (items.includes(trimmed)) {
+          toast.warning('Item already exists.');
+          return;
+        }
+        items.push(trimmed);
+        updateUI();
+      }
+
+      function removeItem(index) {
+        items.splice(index, 1);
+        updateUI();
+      }
+
+      function spin() {
+        if (items.length < 2 || isSpinning) return;
+
+        isSpinning = true;
+        spinBtn.disabled = true;
+        resultContainer.classList.add('hidden');
+
+        // Random winning index
+        const winningIndex = Math.floor(Math.random() * items.length);
+        const sliceAngle = 360 / items.length;
+
+        // Calculate target rotation
+        // The wheel rotates clockwise, pointer is at top (12 o'clock)
+        // Slice i center is at: i * sliceAngle + sliceAngle/2 degrees from starting position
+        // To have slice i under the pointer after rotation, we need to rotate by (360 - targetSliceCenter)
+        const targetSliceCenter = winningIndex * sliceAngle + sliceAngle / 2;
+        const targetRotation = 360 - targetSliceCenter;
+
+        // Account for current rotation
+        const currentAngle = currentRotation % 360;
+        let adjustment = targetRotation - currentAngle;
+        if (adjustment < 0) adjustment += 360;
+
+        // Add extra spins (5-7 full rotations)
+        const extraSpins = 5 + Math.floor(Math.random() * 3);
+        const totalRotation = extraSpins * 360 + adjustment;
+
+        currentRotation += totalRotation;
+
+        canvas.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+        canvas.style.transform = `rotate(${currentRotation}deg)`;
+
+        setTimeout(() => {
+          isSpinning = false;
+          spinBtn.disabled = false;
+
+          const winner = items[winningIndex];
+          resultText.textContent = winner;
+          resultContainer.classList.remove('hidden');
+
+          createConfetti();
+        }, 4100);
+      }
+
+      function createConfetti() {
+        const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6'];
+        for (let i = 0; i < 40; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.top = '-10px';
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+          confetti.style.animationDelay = Math.random() * 0.5 + 's';
+          if (Math.random() > 0.5) confetti.style.borderRadius = '50%';
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 4000);
+        }
+      }
+
+      // Event Listeners
+      addBtn.addEventListener('click', () => {
+        addItem(itemInput.value);
+        itemInput.value = '';
+        itemInput.focus();
+      });
+
+      itemInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          addItem(itemInput.value);
+          itemInput.value = '';
+        }
+      });
+
+      itemsContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-btn')) {
+          removeItem(parseInt(e.target.dataset.index));
+        }
+      });
+
+      clearBtn.addEventListener('click', () => {
+        items = [];
+        currentRotation = 0;
+        canvas.style.transition = 'none';
+        canvas.style.transform = 'rotate(0deg)';
+        resultContainer.classList.add('hidden');
+        updateUI();
+      });
+
+      spinBtn.addEventListener('click', spin);
+
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          items = btn.dataset.items.split(',');
+          currentRotation = 0;
+          canvas.style.transition = 'none';
+          canvas.style.transform = 'rotate(0deg)';
+          resultContainer.classList.add('hidden');
+          updateUI();
+        });
+      });
+
+      // Initialize
+      window.addEventListener('load', initCanvas);
+      window.addEventListener('resize', () => setTimeout(initCanvas, 100));
+      updateUI();
+    })();
+  </script>
+</body>
+</html>

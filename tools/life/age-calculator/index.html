@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>나이 계산기 - Toolneat</title>
+  <meta name="description" content="만 나이, 한국 나이, 살아온 날 등을 계산합니다">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/life/age-calculator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/age-calculator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/age-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/age-calculator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="나이 계산기 - Toolneat">
+  <meta property="og:description" content="만 나이, 한국 나이, 살아온 날 등을 계산합니다">
+  <meta property="og:url" content="https://toolneat.com/tools/life/age-calculator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          나이 계산기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          만 나이, 한국 나이, 살아온 날 등을 계산합니다
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Birthdate Input -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">생년월일</label>
+          <input
+            type="date"
+            id="birthdate"
+            class="input py-3"
+          >
+        </div>
+
+        <!-- Calculate Button -->
+        <button id="calculate-btn" class="btn btn-primary w-full py-3 mb-6">
+          계산하기
+        </button>
+
+        <!-- Result Display -->
+        <div id="result" class="hidden">
+          <!-- Age Display -->
+          <div class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl p-6 mb-6 text-white text-center">
+            <div class="text-sm opacity-90 mb-2">만 나이</div>
+            <div id="international-age-display" class="text-4xl md:text-5xl font-bold mb-2">0세</div>
+            <div id="age-detail" class="text-sm opacity-75"></div>
+          </div>
+
+          <!-- Age Info Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center">
+              <div id="korean-age" class="text-2xl font-bold text-gray-900 dark:text-white">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">한국 나이</div>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center">
+              <div id="days-lived" class="text-2xl font-bold text-gray-900 dark:text-white">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">살아온 날</div>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center">
+              <div id="hours-lived" class="text-2xl font-bold text-gray-900 dark:text-white">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">살아온 시간</div>
+            </div>
+          </div>
+
+          <!-- Next Birthday Countdown -->
+          <div class="p-4 bg-pink-50 dark:bg-pink-900/20 rounded-xl mb-6">
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-pink-700 dark:text-pink-300">다음 생일까지</span>
+              <span id="next-birthday" class="font-medium text-pink-800 dark:text-pink-200"></span>
+            </div>
+          </div>
+
+          <!-- Zodiac Signs -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl">
+              <div class="text-sm text-amber-700 dark:text-amber-300 mb-1">별자리</div>
+              <div id="zodiac-sign" class="font-medium text-amber-800 dark:text-amber-200"></div>
+            </div>
+            <div class="p-4 bg-red-50 dark:bg-red-900/20 rounded-xl">
+              <div class="text-sm text-red-700 dark:text-red-300 mb-1">띠</div>
+              <div id="chinese-zodiac" class="font-medium text-red-800 dark:text-red-200"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="py-12 text-center">
+          <svg class="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <p class="text-gray-500 dark:text-gray-400">생년월일을 입력하세요</p>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">나이 계산기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>나이 계산기는 생년월일을 기준으로 만 나이, 한국 나이(세는 나이), 살아온 날수와 시간 등을 계산해주는 도구입니다. 별자리와 띠 정보도 함께 확인할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">한국 나이 vs 만 나이</h3>
+          <div class="space-y-3">
+            <p><strong>한국 나이 (세는 나이):</strong> 태어난 해를 1살로 시작하고, 매년 1월 1일에 한 살씩 더합니다. 예를 들어, 12월에 태어난 아이는 태어나자마자 1살이고, 다음 달(1월 1일)에 2살이 됩니다.</p>
+            <p><strong>만 나이 (국제 나이):</strong> 태어난 날을 0살로 시작하고, 생일이 지날 때마다 한 살씩 더합니다. 세계 대부분의 국가에서 사용하는 방식입니다.</p>
+            <p class="text-blue-600 dark:text-blue-400">2023년 6월부터 대한민국은 법적, 행정적으로 만 나이를 공식 사용합니다.</p>
+          </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 만 나이는 어떻게 계산하나요?</h4>
+              <p>오늘 날짜에서 생년월일을 빼서 계산합니다. 올해 생일이 지났으면 (현재 연도 - 태어난 연도), 아직 생일이 지나지 않았으면 (현재 연도 - 태어난 연도 - 1)이 됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 한국 나이는 왜 더 많나요?</h4>
+              <p>한국 나이는 태어날 때 1살로 시작하고, 매년 새해에 나이가 올라가기 때문입니다. 따라서 한국 나이는 만 나이보다 1~2살 더 많습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 띠는 어떻게 결정되나요?</h4>
+              <p>띠는 태어난 해를 기준으로 12년 주기로 결정됩니다. 쥐, 소, 호랑이, 토끼, 용, 뱀, 말, 양, 원숭이, 닭, 개, 돼지 순서로 반복됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const birthdateInput = document.getElementById('birthdate');
+      const calculateBtn = document.getElementById('calculate-btn');
+      const result = document.getElementById('result');
+      const emptyState = document.getElementById('empty-state');
+
+      // Zodiac signs data
+      const zodiacSigns = [
+        { name: '염소자리', start: [1, 1], end: [1, 19] },
+        { name: '물병자리', start: [1, 20], end: [2, 18] },
+        { name: '물고기자리', start: [2, 19], end: [3, 20] },
+        { name: '양자리', start: [3, 21], end: [4, 19] },
+        { name: '황소자리', start: [4, 20], end: [5, 20] },
+        { name: '쌍둥이자리', start: [5, 21], end: [6, 21] },
+        { name: '게자리', start: [6, 22], end: [7, 22] },
+        { name: '사자자리', start: [7, 23], end: [8, 22] },
+        { name: '처녀자리', start: [8, 23], end: [9, 22] },
+        { name: '천칭자리', start: [9, 23], end: [10, 22] },
+        { name: '전갈자리', start: [10, 23], end: [11, 21] },
+        { name: '사수자리', start: [11, 22], end: [12, 21] },
+        { name: '염소자리', start: [12, 22], end: [12, 31] }
+      ];
+
+      // Chinese zodiac data
+      const chineseZodiac = ['원숭이', '닭', '개', '돼지', '쥐', '소', '호랑이', '토끼', '용', '뱀', '말', '양'];
+
+      // Parse date string to local Date
+      function parseLocalDate(dateStr) {
+        const [year, month, day] = dateStr.split('-').map(Number);
+        return new Date(year, month - 1, day);
+      }
+
+      // Get zodiac sign
+      function getZodiacSign(month, day) {
+        for (const sign of zodiacSigns) {
+          const [startMonth, startDay] = sign.start;
+          const [endMonth, endDay] = sign.end;
+
+          if (month === startMonth && day >= startDay) return sign.name;
+          if (month === endMonth && day <= endDay) return sign.name;
+        }
+        return '염소자리';
+      }
+
+      // Get Chinese zodiac
+      function getChineseZodiac(year) {
+        return chineseZodiac[year % 12] + '띠';
+      }
+
+      // Calculate international age (만 나이)
+      function calculateInternationalAge(birthDate, today) {
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+
+        return age;
+      }
+
+      // Calculate detailed age (years, months, days)
+      function calculateDetailedAge(birthDate, today) {
+        let years = today.getFullYear() - birthDate.getFullYear();
+        let months = today.getMonth() - birthDate.getMonth();
+        let days = today.getDate() - birthDate.getDate();
+
+        if (days < 0) {
+          months--;
+          const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+          days += prevMonth.getDate();
+        }
+
+        if (months < 0) {
+          years--;
+          months += 12;
+        }
+
+        return { years, months, days };
+      }
+
+      // Calculate Korean age (한국 나이)
+      function calculateKoreanAge(birthYear, currentYear) {
+        return currentYear - birthYear + 1;
+      }
+
+      // Calculate days until next birthday
+      function calculateNextBirthday(birthDate, today) {
+        const nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+
+        if (nextBirthday <= today) {
+          nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+        }
+
+        const diffTime = nextBirthday - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        return diffDays;
+      }
+
+      // Main calculate function
+      function calculate() {
+        const birthdateValue = birthdateInput.value;
+        if (!birthdateValue) {
+          result.classList.add('hidden');
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        const birthDate = parseLocalDate(birthdateValue);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // Validate birthdate
+        if (birthDate > today) {
+          alert('생년월일은 오늘 이전 날짜여야 합니다.');
+          return;
+        }
+
+        // Calculate ages
+        const internationalAge = calculateInternationalAge(birthDate, today);
+        const detailedAge = calculateDetailedAge(birthDate, today);
+        const koreanAge = calculateKoreanAge(birthDate.getFullYear(), today.getFullYear());
+
+        // Calculate days and hours lived
+        const daysLived = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
+        const hoursLived = daysLived * 24;
+
+        // Calculate next birthday
+        const daysUntilBirthday = calculateNextBirthday(birthDate, today);
+
+        // Get zodiac signs
+        const zodiacSign = getZodiacSign(birthDate.getMonth() + 1, birthDate.getDate());
+        const chineseZodiacSign = getChineseZodiac(birthDate.getFullYear());
+
+        // Update display
+        document.getElementById('international-age-display').textContent = `${internationalAge}세`;
+        document.getElementById('age-detail').textContent = `${detailedAge.years}년 ${detailedAge.months}개월 ${detailedAge.days}일`;
+        document.getElementById('korean-age').textContent = `${koreanAge}세`;
+        document.getElementById('days-lived').textContent = formatNumber(daysLived) + '일';
+        document.getElementById('hours-lived').textContent = formatNumber(hoursLived) + '시간';
+
+        if (daysUntilBirthday === 0) {
+          document.getElementById('next-birthday').textContent = '오늘이 생일입니다!';
+        } else {
+          document.getElementById('next-birthday').textContent = `${daysUntilBirthday}일 남음`;
+        }
+
+        document.getElementById('zodiac-sign').textContent = zodiacSign;
+        document.getElementById('chinese-zodiac').textContent = chineseZodiacSign;
+
+        result.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+      }
+
+      // Event listeners
+      calculateBtn.addEventListener('click', calculate);
+      birthdateInput.addEventListener('change', calculate);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator - Toolneat</title>
+  <meta name="description" content="Calculate percentages easily with multiple modes. Find percentages, calculate ratios, percentage changes, discounts, and more.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/percent-calculator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/percent-calculator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/percent-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/percent-calculator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Percentage Calculator - Toolneat">
+  <meta property="og:description" content="Calculate percentages easily with multiple modes.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/percent-calculator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>localStorage.setItem('toolneat-lang', 'en');</script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <style>
+    .calc-tab {
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      border: 1px solid #e5e7eb;
+      color: #6b7280;
+    }
+    .dark .calc-tab {
+      border-color: #374151;
+      color: #9ca3af;
+    }
+    .calc-tab:hover {
+      background: #f3f4f6;
+    }
+    .dark .calc-tab:hover {
+      background: #374151;
+    }
+    .calc-tab.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: white;
+    }
+    .calc-card {
+      display: none;
+    }
+    .calc-card.active {
+      display: block;
+    }
+    .result-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2563eb;
+    }
+    .dark .result-value {
+      color: #60a5fa;
+    }
+    .result-label {
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    .dark .result-label {
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Percentage Calculator
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Calculate percentages easily with multiple modes. Find percentages, calculate ratios, percentage changes, discounts, and more.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Tab Navigation -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          <button class="calc-tab active" data-tab="basic">X% of Y</button>
+          <button class="calc-tab" data-tab="whatPercent">X is what % of Y?</button>
+          <button class="calc-tab" data-tab="change">% Change</button>
+          <button class="calc-tab" data-tab="adjust">Adjust by %</button>
+          <button class="calc-tab" data-tab="discount">Discount</button>
+        </div>
+
+        <!-- Mode 1: What is X% of Y? -->
+        <div id="card-basic" class="calc-card active">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">What is X% of Y?</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Base Value (Y)</label>
+              <input type="number" id="basic-base" class="input py-3 text-lg" placeholder="e.g., 200">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Percentage (X%)</label>
+              <input type="number" id="basic-percent" class="input py-3 text-lg" placeholder="e.g., 15">
+            </div>
+          </div>
+          <button id="basic-calc" class="btn btn-primary w-full md:w-auto">Calculate</button>
+          <div id="basic-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p class="result-label mb-2">Result</p>
+            <p class="result-value" id="basic-result-value">0</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2" id="basic-result-desc"></p>
+          </div>
+        </div>
+
+        <!-- Mode 2: X is what % of Y? -->
+        <div id="card-whatPercent" class="calc-card">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">X is what percentage of Y?</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Part (X)</label>
+              <input type="number" id="wp-part" class="input py-3 text-lg" placeholder="e.g., 30">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Whole (Y)</label>
+              <input type="number" id="wp-whole" class="input py-3 text-lg" placeholder="e.g., 200">
+            </div>
+          </div>
+          <button id="wp-calc" class="btn btn-primary w-full md:w-auto">Calculate</button>
+          <div id="wp-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p class="result-label mb-2">Result</p>
+            <p class="result-value" id="wp-result-value">0%</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2" id="wp-result-desc"></p>
+          </div>
+        </div>
+
+        <!-- Mode 3: Percentage change -->
+        <div id="card-change" class="calc-card">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Percentage change from X to Y</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Old Value</label>
+              <input type="number" id="change-old" class="input py-3 text-lg" placeholder="e.g., 80">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">New Value</label>
+              <input type="number" id="change-new" class="input py-3 text-lg" placeholder="e.g., 100">
+            </div>
+          </div>
+          <button id="change-calc" class="btn btn-primary w-full md:w-auto">Calculate</button>
+          <div id="change-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p class="result-label mb-2">Change</p>
+            <p class="result-value" id="change-result-value">0%</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2" id="change-result-desc"></p>
+          </div>
+        </div>
+
+        <!-- Mode 4: Increase/Decrease by % -->
+        <div id="card-adjust" class="calc-card">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Increase or decrease X by Y%</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Value</label>
+              <input type="number" id="adjust-value" class="input py-3 text-lg" placeholder="e.g., 100">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Percentage (%)</label>
+              <input type="number" id="adjust-percent" class="input py-3 text-lg" placeholder="e.g., 20">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Type</label>
+              <select id="adjust-type" class="input py-3 text-lg">
+                <option value="increase">Increase</option>
+                <option value="decrease">Decrease</option>
+              </select>
+            </div>
+          </div>
+          <button id="adjust-calc" class="btn btn-primary w-full md:w-auto">Calculate</button>
+          <div id="adjust-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p class="result-label mb-2">Result</p>
+            <p class="result-value" id="adjust-result-value">0</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2" id="adjust-result-desc"></p>
+          </div>
+        </div>
+
+        <!-- Mode 5: Discount calculator -->
+        <div id="card-discount" class="calc-card">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Discount Calculator</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Original Price</label>
+              <input type="number" id="discount-original" class="input py-3 text-lg" placeholder="e.g., 100">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Discount (%)</label>
+              <input type="number" id="discount-percent" class="input py-3 text-lg" placeholder="e.g., 30">
+            </div>
+          </div>
+          <button id="discount-calc" class="btn btn-primary w-full md:w-auto">Calculate</button>
+          <div id="discount-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+              <div>
+                <p class="result-label mb-2">You Save</p>
+                <p class="result-value text-red-500 dark:text-red-400" id="discount-amount">0</p>
+              </div>
+              <div>
+                <p class="result-label mb-2">Final Price</p>
+                <p class="result-value text-green-500 dark:text-green-400" id="discount-final">0</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-4 text-center" id="discount-result-desc"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+        <h3 class="font-medium text-blue-800 dark:text-blue-300 mb-2">Percentage Formulas</h3>
+        <ul class="text-sm text-blue-700 dark:text-blue-400 space-y-1">
+          <li>X% of Y = Y x (X / 100)</li>
+          <li>X is what % of Y = (X / Y) x 100</li>
+          <li>% Change = ((New - Old) / Old) x 100</li>
+          <li>Discounted Price = Original x (1 - Discount% / 100)</li>
+        </ul>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Percentage Calculator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A percentage calculator is a versatile tool that helps you perform various percentage-related calculations quickly and easily. Whether you need to find a percentage of a number, calculate discounts, or determine percentage changes, this calculator offers five different modes to handle all your percentage calculation needs.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>X% of Y</strong> - Calculate what percentage of a number equals (e.g., What is 15% of 200?)</li>
+            <li><strong>X is what % of Y?</strong> - Find what percentage one number is of another (e.g., 30 is what % of 200?)</li>
+            <li><strong>% Change</strong> - Calculate the percentage increase or decrease between two values</li>
+            <li><strong>Adjust by %</strong> - Increase or decrease a value by a specific percentage</li>
+            <li><strong>Discount Calculator</strong> - Calculate sale prices and savings from discount percentages</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What does percent mean?</h4>
+              <p>Percent means "per hundred" or "out of 100." When you say 50%, it means 50 out of 100, which equals half (1/2). Similarly, 25% means a quarter (1/4) of the whole.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I calculate percentage increase vs decrease?</h4>
+              <p>An increase shows as a positive percentage (+), while a decrease shows as negative (-). For example, going from 100 to 120 is a +20% increase, while going from 100 to 80 is a -20% decrease.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I calculate a discount?</h4>
+              <p>To calculate a discount, multiply the original price by the discount percentage, then subtract from the original. For example, 30% off $100: $100 x 0.30 = $30 discount, final price = $70.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Tab switching
+      const tabs = document.querySelectorAll('.calc-tab');
+      const cards = document.querySelectorAll('.calc-card');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const targetId = tab.dataset.tab;
+
+          tabs.forEach(t => t.classList.remove('active'));
+          cards.forEach(c => c.classList.remove('active'));
+
+          tab.classList.add('active');
+          document.getElementById('card-' + targetId).classList.add('active');
+        });
+      });
+
+      // Format number with commas
+      function formatNumber(num) {
+        return num.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      }
+
+      // Mode 1: X% of Y
+      document.getElementById('basic-calc').addEventListener('click', () => {
+        const base = parseFloat(document.getElementById('basic-base').value);
+        const percent = parseFloat(document.getElementById('basic-percent').value);
+
+        if (isNaN(base) || isNaN(percent)) {
+          toast.warning('Please enter values.');
+          return;
+        }
+
+        const result = base * (percent / 100);
+        document.getElementById('basic-result-value').textContent = formatNumber(result);
+        document.getElementById('basic-result-desc').textContent =
+          `${percent}% of ${formatNumber(base)} = ${formatNumber(result)}`;
+        document.getElementById('basic-result').classList.remove('hidden');
+      });
+
+      // Mode 2: X is what % of Y
+      document.getElementById('wp-calc').addEventListener('click', () => {
+        const part = parseFloat(document.getElementById('wp-part').value);
+        const whole = parseFloat(document.getElementById('wp-whole').value);
+
+        if (isNaN(part) || isNaN(whole) || whole === 0) {
+          toast.warning('Please enter values. (Whole cannot be zero)');
+          return;
+        }
+
+        const result = (part / whole) * 100;
+        document.getElementById('wp-result-value').textContent = formatNumber(result) + '%';
+        document.getElementById('wp-result-desc').textContent =
+          `${formatNumber(part)} is ${formatNumber(result)}% of ${formatNumber(whole)}`;
+        document.getElementById('wp-result').classList.remove('hidden');
+      });
+
+      // Mode 3: Percentage change
+      document.getElementById('change-calc').addEventListener('click', () => {
+        const oldVal = parseFloat(document.getElementById('change-old').value);
+        const newVal = parseFloat(document.getElementById('change-new').value);
+
+        if (isNaN(oldVal) || isNaN(newVal) || oldVal === 0) {
+          toast.warning('Please enter values. (Old value cannot be zero)');
+          return;
+        }
+
+        const change = ((newVal - oldVal) / oldVal) * 100;
+        const sign = change >= 0 ? '+' : '';
+        const changeType = change >= 0 ? 'increase' : 'decrease';
+
+        document.getElementById('change-result-value').textContent = sign + formatNumber(change) + '%';
+        document.getElementById('change-result-value').className =
+          'result-value ' + (change >= 0 ? 'text-green-500' : 'text-red-500');
+        document.getElementById('change-result-desc').textContent =
+          `From ${formatNumber(oldVal)} to ${formatNumber(newVal)} is a ${Math.abs(change).toFixed(2)}% ${changeType}`;
+        document.getElementById('change-result').classList.remove('hidden');
+      });
+
+      // Mode 4: Increase/Decrease
+      document.getElementById('adjust-calc').addEventListener('click', () => {
+        const value = parseFloat(document.getElementById('adjust-value').value);
+        const percent = parseFloat(document.getElementById('adjust-percent').value);
+        const type = document.getElementById('adjust-type').value;
+
+        if (isNaN(value) || isNaN(percent)) {
+          toast.warning('Please enter values.');
+          return;
+        }
+
+        let result;
+        let desc;
+        if (type === 'increase') {
+          result = value * (1 + percent / 100);
+          desc = `${formatNumber(value)} increased by ${percent}% = ${formatNumber(result)}`;
+        } else {
+          result = value * (1 - percent / 100);
+          desc = `${formatNumber(value)} decreased by ${percent}% = ${formatNumber(result)}`;
+        }
+
+        document.getElementById('adjust-result-value').textContent = formatNumber(result);
+        document.getElementById('adjust-result-desc').textContent = desc;
+        document.getElementById('adjust-result').classList.remove('hidden');
+      });
+
+      // Mode 5: Discount
+      document.getElementById('discount-calc').addEventListener('click', () => {
+        const original = parseFloat(document.getElementById('discount-original').value);
+        const percent = parseFloat(document.getElementById('discount-percent').value);
+
+        if (isNaN(original) || isNaN(percent)) {
+          toast.warning('Please enter values.');
+          return;
+        }
+
+        const discountAmount = original * (percent / 100);
+        const finalPrice = original - discountAmount;
+
+        document.getElementById('discount-amount').textContent = '-' + formatNumber(discountAmount);
+        document.getElementById('discount-final').textContent = formatNumber(finalPrice);
+        document.getElementById('discount-result-desc').textContent =
+          `${percent}% off ${formatNumber(original)} saves you ${formatNumber(discountAmount)}!`;
+        document.getElementById('discount-result').classList.remove('hidden');
+      });
+
+      // Enter key support for all inputs
+      document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const card = input.closest('.calc-card');
+            const btn = card.querySelector('.btn-primary');
+            if (btn) btn.click();
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

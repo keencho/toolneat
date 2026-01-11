@@ -220,6 +220,39 @@
       <div class="ad-container mt-8">
 
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is JWT Generator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A JWT (JSON Web Token) Generator is a tool that creates signed JWT tokens for authentication and data exchange purposes. JWTs are an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties. This tool allows developers to create custom JWT tokens with specific claims, expiration times, and HMAC-based signatures for testing and development purposes.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select the signing algorithm (HS256, HS384, or HS512) from the Header section.</li>
+            <li>Fill in the Payload fields: standard claims like Subject (sub), Issuer (iss), and Audience (aud), plus set the expiration time.</li>
+            <li>Add custom claims by clicking "+ Add Claim" if you need additional data in your token.</li>
+            <li>Enter your secret key or click "Generate Random" to create a secure random key.</li>
+            <li>Click "Generate JWT" to create your token, then copy it using the Copy button.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Which HMAC algorithm should I use for signing JWTs?</h4>
+              <p>HS256 (HMAC with SHA-256) is the most commonly used and provides sufficient security for most applications. HS384 and HS512 offer stronger security with larger hash outputs but are slightly slower. For most web applications, HS256 is recommended unless you have specific security requirements that necessitate stronger algorithms.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How long should my JWT secret key be?</h4>
+              <p>Your secret key should be at least as long as the hash output of your chosen algorithm: 256 bits (32 bytes) for HS256, 384 bits (48 bytes) for HS384, and 512 bits (64 bytes) for HS512. Using a randomly generated key is strongly recommended. Never use simple passwords or easily guessable strings as your secret key.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How should I set the token expiration time?</h4>
+              <p>Token expiration depends on your security requirements. Short-lived tokens (15 minutes to 1 hour) are more secure for access tokens, while refresh tokens can have longer lifespans (days to weeks). For sensitive operations, use shorter expiration times. Always implement token refresh mechanisms for better user experience without compromising security.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 

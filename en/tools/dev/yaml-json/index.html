@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YAML ↔ JSON Converter - Toolneat</title>
+  <meta name="description" content="Convert between YAML and JSON formats.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/dev/yaml-json/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/yaml-json/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/yaml-json/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/yaml-json/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="YAML ↔ JSON Converter - Toolneat">
+  <meta property="og:description" content="Convert between YAML and JSON formats.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/dev/yaml-json/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <!-- js-yaml library -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+
+  <style>
+    .converter-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 320px);
+      min-height: 500px;
+      max-height: 800px;
+    }
+    @media (min-width: 1024px) {
+      .converter-container {
+        flex-direction: row;
+        height: calc(100vh - 280px);
+        min-height: 550px;
+      }
+    }
+    .converter-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .converter-panel textarea {
+      flex: 1;
+      min-height: 200px;
+      resize: none;
+      overflow-y: auto;
+      font-size: 12px !important;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          YAML ↔ JSON Converter
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Convert between YAML and JSON formats. Supports nested objects, arrays, and multiline strings.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <!-- Options Row -->
+          <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">Indent</span>
+              <select id="indent-size" class="input py-1.5 px-2 w-16 text-sm">
+                <option value="2">2</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input type="checkbox" id="auto-detect" checked class="rounded border-gray-300 dark:border-gray-600">
+              <span>Auto-detect</span>
+            </label>
+          </div>
+          <!-- Buttons Row -->
+          <div class="flex flex-wrap gap-2">
+            <button id="yaml-to-json-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0">YAML → JSON</button>
+            <button id="json-to-yaml-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0">JSON → YAML</button>
+            <button id="sample-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Sample Data</button>
+            <button id="clear-all-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Clear All</button>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+          <p class="text-sm text-red-600 dark:text-red-300" id="error-text"></p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="converter-container gap-4">
+          <!-- YAML Section -->
+          <div class="converter-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">YAML</span>
+              <div class="flex items-center gap-2">
+                <button id="copy-yaml-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">Copy</button>
+                <button id="clear-yaml-btn" class="text-xs text-gray-500 dark:text-gray-400 hover:underline">Clear</button>
+              </div>
+            </div>
+            <textarea
+              id="yaml-input"
+              class="textarea font-mono text-sm leading-relaxed"
+              placeholder="Enter YAML data...
+
+name: John Doe
+age: 30
+hobbies:
+  - reading
+  - coding"
+            ></textarea>
+          </div>
+
+          <!-- JSON Section -->
+          <div class="converter-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">JSON</span>
+              <div class="flex items-center gap-2">
+                <button id="copy-json-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">Copy</button>
+                <button id="clear-json-btn" class="text-xs text-gray-500 dark:text-gray-400 hover:underline">Clear</button>
+              </div>
+            </div>
+            <textarea
+              id="json-input"
+              class="textarea font-mono text-sm leading-relaxed"
+              placeholder='Enter JSON data...
+
+{
+  "name": "John Doe",
+  "age": 30,
+  "hobbies": ["reading", "coding"]
+}'
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is YAML ↔ JSON Converter?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>YAML and JSON are widely used data serialization formats. YAML is human-readable and commonly used for configuration files, while JSON is the standard for API communication and data exchange. This tool allows you to easily convert between these two formats.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Enter data in either the YAML area (left) or JSON area (right).</li>
+            <li>Click 'YAML → JSON' or 'JSON → YAML' button to convert.</li>
+            <li>When auto-detect is enabled, input format is recognized automatically.</li>
+            <li>Choose indentation size (2 or 4 spaces) for output formatting.</li>
+            <li>Use the Copy button to copy results to clipboard.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What's the difference between YAML and JSON?</h4>
+              <p>YAML uses indentation to represent structure and supports comments. JSON uses braces and brackets for structure and doesn't support comments. YAML is more concise and readable, while JSON is stricter and faster to parse.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How are multiline strings converted?</h4>
+              <p>YAML multiline strings (| or >) are converted to escaped strings with \n in JSON. Conversely, escaped newlines in JSON are properly handled when converting to YAML.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What happens to comments during conversion?</h4>
+              <p>YAML comments (#) are removed when converting to JSON because JSON doesn't support comments.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const yamlInput = document.getElementById('yaml-input');
+      const jsonInput = document.getElementById('json-input');
+      const yamlToJsonBtn = document.getElementById('yaml-to-json-btn');
+      const jsonToYamlBtn = document.getElementById('json-to-yaml-btn');
+      const sampleBtn = document.getElementById('sample-btn');
+      const clearAllBtn = document.getElementById('clear-all-btn');
+      const copyYamlBtn = document.getElementById('copy-yaml-btn');
+      const copyJsonBtn = document.getElementById('copy-json-btn');
+      const clearYamlBtn = document.getElementById('clear-yaml-btn');
+      const clearJsonBtn = document.getElementById('clear-json-btn');
+      const indentSelect = document.getElementById('indent-size');
+      const autoDetectCheckbox = document.getElementById('auto-detect');
+      const errorMessage = document.getElementById('error-message');
+      const errorText = document.getElementById('error-text');
+
+      // Sample data
+      const sampleYaml = `# User configuration file example
+name: John Doe
+age: 30
+email: john@example.com
+active: true
+roles:
+  - admin
+  - developer
+address:
+  city: New York
+  country: USA
+  zip: "10001"
+projects:
+  - name: Project A
+    status: in-progress
+    tags:
+      - web
+      - frontend
+  - name: Project B
+    status: completed
+    tags:
+      - api
+      - backend
+description: |
+  This is a multiline description text.
+  YAML supports multiline strings.
+  Structure is expressed through indentation.`;
+
+      // Detect input format
+      function detectFormat(text) {
+        const trimmed = text.trim();
+        if (!trimmed) return null;
+
+        // Check for JSON
+        if ((trimmed.startsWith('{') && trimmed.endsWith('}')) ||
+            (trimmed.startsWith('[') && trimmed.endsWith(']'))) {
+          try {
+            JSON.parse(trimmed);
+            return 'json';
+          } catch (e) {
+            // Not valid JSON
+          }
+        }
+
+        // Assume YAML if contains typical YAML patterns
+        if (trimmed.includes(': ') || trimmed.includes(':\n') || trimmed.startsWith('-')) {
+          return 'yaml';
+        }
+
+        return null;
+      }
+
+      // Convert YAML to JSON
+      function yamlToJson() {
+        const yamlText = yamlInput.value.trim();
+        if (!yamlText) {
+          showError('Please enter YAML data.');
+          return;
+        }
+
+        try {
+          const parsed = jsyaml.load(yamlText);
+          const indent = parseInt(indentSelect.value);
+          const jsonText = JSON.stringify(parsed, null, indent);
+          jsonInput.value = jsonText;
+          hideError();
+          toast.success('Converted to JSON.');
+        } catch (e) {
+          showError('YAML parsing error: ' + e.message);
+        }
+      }
+
+      // Convert JSON to YAML
+      function jsonToYaml() {
+        const jsonText = jsonInput.value.trim();
+        if (!jsonText) {
+          showError('Please enter JSON data.');
+          return;
+        }
+
+        try {
+          const parsed = JSON.parse(jsonText);
+          const indent = parseInt(indentSelect.value);
+          const yamlText = jsyaml.dump(parsed, {
+            indent: indent,
+            lineWidth: -1,
+            noRefs: true,
+            quotingType: '"'
+          });
+          yamlInput.value = yamlText;
+          hideError();
+          toast.success('Converted to YAML.');
+        } catch (e) {
+          showError('JSON parsing error: ' + e.message);
+        }
+      }
+
+      // Auto-convert based on detected format
+      function autoConvert(source) {
+        if (!autoDetectCheckbox.checked) return;
+
+        const text = source === 'yaml' ? yamlInput.value : jsonInput.value;
+        const format = detectFormat(text);
+
+        if (format === 'yaml' && source === 'yaml') {
+          // Don't auto-convert on typing, only on explicit action
+        } else if (format === 'json' && source === 'json') {
+          // Don't auto-convert on typing, only on explicit action
+        }
+      }
+
+      // Show error
+      function showError(message) {
+        errorMessage.classList.remove('hidden');
+        errorText.textContent = message;
+      }
+
+      // Hide error
+      function hideError() {
+        errorMessage.classList.add('hidden');
+      }
+
+      // Load sample data
+      function loadSample() {
+        yamlInput.value = sampleYaml;
+        jsonInput.value = '';
+        hideError();
+        toast.success('Sample data loaded.');
+      }
+
+      // Clear all
+      function clearAll() {
+        yamlInput.value = '';
+        jsonInput.value = '';
+        hideError();
+        yamlInput.focus();
+      }
+
+      // Event listeners
+      yamlToJsonBtn.addEventListener('click', yamlToJson);
+      jsonToYamlBtn.addEventListener('click', jsonToYaml);
+      sampleBtn.addEventListener('click', loadSample);
+      clearAllBtn.addEventListener('click', clearAll);
+
+      clearYamlBtn.addEventListener('click', () => {
+        yamlInput.value = '';
+        yamlInput.focus();
+      });
+
+      clearJsonBtn.addEventListener('click', () => {
+        jsonInput.value = '';
+        jsonInput.focus();
+      });
+
+      copyYamlBtn.addEventListener('click', async () => {
+        const text = yamlInput.value;
+        if (!text) {
+          toast.warning('Nothing to copy.');
+          return;
+        }
+        await copyToClipboard(text);
+        toast.success('YAML copied.');
+      });
+
+      copyJsonBtn.addEventListener('click', async () => {
+        const text = jsonInput.value;
+        if (!text) {
+          toast.warning('Nothing to copy.');
+          return;
+        }
+        await copyToClipboard(text);
+        toast.success('JSON copied.');
+      });
+
+      // Keyboard shortcuts
+      yamlInput.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          yamlToJson();
+        }
+      });
+
+      jsonInput.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          jsonToYaml();
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coin Flip - Toolneat</title>
+  <meta name="description" content="Flip a virtual coin for quick decisions. Features realistic 3D animation and statistics tracking.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/coin-flip/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/coin-flip/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/coin-flip/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/coin-flip/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Coin Flip - Toolneat">
+  <meta property="og:description" content="Flip a virtual coin for quick decisions. Features realistic 3D animation and statistics tracking.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/coin-flip/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <style>
+    /* Coin Container */
+    .coin-scene {
+      perspective: 1000px;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+    }
+
+    .coin {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.1s;
+    }
+
+    .coin.flipping {
+      animation: coinFlip 1s ease-out forwards;
+    }
+
+    .coin.flipping-tails {
+      animation: coinFlipTails 1s ease-out forwards;
+    }
+
+    @keyframes coinFlip {
+      0% {
+        transform: rotateX(0deg) translateY(0);
+      }
+      25% {
+        transform: rotateX(900deg) translateY(-100px);
+      }
+      50% {
+        transform: rotateX(1800deg) translateY(-50px);
+      }
+      75% {
+        transform: rotateX(2520deg) translateY(-20px);
+      }
+      100% {
+        transform: rotateX(3600deg) translateY(0);
+      }
+    }
+
+    @keyframes coinFlipTails {
+      0% {
+        transform: rotateX(0deg) translateY(0);
+      }
+      25% {
+        transform: rotateX(900deg) translateY(-100px);
+      }
+      50% {
+        transform: rotateX(1800deg) translateY(-50px);
+      }
+      75% {
+        transform: rotateX(2520deg) translateY(-20px);
+      }
+      100% {
+        transform: rotateX(3780deg) translateY(0);
+      }
+    }
+
+    .coin-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+      box-shadow:
+        inset 0 0 30px rgba(0, 0, 0, 0.2),
+        inset 0 0 10px rgba(255, 255, 255, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 4px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .coin-face::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 15%;
+      width: 30%;
+      height: 20%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, transparent 100%);
+      border-radius: 50%;
+      transform: rotate(-30deg);
+    }
+
+    .coin-heads {
+      background: linear-gradient(145deg, #fcd34d, #f59e0b, #d97706);
+      color: #78350f;
+    }
+
+    .coin-tails {
+      background: linear-gradient(145deg, #94a3b8, #64748b, #475569);
+      color: #1e293b;
+      transform: rotateX(180deg);
+    }
+
+    /* Multi-coin display */
+    .multi-coin-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      padding: 20px;
+      min-height: 100px;
+    }
+
+    .mini-coin-scene {
+      perspective: 600px;
+      width: 60px;
+      height: 60px;
+    }
+
+    .mini-coin {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .mini-coin.flipping {
+      animation: miniCoinFlip var(--flip-duration, 1s) ease-out forwards;
+    }
+
+    .mini-coin.flipping-tails {
+      animation: miniCoinFlipTails var(--flip-duration, 1s) ease-out forwards;
+    }
+
+    @keyframes miniCoinFlip {
+      0% {
+        transform: rotateX(0deg) translateY(0);
+      }
+      50% {
+        transform: rotateX(1800deg) translateY(-40px);
+      }
+      100% {
+        transform: rotateX(3600deg) translateY(0);
+      }
+    }
+
+    @keyframes miniCoinFlipTails {
+      0% {
+        transform: rotateX(0deg) translateY(0);
+      }
+      50% {
+        transform: rotateX(1800deg) translateY(-40px);
+      }
+      100% {
+        transform: rotateX(3780deg) translateY(0);
+      }
+    }
+
+    .mini-coin-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+      box-shadow:
+        inset 0 0 15px rgba(0, 0, 0, 0.2),
+        0 4px 10px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .mini-coin-heads {
+      background: linear-gradient(145deg, #fcd34d, #f59e0b);
+      color: #78350f;
+    }
+
+    .mini-coin-tails {
+      background: linear-gradient(145deg, #94a3b8, #64748b);
+      color: #1e293b;
+      transform: rotateX(180deg);
+    }
+
+    /* Result display */
+    .result-display {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 16px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .result-heads {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: #92400e;
+    }
+
+    .result-tails {
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+      color: #334155;
+    }
+
+    .dark .result-heads {
+      background: linear-gradient(135deg, #78350f, #92400e);
+      color: #fef3c7;
+    }
+
+    .dark .result-tails {
+      background: linear-gradient(135deg, #334155, #475569);
+      color: #e2e8f0;
+    }
+
+    /* Statistics */
+    .stat-card {
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .dark .stat-card {
+      background: linear-gradient(135deg, #1e293b, #334155);
+    }
+
+    .stat-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #64748b;
+    }
+
+    .dark .stat-label {
+      color: #94a3b8;
+    }
+
+    .stat-percentage {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    /* Button styles */
+    .btn-flip {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn-flip:hover:not(:disabled) {
+      transform: scale(1.02);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-flip:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .btn-flip.flipping .flip-icon {
+      animation: spin 0.5s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Multi-flip buttons */
+    .multi-flip-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.2s;
+      background: #f1f5f9;
+      color: #475569;
+      border: 2px solid transparent;
+    }
+
+    .multi-flip-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .multi-flip-btn.active {
+      background: #2563eb;
+      color: white;
+      border-color: #1d4ed8;
+    }
+
+    .dark .multi-flip-btn {
+      background: #334155;
+      color: #94a3b8;
+    }
+
+    .dark .multi-flip-btn:hover {
+      background: #475569;
+    }
+
+    .dark .multi-flip-btn.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    /* Sound Toggle */
+    .sound-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sound-toggle input {
+      display: none;
+    }
+
+    .sound-icon {
+      width: 24px;
+      height: 24px;
+      transition: all 0.2s;
+    }
+
+    .sound-toggle:hover .sound-icon {
+      transform: scale(1.1);
+    }
+
+    /* Multi result summary */
+    .multi-result-summary {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      padding: 16px;
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    .dark .multi-result-summary {
+      background: linear-gradient(135deg, #1e293b, #334155);
+    }
+
+    .summary-item {
+      text-align: center;
+    }
+
+    .summary-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .summary-heads {
+      color: #f59e0b;
+    }
+
+    .summary-tails {
+      color: #64748b;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .coin-scene {
+        width: 120px;
+        height: 120px;
+      }
+
+      .coin-face {
+        font-size: 2.5rem;
+      }
+
+      .mini-coin-scene {
+        width: 50px;
+        height: 50px;
+      }
+
+      .mini-coin-face {
+        font-size: 1rem;
+      }
+
+      .result-display {
+        font-size: 1.5rem;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Coin Flip
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Flip a virtual coin for quick decisions. Features realistic 3D animation and multi-flip options.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Sound Toggle -->
+        <div class="flex justify-end mb-4">
+          <label class="sound-toggle">
+            <input type="checkbox" id="sound-toggle">
+            <svg id="sound-on-icon" class="sound-icon text-gray-600 dark:text-gray-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+            </svg>
+            <svg id="sound-off-icon" class="sound-icon text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+            </svg>
+            <span class="text-sm text-gray-600 dark:text-gray-400">Sound</span>
+          </label>
+        </div>
+
+        <!-- Multi-flip options -->
+        <div class="mb-6">
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 text-center">Number of Coins</p>
+          <div class="flex justify-center gap-3 flex-wrap">
+            <button class="multi-flip-btn active" data-count="1">1</button>
+            <button class="multi-flip-btn" data-count="2">2</button>
+            <button class="multi-flip-btn" data-count="5">5</button>
+            <button class="multi-flip-btn" data-count="10">10</button>
+          </div>
+        </div>
+
+        <!-- Single Coin Display -->
+        <div id="single-coin-area" class="mb-6">
+          <div class="coin-scene">
+            <div id="coin" class="coin">
+              <div class="coin-face coin-heads">H</div>
+              <div class="coin-face coin-tails">T</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multi-coin Display -->
+        <div id="multi-coin-area" class="mb-6 hidden">
+          <div id="multi-coin-grid" class="multi-coin-grid">
+            <!-- Mini coins will be generated here -->
+          </div>
+          <div id="multi-result-summary" class="multi-result-summary hidden">
+            <div class="summary-item">
+              <div class="summary-value summary-heads" id="multi-heads">0</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Heads</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-value summary-tails" id="multi-tails">0</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Tails</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Display -->
+        <div id="result-display" class="result-display mb-6 hidden">
+          Result will appear here
+        </div>
+
+        <!-- Flip Button -->
+        <button id="flip-btn" class="btn btn-primary btn-flip w-full py-4 text-lg font-semibold flex items-center justify-center gap-3">
+          <svg class="flip-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          Flip Coin
+        </button>
+
+        <!-- Statistics -->
+        <div class="mt-8">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Statistics</h3>
+            <button id="reset-stats" class="text-sm text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors">
+              Reset
+            </button>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="stat-card">
+              <div class="stat-value text-yellow-500" id="stat-heads">0</div>
+              <div class="stat-label">Heads</div>
+              <div class="stat-percentage" id="stat-heads-pct">0%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value text-gray-500" id="stat-tails">0</div>
+              <div class="stat-label">Tails</div>
+              <div class="stat-percentage" id="stat-tails-pct">0%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value text-blue-500" id="stat-total">0</div>
+              <div class="stat-label">Total Flips</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value text-green-500" id="stat-streak">0</div>
+              <div class="stat-label">Best Streak</div>
+              <div class="stat-percentage" id="stat-streak-type">-</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About Coin Flip</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>The Coin Flip tool is a simple yet fair way to randomly decide between two options. Instead of using a real coin, this virtual coin allows you to make quick decisions anytime, anywhere.</p>
+          <p class="mt-3">Featuring realistic 3D animation that mimics a real coin toss, you can also flip multiple coins at once and track your statistics over time.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select the number of coins to flip (1, 2, 5, or 10)</li>
+            <li>Click the 'Flip Coin' button</li>
+            <li>Watch the 3D animation and see your result</li>
+            <li>Check the statistics section for heads/tails counts and percentages</li>
+            <li>Toggle the sound button to turn sound effects on or off</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Making decisions when you can't choose between two options</li>
+            <li>Determining turn order or teams in games</li>
+            <li>Probability experiments and statistics learning</li>
+            <li>Board games and tabletop RPGs</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Is the result truly random?</h4>
+              <p>Yes, the result uses your computer's random number generator, giving heads and tails each a 50% probability.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are statistics saved?</h4>
+              <p>Statistics are saved in your browser's local storage and persist even after refreshing the page. You can reset them anytime using the Reset button.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What happens when I flip multiple coins?</h4>
+              <p>When you select multiple coins, they all flip simultaneously with slightly different timing. You'll see individual results for each coin and a summary of total heads and tails. All results count toward your statistics.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Audio Context for sound effects
+      let audioContext = null;
+
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        return audioContext;
+      }
+
+      function playFlipSound() {
+        if (!soundToggle.checked) return;
+
+        try {
+          const ctx = initAudio();
+
+          // Whoosh sound
+          const oscillator = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+
+          oscillator.connect(gainNode);
+          gainNode.connect(ctx.destination);
+
+          oscillator.frequency.setValueAtTime(400, ctx.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.2);
+          oscillator.type = 'sine';
+
+          gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+
+          oscillator.start(ctx.currentTime);
+          oscillator.stop(ctx.currentTime + 0.2);
+        } catch (e) {
+          console.log('Audio not available');
+        }
+      }
+
+      function playLandSound(isHeads) {
+        if (!soundToggle.checked) return;
+
+        try {
+          const ctx = initAudio();
+
+          // Metallic landing sound
+          const oscillator = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+
+          oscillator.connect(gainNode);
+          gainNode.connect(ctx.destination);
+
+          oscillator.frequency.value = isHeads ? 800 : 600;
+          oscillator.type = 'triangle';
+
+          gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+
+          oscillator.start(ctx.currentTime);
+          oscillator.stop(ctx.currentTime + 0.15);
+        } catch (e) {
+          console.log('Audio not available');
+        }
+      }
+
+      // Elements
+      const coin = document.getElementById('coin');
+      const flipBtn = document.getElementById('flip-btn');
+      const resultDisplay = document.getElementById('result-display');
+      const soundToggle = document.getElementById('sound-toggle');
+      const soundOnIcon = document.getElementById('sound-on-icon');
+      const soundOffIcon = document.getElementById('sound-off-icon');
+      const resetStatsBtn = document.getElementById('reset-stats');
+      const singleCoinArea = document.getElementById('single-coin-area');
+      const multiCoinArea = document.getElementById('multi-coin-area');
+      const multiCoinGrid = document.getElementById('multi-coin-grid');
+      const multiResultSummary = document.getElementById('multi-result-summary');
+      const multiFlipBtns = document.querySelectorAll('.multi-flip-btn');
+
+      // Statistics elements
+      const statHeads = document.getElementById('stat-heads');
+      const statTails = document.getElementById('stat-tails');
+      const statTotal = document.getElementById('stat-total');
+      const statStreak = document.getElementById('stat-streak');
+      const statHeadsPct = document.getElementById('stat-heads-pct');
+      const statTailsPct = document.getElementById('stat-tails-pct');
+      const statStreakType = document.getElementById('stat-streak-type');
+
+      // State
+      let isFlipping = false;
+      let coinCount = 1;
+      let stats = JSON.parse(localStorage.getItem('coinFlipStats') || '{"heads":0,"tails":0,"currentStreak":0,"maxStreak":0,"lastResult":null,"streakType":null}');
+
+      // Update stats display
+      function updateStatsDisplay() {
+        const total = stats.heads + stats.tails;
+        statHeads.textContent = stats.heads;
+        statTails.textContent = stats.tails;
+        statTotal.textContent = total;
+        statStreak.textContent = stats.maxStreak;
+
+        if (total > 0) {
+          statHeadsPct.textContent = ((stats.heads / total) * 100).toFixed(1) + '%';
+          statTailsPct.textContent = ((stats.tails / total) * 100).toFixed(1) + '%';
+        } else {
+          statHeadsPct.textContent = '0%';
+          statTailsPct.textContent = '0%';
+        }
+
+        statStreakType.textContent = stats.streakType ? (stats.streakType === 'heads' ? 'Heads' : 'Tails') : '-';
+
+        localStorage.setItem('coinFlipStats', JSON.stringify(stats));
+      }
+
+      // Update streak
+      function updateStreak(isHeads) {
+        const result = isHeads ? 'heads' : 'tails';
+
+        if (stats.lastResult === result) {
+          stats.currentStreak++;
+        } else {
+          stats.currentStreak = 1;
+        }
+
+        if (stats.currentStreak > stats.maxStreak) {
+          stats.maxStreak = stats.currentStreak;
+          stats.streakType = result;
+        }
+
+        stats.lastResult = result;
+      }
+
+      // Flip coin
+      function flipCoin() {
+        return Math.random() < 0.5;
+      }
+
+      // Single coin flip
+      async function flipSingleCoin() {
+        if (isFlipping) return;
+
+        isFlipping = true;
+        flipBtn.disabled = true;
+        flipBtn.classList.add('flipping');
+        resultDisplay.classList.add('hidden');
+
+        playFlipSound();
+
+        const isHeads = flipCoin();
+
+        coin.classList.remove('flipping', 'flipping-tails');
+        void coin.offsetWidth; // Force reflow
+
+        if (isHeads) {
+          coin.classList.add('flipping');
+        } else {
+          coin.classList.add('flipping-tails');
+        }
+
+        // Wait for animation
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        playLandSound(isHeads);
+
+        // Update stats
+        if (isHeads) {
+          stats.heads++;
+        } else {
+          stats.tails++;
+        }
+        updateStreak(isHeads);
+        updateStatsDisplay();
+
+        // Show result
+        resultDisplay.textContent = isHeads ? 'Heads!' : 'Tails!';
+        resultDisplay.className = 'result-display mb-6 ' + (isHeads ? 'result-heads' : 'result-tails');
+        resultDisplay.classList.remove('hidden');
+
+        flipBtn.classList.remove('flipping');
+        flipBtn.disabled = false;
+        isFlipping = false;
+      }
+
+      // Multi-coin flip
+      async function flipMultiCoins() {
+        if (isFlipping) return;
+
+        isFlipping = true;
+        flipBtn.disabled = true;
+        flipBtn.classList.add('flipping');
+        resultDisplay.classList.add('hidden');
+        multiResultSummary.classList.add('hidden');
+
+        // Clear and create mini coins
+        multiCoinGrid.innerHTML = '';
+        const results = [];
+
+        for (let i = 0; i < coinCount; i++) {
+          const isHeads = flipCoin();
+          results.push(isHeads);
+
+          const scene = document.createElement('div');
+          scene.className = 'mini-coin-scene';
+
+          const miniCoin = document.createElement('div');
+          miniCoin.className = 'mini-coin';
+          miniCoin.style.setProperty('--flip-duration', (0.8 + Math.random() * 0.4) + 's');
+          miniCoin.innerHTML = `
+            <div class="mini-coin-face mini-coin-heads">H</div>
+            <div class="mini-coin-face mini-coin-tails">T</div>
+          `;
+
+          scene.appendChild(miniCoin);
+          multiCoinGrid.appendChild(scene);
+
+          // Stagger animation start
+          setTimeout(() => {
+            playFlipSound();
+            if (isHeads) {
+              miniCoin.classList.add('flipping');
+            } else {
+              miniCoin.classList.add('flipping-tails');
+            }
+          }, i * 100);
+        }
+
+        // Wait for all animations
+        await new Promise(resolve => setTimeout(resolve, 1200 + coinCount * 100));
+
+        // Play landing sounds
+        results.forEach((isHeads, i) => {
+          setTimeout(() => playLandSound(isHeads), i * 50);
+        });
+
+        // Count results
+        const headsCount = results.filter(r => r).length;
+        const tailsCount = results.length - headsCount;
+
+        // Update stats
+        stats.heads += headsCount;
+        stats.tails += tailsCount;
+
+        // Update streak based on last coin
+        results.forEach(isHeads => updateStreak(isHeads));
+        updateStatsDisplay();
+
+        // Show multi-result summary
+        document.getElementById('multi-heads').textContent = headsCount;
+        document.getElementById('multi-tails').textContent = tailsCount;
+        multiResultSummary.classList.remove('hidden');
+
+        flipBtn.classList.remove('flipping');
+        flipBtn.disabled = false;
+        isFlipping = false;
+      }
+
+      // Event listeners
+      flipBtn.addEventListener('click', () => {
+        if (coinCount === 1) {
+          flipSingleCoin();
+        } else {
+          flipMultiCoins();
+        }
+      });
+
+      // Multi-flip button selection
+      multiFlipBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (isFlipping) return;
+
+          multiFlipBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          coinCount = parseInt(btn.dataset.count);
+
+          if (coinCount === 1) {
+            singleCoinArea.classList.remove('hidden');
+            multiCoinArea.classList.add('hidden');
+          } else {
+            singleCoinArea.classList.add('hidden');
+            multiCoinArea.classList.remove('hidden');
+            multiCoinGrid.innerHTML = '';
+            multiResultSummary.classList.add('hidden');
+          }
+
+          resultDisplay.classList.add('hidden');
+        });
+      });
+
+      // Reset stats
+      resetStatsBtn.addEventListener('click', () => {
+        stats = { heads: 0, tails: 0, currentStreak: 0, maxStreak: 0, lastResult: null, streakType: null };
+        updateStatsDisplay();
+      });
+
+      // Sound toggle
+      soundToggle.addEventListener('change', () => {
+        if (soundToggle.checked) {
+          soundOnIcon.classList.remove('hidden');
+          soundOffIcon.classList.add('hidden');
+          initAudio();
+        } else {
+          soundOnIcon.classList.add('hidden');
+          soundOffIcon.classList.remove('hidden');
+        }
+      });
+
+      // Initialize
+      updateStatsDisplay();
+    })();
+  </script>
+</body>
+</html>

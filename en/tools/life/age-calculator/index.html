@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator - Toolneat</title>
+  <meta name="description" content="Calculate your exact age in years, months, and days">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/age-calculator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/age-calculator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/age-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/age-calculator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Age Calculator - Toolneat">
+  <meta property="og:description" content="Calculate your exact age in years, months, and days">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/age-calculator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>localStorage.setItem('toolneat-lang', 'en');</script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Age Calculator
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Calculate your exact age in years, months, and days
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Birthdate Input -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Date of Birth</label>
+          <input
+            type="date"
+            id="birthdate"
+            class="input py-3"
+          >
+        </div>
+
+        <!-- Calculate Button -->
+        <button id="calculate-btn" class="btn btn-primary w-full py-3 mb-6">
+          Calculate Age
+        </button>
+
+        <!-- Result Display -->
+        <div id="result" class="hidden">
+          <!-- Age Display -->
+          <div class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl p-6 mb-6 text-white text-center">
+            <div class="text-sm opacity-90 mb-2">Your Age</div>
+            <div id="international-age-display" class="text-4xl md:text-5xl font-bold mb-2">0 years</div>
+            <div id="age-detail" class="text-sm opacity-75"></div>
+          </div>
+
+          <!-- Age Info Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center">
+              <div id="korean-age" class="text-2xl font-bold text-gray-900 dark:text-white">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Korean Age</div>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center">
+              <div id="days-lived" class="text-2xl font-bold text-gray-900 dark:text-white">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Days Lived</div>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center">
+              <div id="hours-lived" class="text-2xl font-bold text-gray-900 dark:text-white">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Hours Lived</div>
+            </div>
+          </div>
+
+          <!-- Next Birthday Countdown -->
+          <div class="p-4 bg-pink-50 dark:bg-pink-900/20 rounded-xl mb-6">
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-pink-700 dark:text-pink-300">Next Birthday</span>
+              <span id="next-birthday" class="font-medium text-pink-800 dark:text-pink-200"></span>
+            </div>
+          </div>
+
+          <!-- Zodiac Signs -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl">
+              <div class="text-sm text-amber-700 dark:text-amber-300 mb-1">Zodiac Sign</div>
+              <div id="zodiac-sign" class="font-medium text-amber-800 dark:text-amber-200"></div>
+            </div>
+            <div class="p-4 bg-red-50 dark:bg-red-900/20 rounded-xl">
+              <div class="text-sm text-red-700 dark:text-red-300 mb-1">Chinese Zodiac</div>
+              <div id="chinese-zodiac" class="font-medium text-red-800 dark:text-red-200"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="py-12 text-center">
+          <svg class="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <p class="text-gray-500 dark:text-gray-400">Enter your date of birth</p>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is an Age Calculator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>An age calculator determines your exact age based on your date of birth. It calculates your international age (exact age), Korean age, total days and hours lived, and shows your Western zodiac sign and Chinese zodiac animal.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Korean Age vs International Age</h3>
+          <div class="space-y-3">
+            <p><strong>Korean Age (Counting Age):</strong> In the traditional Korean age system, a person is 1 year old at birth, and everyone gains one year on January 1st regardless of their actual birthday. For example, a baby born in December would be 1 year old at birth and turn 2 on January 1st of the following month.</p>
+            <p><strong>International Age (Western Age):</strong> A person is 0 years old at birth and gains one year on each birthday. This is the system used in most countries around the world.</p>
+            <p class="text-blue-600 dark:text-blue-400">Since June 2023, South Korea officially uses international age for legal and administrative purposes.</p>
+          </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: How is international age calculated?</h4>
+              <p>International age is calculated by subtracting your birth date from today's date. If your birthday has passed this year, your age is (current year - birth year). If your birthday hasn't occurred yet, your age is (current year - birth year - 1).</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why is Korean age higher?</h4>
+              <p>Korean age starts at 1 at birth and increases by 1 every New Year's Day. Therefore, Korean age is typically 1-2 years higher than international age, depending on when your birthday falls in the year.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How is the Chinese zodiac determined?</h4>
+              <p>The Chinese zodiac is determined by your birth year in a 12-year cycle. The animals in order are: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const birthdateInput = document.getElementById('birthdate');
+      const calculateBtn = document.getElementById('calculate-btn');
+      const result = document.getElementById('result');
+      const emptyState = document.getElementById('empty-state');
+
+      // Zodiac signs data
+      const zodiacSigns = [
+        { name: 'Capricorn', start: [1, 1], end: [1, 19] },
+        { name: 'Aquarius', start: [1, 20], end: [2, 18] },
+        { name: 'Pisces', start: [2, 19], end: [3, 20] },
+        { name: 'Aries', start: [3, 21], end: [4, 19] },
+        { name: 'Taurus', start: [4, 20], end: [5, 20] },
+        { name: 'Gemini', start: [5, 21], end: [6, 21] },
+        { name: 'Cancer', start: [6, 22], end: [7, 22] },
+        { name: 'Leo', start: [7, 23], end: [8, 22] },
+        { name: 'Virgo', start: [8, 23], end: [9, 22] },
+        { name: 'Libra', start: [9, 23], end: [10, 22] },
+        { name: 'Scorpio', start: [10, 23], end: [11, 21] },
+        { name: 'Sagittarius', start: [11, 22], end: [12, 21] },
+        { name: 'Capricorn', start: [12, 22], end: [12, 31] }
+      ];
+
+      // Chinese zodiac data
+      const chineseZodiac = ['Monkey', 'Rooster', 'Dog', 'Pig', 'Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Goat'];
+
+      // Parse date string to local Date
+      function parseLocalDate(dateStr) {
+        const [year, month, day] = dateStr.split('-').map(Number);
+        return new Date(year, month - 1, day);
+      }
+
+      // Get zodiac sign
+      function getZodiacSign(month, day) {
+        for (const sign of zodiacSigns) {
+          const [startMonth, startDay] = sign.start;
+          const [endMonth, endDay] = sign.end;
+
+          if (month === startMonth && day >= startDay) return sign.name;
+          if (month === endMonth && day <= endDay) return sign.name;
+        }
+        return 'Capricorn';
+      }
+
+      // Get Chinese zodiac
+      function getChineseZodiac(year) {
+        return chineseZodiac[year % 12];
+      }
+
+      // Calculate international age
+      function calculateInternationalAge(birthDate, today) {
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+
+        return age;
+      }
+
+      // Calculate detailed age (years, months, days)
+      function calculateDetailedAge(birthDate, today) {
+        let years = today.getFullYear() - birthDate.getFullYear();
+        let months = today.getMonth() - birthDate.getMonth();
+        let days = today.getDate() - birthDate.getDate();
+
+        if (days < 0) {
+          months--;
+          const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+          days += prevMonth.getDate();
+        }
+
+        if (months < 0) {
+          years--;
+          months += 12;
+        }
+
+        return { years, months, days };
+      }
+
+      // Calculate Korean age
+      function calculateKoreanAge(birthYear, currentYear) {
+        return currentYear - birthYear + 1;
+      }
+
+      // Calculate days until next birthday
+      function calculateNextBirthday(birthDate, today) {
+        const nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+
+        if (nextBirthday <= today) {
+          nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+        }
+
+        const diffTime = nextBirthday - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        return diffDays;
+      }
+
+      // Main calculate function
+      function calculate() {
+        const birthdateValue = birthdateInput.value;
+        if (!birthdateValue) {
+          result.classList.add('hidden');
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        const birthDate = parseLocalDate(birthdateValue);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // Validate birthdate
+        if (birthDate > today) {
+          alert('Date of birth must be before today.');
+          return;
+        }
+
+        // Calculate ages
+        const internationalAge = calculateInternationalAge(birthDate, today);
+        const detailedAge = calculateDetailedAge(birthDate, today);
+        const koreanAge = calculateKoreanAge(birthDate.getFullYear(), today.getFullYear());
+
+        // Calculate days and hours lived
+        const daysLived = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
+        const hoursLived = daysLived * 24;
+
+        // Calculate next birthday
+        const daysUntilBirthday = calculateNextBirthday(birthDate, today);
+
+        // Get zodiac signs
+        const zodiacSign = getZodiacSign(birthDate.getMonth() + 1, birthDate.getDate());
+        const chineseZodiacSign = getChineseZodiac(birthDate.getFullYear());
+
+        // Update display
+        document.getElementById('international-age-display').textContent = `${internationalAge} years`;
+        document.getElementById('age-detail').textContent = `${detailedAge.years} years, ${detailedAge.months} months, ${detailedAge.days} days`;
+        document.getElementById('korean-age').textContent = `${koreanAge} years`;
+        document.getElementById('days-lived').textContent = formatNumber(daysLived) + ' days';
+        document.getElementById('hours-lived').textContent = formatNumber(hoursLived) + ' hrs';
+
+        if (daysUntilBirthday === 0) {
+          document.getElementById('next-birthday').textContent = 'Today is your birthday!';
+        } else {
+          document.getElementById('next-birthday').textContent = `${daysUntilBirthday} days away`;
+        }
+
+        document.getElementById('zodiac-sign').textContent = zodiacSign;
+        document.getElementById('chinese-zodiac').textContent = chineseZodiacSign;
+
+        result.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+      }
+
+      // Event listeners
+      calculateBtn.addEventListener('click', calculate);
+      birthdateInput.addEventListener('change', calculate);
+    })();
+  </script>
+</body>
+</html>

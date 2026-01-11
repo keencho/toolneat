@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tip Calculator - Toolneat</title>
+  <meta name="description" content="Calculate tips and split bills easily. Quick tip buttons, custom slider, and round up option for convenient calculations.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/tip-calculator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/tip-calculator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/tip-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/tip-calculator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Tip Calculator - Toolneat">
+  <meta property="og:description" content="Calculate tips and split bills easily.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/tip-calculator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>localStorage.setItem('toolneat-lang', 'en');</script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <style>
+    .tip-btn {
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      border: 1px solid #e5e7eb;
+      color: #6b7280;
+    }
+    .dark .tip-btn {
+      border-color: #374151;
+      color: #9ca3af;
+    }
+    .tip-btn:hover {
+      background: #f3f4f6;
+    }
+    .dark .tip-btn:hover {
+      background: #374151;
+    }
+    .tip-btn.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: white;
+    }
+    .result-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2563eb;
+    }
+    .dark .result-value {
+      color: #60a5fa;
+    }
+    .result-label {
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    .dark .result-label {
+      color: #9ca3af;
+    }
+    .tip-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: #e5e7eb;
+      outline: none;
+    }
+    .dark .tip-slider {
+      background: #374151;
+    }
+    .tip-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #2563eb;
+      cursor: pointer;
+    }
+    .tip-slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #2563eb;
+      cursor: pointer;
+      border: none;
+    }
+    .result-card {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+    }
+    .result-card .result-value {
+      color: white;
+    }
+    .result-card .result-label {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Tip Calculator
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Calculate tips and split bills easily
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Input Section -->
+        <div class="space-y-6">
+          <!-- Bill Amount -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Bill Amount</label>
+            <div class="flex">
+              <input type="number" id="bill-amount" class="input py-3 text-lg rounded-r-none flex-1" placeholder="0.00" min="0" step="0.01">
+              <span class="inline-flex items-center px-4 text-lg font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 border border-l-0 border-gray-200 dark:border-gray-600 rounded-r-xl">USD</span>
+            </div>
+          </div>
+
+          <!-- Quick Tip Buttons -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Quick Tip Selection</label>
+            <div class="flex flex-wrap gap-2">
+              <button class="tip-btn" data-tip="10">10%</button>
+              <button class="tip-btn active" data-tip="15">15%</button>
+              <button class="tip-btn" data-tip="18">18%</button>
+              <button class="tip-btn" data-tip="20">20%</button>
+              <button class="tip-btn" data-tip="25">25%</button>
+            </div>
+          </div>
+
+          <!-- Custom Tip Slider -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Custom Tip: <span id="tip-percent-display" class="font-bold text-blue-600 dark:text-blue-400">15%</span>
+            </label>
+            <input type="range" id="tip-slider" class="tip-slider" min="0" max="50" value="15">
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
+              <span>0%</span>
+              <span>25%</span>
+              <span>50%</span>
+            </div>
+          </div>
+
+          <!-- Number of People -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Number of People</label>
+            <div class="flex items-center gap-4">
+              <button id="decrease-people" class="btn btn-secondary w-12 h-12 text-xl font-bold">-</button>
+              <input type="number" id="num-people" class="input py-3 text-lg text-center w-20" value="1" min="1">
+              <button id="increase-people" class="btn btn-secondary w-12 h-12 text-xl font-bold">+</button>
+            </div>
+          </div>
+
+          <!-- Round Up Option -->
+          <div class="flex items-center gap-3">
+            <input type="checkbox" id="round-up" class="w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500">
+            <label for="round-up" class="text-sm font-medium text-gray-700 dark:text-gray-300">Round up to nearest dollar</label>
+          </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Tip Amount -->
+          <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p class="result-label mb-2">Tip Amount</p>
+            <p class="result-value" id="tip-amount">$0.00</p>
+          </div>
+
+          <!-- Total with Tip -->
+          <div class="p-4 result-card rounded-xl text-center">
+            <p class="result-label mb-2">Total with Tip</p>
+            <p class="result-value" id="total-amount">$0.00</p>
+          </div>
+
+          <!-- Per Person (shown when splitting) -->
+          <div id="per-person-section" class="hidden p-4 bg-green-50 dark:bg-green-900/20 rounded-xl text-center">
+            <p class="result-label mb-2 text-green-700 dark:text-green-400">Amount Per Person</p>
+            <p class="result-value text-green-600 dark:text-green-400" id="per-person-amount">$0.00</p>
+          </div>
+
+          <!-- Tip Per Person (shown when splitting) -->
+          <div id="tip-per-person-section" class="hidden p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl text-center">
+            <p class="result-label mb-2 text-purple-700 dark:text-purple-400">Tip Per Person</p>
+            <p class="result-value text-purple-600 dark:text-purple-400" id="tip-per-person">$0.00</p>
+          </div>
+        </div>
+
+        <!-- Clear Button -->
+        <div class="mt-6 flex justify-center">
+          <button id="clear-btn" class="btn btn-secondary">Clear</button>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+        <h3 class="font-medium text-blue-800 dark:text-blue-300 mb-2">Tip Calculation Formulas</h3>
+        <ul class="text-sm text-blue-700 dark:text-blue-400 space-y-1">
+          <li>Tip Amount = Bill x (Tip Percentage / 100)</li>
+          <li>Total = Bill + Tip Amount</li>
+          <li>Per Person = Total / Number of People</li>
+        </ul>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Tip Calculator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A tip calculator is a convenient tool that helps you quickly and accurately calculate tips at restaurants, cafes, hotels, and other service establishments. It also automatically calculates the split amount when dining with multiple people.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>Quick Tip Selection</strong> - Preset buttons for 10%, 15%, 18%, 20%, and 25% tips</li>
+            <li><strong>Custom Slider</strong> - Precisely adjust any tip percentage from 0% to 50%</li>
+            <li><strong>Bill Splitting</strong> - Enter the number of people to automatically calculate per-person amounts</li>
+            <li><strong>Round Up Option</strong> - Round the total to the nearest dollar for easier payments</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: How much should I tip?</h4>
+              <p>Generally, 15-20% is standard. For exceptional service, tip 20-25%. For regular service, 15-18% is appropriate.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Should I tip before or after tax?</h4>
+              <p>Traditionally, tips are calculated on the pre-tax amount (subtotal), but calculating on the post-tax total is also acceptable.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When should I tip more or less?</h4>
+              <p>Tip more for exceptional service, large groups, or complex orders. You might tip less for poor service, but consider speaking to management about any issues.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Elements
+      const billAmountInput = document.getElementById('bill-amount');
+      const tipSlider = document.getElementById('tip-slider');
+      const tipPercentDisplay = document.getElementById('tip-percent-display');
+      const numPeopleInput = document.getElementById('num-people');
+      const decreasePeopleBtn = document.getElementById('decrease-people');
+      const increasePeopleBtn = document.getElementById('increase-people');
+      const roundUpCheckbox = document.getElementById('round-up');
+      const clearBtn = document.getElementById('clear-btn');
+
+      // Result elements
+      const tipAmountEl = document.getElementById('tip-amount');
+      const totalAmountEl = document.getElementById('total-amount');
+      const perPersonAmountEl = document.getElementById('per-person-amount');
+      const tipPerPersonEl = document.getElementById('tip-per-person');
+      const perPersonSection = document.getElementById('per-person-section');
+      const tipPerPersonSection = document.getElementById('tip-per-person-section');
+
+      // Tip buttons
+      const tipButtons = document.querySelectorAll('.tip-btn');
+
+      // Format currency
+      function formatCurrency(amount) {
+        return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      // Round up to nearest dollar
+      function roundUp(amount) {
+        return Math.ceil(amount);
+      }
+
+      // Calculate and update results
+      function calculate() {
+        const billAmount = parseFloat(billAmountInput.value) || 0;
+        const tipPercent = parseFloat(tipSlider.value);
+        const numPeople = parseInt(numPeopleInput.value) || 1;
+        const shouldRoundUp = roundUpCheckbox.checked;
+
+        let tipAmount = billAmount * (tipPercent / 100);
+        let totalAmount = billAmount + tipAmount;
+
+        if (shouldRoundUp) {
+          totalAmount = roundUp(totalAmount);
+          tipAmount = totalAmount - billAmount;
+        }
+
+        tipAmountEl.textContent = formatCurrency(tipAmount);
+        totalAmountEl.textContent = formatCurrency(totalAmount);
+
+        // Show/hide per person sections
+        if (numPeople > 1) {
+          const perPerson = totalAmount / numPeople;
+          const tipPerPerson = tipAmount / numPeople;
+
+          perPersonAmountEl.textContent = formatCurrency(perPerson);
+          tipPerPersonEl.textContent = formatCurrency(tipPerPerson);
+
+          perPersonSection.classList.remove('hidden');
+          tipPerPersonSection.classList.remove('hidden');
+        } else {
+          perPersonSection.classList.add('hidden');
+          tipPerPersonSection.classList.add('hidden');
+        }
+      }
+
+      // Update tip buttons active state
+      function updateTipButtons(value) {
+        tipButtons.forEach(btn => {
+          btn.classList.toggle('active', parseInt(btn.dataset.tip) === value);
+        });
+      }
+
+      // Event listeners
+      billAmountInput.addEventListener('input', calculate);
+
+      tipSlider.addEventListener('input', () => {
+        const value = parseInt(tipSlider.value);
+        tipPercentDisplay.textContent = value + '%';
+        updateTipButtons(value);
+        calculate();
+      });
+
+      tipButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tipValue = parseInt(btn.dataset.tip);
+          tipSlider.value = tipValue;
+          tipPercentDisplay.textContent = tipValue + '%';
+          updateTipButtons(tipValue);
+          calculate();
+        });
+      });
+
+      numPeopleInput.addEventListener('input', () => {
+        if (numPeopleInput.value < 1) numPeopleInput.value = 1;
+        calculate();
+      });
+
+      decreasePeopleBtn.addEventListener('click', () => {
+        const current = parseInt(numPeopleInput.value) || 1;
+        if (current > 1) {
+          numPeopleInput.value = current - 1;
+          calculate();
+        }
+      });
+
+      increasePeopleBtn.addEventListener('click', () => {
+        const current = parseInt(numPeopleInput.value) || 1;
+        numPeopleInput.value = current + 1;
+        calculate();
+      });
+
+      roundUpCheckbox.addEventListener('change', calculate);
+
+      clearBtn.addEventListener('click', () => {
+        billAmountInput.value = '';
+        tipSlider.value = 15;
+        tipPercentDisplay.textContent = '15%';
+        numPeopleInput.value = 1;
+        roundUpCheckbox.checked = false;
+        updateTipButtons(15);
+        calculate();
+      });
+
+      // Initialize
+      calculate();
+    })();
+  </script>
+</body>
+</html>

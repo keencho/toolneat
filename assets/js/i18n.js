@@ -3,19 +3,23 @@
 (function() {
   'use strict';
 
-  // Get current language from URL path (URL is the source of truth)
+  // Detect language from URL path (en/ prefix means English, otherwise Korean)
+  const getLanguageFromURL = () => {
+    const path = window.location.pathname;
+    return path.startsWith('/en/') || path === '/en' ? 'en' : 'ko';
+  };
+
+  // Get current language from URL
   const getLanguage = () => {
-    const pathname = window.location.pathname;
-    // URL path determines language - /en/ = English, otherwise Korean
-    if (pathname.startsWith('/en/') || pathname === '/en') {
-      return 'en';
-    }
-    return 'ko';
+    return getLanguageFromURL();
   };
 
   // Get base path for locales (상대경로)
   const getLocalesPath = () => {
-    const depth = window.location.pathname.split('/').filter(Boolean).length;
+    const path = window.location.pathname;
+    const isEnglish = path.startsWith('/en/') || path === '/en';
+    // For English pages, go up one extra level
+    let depth = path.split('/').filter(Boolean).length;
     if (depth === 0) return './locales';
     return '../'.repeat(depth) + 'locales';
   };
@@ -35,6 +39,7 @@
       }
 
       translations = await response.json();
+      document.documentElement.lang = lang;
       applyTranslations();
       updateLangButtons();
 
@@ -106,21 +111,30 @@
     });
   };
 
-  // Switch language - redirect to /en/ or / URL
+  // Switch language - navigate to corresponding URL path
   window.switchLanguage = (lang) => {
-    const currentPath = window.location.pathname;
-    const isOnEnglish = currentPath.startsWith('/en/') || currentPath === '/en';
+    if (lang !== currentLang) {
+      const path = window.location.pathname;
+      let newPath;
 
-    if (lang === 'en' && !isOnEnglish) {
-      // Switch to English - add /en/ prefix
-      window.location.href = '/en' + currentPath;
-    } else if (lang === 'ko' && isOnEnglish) {
-      // Switch to Korean - remove /en/ prefix
-      if (currentPath === '/en' || currentPath === '/en/') {
-        window.location.href = '/';
+      if (lang === 'en') {
+        // Korean -> English: add /en prefix
+        if (path === '/' || path === '') {
+          newPath = '/en/';
+        } else {
+          newPath = '/en' + path;
+        }
       } else {
-        window.location.href = currentPath.replace(/^\/en/, '');
+        // English -> Korean: remove /en prefix
+        if (path === '/en' || path === '/en/') {
+          newPath = '/';
+        } else {
+          newPath = path.replace(/^\/en/, '');
+        }
       }
+
+      // Navigate to new path
+      window.location.href = newPath;
     }
   };
 

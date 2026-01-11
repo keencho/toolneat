@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마크다운 미리보기 - Toolneat</title>
+  <meta name="description" content="마크다운을 작성하고 실시간으로 미리보기 하세요. 무료 온라인 마크다운 에디터.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/dev/markdown-preview/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/markdown-preview/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/markdown-preview/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/markdown-preview/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="마크다운 미리보기 - Toolneat">
+  <meta property="og:description" content="마크다운을 작성하고 실시간으로 미리보기 하세요. 무료 온라인 마크다운 에디터.">
+  <meta property="og:url" content="https://toolneat.com/tools/dev/markdown-preview/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- Highlight.js for code syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+
+  <!-- MathJax for math formulas -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      startup: { typeset: false }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <!-- Marked.js for markdown parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+  <!-- Highlight.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- DOMPurify for sanitization -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js"></script>
+
+  <style>
+    /* Editor and Preview container */
+    .md-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 280px);
+      min-height: 500px;
+      max-height: 900px;
+    }
+    @media (min-width: 1024px) {
+      .md-container {
+        flex-direction: row;
+        height: calc(100vh - 250px);
+        min-height: 600px;
+      }
+    }
+    .md-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    #md-input {
+      flex: 1;
+      min-height: 250px;
+      resize: none;
+      overflow-y: auto;
+      font-size: 13px !important;
+      line-height: 1.6;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    }
+    #md-preview {
+      flex: 1;
+      min-height: 250px;
+      overflow: auto;
+      font-size: 14px !important;
+      line-height: 1.7;
+    }
+
+    /* Preview Prose Styling */
+    .preview-content {
+      color: #1f2937;
+    }
+    .preview-content h1 { font-size: 1.875rem; font-weight: 700; margin: 1.5rem 0 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
+    .preview-content h2 { font-size: 1.5rem; font-weight: 600; margin: 1.25rem 0 0.75rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.25rem; }
+    .preview-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+    .preview-content h4 { font-size: 1.125rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+    .preview-content h5, .preview-content h6 { font-size: 1rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
+    .preview-content p { margin: 0.75rem 0; }
+    .preview-content a { color: #2563eb; text-decoration: underline; }
+    .preview-content a:hover { color: #1d4ed8; }
+    .preview-content strong { font-weight: 600; }
+    .preview-content em { font-style: italic; }
+    .preview-content ul, .preview-content ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    .preview-content ul { list-style-type: disc; }
+    .preview-content ol { list-style-type: decimal; }
+    .preview-content li { margin: 0.25rem 0; }
+    .preview-content blockquote {
+      border-left: 4px solid #e5e7eb;
+      padding-left: 1rem;
+      margin: 1rem 0;
+      color: #6b7280;
+      font-style: italic;
+    }
+    .preview-content code {
+      background: #f3f4f6;
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+      font-size: 0.875em;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    }
+    .preview-content pre {
+      background: #f3f4f6;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    .preview-content pre code {
+      background: transparent;
+      padding: 0;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+    .preview-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+    .preview-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    .preview-content th, .preview-content td {
+      border: 1px solid #e5e7eb;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    .preview-content th {
+      background: #f9fafb;
+      font-weight: 600;
+    }
+    .preview-content hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 1.5rem 0;
+    }
+    /* Task list (checkboxes) */
+    .preview-content .task-list-item {
+      list-style-type: none;
+      margin-left: -1.5rem;
+    }
+    .preview-content .task-list-item input[type="checkbox"] {
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+    /* MathJax */
+    .preview-content mjx-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    /* Dark mode preview */
+    .preview-dark .preview-content {
+      color: #e5e7eb;
+    }
+    .preview-dark .preview-content h1, .preview-dark .preview-content h2 { border-bottom-color: #374151; }
+    .preview-dark .preview-content a { color: #60a5fa; }
+    .preview-dark .preview-content a:hover { color: #93c5fd; }
+    .preview-dark .preview-content blockquote { border-left-color: #4b5563; color: #9ca3af; }
+    .preview-dark .preview-content code { background: #374151; }
+    .preview-dark .preview-content pre { background: #1f2937; }
+    .preview-dark .preview-content th { background: #374151; }
+    .preview-dark .preview-content th, .preview-dark .preview-content td { border-color: #4b5563; }
+    .preview-dark .preview-content hr { border-top-color: #4b5563; }
+
+    /* Highlight.js dark mode override */
+    .preview-dark pre code.hljs {
+      background: transparent;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          마크다운 미리보기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          마크다운을 작성하고 실시간으로 미리보기 하세요. 헤더, 목록, 코드 블록, 테이블 등 다양한 마크다운 문법을 지원합니다.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <button id="sample-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">샘플 마크다운</button>
+            <button id="copy-html-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">HTML 복사</button>
+            <button id="download-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">HTML 다운로드</button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">지우기</button>
+            <div class="flex items-center gap-2 ml-auto">
+              <span class="text-sm text-gray-600 dark:text-gray-400">미리보기 테마:</span>
+              <button id="theme-toggle-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">
+                <span id="theme-label">라이트</span>
+              </button>
+            </div>
+          </div>
+          <!-- Supported features badges -->
+          <div class="flex flex-wrap gap-1.5">
+            <span class="text-xs text-gray-500 dark:text-gray-400 mr-1">지원:</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">GFM</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">코드 하이라이트</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400">수식 (MathJax)</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400">테이블</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400">체크박스</span>
+          </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="md-container gap-4">
+          <!-- Input Section -->
+          <div class="md-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">마크다운 입력</span>
+              <span id="char-count" class="text-xs text-gray-400"></span>
+            </div>
+            <textarea
+              id="md-input"
+              class="textarea"
+              placeholder="마크다운을 입력하세요..."
+            ></textarea>
+          </div>
+
+          <!-- Preview Section -->
+          <div class="md-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">미리보기</span>
+            </div>
+            <div id="md-preview" class="border border-gray-200 dark:border-gray-700 rounded-xl p-4 overflow-auto" style="background-color: #ffffff;">
+              <div id="preview-content" class="preview-content">
+                <span class="text-gray-400 dark:text-gray-500">마크다운을 입력하면 여기에 미리보기가 표시됩니다.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">마크다운이란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>마크다운(Markdown)은 텍스트를 HTML로 변환하는 간단한 마크업 언어입니다. 개발자 문서, README 파일, 블로그 포스트 작성에 널리 사용됩니다. 간단한 문법으로 제목, 목록, 링크, 이미지, 코드 블록 등을 쉽게 작성할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">지원하는 문법</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>제목:</strong> # H1, ## H2, ### H3 등</li>
+            <li><strong>강조:</strong> **굵게**, *기울임*, ~~취소선~~</li>
+            <li><strong>목록:</strong> - 또는 * 로 순서 없는 목록, 1. 2. 3. 으로 순서 있는 목록</li>
+            <li><strong>체크박스:</strong> - [ ] 미완료, - [x] 완료 (Task List)</li>
+            <li><strong>링크:</strong> [링크 텍스트](URL)</li>
+            <li><strong>이미지:</strong> ![대체 텍스트](이미지URL)</li>
+            <li><strong>코드:</strong> `인라인 코드` 또는 ```언어 코드블록``` (구문 강조 지원)</li>
+            <li><strong>수식:</strong> $인라인 수식$ 또는 $$블록 수식$$ (MathJax/LaTeX)</li>
+            <li><strong>인용:</strong> > 인용문</li>
+            <li><strong>테이블:</strong> | 헤더1 | 헤더2 | 형식의 GFM 테이블</li>
+            <li><strong>수평선:</strong> --- 또는 ***</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 마크다운은 어디서 사용되나요?</h4>
+              <p>GitHub, GitLab, Notion, Slack, Discord 등 많은 플랫폼에서 마크다운을 지원합니다. README 파일, 기술 문서, 블로그 포스트 작성에 표준으로 사용됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 입력한 내용이 서버로 전송되나요?</h4>
+              <p>아니요, 모든 변환은 브라우저에서 로컬로 처리됩니다. 입력한 내용은 외부로 전송되지 않으며 안전하게 사용할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: HTML로 내보낸 결과물을 어떻게 사용하나요?</h4>
+              <p>'HTML 다운로드' 버튼으로 완전한 HTML 파일을 받을 수 있습니다. 이 파일을 웹서버에 업로드하거나 로컬에서 열어 확인할 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('md-input');
+      const previewContainer = document.getElementById('md-preview');
+      const previewContent = document.getElementById('preview-content');
+      const sampleBtn = document.getElementById('sample-btn');
+      const copyHtmlBtn = document.getElementById('copy-html-btn');
+      const downloadBtn = document.getElementById('download-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const themeToggleBtn = document.getElementById('theme-toggle-btn');
+      const themeLabel = document.getElementById('theme-label');
+      const charCount = document.getElementById('char-count');
+
+      let previewDark = false;
+      let renderedHtml = '';
+
+      // Configure marked.js
+      marked.setOptions({
+        highlight: function(code, lang) {
+          if (lang && hljs.getLanguage(lang)) {
+            try {
+              return hljs.highlight(code, { language: lang }).value;
+            } catch (e) {}
+          }
+          return hljs.highlightAuto(code).value;
+        },
+        breaks: true,
+        gfm: true
+      });
+
+      // Sample markdown content
+      const sampleMarkdown = `# 마크다운 미리보기
+
+마크다운을 작성하고 **실시간**으로 미리보기 하세요.
+
+## 기능 소개
+
+### 텍스트 서식
+- **굵은 텍스트**
+- *기울임 텍스트*
+- ~~취소선 텍스트~~
+- \`인라인 코드\`
+
+### 체크박스 (Task List)
+- [x] 완료된 작업
+- [x] 마크다운 지원 추가
+- [ ] 미완료 작업
+- [ ] 추가 기능 구현
+
+### 수식 (MathJax)
+
+인라인 수식: $E = mc^2$
+
+블록 수식:
+$$
+\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}
+$$
+
+이차방정식의 근의 공식:
+$$
+x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}
+$$
+
+### 목록
+1. 첫 번째 항목
+2. 두 번째 항목
+3. 세 번째 항목
+
+- 순서 없는 목록 1
+- 순서 없는 목록 2
+  - 중첩 목록
+
+### 링크와 이미지
+[Toolneat 바로가기](https://toolneat.com)
+
+![샘플 이미지](https://placehold.co/600x400)
+
+### 인용문
+> 마크다운은 간단한 문법으로 풍부한 문서를 작성할 수 있습니다.
+> — Toolneat
+
+### 코드 블록
+\`\`\`javascript
+function hello() {
+  console.log('안녕하세요!');
+  return 'Hello, Markdown!';
+}
+\`\`\`
+
+### 테이블
+| 기능 | 설명 | 지원 |
+|------|------|------|
+| 제목 | H1-H6 헤더 | ✓ |
+| 목록 | 순서/비순서 | ✓ |
+| 코드 | 구문 강조 | ✓ |
+| 테이블 | GFM 테이블 | ✓ |
+| 수식 | MathJax | ✓ |
+| 체크박스 | Task List | ✓ |
+
+---
+
+*마크다운으로 더 쉽게 문서를 작성하세요!*
+`;
+
+      // Process task lists (checkboxes)
+      function processTaskLists(html) {
+        // Convert [ ] and [x] to checkboxes
+        return html
+          .replace(/<li>\s*\[ \]/g, '<li class="task-list-item"><input type="checkbox" disabled>')
+          .replace(/<li>\s*\[x\]/gi, '<li class="task-list-item"><input type="checkbox" checked disabled>');
+      }
+
+      // Render markdown
+      function renderMarkdown() {
+        const text = input.value;
+        charCount.textContent = text.length + ' 자';
+
+        if (!text.trim()) {
+          previewContent.innerHTML = '<span class="text-gray-400 dark:text-gray-500">마크다운을 입력하면 여기에 미리보기가 표시됩니다.</span>';
+          renderedHtml = '';
+          return;
+        }
+
+        try {
+          let html = marked.parse(text);
+          html = processTaskLists(html);
+          renderedHtml = DOMPurify.sanitize(html, { ADD_ATTR: ['disabled', 'checked'] });
+          previewContent.innerHTML = renderedHtml;
+
+          // Re-apply highlight.js for any code blocks
+          previewContent.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightElement(block);
+          });
+
+          // Trigger MathJax typesetting if available
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            MathJax.typesetPromise([previewContent]).catch(() => {});
+          }
+        } catch (e) {
+          previewContent.innerHTML = '<span class="text-red-400">마크다운 파싱 오류: ' + e.message + '</span>';
+          renderedHtml = '';
+        }
+      }
+
+      // Debounced render
+      const debouncedRender = debounceImmediate(renderMarkdown, 100);
+
+      // Event listeners
+      input.addEventListener('input', debouncedRender);
+
+      sampleBtn.addEventListener('click', () => {
+        input.value = sampleMarkdown;
+        renderMarkdown();
+      });
+
+      copyHtmlBtn.addEventListener('click', async () => {
+        if (!renderedHtml) {
+          toast.warning('복사할 내용이 없습니다.');
+          return;
+        }
+        await copyToClipboard(renderedHtml);
+        toast.success('HTML이 클립보드에 복사되었습니다.');
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        if (!renderedHtml) {
+          toast.warning('다운로드할 내용이 없습니다.');
+          return;
+        }
+
+        const fullHtml = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Export</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      color: #1f2937;
+    }
+    h1 { font-size: 1.875rem; font-weight: 700; margin: 1.5rem 0 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
+    h2 { font-size: 1.5rem; font-weight: 600; margin: 1.25rem 0 0.75rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.25rem; }
+    h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+    p { margin: 0.75rem 0; }
+    a { color: #2563eb; text-decoration: underline; }
+    strong { font-weight: 600; }
+    em { font-style: italic; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    ul { list-style-type: disc; }
+    ol { list-style-type: decimal; }
+    li { margin: 0.25rem 0; }
+    blockquote { border-left: 4px solid #e5e7eb; padding-left: 1rem; margin: 1rem 0; color: #6b7280; font-style: italic; }
+    code { background: #f3f4f6; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875em; font-family: monospace; }
+    pre { background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; margin: 1rem 0; }
+    pre code { background: transparent; padding: 0; }
+    img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 1rem 0; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #e5e7eb; padding: 0.5rem 0.75rem; text-align: left; }
+    th { background: #f9fafb; font-weight: 600; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+${renderedHtml}
+</body>
+</html>`;
+
+        const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'markdown-export.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        toast.success('HTML 파일이 다운로드되었습니다.');
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        renderMarkdown();
+        input.focus();
+      });
+
+      themeToggleBtn.addEventListener('click', () => {
+        previewDark = !previewDark;
+        if (previewDark) {
+          previewContainer.classList.add('preview-dark');
+          previewContainer.style.backgroundColor = '#111827';
+          themeLabel.textContent = '다크';
+        } else {
+          previewContainer.classList.remove('preview-dark');
+          previewContainer.style.backgroundColor = '#ffffff';
+          themeLabel.textContent = '라이트';
+        }
+      });
+
+      // Keyboard shortcuts
+      input.addEventListener('keydown', (e) => {
+        // Tab for indentation
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          const start = input.selectionStart;
+          const end = input.selectionEnd;
+          input.value = input.value.substring(0, start) + '  ' + input.value.substring(end);
+          input.selectionStart = input.selectionEnd = start + 2;
+          debouncedRender();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -200,6 +200,39 @@
       <div class="ad-container mt-8">
 
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Hash Generator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A Hash Generator is a tool that creates cryptographic hash values from text or files using various algorithms like MD5, SHA-1, SHA-256, SHA-384, and SHA-512. Hash functions convert data of any size into a fixed-size string of characters, creating a unique "fingerprint" of the input. Hashes are essential for data integrity verification, password storage, digital signatures, and file deduplication.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select the input mode: "Text" for typing or pasting text, or "File" for hashing files.</li>
+            <li>For text mode, enter your text in the input field. With "Live" mode enabled, hashes update automatically as you type.</li>
+            <li>For file mode, drag and drop a file or click to browse and select a file from your computer.</li>
+            <li>View the generated hash values for all supported algorithms (MD5, SHA-1, SHA-256, SHA-384, SHA-512).</li>
+            <li>Click "Copy" next to any hash value to copy it to your clipboard. Enable "Uppercase output" for capital letters.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Which hash algorithm should I use?</h4>
+              <p>For security-critical applications, use SHA-256 or SHA-512 as they are currently considered secure. SHA-1 and MD5 are cryptographically broken and should only be used for non-security purposes like checksums or cache keys. For password hashing, specialized algorithms like bcrypt or Argon2 are recommended instead of general-purpose hash functions.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I reverse a hash to get the original data?</h4>
+              <p>No, cryptographic hash functions are designed to be one-way functions. You cannot mathematically reverse a hash to obtain the original input. However, weak passwords can be cracked using rainbow tables or brute force attacks, which is why strong, unique passwords and proper salting are important for password security.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why do small changes in input create completely different hashes?</h4>
+              <p>This property is called the "avalanche effect" - a core feature of cryptographic hash functions. Even changing a single bit in the input produces a completely different hash output. This makes hashes excellent for detecting any modifications to data, as even the smallest change results in a noticeably different hash value.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 

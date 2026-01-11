@@ -294,6 +294,39 @@
       <div class="ad-container mt-8">
 
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Regex Tester?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A Regex Tester (Regular Expression Tester) is a tool that helps developers create, test, and debug regular expressions in real-time. Regular expressions are powerful patterns used for searching, matching, and manipulating text. They are essential for tasks like form validation, data extraction, search and replace operations, and parsing log files. This tool provides instant visual feedback, capture group highlighting, and a built-in cheat sheet.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Enter your regular expression pattern in the Pattern field (without the surrounding slashes).</li>
+            <li>Select the appropriate flags: g (global), i (case-insensitive), m (multiline), s (dotall), u (unicode).</li>
+            <li>Type or paste your test string in the Test String area to see matches highlighted instantly.</li>
+            <li>Review the Match Results section to see all matches, their positions, and captured groups.</li>
+            <li>Enable "Replace Mode" to test string replacement using capture group references ($1, $2, etc.).</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What do the regex flags (g, i, m, s, u) mean?</h4>
+              <p>g (global) finds all matches instead of stopping at the first one. i (case-insensitive) ignores uppercase/lowercase differences. m (multiline) makes ^ and $ match the start and end of each line. s (dotall) makes the dot (.) match newline characters. u (unicode) enables full Unicode support for patterns and character classes.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What are capture groups and how do I use them?</h4>
+              <p>Capture groups are created using parentheses () in your pattern. They "capture" the matched text so you can reference it later. In replacements, use $1 for the first group, $2 for the second, and so on. Named groups (?&lt;name&gt;pattern) can be referenced by name. Non-capturing groups (?:pattern) group without capturing.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why isn't my regex matching as expected?</h4>
+              <p>Common issues include: forgetting to escape special characters (like . * + ? [ ] { } etc.), not enabling the global flag for multiple matches, case sensitivity issues (use the i flag), or multiline text issues (use the m flag). Also check for invisible characters like different types of whitespace or line endings.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 

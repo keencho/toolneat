@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cron 표현식 생성기 - Toolneat</title>
+  <meta name="description" content="스케줄 작업을 위한 Cron 표현식을 생성합니다.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/dev/cron-generator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/cron-generator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/cron-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/cron-generator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Cron 표현식 생성기 - Toolneat">
+  <meta property="og:description" content="스케줄 작업을 위한 Cron 표현식을 생성합니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/dev/cron-generator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    .cron-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .cron-field-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .dark .cron-field-label {
+      color: #9ca3af;
+    }
+    .cron-display {
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .preset-btn {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background-color: #f3f4f6;
+      color: #374151;
+      transition: all 0.15s;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .preset-btn:hover {
+      background-color: #e5e7eb;
+    }
+    .dark .preset-btn {
+      background-color: #374151;
+      color: #d1d5db;
+    }
+    .dark .preset-btn:hover {
+      background-color: #4b5563;
+    }
+    .preset-btn.active {
+      background-color: #3b82f6;
+      color: white;
+    }
+    .dark .preset-btn.active {
+      background-color: #3b82f6;
+    }
+    .schedule-description {
+      padding: 1rem;
+      background-color: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0.75rem;
+      color: #166534;
+    }
+    .dark .schedule-description {
+      background-color: rgba(34, 197, 94, 0.1);
+      border-color: rgba(34, 197, 94, 0.3);
+      color: #86efac;
+    }
+    .mode-toggle {
+      display: inline-flex;
+      background-color: #f3f4f6;
+      border-radius: 0.5rem;
+      padding: 0.25rem;
+    }
+    .dark .mode-toggle {
+      background-color: #374151;
+    }
+    .mode-toggle button {
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #6b7280;
+      transition: all 0.15s;
+    }
+    .mode-toggle button.active {
+      background-color: white;
+      color: #111827;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .dark .mode-toggle button.active {
+      background-color: #1f2937;
+      color: #f9fafb;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Cron 표현식 생성기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          스케줄 작업을 위한 Cron 표현식을 생성합니다. 시각적 빌더로 쉽게 표현식을 만들거나, 기존 표현식을 입력해 설명을 확인하세요.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Mode Toggle -->
+      <div class="flex justify-center mb-6">
+        <div class="mode-toggle">
+          <button id="mode-builder" class="active">시각적 빌더</button>
+          <button id="mode-parser">표현식 파싱</button>
+        </div>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Cron Expression Display -->
+        <div class="text-center mb-6 p-6 bg-gray-50 dark:bg-gray-900 rounded-xl">
+          <div class="text-xs text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide">Cron 표현식</div>
+          <div class="flex items-center justify-center gap-3">
+            <code id="cron-output" class="cron-display">* * * * *</code>
+            <button id="copy-cron" class="btn btn-secondary p-2" title="복사">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Human Readable Description -->
+        <div id="schedule-description" class="schedule-description mb-6">
+          <div class="flex items-start gap-2">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span id="description-text">매분 실행됩니다</span>
+          </div>
+        </div>
+
+        <!-- Builder Mode -->
+        <div id="builder-section">
+          <!-- Presets -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">자주 사용하는 프리셋</label>
+            <div class="flex flex-wrap gap-2">
+              <button class="preset-btn active" data-cron="* * * * *">매분</button>
+              <button class="preset-btn" data-cron="0 * * * *">매시 정각</button>
+              <button class="preset-btn" data-cron="0 0 * * *">매일 자정</button>
+              <button class="preset-btn" data-cron="0 0 * * 0">매주 일요일</button>
+              <button class="preset-btn" data-cron="0 0 1 * *">매월 1일</button>
+              <button class="preset-btn" data-cron="0 9 * * 1-5">평일 오전 9시</button>
+              <button class="preset-btn" data-cron="0 */2 * * *">2시간마다</button>
+              <button class="preset-btn" data-cron="*/5 * * * *">5분마다</button>
+              <button class="preset-btn" data-cron="0 0 * * 1">매주 월요일</button>
+              <button class="preset-btn" data-cron="0 12 * * *">매일 정오</button>
+            </div>
+          </div>
+
+          <!-- Cron Fields -->
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6 pb-6 border-b border-gray-100 dark:border-gray-700">
+            <!-- Minutes -->
+            <div class="cron-field">
+              <span class="cron-field-label">분</span>
+              <select id="minute-type" class="input py-2 text-sm mb-2">
+                <option value="*">매분 (*)</option>
+                <option value="specific">특정 분</option>
+                <option value="range">범위</option>
+                <option value="step">간격</option>
+              </select>
+              <div id="minute-specific" class="hidden">
+                <input type="number" id="minute-value" class="input py-2 text-sm text-center" min="0" max="59" value="0" placeholder="0-59">
+              </div>
+              <div id="minute-range" class="hidden flex gap-1">
+                <input type="number" id="minute-start" class="input py-2 text-sm text-center w-1/2" min="0" max="59" value="0" placeholder="시작">
+                <input type="number" id="minute-end" class="input py-2 text-sm text-center w-1/2" min="0" max="59" value="30" placeholder="끝">
+              </div>
+              <div id="minute-step" class="hidden">
+                <div class="flex items-center gap-1">
+                  <span class="text-xs text-gray-500">*/</span>
+                  <input type="number" id="minute-step-value" class="input py-2 text-sm text-center flex-1" min="1" max="59" value="5" placeholder="간격">
+                </div>
+              </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="cron-field">
+              <span class="cron-field-label">시</span>
+              <select id="hour-type" class="input py-2 text-sm mb-2">
+                <option value="*">매시 (*)</option>
+                <option value="specific">특정 시</option>
+                <option value="range">범위</option>
+                <option value="step">간격</option>
+              </select>
+              <div id="hour-specific" class="hidden">
+                <input type="number" id="hour-value" class="input py-2 text-sm text-center" min="0" max="23" value="0" placeholder="0-23">
+              </div>
+              <div id="hour-range" class="hidden flex gap-1">
+                <input type="number" id="hour-start" class="input py-2 text-sm text-center w-1/2" min="0" max="23" value="9" placeholder="시작">
+                <input type="number" id="hour-end" class="input py-2 text-sm text-center w-1/2" min="0" max="23" value="17" placeholder="끝">
+              </div>
+              <div id="hour-step" class="hidden">
+                <div class="flex items-center gap-1">
+                  <span class="text-xs text-gray-500">*/</span>
+                  <input type="number" id="hour-step-value" class="input py-2 text-sm text-center flex-1" min="1" max="23" value="2" placeholder="간격">
+                </div>
+              </div>
+            </div>
+
+            <!-- Day of Month -->
+            <div class="cron-field">
+              <span class="cron-field-label">일</span>
+              <select id="day-type" class="input py-2 text-sm mb-2">
+                <option value="*">매일 (*)</option>
+                <option value="specific">특정 일</option>
+                <option value="range">범위</option>
+                <option value="step">간격</option>
+              </select>
+              <div id="day-specific" class="hidden">
+                <input type="number" id="day-value" class="input py-2 text-sm text-center" min="1" max="31" value="1" placeholder="1-31">
+              </div>
+              <div id="day-range" class="hidden flex gap-1">
+                <input type="number" id="day-start" class="input py-2 text-sm text-center w-1/2" min="1" max="31" value="1" placeholder="시작">
+                <input type="number" id="day-end" class="input py-2 text-sm text-center w-1/2" min="1" max="31" value="15" placeholder="끝">
+              </div>
+              <div id="day-step" class="hidden">
+                <div class="flex items-center gap-1">
+                  <span class="text-xs text-gray-500">*/</span>
+                  <input type="number" id="day-step-value" class="input py-2 text-sm text-center flex-1" min="1" max="31" value="2" placeholder="간격">
+                </div>
+              </div>
+            </div>
+
+            <!-- Month -->
+            <div class="cron-field">
+              <span class="cron-field-label">월</span>
+              <select id="month-type" class="input py-2 text-sm mb-2">
+                <option value="*">매월 (*)</option>
+                <option value="specific">특정 월</option>
+                <option value="range">범위</option>
+              </select>
+              <div id="month-specific" class="hidden">
+                <select id="month-value" class="input py-2 text-sm">
+                  <option value="1">1월</option>
+                  <option value="2">2월</option>
+                  <option value="3">3월</option>
+                  <option value="4">4월</option>
+                  <option value="5">5월</option>
+                  <option value="6">6월</option>
+                  <option value="7">7월</option>
+                  <option value="8">8월</option>
+                  <option value="9">9월</option>
+                  <option value="10">10월</option>
+                  <option value="11">11월</option>
+                  <option value="12">12월</option>
+                </select>
+              </div>
+              <div id="month-range" class="hidden flex gap-1">
+                <select id="month-start" class="input py-2 text-sm w-1/2">
+                  <option value="1">1월</option>
+                  <option value="2">2월</option>
+                  <option value="3">3월</option>
+                  <option value="4">4월</option>
+                  <option value="5">5월</option>
+                  <option value="6">6월</option>
+                  <option value="7">7월</option>
+                  <option value="8">8월</option>
+                  <option value="9">9월</option>
+                  <option value="10">10월</option>
+                  <option value="11">11월</option>
+                  <option value="12">12월</option>
+                </select>
+                <select id="month-end" class="input py-2 text-sm w-1/2">
+                  <option value="1">1월</option>
+                  <option value="2">2월</option>
+                  <option value="3">3월</option>
+                  <option value="4">4월</option>
+                  <option value="5">5월</option>
+                  <option value="6" selected>6월</option>
+                  <option value="7">7월</option>
+                  <option value="8">8월</option>
+                  <option value="9">9월</option>
+                  <option value="10">10월</option>
+                  <option value="11">11월</option>
+                  <option value="12">12월</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Day of Week -->
+            <div class="cron-field">
+              <span class="cron-field-label">요일</span>
+              <select id="weekday-type" class="input py-2 text-sm mb-2">
+                <option value="*">매일 (*)</option>
+                <option value="specific">특정 요일</option>
+                <option value="range">범위</option>
+              </select>
+              <div id="weekday-specific" class="hidden">
+                <select id="weekday-value" class="input py-2 text-sm">
+                  <option value="0">일요일</option>
+                  <option value="1">월요일</option>
+                  <option value="2">화요일</option>
+                  <option value="3">수요일</option>
+                  <option value="4">목요일</option>
+                  <option value="5">금요일</option>
+                  <option value="6">토요일</option>
+                </select>
+              </div>
+              <div id="weekday-range" class="hidden flex gap-1">
+                <select id="weekday-start" class="input py-2 text-sm w-1/2">
+                  <option value="0">일</option>
+                  <option value="1" selected>월</option>
+                  <option value="2">화</option>
+                  <option value="3">수</option>
+                  <option value="4">목</option>
+                  <option value="5">금</option>
+                  <option value="6">토</option>
+                </select>
+                <select id="weekday-end" class="input py-2 text-sm w-1/2">
+                  <option value="0">일</option>
+                  <option value="1">월</option>
+                  <option value="2">화</option>
+                  <option value="3">수</option>
+                  <option value="4">목</option>
+                  <option value="5" selected>금</option>
+                  <option value="6">토</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Field Reference -->
+          <div class="text-xs text-gray-500 dark:text-gray-400 text-center">
+            <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">분(0-59) 시(0-23) 일(1-31) 월(1-12) 요일(0-6, 0=일요일)</code>
+          </div>
+        </div>
+
+        <!-- Parser Mode -->
+        <div id="parser-section" class="hidden">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Cron 표현식 입력</label>
+            <div class="flex gap-2">
+              <input type="text" id="cron-input" class="input font-mono text-lg" placeholder="* * * * *" value="* * * * *">
+              <button id="parse-btn" class="btn btn-primary whitespace-nowrap">분석</button>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            표준 5필드 cron 표현식을 입력하세요. (분 시 일 월 요일)
+          </p>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Cron 표현식이란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Cron 표현식은 Unix/Linux 시스템에서 반복 작업(스케줄링)을 정의하는 문자열 형식입니다. 5개의 필드로 구성되며, 각 필드는 분, 시, 일, 월, 요일을 나타냅니다. 서버 관리, 백업 자동화, 주기적 데이터 처리 등 다양한 용도로 활용됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>시각적 빌더 모드에서 각 필드(분, 시, 일, 월, 요일)를 선택합니다.</li>
+            <li>자주 사용하는 프리셋 버튼으로 빠르게 설정할 수 있습니다.</li>
+            <li>생성된 표현식과 한국어 설명을 확인합니다.</li>
+            <li>복사 버튼으로 표현식을 클립보드에 복사합니다.</li>
+            <li>표현식 파싱 모드에서는 기존 cron 표현식을 입력해 의미를 확인할 수 있습니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Cron 필드 설명</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm">
+              <thead>
+                <tr class="border-b dark:border-gray-700">
+                  <th class="text-left py-2 pr-4">필드</th>
+                  <th class="text-left py-2 pr-4">허용 값</th>
+                  <th class="text-left py-2">특수 문자</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b dark:border-gray-700">
+                  <td class="py-2 pr-4">분</td>
+                  <td class="py-2 pr-4">0-59</td>
+                  <td class="py-2">* , - /</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                  <td class="py-2 pr-4">시</td>
+                  <td class="py-2 pr-4">0-23</td>
+                  <td class="py-2">* , - /</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                  <td class="py-2 pr-4">일</td>
+                  <td class="py-2 pr-4">1-31</td>
+                  <td class="py-2">* , - / L W</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                  <td class="py-2 pr-4">월</td>
+                  <td class="py-2 pr-4">1-12 또는 JAN-DEC</td>
+                  <td class="py-2">* , - /</td>
+                </tr>
+                <tr>
+                  <td class="py-2 pr-4">요일</td>
+                  <td class="py-2 pr-4">0-6 또는 SUN-SAT</td>
+                  <td class="py-2">* , - / L #</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">지원하는 문법</h3>
+          <div class="space-y-3 text-sm">
+            <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <h4 class="font-medium mb-2">Vixie Cron 표준 (Linux/Unix)</h4>
+              <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
+                <li>월 필드: 숫자(1-12) 또는 영문 이름(JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)</li>
+                <li>요일 필드: 숫자(0-6, 0=일요일) 또는 영문 이름(SUN, MON, TUE, WED, THU, FRI, SAT)</li>
+                <li>예시: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 9 * * MON-FRI</code> = 평일 오전 9시</li>
+              </ul>
+            </div>
+            <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <h4 class="font-medium mb-2">Quartz 확장 (일부 시스템)</h4>
+              <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
+                <li><strong>L</strong> (Last): 마지막 날. 일 필드에서 L = 월의 마지막 날, 요일 필드에서 5L = 마지막 금요일</li>
+                <li><strong>W</strong> (Weekday): 가장 가까운 평일. 15W = 15일에 가장 가까운 평일</li>
+                <li><strong>#</strong> (N번째): n번째 특정 요일. 2#3 = 3번째 화요일</li>
+                <li class="text-amber-600 dark:text-amber-400">⚠️ 이 기능들은 표준 Unix cron에서는 지원되지 않습니다</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: *는 무엇을 의미하나요?</h4>
+              <p>별표(*)는 "모든 값"을 의미합니다. 예를 들어 분 필드에 *를 사용하면 매분을, 시 필드에 사용하면 매시를 의미합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: */5는 무엇을 의미하나요?</h4>
+              <p>슬래시(/)는 간격을 나타냅니다. */5는 "5단위로"를 의미합니다. 분 필드에서 */5는 0, 5, 10, 15... 분에 실행됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 1-5는 무엇을 의미하나요?</h4>
+              <p>하이픈(-)은 범위를 나타냅니다. 요일 필드에서 1-5는 월요일부터 금요일까지를 의미합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: MON, JAN 같은 영문 이름을 사용할 수 있나요?</h4>
+              <p>네, Vixie cron(Linux 표준)에서는 월에 JAN-DEC, 요일에 SUN-SAT 영문 약자를 사용할 수 있습니다. 대소문자를 구분하지 않습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Elements
+      const cronOutput = document.getElementById('cron-output');
+      const copyCronBtn = document.getElementById('copy-cron');
+      const descriptionText = document.getElementById('description-text');
+      const modeBuilder = document.getElementById('mode-builder');
+      const modeParser = document.getElementById('mode-parser');
+      const builderSection = document.getElementById('builder-section');
+      const parserSection = document.getElementById('parser-section');
+      const cronInput = document.getElementById('cron-input');
+      const parseBtn = document.getElementById('parse-btn');
+
+      // Field elements
+      const fields = ['minute', 'hour', 'day', 'month', 'weekday'];
+      const weekdayNames = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+      const monthNames = ['', '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+
+      // Current cron values
+      let cronValues = ['*', '*', '*', '*', '*'];
+
+      // Mode toggle
+      modeBuilder.addEventListener('click', () => {
+        modeBuilder.classList.add('active');
+        modeParser.classList.remove('active');
+        builderSection.classList.remove('hidden');
+        parserSection.classList.add('hidden');
+      });
+
+      modeParser.addEventListener('click', () => {
+        modeParser.classList.add('active');
+        modeBuilder.classList.remove('active');
+        parserSection.classList.remove('hidden');
+        builderSection.classList.add('hidden');
+      });
+
+      // Preset buttons
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cron = btn.dataset.cron;
+          cronValues = cron.split(' ');
+          updateDisplay();
+          updateFieldsFromCron();
+        });
+      });
+
+      // Copy button
+      copyCronBtn.addEventListener('click', async () => {
+        await copyToClipboard(cronOutput.textContent);
+        toast.success('복사되었습니다!');
+      });
+
+      // Parse button
+      parseBtn.addEventListener('click', () => {
+        parseCronExpression();
+      });
+
+      cronInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') parseCronExpression();
+      });
+
+      // Named values mapping
+      const WEEKDAY_NAMES = { 'SUN': 0, 'MON': 1, 'TUE': 2, 'WED': 3, 'THU': 4, 'FRI': 5, 'SAT': 6 };
+      const MONTH_NAMES = { 'JAN': 1, 'FEB': 2, 'MAR': 3, 'APR': 4, 'MAY': 5, 'JUN': 6, 'JUL': 7, 'AUG': 8, 'SEP': 9, 'OCT': 10, 'NOV': 11, 'DEC': 12 };
+
+      // Convert named value to number (if applicable)
+      function normalizeValue(value, fieldType) {
+        const upper = value.toUpperCase();
+        if (fieldType === 'weekday' && WEEKDAY_NAMES[upper] !== undefined) {
+          return WEEKDAY_NAMES[upper];
+        }
+        if (fieldType === 'month' && MONTH_NAMES[upper] !== undefined) {
+          return MONTH_NAMES[upper];
+        }
+        return parseInt(value, 10);
+      }
+
+      // Check if value is valid for field type
+      function isValidCronValue(value, min, max, fieldType) {
+        const normalized = normalizeValue(value, fieldType);
+        return !isNaN(normalized) && normalized >= min && normalized <= max;
+      }
+
+      // Validate a single cron field
+      function isValidCronField(value, min, max, fieldType) {
+        // * is always valid
+        if (value === '*') return true;
+
+        // ? is valid for day/weekday (means "no specific value")
+        if (value === '?' && (fieldType === 'day' || fieldType === 'weekday')) return true;
+
+        // L (last) - valid for day of month or weekday
+        if (value === 'L' && (fieldType === 'day' || fieldType === 'weekday')) return true;
+
+        // nL (last weekday of month, e.g., 5L = last Friday)
+        if (/^\d+L$/i.test(value) && fieldType === 'weekday') {
+          const num = parseInt(value, 10);
+          return num >= 0 && num <= 6;
+        }
+
+        // nW (nearest weekday, e.g., 15W)
+        if (/^\d+W$/i.test(value) && fieldType === 'day') {
+          const num = parseInt(value, 10);
+          return num >= 1 && num <= 31;
+        }
+
+        // n#m (nth weekday of month, e.g., 2#3 = 3rd Tuesday)
+        if (value.includes('#') && fieldType === 'weekday') {
+          const [day, nth] = value.split('#');
+          const dayNum = normalizeValue(day, fieldType);
+          const nthNum = parseInt(nth, 10);
+          return dayNum >= 0 && dayNum <= 6 && nthNum >= 1 && nthNum <= 5;
+        }
+
+        // Step: */n or n/m or name/n
+        if (value.includes('/')) {
+          const [base, step] = value.split('/');
+          const stepNum = parseInt(step, 10);
+          if (isNaN(stepNum) || stepNum < 1) return false;
+          if (base === '*') return true;
+          // Range with step: 1-5/2
+          if (base.includes('-')) {
+            const [start, end] = base.split('-');
+            return isValidCronValue(start, min, max, fieldType) && isValidCronValue(end, min, max, fieldType);
+          }
+          return isValidCronValue(base, min, max, fieldType);
+        }
+
+        // Range: n-m or name-name (e.g., MON-FRI, JAN-MAR)
+        if (value.includes('-')) {
+          const [start, end] = value.split('-');
+          return isValidCronValue(start, min, max, fieldType) && isValidCronValue(end, min, max, fieldType);
+        }
+
+        // List: n,m,o or name,name (e.g., MON,WED,FRI)
+        if (value.includes(',')) {
+          return value.split(',').every(v => {
+            const trimmed = v.trim();
+            // Each item in list could be a range
+            if (trimmed.includes('-')) {
+              const [start, end] = trimmed.split('-');
+              return isValidCronValue(start, min, max, fieldType) && isValidCronValue(end, min, max, fieldType);
+            }
+            return isValidCronValue(trimmed, min, max, fieldType);
+          });
+        }
+
+        // Single value (number or name)
+        return isValidCronValue(value, min, max, fieldType);
+      }
+
+      function validateCronExpression(parts) {
+        const fields = [
+          { min: 0, max: 59, name: '분', type: 'minute' },
+          { min: 0, max: 23, name: '시', type: 'hour' },
+          { min: 1, max: 31, name: '일', type: 'day' },
+          { min: 1, max: 12, name: '월', type: 'month' },
+          { min: 0, max: 6, name: '요일', type: 'weekday' }
+        ];
+
+        for (let i = 0; i < 5; i++) {
+          if (!isValidCronField(parts[i], fields[i].min, fields[i].max, fields[i].type)) {
+            return { valid: false, error: `${fields[i].name} 필드가 올바르지 않습니다: ${parts[i]}` };
+          }
+        }
+        return { valid: true };
+      }
+
+      function parseCronExpression() {
+        const input = cronInput.value.trim();
+        const parts = input.split(/\s+/);
+
+        if (parts.length !== 5) {
+          toast.error('5개 필드가 필요합니다 (분 시 일 월 요일)');
+          return;
+        }
+
+        const validation = validateCronExpression(parts);
+        if (!validation.valid) {
+          toast.error(validation.error);
+          return;
+        }
+
+        cronValues = parts;
+        updateDisplay();
+      }
+
+      // Update field visibility based on type selection
+      function setupFieldTypeHandlers() {
+        fields.forEach((field, index) => {
+          const typeSelect = document.getElementById(`${field}-type`);
+          const specificDiv = document.getElementById(`${field}-specific`);
+          const rangeDiv = document.getElementById(`${field}-range`);
+          const stepDiv = document.getElementById(`${field}-step`);
+
+          if (!typeSelect) return;
+
+          typeSelect.addEventListener('change', () => {
+            const type = typeSelect.value;
+
+            if (specificDiv) specificDiv.classList.add('hidden');
+            if (rangeDiv) rangeDiv.classList.add('hidden');
+            if (stepDiv) stepDiv.classList.add('hidden');
+
+            if (type === 'specific' && specificDiv) {
+              specificDiv.classList.remove('hidden');
+            } else if (type === 'range' && rangeDiv) {
+              rangeDiv.classList.remove('hidden');
+            } else if (type === 'step' && stepDiv) {
+              stepDiv.classList.remove('hidden');
+            }
+
+            updateCronFromFields();
+          });
+        });
+      }
+
+      // Update cron from builder fields
+      function updateCronFromFields() {
+        fields.forEach((field, index) => {
+          const typeSelect = document.getElementById(`${field}-type`);
+          if (!typeSelect) return;
+
+          const type = typeSelect.value;
+
+          if (type === '*') {
+            cronValues[index] = '*';
+          } else if (type === 'specific') {
+            const valueEl = document.getElementById(`${field}-value`);
+            cronValues[index] = valueEl ? valueEl.value : '*';
+          } else if (type === 'range') {
+            const startEl = document.getElementById(`${field}-start`);
+            const endEl = document.getElementById(`${field}-end`);
+            if (startEl && endEl) {
+              cronValues[index] = `${startEl.value}-${endEl.value}`;
+            }
+          } else if (type === 'step') {
+            const stepEl = document.getElementById(`${field}-step-value`);
+            cronValues[index] = stepEl ? `*/${stepEl.value}` : '*';
+          }
+        });
+
+        // Clear preset active state
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+
+        // Check if matches any preset
+        const currentCron = cronValues.join(' ');
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+          if (btn.dataset.cron === currentCron) {
+            btn.classList.add('active');
+          }
+        });
+
+        updateDisplay();
+      }
+
+      // Update fields from cron values
+      function updateFieldsFromCron() {
+        fields.forEach((field, index) => {
+          const value = cronValues[index];
+          const typeSelect = document.getElementById(`${field}-type`);
+          if (!typeSelect) return;
+
+          const specificDiv = document.getElementById(`${field}-specific`);
+          const rangeDiv = document.getElementById(`${field}-range`);
+          const stepDiv = document.getElementById(`${field}-step`);
+
+          // Hide all
+          if (specificDiv) specificDiv.classList.add('hidden');
+          if (rangeDiv) rangeDiv.classList.add('hidden');
+          if (stepDiv) stepDiv.classList.add('hidden');
+
+          if (value === '*') {
+            typeSelect.value = '*';
+          } else if (value.includes('/')) {
+            typeSelect.value = 'step';
+            const stepValue = value.split('/')[1];
+            const stepEl = document.getElementById(`${field}-step-value`);
+            if (stepEl) stepEl.value = stepValue;
+            if (stepDiv) stepDiv.classList.remove('hidden');
+          } else if (value.includes('-')) {
+            typeSelect.value = 'range';
+            const [start, end] = value.split('-');
+            const startEl = document.getElementById(`${field}-start`);
+            const endEl = document.getElementById(`${field}-end`);
+            if (startEl) startEl.value = start;
+            if (endEl) endEl.value = end;
+            if (rangeDiv) rangeDiv.classList.remove('hidden');
+          } else {
+            typeSelect.value = 'specific';
+            const valueEl = document.getElementById(`${field}-value`);
+            if (valueEl) valueEl.value = value;
+            if (specificDiv) specificDiv.classList.remove('hidden');
+          }
+        });
+      }
+
+      // Add input listeners
+      function setupInputListeners() {
+        fields.forEach(field => {
+          ['value', 'start', 'end', 'step-value'].forEach(suffix => {
+            const el = document.getElementById(`${field}-${suffix}`);
+            if (el) {
+              el.addEventListener('change', updateCronFromFields);
+              el.addEventListener('input', updateCronFromFields);
+            }
+          });
+        });
+      }
+
+      // Update display
+      function updateDisplay() {
+        const cronStr = cronValues.join(' ');
+        cronOutput.textContent = cronStr;
+        descriptionText.textContent = describeCron(cronValues);
+      }
+
+      // Helper: convert weekday value to Korean name
+      function getWeekdayName(val) {
+        const upper = val.toUpperCase();
+        if (WEEKDAY_NAMES[upper] !== undefined) {
+          return weekdayNames[WEEKDAY_NAMES[upper]];
+        }
+        const num = parseInt(val, 10);
+        if (!isNaN(num) && weekdayNames[num]) {
+          return weekdayNames[num];
+        }
+        return val + '요일';
+      }
+
+      // Helper: convert month value to Korean name
+      function getMonthName(val) {
+        const upper = val.toUpperCase();
+        if (MONTH_NAMES[upper] !== undefined) {
+          return monthNames[MONTH_NAMES[upper]];
+        }
+        const num = parseInt(val, 10);
+        if (!isNaN(num) && monthNames[num]) {
+          return monthNames[num];
+        }
+        return val + '월';
+      }
+
+      // Describe cron in Korean
+      function describeCron(parts) {
+        if (!parts || parts.length !== 5) {
+          return '잘못된 표현식입니다';
+        }
+
+        const [minute, hour, day, month, weekday] = parts;
+
+        // Normalize for pattern matching (convert names to numbers)
+        const normalizeWeekday = (v) => {
+          const upper = v.toUpperCase();
+          return WEEKDAY_NAMES[upper] !== undefined ? WEEKDAY_NAMES[upper].toString() : v;
+        };
+        const normalizedWeekday = weekday.includes('-')
+          ? weekday.split('-').map(normalizeWeekday).join('-')
+          : normalizeWeekday(weekday);
+
+        // Common patterns - check first for better descriptions
+        const cronStr = parts.join(' ');
+        const normalizedCron = `${minute} ${hour} ${day} ${month} ${normalizedWeekday}`;
+
+        if (cronStr === '* * * * *') return '매분 실행됩니다';
+        if (cronStr === '0 * * * *') return '매시 정각에 실행됩니다';
+        if (cronStr === '0 0 * * *') return '매일 자정에 실행됩니다';
+        if (normalizedCron === '0 0 * * 0') return '매주 일요일 자정에 실행됩니다';
+        if (cronStr === '0 0 1 * *') return '매월 1일 자정에 실행됩니다';
+        if (normalizedCron === '0 9 * * 1-5') return '평일(월-금) 오전 9시에 실행됩니다';
+        if (cronStr === '0 12 * * *') return '매일 정오에 실행됩니다';
+        if (normalizedCron === '0 0 * * 1') return '매주 월요일 자정에 실행됩니다';
+
+        let desc = [];
+
+        // Month
+        if (month && month !== '*' && month !== '?') {
+          if (month.includes('-')) {
+            const [s, e] = month.split('-');
+            desc.push(`${getMonthName(s)}부터 ${getMonthName(e)}까지`);
+          } else if (month.includes('/')) {
+            desc.push(`${month.split('/')[1]}개월마다`);
+          } else if (month.includes(',')) {
+            const months = month.split(',').map(m => getMonthName(m.trim())).join(', ');
+            desc.push(`${months}에`);
+          } else {
+            desc.push(`${getMonthName(month)}에`);
+          }
+        }
+
+        // Day of month
+        if (day && day !== '*' && day !== '?') {
+          if (day === 'L') {
+            desc.push('마지막 날');
+          } else if (day.endsWith('W')) {
+            const dayNum = parseInt(day, 10);
+            desc.push(`${dayNum}일에 가장 가까운 평일`);
+          } else if (day.includes('-')) {
+            const [s, e] = day.split('-');
+            desc.push(`${s}일부터 ${e}일까지`);
+          } else if (day.includes('/')) {
+            desc.push(`${day.split('/')[1]}일마다`);
+          } else if (day.includes(',')) {
+            desc.push(`${day}일`);
+          } else {
+            desc.push(`${day}일`);
+          }
+        }
+
+        // Day of week
+        if (weekday && weekday !== '*' && weekday !== '?') {
+          if (weekday === 'L') {
+            desc.push('마지막 요일');
+          } else if (weekday.includes('#')) {
+            const [d, nth] = weekday.split('#');
+            const ordinal = ['', '첫째', '둘째', '셋째', '넷째', '다섯째'][parseInt(nth)] || nth + '번째';
+            desc.push(`${ordinal} ${getWeekdayName(d)}`);
+          } else if (weekday.endsWith('L')) {
+            const d = weekday.slice(0, -1);
+            desc.push(`마지막 ${getWeekdayName(d)}`);
+          } else if (weekday.includes('-')) {
+            const [s, e] = weekday.split('-');
+            desc.push(`${getWeekdayName(s)}부터 ${getWeekdayName(e)}까지`);
+          } else if (weekday.includes('/')) {
+            desc.push(`${weekday.split('/')[1]}일 간격으로`);
+          } else if (weekday.includes(',')) {
+            const days = weekday.split(',').map(d => getWeekdayName(d.trim())).join(', ');
+            desc.push(`${days}`);
+          } else {
+            desc.push(`${getWeekdayName(weekday)}`);
+          }
+        }
+
+        // Hour
+        if (hour && hour !== '*') {
+          if (hour.includes('-')) {
+            const [s, e] = hour.split('-');
+            desc.push(`${s}시부터 ${e}시 사이`);
+          } else if (hour.includes('/')) {
+            desc.push(`${hour.split('/')[1]}시간마다`);
+          } else if (hour.includes(',')) {
+            desc.push(`${hour}시`);
+          } else {
+            desc.push(`${hour}시`);
+          }
+        }
+
+        // Minute
+        if (minute && minute !== '*') {
+          if (minute.includes('-')) {
+            const [s, e] = minute.split('-');
+            desc.push(`${s}분부터 ${e}분 사이`);
+          } else if (minute.includes('/')) {
+            desc.push(`${minute.split('/')[1]}분마다`);
+          } else if (minute.includes(',')) {
+            desc.push(`${minute}분`);
+          } else {
+            desc.push(`${minute}분`);
+          }
+        }
+
+        // Build final description
+        if (desc.length === 0) {
+          return '매분 실행됩니다';
+        }
+
+        return desc.join(' ') + ' 실행됩니다';
+      }
+
+      // Initialize
+      setupFieldTypeHandlers();
+      setupInputListeners();
+      updateDisplay();
+    })();
+  </script>
+</body>
+</html>

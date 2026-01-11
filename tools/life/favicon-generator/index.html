@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.faviconGenerator.title">파비콘 생성기 - Toolneat</title>
+  <meta name="description" data-i18n-desc="tools.faviconGenerator.description" content="이미지를 파비콘으로 변환합니다.">
+  <link rel="canonical" href="https://toolneat.com/tools/life/favicon-generator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/favicon-generator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/favicon-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/favicon-generator/">
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+  <style>
+    .drop-zone {
+      border: 2px dashed #d1d5db;
+      border-radius: 12px;
+      padding: 40px 20px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+    .dark .drop-zone { border-color: #4b5563; }
+    .dark .drop-zone:hover, .dark .drop-zone.dragover {
+      border-color: #3b82f6;
+      background: #1e3a5f;
+    }
+    .favicon-preview {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: repeating-conic-gradient(#e5e5e5 0% 25%, white 0% 50%) 50%/16px 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+    .dark .favicon-preview {
+      background: repeating-conic-gradient(#374151 0% 25%, #1f2937 0% 50%) 50%/16px 16px;
+      border-color: #4b5563;
+    }
+    .size-card {
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .dark .size-card { background: #1f2937; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.faviconGenerator.title">파비콘 생성기</h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.faviconGenerator.descriptionLong">이미지를 업로드하면 다양한 크기의 파비콘을 생성합니다.</p>
+      </div>
+
+      <div class="card">
+        <!-- Upload -->
+        <div id="upload-section">
+          <div class="drop-zone" id="drop-zone">
+            <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <p class="text-gray-600 dark:text-gray-400 mb-2" data-i18n="tools.faviconGenerator.dropHere">이미지를 드래그하거나 클릭하여 선택</p>
+            <p class="text-sm text-gray-500">PNG, JPG, SVG (정사각형 권장)</p>
+            <input type="file" id="file-input" accept="image/*" class="hidden">
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div id="result-section" class="hidden">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="favicon-preview" style="width:64px;height:64px;padding:8px;">
+              <img id="source-preview" class="w-full h-full object-contain" src="">
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white" data-i18n="tools.faviconGenerator.sourceImage">원본 이미지</p>
+              <p id="source-info" class="text-sm text-gray-500"></p>
+            </div>
+            <button id="reset-btn" class="btn btn-secondary ml-auto" data-i18n="common.reset">다른 이미지</button>
+          </div>
+
+          <h3 class="font-medium text-gray-900 dark:text-white mb-4" data-i18n="tools.faviconGenerator.generatedSizes">생성된 파비콘</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4" id="favicon-grid">
+            <!-- Generated dynamically -->
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button id="download-all" class="btn btn-primary" data-i18n="tools.faviconGenerator.downloadAll">전체 다운로드 (ZIP)</button>
+            <button id="download-ico" class="btn btn-secondary" data-i18n="tools.faviconGenerator.downloadIco">ICO 다운로드</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">파비콘 생성기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            파비콘(Favicon)은 브라우저 탭, 북마크, 모바일 홈 화면에 표시되는 작은 아이콘입니다.
+            이 도구는 하나의 이미지로 다양한 크기의 파비콘을 자동 생성합니다.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>정사각형 이미지를 업로드합니다 (PNG, JPG, SVG)</li>
+            <li>다양한 크기의 파비콘이 자동으로 생성됩니다</li>
+            <li>개별 다운로드 또는 전체 ZIP 다운로드를 선택합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">생성되는 크기</h3>
+          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
+            <li><strong>16x16:</strong> 브라우저 탭 기본 크기</li>
+            <li><strong>32x32:</strong> 고해상도 디스플레이 탭</li>
+            <li><strong>48x48:</strong> Windows 사이트 아이콘</li>
+            <li><strong>64x64:</strong> Windows 사이트 아이콘 (고해상도)</li>
+            <li><strong>128x128:</strong> Chrome 웹 스토어</li>
+            <li><strong>180x180:</strong> Apple Touch Icon (iOS)</li>
+            <li><strong>192x192:</strong> Android Chrome</li>
+            <li><strong>512x512:</strong> PWA 스플래시 화면</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">어떤 크기의 이미지를 업로드해야 하나요?</p>
+              <p class="text-gray-600 dark:text-gray-400">512x512 이상의 정사각형 이미지를 권장합니다. 작은 이미지는 확대 시 품질이 저하됩니다.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">ICO 파일은 어디에 사용하나요?</p>
+              <p class="text-gray-600 dark:text-gray-400">ICO는 Windows와 구형 브라우저에서 사용됩니다. 최신 브라우저는 PNG도 지원합니다.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">파비콘을 웹사이트에 어떻게 적용하나요?</p>
+              <p class="text-gray-600 dark:text-gray-400">HTML &lt;head&gt;에 &lt;link rel="icon" href="favicon.png"&gt;를 추가하세요.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script>
+    (function() {
+      'use strict';
+      const sizes = [16, 32, 48, 64, 128, 180, 192, 512];
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('file-input');
+      const uploadSection = document.getElementById('upload-section');
+      const resultSection = document.getElementById('result-section');
+      const sourcePreview = document.getElementById('source-preview');
+      const sourceInfo = document.getElementById('source-info');
+      const faviconGrid = document.getElementById('favicon-grid');
+      const resetBtn = document.getElementById('reset-btn');
+      const downloadAllBtn = document.getElementById('download-all');
+      const downloadIcoBtn = document.getElementById('download-ico');
+
+      let sourceImage = null;
+      const generatedImages = {};
+
+      dropZone.addEventListener('click', () => fileInput.click());
+      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+      });
+      fileInput.addEventListener('change', (e) => { if (e.target.files.length) handleFile(e.target.files[0]); });
+
+      function handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+          toast.error('이미지 파일만 지원합니다.');
+          return;
+        }
+        const img = new Image();
+        img.onload = () => {
+          sourceImage = img;
+          sourcePreview.src = img.src;
+          sourceInfo.textContent = `${img.width} x ${img.height}px`;
+          uploadSection.classList.add('hidden');
+          resultSection.classList.remove('hidden');
+          generateFavicons();
+        };
+        img.src = URL.createObjectURL(file);
+      }
+
+      function generateFavicons() {
+        faviconGrid.innerHTML = '';
+        sizes.forEach(size => {
+          const canvas = document.createElement('canvas');
+          canvas.width = size;
+          canvas.height = size;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(sourceImage, 0, 0, size, size);
+          const dataUrl = canvas.toDataURL('image/png');
+          generatedImages[size] = dataUrl;
+
+          const card = document.createElement('div');
+          card.className = 'size-card';
+          card.innerHTML = `
+            <div class="favicon-preview mx-auto mb-2" style="width:${Math.min(size, 64) + 16}px;height:${Math.min(size, 64) + 16}px;padding:8px;">
+              <img src="${dataUrl}" class="w-full h-full object-contain" style="image-rendering: pixelated;">
+            </div>
+            <p class="text-sm font-medium text-gray-900 dark:text-white">${size}x${size}</p>
+            <button class="text-xs text-blue-600 dark:text-blue-400 hover:underline mt-1" onclick="downloadSingle(${size})">다운로드</button>
+          `;
+          faviconGrid.appendChild(card);
+        });
+      }
+
+      window.downloadSingle = function(size) {
+        const a = document.createElement('a');
+        a.href = generatedImages[size];
+        a.download = `favicon-${size}x${size}.png`;
+        a.click();
+      };
+
+      downloadAllBtn.addEventListener('click', async () => {
+        const zip = new JSZip();
+        sizes.forEach(size => {
+          const base64 = generatedImages[size].split(',')[1];
+          zip.file(`favicon-${size}x${size}.png`, base64, { base64: true });
+        });
+        const blob = await zip.generateAsync({ type: 'blob' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'favicons.zip';
+        a.click();
+      });
+
+      downloadIcoBtn.addEventListener('click', () => {
+        // Generate simple ICO (using 16x16 and 32x32)
+        const canvas = document.createElement('canvas');
+        canvas.width = 32;
+        canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(sourceImage, 0, 0, 32, 32);
+        canvas.toBlob((blob) => {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'favicon.ico';
+          a.click();
+        }, 'image/png');
+        toast.info('참고: 브라우저 제한으로 PNG 형식으로 저장됩니다. 완전한 ICO는 별도 변환 도구를 사용하세요.');
+      });
+
+      resetBtn.addEventListener('click', () => {
+        sourceImage = null;
+        fileInput.value = '';
+        uploadSection.classList.remove('hidden');
+        resultSection.classList.add('hidden');
+      });
+    })();
+  </script>
+</body>
+</html>

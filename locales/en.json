@@ -13,7 +13,9 @@
     "testers": "Testers",
     "calculators": "Calculators",
     "convertersGen": "Convert/Generate",
-    "text": "Text"
+    "utilities": "Utilities",
+    "text": "Text",
+    "funGames": "Fun & Games"
   },
   "footer": {
     "about": "About",
@@ -599,6 +601,164 @@
       "title": "Pixel Fixer",
       "description": "A tool to repair stuck pixels on your monitor.",
       "descriptionLong": "A tool to repair stuck pixels on your monitor. Drag the flashing box over the stuck pixel and run for 10-30 minutes."
+    },
+    "imageCompressor": {
+      "title": "Image Compressor",
+      "description": "Reduce image file size.",
+      "descriptionLong": "Reduce image file size to improve website loading speed and save storage space.",
+      "dropHere": "Drag image here or click to select",
+      "original": "Original",
+      "compressed": "Compressed",
+      "quality": "Quality",
+      "compress": "Compress",
+      "infoTitle": "Image Compression Info",
+      "info1": "• All processing is done in your browser. No data is uploaded to servers.",
+      "info2": "• Lower quality values result in smaller file sizes but reduced image quality.",
+      "info3": "• PNG uses lossless compression, JPG/WEBP use lossy compression."
+    },
+    "barcodeGenerator": {
+      "title": "Barcode Generator",
+      "description": "Generate various types of barcodes.",
+      "descriptionLong": "Generate barcodes in various formats including CODE128, EAN-13, UPC, and more.",
+      "format": "Barcode Format",
+      "data": "Data",
+      "width": "Width",
+      "height": "Height",
+      "showText": "Show Text",
+      "preview": "Preview",
+      "infoTitle": "Barcode Format Info"
+    },
+    "baseConverter": {
+      "title": "Number Base Converter",
+      "description": "Convert between binary, octal, decimal, and hexadecimal.",
+      "descriptionLong": "Convert numbers between binary, octal, decimal, and hexadecimal in real-time.",
+      "binary": "Binary (Base 2)",
+      "octal": "Octal (Base 8)",
+      "decimal": "Decimal (Base 10)",
+      "hex": "Hexadecimal (Base 16)",
+      "quickRef": "Quick Reference",
+      "infoTitle": "Number Base Conversion Info"
+    },
+    "faviconGenerator": {
+      "title": "Favicon Generator",
+      "description": "Convert images to favicons.",
+      "descriptionLong": "Upload an image to generate favicons in multiple sizes.",
+      "dropHere": "Drag image here or click to select",
+      "sourceImage": "Source Image",
+      "generatedSizes": "Generated Favicons",
+      "downloadAll": "Download All (ZIP)",
+      "downloadIco": "Download ICO",
+      "infoTitle": "Favicon Info"
+    },
+    "asciiUnicode": {
+      "title": "ASCII/Unicode Converter",
+      "description": "Convert between characters and ASCII/Unicode codes.",
+      "descriptionLong": "Convert characters to ASCII/Unicode code points or convert codes to characters.",
+      "textToCode": "Text → Code",
+      "codeToText": "Code → Text",
+      "inputText": "Input Text",
+      "inputCode": "Input Code",
+      "decimal": "Decimal",
+      "hex": "Hexadecimal",
+      "unicodeEscape": "Unicode Escape",
+      "htmlEntity": "HTML Entity",
+      "result": "Result",
+      "codeHint": "Supports decimal (space-separated), hex (0x), unicode (\\u), HTML (&#;) formats",
+      "asciiTable": "ASCII Table (32-126)",
+      "infoTitle": "ASCII/Unicode Info"
+    },
+    "emojiPicker": {
+      "title": "Emoji Picker",
+      "description": "Search and copy emojis.",
+      "descriptionLong": "Search for emojis and click to copy automatically.",
+      "searchPlaceholder": "Search (e.g., smile, heart, fire)",
+      "recent": "Recent",
+      "noRecent": "No recently used emojis",
+      "copyCode": "Copy Code",
+      "infoTitle": "Emoji Usage Tips",
+      "info1": "• Click an emoji to automatically copy it to clipboard.",
+      "info2": "• Search in English or Korean.",
+      "info3": "• Recently used emojis are saved in your browser."
+    },
+    "lotteryGenerator": {
+      "title": "Lottery Number Generator",
+      "description": "Generate random lottery numbers."
+    },
+    "roulette": {
+      "title": "Roulette Wheel",
+      "description": "Spin the roulette for random selection."
+    },
+    "diceRoller": {
+      "title": "Dice Roller",
+      "description": "Roll various types of dice."
+    },
+    "coinFlip": {
+      "title": "Coin Flip",
+      "description": "Flip a coin for heads or tails."
+    },
+    "typingTest": {
+      "title": "Typing Test",
+      "description": "Test your typing speed and accuracy."
+    },
+    "reactionTest": {
+      "title": "Reaction Time Test",
+      "description": "Test your reaction speed."
+    },
+    "ageCalculator": {
+      "title": "Age Calculator",
+      "description": "Calculate your age from birthdate."
+    },
+    "percentCalculator": {
+      "title": "Percentage Calculator",
+      "description": "Calculate percentages easily."
+    },
+    "compoundCalculator": {
+      "title": "Compound Interest Calculator",
+      "description": "Calculate compound interest."
+    },
+    "tipCalculator": {
+      "title": "Tip Calculator",
+      "description": "Calculate tips and split bills."
+    },
+    "htmlEntity": {
+      "title": "HTML Entity Encoder",
+      "description": "Encode special characters to HTML entities."
+    },
+    "passwordGenerator": {
+      "title": "Password Generator",
+      "description": "Generate secure passwords."
+    },
+    "cronGenerator": {
+      "title": "Cron Expression Generator",
+      "description": "Generate cron expressions easily."
+    },
+    "yamlJson": {
+      "title": "YAML ↔ JSON Converter",
+      "description": "Convert between YAML and JSON formats."
+    },
+    "markdownPreview": {
+      "title": "Markdown Preview",
+      "description": "Preview markdown in real-time."
+    },
+    "caseConverter": {
+      "title": "Case Converter",
+      "description": "Convert text case (upper, lower, etc.)."
+    },
+    "sqlFormatter": {
+      "title": "SQL Formatter",
+      "description": "Format SQL queries for readability."
+    },
+    "cssMinifier": {
+      "title": "CSS Minifier/Beautifier",
+      "description": "Minify or beautify CSS code."
+    },
+    "lineEnding": {
+      "title": "Line Ending Converter",
+      "description": "Convert between CRLF, LF line endings."
+    },
+    "diffChecker": {
+      "title": "Text Diff Checker",
+      "description": "Compare two texts and find differences."
     }
   },
   "common": {

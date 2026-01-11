@@ -269,6 +269,39 @@
       <div class="ad-container mt-8">
 
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is JWT Decoder?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A JWT (JSON Web Token) Decoder is a tool that parses and displays the contents of a JWT token. JWTs are compact, URL-safe tokens used for securely transmitting information between parties as a JSON object. They are widely used for authentication and authorization in web applications. This tool allows you to inspect the header, payload, and signature of any JWT token, verify its validity, and check expiration status.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Paste your JWT token into the input field at the top of the tool. You can also click the "Paste" button to paste from clipboard.</li>
+            <li>Click the "Decode" button or the token will automatically decode when pasted.</li>
+            <li>Review the decoded Header (algorithm and type), Payload (claims data), and Signature sections.</li>
+            <li>Check the token status indicator to see if the token is valid, expired, or not yet valid.</li>
+            <li>Optionally, enter a secret key to verify the signature for HMAC-signed tokens (HS256/384/512).</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What are the three parts of a JWT token?</h4>
+              <p>A JWT consists of three parts separated by dots: Header (contains the algorithm and token type), Payload (contains the claims or data), and Signature (verifies the token hasn't been tampered with). Each part is Base64URL encoded. The signature is created by combining the encoded header and payload with a secret key using the specified algorithm.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What do common JWT claims like exp, iat, and sub mean?</h4>
+              <p>These are registered claims defined in the JWT specification: 'exp' (expiration time) indicates when the token expires, 'iat' (issued at) shows when the token was created, 'sub' (subject) identifies the principal that is the subject of the JWT, 'iss' (issuer) identifies who issued the token, and 'aud' (audience) identifies the recipients the token is intended for.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is it safe to decode JWTs online?</h4>
+              <p>This tool performs all decoding locally in your browser - no data is sent to any server. However, you should never share your secret keys online. Remember that the payload of a JWT is only Base64 encoded (not encrypted), so anyone can read it. Never put sensitive information like passwords in JWT payloads.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 

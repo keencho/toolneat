@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL 포맷터 - Toolneat</title>
+  <meta name="description" content="SQL 쿼리를 보기 좋게 정리하거나 압축합니다">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/dev/sql-formatter/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/sql-formatter/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/sql-formatter/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/sql-formatter/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="SQL 포맷터 - Toolneat">
+  <meta property="og:description" content="SQL 쿼리를 보기 좋게 정리하거나 압축합니다">
+  <meta property="og:url" content="https://toolneat.com/tools/dev/sql-formatter/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <!-- SQL Formatter Library -->
+  <script src="https://cdn.jsdelivr.net/npm/sql-formatter@latest/dist/sql-formatter.min.js"></script>
+
+  <style>
+    /* SQL Editor sizing */
+    .sql-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 320px);
+      min-height: 400px;
+      max-height: 800px;
+    }
+    @media (min-width: 1024px) {
+      .sql-container {
+        flex-direction: row;
+        height: calc(100vh - 280px);
+        min-height: 500px;
+      }
+    }
+    .sql-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    #sql-input, #sql-output {
+      flex: 1;
+      min-height: 200px;
+      resize: none;
+      overflow-y: auto;
+      font-size: 13px !important;
+      line-height: 1.6;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          SQL 포맷터
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          SQL 쿼리를 보기 좋게 정리하거나 압축합니다. 다양한 SQL 방언을 지원합니다.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <!-- Options Row -->
+          <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">들여쓰기</span>
+              <select id="indent-type" class="input py-1.5 px-2 w-20 text-sm">
+                <option value="2">2칸</option>
+                <option value="4" selected>4칸</option>
+                <option value="tab">Tab</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">방언</span>
+              <select id="sql-dialect" class="input py-1.5 px-2 w-28 text-sm">
+                <option value="sql">표준 SQL</option>
+                <option value="mysql">MySQL</option>
+                <option value="postgresql">PostgreSQL</option>
+                <option value="mariadb">MariaDB</option>
+                <option value="sqlite">SQLite</option>
+                <option value="transactsql">SQL Server</option>
+                <option value="plsql">Oracle PL/SQL</option>
+                <option value="bigquery">BigQuery</option>
+              </select>
+            </div>
+            <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input type="checkbox" id="uppercase-keywords" checked class="rounded border-gray-300 dark:border-gray-600">
+              <span>키워드 대문자</span>
+            </label>
+          </div>
+          <!-- Buttons Row -->
+          <div class="flex flex-wrap gap-2">
+            <button id="format-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0">정리</button>
+            <button id="minify-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">압축</button>
+            <button id="sample-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">샘플 SQL</button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">지우기</button>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+          <p class="text-sm text-red-600 dark:text-red-300" id="error-text"></p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="sql-container gap-4">
+          <!-- Input Section -->
+          <div class="sql-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">입력</span>
+              <span id="input-size" class="text-xs text-gray-400"></span>
+            </div>
+            <textarea
+              id="sql-input"
+              class="textarea font-mono text-sm leading-relaxed"
+              placeholder="SELECT * FROM users WHERE id = 1"
+            ></textarea>
+          </div>
+
+          <!-- Output Section -->
+          <div class="sql-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">출력</span>
+              <div class="flex items-center gap-2">
+                <span id="output-size" class="text-xs text-gray-400"></span>
+                <button id="copy-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">복사</button>
+              </div>
+            </div>
+            <textarea
+              id="sql-output"
+              class="textarea font-mono text-sm leading-relaxed bg-gray-50 dark:bg-gray-900"
+              readonly
+              placeholder="SQL을 입력하면 여기에 결과가 표시됩니다."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">SQL 포맷터란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>SQL 포맷터는 복잡하거나 읽기 어려운 SQL 쿼리를 일관된 형식으로 정리해주는 도구입니다. 적절한 들여쓰기와 줄바꿈을 추가하여 쿼리의 구조를 한눈에 파악할 수 있게 해줍니다. 데이터베이스 개발, 디버깅, 코드 리뷰 등 다양한 상황에서 유용하게 사용됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>왼쪽 입력창에 SQL 쿼리를 붙여넣거나 입력합니다.</li>
+            <li>사용하는 데이터베이스에 맞는 SQL 방언을 선택합니다.</li>
+            <li>들여쓰기 옵션(2칸, 4칸, Tab)을 선택합니다.</li>
+            <li>'키워드 대문자' 옵션으로 SELECT, FROM 등의 키워드를 대문자로 변환할 수 있습니다.</li>
+            <li>'정리' 버튼을 클릭하면 포맷팅된 SQL이 출력됩니다.</li>
+            <li>'압축' 버튼은 공백과 줄바꿈을 제거하여 한 줄로 압축합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">지원하는 SQL 문</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>SELECT, INSERT, UPDATE, DELETE 기본 문</li>
+            <li>JOIN (INNER, LEFT, RIGHT, FULL, CROSS)</li>
+            <li>서브쿼리와 중첩 SELECT</li>
+            <li>CREATE TABLE, ALTER TABLE, DROP TABLE</li>
+            <li>CREATE INDEX, CREATE VIEW</li>
+            <li>UNION, INTERSECT, EXCEPT</li>
+            <li>GROUP BY, HAVING, ORDER BY</li>
+            <li>WITH (CTE - Common Table Expression)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 어떤 SQL 방언을 선택해야 하나요?</h4>
+              <p>사용하는 데이터베이스에 맞는 방언을 선택하세요. MySQL을 사용하면 MySQL, PostgreSQL을 사용하면 PostgreSQL을 선택합니다. 일반적인 SQL이라면 '표준 SQL'을 선택해도 됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 포맷팅 후 SQL이 제대로 동작하나요?</h4>
+              <p>네, 이 도구는 SQL의 구문을 변경하지 않고 공백과 줄바꿈만 조정합니다. 포맷팅 전후의 SQL은 동일하게 동작합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 데이터가 서버로 전송되나요?</h4>
+              <p>아니요, 모든 포맷팅은 브라우저에서 로컬로 처리됩니다. 입력한 SQL은 어떤 서버로도 전송되지 않아 안전합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('sql-input');
+      const output = document.getElementById('sql-output');
+      const formatBtn = document.getElementById('format-btn');
+      const minifyBtn = document.getElementById('minify-btn');
+      const sampleBtn = document.getElementById('sample-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const indentSelect = document.getElementById('indent-type');
+      const dialectSelect = document.getElementById('sql-dialect');
+      const uppercaseCheckbox = document.getElementById('uppercase-keywords');
+      const errorMessage = document.getElementById('error-message');
+      const errorText = document.getElementById('error-text');
+      const inputSize = document.getElementById('input-size');
+      const outputSize = document.getElementById('output-size');
+
+      // Sample SQL queries
+      const sampleSQL = `SELECT
+    u.id, u.name, u.email, o.order_id, o.total_amount
+FROM users u
+INNER JOIN orders o ON u.id = o.user_id
+LEFT JOIN order_items oi ON o.order_id = oi.order_id
+WHERE u.status = 'active'
+    AND o.created_at >= '2024-01-01'
+    AND o.total_amount > 100
+GROUP BY u.id, u.name, u.email, o.order_id, o.total_amount
+HAVING COUNT(oi.item_id) > 2
+ORDER BY o.total_amount DESC
+LIMIT 50;
+
+INSERT INTO users (name, email, status, created_at)
+VALUES ('John Doe', 'john@example.com', 'active', NOW());
+
+UPDATE products
+SET price = price * 1.1,
+    updated_at = NOW()
+WHERE category_id = 5
+    AND stock > 0;
+
+DELETE FROM logs
+WHERE created_at < DATE_SUB(NOW(), INTERVAL 30 DAY);
+
+CREATE TABLE customers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`;
+
+      function getFormatOptions() {
+        const indentValue = indentSelect.value;
+        return {
+          language: dialectSelect.value,
+          tabWidth: indentValue === 'tab' ? 4 : parseInt(indentValue),
+          useTabs: indentValue === 'tab',
+          keywordCase: uppercaseCheckbox.checked ? 'upper' : 'preserve',
+          indentStyle: 'standard'
+        };
+      }
+
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+
+      function updateInputSize() {
+        const bytes = new Blob([input.value]).size;
+        inputSize.textContent = formatBytes(bytes);
+      }
+
+      function updateOutputSize() {
+        const bytes = new Blob([output.value]).size;
+        outputSize.textContent = formatBytes(bytes);
+      }
+
+      function showError(message) {
+        errorMessage.classList.remove('hidden');
+        errorText.textContent = message;
+      }
+
+      function hideError() {
+        errorMessage.classList.add('hidden');
+      }
+
+      function doFormat() {
+        const sql = input.value.trim();
+        if (!sql) {
+          output.value = '';
+          outputSize.textContent = '';
+          hideError();
+          return;
+        }
+
+        try {
+          const options = getFormatOptions();
+          const formatted = sqlFormatter.format(sql, options);
+          output.value = formatted;
+          updateOutputSize();
+          hideError();
+        } catch (e) {
+          showError('SQL 포맷팅 중 오류가 발생했습니다: ' + e.message);
+          output.value = '';
+          outputSize.textContent = '';
+        }
+      }
+
+      function doMinify() {
+        const sql = input.value.trim();
+        if (!sql) {
+          output.value = '';
+          outputSize.textContent = '';
+          hideError();
+          return;
+        }
+
+        try {
+          // Remove comments, extra whitespace, and newlines
+          let minified = sql
+            .replace(/--.*$/gm, '') // Remove single-line comments
+            .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
+            .replace(/\s+/g, ' ') // Replace multiple whitespace with single space
+            .replace(/\s*([,()=<>!+\-*/])\s*/g, '$1') // Remove spaces around operators
+            .replace(/\(\s+/g, '(') // Remove space after (
+            .replace(/\s+\)/g, ')') // Remove space before )
+            .trim();
+
+          output.value = minified;
+          updateOutputSize();
+          hideError();
+        } catch (e) {
+          showError('SQL 압축 중 오류가 발생했습니다: ' + e.message);
+        }
+      }
+
+      // Event listeners
+      input.addEventListener('input', updateInputSize);
+
+      formatBtn.addEventListener('click', doFormat);
+      minifyBtn.addEventListener('click', doMinify);
+
+      sampleBtn.addEventListener('click', () => {
+        input.value = sampleSQL;
+        updateInputSize();
+        doFormat();
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        const text = output.value;
+        if (!text) {
+          toast.warning('복사할 내용이 없습니다.');
+          return;
+        }
+        await copyToClipboard(text);
+        toast.success('복사되었습니다!');
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        inputSize.textContent = '';
+        outputSize.textContent = '';
+        hideError();
+        input.focus();
+      });
+
+      // Options change handlers
+      indentSelect.addEventListener('change', () => {
+        if (input.value.trim()) doFormat();
+      });
+
+      dialectSelect.addEventListener('change', () => {
+        if (input.value.trim()) doFormat();
+      });
+
+      uppercaseCheckbox.addEventListener('change', () => {
+        if (input.value.trim()) doFormat();
+      });
+
+      // Keyboard shortcuts
+      input.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          doFormat();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

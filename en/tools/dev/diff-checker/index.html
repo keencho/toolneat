@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diff Checker - Toolneat</title>
+  <meta name="description" content="Compare two texts and find differences. See added, removed, and changed lines at a glance.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/dev/diff-checker/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/diff-checker/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/diff-checker/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/diff-checker/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Diff Checker - Toolneat">
+  <meta property="og:description" content="Compare two texts and find differences. See added, removed, and changed lines at a glance.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/dev/diff-checker/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>
+    // Force English language
+    localStorage.setItem('toolneat-lang', 'en');
+  </script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <style>
+    /* Diff Container */
+    .diff-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    @media (min-width: 1024px) {
+      .diff-container {
+        flex-direction: row;
+      }
+    }
+    .diff-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .diff-textarea {
+      flex: 1;
+      min-height: 200px;
+      resize: none;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    @media (min-width: 1024px) {
+      .diff-textarea {
+        min-height: 300px;
+      }
+    }
+
+    /* Diff Output */
+    .diff-output {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+    .diff-line {
+      display: flex;
+      min-height: 1.6em;
+    }
+    .diff-line-number {
+      width: 40px;
+      min-width: 40px;
+      padding: 0 8px;
+      text-align: right;
+      color: #6b7280;
+      background: #f9fafb;
+      border-right: 1px solid #e5e7eb;
+      user-select: none;
+    }
+    .dark .diff-line-number {
+      background: #1f2937;
+      border-right-color: #374151;
+      color: #9ca3af;
+    }
+    .diff-line-content {
+      flex: 1;
+      padding: 0 8px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Diff Colors */
+    .diff-added {
+      background-color: #dcfce7;
+    }
+    .diff-added .diff-line-number {
+      background-color: #bbf7d0;
+      color: #166534;
+    }
+    .dark .diff-added {
+      background-color: rgba(34, 197, 94, 0.2);
+    }
+    .dark .diff-added .diff-line-number {
+      background-color: rgba(34, 197, 94, 0.3);
+      color: #86efac;
+    }
+
+    .diff-removed {
+      background-color: #fee2e2;
+    }
+    .diff-removed .diff-line-number {
+      background-color: #fecaca;
+      color: #991b1b;
+    }
+    .dark .diff-removed {
+      background-color: rgba(239, 68, 68, 0.2);
+    }
+    .dark .diff-removed .diff-line-number {
+      background-color: rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .diff-changed {
+      background-color: #fef3c7;
+    }
+    .diff-changed .diff-line-number {
+      background-color: #fde68a;
+      color: #92400e;
+    }
+    .dark .diff-changed {
+      background-color: rgba(245, 158, 11, 0.2);
+    }
+    .dark .diff-changed .diff-line-number {
+      background-color: rgba(245, 158, 11, 0.3);
+      color: #fcd34d;
+    }
+
+    .diff-unchanged {
+      background-color: transparent;
+    }
+
+    /* Stats */
+    .stat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .stat-added {
+      background-color: #dcfce7;
+      color: #166534;
+    }
+    .dark .stat-added {
+      background-color: rgba(34, 197, 94, 0.2);
+      color: #86efac;
+    }
+    .stat-removed {
+      background-color: #fee2e2;
+      color: #991b1b;
+    }
+    .dark .stat-removed {
+      background-color: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+    }
+    .stat-changed {
+      background-color: #fef3c7;
+      color: #92400e;
+    }
+    .dark .stat-changed {
+      background-color: rgba(245, 158, 11, 0.2);
+      color: #fcd34d;
+    }
+
+    /* Highlighted text within changed lines */
+    .diff-highlight-add {
+      background-color: #86efac;
+      border-radius: 2px;
+    }
+    .dark .diff-highlight-add {
+      background-color: rgba(34, 197, 94, 0.5);
+    }
+    .diff-highlight-remove {
+      background-color: #fca5a5;
+      border-radius: 2px;
+    }
+    .dark .diff-highlight-remove {
+      background-color: rgba(239, 68, 68, 0.5);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Diff Checker
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Compare two texts and find differences. Added, removed, and changed lines are color-coded for easy identification.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <!-- Options Row -->
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input type="checkbox" id="ignore-whitespace" class="rounded border-gray-300 dark:border-gray-600">
+              <span>Ignore Whitespace</span>
+            </label>
+            <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input type="checkbox" id="ignore-case" class="rounded border-gray-300 dark:border-gray-600">
+              <span>Ignore Case</span>
+            </label>
+          </div>
+          <!-- Buttons Row -->
+          <div class="flex flex-wrap gap-2">
+            <button id="compare-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0">Compare</button>
+            <button id="swap-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Swap</button>
+            <button id="clear-all-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Clear All</button>
+          </div>
+        </div>
+
+        <!-- Two Column Input Layout -->
+        <div class="diff-container mb-4">
+          <!-- Original Text -->
+          <div class="diff-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Original Text</span>
+              <button id="clear-original-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">Clear</button>
+            </div>
+            <textarea
+              id="original-text"
+              class="textarea diff-textarea"
+              placeholder="Enter original text..."
+            ></textarea>
+          </div>
+
+          <!-- Modified Text -->
+          <div class="diff-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Modified Text</span>
+              <button id="clear-modified-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">Clear</button>
+            </div>
+            <textarea
+              id="modified-text"
+              class="textarea diff-textarea"
+              placeholder="Enter modified text..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div id="stats-container" class="hidden mb-4 flex flex-wrap gap-2">
+          <span id="stat-added" class="stat-badge stat-added">
+            <span>+</span>
+            <span id="stat-added-count">0</span>
+            <span>Added</span>
+          </span>
+          <span id="stat-removed" class="stat-badge stat-removed">
+            <span>-</span>
+            <span id="stat-removed-count">0</span>
+            <span>Removed</span>
+          </span>
+          <span id="stat-changed" class="stat-badge stat-changed">
+            <span>~</span>
+            <span id="stat-changed-count">0</span>
+            <span>Changed</span>
+          </span>
+        </div>
+
+        <!-- Diff Output -->
+        <div id="diff-output" class="diff-output bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+          <div class="p-4 text-gray-400 dark:text-gray-500 text-center">
+            Enter text and click 'Compare' to see the differences.
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Diff Checker?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A Diff Checker (also known as text comparison tool) is a utility that finds and visually displays differences between two pieces of text. It's commonly used for code reviews, document version comparison, manuscript editing verification, and many other purposes. Added lines are shown in green, removed lines in red, and changed lines in yellow, making it easy to spot differences at a glance.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Paste or type the original text in the left input area.</li>
+            <li>Paste or type the modified text in the right input area.</li>
+            <li>Click the 'Compare' button to view the differences.</li>
+            <li>Enable 'Ignore Whitespace' or 'Ignore Case' options as needed.</li>
+            <li>Use the 'Swap' button to switch the positions of original and modified text.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What do the colors mean?</h4>
+              <p>Green background indicates newly added lines, red background indicates removed lines, and yellow background indicates lines where content has been modified. This color coding helps you intuitively understand what has changed and how.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I compare large texts?</h4>
+              <p>Yes, you can compare large texts. However, very long texts may take a bit longer to process. All processing is done locally in your browser, so your data is never sent to any server.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When should I use the Ignore Whitespace option?</h4>
+              <p>This is useful when comparing code and you want to ignore differences in indentation or trailing whitespace and focus only on the actual content. It's particularly helpful when comparing code written in different editors or environments.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const originalText = document.getElementById('original-text');
+      const modifiedText = document.getElementById('modified-text');
+      const compareBtn = document.getElementById('compare-btn');
+      const swapBtn = document.getElementById('swap-btn');
+      const clearAllBtn = document.getElementById('clear-all-btn');
+      const clearOriginalBtn = document.getElementById('clear-original-btn');
+      const clearModifiedBtn = document.getElementById('clear-modified-btn');
+      const ignoreWhitespace = document.getElementById('ignore-whitespace');
+      const ignoreCase = document.getElementById('ignore-case');
+      const diffOutput = document.getElementById('diff-output');
+      const statsContainer = document.getElementById('stats-container');
+      const statAddedCount = document.getElementById('stat-added-count');
+      const statRemovedCount = document.getElementById('stat-removed-count');
+      const statChangedCount = document.getElementById('stat-changed-count');
+
+      // LCS (Longest Common Subsequence) based diff algorithm
+      function computeDiff(originalLines, modifiedLines, options = {}) {
+        const { ignoreWhitespace: ignoreWs, ignoreCase: ignoreCa } = options;
+
+        // Normalize lines for comparison
+        function normalize(line) {
+          let result = line;
+          if (ignoreWs) {
+            result = result.replace(/\s+/g, ' ').trim();
+          }
+          if (ignoreCa) {
+            result = result.toLowerCase();
+          }
+          return result;
+        }
+
+        const m = originalLines.length;
+        const n = modifiedLines.length;
+
+        // Build LCS table
+        const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+
+        for (let i = 1; i <= m; i++) {
+          for (let j = 1; j <= n; j++) {
+            if (normalize(originalLines[i - 1]) === normalize(modifiedLines[j - 1])) {
+              dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+              dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+          }
+        }
+
+        // Backtrack to find diff
+        const diff = [];
+        let i = m, j = n;
+
+        while (i > 0 || j > 0) {
+          if (i > 0 && j > 0 && normalize(originalLines[i - 1]) === normalize(modifiedLines[j - 1])) {
+            diff.unshift({
+              type: 'unchanged',
+              originalLine: i,
+              modifiedLine: j,
+              originalContent: originalLines[i - 1],
+              modifiedContent: modifiedLines[j - 1]
+            });
+            i--;
+            j--;
+          } else if (j > 0 && (i === 0 || dp[i][j - 1] >= dp[i - 1][j])) {
+            diff.unshift({
+              type: 'added',
+              modifiedLine: j,
+              content: modifiedLines[j - 1]
+            });
+            j--;
+          } else if (i > 0) {
+            diff.unshift({
+              type: 'removed',
+              originalLine: i,
+              content: originalLines[i - 1]
+            });
+            i--;
+          }
+        }
+
+        // Detect changed lines (adjacent removed + added with similar content)
+        const processedDiff = [];
+        for (let k = 0; k < diff.length; k++) {
+          const current = diff[k];
+          const next = diff[k + 1];
+
+          if (current.type === 'removed' && next && next.type === 'added') {
+            // Check if they might be a modification (some similarity)
+            const similarity = computeSimilarity(
+              normalize(current.content),
+              normalize(next.content)
+            );
+
+            if (similarity > 0.3) {
+              processedDiff.push({
+                type: 'changed',
+                originalLine: current.originalLine,
+                modifiedLine: next.modifiedLine,
+                originalContent: current.content,
+                modifiedContent: next.content
+              });
+              k++; // Skip the next item
+              continue;
+            }
+          }
+          processedDiff.push(current);
+        }
+
+        return processedDiff;
+      }
+
+      // Simple similarity computation using Levenshtein-like approach
+      function computeSimilarity(str1, str2) {
+        if (str1 === str2) return 1;
+        if (!str1 || !str2) return 0;
+
+        const longer = str1.length > str2.length ? str1 : str2;
+        const shorter = str1.length > str2.length ? str2 : str1;
+
+        const longerLength = longer.length;
+        if (longerLength === 0) return 1;
+
+        // Simple character matching
+        let matches = 0;
+        for (let i = 0; i < shorter.length; i++) {
+          if (longer.includes(shorter[i])) {
+            matches++;
+          }
+        }
+
+        return matches / longerLength;
+      }
+
+      // Escape HTML
+      function escapeHtml(str) {
+        return str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      // Highlight inline differences
+      function highlightInlineDiff(original, modified) {
+        // Simple word-level diff
+        const originalWords = original.split(/(\s+)/);
+        const modifiedWords = modified.split(/(\s+)/);
+
+        let originalHtml = '';
+        let modifiedHtml = '';
+
+        const maxLen = Math.max(originalWords.length, modifiedWords.length);
+
+        for (let i = 0; i < originalWords.length; i++) {
+          const word = originalWords[i];
+          if (i < modifiedWords.length && word === modifiedWords[i]) {
+            originalHtml += escapeHtml(word);
+          } else {
+            originalHtml += `<span class="diff-highlight-remove">${escapeHtml(word)}</span>`;
+          }
+        }
+
+        for (let i = 0; i < modifiedWords.length; i++) {
+          const word = modifiedWords[i];
+          if (i < originalWords.length && word === originalWords[i]) {
+            modifiedHtml += escapeHtml(word);
+          } else {
+            modifiedHtml += `<span class="diff-highlight-add">${escapeHtml(word)}</span>`;
+          }
+        }
+
+        return { originalHtml, modifiedHtml };
+      }
+
+      // Render diff output
+      function renderDiff(diff) {
+        if (diff.length === 0) {
+          diffOutput.innerHTML = '<div class="p-4 text-gray-400 dark:text-gray-500 text-center">No differences found. The texts are identical.</div>';
+          return;
+        }
+
+        let html = '';
+        let addedCount = 0;
+        let removedCount = 0;
+        let changedCount = 0;
+
+        diff.forEach(item => {
+          switch (item.type) {
+            case 'unchanged':
+              html += `<div class="diff-line diff-unchanged">
+                <div class="diff-line-number">${item.originalLine}</div>
+                <div class="diff-line-content">${escapeHtml(item.originalContent)}</div>
+              </div>`;
+              break;
+
+            case 'added':
+              addedCount++;
+              html += `<div class="diff-line diff-added">
+                <div class="diff-line-number">+${item.modifiedLine}</div>
+                <div class="diff-line-content">${escapeHtml(item.content)}</div>
+              </div>`;
+              break;
+
+            case 'removed':
+              removedCount++;
+              html += `<div class="diff-line diff-removed">
+                <div class="diff-line-number">-${item.originalLine}</div>
+                <div class="diff-line-content">${escapeHtml(item.content)}</div>
+              </div>`;
+              break;
+
+            case 'changed':
+              changedCount++;
+              const { originalHtml, modifiedHtml } = highlightInlineDiff(
+                item.originalContent,
+                item.modifiedContent
+              );
+              html += `<div class="diff-line diff-removed">
+                <div class="diff-line-number">-${item.originalLine}</div>
+                <div class="diff-line-content">${originalHtml}</div>
+              </div>`;
+              html += `<div class="diff-line diff-added">
+                <div class="diff-line-number">+${item.modifiedLine}</div>
+                <div class="diff-line-content">${modifiedHtml}</div>
+              </div>`;
+              break;
+          }
+        });
+
+        diffOutput.innerHTML = html;
+
+        // Update stats
+        statAddedCount.textContent = addedCount;
+        statRemovedCount.textContent = removedCount;
+        statChangedCount.textContent = changedCount;
+        statsContainer.classList.remove('hidden');
+      }
+
+      // Compare button click
+      compareBtn.addEventListener('click', () => {
+        const original = originalText.value;
+        const modified = modifiedText.value;
+
+        if (!original && !modified) {
+          diffOutput.innerHTML = '<div class="p-4 text-gray-400 dark:text-gray-500 text-center">Enter text and click \'Compare\' to see the differences.</div>';
+          statsContainer.classList.add('hidden');
+          return;
+        }
+
+        const originalLines = original.split('\n');
+        const modifiedLines = modified.split('\n');
+
+        const diff = computeDiff(originalLines, modifiedLines, {
+          ignoreWhitespace: ignoreWhitespace.checked,
+          ignoreCase: ignoreCase.checked
+        });
+
+        renderDiff(diff);
+      });
+
+      // Swap button click
+      swapBtn.addEventListener('click', () => {
+        const temp = originalText.value;
+        originalText.value = modifiedText.value;
+        modifiedText.value = temp;
+      });
+
+      // Clear buttons
+      clearAllBtn.addEventListener('click', () => {
+        originalText.value = '';
+        modifiedText.value = '';
+        diffOutput.innerHTML = '<div class="p-4 text-gray-400 dark:text-gray-500 text-center">Enter text and click \'Compare\' to see the differences.</div>';
+        statsContainer.classList.add('hidden');
+        originalText.focus();
+      });
+
+      clearOriginalBtn.addEventListener('click', () => {
+        originalText.value = '';
+        originalText.focus();
+      });
+
+      clearModifiedBtn.addEventListener('click', () => {
+        modifiedText.value = '';
+        modifiedText.focus();
+      });
+
+      // Keyboard shortcut: Ctrl+Enter to compare
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          compareBtn.click();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

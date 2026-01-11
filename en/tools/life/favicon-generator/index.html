@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favicon Generator - Toolneat</title>
+  <meta name="description" content="Upload an image to generate favicons in multiple sizes.">
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/favicon-generator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/favicon-generator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/favicon-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/favicon-generator/">
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+  <style>
+    .drop-zone {
+      border: 2px dashed #d1d5db;
+      border-radius: 12px;
+      padding: 40px 20px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+    .dark .drop-zone { border-color: #4b5563; }
+    .dark .drop-zone:hover, .dark .drop-zone.dragover {
+      border-color: #3b82f6;
+      background: #1e3a5f;
+    }
+    .favicon-preview {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: repeating-conic-gradient(#e5e5e5 0% 25%, white 0% 50%) 50%/16px 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+    .dark .favicon-preview {
+      background: repeating-conic-gradient(#374151 0% 25%, #1f2937 0% 50%) 50%/16px 16px;
+      border-color: #4b5563;
+    }
+    .size-card {
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .dark .size-card { background: #1f2937; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Favicon Generator</h1>
+        <p class="text-gray-600 dark:text-gray-400">Upload an image to generate favicons in multiple sizes.</p>
+      </div>
+
+      <div class="card">
+        <!-- Upload -->
+        <div id="upload-section">
+          <div class="drop-zone" id="drop-zone">
+            <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <p class="text-gray-600 dark:text-gray-400 mb-2">Drag image here or click to select</p>
+            <p class="text-sm text-gray-500">PNG, JPG, SVG (square recommended)</p>
+            <input type="file" id="file-input" accept="image/*" class="hidden">
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div id="result-section" class="hidden">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="favicon-preview" style="width:64px;height:64px;padding:8px;">
+              <img id="source-preview" class="w-full h-full object-contain" src="">
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">Source Image</p>
+              <p id="source-info" class="text-sm text-gray-500"></p>
+            </div>
+            <button id="reset-btn" class="btn btn-secondary ml-auto">Choose Another</button>
+          </div>
+
+          <h3 class="font-medium text-gray-900 dark:text-white mb-4">Generated Favicons</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4" id="favicon-grid">
+            <!-- Generated dynamically -->
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button id="download-all" class="btn btn-primary">Download All (ZIP)</button>
+            <button id="download-ico" class="btn btn-secondary">Download ICO</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Favicon Generator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            A favicon is a small icon displayed in browser tabs, bookmarks, and mobile home screens.
+            This tool automatically generates favicons in multiple sizes from a single image.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Upload a square image (PNG, JPG, SVG)</li>
+            <li>Favicons in various sizes are automatically generated</li>
+            <li>Download individually or download all as ZIP</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Generated Sizes</h3>
+          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
+            <li><strong>16x16:</strong> Default browser tab size</li>
+            <li><strong>32x32:</strong> High-resolution display tabs</li>
+            <li><strong>48x48:</strong> Windows site icon</li>
+            <li><strong>64x64:</strong> Windows site icon (high-res)</li>
+            <li><strong>128x128:</strong> Chrome Web Store</li>
+            <li><strong>180x180:</strong> Apple Touch Icon (iOS)</li>
+            <li><strong>192x192:</strong> Android Chrome</li>
+            <li><strong>512x512:</strong> PWA splash screen</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">FAQ</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">What size image should I upload?</p>
+              <p class="text-gray-600 dark:text-gray-400">512x512 or larger square images are recommended. Smaller images may lose quality when scaled up.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">What is ICO file used for?</p>
+              <p class="text-gray-600 dark:text-gray-400">ICO is used by Windows and older browsers. Modern browsers also support PNG.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">How do I add a favicon to my website?</p>
+              <p class="text-gray-600 dark:text-gray-400">Add &lt;link rel="icon" href="favicon.png"&gt; to your HTML &lt;head&gt; section.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script>
+    (function() {
+      'use strict';
+      const sizes = [16, 32, 48, 64, 128, 180, 192, 512];
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('file-input');
+      const uploadSection = document.getElementById('upload-section');
+      const resultSection = document.getElementById('result-section');
+      const sourcePreview = document.getElementById('source-preview');
+      const sourceInfo = document.getElementById('source-info');
+      const faviconGrid = document.getElementById('favicon-grid');
+      const resetBtn = document.getElementById('reset-btn');
+      const downloadAllBtn = document.getElementById('download-all');
+      const downloadIcoBtn = document.getElementById('download-ico');
+
+      let sourceImage = null;
+      const generatedImages = {};
+
+      dropZone.addEventListener('click', () => fileInput.click());
+      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+      });
+      fileInput.addEventListener('change', (e) => { if (e.target.files.length) handleFile(e.target.files[0]); });
+
+      function handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+          toast.error('Only image files are supported.');
+          return;
+        }
+        const img = new Image();
+        img.onload = () => {
+          sourceImage = img;
+          sourcePreview.src = img.src;
+          sourceInfo.textContent = `${img.width} x ${img.height}px`;
+          uploadSection.classList.add('hidden');
+          resultSection.classList.remove('hidden');
+          generateFavicons();
+        };
+        img.src = URL.createObjectURL(file);
+      }
+
+      function generateFavicons() {
+        faviconGrid.innerHTML = '';
+        sizes.forEach(size => {
+          const canvas = document.createElement('canvas');
+          canvas.width = size;
+          canvas.height = size;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(sourceImage, 0, 0, size, size);
+          const dataUrl = canvas.toDataURL('image/png');
+          generatedImages[size] = dataUrl;
+
+          const card = document.createElement('div');
+          card.className = 'size-card';
+          card.innerHTML = `
+            <div class="favicon-preview mx-auto mb-2" style="width:${Math.min(size, 64) + 16}px;height:${Math.min(size, 64) + 16}px;padding:8px;">
+              <img src="${dataUrl}" class="w-full h-full object-contain" style="image-rendering: pixelated;">
+            </div>
+            <p class="text-sm font-medium text-gray-900 dark:text-white">${size}x${size}</p>
+            <button class="text-xs text-blue-600 dark:text-blue-400 hover:underline mt-1" onclick="downloadSingle(${size})">Download</button>
+          `;
+          faviconGrid.appendChild(card);
+        });
+      }
+
+      window.downloadSingle = function(size) {
+        const a = document.createElement('a');
+        a.href = generatedImages[size];
+        a.download = `favicon-${size}x${size}.png`;
+        a.click();
+      };
+
+      downloadAllBtn.addEventListener('click', async () => {
+        const zip = new JSZip();
+        sizes.forEach(size => {
+          const base64 = generatedImages[size].split(',')[1];
+          zip.file(`favicon-${size}x${size}.png`, base64, { base64: true });
+        });
+        const blob = await zip.generateAsync({ type: 'blob' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'favicons.zip';
+        a.click();
+      });
+
+      downloadIcoBtn.addEventListener('click', () => {
+        // Generate simple ICO (using 16x16 and 32x32)
+        const canvas = document.createElement('canvas');
+        canvas.width = 32;
+        canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(sourceImage, 0, 0, 32, 32);
+        canvas.toBlob((blob) => {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'favicon.ico';
+          a.click();
+        }, 'image/png');
+        toast.info('Note: Due to browser limitations, saved as PNG format. For true ICO, use a dedicated converter.');
+      });
+
+      resetBtn.addEventListener('click', () => {
+        sourceImage = null;
+        fileInput.value = '';
+        uploadSection.classList.remove('hidden');
+        resultSection.classList.add('hidden');
+      });
+    })();
+  </script>
+</body>
+</html>

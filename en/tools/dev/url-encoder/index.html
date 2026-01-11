@@ -134,6 +134,39 @@
       <div class="ad-container mt-6">
 
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is URL Encoder/Decoder?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>URL encoding (also known as percent-encoding) is a method for encoding special characters in URLs so they can be safely transmitted over the internet. Since URLs can only contain a limited set of ASCII characters, special characters like spaces, ampersands, and non-English characters must be converted to a format that can be universally recognized by web browsers and servers. This tool helps developers encode and decode URLs quickly and accurately.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Choose the operation mode by clicking "Encode" or "Decode" at the top of the tool.</li>
+            <li>Select the encoding method: Component (for query parameters), URI (for full URLs), or Full (encode all special characters).</li>
+            <li>Enter your URL or text string in the input field on the left.</li>
+            <li>With "Live" mode enabled, the result updates automatically. Otherwise, click the Convert button.</li>
+            <li>Use the "Copy" button to copy the result, or the swap button to exchange input and output.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What is the difference between encodeURIComponent and encodeURI?</h4>
+              <p>encodeURIComponent encodes all special characters including /, ?, #, and &, making it ideal for encoding query parameter values. encodeURI preserves these URL-reserved characters, so it should be used when encoding a complete URL where you want to keep the structure intact. Use encodeURIComponent for values and encodeURI for full URLs.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why do I need to encode URLs?</h4>
+              <p>URL encoding is necessary because URLs can only contain a specific set of characters from the ASCII character set. Characters like spaces, special symbols, and non-ASCII characters (like Chinese or Korean) must be encoded to be properly interpreted by web servers. Without encoding, these characters could break the URL or be misinterpreted.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What does %20 mean in a URL?</h4>
+              <p>%20 is the URL-encoded representation of a space character. When you see %XX in a URL, the XX represents a hexadecimal value of the character's ASCII code. For example, %20 is hex 20, which equals decimal 32, the ASCII code for a space. Similarly, %2F represents a forward slash (/) and %26 represents an ampersand (&).</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 

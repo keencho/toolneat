@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Formatter - Toolneat</title>
+  <meta name="description" content="Format and beautify your SQL queries">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/dev/sql-formatter/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/sql-formatter/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/sql-formatter/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/sql-formatter/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="SQL Formatter - Toolneat">
+  <meta property="og:description" content="Format and beautify your SQL queries">
+  <meta property="og:url" content="https://toolneat.com/en/tools/dev/sql-formatter/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>
+    // Force English language
+    localStorage.setItem('toolneat-lang', 'en');
+  </script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <!-- SQL Formatter Library -->
+  <script src="https://cdn.jsdelivr.net/npm/sql-formatter@latest/dist/sql-formatter.min.js"></script>
+
+  <style>
+    /* SQL Editor sizing */
+    .sql-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 320px);
+      min-height: 400px;
+      max-height: 800px;
+    }
+    @media (min-width: 1024px) {
+      .sql-container {
+        flex-direction: row;
+        height: calc(100vh - 280px);
+        min-height: 500px;
+      }
+    }
+    .sql-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    #sql-input, #sql-output {
+      flex: 1;
+      min-height: 200px;
+      resize: none;
+      overflow-y: auto;
+      font-size: 13px !important;
+      line-height: 1.6;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          SQL Formatter
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Format and beautify your SQL queries. Supports multiple SQL dialects.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <!-- Options Row -->
+          <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">Indent</span>
+              <select id="indent-type" class="input py-1.5 px-2 w-24 text-sm">
+                <option value="2">2 spaces</option>
+                <option value="4" selected>4 spaces</option>
+                <option value="tab">Tab</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">Dialect</span>
+              <select id="sql-dialect" class="input py-1.5 px-2 w-28 text-sm">
+                <option value="sql">Standard SQL</option>
+                <option value="mysql">MySQL</option>
+                <option value="postgresql">PostgreSQL</option>
+                <option value="mariadb">MariaDB</option>
+                <option value="sqlite">SQLite</option>
+                <option value="transactsql">SQL Server</option>
+                <option value="plsql">Oracle PL/SQL</option>
+                <option value="bigquery">BigQuery</option>
+              </select>
+            </div>
+            <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input type="checkbox" id="uppercase-keywords" checked class="rounded border-gray-300 dark:border-gray-600">
+              <span>Uppercase Keywords</span>
+            </label>
+          </div>
+          <!-- Buttons Row -->
+          <div class="flex flex-wrap gap-2">
+            <button id="format-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0">Format</button>
+            <button id="minify-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Minify</button>
+            <button id="sample-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Sample SQL</button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Clear</button>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+          <p class="text-sm text-red-600 dark:text-red-300" id="error-text"></p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="sql-container gap-4">
+          <!-- Input Section -->
+          <div class="sql-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Input</span>
+              <span id="input-size" class="text-xs text-gray-400"></span>
+            </div>
+            <textarea
+              id="sql-input"
+              class="textarea font-mono text-sm leading-relaxed"
+              placeholder="SELECT * FROM users WHERE id = 1"
+            ></textarea>
+          </div>
+
+          <!-- Output Section -->
+          <div class="sql-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Output</span>
+              <div class="flex items-center gap-2">
+                <span id="output-size" class="text-xs text-gray-400"></span>
+                <button id="copy-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">Copy</button>
+              </div>
+            </div>
+            <textarea
+              id="sql-output"
+              class="textarea font-mono text-sm leading-relaxed bg-gray-50 dark:bg-gray-900"
+              readonly
+              placeholder="Enter SQL to see formatted output here."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is SQL Formatter?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>SQL Formatter is a tool that transforms complex or hard-to-read SQL queries into a consistent, well-structured format. It adds proper indentation and line breaks to make the query structure easy to understand at a glance. It's useful for database development, debugging, code reviews, and more.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Paste or type your SQL query in the input area on the left.</li>
+            <li>Select the SQL dialect that matches your database.</li>
+            <li>Choose your indentation preference (2 spaces, 4 spaces, or Tab).</li>
+            <li>Enable "Uppercase Keywords" to convert keywords like SELECT, FROM to uppercase.</li>
+            <li>Click the "Format" button to see the formatted SQL in the output.</li>
+            <li>Use "Minify" button to compress SQL by removing whitespace and line breaks.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Supported SQL Statements</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>SELECT, INSERT, UPDATE, DELETE basic statements</li>
+            <li>JOIN (INNER, LEFT, RIGHT, FULL, CROSS)</li>
+            <li>Subqueries and nested SELECT</li>
+            <li>CREATE TABLE, ALTER TABLE, DROP TABLE</li>
+            <li>CREATE INDEX, CREATE VIEW</li>
+            <li>UNION, INTERSECT, EXCEPT</li>
+            <li>GROUP BY, HAVING, ORDER BY</li>
+            <li>WITH (CTE - Common Table Expression)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Which SQL dialect should I choose?</h4>
+              <p>Select the dialect that matches your database. Choose MySQL for MySQL databases, PostgreSQL for PostgreSQL, and so on. If you're using standard SQL or unsure, "Standard SQL" works for most cases.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Will the formatted SQL work correctly?</h4>
+              <p>Yes, this tool only adjusts whitespace and line breaks without changing the SQL syntax. The formatted SQL will function identically to the original.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
+              <p>No, all formatting is processed locally in your browser. Your SQL is never transmitted to any server, ensuring complete privacy and security.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('sql-input');
+      const output = document.getElementById('sql-output');
+      const formatBtn = document.getElementById('format-btn');
+      const minifyBtn = document.getElementById('minify-btn');
+      const sampleBtn = document.getElementById('sample-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const indentSelect = document.getElementById('indent-type');
+      const dialectSelect = document.getElementById('sql-dialect');
+      const uppercaseCheckbox = document.getElementById('uppercase-keywords');
+      const errorMessage = document.getElementById('error-message');
+      const errorText = document.getElementById('error-text');
+      const inputSize = document.getElementById('input-size');
+      const outputSize = document.getElementById('output-size');
+
+      // Sample SQL queries
+      const sampleSQL = `SELECT
+    u.id, u.name, u.email, o.order_id, o.total_amount
+FROM users u
+INNER JOIN orders o ON u.id = o.user_id
+LEFT JOIN order_items oi ON o.order_id = oi.order_id
+WHERE u.status = 'active'
+    AND o.created_at >= '2024-01-01'
+    AND o.total_amount > 100
+GROUP BY u.id, u.name, u.email, o.order_id, o.total_amount
+HAVING COUNT(oi.item_id) > 2
+ORDER BY o.total_amount DESC
+LIMIT 50;
+
+INSERT INTO users (name, email, status, created_at)
+VALUES ('John Doe', 'john@example.com', 'active', NOW());
+
+UPDATE products
+SET price = price * 1.1,
+    updated_at = NOW()
+WHERE category_id = 5
+    AND stock > 0;
+
+DELETE FROM logs
+WHERE created_at < DATE_SUB(NOW(), INTERVAL 30 DAY);
+
+CREATE TABLE customers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`;
+
+      function getFormatOptions() {
+        const indentValue = indentSelect.value;
+        return {
+          language: dialectSelect.value,
+          tabWidth: indentValue === 'tab' ? 4 : parseInt(indentValue),
+          useTabs: indentValue === 'tab',
+          keywordCase: uppercaseCheckbox.checked ? 'upper' : 'preserve',
+          indentStyle: 'standard'
+        };
+      }
+
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+
+      function updateInputSize() {
+        const bytes = new Blob([input.value]).size;
+        inputSize.textContent = formatBytes(bytes);
+      }
+
+      function updateOutputSize() {
+        const bytes = new Blob([output.value]).size;
+        outputSize.textContent = formatBytes(bytes);
+      }
+
+      function showError(message) {
+        errorMessage.classList.remove('hidden');
+        errorText.textContent = message;
+      }
+
+      function hideError() {
+        errorMessage.classList.add('hidden');
+      }
+
+      function doFormat() {
+        const sql = input.value.trim();
+        if (!sql) {
+          output.value = '';
+          outputSize.textContent = '';
+          hideError();
+          return;
+        }
+
+        try {
+          const options = getFormatOptions();
+          const formatted = sqlFormatter.format(sql, options);
+          output.value = formatted;
+          updateOutputSize();
+          hideError();
+        } catch (e) {
+          showError('Error formatting SQL: ' + e.message);
+          output.value = '';
+          outputSize.textContent = '';
+        }
+      }
+
+      function doMinify() {
+        const sql = input.value.trim();
+        if (!sql) {
+          output.value = '';
+          outputSize.textContent = '';
+          hideError();
+          return;
+        }
+
+        try {
+          // Remove comments, extra whitespace, and newlines
+          let minified = sql
+            .replace(/--.*$/gm, '') // Remove single-line comments
+            .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
+            .replace(/\s+/g, ' ') // Replace multiple whitespace with single space
+            .replace(/\s*([,()=<>!+\-*/])\s*/g, '$1') // Remove spaces around operators
+            .replace(/\(\s+/g, '(') // Remove space after (
+            .replace(/\s+\)/g, ')') // Remove space before )
+            .trim();
+
+          output.value = minified;
+          updateOutputSize();
+          hideError();
+        } catch (e) {
+          showError('Error minifying SQL: ' + e.message);
+        }
+      }
+
+      // Event listeners
+      input.addEventListener('input', updateInputSize);
+
+      formatBtn.addEventListener('click', doFormat);
+      minifyBtn.addEventListener('click', doMinify);
+
+      sampleBtn.addEventListener('click', () => {
+        input.value = sampleSQL;
+        updateInputSize();
+        doFormat();
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        const text = output.value;
+        if (!text) {
+          toast.warning('Nothing to copy');
+          return;
+        }
+        await copyToClipboard(text);
+        toast.success('Copied!');
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        inputSize.textContent = '';
+        outputSize.textContent = '';
+        hideError();
+        input.focus();
+      });
+
+      // Options change handlers
+      indentSelect.addEventListener('change', () => {
+        if (input.value.trim()) doFormat();
+      });
+
+      dialectSelect.addEventListener('change', () => {
+        if (input.value.trim()) doFormat();
+      });
+
+      uppercaseCheckbox.addEventListener('change', () => {
+        if (input.value.trim()) doFormat();
+      });
+
+      // Keyboard shortcuts
+      input.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          doFormat();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

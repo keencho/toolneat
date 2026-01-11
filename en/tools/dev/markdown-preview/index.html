@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Preview - Toolneat</title>
+  <meta name="description" content="Write markdown and preview in real-time. Free online markdown editor with syntax highlighting.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/dev/markdown-preview/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/markdown-preview/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/markdown-preview/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/markdown-preview/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Markdown Preview - Toolneat">
+  <meta property="og:description" content="Write markdown and preview in real-time. Free online markdown editor with syntax highlighting.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/dev/markdown-preview/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- Highlight.js for code syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+
+  <!-- MathJax for math formulas -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      startup: { typeset: false }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>
+    // Force English language
+    localStorage.setItem('toolneat-lang', 'en');
+  </script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <!-- Marked.js for markdown parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+  <!-- Highlight.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- DOMPurify for sanitization -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js"></script>
+
+  <style>
+    /* Editor and Preview container */
+    .md-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 280px);
+      min-height: 500px;
+      max-height: 900px;
+    }
+    @media (min-width: 1024px) {
+      .md-container {
+        flex-direction: row;
+        height: calc(100vh - 250px);
+        min-height: 600px;
+      }
+    }
+    .md-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    #md-input {
+      flex: 1;
+      min-height: 250px;
+      resize: none;
+      overflow-y: auto;
+      font-size: 13px !important;
+      line-height: 1.6;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    }
+    #md-preview {
+      flex: 1;
+      min-height: 250px;
+      overflow: auto;
+      font-size: 14px !important;
+      line-height: 1.7;
+    }
+
+    /* Preview Prose Styling */
+    .preview-content {
+      color: #1f2937;
+    }
+    .preview-content h1 { font-size: 1.875rem; font-weight: 700; margin: 1.5rem 0 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
+    .preview-content h2 { font-size: 1.5rem; font-weight: 600; margin: 1.25rem 0 0.75rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.25rem; }
+    .preview-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+    .preview-content h4 { font-size: 1.125rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+    .preview-content h5, .preview-content h6 { font-size: 1rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
+    .preview-content p { margin: 0.75rem 0; }
+    .preview-content a { color: #2563eb; text-decoration: underline; }
+    .preview-content a:hover { color: #1d4ed8; }
+    .preview-content strong { font-weight: 600; }
+    .preview-content em { font-style: italic; }
+    .preview-content ul, .preview-content ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    .preview-content ul { list-style-type: disc; }
+    .preview-content ol { list-style-type: decimal; }
+    .preview-content li { margin: 0.25rem 0; }
+    .preview-content blockquote {
+      border-left: 4px solid #e5e7eb;
+      padding-left: 1rem;
+      margin: 1rem 0;
+      color: #6b7280;
+      font-style: italic;
+    }
+    .preview-content code {
+      background: #f3f4f6;
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+      font-size: 0.875em;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    }
+    .preview-content pre {
+      background: #f3f4f6;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    .preview-content pre code {
+      background: transparent;
+      padding: 0;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+    .preview-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+    .preview-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    .preview-content th, .preview-content td {
+      border: 1px solid #e5e7eb;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    .preview-content th {
+      background: #f9fafb;
+      font-weight: 600;
+    }
+    .preview-content hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 1.5rem 0;
+    }
+    /* Task list (checkboxes) */
+    .preview-content .task-list-item {
+      list-style-type: none;
+      margin-left: -1.5rem;
+    }
+    .preview-content .task-list-item input[type="checkbox"] {
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+    /* MathJax */
+    .preview-content mjx-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    /* Dark mode preview */
+    .preview-dark .preview-content {
+      color: #e5e7eb;
+    }
+    .preview-dark .preview-content h1, .preview-dark .preview-content h2 { border-bottom-color: #374151; }
+    .preview-dark .preview-content a { color: #60a5fa; }
+    .preview-dark .preview-content a:hover { color: #93c5fd; }
+    .preview-dark .preview-content blockquote { border-left-color: #4b5563; color: #9ca3af; }
+    .preview-dark .preview-content code { background: #374151; }
+    .preview-dark .preview-content pre { background: #1f2937; }
+    .preview-dark .preview-content th { background: #374151; }
+    .preview-dark .preview-content th, .preview-dark .preview-content td { border-color: #4b5563; }
+    .preview-dark .preview-content hr { border-top-color: #4b5563; }
+
+    /* Highlight.js dark mode override */
+    .preview-dark pre code.hljs {
+      background: transparent;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Markdown Preview
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Write markdown and preview in real-time. Supports headers, lists, code blocks, tables, and more.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <button id="sample-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Sample Markdown</button>
+            <button id="copy-html-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Copy HTML</button>
+            <button id="download-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Download HTML</button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Clear</button>
+            <div class="flex items-center gap-2 ml-auto">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Preview Theme:</span>
+              <button id="theme-toggle-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">
+                <span id="theme-label">Light</span>
+              </button>
+            </div>
+          </div>
+          <!-- Supported features badges -->
+          <div class="flex flex-wrap gap-1.5">
+            <span class="text-xs text-gray-500 dark:text-gray-400 mr-1">Supports:</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">GFM</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">Code Highlight</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400">Math (MathJax)</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400">Tables</span>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400">Checkboxes</span>
+          </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="md-container gap-4">
+          <!-- Input Section -->
+          <div class="md-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Markdown Input</span>
+              <span id="char-count" class="text-xs text-gray-400"></span>
+            </div>
+            <textarea
+              id="md-input"
+              class="textarea"
+              placeholder="Enter your markdown here..."
+            ></textarea>
+          </div>
+
+          <!-- Preview Section -->
+          <div class="md-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Preview</span>
+            </div>
+            <div id="md-preview" class="border border-gray-200 dark:border-gray-700 rounded-xl p-4 overflow-auto" style="background-color: #ffffff;">
+              <div id="preview-content" class="preview-content">
+                <span class="text-gray-400 dark:text-gray-500">Enter markdown to see the preview here.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Markdown?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Markdown is a lightweight markup language that converts plain text into HTML. It's widely used for developer documentation, README files, and blog posts. With simple syntax, you can easily create headings, lists, links, images, code blocks, and more.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Supported Syntax</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Headings:</strong> # H1, ## H2, ### H3, etc.</li>
+            <li><strong>Emphasis:</strong> **bold**, *italic*, ~~strikethrough~~</li>
+            <li><strong>Lists:</strong> - or * for unordered, 1. 2. 3. for ordered</li>
+            <li><strong>Checkboxes:</strong> - [ ] incomplete, - [x] complete (Task List)</li>
+            <li><strong>Links:</strong> [link text](URL)</li>
+            <li><strong>Images:</strong> ![alt text](image URL)</li>
+            <li><strong>Code:</strong> `inline code` or ```language code block``` (with syntax highlighting)</li>
+            <li><strong>Math:</strong> $inline math$ or $$block math$$ (MathJax/LaTeX)</li>
+            <li><strong>Blockquotes:</strong> > quoted text</li>
+            <li><strong>Tables:</strong> | Header1 | Header2 | GFM table format</li>
+            <li><strong>Horizontal rules:</strong> --- or ***</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Where is Markdown used?</h4>
+              <p>Many platforms support Markdown including GitHub, GitLab, Notion, Slack, and Discord. It's the standard format for README files, technical documentation, and blog posts.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my content sent to a server?</h4>
+              <p>No, all conversion happens locally in your browser. Your content is never transmitted externally and can be used safely with sensitive information.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I use the exported HTML?</h4>
+              <p>Use the 'Download HTML' button to get a complete HTML file. You can upload this file to a web server or open it locally in your browser.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('md-input');
+      const previewContainer = document.getElementById('md-preview');
+      const previewContent = document.getElementById('preview-content');
+      const sampleBtn = document.getElementById('sample-btn');
+      const copyHtmlBtn = document.getElementById('copy-html-btn');
+      const downloadBtn = document.getElementById('download-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const themeToggleBtn = document.getElementById('theme-toggle-btn');
+      const themeLabel = document.getElementById('theme-label');
+      const charCount = document.getElementById('char-count');
+
+      let previewDark = false;
+      let renderedHtml = '';
+
+      // Configure marked.js
+      marked.setOptions({
+        highlight: function(code, lang) {
+          if (lang && hljs.getLanguage(lang)) {
+            try {
+              return hljs.highlight(code, { language: lang }).value;
+            } catch (e) {}
+          }
+          return hljs.highlightAuto(code).value;
+        },
+        breaks: true,
+        gfm: true
+      });
+
+      // Sample markdown content
+      const sampleMarkdown = `# Markdown Preview
+
+Write markdown and preview in **real-time**.
+
+## Features
+
+### Text Formatting
+- **Bold text**
+- *Italic text*
+- ~~Strikethrough text~~
+- \`Inline code\`
+
+### Checkboxes (Task List)
+- [x] Completed task
+- [x] Added markdown support
+- [ ] Incomplete task
+- [ ] Add more features
+
+### Math (MathJax)
+
+Inline math: $E = mc^2$
+
+Block math:
+$$
+\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}
+$$
+
+Quadratic formula:
+$$
+x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}
+$$
+
+### Lists
+1. First item
+2. Second item
+3. Third item
+
+- Unordered list item 1
+- Unordered list item 2
+  - Nested item
+
+### Links and Images
+[Visit Toolneat](https://toolneat.com)
+
+![Sample Image](https://placehold.co/600x400)
+
+### Blockquotes
+> Markdown makes it easy to write rich documents with simple syntax.
+> — Toolneat
+
+### Code Blocks
+\`\`\`javascript
+function hello() {
+  console.log('Hello!');
+  return 'Hello, Markdown!';
+}
+\`\`\`
+
+### Tables
+| Feature | Description | Support |
+|---------|-------------|---------|
+| Headings | H1-H6 headers | ✓ |
+| Lists | Ordered/Unordered | ✓ |
+| Code | Syntax highlighting | ✓ |
+| Tables | GFM tables | ✓ |
+| Math | MathJax | ✓ |
+| Checkboxes | Task List | ✓ |
+
+---
+
+*Create better documents with Markdown!*
+`;
+
+      // Process task lists (checkboxes)
+      function processTaskLists(html) {
+        // Convert [ ] and [x] to checkboxes
+        return html
+          .replace(/<li>\s*\[ \]/g, '<li class="task-list-item"><input type="checkbox" disabled>')
+          .replace(/<li>\s*\[x\]/gi, '<li class="task-list-item"><input type="checkbox" checked disabled>');
+      }
+
+      // Render markdown
+      function renderMarkdown() {
+        const text = input.value;
+        charCount.textContent = text.length + ' chars';
+
+        if (!text.trim()) {
+          previewContent.innerHTML = '<span class="text-gray-400 dark:text-gray-500">Enter markdown to see the preview here.</span>';
+          renderedHtml = '';
+          return;
+        }
+
+        try {
+          let html = marked.parse(text);
+          html = processTaskLists(html);
+          renderedHtml = DOMPurify.sanitize(html, { ADD_ATTR: ['disabled', 'checked'] });
+          previewContent.innerHTML = renderedHtml;
+
+          // Re-apply highlight.js for any code blocks
+          previewContent.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightElement(block);
+          });
+
+          // Trigger MathJax typesetting if available
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            MathJax.typesetPromise([previewContent]).catch(() => {});
+          }
+        } catch (e) {
+          previewContent.innerHTML = '<span class="text-red-400">Markdown parsing error: ' + e.message + '</span>';
+          renderedHtml = '';
+        }
+      }
+
+      // Debounced render
+      const debouncedRender = debounceImmediate(renderMarkdown, 100);
+
+      // Event listeners
+      input.addEventListener('input', debouncedRender);
+
+      sampleBtn.addEventListener('click', () => {
+        input.value = sampleMarkdown;
+        renderMarkdown();
+      });
+
+      copyHtmlBtn.addEventListener('click', async () => {
+        if (!renderedHtml) {
+          toast.warning('Nothing to copy.');
+          return;
+        }
+        await copyToClipboard(renderedHtml);
+        toast.success('HTML copied to clipboard.');
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        if (!renderedHtml) {
+          toast.warning('Nothing to download.');
+          return;
+        }
+
+        const fullHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Export</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      color: #1f2937;
+    }
+    h1 { font-size: 1.875rem; font-weight: 700; margin: 1.5rem 0 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
+    h2 { font-size: 1.5rem; font-weight: 600; margin: 1.25rem 0 0.75rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.25rem; }
+    h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+    p { margin: 0.75rem 0; }
+    a { color: #2563eb; text-decoration: underline; }
+    strong { font-weight: 600; }
+    em { font-style: italic; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    ul { list-style-type: disc; }
+    ol { list-style-type: decimal; }
+    li { margin: 0.25rem 0; }
+    blockquote { border-left: 4px solid #e5e7eb; padding-left: 1rem; margin: 1rem 0; color: #6b7280; font-style: italic; }
+    code { background: #f3f4f6; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875em; font-family: monospace; }
+    pre { background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; margin: 1rem 0; }
+    pre code { background: transparent; padding: 0; }
+    img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 1rem 0; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #e5e7eb; padding: 0.5rem 0.75rem; text-align: left; }
+    th { background: #f9fafb; font-weight: 600; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+${renderedHtml}
+</body>
+</html>`;
+
+        const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'markdown-export.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        toast.success('HTML file downloaded.');
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        renderMarkdown();
+        input.focus();
+      });
+
+      themeToggleBtn.addEventListener('click', () => {
+        previewDark = !previewDark;
+        if (previewDark) {
+          previewContainer.classList.add('preview-dark');
+          previewContainer.style.backgroundColor = '#111827';
+          themeLabel.textContent = 'Dark';
+        } else {
+          previewContainer.classList.remove('preview-dark');
+          previewContainer.style.backgroundColor = '#ffffff';
+          themeLabel.textContent = 'Light';
+        }
+      });
+
+      // Keyboard shortcuts
+      input.addEventListener('keydown', (e) => {
+        // Tab for indentation
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          const start = input.selectionStart;
+          const end = input.selectionEnd;
+          input.value = input.value.substring(0, start) + '  ' + input.value.substring(end);
+          input.selectionStart = input.selectionEnd = start + 2;
+          debouncedRender();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

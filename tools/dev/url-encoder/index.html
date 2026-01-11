@@ -128,6 +128,39 @@
         </div>
       </div>
 
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">URL 인코딩이란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>URL 인코딩(퍼센트 인코딩)은 URL에서 사용할 수 없는 문자를 안전하게 전송하기 위해 변환하는 방식입니다. 공백, 한글, 특수문자 등은 %XX 형태의 16진수 코드로 변환됩니다. 예를 들어 공백은 %20, 한글 '가'는 %EA%B0%80으로 변환됩니다. 웹 개발에서 쿼리 파라미터, 폼 데이터 전송, API 요청 등에 필수적으로 사용됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>'인코딩' 또는 '디코딩' 모드를 선택합니다.</li>
+            <li>인코딩 방식을 선택합니다: Component(권장), URI, 전체 중 용도에 맞게 선택하세요.</li>
+            <li>왼쪽 입력창에 URL이나 텍스트를 입력합니다.</li>
+            <li>실시간 변환이 활성화되어 있으면 자동으로 결과가 표시됩니다.</li>
+            <li>결과를 복사하려면 '복사' 버튼을 클릭하세요.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: encodeURIComponent와 encodeURI의 차이점은?</h4>
+              <p>encodeURIComponent는 모든 특수문자를 인코딩하므로 쿼리 파라미터 값에 적합합니다. encodeURI는 URL 구조 문자(/, ?, #, & 등)를 유지하므로 전체 URL을 인코딩할 때 사용합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 왜 URL 인코딩이 필요한가요?</h4>
+              <p>URL은 ASCII 문자만 허용하며, 일부 문자는 특별한 의미를 갖습니다. 예를 들어 &는 파라미터 구분자, =는 키-값 구분자입니다. 데이터에 이런 문자가 포함되면 URL이 깨지므로 인코딩이 필요합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 이중 인코딩은 무엇인가요?</h4>
+              <p>이미 인코딩된 문자열을 다시 인코딩하면 %가 %25로 변환되어 문제가 발생합니다. 디코딩 시에도 원래 값으로 복원되지 않으므로, 인코딩은 한 번만 적용해야 합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-6">
         

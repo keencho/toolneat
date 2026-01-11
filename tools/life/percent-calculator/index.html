@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퍼센트 계산기 - Toolneat</title>
+  <meta name="description" content="다양한 백분율 계산을 쉽게 해보세요. 퍼센트 구하기, 비율 계산, 증감률, 할인 계산 등 다양한 모드를 제공합니다.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/life/percent-calculator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/percent-calculator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/percent-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/percent-calculator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="퍼센트 계산기 - Toolneat">
+  <meta property="og:description" content="다양한 백분율 계산을 쉽게 해보세요.">
+  <meta property="og:url" content="https://toolneat.com/tools/life/percent-calculator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    .calc-tab {
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      border: 1px solid #e5e7eb;
+      color: #6b7280;
+    }
+    .dark .calc-tab {
+      border-color: #374151;
+      color: #9ca3af;
+    }
+    .calc-tab:hover {
+      background: #f3f4f6;
+    }
+    .dark .calc-tab:hover {
+      background: #374151;
+    }
+    .calc-tab.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: white;
+    }
+    .calc-card {
+      display: none;
+    }
+    .calc-card.active {
+      display: block;
+    }
+    .result-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2563eb;
+    }
+    .dark .result-value {
+      color: #60a5fa;
+    }
+    .result-label {
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    .dark .result-label {
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          퍼센트 계산기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          다양한 백분율 계산을 쉽게 해보세요. 퍼센트 구하기, 비율 계산, 증감률, 할인 계산 등 다양한 모드를 제공합니다.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Tab Navigation -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          <button class="calc-tab active" data-tab="basic">X의 Y%</button>
+          <button class="calc-tab" data-tab="whatPercent">X는 Y의 몇 %?</button>
+          <button class="calc-tab" data-tab="change">증감률</button>
+          <button class="calc-tab" data-tab="adjust">증감 적용</button>
+          <button class="calc-tab" data-tab="discount">할인 계산</button>
+        </div>
+
+        <!-- Mode 1: What is X% of Y? -->
+        <div id="card-basic" class="calc-card active">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">X의 Y%는 얼마인가요?</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">기준 값</label>
+              <input type="number" id="basic-base" class="input py-3 text-lg" placeholder="예: 200">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">퍼센트 (%)</label>
+              <input type="number" id="basic-percent" class="input py-3 text-lg" placeholder="예: 15">
+            </div>
+          </div>
+          <button id="basic-calc" class="btn btn-primary w-full md:w-auto">계산하기</button>
+          <div id="basic-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p class="result-label mb-2">결과</p>
+            <p class="result-value" id="basic-result-value">0</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2" id="basic-result-desc"></p>
+          </div>
+        </div>
+
+        <!-- Mode 2: X is what % of Y? -->
+        <div id="card-whatPercent" class="calc-card">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">X는 Y의 몇 퍼센트인가요?</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">부분 값 (X)</label>
+              <input type="number" id="wp-part" class="input py-3 text-lg" placeholder="예: 30">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">전체 값 (Y)</label>
+              <input type="number" id="wp-whole" class="input py-3 text-lg" placeholder="예: 200">
+            </div>
+          </div>
+          <button id="wp-calc" class="btn btn-primary w-full md:w-auto">계산하기</button>
+          <div id="wp-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p class="result-label mb-2">결과</p>
+            <p class="result-value" id="wp-result-value">0%</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2" id="wp-result-desc"></p>
+          </div>
+        </div>
+
+        <!-- Mode 3: Percentage change -->
+        <div id="card-change" class="calc-card">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">X에서 Y로의 변화율은?</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">이전 값</label>
+              <input type="number" id="change-old" class="input py-3 text-lg" placeholder="예: 80">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">새로운 값</label>
+              <input type="number" id="change-new" class="input py-3 text-lg" placeholder="예: 100">
+            </div>
+          </div>
+          <button id="change-calc" class="btn btn-primary w-full md:w-auto">계산하기</button>
+          <div id="change-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p class="result-label mb-2">변화율</p>
+            <p class="result-value" id="change-result-value">0%</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2" id="change-result-desc"></p>
+          </div>
+        </div>
+
+        <!-- Mode 4: Increase/Decrease by % -->
+        <div id="card-adjust" class="calc-card">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">X를 Y% 증가/감소시키면?</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">기준 값</label>
+              <input type="number" id="adjust-value" class="input py-3 text-lg" placeholder="예: 100">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">퍼센트 (%)</label>
+              <input type="number" id="adjust-percent" class="input py-3 text-lg" placeholder="예: 20">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">적용 방식</label>
+              <select id="adjust-type" class="input py-3 text-lg">
+                <option value="increase">증가</option>
+                <option value="decrease">감소</option>
+              </select>
+            </div>
+          </div>
+          <button id="adjust-calc" class="btn btn-primary w-full md:w-auto">계산하기</button>
+          <div id="adjust-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p class="result-label mb-2">결과</p>
+            <p class="result-value" id="adjust-result-value">0</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2" id="adjust-result-desc"></p>
+          </div>
+        </div>
+
+        <!-- Mode 5: Discount calculator -->
+        <div id="card-discount" class="calc-card">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">할인 계산</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">원래 가격</label>
+              <input type="number" id="discount-original" class="input py-3 text-lg" placeholder="예: 50000">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">할인율 (%)</label>
+              <input type="number" id="discount-percent" class="input py-3 text-lg" placeholder="예: 30">
+            </div>
+          </div>
+          <button id="discount-calc" class="btn btn-primary w-full md:w-auto">계산하기</button>
+          <div id="discount-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+              <div>
+                <p class="result-label mb-2">할인 금액</p>
+                <p class="result-value text-red-500 dark:text-red-400" id="discount-amount">0</p>
+              </div>
+              <div>
+                <p class="result-label mb-2">최종 가격</p>
+                <p class="result-value text-green-500 dark:text-green-400" id="discount-final">0</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-4 text-center" id="discount-result-desc"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+        <h3 class="font-medium text-blue-800 dark:text-blue-300 mb-2">퍼센트 계산 안내</h3>
+        <ul class="text-sm text-blue-700 dark:text-blue-400 space-y-1">
+          <li>X의 Y% = X x (Y / 100)</li>
+          <li>X가 Y의 몇 %인지 = (X / Y) x 100</li>
+          <li>변화율 = ((새값 - 이전값) / 이전값) x 100</li>
+          <li>할인 가격 = 원가 x (1 - 할인율 / 100)</li>
+        </ul>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">퍼센트 계산기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>퍼센트 계산기는 다양한 백분율 계산을 쉽고 빠르게 수행할 수 있는 도구입니다. 일상생활에서 자주 사용되는 퍼센트 계산을 5가지 모드로 제공하여, 할인 계산, 비율 계산, 증감률 계산 등을 간편하게 할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>X의 Y%</strong> - 특정 값의 백분율을 계산합니다 (예: 200의 15%는?)</li>
+            <li><strong>X는 Y의 몇 %?</strong> - 두 값의 비율을 백분율로 표시합니다 (예: 30은 200의 몇 %?)</li>
+            <li><strong>증감률</strong> - 이전 값과 새로운 값 사이의 변화율을 계산합니다</li>
+            <li><strong>증감 적용</strong> - 특정 값에 백분율을 증가 또는 감소시킵니다</li>
+            <li><strong>할인 계산</strong> - 원래 가격에서 할인율을 적용한 최종 가격을 계산합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 퍼센트(%)는 무엇인가요?</h4>
+              <p>퍼센트는 '100당'이라는 의미로, 전체를 100으로 보았을 때 차지하는 비율을 나타냅니다. 50%는 전체의 절반(1/2), 25%는 1/4을 의미합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 증가율과 감소율은 어떻게 다른가요?</h4>
+              <p>증가율은 양수(+)로, 감소율은 음수(-)로 표시됩니다. 예를 들어 100에서 120으로 변하면 +20% 증가, 100에서 80으로 변하면 -20% 감소입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 할인 계산은 어떻게 하나요?</h4>
+              <p>원래 가격에서 할인율을 빼면 됩니다. 예를 들어 10,000원에서 30% 할인하면, 10,000 x 0.3 = 3,000원이 할인되어 최종 가격은 7,000원입니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Tab switching
+      const tabs = document.querySelectorAll('.calc-tab');
+      const cards = document.querySelectorAll('.calc-card');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const targetId = tab.dataset.tab;
+
+          tabs.forEach(t => t.classList.remove('active'));
+          cards.forEach(c => c.classList.remove('active'));
+
+          tab.classList.add('active');
+          document.getElementById('card-' + targetId).classList.add('active');
+        });
+      });
+
+      // Format number with commas
+      function formatNumber(num) {
+        return num.toLocaleString('ko-KR', { maximumFractionDigits: 2 });
+      }
+
+      // Mode 1: X% of Y
+      document.getElementById('basic-calc').addEventListener('click', () => {
+        const base = parseFloat(document.getElementById('basic-base').value);
+        const percent = parseFloat(document.getElementById('basic-percent').value);
+
+        if (isNaN(base) || isNaN(percent)) {
+          toast.warning('값을 입력해주세요.');
+          return;
+        }
+
+        const result = base * (percent / 100);
+        document.getElementById('basic-result-value').textContent = formatNumber(result);
+        document.getElementById('basic-result-desc').textContent =
+          `${formatNumber(base)}의 ${percent}% = ${formatNumber(result)}`;
+        document.getElementById('basic-result').classList.remove('hidden');
+      });
+
+      // Mode 2: X is what % of Y
+      document.getElementById('wp-calc').addEventListener('click', () => {
+        const part = parseFloat(document.getElementById('wp-part').value);
+        const whole = parseFloat(document.getElementById('wp-whole').value);
+
+        if (isNaN(part) || isNaN(whole) || whole === 0) {
+          toast.warning('값을 입력해주세요. (전체 값은 0이 될 수 없습니다)');
+          return;
+        }
+
+        const result = (part / whole) * 100;
+        document.getElementById('wp-result-value').textContent = formatNumber(result) + '%';
+        document.getElementById('wp-result-desc').textContent =
+          `${formatNumber(part)}은(는) ${formatNumber(whole)}의 ${formatNumber(result)}%입니다`;
+        document.getElementById('wp-result').classList.remove('hidden');
+      });
+
+      // Mode 3: Percentage change
+      document.getElementById('change-calc').addEventListener('click', () => {
+        const oldVal = parseFloat(document.getElementById('change-old').value);
+        const newVal = parseFloat(document.getElementById('change-new').value);
+
+        if (isNaN(oldVal) || isNaN(newVal) || oldVal === 0) {
+          toast.warning('값을 입력해주세요. (이전 값은 0이 될 수 없습니다)');
+          return;
+        }
+
+        const change = ((newVal - oldVal) / oldVal) * 100;
+        const sign = change >= 0 ? '+' : '';
+        const changeType = change >= 0 ? '증가' : '감소';
+
+        document.getElementById('change-result-value').textContent = sign + formatNumber(change) + '%';
+        document.getElementById('change-result-value').className =
+          'result-value ' + (change >= 0 ? 'text-green-500' : 'text-red-500');
+        document.getElementById('change-result-desc').textContent =
+          `${formatNumber(oldVal)}에서 ${formatNumber(newVal)}로 ${Math.abs(change).toFixed(2)}% ${changeType}했습니다`;
+        document.getElementById('change-result').classList.remove('hidden');
+      });
+
+      // Mode 4: Increase/Decrease
+      document.getElementById('adjust-calc').addEventListener('click', () => {
+        const value = parseFloat(document.getElementById('adjust-value').value);
+        const percent = parseFloat(document.getElementById('adjust-percent').value);
+        const type = document.getElementById('adjust-type').value;
+
+        if (isNaN(value) || isNaN(percent)) {
+          toast.warning('값을 입력해주세요.');
+          return;
+        }
+
+        let result;
+        let desc;
+        if (type === 'increase') {
+          result = value * (1 + percent / 100);
+          desc = `${formatNumber(value)}를 ${percent}% 증가시키면 ${formatNumber(result)}입니다`;
+        } else {
+          result = value * (1 - percent / 100);
+          desc = `${formatNumber(value)}를 ${percent}% 감소시키면 ${formatNumber(result)}입니다`;
+        }
+
+        document.getElementById('adjust-result-value').textContent = formatNumber(result);
+        document.getElementById('adjust-result-desc').textContent = desc;
+        document.getElementById('adjust-result').classList.remove('hidden');
+      });
+
+      // Mode 5: Discount
+      document.getElementById('discount-calc').addEventListener('click', () => {
+        const original = parseFloat(document.getElementById('discount-original').value);
+        const percent = parseFloat(document.getElementById('discount-percent').value);
+
+        if (isNaN(original) || isNaN(percent)) {
+          toast.warning('값을 입력해주세요.');
+          return;
+        }
+
+        const discountAmount = original * (percent / 100);
+        const finalPrice = original - discountAmount;
+
+        document.getElementById('discount-amount').textContent = '-' + formatNumber(discountAmount);
+        document.getElementById('discount-final').textContent = formatNumber(finalPrice);
+        document.getElementById('discount-result-desc').textContent =
+          `원래 가격 ${formatNumber(original)}에서 ${percent}% 할인하면 ${formatNumber(discountAmount)} 절약!`;
+        document.getElementById('discount-result').classList.remove('hidden');
+      });
+
+      // Enter key support for all inputs
+      document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const card = input.closest('.calc-card');
+            const btn = card.querySelector('.btn-primary');
+            if (btn) btn.click();
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Generator - Toolneat</title>
+  <meta name="description" content="Generate secure random passwords">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/dev/password-generator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/password-generator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/password-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/password-generator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Password Generator - Toolneat">
+  <meta property="og:description" content="Generate secure random passwords">
+  <meta property="og:url" content="https://toolneat.com/en/tools/dev/password-generator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Password Generator
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Generate secure random passwords. Create strong passwords by combining uppercase, lowercase, numbers, and symbols.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Password Display -->
+        <div class="mb-6">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl">
+            <code id="password-display" class="flex-1 text-lg md:text-xl font-mono text-gray-900 dark:text-white break-all text-center sm:text-left select-all">
+              -
+            </code>
+            <div class="flex gap-2 justify-center sm:justify-end shrink-0">
+              <button id="copy-btn" class="btn btn-secondary p-2" title="Copy">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+              </button>
+              <button id="generate-btn" class="btn btn-primary p-2" title="Generate">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Password Strength Meter -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Password Strength</span>
+            <span id="strength-text" class="text-sm font-medium">-</span>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+            <div id="strength-bar" class="h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Options -->
+        <div class="space-y-4 mb-6 pb-6 border-b border-gray-100 dark:border-gray-700">
+          <!-- Password Length -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">Password Length</label>
+              <span id="length-value" class="text-sm font-mono text-gray-600 dark:text-gray-400">16</span>
+            </div>
+            <input type="range" id="password-length" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-600" min="8" max="64" value="16">
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
+              <span>8</span>
+              <span>64</span>
+            </div>
+          </div>
+
+          <!-- Character Options -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <input type="checkbox" id="include-uppercase" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" checked>
+              <span class="text-sm text-gray-700 dark:text-gray-300">Uppercase (A-Z)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <input type="checkbox" id="include-lowercase" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" checked>
+              <span class="text-sm text-gray-700 dark:text-gray-300">Lowercase (a-z)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <input type="checkbox" id="include-numbers" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" checked>
+              <span class="text-sm text-gray-700 dark:text-gray-300">Numbers (0-9)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <input type="checkbox" id="include-symbols" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" checked>
+              <span class="text-sm text-gray-700 dark:text-gray-300">Symbols (!@#$%...)</span>
+            </label>
+          </div>
+
+          <!-- Exclude Ambiguous -->
+          <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <input type="checkbox" id="exclude-ambiguous" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
+            <div>
+              <span class="text-sm text-gray-700 dark:text-gray-300">Exclude Ambiguous Characters</span>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Exclude characters that are easily confused: 0, O, o, l, 1, I</p>
+            </div>
+          </label>
+        </div>
+
+        <!-- Generate Button -->
+        <button id="generate-full-btn" class="btn btn-primary w-full">
+          Generate Password
+        </button>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Password Generator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A password generator is a tool that creates cryptographically secure random passwords. By combining uppercase letters, lowercase letters, numbers, and special characters, it generates strong passwords that are difficult to predict. Using unique and complex passwords for all your accounts helps protect your personal information from hacking, brute force attacks, and dictionary attacks.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Use the slider to set your desired password length (8-64 characters).</li>
+            <li>Select the character types to include: uppercase, lowercase, numbers, symbols.</li>
+            <li>Enable the 'Exclude Ambiguous Characters' option if needed.</li>
+            <li>Click the 'Generate Password' button to create a new password.</li>
+            <li>Click the copy button to copy the generated password to your clipboard.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">FAQ</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What is the recommended length for a secure password?</h4>
+              <p>A minimum of 12 characters is recommended, and 16 or more characters are better for important accounts. Longer passwords exponentially increase resistance to brute force attacks.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are generated passwords stored on the server?</h4>
+              <p>No, all password generation is performed locally in your browser. Generated passwords are never transmitted or stored anywhere, making them completely secure.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When should I use the exclude ambiguous characters option?</h4>
+              <p>This is useful when you need to manually type the password. It excludes similar-looking characters like 0 (zero) and O (letter), 1 (one) and l (lowercase L), I (uppercase i) to prevent input errors.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const passwordDisplay = document.getElementById('password-display');
+      const copyBtn = document.getElementById('copy-btn');
+      const generateBtn = document.getElementById('generate-btn');
+      const generateFullBtn = document.getElementById('generate-full-btn');
+      const passwordLength = document.getElementById('password-length');
+      const lengthValue = document.getElementById('length-value');
+      const includeUppercase = document.getElementById('include-uppercase');
+      const includeLowercase = document.getElementById('include-lowercase');
+      const includeNumbers = document.getElementById('include-numbers');
+      const includeSymbols = document.getElementById('include-symbols');
+      const excludeAmbiguous = document.getElementById('exclude-ambiguous');
+      const strengthBar = document.getElementById('strength-bar');
+      const strengthText = document.getElementById('strength-text');
+
+      const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const LOWERCASE = 'abcdefghijklmnopqrstuvwxyz';
+      const NUMBERS = '0123456789';
+      const SYMBOLS = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+      const AMBIGUOUS = '0Ool1Ii';
+
+      function removeAmbiguous(str) {
+        return str.split('').filter(c => !AMBIGUOUS.includes(c)).join('');
+      }
+
+      function generatePassword() {
+        const length = parseInt(passwordLength.value);
+        let charset = '';
+
+        if (includeUppercase.checked) {
+          charset += excludeAmbiguous.checked ? removeAmbiguous(UPPERCASE) : UPPERCASE;
+        }
+        if (includeLowercase.checked) {
+          charset += excludeAmbiguous.checked ? removeAmbiguous(LOWERCASE) : LOWERCASE;
+        }
+        if (includeNumbers.checked) {
+          charset += excludeAmbiguous.checked ? removeAmbiguous(NUMBERS) : NUMBERS;
+        }
+        if (includeSymbols.checked) {
+          charset += SYMBOLS;
+        }
+
+        if (charset === '') {
+          toast.warning('Please select at least one character type.');
+          return null;
+        }
+
+        const array = new Uint32Array(length);
+        crypto.getRandomValues(array);
+
+        let password = '';
+        for (let i = 0; i < length; i++) {
+          password += charset[array[i] % charset.length];
+        }
+
+        return password;
+      }
+
+      function calculateStrength(password) {
+        if (!password) return { score: 0, label: '-', color: 'bg-gray-300' };
+
+        let score = 0;
+        const length = password.length;
+
+        // Length score
+        if (length >= 8) score += 1;
+        if (length >= 12) score += 1;
+        if (length >= 16) score += 1;
+        if (length >= 24) score += 1;
+
+        // Character variety score
+        if (/[a-z]/.test(password)) score += 1;
+        if (/[A-Z]/.test(password)) score += 1;
+        if (/[0-9]/.test(password)) score += 1;
+        if (/[^a-zA-Z0-9]/.test(password)) score += 1;
+
+        // Determine strength level
+        if (score <= 2) {
+          return { score: 25, label: 'Weak', color: 'bg-red-500' };
+        } else if (score <= 4) {
+          return { score: 50, label: 'Medium', color: 'bg-yellow-500' };
+        } else if (score <= 6) {
+          return { score: 75, label: 'Strong', color: 'bg-green-500' };
+        } else {
+          return { score: 100, label: 'Very Strong', color: 'bg-blue-600' };
+        }
+      }
+
+      function updateStrengthMeter(password) {
+        const strength = calculateStrength(password);
+        strengthBar.style.width = strength.score + '%';
+        strengthBar.className = 'h-2 rounded-full transition-all duration-300 ' + strength.color;
+        strengthText.textContent = strength.label;
+        strengthText.className = 'text-sm font-medium ' + strength.color.replace('bg-', 'text-');
+      }
+
+      function updatePassword() {
+        const password = generatePassword();
+        if (password) {
+          passwordDisplay.textContent = password;
+          updateStrengthMeter(password);
+          toast.success('New password generated.');
+        }
+      }
+
+      // Event listeners
+      passwordLength.addEventListener('input', () => {
+        lengthValue.textContent = passwordLength.value;
+      });
+
+      passwordLength.addEventListener('change', updatePassword);
+
+      generateBtn.addEventListener('click', updatePassword);
+      generateFullBtn.addEventListener('click', updatePassword);
+
+      copyBtn.addEventListener('click', async () => {
+        const password = passwordDisplay.textContent;
+        if (password && password !== '-') {
+          await copyToClipboard(password);
+          toast.success('Copied to clipboard.');
+        } else {
+          toast.warning('No password to copy.');
+        }
+      });
+
+      // Checkbox change listeners
+      [includeUppercase, includeLowercase, includeNumbers, includeSymbols, excludeAmbiguous].forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          const password = passwordDisplay.textContent;
+          if (password && password !== '-') {
+            updatePassword();
+          }
+        });
+      });
+
+      // Initial generation
+      updatePassword();
+    })();
+  </script>
+</body>
+</html>

@@ -321,6 +321,39 @@
       <div class="ad-container mt-8">
 
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Unix Timestamp Converter?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A Unix Timestamp Converter is a tool that converts between Unix timestamps (also called Epoch time or POSIX time) and human-readable dates. Unix timestamp represents the number of seconds (or milliseconds) that have elapsed since January 1, 1970, 00:00:00 UTC. This format is widely used in programming, databases, and APIs because it's timezone-independent and easy to compare and calculate with.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>View the current Unix timestamp in the "Current Time" section, which updates in real-time.</li>
+            <li>To convert a timestamp to a date, enter the Unix timestamp and click "Convert" or press Enter.</li>
+            <li>Use the unit selector (Auto, Seconds, Milliseconds) to specify the timestamp format, or let the tool auto-detect.</li>
+            <li>To convert a date to a timestamp, fill in the year, month, day, hour, minute, and second fields, then click "Convert".</li>
+            <li>Copy any result using the copy buttons next to each value.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Why is it called Unix timestamp or Epoch time?</h4>
+              <p>It's called Unix timestamp because it was first used in Unix operating systems. The "Epoch" refers to the starting point of this time system: January 1, 1970, 00:00:00 UTC (also known as the Unix Epoch). This date was chosen as a convenient reference point when Unix was being developed in the early 1970s.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between seconds and milliseconds timestamps?</h4>
+              <p>A Unix timestamp in seconds is a 10-digit number (like 1704067200), while milliseconds is a 13-digit number (like 1704067200000). JavaScript and Java typically use milliseconds, while Unix systems, PHP, and Python commonly use seconds. This tool auto-detects the format but allows you to specify manually if needed.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the Year 2038 problem?</h4>
+              <p>The Year 2038 problem affects systems that store Unix timestamps as signed 32-bit integers. The maximum value (2,147,483,647) corresponds to January 19, 2038, 03:14:07 UTC. After this point, the number overflows and wraps to a negative value. Most modern systems now use 64-bit integers, which can represent dates billions of years into the future.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 

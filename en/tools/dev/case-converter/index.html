@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Converter - Toolneat</title>
+  <meta name="description" content="Convert text between different case formats. Supports UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case, and more.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/dev/case-converter/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/case-converter/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/case-converter/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/case-converter/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Case Converter - Toolneat">
+  <meta property="og:description" content="Convert text between different case formats.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/dev/case-converter/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>
+    // Force English language
+    localStorage.setItem('toolneat-lang', 'en');
+  </script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Case Converter
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Convert text between different case formats.
+        </p>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mb-6 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Case Converter?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Case Converter is a tool that transforms text into various case formats. In programming, you need to use the appropriate case format for variable names, function names, constants, and more according to language conventions. This tool allows you to easily convert text to UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, and other formats.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Supported Case Formats</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li><strong>UPPERCASE</strong>: Convert all characters to uppercase</li>
+            <li><strong>lowercase</strong>: Convert all characters to lowercase</li>
+            <li><strong>Title Case</strong>: Capitalize the first letter of each word</li>
+            <li><strong>Sentence case</strong>: Capitalize only the first letter of each sentence</li>
+            <li><strong>camelCase</strong>: First word lowercase, capitalize subsequent words</li>
+            <li><strong>PascalCase</strong>: Capitalize the first letter of every word</li>
+            <li><strong>snake_case</strong>: Words joined by underscores, all lowercase</li>
+            <li><strong>kebab-case</strong>: Words joined by hyphens, all lowercase</li>
+            <li><strong>CONSTANT_CASE</strong>: Words joined by underscores, all uppercase</li>
+            <li><strong>dot.case</strong>: Words joined by dots, all lowercase</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Input Section -->
+        <div class="mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-sm font-medium text-gray-700 dark:text-gray-300">Input Text</label>
+            <div class="text-xs text-gray-500 dark:text-gray-400">
+              <span id="char-count">0</span> characters / <span id="word-count">0</span> words
+            </div>
+          </div>
+          <textarea
+            id="input-text"
+            class="textarea min-h-[120px] font-mono text-sm"
+            placeholder="Enter text to convert..."
+          ></textarea>
+        </div>
+
+        <!-- Conversion Buttons -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <div class="flex flex-wrap gap-2">
+            <button data-case="upper" class="case-btn btn btn-secondary text-sm py-1.5 px-3">UPPERCASE</button>
+            <button data-case="lower" class="case-btn btn btn-secondary text-sm py-1.5 px-3">lowercase</button>
+            <button data-case="title" class="case-btn btn btn-secondary text-sm py-1.5 px-3">Title Case</button>
+            <button data-case="sentence" class="case-btn btn btn-secondary text-sm py-1.5 px-3">Sentence case</button>
+            <button data-case="camel" class="case-btn btn btn-secondary text-sm py-1.5 px-3">camelCase</button>
+            <button data-case="pascal" class="case-btn btn btn-secondary text-sm py-1.5 px-3">PascalCase</button>
+            <button data-case="snake" class="case-btn btn btn-secondary text-sm py-1.5 px-3">snake_case</button>
+            <button data-case="kebab" class="case-btn btn btn-secondary text-sm py-1.5 px-3">kebab-case</button>
+            <button data-case="constant" class="case-btn btn btn-secondary text-sm py-1.5 px-3">CONSTANT_CASE</button>
+            <button data-case="dot" class="case-btn btn btn-secondary text-sm py-1.5 px-3">dot.case</button>
+          </div>
+        </div>
+
+        <!-- Output Section -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-sm font-medium text-gray-700 dark:text-gray-300">Converted Result</label>
+            <div class="flex gap-2">
+              <button id="copy-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">Copy</button>
+              <button id="clear-btn" class="text-xs text-gray-500 dark:text-gray-400 hover:underline">Clear</button>
+            </div>
+          </div>
+          <textarea
+            id="output-text"
+            class="textarea min-h-[120px] font-mono text-sm bg-gray-50 dark:bg-gray-900"
+            readonly
+            placeholder="Result will appear here..."
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What's the difference between camelCase and PascalCase?</h4>
+              <p>camelCase starts the first word in lowercase and capitalizes the first letter of subsequent words (e.g., myVariableName). PascalCase capitalizes the first letter of every word (e.g., MyVariableName). In JavaScript, camelCase is typically used for variables and functions, while PascalCase is used for classes and components.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Where is snake_case commonly used?</h4>
+              <p>snake_case is widely used in Python, Ruby, and PHP for variable and function names. It's also the standard naming convention for database table names and column names in many systems.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When should I use kebab-case?</h4>
+              <p>kebab-case is commonly used for URLs, CSS class names, HTML attributes, and file names. Most programming languages don't allow hyphens in variable names because they're interpreted as minus operators, so kebab-case is mainly used outside of code.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When should I use CONSTANT_CASE?</h4>
+              <p>CONSTANT_CASE is used for constants that shouldn't change. In JavaScript, it's used with const declarations, in Python for global constants, and in Java for static final variables. Using this format makes it clear that the value is immutable.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('input-text');
+      const output = document.getElementById('output-text');
+      const copyBtn = document.getElementById('copy-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const charCount = document.getElementById('char-count');
+      const wordCount = document.getElementById('word-count');
+      const caseButtons = document.querySelectorAll('.case-btn');
+
+      let currentCase = null;
+
+      // Update character and word count
+      function updateCounts() {
+        const text = input.value;
+        charCount.textContent = text.length;
+        const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+        wordCount.textContent = words;
+      }
+
+      // Split text into words
+      function splitIntoWords(text) {
+        // Handle camelCase, PascalCase
+        text = text.replace(/([a-z])([A-Z])/g, '$1 $2');
+        // Handle snake_case, CONSTANT_CASE
+        text = text.replace(/_/g, ' ');
+        // Handle kebab-case
+        text = text.replace(/-/g, ' ');
+        // Handle dot.case
+        text = text.replace(/\./g, ' ');
+        // Split by spaces and filter empty
+        return text.split(/\s+/).filter(word => word.length > 0);
+      }
+
+      // Case conversion functions
+      const converters = {
+        upper: (text) => text.toUpperCase(),
+
+        lower: (text) => text.toLowerCase(),
+
+        title: (text) => {
+          return text.toLowerCase().replace(/(?:^|\s)\S/g, char => char.toUpperCase());
+        },
+
+        sentence: (text) => {
+          return text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, char => char.toUpperCase());
+        },
+
+        camel: (text) => {
+          const words = splitIntoWords(text);
+          return words.map((word, index) => {
+            word = word.toLowerCase();
+            if (index === 0) return word;
+            return word.charAt(0).toUpperCase() + word.slice(1);
+          }).join('');
+        },
+
+        pascal: (text) => {
+          const words = splitIntoWords(text);
+          return words.map(word => {
+            word = word.toLowerCase();
+            return word.charAt(0).toUpperCase() + word.slice(1);
+          }).join('');
+        },
+
+        snake: (text) => {
+          const words = splitIntoWords(text);
+          return words.map(word => word.toLowerCase()).join('_');
+        },
+
+        kebab: (text) => {
+          const words = splitIntoWords(text);
+          return words.map(word => word.toLowerCase()).join('-');
+        },
+
+        constant: (text) => {
+          const words = splitIntoWords(text);
+          return words.map(word => word.toUpperCase()).join('_');
+        },
+
+        dot: (text) => {
+          const words = splitIntoWords(text);
+          return words.map(word => word.toLowerCase()).join('.');
+        }
+      };
+
+      // Convert text
+      function convert(caseType) {
+        const text = input.value;
+        if (!text.trim()) {
+          output.value = '';
+          return;
+        }
+
+        currentCase = caseType;
+
+        // Update button states
+        caseButtons.forEach(btn => {
+          if (btn.dataset.case === caseType) {
+            btn.classList.remove('btn-secondary');
+            btn.classList.add('btn-primary');
+          } else {
+            btn.classList.remove('btn-primary');
+            btn.classList.add('btn-secondary');
+          }
+        });
+
+        output.value = converters[caseType](text);
+      }
+
+      // Event listeners for case buttons
+      caseButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          convert(btn.dataset.case);
+        });
+      });
+
+      // Live update on input change
+      input.addEventListener('input', () => {
+        updateCounts();
+        if (currentCase) {
+          convert(currentCase);
+        }
+      });
+
+      // Copy button
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) {
+          toast.warning('Nothing to copy');
+          return;
+        }
+
+        await copyToClipboard(output.value);
+        toast.success('Copied!');
+      });
+
+      // Clear button
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        currentCase = null;
+        updateCounts();
+
+        // Reset button states
+        caseButtons.forEach(btn => {
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-secondary');
+        });
+
+        input.focus();
+      });
+
+      // Initial count
+      updateCounts();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주사위 굴리기 - Toolneat</title>
+  <meta name="description" content="다양한 종류의 주사위를 굴려보세요. D4, D6, D8, D10, D12, D20 주사위를 3D 애니메이션과 함께 굴릴 수 있습니다.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/life/dice-roller/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/dice-roller/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/dice-roller/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/dice-roller/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="주사위 굴리기 - Toolneat">
+  <meta property="og:description" content="다양한 종류의 주사위를 굴려보세요. D4, D6, D8, D10, D12, D20 주사위를 3D 애니메이션과 함께 굴릴 수 있습니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/life/dice-roller/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    /* Dice Container */
+    .dice-scene {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      min-height: 140px;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dice-scene::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* D6 Dice - Simple 2D */
+    .dice-d6 {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
+      border-radius: 16px;
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: grid;
+      padding: 12px;
+      transition: transform 0.15s ease;
+    }
+
+    .dice-d6.rolling {
+      animation: diceShake 0.6s ease-in-out;
+    }
+
+    .dice-d6 .dot {
+      width: 14px;
+      height: 14px;
+      background: linear-gradient(145deg, #1f2937, #374151);
+      border-radius: 50%;
+      box-shadow:
+        inset 1px 1px 2px rgba(0, 0, 0, 0.4),
+        0 1px 2px rgba(0, 0, 0, 0.2);
+      position: absolute;
+    }
+
+    /* Dot positions for each value */
+    .dice-d6[data-value="1"] { display: flex; align-items: center; justify-content: center; }
+    .dice-d6[data-value="1"] .dot { position: relative; }
+
+    .dice-d6[data-value="2"] .dot:nth-child(1) { top: 15px; left: 15px; }
+    .dice-d6[data-value="2"] .dot:nth-child(2) { bottom: 15px; right: 15px; }
+
+    .dice-d6[data-value="3"] .dot:nth-child(1) { top: 15px; left: 15px; }
+    .dice-d6[data-value="3"] .dot:nth-child(2) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .dice-d6[data-value="3"] .dot:nth-child(3) { bottom: 15px; right: 15px; }
+
+    .dice-d6[data-value="4"] .dot:nth-child(1) { top: 15px; left: 15px; }
+    .dice-d6[data-value="4"] .dot:nth-child(2) { top: 15px; right: 15px; }
+    .dice-d6[data-value="4"] .dot:nth-child(3) { bottom: 15px; left: 15px; }
+    .dice-d6[data-value="4"] .dot:nth-child(4) { bottom: 15px; right: 15px; }
+
+    .dice-d6[data-value="5"] .dot:nth-child(1) { top: 15px; left: 15px; }
+    .dice-d6[data-value="5"] .dot:nth-child(2) { top: 15px; right: 15px; }
+    .dice-d6[data-value="5"] .dot:nth-child(3) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .dice-d6[data-value="5"] .dot:nth-child(4) { bottom: 15px; left: 15px; }
+    .dice-d6[data-value="5"] .dot:nth-child(5) { bottom: 15px; right: 15px; }
+
+    .dice-d6[data-value="6"] .dot:nth-child(1) { top: 15px; left: 15px; }
+    .dice-d6[data-value="6"] .dot:nth-child(2) { top: 15px; right: 15px; }
+    .dice-d6[data-value="6"] .dot:nth-child(3) { top: 50%; left: 15px; transform: translateY(-50%); }
+    .dice-d6[data-value="6"] .dot:nth-child(4) { top: 50%; right: 15px; transform: translateY(-50%); }
+    .dice-d6[data-value="6"] .dot:nth-child(5) { bottom: 15px; left: 15px; }
+    .dice-d6[data-value="6"] .dot:nth-child(6) { bottom: 15px; right: 15px; }
+
+    /* Other Dice - Clean polygon design */
+    .dice-poly {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.15s ease;
+    }
+
+    .dice-poly.rolling {
+      animation: diceShake 0.6s ease-in-out;
+    }
+
+    .dice-poly .dice-shape {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .dice-poly .dice-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .dice-poly .dice-value {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* D4 - Triangle */
+    .dice-d4 .dice-bg {
+      background: linear-gradient(135deg, #f87171 0%, #dc2626 100%);
+      clip-path: polygon(50% 8%, 12% 88%, 88% 88%);
+      border-radius: 0;
+    }
+    .dice-d4 .dice-shape { padding-top: 16px; }
+
+    /* D8 - Diamond */
+    .dice-d8 .dice-bg {
+      background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+      clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
+      border-radius: 0;
+    }
+
+    /* D10 - Pentagon */
+    .dice-d10 .dice-bg {
+      background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+      clip-path: polygon(50% 5%, 98% 38%, 80% 95%, 20% 95%, 2% 38%);
+      border-radius: 0;
+    }
+
+    /* D12 - Hexagon */
+    .dice-d12 .dice-bg {
+      background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+      clip-path: polygon(50% 3%, 93% 25%, 93% 75%, 50% 97%, 7% 75%, 7% 25%);
+      border-radius: 0;
+    }
+
+    /* D20 - Rounded hexagon */
+    .dice-d20 .dice-bg {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      border-radius: 0;
+    }
+
+    /* Shine effect */
+    .dice-poly .dice-bg::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 20%;
+      width: 35%;
+      height: 25%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+      border-radius: 50%;
+      transform: rotate(-20deg);
+    }
+
+    /* Dice label */
+    .dice-label {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      white-space: nowrap;
+    }
+
+    /* Animations */
+    @keyframes diceShake {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      10% { transform: rotate(-15deg) scale(1.1); }
+      20% { transform: rotate(15deg) scale(1.1); }
+      30% { transform: rotate(-15deg) scale(1.1); }
+      40% { transform: rotate(15deg) scale(1.1); }
+      50% { transform: rotate(-10deg) scale(1.05); }
+      60% { transform: rotate(10deg) scale(1.05); }
+      70% { transform: rotate(-5deg) scale(1.02); }
+      80% { transform: rotate(5deg) scale(1.02); }
+      90% { transform: rotate(-2deg) scale(1); }
+    }
+
+    @keyframes dicePop {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .dice-pop {
+      animation: dicePop 0.3s ease-out;
+    }
+
+    /* Result Display */
+    .result-display {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      padding: 20px 40px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .result-sum {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .result-breakdown {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-top: 8px;
+    }
+
+    /* Selector Styles */
+    .selector-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .selector-btn {
+      padding: 10px 20px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      background: white;
+      color: #374151;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dark .selector-btn {
+      background: #1e293b;
+      border-color: #475569;
+      color: #e2e8f0;
+    }
+
+    .selector-btn:hover {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+
+    .dark .selector-btn:hover {
+      border-color: #3b82f6;
+      background: #1e3a5f;
+    }
+
+    .selector-btn.active {
+      border-color: #3b82f6;
+      background: #3b82f6;
+      color: white;
+    }
+
+    /* Roll Button */
+    .btn-roll {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    }
+
+    .btn-roll:hover:not(:disabled) {
+      transform: scale(1.02);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-roll:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .btn-roll:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+    }
+
+    .btn-roll.shaking .btn-icon {
+      animation: shake 0.2s linear infinite;
+    }
+
+    /* History */
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #f8fafc;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      transition: all 0.2s;
+    }
+
+    .dark .history-item {
+      background: #1e293b;
+    }
+
+    .history-item:hover {
+      transform: translateX(4px);
+    }
+
+    .history-dice-type {
+      font-weight: 600;
+      color: #3b82f6;
+      min-width: 60px;
+    }
+
+    .history-values {
+      flex: 1;
+      color: #64748b;
+    }
+
+    .dark .history-values {
+      color: #94a3b8;
+    }
+
+    .history-sum {
+      font-weight: 700;
+      color: #1e293b;
+      background: #e5e7eb;
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+
+    .dark .history-sum {
+      color: white;
+      background: #475569;
+    }
+
+    /* Sound Toggle */
+    .sound-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sound-toggle input {
+      display: none;
+    }
+
+    .sound-icon {
+      width: 24px;
+      height: 24px;
+      transition: all 0.2s;
+    }
+
+    .sound-toggle:hover .sound-icon {
+      transform: scale(1.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .dice-d6 {
+        width: 65px;
+        height: 65px;
+      }
+
+      .dice-d6 .dot {
+        width: 11px;
+        height: 11px;
+      }
+
+      .dice-d6[data-value="2"] .dot:nth-child(1) { top: 12px; left: 12px; }
+      .dice-d6[data-value="2"] .dot:nth-child(2) { bottom: 12px; right: 12px; }
+
+      .dice-d6[data-value="3"] .dot:nth-child(1) { top: 12px; left: 12px; }
+      .dice-d6[data-value="3"] .dot:nth-child(3) { bottom: 12px; right: 12px; }
+
+      .dice-d6[data-value="4"] .dot:nth-child(1) { top: 12px; left: 12px; }
+      .dice-d6[data-value="4"] .dot:nth-child(2) { top: 12px; right: 12px; }
+      .dice-d6[data-value="4"] .dot:nth-child(3) { bottom: 12px; left: 12px; }
+      .dice-d6[data-value="4"] .dot:nth-child(4) { bottom: 12px; right: 12px; }
+
+      .dice-d6[data-value="5"] .dot:nth-child(1) { top: 12px; left: 12px; }
+      .dice-d6[data-value="5"] .dot:nth-child(2) { top: 12px; right: 12px; }
+      .dice-d6[data-value="5"] .dot:nth-child(4) { bottom: 12px; left: 12px; }
+      .dice-d6[data-value="5"] .dot:nth-child(5) { bottom: 12px; right: 12px; }
+
+      .dice-d6[data-value="6"] .dot:nth-child(1) { top: 12px; left: 12px; }
+      .dice-d6[data-value="6"] .dot:nth-child(2) { top: 12px; right: 12px; }
+      .dice-d6[data-value="6"] .dot:nth-child(3) { top: 50%; left: 12px; }
+      .dice-d6[data-value="6"] .dot:nth-child(4) { top: 50%; right: 12px; }
+      .dice-d6[data-value="6"] .dot:nth-child(5) { bottom: 12px; left: 12px; }
+      .dice-d6[data-value="6"] .dot:nth-child(6) { bottom: 12px; right: 12px; }
+
+      .dice-poly {
+        width: 65px;
+        height: 65px;
+      }
+
+      .dice-poly .dice-shape {
+        font-size: 1.5rem;
+      }
+
+      .result-sum {
+        font-size: 2.5rem;
+      }
+
+      .dice-scene {
+        gap: 12px;
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          주사위 굴리기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          다양한 종류의 주사위를 굴려보세요. 게임이나 결정을 내릴 때 유용한 가상 주사위입니다.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Sound Toggle -->
+        <div class="flex justify-end mb-4">
+          <label class="sound-toggle">
+            <input type="checkbox" id="sound-toggle">
+            <svg id="sound-on-icon" class="sound-icon text-gray-600 dark:text-gray-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+            </svg>
+            <svg id="sound-off-icon" class="sound-icon text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+            </svg>
+            <span class="text-sm text-gray-600 dark:text-gray-400">효과음</span>
+          </label>
+        </div>
+
+        <!-- Dice Count Selector -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">주사위 개수</label>
+          <div class="selector-group" id="dice-count-selector">
+            <button class="selector-btn" data-count="1">1개</button>
+            <button class="selector-btn active" data-count="2">2개</button>
+            <button class="selector-btn" data-count="3">3개</button>
+            <button class="selector-btn" data-count="4">4개</button>
+            <button class="selector-btn" data-count="5">5개</button>
+            <button class="selector-btn" data-count="6">6개</button>
+          </div>
+        </div>
+
+        <!-- Dice Type Selector -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">주사위 종류</label>
+          <div class="selector-group" id="dice-type-selector">
+            <button class="selector-btn" data-type="4">D4</button>
+            <button class="selector-btn active" data-type="6">D6</button>
+            <button class="selector-btn" data-type="8">D8</button>
+            <button class="selector-btn" data-type="10">D10</button>
+            <button class="selector-btn" data-type="12">D12</button>
+            <button class="selector-btn" data-type="20">D20</button>
+          </div>
+        </div>
+
+        <!-- Dice Display Area -->
+        <div class="mb-6">
+          <div id="dice-scene" class="dice-scene">
+            <p class="text-gray-400 text-center w-full z-10">버튼을 눌러 주사위를 굴리세요</p>
+          </div>
+        </div>
+
+        <!-- Result Display -->
+        <div id="result-display" class="result-display mb-6 hidden">
+          <div class="result-sum" id="result-sum">0</div>
+          <div class="result-breakdown" id="result-breakdown"></div>
+        </div>
+
+        <!-- Roll Button -->
+        <button id="roll-btn" class="btn btn-roll w-full py-4 text-lg font-semibold text-white flex items-center justify-center gap-3">
+          <svg class="btn-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          주사위 굴리기
+        </button>
+
+        <!-- History Section -->
+        <div id="history-section" class="mt-8 hidden">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">굴림 기록</h3>
+            <button id="clear-history" class="text-sm text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors">
+              기록 삭제
+            </button>
+          </div>
+          <div id="history-list"></div>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+        <h3 class="font-medium text-blue-800 dark:text-blue-300 mb-2">주사위 종류 안내</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-blue-700 dark:text-blue-400">
+          <span><strong>D4:</strong> 4면체 (1-4)</span>
+          <span><strong>D6:</strong> 6면체 (1-6)</span>
+          <span><strong>D8:</strong> 8면체 (1-8)</span>
+          <span><strong>D10:</strong> 10면체 (1-10)</span>
+          <span><strong>D12:</strong> 12면체 (1-12)</span>
+          <span><strong>D20:</strong> 20면체 (1-20)</span>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">주사위 굴리기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>주사위 굴리기는 다양한 종류의 가상 주사위를 굴릴 수 있는 도구입니다. 보드게임, TRPG(테이블탑 롤플레잉 게임), 또는 일상적인 결정을 내릴 때 유용하게 사용할 수 있습니다.</p>
+          <p class="mt-3">3D 애니메이션으로 실제 주사위를 굴리는 듯한 생생한 경험을 제공하며, D4부터 D20까지 다양한 주사위 타입을 지원합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>굴릴 주사위 개수를 선택합니다 (1-6개)</li>
+            <li>주사위 종류를 선택합니다 (D4, D6, D8, D10, D12, D20)</li>
+            <li>'주사위 굴리기' 버튼을 클릭합니다</li>
+            <li>3D 애니메이션과 함께 결과를 확인합니다</li>
+            <li>굴림 기록에서 이전 결과를 확인할 수 있습니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주사위 종류 설명</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>D4 (4면체):</strong> 피라미드 모양의 주사위, 1-4의 값</li>
+            <li><strong>D6 (6면체):</strong> 가장 일반적인 정육면체 주사위, 1-6의 값</li>
+            <li><strong>D8 (8면체):</strong> 팔면체 주사위, 1-8의 값</li>
+            <li><strong>D10 (10면체):</strong> 십면체 주사위, 1-10의 값 (0-9 또는 00-90으로도 사용)</li>
+            <li><strong>D12 (12면체):</strong> 십이면체 주사위, 1-12의 값</li>
+            <li><strong>D20 (20면체):</strong> 이십면체 주사위, 1-20의 값 (TRPG에서 가장 많이 사용)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 결과는 정말 무작위인가요?</h4>
+              <p>네, JavaScript의 Math.random() 함수를 사용하여 균일한 확률로 무작위 결과를 생성합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: TRPG에서 어떤 주사위를 사용하나요?</h4>
+              <p>D20이 가장 많이 사용되며, 공격, 스킬 체크 등에 활용됩니다. 데미지 계산에는 D4, D6, D8 등 다양한 주사위가 사용됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 굴림 기록은 어떻게 저장되나요?</h4>
+              <p>최근 10회의 굴림 기록이 브라우저의 로컬 스토리지에 저장되어, 페이지를 새로고침해도 유지됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Audio Context for sound effects
+      let audioContext = null;
+
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        return audioContext;
+      }
+
+      function playRollSound() {
+        if (!soundToggle.checked) return;
+
+        try {
+          const ctx = initAudio();
+          // Create multiple oscillators for rolling sound
+          for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+              const oscillator = ctx.createOscillator();
+              const gainNode = ctx.createGain();
+
+              oscillator.connect(gainNode);
+              gainNode.connect(ctx.destination);
+
+              oscillator.frequency.value = 200 + Math.random() * 300;
+              oscillator.type = 'square';
+
+              gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
+              gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+
+              oscillator.start(ctx.currentTime);
+              oscillator.stop(ctx.currentTime + 0.1);
+            }, i * 100);
+          }
+        } catch (e) {
+          console.log('Audio not available');
+        }
+      }
+
+      function playLandSound() {
+        if (!soundToggle.checked) return;
+
+        try {
+          const ctx = initAudio();
+          const oscillator = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+
+          oscillator.connect(gainNode);
+          gainNode.connect(ctx.destination);
+
+          oscillator.frequency.value = 150;
+          oscillator.type = 'sine';
+
+          gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+
+          oscillator.start(ctx.currentTime);
+          oscillator.stop(ctx.currentTime + 0.2);
+        } catch (e) {
+          console.log('Audio not available');
+        }
+      }
+
+      // Elements
+      const diceScene = document.getElementById('dice-scene');
+      const resultDisplay = document.getElementById('result-display');
+      const resultSum = document.getElementById('result-sum');
+      const resultBreakdown = document.getElementById('result-breakdown');
+      const rollBtn = document.getElementById('roll-btn');
+      const historySection = document.getElementById('history-section');
+      const historyList = document.getElementById('history-list');
+      const clearHistoryBtn = document.getElementById('clear-history');
+      const soundToggle = document.getElementById('sound-toggle');
+      const soundOnIcon = document.getElementById('sound-on-icon');
+      const soundOffIcon = document.getElementById('sound-off-icon');
+      const diceCountSelector = document.getElementById('dice-count-selector');
+      const diceTypeSelector = document.getElementById('dice-type-selector');
+
+      // State
+      let isRolling = false;
+      let diceCount = 2;
+      let diceType = 6;
+      let history = JSON.parse(localStorage.getItem('diceHistory') || '[]');
+
+      // Create D6 dice element with dots
+      function createD6Dice(value, isPlaceholder = false) {
+        const dice = document.createElement('div');
+        dice.className = 'dice-d6';
+
+        if (isPlaceholder) {
+          // Show "?" during rolling
+          dice.setAttribute('data-value', '0');
+          dice.style.display = 'flex';
+          dice.style.alignItems = 'center';
+          dice.style.justifyContent = 'center';
+          const question = document.createElement('span');
+          question.textContent = '?';
+          question.style.fontSize = '2rem';
+          question.style.fontWeight = '800';
+          question.style.color = '#374151';
+          dice.appendChild(question);
+        } else {
+          dice.setAttribute('data-value', value);
+          // Add dots based on value
+          for (let i = 0; i < value; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dice.appendChild(dot);
+          }
+        }
+
+        return dice;
+      }
+
+      // Create other dice type element
+      function createOtherDice(type, value) {
+        const dice = document.createElement('div');
+        dice.className = `dice-poly dice-d${type}`;
+
+        dice.innerHTML = `
+          <div class="dice-shape">
+            <div class="dice-bg"></div>
+            <span class="dice-value">${value}</span>
+          </div>
+          <span class="dice-label">D${type}</span>
+        `;
+
+        return dice;
+      }
+
+      // Roll a single die
+      function rollDie(max) {
+        return Math.floor(Math.random() * max) + 1;
+      }
+
+      // Roll all dice
+      async function rollDice() {
+        if (isRolling) return;
+
+        isRolling = true;
+        rollBtn.disabled = true;
+        rollBtn.classList.add('shaking');
+
+        // Generate values first
+        const values = [];
+        for (let i = 0; i < diceCount; i++) {
+          values.push(rollDie(diceType));
+        }
+
+        // Clear scene and show rolling placeholder
+        diceScene.innerHTML = '';
+        const diceElements = [];
+
+        // Create placeholder dice for rolling animation
+        for (let i = 0; i < diceCount; i++) {
+          let diceEl;
+          if (diceType === 6) {
+            // Show "?" during rolling
+            diceEl = createD6Dice(0, true);
+          } else {
+            diceEl = createOtherDice(diceType, '?');
+          }
+          diceEl.classList.add('rolling');
+          diceScene.appendChild(diceEl);
+          diceElements.push(diceEl);
+        }
+
+        // Play roll sound
+        playRollSound();
+
+        // Wait for roll animation
+        await new Promise(resolve => setTimeout(resolve, 600));
+
+        // Replace with final values
+        diceScene.innerHTML = '';
+        for (let i = 0; i < diceCount; i++) {
+          let diceEl;
+          if (diceType === 6) {
+            diceEl = createD6Dice(values[i]);
+          } else {
+            diceEl = createOtherDice(diceType, values[i]);
+          }
+          diceEl.classList.add('dice-pop');
+          diceScene.appendChild(diceEl);
+        }
+
+        // Play land sound
+        playLandSound();
+
+        // Show results
+        const sum = values.reduce((a, b) => a + b, 0);
+        resultDisplay.classList.remove('hidden');
+        resultSum.textContent = sum;
+        resultBreakdown.textContent = values.length > 1 ? `(${values.join(' + ')})` : '';
+
+        // Add to history
+        addToHistory({
+          type: `${diceCount}D${diceType}`,
+          values: values,
+          sum: sum,
+          timestamp: Date.now()
+        });
+
+        rollBtn.classList.remove('shaking');
+        rollBtn.disabled = false;
+        isRolling = false;
+      }
+
+      // Add to history
+      function addToHistory(roll) {
+        history.unshift(roll);
+        if (history.length > 10) {
+          history = history.slice(0, 10);
+        }
+        localStorage.setItem('diceHistory', JSON.stringify(history));
+        renderHistory();
+      }
+
+      // Render history
+      function renderHistory() {
+        if (history.length === 0) {
+          historySection.classList.add('hidden');
+          return;
+        }
+
+        historySection.classList.remove('hidden');
+        historyList.innerHTML = '';
+
+        history.forEach((roll, index) => {
+          const item = document.createElement('div');
+          item.className = 'history-item';
+
+          item.innerHTML = `
+            <span class="history-dice-type">${roll.type}</span>
+            <span class="history-values">${roll.values.join(', ')}</span>
+            <span class="history-sum">= ${roll.sum}</span>
+          `;
+
+          historyList.appendChild(item);
+        });
+      }
+
+      // Event Listeners
+
+      // Dice count selector
+      diceCountSelector.addEventListener('click', (e) => {
+        if (e.target.classList.contains('selector-btn')) {
+          diceCountSelector.querySelectorAll('.selector-btn').forEach(btn => btn.classList.remove('active'));
+          e.target.classList.add('active');
+          diceCount = parseInt(e.target.dataset.count);
+        }
+      });
+
+      // Dice type selector
+      diceTypeSelector.addEventListener('click', (e) => {
+        if (e.target.classList.contains('selector-btn')) {
+          diceTypeSelector.querySelectorAll('.selector-btn').forEach(btn => btn.classList.remove('active'));
+          e.target.classList.add('active');
+          diceType = parseInt(e.target.dataset.type);
+        }
+      });
+
+      // Roll button
+      rollBtn.addEventListener('click', rollDice);
+
+      // Clear history
+      clearHistoryBtn.addEventListener('click', () => {
+        history = [];
+        localStorage.removeItem('diceHistory');
+        renderHistory();
+      });
+
+      // Sound toggle
+      soundToggle.addEventListener('change', () => {
+        if (soundToggle.checked) {
+          soundOnIcon.classList.remove('hidden');
+          soundOffIcon.classList.add('hidden');
+          initAudio();
+        } else {
+          soundOnIcon.classList.add('hidden');
+          soundOffIcon.classList.remove('hidden');
+        }
+      });
+
+      // Initialize
+      renderHistory();
+    })();
+  </script>
+</body>
+</html>

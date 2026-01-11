@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.emojiPicker.title">이모지 검색 - Toolneat</title>
+  <meta name="description" data-i18n-desc="tools.emojiPicker.description" content="이모지를 검색하고 복사합니다.">
+  <link rel="canonical" href="https://toolneat.com/tools/life/emoji-picker/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/emoji-picker/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/emoji-picker/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/emoji-picker/">
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+  <style>
+    .emoji-btn {
+      font-size: 24px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: 1px solid transparent;
+    }
+    .emoji-btn:hover {
+      background: #f3f4f6;
+      transform: scale(1.1);
+    }
+    .dark .emoji-btn:hover { background: #374151; }
+    .category-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .category-btn.active {
+      background: #2563eb;
+      color: white;
+    }
+    .category-btn:not(.active) {
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+    .dark .category-btn:not(.active) {
+      background: #374151;
+      color: #9ca3af;
+    }
+    .copied-toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1000;
+    }
+    .copied-toast.show { opacity: 1; }
+    .recent-emoji {
+      min-height: 52px;
+      padding: 4px;
+      background: #fef3c7;
+      border-radius: 8px;
+    }
+    .dark .recent-emoji { background: #78350f; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.emojiPicker.title">이모지 검색</h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.emojiPicker.descriptionLong">이모지를 검색하고 클릭하면 자동으로 복사됩니다.</p>
+      </div>
+
+      <div class="card">
+        <!-- Search -->
+        <div class="relative mb-4">
+          <input type="text" id="search" class="input pr-10" placeholder="검색 (예: 웃음, smile, heart)" data-i18n-placeholder="tools.emojiPicker.searchPlaceholder">
+          <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+
+        <!-- Recent -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.emojiPicker.recent">최근 사용</label>
+          <div class="recent-emoji flex flex-wrap gap-1" id="recent-emojis">
+            <span class="text-sm text-gray-500 p-2" data-i18n="tools.emojiPicker.noRecent">아직 사용한 이모지가 없습니다</span>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="flex gap-2 mb-4 overflow-x-auto pb-2" id="categories"></div>
+
+        <!-- Emoji Grid -->
+        <div class="grid grid-cols-8 sm:grid-cols-10 md:grid-cols-12 lg:grid-cols-14 gap-1" id="emoji-grid"></div>
+      </div>
+
+      <!-- Selected Emoji Info -->
+      <div class="mt-6 card hidden" id="emoji-info">
+        <div class="flex items-center gap-4">
+          <span id="selected-emoji" class="text-5xl"></span>
+          <div class="flex-1">
+            <p id="emoji-name" class="font-medium text-gray-900 dark:text-white mb-1"></p>
+            <p id="emoji-code" class="text-sm text-gray-500 font-mono"></p>
+          </div>
+          <div class="flex gap-2">
+            <button id="copy-emoji" class="btn btn-primary" data-i18n="common.copy">복사</button>
+            <button id="copy-code" class="btn btn-secondary" data-i18n="tools.emojiPicker.copyCode">코드 복사</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">이모지 검색이란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>이모지 검색 도구는 다양한 이모지를 카테고리별로 탐색하고, 검색하여 쉽게 복사할 수 있는 도구입니다. 메시지, 소셜 미디어, 문서 등에서 이모지를 빠르게 찾아 사용할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>카테고리 버튼을 클릭하여 원하는 이모지 종류를 선택합니다</li>
+            <li>검색창에 이모지 이름이나 키워드를 입력합니다 (한글/영어 모두 가능)</li>
+            <li>원하는 이모지를 클릭하면 자동으로 클립보드에 복사됩니다</li>
+            <li>Ctrl+V (또는 Cmd+V)로 원하는 곳에 붙여넣기 합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">이모지 카테고리</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <div>😀 <span class="font-medium">표정</span> - 웃음, 슬픔, 화남 등 감정 표현</div>
+            <div>👋 <span class="font-medium">손/몸</span> - 손동작, 신체 부위</div>
+            <div>👨 <span class="font-medium">사람</span> - 인물, 직업, 가족</div>
+            <div>🐶 <span class="font-medium">동물</span> - 동물, 곤충, 자연</div>
+            <div>🍕 <span class="font-medium">음식</span> - 음식, 음료, 과일</div>
+            <div>✈️ <span class="font-medium">여행</span> - 교통수단, 장소, 건물</div>
+            <div>⚽ <span class="font-medium">활동</span> - 스포츠, 취미, 이벤트</div>
+            <div>💡 <span class="font-medium">사물</span> - 물건, 도구, 기기</div>
+            <div>❤️ <span class="font-medium">기호</span> - 하트, 화살표, 숫자</div>
+          </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 복사한 이모지가 어디서든 사용 가능한가요?</h4>
+              <p>네, 복사된 이모지는 유니코드 표준을 따르므로 이모지를 지원하는 모든 앱과 웹사이트에서 사용할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 최근 사용한 이모지는 어디에 저장되나요?</h4>
+              <p>최근 사용한 이모지는 브라우저의 로컬 스토리지에 저장됩니다. 브라우저 데이터를 삭제하면 기록이 초기화됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 검색이 안 되는 이모지가 있나요?</h4>
+              <p>주요 이모지들이 포함되어 있으며, 한글 키워드와 영어 이름으로 검색할 수 있습니다. 원하는 이모지를 찾지 못하면 카테고리를 탐색해보세요.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <div class="copied-toast" id="copied-toast">복사됨!</div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const emojiData = {
+        'smileys': {
+          name: '😀 표정',
+          nameEn: '😀 Smileys',
+          emojis: [
+            {e:'😀',n:'grinning',k:'웃음 기쁨'},{e:'😃',n:'smiley',k:'웃음 기쁨'},{e:'😄',n:'smile',k:'웃음 기쁨'},
+            {e:'😁',n:'grin',k:'웃음'},{e:'😆',n:'laughing',k:'웃음 크게'},{e:'😅',n:'sweat smile',k:'웃음 땀'},
+            {e:'🤣',n:'rofl',k:'뒹굴 웃음'},{e:'😂',n:'joy',k:'눈물 웃음'},{e:'🙂',n:'slightly smiling',k:'미소'},
+            {e:'🙃',n:'upside down',k:'뒤집힌'},{e:'😉',n:'wink',k:'윙크'},{e:'😊',n:'blush',k:'부끄 미소'},
+            {e:'😇',n:'innocent',k:'천사 착한'},{e:'🥰',n:'smiling hearts',k:'사랑 하트'},{e:'😍',n:'heart eyes',k:'사랑 눈'},
+            {e:'🤩',n:'star struck',k:'별 눈 감동'},{e:'😘',n:'kissing heart',k:'키스 뽀뽀'},{e:'😗',n:'kissing',k:'키스'},
+            {e:'😚',n:'kissing closed eyes',k:'키스'},{e:'😙',n:'kissing smiling eyes',k:'키스'},{e:'🥲',n:'smiling tear',k:'웃음 눈물'},
+            {e:'😋',n:'yum',k:'맛있는 혀'},{e:'😛',n:'stuck out tongue',k:'혀'},{e:'😜',n:'winking tongue',k:'혀 윙크'},
+            {e:'🤪',n:'zany',k:'미친 장난'},{e:'😝',n:'squinting tongue',k:'혀'},{e:'🤑',n:'money mouth',k:'돈 부자'},
+            {e:'🤗',n:'hugging',k:'포옹 안아'},{e:'🤭',n:'hand over mouth',k:'웃음참기'},{e:'🤫',n:'shushing',k:'쉿 조용'},
+            {e:'🤔',n:'thinking',k:'생각 고민'},{e:'🤐',n:'zipper mouth',k:'입다물기'},{e:'🤨',n:'raised eyebrow',k:'의심'},
+            {e:'😐',n:'neutral',k:'무표정'},{e:'😑',n:'expressionless',k:'무표정'},{e:'😶',n:'no mouth',k:'입없음'},
+            {e:'😏',n:'smirk',k:'능글 씨익'},{e:'😒',n:'unamused',k:'시큰둥'},{e:'🙄',n:'eye roll',k:'눈굴리기'},
+            {e:'😬',n:'grimacing',k:'이빨 어색'},{e:'🤥',n:'lying',k:'거짓말 피노키오'},{e:'😌',n:'relieved',k:'안도'},
+            {e:'😔',n:'pensive',k:'슬픔 생각'},{e:'😪',n:'sleepy',k:'졸림 눈물'},{e:'🤤',n:'drooling',k:'침흘림'},
+            {e:'😴',n:'sleeping',k:'자는 잠'},{e:'😷',n:'mask',k:'마스크 아픔'},{e:'🤒',n:'thermometer',k:'아픔 열'},
+            {e:'🤕',n:'bandage',k:'아픔 다침'},{e:'🤢',n:'nauseated',k:'메스꺼움'},{e:'🤮',n:'vomiting',k:'구토'},
+            {e:'🤧',n:'sneezing',k:'재채기'},{e:'🥵',n:'hot',k:'더움 열'},{e:'🥶',n:'cold',k:'추움'},
+            {e:'🥴',n:'woozy',k:'어지러움 취함'},{e:'😵',n:'dizzy',k:'어지러움'},{e:'🤯',n:'exploding head',k:'충격 폭발'},
+            {e:'🤠',n:'cowboy',k:'카우보이'},{e:'🥳',n:'partying',k:'파티 축하'},{e:'🥸',n:'disguised',k:'변장'},
+            {e:'😎',n:'sunglasses',k:'선글라스 쿨'},{e:'🤓',n:'nerd',k:'안경 공부'},{e:'🧐',n:'monocle',k:'조사'},
+            {e:'😕',n:'confused',k:'혼란'},{e:'😟',n:'worried',k:'걱정'},{e:'🙁',n:'slightly frowning',k:'슬픔'},
+            {e:'😮',n:'open mouth',k:'놀람'},{e:'😯',n:'hushed',k:'놀람'},{e:'😲',n:'astonished',k:'놀람'},
+            {e:'😳',n:'flushed',k:'당황 부끄'},{e:'🥺',n:'pleading',k:'부탁 귀여움'},{e:'😦',n:'frowning',k:'슬픔'},
+            {e:'😧',n:'anguished',k:'괴로움'},{e:'😨',n:'fearful',k:'두려움'},{e:'😰',n:'anxious',k:'불안 땀'},
+            {e:'😥',n:'sad relieved',k:'슬픔 안도'},{e:'😢',n:'crying',k:'눈물 슬픔'},{e:'😭',n:'loudly crying',k:'대성통곡'},
+            {e:'😱',n:'screaming',k:'비명 공포'},{e:'😖',n:'confounded',k:'당황'},{e:'😣',n:'persevering',k:'참는'},
+            {e:'😞',n:'disappointed',k:'실망'},{e:'😓',n:'downcast sweat',k:'땀 걱정'},{e:'😩',n:'weary',k:'지침'},
+            {e:'😫',n:'tired',k:'지침 피곤'},{e:'🥱',n:'yawning',k:'하품'},{e:'😤',n:'triumph',k:'분노 화남'},
+            {e:'😡',n:'pouting',k:'화남 분노'},{e:'😠',n:'angry',k:'화남'},{e:'🤬',n:'cursing',k:'욕 화남'},
+            {e:'😈',n:'smiling devil',k:'악마 장난'},{e:'👿',n:'angry devil',k:'악마 화남'},{e:'💀',n:'skull',k:'해골 죽음'},
+            {e:'☠️',n:'skull crossbones',k:'해골'},{e:'💩',n:'poop',k:'똥'},{e:'🤡',n:'clown',k:'광대'},
+            {e:'👹',n:'ogre',k:'도깨비'},{e:'👺',n:'goblin',k:'텐구'},{e:'👻',n:'ghost',k:'유령'},
+            {e:'👽',n:'alien',k:'외계인'},{e:'👾',n:'alien monster',k:'외계인 게임'},{e:'🤖',n:'robot',k:'로봇'}
+          ]
+        },
+        'gestures': {
+          name: '👋 손/몸',
+          nameEn: '👋 Gestures',
+          emojis: [
+            {e:'👋',n:'wave',k:'손흔들기 인사'},{e:'🤚',n:'raised back',k:'손등'},{e:'🖐️',n:'hand splayed',k:'손바닥'},
+            {e:'✋',n:'raised hand',k:'손 정지'},{e:'🖖',n:'vulcan',k:'벌컨'},{e:'👌',n:'ok',k:'오케이 좋아'},
+            {e:'🤌',n:'pinched',k:'이탈리아'},{e:'🤏',n:'pinching',k:'조금'},{e:'✌️',n:'victory',k:'브이 승리'},
+            {e:'🤞',n:'crossed fingers',k:'행운'},{e:'🤟',n:'love you',k:'사랑해'},{e:'🤘',n:'rock',k:'록 메탈'},
+            {e:'🤙',n:'call me',k:'전화해'},{e:'👈',n:'pointing left',k:'왼쪽'},{e:'👉',n:'pointing right',k:'오른쪽'},
+            {e:'👆',n:'pointing up',k:'위'},{e:'🖕',n:'middle finger',k:'가운데손가락'},{e:'👇',n:'pointing down',k:'아래'},
+            {e:'☝️',n:'index up',k:'위 하나'},{e:'👍',n:'thumbs up',k:'좋아요 엄지'},{e:'👎',n:'thumbs down',k:'싫어요'},
+            {e:'✊',n:'fist',k:'주먹'},{e:'👊',n:'punch',k:'주먹 펀치'},{e:'🤛',n:'left fist',k:'주먹'},
+            {e:'🤜',n:'right fist',k:'주먹'},{e:'👏',n:'clap',k:'박수'},{e:'🙌',n:'raising hands',k:'만세'},
+            {e:'👐',n:'open hands',k:'손 열기'},{e:'🤲',n:'palms up',k:'손바닥'},{e:'🤝',n:'handshake',k:'악수'},
+            {e:'🙏',n:'pray',k:'기도 부탁 감사'},{e:'✍️',n:'writing',k:'쓰기'},{e:'💅',n:'nail polish',k:'매니큐어'},
+            {e:'🤳',n:'selfie',k:'셀카'},{e:'💪',n:'flexed biceps',k:'힘 근육'},{e:'🦾',n:'mechanical arm',k:'로봇팔'},
+            {e:'🦿',n:'mechanical leg',k:'로봇다리'},{e:'🦵',n:'leg',k:'다리'},{e:'🦶',n:'foot',k:'발'},
+            {e:'👂',n:'ear',k:'귀'},{e:'🦻',n:'ear aid',k:'보청기'},{e:'👃',n:'nose',k:'코'},
+            {e:'🧠',n:'brain',k:'뇌 생각'},{e:'👀',n:'eyes',k:'눈'},{e:'👁️',n:'eye',k:'눈'},
+            {e:'👅',n:'tongue',k:'혀'},{e:'👄',n:'mouth',k:'입술'}
+          ]
+        },
+        'people': {
+          name: '👤 사람',
+          nameEn: '👤 People',
+          emojis: [
+            {e:'👶',n:'baby',k:'아기'},{e:'🧒',n:'child',k:'어린이'},{e:'👦',n:'boy',k:'소년'},
+            {e:'👧',n:'girl',k:'소녀'},{e:'🧑',n:'person',k:'사람'},{e:'👱',n:'blonde',k:'금발'},
+            {e:'👨',n:'man',k:'남자'},{e:'🧔',n:'beard',k:'수염'},{e:'👩',n:'woman',k:'여자'},
+            {e:'🧓',n:'older person',k:'노인'},{e:'👴',n:'old man',k:'할아버지'},{e:'👵',n:'old woman',k:'할머니'},
+            {e:'👮',n:'police',k:'경찰'},{e:'🕵️',n:'detective',k:'탐정'},{e:'💂',n:'guard',k:'경비'},
+            {e:'🥷',n:'ninja',k:'닌자'},{e:'👷',n:'construction',k:'공사 노동자'},{e:'🤴',n:'prince',k:'왕자'},
+            {e:'👸',n:'princess',k:'공주'},{e:'👳',n:'turban',k:'터번'},{e:'👲',n:'cap',k:'모자'},
+            {e:'🧕',n:'headscarf',k:'히잡'},{e:'🤵',n:'tuxedo',k:'턱시도 신랑'},{e:'👰',n:'bride',k:'신부'},
+            {e:'🤰',n:'pregnant',k:'임신'},{e:'🤱',n:'breastfeeding',k:'수유'},{e:'👼',n:'angel',k:'천사'},
+            {e:'🎅',n:'santa',k:'산타'},{e:'🤶',n:'mrs claus',k:'산타부인'},{e:'🦸',n:'superhero',k:'슈퍼히어로'},
+            {e:'🦹',n:'supervillain',k:'슈퍼빌런'},{e:'🧙',n:'mage',k:'마법사'},{e:'🧚',n:'fairy',k:'요정'},
+            {e:'🧛',n:'vampire',k:'뱀파이어'},{e:'🧜',n:'merperson',k:'인어'},{e:'🧝',n:'elf',k:'엘프'},
+            {e:'🧞',n:'genie',k:'지니'},{e:'🧟',n:'zombie',k:'좀비'},{e:'💆',n:'massage',k:'마사지'},
+            {e:'💇',n:'haircut',k:'이발'},{e:'🚶',n:'walking',k:'걷기'},{e:'🧍',n:'standing',k:'서있는'},
+            {e:'🧎',n:'kneeling',k:'무릎'},{e:'🏃',n:'running',k:'달리기'},{e:'💃',n:'dancing',k:'춤'},
+            {e:'🕺',n:'man dancing',k:'춤'},{e:'🧖',n:'sauna',k:'사우나'},{e:'🧗',n:'climbing',k:'암벽'},
+            {e:'🤺',n:'fencing',k:'펜싱'},{e:'🏇',n:'horse racing',k:'경마'},{e:'⛷️',n:'skier',k:'스키'},
+            {e:'🏂',n:'snowboarder',k:'스노보드'},{e:'🏋️',n:'weight lifting',k:'역도'},{e:'🤼',n:'wrestling',k:'레슬링'},
+            {e:'🤸',n:'cartwheel',k:'재주넘기'},{e:'🤽',n:'water polo',k:'수구'},{e:'🤾',n:'handball',k:'핸드볼'},
+            {e:'🤹',n:'juggling',k:'저글링'},{e:'🧘',n:'yoga',k:'요가'},{e:'👭',n:'women holding',k:'여자친구들'},
+            {e:'👫',n:'couple',k:'커플'},{e:'👬',n:'men holding',k:'남자친구들'},{e:'💏',n:'kiss',k:'키스'},
+            {e:'💑',n:'couple heart',k:'커플 사랑'},{e:'👪',n:'family',k:'가족'}
+          ]
+        },
+        'animals': {
+          name: '🐶 동물',
+          nameEn: '🐶 Animals',
+          emojis: [
+            {e:'🐶',n:'dog',k:'개 강아지'},{e:'🐱',n:'cat',k:'고양이'},{e:'🐭',n:'mouse',k:'쥐'},
+            {e:'🐹',n:'hamster',k:'햄스터'},{e:'🐰',n:'rabbit',k:'토끼'},{e:'🦊',n:'fox',k:'여우'},
+            {e:'🐻',n:'bear',k:'곰'},{e:'🐼',n:'panda',k:'판다'},{e:'🐻‍❄️',n:'polar bear',k:'북극곰'},
+            {e:'🐨',n:'koala',k:'코알라'},{e:'🐯',n:'tiger',k:'호랑이'},{e:'🦁',n:'lion',k:'사자'},
+            {e:'🐮',n:'cow',k:'소'},{e:'🐷',n:'pig',k:'돼지'},{e:'🐽',n:'pig nose',k:'돼지코'},
+            {e:'🐸',n:'frog',k:'개구리'},{e:'🐵',n:'monkey',k:'원숭이'},{e:'🙈',n:'see no evil',k:'안봐'},
+            {e:'🙉',n:'hear no evil',k:'안들어'},{e:'🙊',n:'speak no evil',k:'안말해'},{e:'🐒',n:'monkey',k:'원숭이'},
+            {e:'🐔',n:'chicken',k:'닭'},{e:'🐧',n:'penguin',k:'펭귄'},{e:'🐦',n:'bird',k:'새'},
+            {e:'🐤',n:'chick',k:'병아리'},{e:'🐣',n:'hatching',k:'부화'},{e:'🐥',n:'chick',k:'병아리'},
+            {e:'🦆',n:'duck',k:'오리'},{e:'🦅',n:'eagle',k:'독수리'},{e:'🦉',n:'owl',k:'부엉이'},
+            {e:'🦇',n:'bat',k:'박쥐'},{e:'🐺',n:'wolf',k:'늑대'},{e:'🐗',n:'boar',k:'멧돼지'},
+            {e:'🐴',n:'horse',k:'말'},{e:'🦄',n:'unicorn',k:'유니콘'},{e:'🐝',n:'bee',k:'벌'},
+            {e:'🪱',n:'worm',k:'벌레'},{e:'🐛',n:'bug',k:'벌레'},{e:'🦋',n:'butterfly',k:'나비'},
+            {e:'🐌',n:'snail',k:'달팽이'},{e:'🐞',n:'ladybug',k:'무당벌레'},{e:'🐜',n:'ant',k:'개미'},
+            {e:'🦟',n:'mosquito',k:'모기'},{e:'🦗',n:'cricket',k:'귀뚜라미'},{e:'🕷️',n:'spider',k:'거미'},
+            {e:'🦂',n:'scorpion',k:'전갈'},{e:'🐢',n:'turtle',k:'거북이'},{e:'🐍',n:'snake',k:'뱀'},
+            {e:'🦎',n:'lizard',k:'도마뱀'},{e:'🦖',n:'t-rex',k:'공룡'},{e:'🦕',n:'dinosaur',k:'공룡'},
+            {e:'🐙',n:'octopus',k:'문어'},{e:'🦑',n:'squid',k:'오징어'},{e:'🦐',n:'shrimp',k:'새우'},
+            {e:'🦞',n:'lobster',k:'랍스터'},{e:'🦀',n:'crab',k:'게'},{e:'🐡',n:'blowfish',k:'복어'},
+            {e:'🐠',n:'tropical fish',k:'열대어'},{e:'🐟',n:'fish',k:'물고기'},{e:'🐬',n:'dolphin',k:'돌고래'},
+            {e:'🐳',n:'whale',k:'고래'},{e:'🐋',n:'whale',k:'고래'},{e:'🦈',n:'shark',k:'상어'},
+            {e:'🐊',n:'crocodile',k:'악어'},{e:'🐅',n:'tiger',k:'호랑이'},{e:'🐆',n:'leopard',k:'표범'},
+            {e:'🦓',n:'zebra',k:'얼룩말'},{e:'🦍',n:'gorilla',k:'고릴라'},{e:'🦧',n:'orangutan',k:'오랑우탄'},
+            {e:'🐘',n:'elephant',k:'코끼리'},{e:'🦛',n:'hippo',k:'하마'},{e:'🦏',n:'rhino',k:'코뿔소'},
+            {e:'🐪',n:'camel',k:'낙타'},{e:'🐫',n:'two-hump camel',k:'낙타'},{e:'🦒',n:'giraffe',k:'기린'},
+            {e:'🦘',n:'kangaroo',k:'캥거루'},{e:'🦬',n:'bison',k:'들소'},{e:'🐃',n:'water buffalo',k:'물소'},
+            {e:'🐂',n:'ox',k:'황소'},{e:'🐄',n:'cow',k:'소'},{e:'🐎',n:'horse',k:'말'},
+            {e:'🐖',n:'pig',k:'돼지'},{e:'🐏',n:'ram',k:'숫양'},{e:'🐑',n:'sheep',k:'양'},
+            {e:'🦙',n:'llama',k:'라마'},{e:'🐐',n:'goat',k:'염소'},{e:'🦌',n:'deer',k:'사슴'},
+            {e:'🐕',n:'dog',k:'개'},{e:'🐩',n:'poodle',k:'푸들'},{e:'🦮',n:'guide dog',k:'안내견'},
+            {e:'🐕‍🦺',n:'service dog',k:'봉사견'},{e:'🐈',n:'cat',k:'고양이'},{e:'🐈‍⬛',n:'black cat',k:'검은고양이'},
+            {e:'🪶',n:'feather',k:'깃털'},{e:'🐓',n:'rooster',k:'수탉'},{e:'🦃',n:'turkey',k:'칠면조'},
+            {e:'🦤',n:'dodo',k:'도도새'},{e:'🦚',n:'peacock',k:'공작새'},{e:'🦜',n:'parrot',k:'앵무새'},
+            {e:'🦢',n:'swan',k:'백조'},{e:'🦩',n:'flamingo',k:'플라밍고'},{e:'🕊️',n:'dove',k:'비둘기'},
+            {e:'🐇',n:'rabbit',k:'토끼'},{e:'🦝',n:'raccoon',k:'너구리'},{e:'🦨',n:'skunk',k:'스컹크'},
+            {e:'🦡',n:'badger',k:'오소리'},{e:'🦫',n:'beaver',k:'비버'},{e:'🦦',n:'otter',k:'수달'},
+            {e:'🦥',n:'sloth',k:'나무늘보'},{e:'🐁',n:'mouse',k:'쥐'},{e:'🐀',n:'rat',k:'쥐'},
+            {e:'🐿️',n:'chipmunk',k:'다람쥐'},{e:'🦔',n:'hedgehog',k:'고슴도치'}
+          ]
+        },
+        'food': {
+          name: '🍔 음식',
+          nameEn: '🍔 Food',
+          emojis: [
+            {e:'🍏',n:'green apple',k:'사과'},{e:'🍎',n:'red apple',k:'사과'},{e:'🍐',n:'pear',k:'배'},
+            {e:'🍊',n:'tangerine',k:'귤 오렌지'},{e:'🍋',n:'lemon',k:'레몬'},{e:'🍌',n:'banana',k:'바나나'},
+            {e:'🍉',n:'watermelon',k:'수박'},{e:'🍇',n:'grapes',k:'포도'},{e:'🍓',n:'strawberry',k:'딸기'},
+            {e:'🫐',n:'blueberries',k:'블루베리'},{e:'🍈',n:'melon',k:'멜론'},{e:'🍒',n:'cherries',k:'체리'},
+            {e:'🍑',n:'peach',k:'복숭아'},{e:'🥭',n:'mango',k:'망고'},{e:'🍍',n:'pineapple',k:'파인애플'},
+            {e:'🥥',n:'coconut',k:'코코넛'},{e:'🥝',n:'kiwi',k:'키위'},{e:'🍅',n:'tomato',k:'토마토'},
+            {e:'🍆',n:'eggplant',k:'가지'},{e:'🥑',n:'avocado',k:'아보카도'},{e:'🥦',n:'broccoli',k:'브로콜리'},
+            {e:'🥬',n:'leafy green',k:'채소'},{e:'🥒',n:'cucumber',k:'오이'},{e:'🌶️',n:'hot pepper',k:'고추'},
+            {e:'🫑',n:'bell pepper',k:'피망'},{e:'🌽',n:'corn',k:'옥수수'},{e:'🥕',n:'carrot',k:'당근'},
+            {e:'🧄',n:'garlic',k:'마늘'},{e:'🧅',n:'onion',k:'양파'},{e:'🥔',n:'potato',k:'감자'},
+            {e:'🍠',n:'sweet potato',k:'고구마'},{e:'🥐',n:'croissant',k:'크루아상'},{e:'🥯',n:'bagel',k:'베이글'},
+            {e:'🍞',n:'bread',k:'빵'},{e:'🥖',n:'baguette',k:'바게트'},{e:'🥨',n:'pretzel',k:'프레첼'},
+            {e:'🧀',n:'cheese',k:'치즈'},{e:'🥚',n:'egg',k:'계란 달걀'},{e:'🍳',n:'cooking',k:'계란 요리'},
+            {e:'🧈',n:'butter',k:'버터'},{e:'🥞',n:'pancakes',k:'팬케이크'},{e:'🧇',n:'waffle',k:'와플'},
+            {e:'🥓',n:'bacon',k:'베이컨'},{e:'🥩',n:'cut of meat',k:'고기 스테이크'},{e:'🍗',n:'poultry leg',k:'치킨 닭다리'},
+            {e:'🍖',n:'meat on bone',k:'고기'},{e:'🦴',n:'bone',k:'뼈'},{e:'🌭',n:'hot dog',k:'핫도그'},
+            {e:'🍔',n:'hamburger',k:'햄버거'},{e:'🍟',n:'fries',k:'감자튀김'},{e:'🍕',n:'pizza',k:'피자'},
+            {e:'🫓',n:'flatbread',k:'난빵'},{e:'🥪',n:'sandwich',k:'샌드위치'},{e:'🥙',n:'pita',k:'피타'},
+            {e:'🧆',n:'falafel',k:'팔라펠'},{e:'🌮',n:'taco',k:'타코'},{e:'🌯',n:'burrito',k:'브리또'},
+            {e:'🫔',n:'tamale',k:'타말레'},{e:'🥗',n:'salad',k:'샐러드'},{e:'🥘',n:'paella',k:'파에야'},
+            {e:'🫕',n:'fondue',k:'퐁듀'},{e:'🍝',n:'spaghetti',k:'스파게티 파스타'},{e:'🍜',n:'noodles',k:'국수 라면'},
+            {e:'🍲',n:'pot of food',k:'찌개 국'},{e:'🍛',n:'curry',k:'카레'},{e:'🍣',n:'sushi',k:'초밥'},
+            {e:'🍱',n:'bento',k:'도시락'},{e:'🥟',n:'dumpling',k:'만두'},{e:'🦪',n:'oyster',k:'굴'},
+            {e:'🍤',n:'fried shrimp',k:'새우튀김'},{e:'🍙',n:'rice ball',k:'주먹밥'},{e:'🍚',n:'rice',k:'밥'},
+            {e:'🍘',n:'rice cracker',k:'전병'},{e:'🍥',n:'fish cake',k:'어묵'},{e:'🥠',n:'fortune cookie',k:'포춘쿠키'},
+            {e:'🥡',n:'takeout box',k:'중국음식'},{e:'🍢',n:'oden',k:'오뎅'},{e:'🍡',n:'dango',k:'당고'},
+            {e:'🍧',n:'shaved ice',k:'빙수'},{e:'🍨',n:'ice cream',k:'아이스크림'},{e:'🍦',n:'soft ice cream',k:'소프트아이스크림'},
+            {e:'🥧',n:'pie',k:'파이'},{e:'🧁',n:'cupcake',k:'컵케이크'},{e:'🍰',n:'shortcake',k:'케이크'},
+            {e:'🎂',n:'birthday cake',k:'생일 케이크'},{e:'🍮',n:'custard',k:'푸딩'},{e:'🍭',n:'lollipop',k:'막대사탕'},
+            {e:'🍬',n:'candy',k:'사탕'},{e:'🍫',n:'chocolate',k:'초콜릿'},{e:'🍿',n:'popcorn',k:'팝콘'},
+            {e:'🍩',n:'doughnut',k:'도넛'},{e:'🍪',n:'cookie',k:'쿠키'},{e:'🌰',n:'chestnut',k:'밤'},
+            {e:'🥜',n:'peanuts',k:'땅콩'},{e:'🍯',n:'honey pot',k:'꿀'},{e:'🥛',n:'milk',k:'우유'},
+            {e:'🍼',n:'baby bottle',k:'젖병'},{e:'☕',n:'coffee',k:'커피'},{e:'🫖',n:'teapot',k:'찻주전자'},
+            {e:'🍵',n:'tea',k:'차'},{e:'🧃',n:'juice box',k:'주스'},{e:'🥤',n:'cup with straw',k:'음료'},
+            {e:'🧋',n:'bubble tea',k:'버블티'},{e:'🍶',n:'sake',k:'사케'},{e:'🍺',n:'beer',k:'맥주'},
+            {e:'🍻',n:'clinking beers',k:'맥주 건배'},{e:'🥂',n:'clinking glasses',k:'건배 샴페인'},{e:'🍷',n:'wine',k:'와인'},
+            {e:'🥃',n:'tumbler',k:'위스키'},{e:'🍸',n:'cocktail',k:'칵테일'},{e:'🍹',n:'tropical drink',k:'열대음료'},
+            {e:'🧉',n:'mate',k:'마테'},{e:'🍾',n:'bottle',k:'샴페인'},{e:'🧊',n:'ice',k:'얼음'},
+            {e:'🥄',n:'spoon',k:'숟가락'},{e:'🍴',n:'fork and knife',k:'포크 나이프'},{e:'🍽️',n:'plate',k:'접시'},
+            {e:'🥣',n:'bowl with spoon',k:'그릇'},{e:'🥡',n:'takeout box',k:'배달음식'},{e:'🥢',n:'chopsticks',k:'젓가락'}
+          ]
+        },
+        'travel': {
+          name: '🚗 여행',
+          nameEn: '🚗 Travel',
+          emojis: [
+            {e:'🚗',n:'car',k:'자동차'},{e:'🚕',n:'taxi',k:'택시'},{e:'🚙',n:'suv',k:'SUV'},
+            {e:'🚌',n:'bus',k:'버스'},{e:'🚎',n:'trolleybus',k:'트롤리버스'},{e:'🏎️',n:'racing car',k:'경주차'},
+            {e:'🚓',n:'police car',k:'경찰차'},{e:'🚑',n:'ambulance',k:'구급차'},{e:'🚒',n:'fire engine',k:'소방차'},
+            {e:'🚐',n:'minibus',k:'미니버스'},{e:'🛻',n:'pickup truck',k:'픽업트럭'},{e:'🚚',n:'truck',k:'트럭'},
+            {e:'🚛',n:'articulated lorry',k:'화물차'},{e:'🚜',n:'tractor',k:'트랙터'},{e:'🏍️',n:'motorcycle',k:'오토바이'},
+            {e:'🛵',n:'scooter',k:'스쿠터'},{e:'🚲',n:'bicycle',k:'자전거'},{e:'🛴',n:'kick scooter',k:'킥보드'},
+            {e:'🚏',n:'bus stop',k:'버스정류장'},{e:'🛣️',n:'motorway',k:'고속도로'},{e:'🛤️',n:'railway track',k:'철도'},
+            {e:'⛽',n:'fuel pump',k:'주유소'},{e:'🚨',n:'police light',k:'경광등'},{e:'🚥',n:'traffic light',k:'신호등'},
+            {e:'🚦',n:'vertical traffic light',k:'신호등'},{e:'🛑',n:'stop sign',k:'정지'},{e:'🚧',n:'construction',k:'공사중'},
+            {e:'⚓',n:'anchor',k:'닻'},{e:'⛵',n:'sailboat',k:'요트'},{e:'🛶',n:'canoe',k:'카누'},
+            {e:'🚤',n:'speedboat',k:'보트'},{e:'🛳️',n:'passenger ship',k:'여객선'},{e:'⛴️',n:'ferry',k:'페리'},
+            {e:'🛥️',n:'motor boat',k:'모터보트'},{e:'🚢',n:'ship',k:'배'},{e:'✈️',n:'airplane',k:'비행기'},
+            {e:'🛩️',n:'small airplane',k:'소형비행기'},{e:'🛫',n:'departure',k:'출발'},{e:'🛬',n:'arrival',k:'도착'},
+            {e:'🪂',n:'parachute',k:'낙하산'},{e:'💺',n:'seat',k:'좌석'},{e:'🚁',n:'helicopter',k:'헬리콥터'},
+            {e:'🚟',n:'suspension railway',k:'현수철도'},{e:'🚠',n:'mountain cableway',k:'케이블카'},{e:'🚡',n:'aerial tramway',k:'공중케이블카'},
+            {e:'🛰️',n:'satellite',k:'위성'},{e:'🚀',n:'rocket',k:'로켓'},{e:'🛸',n:'flying saucer',k:'UFO'},
+            {e:'🛎️',n:'bellhop bell',k:'호텔 벨'},{e:'🧳',n:'luggage',k:'여행가방'},{e:'⌛',n:'hourglass done',k:'모래시계'},
+            {e:'⏳',n:'hourglass',k:'모래시계'},{e:'⌚',n:'watch',k:'시계'},{e:'⏰',n:'alarm clock',k:'알람'},
+            {e:'🗼',n:'tokyo tower',k:'도쿄타워'},{e:'🗽',n:'statue of liberty',k:'자유의여신상'},{e:'🏰',n:'castle',k:'성'},
+            {e:'🏯',n:'japanese castle',k:'일본성'},{e:'🏟️',n:'stadium',k:'경기장'},{e:'🎡',n:'ferris wheel',k:'관람차'},
+            {e:'🎢',n:'roller coaster',k:'롤러코스터'},{e:'🎠',n:'carousel',k:'회전목마'},{e:'⛲',n:'fountain',k:'분수'},
+            {e:'⛱️',n:'umbrella',k:'파라솔'},{e:'🏖️',n:'beach',k:'해변'},{e:'🏝️',n:'island',k:'섬'},
+            {e:'🏜️',n:'desert',k:'사막'},{e:'🌋',n:'volcano',k:'화산'},{e:'⛰️',n:'mountain',k:'산'},
+            {e:'🏔️',n:'snow mountain',k:'설산'},{e:'🗻',n:'mount fuji',k:'후지산'},{e:'🏕️',n:'camping',k:'캠핑'},
+            {e:'⛺',n:'tent',k:'텐트'},{e:'🏠',n:'house',k:'집'},{e:'🏡',n:'house with garden',k:'정원있는집'},
+            {e:'🏢',n:'office',k:'사무실'},{e:'🏣',n:'japanese post office',k:'우체국'},{e:'🏤',n:'post office',k:'우체국'},
+            {e:'🏥',n:'hospital',k:'병원'},{e:'🏦',n:'bank',k:'은행'},{e:'🏨',n:'hotel',k:'호텔'},
+            {e:'🏩',n:'love hotel',k:'러브호텔'},{e:'🏪',n:'convenience store',k:'편의점'},{e:'🏫',n:'school',k:'학교'},
+            {e:'🏬',n:'department store',k:'백화점'},{e:'🏭',n:'factory',k:'공장'},{e:'🗾',n:'japan',k:'일본지도'},
+            {e:'🗺️',n:'world map',k:'세계지도'},{e:'🧭',n:'compass',k:'나침반'}
+          ]
+        },
+        'activities': {
+          name: '⚽ 활동',
+          nameEn: '⚽ Activities',
+          emojis: [
+            {e:'⚽',n:'soccer',k:'축구'},{e:'🏀',n:'basketball',k:'농구'},{e:'🏈',n:'football',k:'미식축구'},
+            {e:'⚾',n:'baseball',k:'야구'},{e:'🥎',n:'softball',k:'소프트볼'},{e:'🎾',n:'tennis',k:'테니스'},
+            {e:'🏐',n:'volleyball',k:'배구'},{e:'🏉',n:'rugby',k:'럭비'},{e:'🥏',n:'flying disc',k:'프리스비'},
+            {e:'🎱',n:'pool 8 ball',k:'당구'},{e:'🪀',n:'yo-yo',k:'요요'},{e:'🏓',n:'ping pong',k:'탁구'},
+            {e:'🏸',n:'badminton',k:'배드민턴'},{e:'🏒',n:'ice hockey',k:'아이스하키'},{e:'🏑',n:'field hockey',k:'필드하키'},
+            {e:'🥍',n:'lacrosse',k:'라크로스'},{e:'🏏',n:'cricket',k:'크리켓'},{e:'🪃',n:'boomerang',k:'부메랑'},
+            {e:'🥅',n:'goal net',k:'골대'},{e:'⛳',n:'golf',k:'골프'},{e:'🪁',n:'kite',k:'연'},
+            {e:'🏹',n:'bow and arrow',k:'활'},{e:'🎣',n:'fishing',k:'낚시'},{e:'🤿',n:'diving',k:'다이빙'},
+            {e:'🥊',n:'boxing',k:'복싱'},{e:'🥋',n:'martial arts',k:'무술 유도'},{e:'🎽',n:'running shirt',k:'달리기'},
+            {e:'🛹',n:'skateboard',k:'스케이트보드'},{e:'🛼',n:'roller skate',k:'롤러스케이트'},{e:'🛷',n:'sled',k:'썰매'},
+            {e:'⛸️',n:'ice skate',k:'아이스스케이트'},{e:'🥌',n:'curling',k:'컬링'},{e:'🎿',n:'ski',k:'스키'},
+            {e:'⛷️',n:'skier',k:'스키어'},{e:'🏂',n:'snowboarder',k:'스노보더'},{e:'🏋️',n:'weight lifting',k:'역도'},
+            {e:'🤺',n:'fencing',k:'펜싱'},{e:'🤼',n:'wrestling',k:'레슬링'},{e:'🤸',n:'cartwheeling',k:'재주넘기'},
+            {e:'🤾',n:'handball',k:'핸드볼'},{e:'🏌️',n:'golfer',k:'골퍼'},{e:'🏇',n:'horse racing',k:'경마'},
+            {e:'🧘',n:'yoga',k:'요가'},{e:'🎪',n:'circus',k:'서커스'},{e:'🎭',n:'performing arts',k:'공연 연극'},
+            {e:'🎨',n:'art',k:'미술 그림'},{e:'🎬',n:'clapper board',k:'영화'},{e:'🎤',n:'microphone',k:'마이크 노래'},
+            {e:'🎧',n:'headphone',k:'헤드폰'},{e:'🎼',n:'musical score',k:'악보'},{e:'🎹',n:'musical keyboard',k:'피아노'},
+            {e:'🥁',n:'drum',k:'드럼'},{e:'🪘',n:'long drum',k:'북'},{e:'🎷',n:'saxophone',k:'색소폰'},
+            {e:'🎺',n:'trumpet',k:'트럼펫'},{e:'🎸',n:'guitar',k:'기타'},{e:'🪕',n:'banjo',k:'밴조'},
+            {e:'🎻',n:'violin',k:'바이올린'},{e:'🎲',n:'game die',k:'주사위'},{e:'♟️',n:'chess pawn',k:'체스'},
+            {e:'🎯',n:'direct hit',k:'다트'},{e:'🎳',n:'bowling',k:'볼링'},{e:'🎮',n:'video game',k:'게임'},
+            {e:'🎰',n:'slot machine',k:'슬롯머신'},{e:'🧩',n:'puzzle',k:'퍼즐'}
+          ]
+        },
+        'objects': {
+          name: '💡 사물',
+          nameEn: '💡 Objects',
+          emojis: [
+            {e:'⌚',n:'watch',k:'시계'},{e:'📱',n:'mobile phone',k:'핸드폰 스마트폰'},{e:'📲',n:'mobile with arrow',k:'전화'},
+            {e:'💻',n:'laptop',k:'노트북'},{e:'⌨️',n:'keyboard',k:'키보드'},{e:'🖥️',n:'desktop',k:'컴퓨터'},
+            {e:'🖨️',n:'printer',k:'프린터'},{e:'🖱️',n:'mouse',k:'마우스'},{e:'💽',n:'computer disk',k:'디스크'},
+            {e:'💾',n:'floppy disk',k:'플로피'},{e:'💿',n:'cd',k:'CD'},{e:'📀',n:'dvd',k:'DVD'},
+            {e:'📷',n:'camera',k:'카메라'},{e:'📸',n:'camera with flash',k:'카메라'},{e:'📹',n:'video camera',k:'비디오'},
+            {e:'🎥',n:'movie camera',k:'영화 카메라'},{e:'📽️',n:'film projector',k:'프로젝터'},{e:'📺',n:'television',k:'TV 텔레비전'},
+            {e:'📻',n:'radio',k:'라디오'},{e:'🎙️',n:'studio microphone',k:'마이크'},{e:'📡',n:'satellite antenna',k:'안테나'},
+            {e:'🔋',n:'battery',k:'배터리'},{e:'🔌',n:'plug',k:'플러그'},{e:'💡',n:'light bulb',k:'전구 아이디어'},
+            {e:'🔦',n:'flashlight',k:'손전등'},{e:'🕯️',n:'candle',k:'촛불'},{e:'🧯',n:'fire extinguisher',k:'소화기'},
+            {e:'🛢️',n:'oil drum',k:'기름통'},{e:'💸',n:'money with wings',k:'돈 날아가는'},{e:'💵',n:'dollar',k:'달러'},
+            {e:'💴',n:'yen',k:'엔화'},{e:'💶',n:'euro',k:'유로'},{e:'💷',n:'pound',k:'파운드'},
+            {e:'💰',n:'money bag',k:'돈가방'},{e:'💳',n:'credit card',k:'신용카드'},{e:'💎',n:'gem',k:'보석 다이아몬드'},
+            {e:'⚖️',n:'balance scale',k:'저울'},{e:'🪜',n:'ladder',k:'사다리'},{e:'🧰',n:'toolbox',k:'공구함'},
+            {e:'🔧',n:'wrench',k:'렌치'},{e:'🔨',n:'hammer',k:'망치'},{e:'⚒️',n:'hammer and pick',k:'망치 곡괭이'},
+            {e:'🛠️',n:'hammer and wrench',k:'공구'},{e:'⛏️',n:'pick',k:'곡괭이'},{e:'🪚',n:'saw',k:'톱'},
+            {e:'🔩',n:'nut and bolt',k:'볼트 너트'},{e:'⚙️',n:'gear',k:'톱니바퀴'},{e:'🪤',n:'mouse trap',k:'쥐덫'},
+            {e:'🧱',n:'brick',k:'벽돌'},{e:'⛓️',n:'chains',k:'쇠사슬'},{e:'🧲',n:'magnet',k:'자석'},
+            {e:'🔫',n:'pistol',k:'물총'},{e:'💣',n:'bomb',k:'폭탄'},{e:'🧨',n:'firecracker',k:'폭죽'},
+            {e:'🔪',n:'kitchen knife',k:'칼'},{e:'🗡️',n:'dagger',k:'단검'},{e:'⚔️',n:'crossed swords',k:'칼'},
+            {e:'🛡️',n:'shield',k:'방패'},{e:'🚬',n:'cigarette',k:'담배'},{e:'⚰️',n:'coffin',k:'관'},
+            {e:'🪦',n:'headstone',k:'묘비'},{e:'⚱️',n:'funeral urn',k:'유골함'},{e:'🏺',n:'amphora',k:'항아리'},
+            {e:'🔮',n:'crystal ball',k:'수정구슬'},{e:'📿',n:'prayer beads',k:'염주'},{e:'🧿',n:'evil eye',k:'나자르'},
+            {e:'💈',n:'barber pole',k:'이발소'},{e:'⚗️',n:'alembic',k:'증류기'},{e:'🔭',n:'telescope',k:'망원경'},
+            {e:'🔬',n:'microscope',k:'현미경'},{e:'🕳️',n:'hole',k:'구멍'},{e:'🩹',n:'bandage',k:'밴드'},
+            {e:'🩺',n:'stethoscope',k:'청진기'},{e:'💊',n:'pill',k:'알약'},{e:'💉',n:'syringe',k:'주사기'},
+            {e:'🩸',n:'drop of blood',k:'피'},{e:'🧬',n:'dna',k:'DNA'},{e:'🦠',n:'microbe',k:'세균'},
+            {e:'🧪',n:'test tube',k:'시험관'},{e:'🧫',n:'petri dish',k:'페트리접시'},{e:'🧹',n:'broom',k:'빗자루'},
+            {e:'🧺',n:'basket',k:'바구니'},{e:'🧻',n:'toilet paper',k:'휴지'},{e:'🚽',n:'toilet',k:'변기'},
+            {e:'🚿',n:'shower',k:'샤워기'},{e:'🛁',n:'bathtub',k:'욕조'},{e:'🪥',n:'toothbrush',k:'칫솔'},
+            {e:'🪒',n:'razor',k:'면도기'},{e:'🧽',n:'sponge',k:'스펀지'},{e:'🪣',n:'bucket',k:'양동이'},
+            {e:'🧴',n:'lotion bottle',k:'로션'},{e:'🛎️',n:'bell',k:'벨'},{e:'🔑',n:'key',k:'열쇠'},
+            {e:'🗝️',n:'old key',k:'열쇠'},{e:'🚪',n:'door',k:'문'},{e:'🪑',n:'chair',k:'의자'},
+            {e:'🛋️',n:'couch',k:'소파'},{e:'🛏️',n:'bed',k:'침대'},{e:'🛒',n:'shopping cart',k:'카트'},
+            {e:'🎁',n:'gift',k:'선물'},{e:'🎈',n:'balloon',k:'풍선'},{e:'🎀',n:'ribbon',k:'리본'}
+          ]
+        },
+        'symbols': {
+          name: '❤️ 기호',
+          nameEn: '❤️ Symbols',
+          emojis: [
+            {e:'❤️',n:'red heart',k:'빨간 하트 사랑'},{e:'🧡',n:'orange heart',k:'주황 하트'},{e:'💛',n:'yellow heart',k:'노란 하트'},
+            {e:'💚',n:'green heart',k:'초록 하트'},{e:'💙',n:'blue heart',k:'파란 하트'},{e:'💜',n:'purple heart',k:'보라 하트'},
+            {e:'🖤',n:'black heart',k:'검정 하트'},{e:'🤍',n:'white heart',k:'흰 하트'},{e:'🤎',n:'brown heart',k:'갈색 하트'},
+            {e:'💔',n:'broken heart',k:'깨진 하트 실연'},{e:'❣️',n:'heart exclamation',k:'하트 느낌표'},{e:'💕',n:'two hearts',k:'하트 두개'},
+            {e:'💞',n:'revolving hearts',k:'도는 하트'},{e:'💓',n:'beating heart',k:'두근 하트'},{e:'💗',n:'growing heart',k:'커지는 하트'},
+            {e:'💖',n:'sparkling heart',k:'반짝 하트'},{e:'💘',n:'heart with arrow',k:'화살 하트 큐피드'},{e:'💝',n:'heart with ribbon',k:'선물 하트'},
+            {e:'💟',n:'heart decoration',k:'하트'},{e:'☮️',n:'peace',k:'평화'},{e:'✝️',n:'cross',k:'십자가'},
+            {e:'☪️',n:'star and crescent',k:'이슬람'},{e:'🕉️',n:'om',k:'옴'},{e:'☸️',n:'wheel of dharma',k:'법륜'},
+            {e:'✡️',n:'star of david',k:'다윗의별'},{e:'🔯',n:'dotted six star',k:'육망성'},{e:'🕎',n:'menorah',k:'메노라'},
+            {e:'☯️',n:'yin yang',k:'음양'},{e:'☦️',n:'orthodox cross',k:'정교회 십자가'},{e:'🛐',n:'place of worship',k:'예배'},
+            {e:'⛎',n:'ophiuchus',k:'뱀주인자리'},{e:'♈',n:'aries',k:'양자리'},{e:'♉',n:'taurus',k:'황소자리'},
+            {e:'♊',n:'gemini',k:'쌍둥이자리'},{e:'♋',n:'cancer',k:'게자리'},{e:'♌',n:'leo',k:'사자자리'},
+            {e:'♍',n:'virgo',k:'처녀자리'},{e:'♎',n:'libra',k:'천칭자리'},{e:'♏',n:'scorpio',k:'전갈자리'},
+            {e:'♐',n:'sagittarius',k:'사수자리'},{e:'♑',n:'capricorn',k:'염소자리'},{e:'♒',n:'aquarius',k:'물병자리'},
+            {e:'♓',n:'pisces',k:'물고기자리'},{e:'🆔',n:'id button',k:'ID'},{e:'⚛️',n:'atom',k:'원자'},
+            {e:'🉑',n:'acceptable',k:'가'},{e:'☢️',n:'radioactive',k:'방사능'},{e:'☣️',n:'biohazard',k:'생물학적 위험'},
+            {e:'📴',n:'mobile phone off',k:'휴대폰 끄기'},{e:'📳',n:'vibration mode',k:'진동모드'},{e:'🈶',n:'not free',k:'유'},
+            {e:'🈚',n:'free of charge',k:'무'},{e:'🈸',n:'application',k:'신'},{e:'🈺',n:'open',k:'영'},
+            {e:'🈷️',n:'monthly',k:'월'},{e:'✴️',n:'eight-pointed star',k:'팔각별'},{e:'🆚',n:'vs',k:'대'},
+            {e:'💮',n:'white flower',k:'대단히 잘했어요'},{e:'🉐',n:'bargain',k:'득'},{e:'㊙️',n:'secret',k:'비'},
+            {e:'㊗️',n:'congratulations',k:'축'},{e:'🈴',n:'passing',k:'합'},{e:'🈵',n:'full',k:'만'},
+            {e:'🈹',n:'discount',k:'할'},{e:'🈲',n:'prohibited',k:'금'},{e:'🅰️',n:'a button',k:'A형'},
+            {e:'🅱️',n:'b button',k:'B형'},{e:'🆎',n:'ab button',k:'AB형'},{e:'🆑',n:'cl button',k:'CL'},
+            {e:'🅾️',n:'o button',k:'O형'},{e:'🆘',n:'sos',k:'구조요청'},{e:'❌',n:'cross mark',k:'엑스 안됨'},
+            {e:'⭕',n:'hollow circle',k:'동그라미 됨'},{e:'🛑',n:'stop sign',k:'정지'},{e:'⛔',n:'no entry',k:'진입금지'},
+            {e:'📛',n:'name badge',k:'이름표'},{e:'🚫',n:'prohibited',k:'금지'},{e:'💯',n:'hundred',k:'백점 완벽'},
+            {e:'💢',n:'anger',k:'분노 화남'},{e:'♨️',n:'hot springs',k:'온천'},{e:'🚷',n:'no pedestrians',k:'보행금지'},
+            {e:'🚯',n:'no littering',k:'쓰레기금지'},{e:'🚳',n:'no bicycles',k:'자전거금지'},{e:'🚱',n:'non-potable',k:'비음용수'},
+            {e:'🔞',n:'no one under 18',k:'19금'},{e:'📵',n:'no mobile phones',k:'휴대폰금지'},{e:'🔇',n:'muted',k:'무음'},
+            {e:'🔈',n:'speaker',k:'스피커'},{e:'🔉',n:'speaker medium',k:'스피커'},{e:'🔊',n:'speaker high',k:'스피커'},
+            {e:'🔔',n:'bell',k:'알림 벨'},{e:'🔕',n:'bell slash',k:'알림끔'},{e:'📢',n:'loudspeaker',k:'확성기'},
+            {e:'📣',n:'megaphone',k:'메가폰'},{e:'💬',n:'speech balloon',k:'말풍선'},{e:'💭',n:'thought balloon',k:'생각풍선'},
+            {e:'🗯️',n:'right anger bubble',k:'화난 말풍선'},{e:'♠️',n:'spade',k:'스페이드'},{e:'♣️',n:'club',k:'클로버'},
+            {e:'♥️',n:'heart suit',k:'하트'},{e:'♦️',n:'diamond suit',k:'다이아몬드'},{e:'🃏',n:'joker',k:'조커'},
+            {e:'🎴',n:'flower playing cards',k:'화투'},{e:'🀄',n:'mahjong',k:'마작'},{e:'🔇',n:'muted speaker',k:'음소거'},
+            {e:'✅',n:'check mark',k:'체크 완료'},{e:'☑️',n:'check box',k:'체크박스'},{e:'✔️',n:'check',k:'체크'},
+            {e:'❎',n:'cross mark button',k:'취소'},{e:'➕',n:'plus',k:'더하기 플러스'},{e:'➖',n:'minus',k:'빼기 마이너스'},
+            {e:'➗',n:'division',k:'나누기'},{e:'✖️',n:'multiply',k:'곱하기'},{e:'♾️',n:'infinity',k:'무한'},
+            {e:'❓',n:'question',k:'물음표'},{e:'❔',n:'white question',k:'물음표'},{e:'❕',n:'white exclamation',k:'느낌표'},
+            {e:'❗',n:'exclamation',k:'느낌표'},{e:'〰️',n:'wavy dash',k:'물결'},{e:'💱',n:'currency exchange',k:'환전'},
+            {e:'💲',n:'dollar sign',k:'달러'},{e:'⚕️',n:'medical',k:'의료'},{e:'♻️',n:'recycle',k:'재활용'},
+            {e:'⚜️',n:'fleur-de-lis',k:'백합문양'},{e:'🔱',n:'trident',k:'삼지창'},{e:'📛',n:'name badge',k:'이름표'},
+            {e:'🔰',n:'beginner',k:'초보'},{e:'⭐',n:'star',k:'별'},{e:'🌟',n:'glowing star',k:'반짝이는 별'},
+            {e:'💫',n:'dizzy',k:'어지러움 별'},{e:'✨',n:'sparkles',k:'반짝반짝'},{e:'🔥',n:'fire',k:'불 핫'},
+            {e:'💥',n:'collision',k:'폭발 충돌'},{e:'💦',n:'sweat droplets',k:'땀 물방울'},{e:'💧',n:'droplet',k:'물방울'},
+            {e:'🌈',n:'rainbow',k:'무지개'},{e:'☀️',n:'sun',k:'태양 해'},{e:'🌙',n:'crescent moon',k:'초승달'},
+            {e:'⭐',n:'star',k:'별'},{e:'🌟',n:'glowing star',k:'빛나는 별'},{e:'💥',n:'collision',k:'쾅 폭발'},
+            {e:'⬆️',n:'up arrow',k:'위 화살표'},{e:'↗️',n:'up-right arrow',k:'오른쪽위 화살표'},{e:'➡️',n:'right arrow',k:'오른쪽 화살표'},
+            {e:'↘️',n:'down-right arrow',k:'오른쪽아래 화살표'},{e:'⬇️',n:'down arrow',k:'아래 화살표'},{e:'↙️',n:'down-left arrow',k:'왼쪽아래 화살표'},
+            {e:'⬅️',n:'left arrow',k:'왼쪽 화살표'},{e:'↖️',n:'up-left arrow',k:'왼쪽위 화살표'},{e:'↕️',n:'up-down arrow',k:'상하 화살표'},
+            {e:'↔️',n:'left-right arrow',k:'좌우 화살표'},{e:'🔄',n:'counterclockwise',k:'새로고침'},{e:'🔃',n:'clockwise',k:'순환'},
+            {e:'🔙',n:'back',k:'뒤로'},{e:'🔚',n:'end',k:'끝'},{e:'🔛',n:'on',k:'켜기'},
+            {e:'🔜',n:'soon',k:'곧'},{e:'🔝',n:'top',k:'탑'},
+            {e:'0️⃣',n:'zero',k:'0 영'},{e:'1️⃣',n:'one',k:'1 일'},{e:'2️⃣',n:'two',k:'2 이'},
+            {e:'3️⃣',n:'three',k:'3 삼'},{e:'4️⃣',n:'four',k:'4 사'},{e:'5️⃣',n:'five',k:'5 오'},
+            {e:'6️⃣',n:'six',k:'6 육'},{e:'7️⃣',n:'seven',k:'7 칠'},{e:'8️⃣',n:'eight',k:'8 팔'},
+            {e:'9️⃣',n:'nine',k:'9 구'},{e:'🔟',n:'ten',k:'10 십'},{e:'#️⃣',n:'hash',k:'샵 해시태그'},
+            {e:'*️⃣',n:'asterisk',k:'별표'}
+          ]
+        }
+      };
+
+      const search = document.getElementById('search');
+      const categories = document.getElementById('categories');
+      const emojiGrid = document.getElementById('emoji-grid');
+      const recentEmojis = document.getElementById('recent-emojis');
+      const emojiInfo = document.getElementById('emoji-info');
+      const selectedEmoji = document.getElementById('selected-emoji');
+      const emojiName = document.getElementById('emoji-name');
+      const emojiCode = document.getElementById('emoji-code');
+      const copyEmoji = document.getElementById('copy-emoji');
+      const copyCode = document.getElementById('copy-code');
+      const copiedToast = document.getElementById('copied-toast');
+
+      let currentCategory = 'smileys';
+      let currentEmoji = null;
+
+      // Initialize categories
+      const lang = document.documentElement.lang || 'ko';
+      Object.keys(emojiData).forEach(key => {
+        const btn = document.createElement('button');
+        btn.className = 'category-btn' + (key === currentCategory ? ' active' : '');
+        btn.textContent = lang === 'en' ? emojiData[key].nameEn : emojiData[key].name;
+        btn.onclick = () => selectCategory(key);
+        categories.appendChild(btn);
+      });
+
+      function selectCategory(key) {
+        currentCategory = key;
+        document.querySelectorAll('.category-btn').forEach((btn, i) => {
+          btn.classList.toggle('active', Object.keys(emojiData)[i] === key);
+        });
+        search.value = '';
+        renderEmojis(emojiData[key].emojis);
+      }
+
+      function renderEmojis(emojis) {
+        emojiGrid.innerHTML = '';
+        emojis.forEach(item => {
+          const btn = document.createElement('button');
+          btn.className = 'emoji-btn';
+          btn.textContent = item.e;
+          btn.title = item.n;
+          btn.onclick = () => selectEmoji(item);
+          emojiGrid.appendChild(btn);
+        });
+      }
+
+      function selectEmoji(item) {
+        currentEmoji = item;
+        selectedEmoji.textContent = item.e;
+        emojiName.textContent = item.n;
+        emojiCode.textContent = 'U+' + item.e.codePointAt(0).toString(16).toUpperCase();
+        emojiInfo.classList.remove('hidden');
+        copyToClipboard(item.e);
+        addToRecent(item);
+      }
+
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          showCopiedToast();
+        });
+      }
+
+      function showCopiedToast() {
+        copiedToast.classList.add('show');
+        setTimeout(() => copiedToast.classList.remove('show'), 1500);
+      }
+
+      copyEmoji.onclick = () => currentEmoji && copyToClipboard(currentEmoji.e);
+      copyCode.onclick = () => currentEmoji && copyToClipboard('U+' + currentEmoji.e.codePointAt(0).toString(16).toUpperCase());
+
+      // Recent emojis
+      function loadRecent() {
+        try {
+          return JSON.parse(localStorage.getItem('recentEmojis') || '[]');
+        } catch { return []; }
+      }
+
+      function saveRecent(list) {
+        localStorage.setItem('recentEmojis', JSON.stringify(list));
+      }
+
+      function addToRecent(item) {
+        let recent = loadRecent().filter(r => r.e !== item.e);
+        recent.unshift(item);
+        recent = recent.slice(0, 20);
+        saveRecent(recent);
+        renderRecent();
+      }
+
+      function renderRecent() {
+        const recent = loadRecent();
+        if (recent.length === 0) {
+          recentEmojis.innerHTML = '<span class="text-sm text-gray-500 p-2" data-i18n="tools.emojiPicker.noRecent">아직 사용한 이모지가 없습니다</span>';
+          return;
+        }
+        recentEmojis.innerHTML = '';
+        recent.forEach(item => {
+          const btn = document.createElement('button');
+          btn.className = 'emoji-btn';
+          btn.textContent = item.e;
+          btn.title = item.n;
+          btn.onclick = () => selectEmoji(item);
+          recentEmojis.appendChild(btn);
+        });
+      }
+
+      // Search
+      search.addEventListener('input', () => {
+        const q = search.value.toLowerCase().trim();
+        if (!q) {
+          selectCategory(currentCategory);
+          return;
+        }
+        const results = [];
+        Object.values(emojiData).forEach(cat => {
+          cat.emojis.forEach(item => {
+            if (item.n.toLowerCase().includes(q) || item.k.includes(q)) {
+              results.push(item);
+            }
+          });
+        });
+        renderEmojis(results);
+      });
+
+      // Update category names when language changes
+      function updateCategoryNames() {
+        const lang = document.documentElement.lang || 'ko';
+        document.querySelectorAll('.category-btn').forEach((btn, i) => {
+          const key = Object.keys(emojiData)[i];
+          btn.textContent = lang === 'en' ? emojiData[key].nameEn : emojiData[key].name;
+        });
+      }
+
+      document.addEventListener('i18nApplied', updateCategoryNames);
+
+      // Initialize
+      selectCategory('smileys');
+      renderRecent();
+    })();
+  </script>
+</body>
+</html>

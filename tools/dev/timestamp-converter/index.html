@@ -313,6 +313,40 @@
         </p>
       </div>
 
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Unix Timestamp 변환기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Unix Timestamp 변환기는 컴퓨터에서 사용하는 시간 표현 방식인 Unix 타임스탬프와 사람이 읽을 수 있는 날짜/시간 형식을 상호 변환합니다. 로그 분석, API 디버깅, 데이터베이스 작업 등 개발 과정에서 시간 데이터를 다룰 때 필수적인 도구입니다. 초 단위와 밀리초 단위를 모두 지원합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>타임스탬프 → 날짜: 타임스탬프 값을 입력하고 변환 버튼을 클릭합니다.</li>
+            <li>자동 감지 기능이 초/밀리초를 구분하거나, 단위를 직접 선택할 수 있습니다.</li>
+            <li>빠른 변환 버튼(현재, 0, 1B, 2B)으로 자주 사용하는 값을 바로 확인합니다.</li>
+            <li>날짜 → 타임스탬프: 년, 월, 일, 시, 분, 초를 입력하고 변환 버튼을 클릭합니다.</li>
+            <li>시간대를 로컬 또는 UTC로 선택할 수 있습니다.</li>
+            <li>결과에서 ISO 8601, UTC, 로컬 시간, 상대 시간 형식을 확인합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 초 단위와 밀리초 단위는 어떻게 구분하나요?</h4>
+              <p>자동 감지 모드에서는 10자리 숫자를 초, 13자리 숫자를 밀리초로 인식합니다. Unix/Linux는 보통 초 단위를, JavaScript의 Date.now()는 밀리초 단위를 사용합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 음수 타임스탬프는 무엇을 의미하나요?</h4>
+              <p>음수 값은 1970년 1월 1일 이전의 시간을 나타냅니다. 예를 들어 -86400은 1969년 12월 31일입니다. 역사적 날짜를 다룰 때 사용됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 시간대가 결과에 어떤 영향을 미치나요?</h4>
+              <p>Unix 타임스탬프는 항상 UTC 기준입니다. 로컬 시간으로 표시할 때 사용자의 시간대에 맞게 변환됩니다. 서버와 클라이언트 간 시간 처리 시 이 점을 주의하세요.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-8">
         

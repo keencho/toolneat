@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emoji Picker - Toolneat</title>
+  <meta name="description" content="Search and copy emojis easily.">
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/emoji-picker/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/emoji-picker/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/emoji-picker/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/emoji-picker/">
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+  <style>
+    .emoji-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+      gap: 4px;
+    }
+    .emoji-btn {
+      font-size: 24px;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      text-align: center;
+      border: none;
+      background: transparent;
+    }
+    .emoji-btn:hover {
+      background: #f3f4f6;
+      transform: scale(1.1);
+    }
+    .dark .emoji-btn:hover {
+      background: #374151;
+    }
+    .category-tab {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: none;
+      background: transparent;
+    }
+    .category-tab:hover, .category-tab.active {
+      background: #e5e7eb;
+    }
+    .dark .category-tab:hover, .dark .category-tab.active {
+      background: #374151;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Emoji Picker</h1>
+        <p class="text-gray-600 dark:text-gray-400">Search for emojis and click to copy automatically.</p>
+      </div>
+
+      <div class="card">
+        <!-- Search -->
+        <div class="relative mb-4">
+          <input type="text" id="search" class="input pr-10" placeholder="Search (e.g., smile, heart, fire)">
+          <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="flex flex-wrap gap-1 mb-4 pb-2 border-b border-gray-200 dark:border-gray-700" id="category-tabs">
+          <button class="category-tab active" data-category="recent" title="Recent">🕐</button>
+          <button class="category-tab" data-category="smileys" title="Smileys">😀</button>
+          <button class="category-tab" data-category="people" title="People">👋</button>
+          <button class="category-tab" data-category="animals" title="Animals">🐶</button>
+          <button class="category-tab" data-category="food" title="Food">🍔</button>
+          <button class="category-tab" data-category="activities" title="Activities">⚽</button>
+          <button class="category-tab" data-category="travel" title="Travel">🚗</button>
+          <button class="category-tab" data-category="objects" title="Objects">💡</button>
+          <button class="category-tab" data-category="symbols" title="Symbols">❤️</button>
+          <button class="category-tab" data-category="flags" title="Flags">🏳️</button>
+        </div>
+
+        <!-- Emoji Grid -->
+        <div class="emoji-grid min-h-[300px]" id="emoji-grid">
+          <!-- Emojis will be loaded here -->
+        </div>
+
+        <!-- Selected Emoji Info -->
+        <div id="selected-info" class="hidden mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div class="flex items-center gap-4">
+            <span id="selected-emoji" class="text-5xl"></span>
+            <div class="flex-1">
+              <p id="selected-name" class="font-medium text-gray-900 dark:text-white"></p>
+              <p id="selected-code" class="text-sm text-gray-500 font-mono"></p>
+            </div>
+            <button id="copy-code-btn" class="btn btn-secondary text-sm">Copy Code</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Emoji Picker?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Emoji Picker is a tool for searching and copying emojis. Click an emoji to copy it to your clipboard,
+            ready to paste into messages, documents, or social media.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Search by entering keywords (e.g., "smile", "heart", "fire")</li>
+            <li>Or browse by category using the tabs above</li>
+            <li>Click an emoji to copy it to your clipboard</li>
+            <li>Paste anywhere with Ctrl+V (or Cmd+V on Mac)</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Categories</h3>
+          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
+            <li><strong>😀 Smileys:</strong> Faces and emotions</li>
+            <li><strong>👋 People:</strong> Hand gestures and people</li>
+            <li><strong>🐶 Animals:</strong> Animals and nature</li>
+            <li><strong>🍔 Food:</strong> Food and drinks</li>
+            <li><strong>⚽ Activities:</strong> Sports and activities</li>
+            <li><strong>🚗 Travel:</strong> Vehicles and places</li>
+            <li><strong>💡 Objects:</strong> Various objects</li>
+            <li><strong>❤️ Symbols:</strong> Hearts and symbols</li>
+            <li><strong>🏳️ Flags:</strong> Country flags</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">FAQ</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">How do I copy an emoji?</p>
+              <p class="text-gray-600 dark:text-gray-400">Simply click on any emoji. It will be automatically copied to your clipboard.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">Why don't some emojis display correctly?</p>
+              <p class="text-gray-600 dark:text-gray-400">Emoji display depends on your device and operating system. Newer emojis may not appear on older systems.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">Are my recent emojis saved?</p>
+              <p class="text-gray-600 dark:text-gray-400">Yes, recently used emojis are saved in your browser's local storage for quick access.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const EMOJIS = {
+        smileys: ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🤫','🤔','🤐','🤨','😐','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','🥴','😵','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','😟','🙁','☹️','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽','👾','🤖'],
+        people: ['👋','🤚','🖐️','✋','🖖','👌','🤌','🤏','✌️','🤞','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝️','👍','👎','✊','👊','🤛','🤜','👏','🙌','👐','🤲','🤝','🙏','✍️','💅','🤳','💪','🦾','🦿','🦵','🦶','👂','🦻','👃','🧠','🫀','🫁','🦷','🦴','👀','👁️','👅','👄','👶','🧒','👦','👧','🧑','👱','👨','🧔','👩','🧓','👴','👵','🙍','🙎','🙅','🙆','💁','🙋','🧏','🙇','🤦','🤷','👮','🕵️','💂','🥷','👷','🤴','👸','👳','👲','🧕','🤵','👰','🤰','🤱','👼','🎅','🤶','🦸','🦹','🧙','🧚','🧛','🧜','🧝','🧞','🧟','💆','💇','🚶','🧍','🧎','🏃','💃','🕺','🕴️','👯','🧖','🧗','🤸','🏌️','🏇','⛷️','🏂','🏋️','🤼','🤽','🤾','🤺','⛹️','🏊','🚣','🧘','🛀','🛌'],
+        animals: ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐻‍❄️','🐨','🐯','🦁','🐮','🐷','🐽','🐸','🐵','🙈','🙉','🙊','🐒','🐔','🐧','🐦','🐤','🐣','🐥','🦆','🦅','🦉','🦇','🐺','🐗','🐴','🦄','🐝','🪱','🐛','🦋','🐌','🐞','🐜','🪰','🪲','🪳','🦟','🦗','🕷️','🕸️','🦂','🐢','🐍','🦎','🦖','🦕','🐙','🦑','🦐','🦞','🦀','🐡','🐠','🐟','🐬','🐳','🐋','🦈','🐊','🐅','🐆','🦓','🦍','🦧','🦣','🐘','🦛','🦏','🐪','🐫','🦒','🦘','🦬','🐃','🐂','🐄','🐎','🐖','🐏','🐑','🦙','🐐','🦌','🐕','🐩','🦮','🐕‍🦺','🐈','🐈‍⬛','🪶','🐓','🦃','🦤','🦚','🦜','🦢','🦩','🕊️','🐇','🦝','🦨','🦡','🦫','🦦','🦥','🐁','🐀','🐿️','🦔','🐾','🐉','🐲'],
+        food: ['🍏','🍎','🍐','🍊','🍋','🍌','🍉','🍇','🍓','🫐','🍈','🍒','🍑','🥭','🍍','🥥','🥝','🍅','🍆','🥑','🥦','🥬','🥒','🌶️','🫑','🌽','🥕','🫒','🧄','🧅','🥔','🍠','🥐','🥯','🍞','🥖','🥨','🧀','🥚','🍳','🧈','🥞','🧇','🥓','🥩','🍗','🍖','🦴','🌭','🍔','🍟','🍕','🫓','🥪','🥙','🧆','🌮','🌯','🫔','🥗','🥘','🫕','🥫','🍝','🍜','🍲','🍛','🍣','🍱','🥟','🦪','🍤','🍙','🍚','🍘','🍥','🥠','🥮','🍢','🍡','🍧','🍨','🍦','🥧','🧁','🍰','🎂','🍮','🍭','🍬','🍫','🍿','🍩','🍪','🌰','🥜','🍯','🥛','🍼','🫖','☕','🍵','🧃','🥤','🧋','🍶','🍺','🍻','🥂','🍷','🥃','🍸','🍹','🧉','🍾','🧊','🥄','🍴','🍽️','🥣','🥡','🥢','🧂'],
+        activities: ['⚽','🏀','🏈','⚾','🥎','🎾','🏐','🏉','🥏','🎱','🪀','🏓','🏸','🏒','🏑','🥍','🏏','🪃','🥅','⛳','🪁','🏹','🎣','🤿','🥊','🥋','🎽','🛹','🛼','🛷','⛸️','🥌','🎿','⛷️','🏂','🪂','🏋️','🤼','🤸','🤽','🤾','🤺','⛹️','🏊','🚣','🧗','🚵','🚴','🏆','🥇','🥈','🥉','🏅','🎖️','🏵️','🎗️','🎫','🎟️','🎪','🤹','🎭','🩰','🎨','🎬','🎤','🎧','🎼','🎹','🥁','🪘','🎷','🎺','🪗','🎸','🪕','🎻','🎲','♟️','🎯','🎳','🎮','🕹️','🎰'],
+        travel: ['🚗','🚕','🚙','🚌','🚎','🏎️','🚓','🚑','🚒','🚐','🛻','🚚','🚛','🚜','🦯','🦽','🦼','🛴','🚲','🛵','🏍️','🛺','🚨','🚔','🚍','🚘','🚖','🚡','🚠','🚟','🚃','🚋','🚞','🚝','🚄','🚅','🚈','🚂','🚆','🚇','🚊','🚉','✈️','🛫','🛬','🛩️','💺','🛰️','🚀','🛸','🚁','🛶','⛵','🚤','🛥️','🛳️','⛴️','🚢','⚓','🪝','⛽','🚧','🚦','🚥','🚏','🗺️','🗿','🗽','🗼','🏰','🏯','🏟️','🎡','🎢','🎠','⛲','⛱️','🏖️','🏝️','🏜️','🌋','⛰️','🏔️','🗻','🏕️','⛺','🛖','🏠','🏡','🏘️','🏚️','🏗️','🏭','🏢','🏬','🏣','🏤','🏥','🏦','🏨','🏪','🏫','🏩','💒','🏛️','⛪','🕌','🕍','🛕','🕋','⛩️'],
+        objects: ['💡','🔦','🏮','🪔','📔','📕','📖','📗','📘','📙','📚','📓','📒','📃','📜','📄','📰','🗞️','📑','🔖','🏷️','💰','🪙','💴','💵','💶','💷','💸','💳','🧾','💹','✉️','📧','📨','📩','📤','📥','📦','📫','📪','📬','📭','📮','🗳️','✏️','✒️','🖋️','🖊️','🖌️','🖍️','📝','💼','📁','📂','🗂️','📅','📆','🗒️','🗓️','📇','📈','📉','📊','📋','📌','📍','📎','🖇️','📏','📐','✂️','🗃️','🗄️','🗑️','🔒','🔓','🔏','🔐','🔑','🗝️','🔨','🪓','⛏️','⚒️','🛠️','🗡️','⚔️','🔫','🪃','🏹','🛡️','🪚','🔧','🪛','🔩','⚙️','🗜️','⚖️','🦯','🔗','⛓️','🪝','🧰','🧲','🪜','⚗️','🧪','🧫','🧬','🔬','🔭','📡','💉','🩸','💊','🩹','🩺','🚪','🛗','🪞','🪟','🛏️','🛋️','🪑','🚽','🪠','🚿','🛁','🪤','🪒','🧴','🧷','🧹','🧺','🧻','🪣','🧼','🪥','🧽','🧯','🛒','🚬','⚰️','🪦','⚱️','🗿','🪧','🏧'],
+        symbols: ['❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❣️','💕','💞','💓','💗','💖','💘','💝','💟','☮️','✝️','☪️','🕉️','☸️','✡️','🔯','🕎','☯️','☦️','🛐','⛎','♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓','🆔','⚛️','🉑','☢️','☣️','📴','📳','🈶','🈚','🈸','🈺','🈷️','✴️','🆚','💮','🉐','㊙️','㊗️','🈴','🈵','🈹','🈲','🅰️','🅱️','🆎','🆑','🅾️','🆘','❌','⭕','🛑','⛔','📛','🚫','💯','💢','♨️','🚷','🚯','🚳','🚱','🔞','📵','🚭','❗','❕','❓','❔','‼️','⁉️','🔅','🔆','〽️','⚠️','🚸','🔱','⚜️','🔰','♻️','✅','🈯','💹','❇️','✳️','❎','🌐','💠','Ⓜ️','🌀','💤','🏧','🚾','♿','🅿️','🛗','🈳','🈂️','🛂','🛃','🛄','🛅','🚹','🚺','🚼','⚧️','🚻','🚮','🎦','📶','🈁','🔣','ℹ️','🔤','🔡','🔠','🆖','🆗','🆙','🆒','🆕','🆓','0️⃣','1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟','🔢','#️⃣','*️⃣','⏏️','▶️','⏸️','⏯️','⏹️','⏺️','⏭️','⏮️','⏩','⏪','⏫','⏬','◀️','🔼','🔽','➡️','⬅️','⬆️','⬇️','↗️','↘️','↙️','↖️','↕️','↔️','↪️','↩️','⤴️','⤵️','🔀','🔁','🔂','🔄','🔃','🎵','🎶','➕','➖','➗','✖️','🟰','♾️','💲','💱','™️','©️','®️','👁️‍🗨️','🔚','🔙','🔛','🔝','🔜','〰️','➰','➿','✔️','☑️','🔘','🔴','🟠','🟡','🟢','🔵','🟣','⚫','⚪','🟤','🔺','🔻','🔸','🔹','🔶','🔷','🔳','🔲','▪️','▫️','◾','◽','◼️','◻️','🟥','🟧','🟨','🟩','🟦','🟪','⬛','⬜','🟫','🔈','🔇','🔉','🔊','🔔','🔕','📣','📢','💬','💭','🗯️','♠️','♣️','♥️','♦️','🃏','🎴','🀄','🕐','🕑','🕒','🕓','🕔','🕕','🕖','🕗','🕘','🕙','🕚','🕛','🕜','🕝','🕞','🕟','🕠','🕡','🕢','🕣','🕤','🕥','🕦','🕧'],
+        flags: ['🏳️','🏴','🏴‍☠️','🏁','🚩','🎌','🏳️‍🌈','🏳️‍⚧️','🇺🇳','🇦🇫','🇦🇽','🇦🇱','🇩🇿','🇦🇸','🇦🇩','🇦🇴','🇦🇮','🇦🇶','🇦🇬','🇦🇷','🇦🇲','🇦🇼','🇦🇺','🇦🇹','🇦🇿','🇧🇸','🇧🇭','🇧🇩','🇧🇧','🇧🇾','🇧🇪','🇧🇿','🇧🇯','🇧🇲','🇧🇹','🇧🇴','🇧🇦','🇧🇼','🇧🇷','🇮🇴','🇻🇬','🇧🇳','🇧🇬','🇧🇫','🇧🇮','🇰🇭','🇨🇲','🇨🇦','🇮🇨','🇨🇻','🇧🇶','🇰🇾','🇨🇫','🇹🇩','🇨🇱','🇨🇳','🇨🇽','🇨🇨','🇨🇴','🇰🇲','🇨🇬','🇨🇩','🇨🇰','🇨🇷','🇨🇮','🇭🇷','🇨🇺','🇨🇼','🇨🇾','🇨🇿','🇩🇰','🇩🇯','🇩🇲','🇩🇴','🇪🇨','🇪🇬','🇸🇻','🇬🇶','🇪🇷','🇪🇪','🇸🇿','🇪🇹','🇪🇺','🇫🇰','🇫🇴','🇫🇯','🇫🇮','🇫🇷','🇬🇫','🇵🇫','🇹🇫','🇬🇦','🇬🇲','🇬🇪','🇩🇪','🇬🇭','🇬🇮','🇬🇷','🇬🇱','🇬🇩','🇬🇵','🇬🇺','🇬🇹','🇬🇬','🇬🇳','🇬🇼','🇬🇾','🇭🇹','🇭🇳','🇭🇰','🇭🇺','🇮🇸','🇮🇳','🇮🇩','🇮🇷','🇮🇶','🇮🇪','🇮🇲','🇮🇱','🇮🇹','🇯🇲','🇯🇵','🎌','🇯🇪','🇯🇴','🇰🇿','🇰🇪','🇰🇮','🇽🇰','🇰🇼','🇰🇬','🇱🇦','🇱🇻','🇱🇧','🇱🇸','🇱🇷','🇱🇾','🇱🇮','🇱🇹','🇱🇺','🇲🇴','🇲🇬','🇲🇼','🇲🇾','🇲🇻','🇲🇱','🇲🇹','🇲🇭','🇲🇶','🇲🇷','🇲🇺','🇾🇹','🇲🇽','🇫🇲','🇲🇩','🇲🇨','🇲🇳','🇲🇪','🇲🇸','🇲🇦','🇲🇿','🇲🇲','🇳🇦','🇳🇷','🇳🇵','🇳🇱','🇳🇨','🇳🇿','🇳🇮','🇳🇪','🇳🇬','🇳🇺','🇳🇫','🇰🇵','🇲🇰','🇲🇵','🇳🇴','🇴🇲','🇵🇰','🇵🇼','🇵🇸','🇵🇦','🇵🇬','🇵🇾','🇵🇪','🇵🇭','🇵🇳','🇵🇱','🇵🇹','🇵🇷','🇶🇦','🇷🇪','🇷🇴','🇷🇺','🇷🇼','🇼🇸','🇸🇲','🇸🇹','🇸🇦','🇸🇳','🇷🇸','🇸🇨','🇸🇱','🇸🇬','🇸🇽','🇸🇰','🇸🇮','🇬🇸','🇸🇧','🇸🇴','🇿🇦','🇰🇷','🇸🇸','🇪🇸','🇱🇰','🇧🇱','🇸🇭','🇰🇳','🇱🇨','🇵🇲','🇻🇨','🇸🇩','🇸🇷','🇸🇪','🇨🇭','🇸🇾','🇹🇼','🇹🇯','🇹🇿','🇹🇭','🇹🇱','🇹🇬','🇹🇰','🇹🇴','🇹🇹','🇹🇳','🇹🇷','🇹🇲','🇹🇨','🇹🇻','🇻🇮','🇺🇬','🇺🇦','🇦🇪','🇬🇧','🏴󠁧󠁢󠁥󠁮󠁧󠁿','🏴󠁧󠁢󠁳󠁣󠁴󠁿','🏴󠁧󠁢󠁷󠁬󠁳󠁿','🇺🇸','🇺🇾','🇺🇿','🇻🇺','🇻🇦','🇻🇪','🇻🇳','🇼🇫','🇪🇭','🇾🇪','🇿🇲','🇿🇼']
+      };
+
+      const EMOJI_NAMES = {
+        '😀': 'grinning face',
+        '😃': 'grinning face big eyes',
+        '😄': 'grinning face smiling eyes',
+        '😁': 'beaming face smiling eyes',
+        '😆': 'grinning squinting face',
+        '😅': 'grinning face sweat',
+        '🤣': 'rolling on floor laughing',
+        '😂': 'face tears joy',
+        '🙂': 'slightly smiling face',
+        '😊': 'smiling face smiling eyes',
+        '😍': 'smiling face heart eyes love',
+        '🥰': 'smiling face hearts love',
+        '😘': 'face blowing kiss',
+        '😎': 'smiling face sunglasses cool',
+        '🤔': 'thinking face',
+        '😢': 'crying face sad',
+        '😭': 'loudly crying face',
+        '😡': 'pouting face angry',
+        '🥺': 'pleading face',
+        '👍': 'thumbs up',
+        '👎': 'thumbs down',
+        '👋': 'waving hand hello',
+        '👏': 'clapping hands',
+        '🙏': 'folded hands pray thanks',
+        '💪': 'flexed biceps strong',
+        '❤️': 'red heart love',
+        '💔': 'broken heart',
+        '🔥': 'fire hot flame',
+        '⭐': 'star',
+        '✨': 'sparkles',
+        '🎉': 'party popper celebration',
+        '🎊': 'confetti ball',
+        '🎁': 'wrapped gift present',
+        '🏆': 'trophy winner',
+        '✅': 'check mark done',
+        '❌': 'cross mark wrong',
+        '⚠️': 'warning',
+        '💡': 'light bulb idea',
+        '📌': 'pushpin',
+        '🔗': 'link',
+        '📧': 'email',
+        '📱': 'mobile phone',
+        '💻': 'laptop computer',
+        '🖥️': 'desktop computer',
+        '🌍': 'globe earth',
+        '🌎': 'globe americas',
+        '🌏': 'globe asia',
+        '☀️': 'sun sunny',
+        '🌙': 'moon',
+        '⛅': 'cloudy',
+        '🌧️': 'rain cloud',
+        '❄️': 'snowflake cold',
+        '🍕': 'pizza',
+        '🍔': 'hamburger burger',
+        '🍟': 'french fries',
+        '☕': 'coffee hot beverage',
+        '🍺': 'beer mug',
+        '🎵': 'music note',
+        '🎶': 'music notes',
+        '🎮': 'video game controller',
+        '⚽': 'soccer ball football',
+        '🏀': 'basketball',
+        '🚗': 'car automobile',
+        '✈️': 'airplane plane',
+        '🏠': 'house home',
+        '💰': 'money bag',
+        '💵': 'dollar banknote money',
+        '📈': 'chart increasing up',
+        '📉': 'chart decreasing down'
+      };
+
+      const RECENT_KEY = 'toolneat-emoji-recent';
+      let recentEmojis = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]');
+      let currentCategory = 'recent';
+
+      const searchInput = document.getElementById('search');
+      const emojiGrid = document.getElementById('emoji-grid');
+      const categoryTabs = document.getElementById('category-tabs');
+      const selectedInfo = document.getElementById('selected-info');
+      const selectedEmoji = document.getElementById('selected-emoji');
+      const selectedName = document.getElementById('selected-name');
+      const selectedCode = document.getElementById('selected-code');
+      const copyCodeBtn = document.getElementById('copy-code-btn');
+
+      function renderEmojis(emojis) {
+        emojiGrid.innerHTML = '';
+        if (emojis.length === 0) {
+          emojiGrid.innerHTML = '<p class="text-gray-500 col-span-full text-center py-8">No emojis found</p>';
+          return;
+        }
+        emojis.forEach(emoji => {
+          const btn = document.createElement('button');
+          btn.className = 'emoji-btn';
+          btn.textContent = emoji;
+          btn.title = EMOJI_NAMES[emoji] || '';
+          btn.addEventListener('click', () => copyEmoji(emoji));
+          emojiGrid.appendChild(btn);
+        });
+      }
+
+      function copyEmoji(emoji) {
+        navigator.clipboard.writeText(emoji).then(() => {
+          toast.success(`${emoji} Copied!`);
+          addToRecent(emoji);
+          showSelectedInfo(emoji);
+        });
+      }
+
+      function addToRecent(emoji) {
+        recentEmojis = recentEmojis.filter(e => e !== emoji);
+        recentEmojis.unshift(emoji);
+        recentEmojis = recentEmojis.slice(0, 30);
+        localStorage.setItem(RECENT_KEY, JSON.stringify(recentEmojis));
+      }
+
+      function showSelectedInfo(emoji) {
+        selectedEmoji.textContent = emoji;
+        selectedName.textContent = EMOJI_NAMES[emoji] || 'Emoji';
+        selectedCode.textContent = [...emoji].map(c => 'U+' + c.codePointAt(0).toString(16).toUpperCase()).join(' ');
+        selectedInfo.classList.remove('hidden');
+      }
+
+      copyCodeBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(selectedCode.textContent).then(() => {
+          toast.success('Code copied!');
+        });
+      });
+
+      function setCategory(category) {
+        currentCategory = category;
+        document.querySelectorAll('.category-tab').forEach(tab => {
+          tab.classList.toggle('active', tab.dataset.category === category);
+        });
+        searchInput.value = '';
+        if (category === 'recent') {
+          if (recentEmojis.length === 0) {
+            emojiGrid.innerHTML = '<p class="text-gray-500 col-span-full text-center py-8">No recently used emojis</p>';
+          } else {
+            renderEmojis(recentEmojis);
+          }
+        } else {
+          renderEmojis(EMOJIS[category] || []);
+        }
+      }
+
+      categoryTabs.addEventListener('click', (e) => {
+        const tab = e.target.closest('.category-tab');
+        if (tab) setCategory(tab.dataset.category);
+      });
+
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase().trim();
+        if (!query) {
+          setCategory(currentCategory);
+          return;
+        }
+        document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+        const allEmojis = Object.values(EMOJIS).flat();
+        const results = allEmojis.filter(emoji => {
+          const name = EMOJI_NAMES[emoji] || '';
+          return name.toLowerCase().includes(query) || emoji.includes(query);
+        });
+        renderEmojis(results);
+      });
+
+      // Initialize
+      setCategory('recent');
+    })();
+  </script>
+</body>
+</html>

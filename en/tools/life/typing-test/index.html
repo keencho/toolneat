@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Speed Test - Toolneat</title>
+  <meta name="description" content="Test your typing speed and accuracy. Measure WPM, CPM, and accuracy in real-time.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/typing-test/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/typing-test/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/typing-test/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/typing-test/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Typing Speed Test - Toolneat">
+  <meta property="og:description" content="Test your typing speed and accuracy. Measure WPM, CPM, and accuracy in real-time.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/typing-test/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>localStorage.setItem('toolneat-lang', 'en');</script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <style>
+    .char-correct { color: #22c55e; }
+    .char-wrong { color: #ef4444; text-decoration: underline; }
+    .char-current { background-color: #3b82f6; color: white; border-radius: 2px; }
+    .char-pending { color: #6b7280; }
+
+    .sample-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      line-height: 2;
+      letter-spacing: 0.02em;
+      user-select: none;
+    }
+
+    .typing-input {
+      caret-color: #3b82f6;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .timer-pulse {
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-animate {
+      animation: slideIn 0.5s ease-out forwards;
+    }
+
+    .result-item {
+      opacity: 0;
+    }
+
+    .result-item:nth-child(1) { animation-delay: 0.1s; }
+    .result-item:nth-child(2) { animation-delay: 0.2s; }
+    .result-item:nth-child(3) { animation-delay: 0.3s; }
+    .result-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .progress-bar {
+      transition: width 0.3s ease;
+    }
+
+    .difficulty-btn.active {
+      background-color: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Typing Speed Test
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Test your typing speed and accuracy. Type the displayed text accurately to measure your WPM (Words Per Minute), CPM (Characters Per Minute), and accuracy in real-time.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <!-- Difficulty Selection -->
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Difficulty:</span>
+            <div class="flex gap-2">
+              <button class="difficulty-btn active px-4 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-level="easy">Easy</button>
+              <button class="difficulty-btn px-4 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-level="medium">Medium</button>
+              <button class="difficulty-btn px-4 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-level="hard">Hard</button>
+            </div>
+          </div>
+
+          <!-- Sound Toggle -->
+          <div class="flex items-center gap-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="sound-toggle" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
+              <span class="text-sm text-gray-700 dark:text-gray-300">Key sounds</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Timer and Progress -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-4">
+              <div id="timer-display" class="text-2xl font-mono font-bold text-blue-600 dark:text-blue-400">
+                00:00
+              </div>
+              <div id="status-badge" class="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                Ready
+              </div>
+            </div>
+            <button id="restart-btn" class="btn btn-secondary flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              Restart
+            </button>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+            <div id="progress-bar" class="progress-bar bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Sample Text Display -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Text to Type</label>
+          <div id="sample-text" class="sample-text bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 min-h-[120px]">
+            <!-- Sample text will be rendered here -->
+          </div>
+        </div>
+
+        <!-- Typing Input -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Input</label>
+          <textarea
+            id="typing-input"
+            class="typing-input textarea h-32 font-mono text-lg"
+            placeholder="Start typing the text above..."
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          ></textarea>
+        </div>
+
+        <!-- Live Stats -->
+        <div id="live-stats" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-wpm" class="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">WPM</div>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-cpm" class="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">CPM</div>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-accuracy" class="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">Accuracy</div>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-errors" class="text-2xl md:text-3xl font-bold text-red-600 dark:text-red-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">Errors</div>
+          </div>
+        </div>
+
+        <!-- Results Section (Hidden by default) -->
+        <div id="results-section" class="hidden mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl border border-blue-200 dark:border-blue-800">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">Test Results</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="result-item result-animate bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+              <div id="result-wpm" class="text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">WPM</div>
+              <div class="text-xs text-gray-400 dark:text-gray-500">Words/Minute</div>
+            </div>
+            <div class="result-item result-animate bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+              <div id="result-cpm" class="text-3xl font-bold text-green-600 dark:text-green-400">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">CPM</div>
+              <div class="text-xs text-gray-400 dark:text-gray-500">Chars/Minute</div>
+            </div>
+            <div class="result-item result-animate bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+              <div id="result-accuracy" class="text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">Accuracy</div>
+              <div class="text-xs text-gray-400 dark:text-gray-500">Correct Rate</div>
+            </div>
+            <div class="result-item result-animate bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+              <div id="result-time" class="text-3xl font-bold text-orange-600 dark:text-orange-400">00:00</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">Time</div>
+              <div class="text-xs text-gray-400 dark:text-gray-500">Min:Sec</div>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <button id="try-again-btn" class="btn btn-primary">
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Typing Speed Test?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A typing speed test measures how fast and accurately you can type on a keyboard. By typing the displayed sample text, you can measure your WPM (Words Per Minute), CPM (Characters Per Minute), and accuracy in real-time. This is useful for improving your typing skills, preparing for jobs that require fast typing, or simply tracking your progress.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select a difficulty level (Easy/Medium/Hard)</li>
+            <li>Read the sample text displayed above</li>
+            <li>Start typing in the input area - the timer begins automatically</li>
+            <li>Complete the entire text to see your results</li>
+            <li>Click "Restart" to try again with a new text</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Metrics Explained</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">WPM (Words Per Minute)</h4>
+              <p>The number of words you can type per minute. Standardly calculated as characters typed divided by 5 (average word length). Average office workers type 40-50 WPM, while professional typists can exceed 80-100 WPM.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">CPM (Characters Per Minute)</h4>
+              <p>The number of characters you can type per minute. This gives a more granular view of your typing speed without word-length averaging.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Accuracy</h4>
+              <p>The percentage of correctly typed characters out of total typed. An accuracy of 95% or higher is considered excellent.</p>
+            </div>
+          </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What is a good typing speed?</h4>
+              <p>For English typing, 40 WPM is average, 60 WPM is good, and 80+ WPM is considered fast. Professional typists and programmers often exceed 100 WPM. However, accuracy is equally important - high speed with many errors is less useful than moderate speed with high accuracy.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How can I improve my typing speed?</h4>
+              <p>Practice regularly, use proper finger positioning (home row keys), avoid looking at the keyboard, and focus on accuracy first before speed. Many people find that practicing for 15-30 minutes daily leads to significant improvement over weeks.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why are there different difficulty levels?</h4>
+              <p>Easy texts are shorter and use common words. Medium texts are longer with varied vocabulary. Hard texts include complex sentences, punctuation, and specialized terminology. This allows you to challenge yourself progressively as your skills improve.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // English sample texts by difficulty
+      const sampleTexts = {
+        easy: [
+          "The quick brown fox jumps over the lazy dog. This sentence contains every letter of the alphabet.",
+          "Pack my box with five dozen liquor jugs. How vexingly quick daft zebras jump!",
+          "Today is a beautiful day. The sun is shining and birds are singing in the trees.",
+          "I love to read books and learn new things. Knowledge is power and learning is fun.",
+          "Good morning! Have a wonderful day. Remember to smile and be kind to others.",
+          "Spring brings warm weather and colorful flowers. Nature awakens from its winter sleep.",
+          "Music makes everything better. Put on your favorite song and enjoy the moment.",
+          "Friends are like stars. You may not always see them, but they are always there.",
+          "Every journey begins with a single step. Start small and keep moving forward.",
+          "Coffee in the morning helps me wake up. The aroma fills the room with warmth."
+        ],
+        medium: [
+          "Programming is the art of telling a computer what to do. It requires logical thinking, creativity, and patience. The best programmers write code that is both efficient and easy to understand.",
+          "The Internet has revolutionized the way we communicate, work, and access information. It connects billions of people around the world, enabling instant communication and collaboration across borders.",
+          "Climate change is one of the most pressing issues of our time. Scientists around the world are working to understand its causes and effects, while policymakers debate the best ways to address it.",
+          "Artificial intelligence is transforming industries from healthcare to transportation. Machine learning algorithms can now recognize patterns, make predictions, and even generate creative content.",
+          "A healthy lifestyle includes regular exercise, balanced nutrition, and adequate sleep. Mental health is equally important, and stress management techniques can significantly improve overall well-being.",
+          "Time management is essential for productivity and success. By setting priorities and organizing tasks effectively, you can accomplish more while reducing stress and improving work-life balance.",
+          "Creativity is not limited to artists and musicians. Everyone has the potential to think creatively and solve problems in innovative ways. Curiosity and openness to new ideas are key.",
+          "Remote work has become increasingly common in recent years. While it offers flexibility and eliminates commuting, it also requires discipline and effective communication skills to maintain productivity.",
+          "Reading expands your vocabulary and improves your understanding of the world. Whether fiction or non-fiction, books offer valuable insights and perspectives that can enrich your life.",
+          "Learning a new skill takes time and dedication. The key is consistent practice and patience. Small improvements each day lead to significant progress over time."
+        ],
+        hard: [
+          "The juxtaposition of quantum mechanics and general relativity presents one of the most fascinating challenges in theoretical physics. Physicists have long sought a unified theory that reconciles the behavior of subatomic particles with the curvature of spacetime on cosmic scales.",
+          "Cryptography, the practice of secure communication in the presence of adversaries, has evolved from simple substitution ciphers to complex mathematical algorithms. Modern encryption methods rely on computational hardness assumptions, such as the difficulty of factoring large prime numbers.",
+          "The philosophical implications of artificial general intelligence raise profound questions about consciousness, creativity, and the nature of intelligence itself. As machines become increasingly capable of human-like reasoning, society must grapple with ethical considerations unprecedented in human history.",
+          "Sustainable development requires balancing economic growth with environmental protection and social equity. The United Nations' Sustainable Development Goals provide a framework for addressing global challenges, from poverty eradication to climate action, through international cooperation.",
+          "The neuroscience of language acquisition reveals fascinating insights into how the human brain processes and produces speech. Broca's area and Wernicke's area play crucial roles in language production and comprehension, respectively, demonstrating the specialized nature of neural circuitry.",
+          "Blockchain technology represents a paradigm shift in how we establish trust and transparency in digital transactions. Beyond cryptocurrency applications, distributed ledger systems are being explored for supply chain management, identity verification, and smart contract execution.",
+          "The intersection of biotechnology and ethics presents complex dilemmas regarding genetic modification, cloning, and personalized medicine. As our ability to manipulate the fundamental building blocks of life advances, society must establish appropriate guidelines and regulatory frameworks.",
+          "Cognitive psychology examines how people acquire, process, and store information. Understanding memory formation, attention mechanisms, and decision-making processes has practical applications in education, therapy, and user interface design.",
+          "The democratization of information through digital platforms has transformed journalism, education, and political discourse. While unprecedented access to knowledge empowers individuals, it also creates challenges related to misinformation, echo chambers, and digital literacy.",
+          "Urban planning in the twenty-first century must address interconnected challenges of population growth, infrastructure aging, environmental sustainability, and social equity. Smart city initiatives leverage technology to optimize resource allocation and improve quality of life for residents."
+        ]
+      };
+
+      // State
+      let currentText = '';
+      let startTime = null;
+      let timerInterval = null;
+      let isTestActive = false;
+      let isTestComplete = false;
+      let currentDifficulty = 'easy';
+      let soundEnabled = false;
+
+      // Audio context for key sounds
+      let audioContext = null;
+
+      // DOM Elements
+      const sampleTextEl = document.getElementById('sample-text');
+      const typingInput = document.getElementById('typing-input');
+      const timerDisplay = document.getElementById('timer-display');
+      const statusBadge = document.getElementById('status-badge');
+      const progressBar = document.getElementById('progress-bar');
+      const restartBtn = document.getElementById('restart-btn');
+      const tryAgainBtn = document.getElementById('try-again-btn');
+      const soundToggle = document.getElementById('sound-toggle');
+      const resultsSection = document.getElementById('results-section');
+      const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+
+      // Stats elements
+      const statWpm = document.getElementById('stat-wpm');
+      const statCpm = document.getElementById('stat-cpm');
+      const statAccuracy = document.getElementById('stat-accuracy');
+      const statErrors = document.getElementById('stat-errors');
+
+      // Result elements
+      const resultWpm = document.getElementById('result-wpm');
+      const resultCpm = document.getElementById('result-cpm');
+      const resultAccuracy = document.getElementById('result-accuracy');
+      const resultTime = document.getElementById('result-time');
+
+      // Initialize audio context
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      }
+
+      // Play key sound
+      function playKeySound(correct) {
+        if (!soundEnabled || !audioContext) return;
+
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.value = correct ? 800 : 300;
+        oscillator.type = 'sine';
+
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+      }
+
+      // Get random text based on difficulty
+      function getRandomText(difficulty) {
+        const texts = sampleTexts[difficulty];
+        return texts[Math.floor(Math.random() * texts.length)];
+      }
+
+      // Render sample text with highlighting
+      function renderSampleText(inputText) {
+        let html = '';
+        for (let i = 0; i < currentText.length; i++) {
+          const char = currentText[i];
+          let className = 'char-pending';
+
+          if (i < inputText.length) {
+            if (inputText[i] === char) {
+              className = 'char-correct';
+            } else {
+              className = 'char-wrong';
+            }
+          } else if (i === inputText.length) {
+            className = 'char-current';
+          }
+
+          // Handle space character display
+          const displayChar = char === ' ' ? '&nbsp;' : char;
+          html += `<span class="${className}">${displayChar}</span>`;
+        }
+        sampleTextEl.innerHTML = html;
+      }
+
+      // Calculate stats
+      function calculateStats(inputText, elapsedSeconds) {
+        if (elapsedSeconds === 0) return { wpm: 0, cpm: 0, accuracy: 100, errors: 0 };
+
+        let correctChars = 0;
+        let errors = 0;
+
+        for (let i = 0; i < inputText.length; i++) {
+          if (i < currentText.length && inputText[i] === currentText[i]) {
+            correctChars++;
+          } else {
+            errors++;
+          }
+        }
+
+        const minutes = elapsedSeconds / 60;
+        const cpm = Math.round(correctChars / minutes);
+        const wpm = Math.round((correctChars / 5) / minutes); // Standard: 5 chars = 1 word
+        const accuracy = inputText.length > 0 ? Math.round((correctChars / inputText.length) * 100) : 100;
+
+        return { wpm, cpm, accuracy, errors };
+      }
+
+      // Format time
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      // Start timer
+      function startTimer() {
+        startTime = Date.now();
+        isTestActive = true;
+        statusBadge.textContent = 'In Progress';
+        statusBadge.className = 'px-3 py-1 text-sm rounded-full bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400';
+        timerDisplay.classList.add('timer-pulse');
+
+        timerInterval = setInterval(() => {
+          const elapsed = Math.floor((Date.now() - startTime) / 1000);
+          timerDisplay.textContent = formatTime(elapsed);
+
+          // Update live stats
+          const inputText = typingInput.value;
+          const stats = calculateStats(inputText, elapsed);
+          statWpm.textContent = stats.wpm;
+          statCpm.textContent = stats.cpm;
+          statAccuracy.textContent = stats.accuracy + '%';
+          statErrors.textContent = stats.errors;
+        }, 1000);
+      }
+
+      // Stop timer
+      function stopTimer() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        timerDisplay.classList.remove('timer-pulse');
+      }
+
+      // Complete test
+      function completeTest() {
+        stopTimer();
+        isTestActive = false;
+        isTestComplete = true;
+
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        const inputText = typingInput.value;
+        const stats = calculateStats(inputText, elapsed);
+
+        // Update status
+        statusBadge.textContent = 'Complete';
+        statusBadge.className = 'px-3 py-1 text-sm rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400';
+
+        // Show results
+        resultWpm.textContent = stats.wpm;
+        resultCpm.textContent = stats.cpm;
+        resultAccuracy.textContent = stats.accuracy + '%';
+        resultTime.textContent = formatTime(elapsed);
+
+        resultsSection.classList.remove('hidden');
+        typingInput.disabled = true;
+      }
+
+      // Reset test
+      function resetTest() {
+        stopTimer();
+        isTestActive = false;
+        isTestComplete = false;
+        startTime = null;
+
+        currentText = getRandomText(currentDifficulty);
+        renderSampleText('');
+
+        typingInput.value = '';
+        typingInput.disabled = false;
+        typingInput.focus();
+
+        timerDisplay.textContent = '00:00';
+        progressBar.style.width = '0%';
+
+        statusBadge.textContent = 'Ready';
+        statusBadge.className = 'px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400';
+
+        statWpm.textContent = '0';
+        statCpm.textContent = '0';
+        statAccuracy.textContent = '100%';
+        statErrors.textContent = '0';
+
+        resultsSection.classList.add('hidden');
+      }
+
+      // Handle input
+      function handleInput() {
+        if (isTestComplete) return;
+
+        const inputText = typingInput.value;
+
+        // Start timer on first input
+        if (!isTestActive && inputText.length > 0) {
+          startTimer();
+        }
+
+        // Play sound
+        if (inputText.length > 0) {
+          const lastIndex = inputText.length - 1;
+          const isCorrect = lastIndex < currentText.length && inputText[lastIndex] === currentText[lastIndex];
+          playKeySound(isCorrect);
+        }
+
+        // Update display
+        renderSampleText(inputText);
+
+        // Update progress
+        const progress = Math.min((inputText.length / currentText.length) * 100, 100);
+        progressBar.style.width = progress + '%';
+
+        // Update live stats
+        if (isTestActive) {
+          const elapsed = Math.floor((Date.now() - startTime) / 1000);
+          const stats = calculateStats(inputText, elapsed || 1);
+          statWpm.textContent = stats.wpm;
+          statCpm.textContent = stats.cpm;
+          statAccuracy.textContent = stats.accuracy + '%';
+          statErrors.textContent = stats.errors;
+        }
+
+        // Check if complete
+        if (inputText.length >= currentText.length) {
+          completeTest();
+        }
+      }
+
+      // Event Listeners
+      typingInput.addEventListener('input', handleInput);
+
+      restartBtn.addEventListener('click', resetTest);
+      tryAgainBtn.addEventListener('click', resetTest);
+
+      soundToggle.addEventListener('change', (e) => {
+        soundEnabled = e.target.checked;
+        if (soundEnabled) {
+          initAudio();
+        }
+      });
+
+      difficultyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          difficultyBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentDifficulty = btn.dataset.level;
+          resetTest();
+        });
+      });
+
+      // Prevent paste
+      typingInput.addEventListener('paste', (e) => {
+        e.preventDefault();
+      });
+
+      // Initialize
+      resetTest();
+    })();
+  </script>
+</body>
+</html>

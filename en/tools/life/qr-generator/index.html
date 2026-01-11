@@ -36,15 +36,15 @@
   <script src="../../../../assets/js/i18n.js"></script>
   <script src="../../../../assets/js/components.js"></script>
 
-  <!-- QRCode.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- QR Code Styling Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
 
   <style>
     .qr-preview {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 200px;
+      min-height: 280px;
       background: white;
       border-radius: 12px;
       padding: 20px;
@@ -52,13 +52,13 @@
     .dark .qr-preview {
       background: white;
     }
-    #qrcode img, #qrcode canvas {
+    #qrcode canvas, #qrcode svg {
       max-width: 100%;
       height: auto;
     }
     .type-btn {
       flex: 1;
-      min-width: 80px;
+      min-width: 70px;
     }
     .color-input-wrapper {
       display: flex;
@@ -71,6 +71,7 @@
       border-radius: 8px;
       border: 2px solid #e5e7eb;
       overflow: hidden;
+      flex-shrink: 0;
     }
     .color-preview input[type="color"] {
       width: 50px;
@@ -81,6 +82,33 @@
     }
     .dark .color-preview {
       border-color: #4b5563;
+    }
+    .shape-btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+    .shape-btn.active {
+      background: #2563eb;
+      color: white;
+    }
+    .shape-btn:not(.active) {
+      background: #f1f5f9;
+      color: #64748b;
+    }
+    .dark .shape-btn:not(.active) {
+      background: #374151;
+      color: #9ca3af;
+    }
+    .option-group {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .dark .option-group {
+      background: #1f2937;
     }
   </style>
 </head>
@@ -165,39 +193,59 @@
               </select>
             </div>
 
-            <!-- Options -->
+            <!-- Style Options -->
             <div class="mt-6 border-t border-gray-100 dark:border-gray-700 pt-6">
-              <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">Options</h3>
+              <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">Style Options</h3>
 
+              <!-- Module Shape -->
+              <div class="option-group">
+                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-2">Module Shape</label>
+                <div class="flex flex-wrap gap-2">
+                  <button class="shape-btn active" data-shape="square">■ Square</button>
+                  <button class="shape-btn" data-shape="rounded">● Rounded</button>
+                  <button class="shape-btn" data-shape="dots">• Dots</button>
+                  <button class="shape-btn" data-shape="classy">◆ Classy</button>
+                </div>
+              </div>
+
+              <!-- Size & Margin -->
               <div class="grid grid-cols-2 gap-4 mb-4">
-                <!-- Size -->
                 <div>
                   <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Size</label>
                   <select id="qr-size" class="input py-2 text-sm">
-                    <option value="128">128 x 128</option>
-                    <option value="200" selected>200 x 200</option>
-                    <option value="256">256 x 256</option>
+                    <option value="150">150 x 150</option>
+                    <option value="200">200 x 200</option>
+                    <option value="256" selected>256 x 256</option>
                     <option value="400">400 x 400</option>
                     <option value="512">512 x 512</option>
                   </select>
                 </div>
-
-                <!-- Error Correction -->
                 <div>
-                  <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Error Correction</label>
-                  <select id="qr-error" class="input py-2 text-sm">
-                    <option value="L">L (7%)</option>
-                    <option value="M" selected>M (15%)</option>
-                    <option value="Q">Q (25%)</option>
-                    <option value="H">H (30%)</option>
+                  <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Margin</label>
+                  <select id="qr-margin" class="input py-2 text-sm">
+                    <option value="0">None</option>
+                    <option value="5">Small</option>
+                    <option value="10" selected>Normal</option>
+                    <option value="20">Large</option>
                   </select>
                 </div>
+              </div>
+
+              <!-- Error Correction -->
+              <div class="mb-4">
+                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Error Correction</label>
+                <select id="qr-error" class="input py-2 text-sm">
+                  <option value="L">L (7%) - Low</option>
+                  <option value="M" selected>M (15%) - Medium</option>
+                  <option value="Q">Q (25%) - Quartile</option>
+                  <option value="H">H (30%) - High</option>
+                </select>
               </div>
 
               <!-- Colors -->
               <div class="grid grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Foreground</label>
+                  <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Foreground (Dots)</label>
                   <div class="color-input-wrapper">
                     <div class="color-preview">
                       <input type="color" id="qr-fg-color" value="#000000">
@@ -213,6 +261,15 @@
                     </div>
                     <input type="text" id="qr-bg-hex" class="input py-2 text-sm font-mono flex-1" value="#ffffff">
                   </div>
+                </div>
+              </div>
+
+              <!-- Corner Style -->
+              <div class="mt-4">
+                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-2">Corner Style</label>
+                <div class="flex flex-wrap gap-2">
+                  <button class="shape-btn active" data-corner="square">■ Square</button>
+                  <button class="shape-btn" data-corner="extra-rounded">● Rounded</button>
                 </div>
               </div>
             </div>
@@ -232,7 +289,6 @@
             <div class="flex gap-2 mt-4">
               <button id="download-png" class="btn btn-secondary flex-1">Download PNG</button>
               <button id="download-svg" class="btn btn-secondary flex-1">Download SVG</button>
-              <button id="copy-btn" class="btn btn-secondary flex-1">Copy</button>
             </div>
 
             <!-- QR Data Preview -->
@@ -258,6 +314,39 @@
       <div class="ad-container mt-8">
 
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a QR Code Generator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A QR code generator creates Quick Response codes that can store various types of data including URLs, text, contact information, WiFi credentials, and more. QR codes are two-dimensional barcodes that can be scanned by smartphones and other devices. They are widely used in marketing, payments, event tickets, product packaging, and contactless information sharing.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select the type of content you want to encode (URL, text, WiFi, contact, etc.)</li>
+            <li>Enter the content or information for your QR code</li>
+            <li>Customize the QR code appearance including size, module shape, and colors</li>
+            <li>Click Generate to create your QR code</li>
+            <li>Download the QR code image in PNG or SVG format</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What types of data can QR codes store?</h4>
+              <p>QR codes can store various data types including website URLs, plain text, email addresses, phone numbers, SMS messages, WiFi network credentials, geographic locations, calendar events, and contact cards (vCards). The maximum capacity is about 3KB of data, or roughly 4,296 alphanumeric characters.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What size should my QR code be for printing?</h4>
+              <p>The minimum recommended size depends on scanning distance. For close-range scanning (within 10cm), a 2cm x 2cm QR code works well. For posters viewed from 1-2 meters, use at least 10cm x 10cm. A general rule is the scanning distance divided by 10 equals the minimum QR code size. Always test before mass printing.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I customize the colors of my QR code?</h4>
+              <p>Yes, QR codes can be customized with different colors, but ensure sufficient contrast for reliable scanning. The foreground should be darker than the background. Avoid low-contrast combinations and test your colored QR code with multiple devices before use. Traditional black on white provides the best scan reliability.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -271,6 +360,8 @@
 
       // Elements
       const typeBtns = document.querySelectorAll('.type-btn');
+      const shapeBtns = document.querySelectorAll('.shape-btn[data-shape]');
+      const cornerBtns = document.querySelectorAll('.shape-btn[data-corner]');
       const inputSections = {
         url: document.getElementById('url-input-section'),
         text: document.getElementById('text-input-section'),
@@ -290,6 +381,7 @@
       const wifiEncryption = document.getElementById('wifi-encryption');
 
       const qrSize = document.getElementById('qr-size');
+      const qrMargin = document.getElementById('qr-margin');
       const qrError = document.getElementById('qr-error');
       const qrFgColor = document.getElementById('qr-fg-color');
       const qrBgColor = document.getElementById('qr-bg-color');
@@ -299,12 +391,13 @@
       const generateBtn = document.getElementById('generate-btn');
       const downloadPng = document.getElementById('download-png');
       const downloadSvg = document.getElementById('download-svg');
-      const copyBtn = document.getElementById('copy-btn');
       const qrcodeDiv = document.getElementById('qrcode');
       const encodedData = document.getElementById('encoded-data');
 
       let currentType = 'url';
-      let qrInstance = null;
+      let currentShape = 'square';
+      let currentCorner = 'square';
+      let qrCode = null;
 
       // Type switching
       typeBtns.forEach(btn => {
@@ -322,6 +415,24 @@
             section.classList.add('hidden');
           });
           inputSections[currentType].classList.remove('hidden');
+        });
+      });
+
+      // Shape buttons
+      shapeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          shapeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentShape = btn.dataset.shape;
+        });
+      });
+
+      // Corner buttons
+      cornerBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          cornerBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCorner = btn.dataset.corner;
         });
       });
 
@@ -375,11 +486,30 @@
         return '';
       }
 
+      // Get dot/corner type for QRCodeStyling
+      function getDotType() {
+        switch (currentShape) {
+          case 'square': return 'square';
+          case 'rounded': return 'rounded';
+          case 'dots': return 'dots';
+          case 'classy': return 'classy';
+          default: return 'square';
+        }
+      }
+
+      function getCornerSquareType() {
+        switch (currentCorner) {
+          case 'square': return 'square';
+          case 'extra-rounded': return 'extra-rounded';
+          default: return 'square';
+        }
+      }
+
       // Generate QR Code
       function generateQR() {
         const data = getQRData();
         if (!data) {
-          toast.warning(t('tools.qrGenerator.enterData'));
+          toast.warning('Please enter data');
           return;
         }
 
@@ -387,132 +517,66 @@
         qrcodeDiv.innerHTML = '';
 
         const size = parseInt(qrSize.value);
-        const errorLevel = {
-          'L': QRCode.CorrectLevel.L,
-          'M': QRCode.CorrectLevel.M,
-          'Q': QRCode.CorrectLevel.Q,
-          'H': QRCode.CorrectLevel.H
-        }[qrError.value];
+        const margin = parseInt(qrMargin.value);
+        const errorLevel = qrError.value;
 
         try {
-          qrInstance = new QRCode(qrcodeDiv, {
-            text: data,
+          qrCode = new QRCodeStyling({
             width: size,
             height: size,
-            colorDark: qrFgColor.value,
-            colorLight: qrBgColor.value,
-            correctLevel: errorLevel
+            type: 'svg',
+            data: data,
+            margin: margin,
+            qrOptions: {
+              errorCorrectionLevel: errorLevel
+            },
+            dotsOptions: {
+              color: qrFgColor.value,
+              type: getDotType()
+            },
+            cornersSquareOptions: {
+              color: qrFgColor.value,
+              type: getCornerSquareType()
+            },
+            cornersDotOptions: {
+              color: qrFgColor.value,
+              type: currentCorner === 'extra-rounded' ? 'dot' : 'square'
+            },
+            backgroundOptions: {
+              color: qrBgColor.value
+            }
           });
 
+          qrCode.append(qrcodeDiv);
           encodedData.textContent = data;
         } catch (e) {
-          toast.error(t('common.conversionError'));
+          console.error(e);
+          toast.error('An error occurred while generating QR code');
         }
       }
 
       // Download PNG
-      function downloadQRCode() {
-        const canvas = qrcodeDiv.querySelector('canvas');
-        if (!canvas) {
-          toast.warning(t('tools.qrGenerator.generateFirst'));
+      function downloadQRPng() {
+        if (!qrCode) {
+          toast.warning('Please generate a QR code first');
           return;
         }
-
-        const link = document.createElement('a');
-        link.download = 'qrcode.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
+        qrCode.download({ name: 'qrcode', extension: 'png' });
       }
 
       // Download SVG
-      function downloadQRCodeSvg() {
-        const canvas = qrcodeDiv.querySelector('canvas');
-        if (!canvas) {
-          toast.warning(t('tools.qrGenerator.generateFirst'));
+      function downloadQRSvg() {
+        if (!qrCode) {
+          toast.warning('Please generate a QR code first');
           return;
         }
-
-        const ctx = canvas.getContext('2d');
-        const size = canvas.width;
-        const imageData = ctx.getImageData(0, 0, size, size);
-        const data = imageData.data;
-
-        // Detect module size by finding first black pixel row length
-        let moduleSize = 1;
-        for (let x = 0; x < size; x++) {
-          const idx = x * 4;
-          if (data[idx] < 128) { // Found dark pixel
-            let count = 1;
-            for (let nx = x + 1; nx < size; nx++) {
-              const nidx = nx * 4;
-              if (data[nidx] < 128) count++;
-              else break;
-            }
-            moduleSize = count;
-            break;
-          }
-        }
-
-        const modules = Math.round(size / moduleSize);
-        const fgColor = qrFgColor.value;
-        const bgColor = qrBgColor.value;
-
-        let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${modules} ${modules}" width="${size}" height="${size}">`;
-        svg += `<rect width="${modules}" height="${modules}" fill="${bgColor}"/>`;
-
-        // Sample center of each module
-        for (let y = 0; y < modules; y++) {
-          for (let x = 0; x < modules; x++) {
-            const px = Math.floor(x * moduleSize + moduleSize / 2);
-            const py = Math.floor(y * moduleSize + moduleSize / 2);
-            const idx = (py * size + px) * 4;
-            if (data[idx] < 128) { // Dark module
-              svg += `<rect x="${x}" y="${y}" width="1" height="1" fill="${fgColor}"/>`;
-            }
-          }
-        }
-
-        svg += '</svg>';
-
-        const blob = new Blob([svg], { type: 'image/svg+xml' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.download = 'qrcode.svg';
-        link.href = url;
-        link.click();
-        URL.revokeObjectURL(url);
-      }
-
-      // Copy image to clipboard
-      async function copyQRCode() {
-        const canvas = qrcodeDiv.querySelector('canvas');
-        if (!canvas) {
-          toast.warning(t('tools.qrGenerator.generateFirst'));
-          return;
-        }
-
-        try {
-          const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-          await navigator.clipboard.write([
-            new ClipboardItem({ 'image/png': blob })
-          ]);
-          toast.success(t('common.copied'));
-        } catch (e) {
-          // Fallback: copy data URL
-          try {
-            await navigator.clipboard.writeText(canvas.toDataURL('image/png'));
-            toast.success(t('common.copied'));
-          } catch (e2) {
-            toast.error(t('common.conversionError'));
-          }
-        }
+        qrCode.download({ name: 'qrcode', extension: 'svg' });
       }
 
       // Event listeners
       generateBtn.addEventListener('click', generateQR);
-      downloadPng.addEventListener('click', downloadQRCode);
-      downloadSvg.addEventListener('click', downloadQRCodeSvg);
-      copyBtn.addEventListener('click', copyQRCode);
+      downloadPng.addEventListener('click', downloadQRPng);
+      downloadSvg.addEventListener('click', downloadQRSvg);
 
       // Enter key to generate
       [urlInput, textInput, phoneInput, emailInput, wifiSsid].forEach(input => {

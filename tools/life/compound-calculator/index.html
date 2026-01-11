@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>복리 계산기 - Toolneat</title>
+  <meta name="description" content="복리로 투자했을 때의 수익을 계산합니다. 원금, 이자율, 투자 기간, 월 적립금을 입력하여 복리 수익을 확인하세요.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/life/compound-calculator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/compound-calculator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/compound-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/compound-calculator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="복리 계산기 - Toolneat">
+  <meta property="og:description" content="복리로 투자했을 때의 수익을 계산합니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/life/compound-calculator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    .result-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      text-align: center;
+    }
+    .result-label {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-bottom: 0.25rem;
+    }
+    .dark .result-label {
+      color: #9ca3af;
+    }
+    .result-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .frequency-btn {
+      padding: 0.5rem 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-size: 0.875rem;
+    }
+    .frequency-btn:hover {
+      border-color: #d1d5db;
+    }
+    .dark .frequency-btn {
+      border-color: #374151;
+    }
+    .dark .frequency-btn:hover {
+      border-color: #4b5563;
+    }
+    .frequency-btn.active {
+      border-color: #2563eb;
+      background-color: #eff6ff;
+      color: #2563eb;
+    }
+    .dark .frequency-btn.active {
+      border-color: #3b82f6;
+      background-color: #1e3a5f;
+      color: #60a5fa;
+    }
+    .breakdown-table {
+      font-size: 0.875rem;
+    }
+    .breakdown-table th {
+      background-color: #f9fafb;
+      font-weight: 600;
+      padding: 0.75rem 0.5rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .dark .breakdown-table th {
+      background-color: #1f2937;
+    }
+    .breakdown-table td {
+      padding: 0.5rem;
+      text-align: right;
+      border-top: 1px solid #e5e7eb;
+    }
+    .dark .breakdown-table td {
+      border-top-color: #374151;
+    }
+    .breakdown-table td:first-child,
+    .breakdown-table th:first-child {
+      text-align: center;
+    }
+    .chart-container {
+      position: relative;
+      height: 200px;
+      margin-top: 1rem;
+    }
+    .chart-bar-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      height: 100%;
+    }
+    .chart-bar-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: calc(100% - 24px);
+      width: 100%;
+      padding: 0 2px;
+    }
+    .chart-bar {
+      width: 100%;
+      border-radius: 4px 4px 0 0;
+      transition: height 0.3s ease;
+      min-height: 2px;
+    }
+    .chart-bar-principal {
+      background-color: #3b82f6;
+    }
+    .chart-bar-interest {
+      background-color: #22c55e;
+    }
+    .chart-label {
+      font-size: 0.625rem;
+      color: #6b7280;
+      text-align: center;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dark .chart-label {
+      color: #9ca3af;
+    }
+    .bar-container {
+      height: 24px;
+      background-color: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+    }
+    .dark .bar-container {
+      background-color: #374151;
+    }
+    .bar-principal {
+      background-color: #3b82f6;
+      height: 100%;
+    }
+    .bar-interest {
+      background-color: #22c55e;
+      height: 100%;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          복리 계산기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          복리로 투자했을 때의 수익을 계산합니다. 원금, 이자율, 투자 기간을 입력하고 월 적립금을 추가하여 복리 효과를 확인하세요.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Input Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <!-- Principal -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">원금</label>
+            <div class="flex gap-2">
+              <input type="text" id="principal" class="input flex-1 text-right font-mono" value="10,000,000" inputmode="numeric">
+              <span class="flex items-center px-3 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-lg shrink-0">원</span>
+            </div>
+          </div>
+
+          <!-- Interest Rate -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">연 이자율</label>
+            <div class="flex gap-2">
+              <input type="text" id="interest-rate" class="input flex-1 text-right font-mono" value="5" inputmode="decimal">
+              <span class="flex items-center px-3 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-lg shrink-0">%</span>
+            </div>
+          </div>
+
+          <!-- Investment Period -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">투자 기간</label>
+            <div class="flex gap-2">
+              <input type="number" id="period" class="input flex-1 text-right font-mono" value="10" min="1" max="100">
+              <span class="flex items-center px-3 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-lg shrink-0">년</span>
+            </div>
+          </div>
+
+          <!-- Monthly Contribution -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">월 적립금 (선택)</label>
+            <div class="flex gap-2">
+              <input type="text" id="monthly-contribution" class="input flex-1 text-right font-mono" value="0" inputmode="numeric">
+              <span class="flex items-center px-3 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-lg shrink-0">원</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compounding Frequency -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">복리 주기</label>
+          <div class="flex flex-wrap gap-2">
+            <button class="frequency-btn" data-frequency="1">연복리</button>
+            <button class="frequency-btn" data-frequency="2">반기복리</button>
+            <button class="frequency-btn" data-frequency="4">분기복리</button>
+            <button class="frequency-btn active" data-frequency="12">월복리</button>
+            <button class="frequency-btn" data-frequency="365">일복리</button>
+          </div>
+        </div>
+
+        <!-- Calculate Button -->
+        <button id="calculate-btn" class="btn btn-primary w-full mb-6">계산하기</button>
+
+        <!-- Results Section -->
+        <div id="results-section" class="hidden">
+          <!-- Summary Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="result-card bg-blue-50 dark:bg-blue-900/30">
+              <span class="result-label">최종 금액</span>
+              <span id="final-amount" class="result-value text-blue-600 dark:text-blue-400">-</span>
+            </div>
+            <div class="result-card bg-green-50 dark:bg-green-900/30">
+              <span class="result-label">총 이자 수익</span>
+              <span id="total-interest" class="result-value text-green-600 dark:text-green-400">-</span>
+            </div>
+            <div class="result-card bg-gray-50 dark:bg-gray-800">
+              <span class="result-label">총 투자금</span>
+              <span id="total-contributions" class="result-value text-gray-900 dark:text-white">-</span>
+            </div>
+            <div class="result-card bg-purple-50 dark:bg-purple-900/30">
+              <span class="result-label">수익률</span>
+              <span id="growth-percent" class="result-value text-purple-600 dark:text-purple-400">-</span>
+            </div>
+          </div>
+
+          <!-- Visual Bar -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between text-sm mb-2">
+              <span class="text-gray-600 dark:text-gray-400">투자금 vs 이자 수익</span>
+              <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded bg-blue-500"></span>
+                  <span class="text-gray-600 dark:text-gray-400">투자금</span>
+                  <span id="principal-percent" class="font-medium text-gray-900 dark:text-white">0%</span>
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded bg-green-500"></span>
+                  <span class="text-gray-600 dark:text-gray-400">이자</span>
+                  <span id="interest-percent" class="font-medium text-gray-900 dark:text-white">0%</span>
+                </span>
+              </div>
+            </div>
+            <div class="bar-container">
+              <div id="principal-bar" class="bar-principal" style="width: 0%"></div>
+              <div id="interest-bar" class="bar-interest" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Growth Chart -->
+          <div class="mb-6">
+            <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">연도별 성장 그래프</h3>
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
+              <div class="flex items-center gap-4 mb-3 text-xs">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded bg-blue-500"></span>
+                  <span class="text-gray-600 dark:text-gray-400">투자금</span>
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded bg-green-500"></span>
+                  <span class="text-gray-600 dark:text-gray-400">이자 수익</span>
+                </span>
+              </div>
+              <div class="chart-container flex items-end gap-1" id="growth-chart">
+              </div>
+            </div>
+          </div>
+
+          <!-- Breakdown Toggle -->
+          <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+            <div class="flex items-center justify-between">
+              <button id="toggle-breakdown" class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                <svg id="breakdown-arrow" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span>연도별 상세 내역</span>
+              </button>
+              <button id="export-csv" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">CSV 내보내기</button>
+            </div>
+
+            <div id="breakdown-section" class="hidden mt-4">
+              <div class="overflow-x-auto">
+                <table class="breakdown-table w-full">
+                  <thead>
+                    <tr>
+                      <th>연차</th>
+                      <th>연초 잔액</th>
+                      <th>연간 적립금</th>
+                      <th>연간 이자</th>
+                      <th>연말 잔액</th>
+                    </tr>
+                  </thead>
+                  <tbody id="breakdown-body">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Card -->
+      <div class="card mt-6">
+        <h3 class="font-medium text-gray-900 dark:text-white mb-4">복리란?</h3>
+        <div class="space-y-4 text-sm text-gray-600 dark:text-gray-400">
+          <p>복리는 원금뿐만 아니라 이전에 발생한 이자에도 이자가 붙는 방식입니다. 시간이 지날수록 이자가 이자를 낳아 자산이 기하급수적으로 증가합니다.</p>
+          <div>
+            <h4 class="font-medium text-gray-800 dark:text-gray-200">복리 공식</h4>
+            <p class="font-mono bg-gray-100 dark:bg-gray-700 p-2 rounded mt-1">A = P(1 + r/n)^(nt)</p>
+            <p class="mt-2">A = 최종 금액, P = 원금, r = 연 이자율, n = 복리 주기, t = 투자 기간(년)</p>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-800 dark:text-gray-200">복리 주기의 효과</h4>
+            <p>복리 주기가 짧을수록(월복리 > 분기복리 > 연복리) 더 많은 이자가 발생합니다. 하지만 그 차이는 이자율이 높을수록 더 뚜렷해집니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">복리 계산기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>복리 계산기는 투자금이 복리로 성장할 때 최종 금액과 수익을 계산해주는 도구입니다. 예금, 적금, 펀드, 주식 등 다양한 투자 상품의 예상 수익을 확인하는 데 유용합니다.</p>
+          <p class="mt-3">월 적립금을 추가하면 정기적으로 투자하는 경우의 복리 효과도 확인할 수 있습니다. 장기 투자일수록 복리 효과는 더욱 커집니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>원금을 입력합니다 (예: 1,000만원)</li>
+            <li>연 이자율을 입력합니다 (예: 5%)</li>
+            <li>투자 기간을 선택합니다 (예: 10년)</li>
+            <li>월 적립금을 입력합니다 (선택, 예: 50만원)</li>
+            <li>복리 주기를 선택합니다 (연/반기/분기/월/일)</li>
+            <li>'계산하기' 버튼을 클릭하면 결과가 표시됩니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 단리와 복리의 차이점은?</h4>
+              <p>단리는 원금에만 이자가 붙지만, 복리는 원금과 이자 모두에 이자가 붙습니다. 장기 투자에서 복리는 훨씬 더 높은 수익을 제공합니다. 예를 들어, 1억원을 연 5%로 20년간 투자하면 단리는 2억원, 복리는 약 2.65억원이 됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 72의 법칙이란?</h4>
+              <p>72의 법칙은 투자금이 2배가 되는 데 걸리는 시간을 빠르게 계산하는 방법입니다. 72를 연 이자율로 나누면 대략적인 기간을 알 수 있습니다. 예: 연 6%라면 72/6 = 12년이면 원금이 2배가 됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 월 적립금은 어떻게 계산되나요?</h4>
+              <p>월 적립금은 매월 초에 투자되는 것으로 가정하며, 각 적립금도 남은 기간 동안 복리로 성장합니다. 정기적인 적립은 복리 효과를 극대화하는 좋은 방법입니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const principalInput = document.getElementById('principal');
+      const interestRateInput = document.getElementById('interest-rate');
+      const periodInput = document.getElementById('period');
+      const monthlyContributionInput = document.getElementById('monthly-contribution');
+      const frequencyBtns = document.querySelectorAll('.frequency-btn');
+      const calculateBtn = document.getElementById('calculate-btn');
+      const resultsSection = document.getElementById('results-section');
+      const finalAmountEl = document.getElementById('final-amount');
+      const totalInterestEl = document.getElementById('total-interest');
+      const totalContributionsEl = document.getElementById('total-contributions');
+      const growthPercentEl = document.getElementById('growth-percent');
+      const principalPercentEl = document.getElementById('principal-percent');
+      const interestPercentEl = document.getElementById('interest-percent');
+      const principalBarEl = document.getElementById('principal-bar');
+      const interestBarEl = document.getElementById('interest-bar');
+      const growthChartEl = document.getElementById('growth-chart');
+      const toggleBreakdownBtn = document.getElementById('toggle-breakdown');
+      const breakdownSection = document.getElementById('breakdown-section');
+      const breakdownArrow = document.getElementById('breakdown-arrow');
+      const breakdownBody = document.getElementById('breakdown-body');
+      const exportCsvBtn = document.getElementById('export-csv');
+
+      let currentFrequency = 12;
+      let yearlyData = [];
+
+      // Format number with commas
+      function formatNumber(num) {
+        return Math.round(num).toLocaleString('ko-KR');
+      }
+
+      // Parse number from formatted string
+      function parseNumber(str) {
+        return parseFloat(str.replace(/[^\d.-]/g, '')) || 0;
+      }
+
+      // Format input on blur
+      function formatInput(input) {
+        const value = parseNumber(input.value);
+        if (!isNaN(value) && value >= 0) {
+          input.value = formatNumber(value);
+        }
+      }
+
+      // Frequency selection
+      frequencyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          frequencyBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFrequency = parseInt(btn.dataset.frequency);
+        });
+      });
+
+      // Format inputs
+      [principalInput, monthlyContributionInput].forEach(input => {
+        input.addEventListener('blur', () => formatInput(input));
+        input.addEventListener('focus', () => {
+          input.value = input.value.replace(/,/g, '');
+        });
+      });
+
+      // Calculate compound interest
+      function calculate() {
+        const principal = parseNumber(principalInput.value);
+        const annualRate = parseFloat(interestRateInput.value) / 100 || 0;
+        const years = parseInt(periodInput.value) || 0;
+        const monthlyContribution = parseNumber(monthlyContributionInput.value);
+        const n = currentFrequency;
+
+        // Validate inputs
+        if (principal < 0 || annualRate < 0 || years <= 0) {
+          toast.warning('올바른 값을 입력해주세요.');
+          return;
+        }
+
+        if (years > 100) {
+          toast.warning('투자 기간은 최대 100년입니다.');
+          periodInput.value = 100;
+          return;
+        }
+
+        yearlyData = [];
+        let balance = principal;
+        let totalContributed = principal;
+        const ratePerPeriod = annualRate / n;
+
+        for (let year = 1; year <= years; year++) {
+          const startBalance = balance;
+          let yearlyContribution = 0;
+          let yearlyInterest = 0;
+
+          // Calculate for each compounding period in this year
+          for (let period = 0; period < n; period++) {
+            // Add monthly contributions (distributed across compounding periods)
+            if (monthlyContribution > 0) {
+              const monthsPerPeriod = 12 / n;
+              const contributionThisPeriod = monthlyContribution * monthsPerPeriod;
+              balance += contributionThisPeriod;
+              yearlyContribution += contributionThisPeriod;
+              totalContributed += contributionThisPeriod;
+            }
+
+            // Calculate and add interest
+            const interest = balance * ratePerPeriod;
+            balance += interest;
+            yearlyInterest += interest;
+          }
+
+          yearlyData.push({
+            year: year,
+            startBalance: startBalance,
+            contribution: yearlyContribution,
+            interest: yearlyInterest,
+            endBalance: balance
+          });
+        }
+
+        const finalAmount = balance;
+        const totalInterest = finalAmount - totalContributed;
+        const growthPercent = totalContributed > 0 ? ((finalAmount - totalContributed) / totalContributed * 100) : 0;
+
+        // Update UI
+        finalAmountEl.textContent = formatNumber(finalAmount) + '원';
+        totalInterestEl.textContent = formatNumber(totalInterest) + '원';
+        totalContributionsEl.textContent = formatNumber(totalContributed) + '원';
+        growthPercentEl.textContent = growthPercent.toFixed(1) + '%';
+
+        // Update bar
+        const principalPct = (totalContributed / finalAmount * 100).toFixed(1);
+        const interestPct = (totalInterest / finalAmount * 100).toFixed(1);
+        principalPercentEl.textContent = principalPct + '%';
+        interestPercentEl.textContent = interestPct + '%';
+        principalBarEl.style.width = principalPct + '%';
+        interestBarEl.style.width = interestPct + '%';
+
+        // Update chart
+        updateChart();
+
+        // Update breakdown table
+        updateBreakdownTable();
+
+        resultsSection.classList.remove('hidden');
+      }
+
+      // Update growth chart
+      function updateChart() {
+        const maxBalance = yearlyData[yearlyData.length - 1].endBalance;
+        let chartHtml = '';
+
+        // Show max 20 bars, skip years if needed
+        const maxBars = 20;
+        const step = Math.ceil(yearlyData.length / maxBars);
+        const dataToShow = yearlyData.filter((_, i) => (i + 1) % step === 0 || i === yearlyData.length - 1);
+
+        dataToShow.forEach((data, index) => {
+          const totalHeight = (data.endBalance / maxBalance * 100);
+          const contributionHeight = ((data.endBalance - (data.endBalance - data.startBalance - data.contribution + (index > 0 ? dataToShow[index-1].endBalance - data.startBalance : 0))) / maxBalance * 100);
+
+          // Calculate cumulative contributions up to this year
+          let cumulativeContribution = parseNumber(principalInput.value);
+          for (let i = 0; i < data.year; i++) {
+            cumulativeContribution += yearlyData[i].contribution;
+          }
+
+          const principalHeight = (cumulativeContribution / maxBalance * 100);
+          const interestHeight = totalHeight - principalHeight;
+
+          chartHtml += `
+            <div class="chart-bar-group">
+              <div class="chart-bar-wrapper">
+                <div class="chart-bar chart-bar-interest" style="height: ${Math.max(0, interestHeight)}%"></div>
+                <div class="chart-bar chart-bar-principal" style="height: ${principalHeight}%; border-radius: 0;"></div>
+              </div>
+              <div class="chart-label">${data.year}년</div>
+            </div>
+          `;
+        });
+
+        growthChartEl.innerHTML = chartHtml;
+      }
+
+      // Update breakdown table
+      function updateBreakdownTable() {
+        let rows = '';
+
+        yearlyData.forEach(data => {
+          rows += `
+            <tr>
+              <td>${data.year}년</td>
+              <td>${formatNumber(data.startBalance)}원</td>
+              <td>${formatNumber(data.contribution)}원</td>
+              <td>${formatNumber(data.interest)}원</td>
+              <td>${formatNumber(data.endBalance)}원</td>
+            </tr>
+          `;
+        });
+
+        breakdownBody.innerHTML = rows;
+      }
+
+      // Toggle breakdown visibility
+      toggleBreakdownBtn.addEventListener('click', () => {
+        const isHidden = breakdownSection.classList.toggle('hidden');
+        breakdownArrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(90deg)';
+      });
+
+      // Export CSV
+      function exportToCsv() {
+        if (yearlyData.length === 0) {
+          toast.warning('먼저 계산을 실행해주세요.');
+          return;
+        }
+
+        const headers = ['연차', '연초 잔액', '연간 적립금', '연간 이자', '연말 잔액'];
+
+        let csv = '\uFEFF' + headers.join(',') + '\n';
+
+        yearlyData.forEach(data => {
+          csv += [
+            data.year,
+            Math.round(data.startBalance),
+            Math.round(data.contribution),
+            Math.round(data.interest),
+            Math.round(data.endBalance)
+          ].join(',') + '\n';
+        });
+
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `compound_interest_${new Date().toISOString().slice(0,10)}.csv`;
+        link.click();
+        URL.revokeObjectURL(url);
+
+        toast.success('CSV 파일이 다운로드되었습니다.');
+      }
+
+      exportCsvBtn.addEventListener('click', exportToCsv);
+
+      // Calculate button
+      calculateBtn.addEventListener('click', calculate);
+
+      // Enter key to calculate
+      [principalInput, interestRateInput, periodInput, monthlyContributionInput].forEach(input => {
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') calculate();
+        });
+      });
+
+      // Initialize
+      formatInput(principalInput);
+      formatInput(monthlyContributionInput);
+    })();
+  </script>
+</body>
+</html>

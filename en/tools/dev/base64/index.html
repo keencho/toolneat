@@ -129,6 +129,39 @@
       <div class="ad-container mt-6">
 
       </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Base64 Encoder/Decoder?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Base64 is a binary-to-text encoding scheme that converts binary data into an ASCII string format using 64 printable characters. It is commonly used for encoding data in email attachments, embedding images in HTML/CSS, transmitting data in URLs, and storing complex data in JSON or XML formats. This tool allows you to quickly encode text to Base64 or decode Base64 strings back to their original text.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select the operation mode: click "Encode" to convert text to Base64, or "Decode" to convert Base64 back to text.</li>
+            <li>Enter your text or Base64 string in the input area on the left side.</li>
+            <li>Enable "URL-safe" option if you need Base64 encoding that is safe for use in URLs (replaces + and / with - and _).</li>
+            <li>With "Live" mode enabled, the conversion happens automatically as you type. Otherwise, click the Convert button.</li>
+            <li>Copy the result using the "Copy" button or use the swap button to reverse the input and output.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What is Base64 encoding used for?</h4>
+              <p>Base64 encoding is primarily used when you need to transmit binary data over text-based protocols like email (SMTP) or embed binary data in text formats like JSON, XML, or HTML. Common use cases include encoding images for data URIs, encoding authentication credentials in HTTP headers, and storing binary data in databases that only support text.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between standard Base64 and URL-safe Base64?</h4>
+              <p>Standard Base64 uses the characters A-Z, a-z, 0-9, +, /, and = for padding. URL-safe Base64 replaces + with -, / with _, and typically removes the = padding characters. This makes the encoded string safe to use in URLs and filenames without requiring additional encoding.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does Base64 encoding provide encryption or security?</h4>
+              <p>No, Base64 is an encoding scheme, not an encryption method. It does not provide any security or privacy protection. Base64-encoded data can be easily decoded by anyone. If you need to secure your data, use proper encryption methods like AES before encoding to Base64.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 

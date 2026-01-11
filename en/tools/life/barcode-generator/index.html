@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcode Generator - Toolneat</title>
+  <meta name="description" content="Generate various types of barcodes including CODE128, EAN-13, UPC.">
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/barcode-generator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/barcode-generator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/barcode-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/barcode-generator/">
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+  <style>
+    .barcode-preview {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+    }
+    .dark .barcode-preview { background: white; }
+    #barcode { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Barcode Generator</h1>
+        <p class="text-gray-600 dark:text-gray-400">Generate barcodes in various formats including CODE128, EAN-13, UPC.</p>
+      </div>
+
+      <div class="card">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Input -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Barcode Format</label>
+            <select id="format" class="input mb-4">
+              <option value="CODE128">CODE128 (All characters)</option>
+              <option value="EAN13">EAN-13 (13 digits)</option>
+              <option value="EAN8">EAN-8 (8 digits)</option>
+              <option value="UPC">UPC (12 digits)</option>
+              <option value="CODE39">CODE39 (Alphanumeric)</option>
+              <option value="ITF14">ITF-14 (14 digits)</option>
+            </select>
+
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Data</label>
+            <input type="text" id="data-input" class="input mb-4" placeholder="Data to encode in barcode" value="Toolneat123">
+
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Width</label>
+                <select id="bar-width" class="input">
+                  <option value="1">Thin (1)</option>
+                  <option value="2" selected>Normal (2)</option>
+                  <option value="3">Thick (3)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Height</label>
+                <select id="bar-height" class="input">
+                  <option value="50">50px</option>
+                  <option value="80">80px</option>
+                  <option value="100" selected>100px</option>
+                  <option value="150">150px</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 mb-4">
+              <label class="flex items-center gap-2">
+                <input type="checkbox" id="show-text" checked class="rounded">
+                <span class="text-sm text-gray-700 dark:text-gray-300">Show text</span>
+              </label>
+            </div>
+
+            <button id="generate-btn" class="btn btn-primary w-full">Generate</button>
+          </div>
+
+          <!-- Preview -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Preview</label>
+            <div class="barcode-preview border border-gray-200 dark:border-gray-700">
+              <svg id="barcode"></svg>
+            </div>
+            <div class="flex gap-2 mt-4">
+              <button id="download-png" class="btn btn-secondary flex-1">PNG</button>
+              <button id="download-svg" class="btn btn-secondary flex-1">SVG</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Barcode Generator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            A barcode generator converts text or numeric data into various barcode image formats.
+            It can be used for product labels, inventory management, membership cards, and more.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Select the barcode format (CODE128, EAN-13, etc.)</li>
+            <li>Enter the data to encode</li>
+            <li>Configure width, height, and text display options</li>
+            <li>Download in PNG or SVG format</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Supported Barcode Formats</h3>
+          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
+            <li><strong>CODE128:</strong> Supports all ASCII characters, most versatile format</li>
+            <li><strong>EAN-13:</strong> International product barcode, 13 digits</li>
+            <li><strong>EAN-8:</strong> For small products, 8 digits</li>
+            <li><strong>UPC:</strong> US/Canada product barcode, 12 digits</li>
+            <li><strong>CODE39:</strong> Uppercase letters, numbers, special characters</li>
+            <li><strong>ITF-14:</strong> For logistics/shipping, 14 digits</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">FAQ</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">Which format should I use?</p>
+              <p class="text-gray-600 dark:text-gray-400">CODE128 is recommended for general purposes, EAN-13 or UPC for retail products.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">Should I download PNG or SVG?</p>
+              <p class="text-gray-600 dark:text-gray-400">Use SVG for printing or when scaling is needed, PNG for web or general use.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">I'm getting an "Invalid data" error</p>
+              <p class="text-gray-600 dark:text-gray-400">Enter data that matches the selected barcode format. For example, EAN-13 only accepts 12-13 digits.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script>
+    (function() {
+      'use strict';
+      const format = document.getElementById('format');
+      const dataInput = document.getElementById('data-input');
+      const barWidth = document.getElementById('bar-width');
+      const barHeight = document.getElementById('bar-height');
+      const showText = document.getElementById('show-text');
+      const generateBtn = document.getElementById('generate-btn');
+      const barcodeSvg = document.getElementById('barcode');
+
+      function generate() {
+        const data = dataInput.value.trim();
+        if (!data) { toast.warning('Please enter data'); return; }
+        try {
+          JsBarcode('#barcode', data, {
+            format: format.value,
+            width: parseInt(barWidth.value),
+            height: parseInt(barHeight.value),
+            displayValue: showText.checked,
+            background: '#ffffff',
+            lineColor: '#000000',
+            margin: 10,
+            fontSize: 16
+          });
+        } catch (e) {
+          toast.error('Invalid data. Please enter data that matches the selected format.');
+        }
+      }
+
+      generateBtn.addEventListener('click', generate);
+      dataInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') generate(); });
+      [format, barWidth, barHeight, showText].forEach(el => el.addEventListener('change', generate));
+
+      document.getElementById('download-png').addEventListener('click', () => {
+        const svg = barcodeSvg;
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const data = new XMLSerializer().serializeToString(svg);
+        const img = new Image();
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.fillStyle = 'white';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          const a = document.createElement('a');
+          a.href = canvas.toDataURL('image/png');
+          a.download = 'barcode.png';
+          a.click();
+        };
+        img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(data)));
+      });
+
+      document.getElementById('download-svg').addEventListener('click', () => {
+        const data = new XMLSerializer().serializeToString(barcodeSvg);
+        const blob = new Blob([data], { type: 'image/svg+xml' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'barcode.svg';
+        a.click();
+      });
+
+      setTimeout(generate, 100);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.barcodeGenerator.title">바코드 생성기 - Toolneat</title>
+  <meta name="description" data-i18n-desc="tools.barcodeGenerator.description" content="다양한 형식의 바코드를 생성합니다.">
+  <link rel="canonical" href="https://toolneat.com/tools/life/barcode-generator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/barcode-generator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/barcode-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/barcode-generator/">
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+  <style>
+    .barcode-preview {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+    }
+    .dark .barcode-preview { background: white; }
+    #barcode { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.barcodeGenerator.title">바코드 생성기</h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.barcodeGenerator.descriptionLong">CODE128, EAN-13, UPC 등 다양한 형식의 바코드를 생성합니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Input -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.barcodeGenerator.format">바코드 형식</label>
+            <select id="format" class="input mb-4">
+              <option value="CODE128">CODE128 (모든 문자)</option>
+              <option value="EAN13">EAN-13 (13자리 숫자)</option>
+              <option value="EAN8">EAN-8 (8자리 숫자)</option>
+              <option value="UPC">UPC (12자리 숫자)</option>
+              <option value="CODE39">CODE39 (영문+숫자)</option>
+              <option value="ITF14">ITF-14 (14자리 숫자)</option>
+            </select>
+
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.barcodeGenerator.data">데이터</label>
+            <input type="text" id="data-input" class="input mb-4" placeholder="바코드에 인코딩할 데이터" value="Toolneat123">
+
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1" data-i18n="tools.barcodeGenerator.width">너비</label>
+                <select id="bar-width" class="input">
+                  <option value="1">얇게 (1)</option>
+                  <option value="2" selected>보통 (2)</option>
+                  <option value="3">굵게 (3)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1" data-i18n="tools.barcodeGenerator.height">높이</label>
+                <select id="bar-height" class="input">
+                  <option value="50">50px</option>
+                  <option value="80">80px</option>
+                  <option value="100" selected>100px</option>
+                  <option value="150">150px</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 mb-4">
+              <label class="flex items-center gap-2">
+                <input type="checkbox" id="show-text" checked class="rounded">
+                <span class="text-sm text-gray-700 dark:text-gray-300" data-i18n="tools.barcodeGenerator.showText">텍스트 표시</span>
+              </label>
+            </div>
+
+            <button id="generate-btn" class="btn btn-primary w-full" data-i18n="common.generate">생성</button>
+          </div>
+
+          <!-- Preview -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.barcodeGenerator.preview">미리보기</label>
+            <div class="barcode-preview border border-gray-200 dark:border-gray-700">
+              <svg id="barcode"></svg>
+            </div>
+            <div class="flex gap-2 mt-4">
+              <button id="download-png" class="btn btn-secondary flex-1">PNG</button>
+              <button id="download-svg" class="btn btn-secondary flex-1">SVG</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">바코드 생성기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            바코드 생성기는 텍스트나 숫자 데이터를 다양한 형식의 바코드 이미지로 변환하는 도구입니다.
+            제품 라벨, 재고 관리, 회원 카드 등 다양한 용도로 활용할 수 있습니다.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>바코드 형식을 선택합니다 (CODE128, EAN-13 등)</li>
+            <li>인코딩할 데이터를 입력합니다</li>
+            <li>너비, 높이, 텍스트 표시 여부를 설정합니다</li>
+            <li>PNG 또는 SVG 형식으로 다운로드합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">지원 바코드 형식</h3>
+          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
+            <li><strong>CODE128:</strong> 모든 ASCII 문자 지원, 가장 범용적인 형식</li>
+            <li><strong>EAN-13:</strong> 국제 상품 바코드, 13자리 숫자</li>
+            <li><strong>EAN-8:</strong> 소형 제품용, 8자리 숫자</li>
+            <li><strong>UPC:</strong> 미국/캐나다 상품 바코드, 12자리 숫자</li>
+            <li><strong>CODE39:</strong> 영문 대문자, 숫자, 특수문자 지원</li>
+            <li><strong>ITF-14:</strong> 물류/배송용, 14자리 숫자</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">어떤 형식을 사용해야 하나요?</p>
+              <p class="text-gray-600 dark:text-gray-400">일반적인 용도에는 CODE128을, 제품 판매용에는 EAN-13 또는 UPC를 권장합니다.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">PNG와 SVG 중 어떤 것을 다운로드해야 하나요?</p>
+              <p class="text-gray-600 dark:text-gray-400">인쇄용이나 확대가 필요하면 SVG를, 웹이나 일반 용도에는 PNG를 사용하세요.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">"유효하지 않은 데이터" 오류가 나타나요</p>
+              <p class="text-gray-600 dark:text-gray-400">선택한 바코드 형식에 맞는 데이터를 입력하세요. 예: EAN-13은 12-13자리 숫자만 가능합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script>
+    (function() {
+      'use strict';
+      const format = document.getElementById('format');
+      const dataInput = document.getElementById('data-input');
+      const barWidth = document.getElementById('bar-width');
+      const barHeight = document.getElementById('bar-height');
+      const showText = document.getElementById('show-text');
+      const generateBtn = document.getElementById('generate-btn');
+      const barcodeSvg = document.getElementById('barcode');
+
+      function generate() {
+        const data = dataInput.value.trim();
+        if (!data) { toast.warning('데이터를 입력하세요'); return; }
+        try {
+          JsBarcode('#barcode', data, {
+            format: format.value,
+            width: parseInt(barWidth.value),
+            height: parseInt(barHeight.value),
+            displayValue: showText.checked,
+            background: '#ffffff',
+            lineColor: '#000000',
+            margin: 10,
+            fontSize: 16
+          });
+        } catch (e) {
+          toast.error('유효하지 않은 데이터입니다. 형식에 맞는 데이터를 입력하세요.');
+        }
+      }
+
+      generateBtn.addEventListener('click', generate);
+      dataInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') generate(); });
+      [format, barWidth, barHeight, showText].forEach(el => el.addEventListener('change', generate));
+
+      document.getElementById('download-png').addEventListener('click', () => {
+        const svg = barcodeSvg;
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const data = new XMLSerializer().serializeToString(svg);
+        const img = new Image();
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.fillStyle = 'white';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          const a = document.createElement('a');
+          a.href = canvas.toDataURL('image/png');
+          a.download = 'barcode.png';
+          a.click();
+        };
+        img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(data)));
+      });
+
+      document.getElementById('download-svg').addEventListener('click', () => {
+        const data = new XMLSerializer().serializeToString(barcodeSvg);
+        const blob = new Blob([data], { type: 'image/svg+xml' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'barcode.svg';
+        a.click();
+      });
+
+      setTimeout(generate, 100);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Entity Encoder - Toolneat</title>
+  <meta name="description" content="Encode and decode HTML entities. Convert text to HTML entities and vice versa with support for named and numeric entities.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/dev/html-entity/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/html-entity/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/html-entity/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/html-entity/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="HTML Entity Encoder - Toolneat">
+  <meta property="og:description" content="Encode and decode HTML entities.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/dev/html-entity/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>
+    // Force English language
+    localStorage.setItem('toolneat-lang', 'en');
+  </script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          HTML Entity Encoder
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Encode and decode HTML entities.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Options Bar -->
+        <div class="flex flex-wrap items-center gap-3 mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <div class="flex shrink-0">
+            <button id="encode-tab" class="py-1.5 px-3 text-sm font-medium rounded-l-lg border border-r-0 border-gray-200 dark:border-gray-700 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">Encode</button>
+            <button id="decode-tab" class="py-1.5 px-3 text-sm font-medium rounded-r-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">Decode</button>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">Option</span>
+            <select id="encode-type" class="input py-1 px-2 w-auto text-sm">
+              <option value="special">Special chars only (&lt;&gt;&amp;"')</option>
+              <option value="all">All characters</option>
+            </select>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">Format</span>
+            <select id="entity-format" class="input py-1 px-2 w-auto text-sm">
+              <option value="named">Named (&amp;amp;)</option>
+              <option value="numeric">Numeric (&amp;#38;)</option>
+              <option value="hex">Hex (&amp;#x26;)</option>
+            </select>
+          </div>
+          <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer shrink-0">
+            <input type="checkbox" id="live-convert" checked class="rounded border-gray-300 dark:border-gray-600">
+            <span class="whitespace-nowrap">Live</span>
+          </label>
+          <div class="flex gap-2 ml-auto shrink-0">
+            <button id="convert-btn" class="btn btn-primary text-sm py-1.5 px-3"><span id="convert-text">Encode</span></button>
+            <button id="swap-btn" class="btn btn-secondary text-sm p-1.5" title="Swap input/output">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            </button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3">Clear</button>
+          </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <!-- Input Section -->
+          <div class="flex flex-col">
+            <div class="flex items-center justify-between mb-2">
+              <span id="input-label" class="text-sm font-medium text-gray-700 dark:text-gray-300">Input Text</span>
+            </div>
+            <textarea
+              id="input-text"
+              class="textarea flex-1 min-h-[250px] font-mono text-sm"
+              placeholder="Enter text to convert to HTML entities..."
+            ></textarea>
+          </div>
+
+          <!-- Output Section -->
+          <div class="flex flex-col">
+            <div class="flex items-center justify-between mb-2">
+              <span id="output-label" class="text-sm font-medium text-gray-700 dark:text-gray-300">Encoded Result</span>
+              <button id="copy-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">Copy</button>
+            </div>
+            <textarea
+              id="output-text"
+              class="textarea flex-1 min-h-[250px] font-mono text-sm bg-gray-50 dark:bg-gray-900"
+              readonly
+              placeholder="Result will appear here..."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Common Entities Reference -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Common HTML Entities</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 dark:border-gray-700">
+                <th class="py-2 px-3 text-left font-medium text-gray-700 dark:text-gray-300">Character</th>
+                <th class="py-2 px-3 text-left font-medium text-gray-700 dark:text-gray-300">Named Entity</th>
+                <th class="py-2 px-3 text-left font-medium text-gray-700 dark:text-gray-300">Numeric</th>
+                <th class="py-2 px-3 text-left font-medium text-gray-700 dark:text-gray-300">Description</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+              <tr><td class="py-2 px-3 font-mono">&lt;</td><td class="py-2 px-3 font-mono">&amp;lt;</td><td class="py-2 px-3 font-mono">&amp;#60;</td><td class="py-2 px-3">Less than</td></tr>
+              <tr><td class="py-2 px-3 font-mono">&gt;</td><td class="py-2 px-3 font-mono">&amp;gt;</td><td class="py-2 px-3 font-mono">&amp;#62;</td><td class="py-2 px-3">Greater than</td></tr>
+              <tr><td class="py-2 px-3 font-mono">&amp;</td><td class="py-2 px-3 font-mono">&amp;amp;</td><td class="py-2 px-3 font-mono">&amp;#38;</td><td class="py-2 px-3">Ampersand</td></tr>
+              <tr><td class="py-2 px-3 font-mono">"</td><td class="py-2 px-3 font-mono">&amp;quot;</td><td class="py-2 px-3 font-mono">&amp;#34;</td><td class="py-2 px-3">Double quote</td></tr>
+              <tr><td class="py-2 px-3 font-mono">'</td><td class="py-2 px-3 font-mono">&amp;apos;</td><td class="py-2 px-3 font-mono">&amp;#39;</td><td class="py-2 px-3">Single quote / Apostrophe</td></tr>
+              <tr><td class="py-2 px-3 font-mono">&nbsp;</td><td class="py-2 px-3 font-mono">&amp;nbsp;</td><td class="py-2 px-3 font-mono">&amp;#160;</td><td class="py-2 px-3">Non-breaking space</td></tr>
+              <tr><td class="py-2 px-3 font-mono">&copy;</td><td class="py-2 px-3 font-mono">&amp;copy;</td><td class="py-2 px-3 font-mono">&amp;#169;</td><td class="py-2 px-3">Copyright symbol</td></tr>
+              <tr><td class="py-2 px-3 font-mono">&reg;</td><td class="py-2 px-3 font-mono">&amp;reg;</td><td class="py-2 px-3 font-mono">&amp;#174;</td><td class="py-2 px-3">Registered trademark</td></tr>
+              <tr><td class="py-2 px-3 font-mono">&trade;</td><td class="py-2 px-3 font-mono">&amp;trade;</td><td class="py-2 px-3 font-mono">&amp;#8482;</td><td class="py-2 px-3">Trademark symbol</td></tr>
+              <tr><td class="py-2 px-3 font-mono">&euro;</td><td class="py-2 px-3 font-mono">&amp;euro;</td><td class="py-2 px-3 font-mono">&amp;#8364;</td><td class="py-2 px-3">Euro sign</td></tr>
+              <tr><td class="py-2 px-3 font-mono">&pound;</td><td class="py-2 px-3 font-mono">&amp;pound;</td><td class="py-2 px-3 font-mono">&amp;#163;</td><td class="py-2 px-3">Pound sign</td></tr>
+              <tr><td class="py-2 px-3 font-mono">&yen;</td><td class="py-2 px-3 font-mono">&amp;yen;</td><td class="py-2 px-3 font-mono">&amp;#165;</td><td class="py-2 px-3">Yen / Yuan sign</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What are HTML Entities?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>HTML entities are special codes used to represent characters that have special meaning in HTML or characters that cannot be easily typed on a keyboard. They start with an ampersand (&amp;) and end with a semicolon (;). For example, &amp;lt; represents the less-than sign (&lt;), and &amp;amp; represents the ampersand (&amp;) itself. These entities ensure that special characters are displayed correctly in web browsers without being interpreted as HTML code.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select "Encode" or "Decode" mode depending on your needs.</li>
+            <li>Choose encoding options: encode only special characters or all characters.</li>
+            <li>Select the entity format: Named (&amp;amp;), Numeric (&amp;#38;), or Hex (&amp;#x26;).</li>
+            <li>Enter your text in the input field on the left.</li>
+            <li>With "Live" mode enabled, the result updates automatically. Otherwise, click the Convert button.</li>
+            <li>Use the "Copy" button to copy the result to your clipboard.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Why do I need HTML entities?</h4>
+              <p>In HTML, characters like &lt;, &gt;, and &amp; have special meanings - they define tags and entities. To display these characters as text instead of being interpreted as code, you must convert them to entities. Without this conversion, your content might break the page layout or cause security vulnerabilities.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between Named and Numeric entities?</h4>
+              <p>Named entities like &amp;amp; use human-readable names, making them easier to understand in source code. Numeric entities like &amp;#38; use the character's Unicode code point. While named entities are more readable, not all characters have named versions. Numeric entities can represent any Unicode character, providing universal coverage.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do HTML entities help prevent XSS attacks?</h4>
+              <p>Cross-Site Scripting (XSS) attacks occur when malicious scripts are injected into web pages. By encoding user input as HTML entities before displaying it, you prevent scripts from executing. For example, &lt;script&gt; becomes &amp;lt;script&amp;gt;, which is displayed as text rather than executed as code.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('input-text');
+      const output = document.getElementById('output-text');
+      const encodeTab = document.getElementById('encode-tab');
+      const decodeTab = document.getElementById('decode-tab');
+      const convertBtn = document.getElementById('convert-btn');
+      const convertText = document.getElementById('convert-text');
+      const copyBtn = document.getElementById('copy-btn');
+      const swapBtn = document.getElementById('swap-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const encodeTypeSelect = document.getElementById('encode-type');
+      const entityFormatSelect = document.getElementById('entity-format');
+      const liveConvertCheckbox = document.getElementById('live-convert');
+      const inputLabel = document.getElementById('input-label');
+      const outputLabel = document.getElementById('output-label');
+
+      let isEncodeMode = true;
+
+      // Named entities map
+      const namedEntities = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&apos;',
+        '\u00A0': '&nbsp;',
+        '\u00A9': '&copy;',
+        '\u00AE': '&reg;',
+        '\u2122': '&trade;',
+        '\u20AC': '&euro;',
+        '\u00A3': '&pound;',
+        '\u00A5': '&yen;',
+        '\u00A2': '&cent;',
+        '\u00B0': '&deg;',
+        '\u00B1': '&plusmn;',
+        '\u00D7': '&times;',
+        '\u00F7': '&divide;',
+        '\u2260': '&ne;',
+        '\u2264': '&le;',
+        '\u2265': '&ge;',
+        '\u221E': '&infin;',
+        '\u2190': '&larr;',
+        '\u2192': '&rarr;',
+        '\u2191': '&uarr;',
+        '\u2193': '&darr;',
+        '\u2194': '&harr;',
+        '\u2022': '&bull;',
+        '\u2026': '&hellip;',
+        '\u2013': '&ndash;',
+        '\u2014': '&mdash;'
+      };
+
+      // Reverse map for decoding
+      const reverseNamedEntities = {};
+      for (const [char, entity] of Object.entries(namedEntities)) {
+        reverseNamedEntities[entity] = char;
+      }
+
+      // Special characters that should always be encoded
+      const specialChars = ['&', '<', '>', '"', "'"];
+
+      // Tab switching
+      encodeTab.addEventListener('click', () => setMode(true));
+      decodeTab.addEventListener('click', () => setMode(false));
+
+      function setMode(encode) {
+        isEncodeMode = encode;
+
+        if (encode) {
+          encodeTab.classList.add('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          encodeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          decodeTab.classList.remove('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          decodeTab.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          inputLabel.textContent = 'Input Text';
+          outputLabel.textContent = 'Encoded Result';
+          convertText.textContent = 'Encode';
+          encodeTypeSelect.disabled = false;
+          entityFormatSelect.disabled = false;
+        } else {
+          decodeTab.classList.add('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          decodeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          encodeTab.classList.remove('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          encodeTab.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          inputLabel.textContent = 'HTML Entities';
+          outputLabel.textContent = 'Decoded Result';
+          convertText.textContent = 'Decode';
+          encodeTypeSelect.disabled = true;
+          entityFormatSelect.disabled = true;
+        }
+
+        if (liveConvertCheckbox.checked) {
+          convert();
+        }
+      }
+
+      // Convert
+      convertBtn.addEventListener('click', convert);
+
+      function encodeChar(char, format) {
+        const code = char.codePointAt(0);
+
+        if (format === 'named' && namedEntities[char]) {
+          return namedEntities[char];
+        } else if (format === 'hex') {
+          return '&#x' + code.toString(16).toUpperCase() + ';';
+        } else {
+          return '&#' + code + ';';
+        }
+      }
+
+      function shouldEncode(char, encodeType) {
+        if (encodeType === 'all') {
+          // Encode all non-ASCII and special characters
+          const code = char.codePointAt(0);
+          return code > 127 || specialChars.includes(char);
+        } else {
+          // Only encode special characters
+          return specialChars.includes(char);
+        }
+      }
+
+      function convert() {
+        const text = input.value;
+
+        if (!text) {
+          output.value = '';
+          return;
+        }
+
+        try {
+          let result;
+
+          if (isEncodeMode) {
+            const encodeType = encodeTypeSelect.value;
+            const format = entityFormatSelect.value;
+
+            result = '';
+            for (const char of text) {
+              if (shouldEncode(char, encodeType)) {
+                result += encodeChar(char, format);
+              } else {
+                result += char;
+              }
+            }
+          } else {
+            // Decode HTML entities
+            result = text
+              // Decode named entities
+              .replace(/&[a-zA-Z]+;/g, (match) => {
+                return reverseNamedEntities[match] || match;
+              })
+              // Decode numeric entities (decimal)
+              .replace(/&#(\d+);/g, (match, dec) => {
+                return String.fromCodePoint(parseInt(dec, 10));
+              })
+              // Decode numeric entities (hex)
+              .replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => {
+                return String.fromCodePoint(parseInt(hex, 16));
+              });
+          }
+
+          output.value = result;
+
+        } catch (e) {
+          output.value = 'Conversion error';
+          toast.error('Invalid input');
+        }
+      }
+
+      // Live convert
+      input.addEventListener('input', () => {
+        if (liveConvertCheckbox.checked) {
+          convert();
+        }
+      });
+
+      liveConvertCheckbox.addEventListener('change', () => {
+        if (liveConvertCheckbox.checked) {
+          convert();
+        }
+      });
+
+      encodeTypeSelect.addEventListener('change', () => {
+        if (liveConvertCheckbox.checked) {
+          convert();
+        }
+      });
+
+      entityFormatSelect.addEventListener('change', () => {
+        if (liveConvertCheckbox.checked) {
+          convert();
+        }
+      });
+
+      // Copy
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) {
+          toast.warning('Nothing to copy');
+          return;
+        }
+
+        await copyToClipboard(output.value);
+        toast.success('Copied!');
+      });
+
+      // Swap
+      swapBtn.addEventListener('click', () => {
+        const temp = output.value;
+        if (!temp) return;
+
+        input.value = temp;
+        output.value = '';
+        setMode(!isEncodeMode);
+
+        if (liveConvertCheckbox.checked) {
+          convert();
+        }
+      });
+
+      // Clear
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        input.focus();
+      });
+    })();
+  </script>
+</body>
+</html>

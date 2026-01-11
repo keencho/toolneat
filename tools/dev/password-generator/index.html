@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비밀번호 생성기 - Toolneat</title>
+  <meta name="description" content="안전한 비밀번호를 생성하세요">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/dev/password-generator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/password-generator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/password-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/password-generator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="비밀번호 생성기 - Toolneat">
+  <meta property="og:description" content="안전한 비밀번호를 생성하세요">
+  <meta property="og:url" content="https://toolneat.com/tools/dev/password-generator/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          비밀번호 생성기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          안전한 비밀번호를 생성하세요. 대문자, 소문자, 숫자, 특수문자를 조합하여 강력한 비밀번호를 만들 수 있습니다.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Password Display -->
+        <div class="mb-6">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl">
+            <code id="password-display" class="flex-1 text-lg md:text-xl font-mono text-gray-900 dark:text-white break-all text-center sm:text-left select-all">
+              -
+            </code>
+            <div class="flex gap-2 justify-center sm:justify-end shrink-0">
+              <button id="copy-btn" class="btn btn-secondary p-2" title="복사">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+              </button>
+              <button id="generate-btn" class="btn btn-primary p-2" title="생성">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Password Strength Meter -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">비밀번호 강도</span>
+            <span id="strength-text" class="text-sm font-medium">-</span>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+            <div id="strength-bar" class="h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Options -->
+        <div class="space-y-4 mb-6 pb-6 border-b border-gray-100 dark:border-gray-700">
+          <!-- Password Length -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">비밀번호 길이</label>
+              <span id="length-value" class="text-sm font-mono text-gray-600 dark:text-gray-400">16</span>
+            </div>
+            <input type="range" id="password-length" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-600" min="8" max="64" value="16">
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
+              <span>8</span>
+              <span>64</span>
+            </div>
+          </div>
+
+          <!-- Character Options -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <input type="checkbox" id="include-uppercase" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" checked>
+              <span class="text-sm text-gray-700 dark:text-gray-300">대문자 (A-Z)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <input type="checkbox" id="include-lowercase" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" checked>
+              <span class="text-sm text-gray-700 dark:text-gray-300">소문자 (a-z)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <input type="checkbox" id="include-numbers" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" checked>
+              <span class="text-sm text-gray-700 dark:text-gray-300">숫자 (0-9)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <input type="checkbox" id="include-symbols" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" checked>
+              <span class="text-sm text-gray-700 dark:text-gray-300">특수문자 (!@#$%...)</span>
+            </label>
+          </div>
+
+          <!-- Exclude Ambiguous -->
+          <label class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <input type="checkbox" id="exclude-ambiguous" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
+            <div>
+              <span class="text-sm text-gray-700 dark:text-gray-300">모호한 문자 제외</span>
+              <p class="text-xs text-gray-500 dark:text-gray-400">0, O, o, l, 1, I 등 혼동하기 쉬운 문자 제외</p>
+            </div>
+          </label>
+        </div>
+
+        <!-- Generate Button -->
+        <button id="generate-full-btn" class="btn btn-primary w-full">
+          비밀번호 생성
+        </button>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">비밀번호 생성기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>비밀번호 생성기는 암호학적으로 안전한 무작위 비밀번호를 생성하는 도구입니다. 대문자, 소문자, 숫자, 특수문자를 조합하여 예측하기 어려운 강력한 비밀번호를 만들어 줍니다. 모든 계정에 고유하고 복잡한 비밀번호를 사용하면 해킹, 무차별 대입 공격, 사전 공격으로부터 개인 정보를 보호할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>슬라이더를 사용하여 원하는 비밀번호 길이를 설정합니다 (8~64자).</li>
+            <li>포함할 문자 유형을 선택합니다: 대문자, 소문자, 숫자, 특수문자.</li>
+            <li>필요한 경우 '모호한 문자 제외' 옵션을 활성화합니다.</li>
+            <li>'비밀번호 생성' 버튼을 클릭하여 새 비밀번호를 생성합니다.</li>
+            <li>복사 버튼을 클릭하여 생성된 비밀번호를 클립보드에 복사합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 안전한 비밀번호의 권장 길이는 얼마인가요?</h4>
+              <p>최소 12자 이상을 권장하며, 중요한 계정의 경우 16자 이상이 좋습니다. 길이가 길수록 무차별 대입 공격에 대한 저항력이 기하급수적으로 증가합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 생성된 비밀번호는 서버에 저장되나요?</h4>
+              <p>아니요, 모든 비밀번호 생성은 브라우저에서 로컬로 수행됩니다. 생성된 비밀번호는 어디에도 전송되거나 저장되지 않으므로 완전히 안전합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 모호한 문자 제외 옵션은 언제 사용하나요?</h4>
+              <p>비밀번호를 직접 입력해야 하는 경우에 유용합니다. 0(숫자)과 O(문자), 1(숫자)과 l(소문자 L), I(대문자 i) 등 비슷하게 보이는 문자를 제외하여 입력 실수를 방지합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const passwordDisplay = document.getElementById('password-display');
+      const copyBtn = document.getElementById('copy-btn');
+      const generateBtn = document.getElementById('generate-btn');
+      const generateFullBtn = document.getElementById('generate-full-btn');
+      const passwordLength = document.getElementById('password-length');
+      const lengthValue = document.getElementById('length-value');
+      const includeUppercase = document.getElementById('include-uppercase');
+      const includeLowercase = document.getElementById('include-lowercase');
+      const includeNumbers = document.getElementById('include-numbers');
+      const includeSymbols = document.getElementById('include-symbols');
+      const excludeAmbiguous = document.getElementById('exclude-ambiguous');
+      const strengthBar = document.getElementById('strength-bar');
+      const strengthText = document.getElementById('strength-text');
+
+      const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const LOWERCASE = 'abcdefghijklmnopqrstuvwxyz';
+      const NUMBERS = '0123456789';
+      const SYMBOLS = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+      const AMBIGUOUS = '0Ool1Ii';
+
+      function removeAmbiguous(str) {
+        return str.split('').filter(c => !AMBIGUOUS.includes(c)).join('');
+      }
+
+      function generatePassword() {
+        const length = parseInt(passwordLength.value);
+        let charset = '';
+
+        if (includeUppercase.checked) {
+          charset += excludeAmbiguous.checked ? removeAmbiguous(UPPERCASE) : UPPERCASE;
+        }
+        if (includeLowercase.checked) {
+          charset += excludeAmbiguous.checked ? removeAmbiguous(LOWERCASE) : LOWERCASE;
+        }
+        if (includeNumbers.checked) {
+          charset += excludeAmbiguous.checked ? removeAmbiguous(NUMBERS) : NUMBERS;
+        }
+        if (includeSymbols.checked) {
+          charset += SYMBOLS;
+        }
+
+        if (charset === '') {
+          toast.warning('최소 하나의 문자 유형을 선택해주세요.');
+          return null;
+        }
+
+        const array = new Uint32Array(length);
+        crypto.getRandomValues(array);
+
+        let password = '';
+        for (let i = 0; i < length; i++) {
+          password += charset[array[i] % charset.length];
+        }
+
+        return password;
+      }
+
+      function calculateStrength(password) {
+        if (!password) return { score: 0, label: '-', color: 'bg-gray-300' };
+
+        let score = 0;
+        const length = password.length;
+
+        // Length score
+        if (length >= 8) score += 1;
+        if (length >= 12) score += 1;
+        if (length >= 16) score += 1;
+        if (length >= 24) score += 1;
+
+        // Character variety score
+        if (/[a-z]/.test(password)) score += 1;
+        if (/[A-Z]/.test(password)) score += 1;
+        if (/[0-9]/.test(password)) score += 1;
+        if (/[^a-zA-Z0-9]/.test(password)) score += 1;
+
+        // Determine strength level
+        if (score <= 2) {
+          return { score: 25, label: '약함', color: 'bg-red-500' };
+        } else if (score <= 4) {
+          return { score: 50, label: '보통', color: 'bg-yellow-500' };
+        } else if (score <= 6) {
+          return { score: 75, label: '강함', color: 'bg-green-500' };
+        } else {
+          return { score: 100, label: '매우 강함', color: 'bg-blue-600' };
+        }
+      }
+
+      function updateStrengthMeter(password) {
+        const strength = calculateStrength(password);
+        strengthBar.style.width = strength.score + '%';
+        strengthBar.className = 'h-2 rounded-full transition-all duration-300 ' + strength.color;
+        strengthText.textContent = strength.label;
+        strengthText.className = 'text-sm font-medium ' + strength.color.replace('bg-', 'text-');
+      }
+
+      function updatePassword() {
+        const password = generatePassword();
+        if (password) {
+          passwordDisplay.textContent = password;
+          updateStrengthMeter(password);
+          toast.success('새 비밀번호가 생성되었습니다.');
+        }
+      }
+
+      // Event listeners
+      passwordLength.addEventListener('input', () => {
+        lengthValue.textContent = passwordLength.value;
+      });
+
+      passwordLength.addEventListener('change', updatePassword);
+
+      generateBtn.addEventListener('click', updatePassword);
+      generateFullBtn.addEventListener('click', updatePassword);
+
+      copyBtn.addEventListener('click', async () => {
+        const password = passwordDisplay.textContent;
+        if (password && password !== '-') {
+          await copyToClipboard(password);
+          toast.success('클립보드에 복사되었습니다.');
+        } else {
+          toast.warning('복사할 비밀번호가 없습니다.');
+        }
+      });
+
+      // Checkbox change listeners
+      [includeUppercase, includeLowercase, includeNumbers, includeSymbols, excludeAmbiguous].forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          const password = passwordDisplay.textContent;
+          if (password && password !== '-') {
+            updatePassword();
+          }
+        });
+      });
+
+      // Initial generation
+      updatePassword();
+    })();
+  </script>
+</body>
+</html>

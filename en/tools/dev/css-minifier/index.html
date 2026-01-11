@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Minifier - Toolneat</title>
+  <meta name="description" content="Minify or beautify your CSS code. Reduce file size or improve readability with proper formatting.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/dev/css-minifier/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/css-minifier/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/css-minifier/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/css-minifier/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="CSS Minifier - Toolneat">
+  <meta property="og:description" content="Minify or beautify your CSS code. Reduce file size or improve readability with proper formatting.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/dev/css-minifier/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../../assets/js/common.js"></script>
+  <script>
+    // Force English language
+    localStorage.setItem('toolneat-lang', 'en');
+  </script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+
+  <style>
+    /* CSS Editor sizing */
+    .css-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 320px);
+      min-height: 450px;
+      max-height: 800px;
+    }
+    @media (min-width: 1024px) {
+      .css-container {
+        flex-direction: row;
+        height: calc(100vh - 280px);
+        min-height: 500px;
+      }
+    }
+    .css-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    #css-input, #css-output {
+      flex: 1;
+      min-height: 200px;
+      resize: none;
+      overflow-y: auto;
+      font-size: 12px !important;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          CSS Minifier
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Minify or beautify your CSS code. Reduce file size for production or improve readability for development.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <!-- Options Row -->
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">Indent</span>
+              <select id="indent-size" class="input py-1.5 px-2 w-24 text-sm">
+                <option value="2">2 spaces</option>
+                <option value="4">4 spaces</option>
+              </select>
+            </div>
+          </div>
+          <!-- Buttons Row -->
+          <div class="flex flex-wrap gap-2">
+            <button id="minify-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0">Minify</button>
+            <button id="beautify-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Beautify</button>
+            <button id="sample-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Sample CSS</button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">Clear</button>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div id="stats-container" class="hidden mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+          <div class="flex flex-wrap gap-4 text-sm">
+            <span class="text-gray-600 dark:text-gray-400">Original: <strong id="original-size" class="text-gray-900 dark:text-white">0 B</strong></span>
+            <span class="text-gray-600 dark:text-gray-400">Result: <strong id="result-size" class="text-gray-900 dark:text-white">0 B</strong></span>
+            <span class="text-gray-600 dark:text-gray-400">Savings: <strong id="savings" class="text-green-600 dark:text-green-400">0%</strong></span>
+          </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="css-container gap-4">
+          <!-- Input Section -->
+          <div class="css-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Input</span>
+              <span id="input-size" class="text-xs text-gray-400"></span>
+            </div>
+            <textarea
+              id="css-input"
+              class="textarea font-mono text-sm leading-relaxed"
+              placeholder="Enter your CSS code here..."
+            ></textarea>
+          </div>
+
+          <!-- Output Section -->
+          <div class="css-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Output</span>
+              <button id="copy-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">Copy</button>
+            </div>
+            <textarea
+              id="css-output"
+              class="textarea font-mono text-sm leading-relaxed bg-gray-50 dark:bg-gray-900"
+              readonly
+              placeholder="Result will appear here..."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is CSS Minifier?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>CSS minification is the process of removing unnecessary whitespace, line breaks, and comments from CSS code to reduce file size. This improves website loading speed and saves bandwidth. CSS beautification does the opposite - it adds proper indentation and line breaks to make compressed code more readable.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Paste your CSS code into the input area on the left.</li>
+            <li>Click "Minify" to compress the CSS by removing whitespace and comments.</li>
+            <li>Click "Beautify" to format the CSS with proper indentation and line breaks.</li>
+            <li>Choose your preferred indentation size (2 or 4 spaces) for beautification.</li>
+            <li>Click "Copy" to copy the result to your clipboard.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What are the benefits of CSS minification?</h4>
+              <p>Minified CSS files are smaller, resulting in faster page load times and reduced server bandwidth usage. For production environments, it's always recommended to use minified CSS to optimize performance.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Will minified CSS work correctly?</h4>
+              <p>Yes, CSS minification only removes whitespace and comments while preserving the code's functionality. However, CSS with syntax errors may not work as expected after minification.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data secure?</h4>
+              <p>All processing is done locally in your browser. Your CSS code is never sent to any server, making it completely safe to use with sensitive or proprietary stylesheets.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('css-input');
+      const output = document.getElementById('css-output');
+      const minifyBtn = document.getElementById('minify-btn');
+      const beautifyBtn = document.getElementById('beautify-btn');
+      const sampleBtn = document.getElementById('sample-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const indentSelect = document.getElementById('indent-size');
+      const inputSize = document.getElementById('input-size');
+      const statsContainer = document.getElementById('stats-container');
+      const originalSizeEl = document.getElementById('original-size');
+      const resultSizeEl = document.getElementById('result-size');
+      const savingsEl = document.getElementById('savings');
+
+      // Sample CSS
+      const sampleCSS = `/* Main styles for the website */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header styles */
+.header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px 0;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: 24px;
+}
+
+.nav a {
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav a:hover {
+    color: #2563eb;
+}
+
+/* Button styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+/* Card component */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+    background-color: #1f2937;
+    color: #9ca3af;
+    padding: 48px 0;
+    margin-top: auto;
+}`;
+
+      // Minify CSS
+      function minifyCSS(css) {
+        return css
+          // Remove comments
+          .replace(/\/\*[\s\S]*?\*\//g, '')
+          // Remove newlines
+          .replace(/\n/g, '')
+          // Remove multiple spaces
+          .replace(/\s+/g, ' ')
+          // Remove spaces around { } : ; ,
+          .replace(/\s*{\s*/g, '{')
+          .replace(/\s*}\s*/g, '}')
+          .replace(/\s*:\s*/g, ':')
+          .replace(/\s*;\s*/g, ';')
+          .replace(/\s*,\s*/g, ',')
+          // Remove last semicolon before }
+          .replace(/;}/g, '}')
+          // Trim
+          .trim();
+      }
+
+      // Beautify CSS
+      function beautifyCSS(css, indentSize) {
+        const indent = ' '.repeat(indentSize);
+        let result = '';
+        let depth = 0;
+
+        // First minify to normalize
+        css = minifyCSS(css);
+
+        let i = 0;
+        while (i < css.length) {
+          const char = css[i];
+
+          if (char === '{') {
+            result += ' {\n';
+            depth++;
+            result += indent.repeat(depth);
+          } else if (char === '}') {
+            depth--;
+            result = result.trimEnd();
+            result += '\n' + indent.repeat(depth) + '}\n';
+            if (depth === 0) {
+              result += '\n';
+            } else {
+              result += indent.repeat(depth);
+            }
+          } else if (char === ';') {
+            result += ';\n' + indent.repeat(depth);
+          } else if (char === ',') {
+            // Check if inside selector (before {)
+            const remaining = css.slice(i);
+            const nextBrace = remaining.indexOf('{');
+            const nextSemicolon = remaining.indexOf(';');
+            if (nextBrace !== -1 && (nextSemicolon === -1 || nextBrace < nextSemicolon)) {
+              // Selector comma
+              result += ',\n' + indent.repeat(depth);
+            } else {
+              // Property value comma
+              result += ', ';
+            }
+          } else {
+            result += char;
+          }
+          i++;
+        }
+
+        // Clean up extra whitespace
+        return result
+          .replace(/\n\s*\n\s*\n/g, '\n\n')
+          .replace(/{\s*\n\s*\n/g, '{\n')
+          .replace(/\n\s*$/g, '')
+          .trim();
+      }
+
+      // Format bytes
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+
+      // Update stats
+      function updateStats(originalText, resultText) {
+        const originalBytes = new Blob([originalText]).size;
+        const resultBytes = new Blob([resultText]).size;
+        const savings = originalBytes > 0
+          ? Math.round((1 - resultBytes / originalBytes) * 100)
+          : 0;
+
+        originalSizeEl.textContent = formatBytes(originalBytes);
+        resultSizeEl.textContent = formatBytes(resultBytes);
+        savingsEl.textContent = savings >= 0 ? `-${Math.abs(savings)}%` : `+${Math.abs(savings)}%`;
+        savingsEl.className = savings >= 0
+          ? 'text-green-600 dark:text-green-400'
+          : 'text-red-600 dark:text-red-400';
+
+        statsContainer.classList.remove('hidden');
+      }
+
+      // Update input size
+      function updateInputSize() {
+        const bytes = new Blob([input.value]).size;
+        inputSize.textContent = formatBytes(bytes);
+      }
+
+      // Event listeners
+      input.addEventListener('input', updateInputSize);
+
+      minifyBtn.addEventListener('click', () => {
+        const css = input.value.trim();
+        if (!css) {
+          toast.warning('Please enter CSS code.');
+          return;
+        }
+        const result = minifyCSS(css);
+        output.value = result;
+        updateStats(css, result);
+      });
+
+      beautifyBtn.addEventListener('click', () => {
+        const css = input.value.trim();
+        if (!css) {
+          toast.warning('Please enter CSS code.');
+          return;
+        }
+        const indentSize = parseInt(indentSelect.value);
+        const result = beautifyCSS(css, indentSize);
+        output.value = result;
+        updateStats(css, result);
+      });
+
+      sampleBtn.addEventListener('click', () => {
+        input.value = sampleCSS;
+        updateInputSize();
+        output.value = '';
+        statsContainer.classList.add('hidden');
+        toast.success('Sample CSS loaded.');
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) {
+          toast.warning('Nothing to copy.');
+          return;
+        }
+        await copyToClipboard(output.value);
+        toast.success('Copied!');
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        inputSize.textContent = '';
+        statsContainer.classList.add('hidden');
+        input.focus();
+      });
+
+      // Keyboard shortcuts
+      input.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          minifyBtn.click();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 압축/정리 - Toolneat</title>
+  <meta name="description" content="CSS 코드를 압축하거나 보기 좋게 정리합니다.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/dev/css-minifier/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/css-minifier/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/css-minifier/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/css-minifier/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="CSS 압축/정리 - Toolneat">
+  <meta property="og:description" content="CSS 코드를 압축하거나 보기 좋게 정리합니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/dev/css-minifier/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    /* CSS Editor sizing */
+    .css-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 320px);
+      min-height: 450px;
+      max-height: 800px;
+    }
+    @media (min-width: 1024px) {
+      .css-container {
+        flex-direction: row;
+        height: calc(100vh - 280px);
+        min-height: 500px;
+      }
+    }
+    .css-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    #css-input, #css-output {
+      flex: 1;
+      min-height: 200px;
+      resize: none;
+      overflow-y: auto;
+      font-size: 12px !important;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          CSS 압축/정리
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          CSS 코드를 압축하거나 보기 좋게 정리합니다. 파일 크기를 줄이거나 가독성을 높일 수 있습니다.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <!-- Options Row -->
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">들여쓰기</span>
+              <select id="indent-size" class="input py-1.5 px-2 w-20 text-sm">
+                <option value="2">2칸</option>
+                <option value="4">4칸</option>
+              </select>
+            </div>
+          </div>
+          <!-- Buttons Row -->
+          <div class="flex flex-wrap gap-2">
+            <button id="minify-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0">압축</button>
+            <button id="beautify-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">정리</button>
+            <button id="sample-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">샘플 CSS</button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">지우기</button>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div id="stats-container" class="hidden mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+          <div class="flex flex-wrap gap-4 text-sm">
+            <span class="text-gray-600 dark:text-gray-400">원본: <strong id="original-size" class="text-gray-900 dark:text-white">0 B</strong></span>
+            <span class="text-gray-600 dark:text-gray-400">결과: <strong id="result-size" class="text-gray-900 dark:text-white">0 B</strong></span>
+            <span class="text-gray-600 dark:text-gray-400">절감: <strong id="savings" class="text-green-600 dark:text-green-400">0%</strong></span>
+          </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="css-container gap-4">
+          <!-- Input Section -->
+          <div class="css-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">입력</span>
+              <span id="input-size" class="text-xs text-gray-400"></span>
+            </div>
+            <textarea
+              id="css-input"
+              class="textarea font-mono text-sm leading-relaxed"
+              placeholder="CSS 코드를 입력하세요..."
+            ></textarea>
+          </div>
+
+          <!-- Output Section -->
+          <div class="css-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">출력</span>
+              <button id="copy-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">복사</button>
+            </div>
+            <textarea
+              id="css-output"
+              class="textarea font-mono text-sm leading-relaxed bg-gray-50 dark:bg-gray-900"
+              readonly
+              placeholder="결과가 여기에 표시됩니다..."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">CSS 압축/정리 도구란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>CSS 압축(Minify)은 불필요한 공백, 줄바꿈, 주석을 제거하여 파일 크기를 줄이는 과정입니다. 웹사이트 로딩 속도를 개선하고 대역폭을 절약할 수 있습니다. CSS 정리(Beautify)는 반대로 압축된 코드를 읽기 쉽게 들여쓰기와 줄바꿈을 추가합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>왼쪽 입력창에 CSS 코드를 붙여넣습니다.</li>
+            <li>'압축' 버튼을 클릭하면 최소화된 CSS가 생성됩니다.</li>
+            <li>'정리' 버튼을 클릭하면 보기 좋게 포맷팅됩니다.</li>
+            <li>들여쓰기 크기(2칸/4칸)를 선택할 수 있습니다.</li>
+            <li>'복사' 버튼으로 결과를 클립보드에 복사합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: CSS 압축의 장점은 무엇인가요?</h4>
+              <p>파일 크기가 줄어들어 페이지 로딩 속도가 빨라지고, 서버 대역폭을 절약할 수 있습니다. 프로덕션 환경에서는 항상 압축된 CSS를 사용하는 것이 좋습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 압축 후 CSS가 제대로 작동하나요?</h4>
+              <p>네, CSS 압축은 공백과 주석만 제거하고 코드의 기능은 동일하게 유지됩니다. 단, 문법 오류가 있는 CSS는 예상대로 동작하지 않을 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 데이터는 안전한가요?</h4>
+              <p>모든 처리는 브라우저에서 로컬로 수행됩니다. 입력한 CSS 코드는 서버로 전송되지 않으며 완전히 안전합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('css-input');
+      const output = document.getElementById('css-output');
+      const minifyBtn = document.getElementById('minify-btn');
+      const beautifyBtn = document.getElementById('beautify-btn');
+      const sampleBtn = document.getElementById('sample-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const indentSelect = document.getElementById('indent-size');
+      const inputSize = document.getElementById('input-size');
+      const statsContainer = document.getElementById('stats-container');
+      const originalSizeEl = document.getElementById('original-size');
+      const resultSizeEl = document.getElementById('result-size');
+      const savingsEl = document.getElementById('savings');
+
+      // Sample CSS
+      const sampleCSS = `/* Main styles for the website */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header styles */
+.header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px 0;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: 24px;
+}
+
+.nav a {
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav a:hover {
+    color: #2563eb;
+}
+
+/* Button styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+/* Card component */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+    background-color: #1f2937;
+    color: #9ca3af;
+    padding: 48px 0;
+    margin-top: auto;
+}`;
+
+      // Minify CSS
+      function minifyCSS(css) {
+        return css
+          // Remove comments
+          .replace(/\/\*[\s\S]*?\*\//g, '')
+          // Remove newlines
+          .replace(/\n/g, '')
+          // Remove multiple spaces
+          .replace(/\s+/g, ' ')
+          // Remove spaces around { } : ; ,
+          .replace(/\s*{\s*/g, '{')
+          .replace(/\s*}\s*/g, '}')
+          .replace(/\s*:\s*/g, ':')
+          .replace(/\s*;\s*/g, ';')
+          .replace(/\s*,\s*/g, ',')
+          // Remove last semicolon before }
+          .replace(/;}/g, '}')
+          // Trim
+          .trim();
+      }
+
+      // Beautify CSS
+      function beautifyCSS(css, indentSize) {
+        const indent = ' '.repeat(indentSize);
+        let result = '';
+        let depth = 0;
+
+        // First minify to normalize
+        css = minifyCSS(css);
+
+        let i = 0;
+        while (i < css.length) {
+          const char = css[i];
+
+          if (char === '{') {
+            result += ' {\n';
+            depth++;
+            result += indent.repeat(depth);
+          } else if (char === '}') {
+            depth--;
+            result = result.trimEnd();
+            result += '\n' + indent.repeat(depth) + '}\n';
+            if (depth === 0) {
+              result += '\n';
+            } else {
+              result += indent.repeat(depth);
+            }
+          } else if (char === ';') {
+            result += ';\n' + indent.repeat(depth);
+          } else if (char === ',') {
+            // Check if inside selector (before {)
+            const remaining = css.slice(i);
+            const nextBrace = remaining.indexOf('{');
+            const nextSemicolon = remaining.indexOf(';');
+            if (nextBrace !== -1 && (nextSemicolon === -1 || nextBrace < nextSemicolon)) {
+              // Selector comma
+              result += ',\n' + indent.repeat(depth);
+            } else {
+              // Property value comma
+              result += ', ';
+            }
+          } else {
+            result += char;
+          }
+          i++;
+        }
+
+        // Clean up extra whitespace
+        return result
+          .replace(/\n\s*\n\s*\n/g, '\n\n')
+          .replace(/{\s*\n\s*\n/g, '{\n')
+          .replace(/\n\s*$/g, '')
+          .trim();
+      }
+
+      // Format bytes
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+
+      // Update stats
+      function updateStats(originalText, resultText) {
+        const originalBytes = new Blob([originalText]).size;
+        const resultBytes = new Blob([resultText]).size;
+        const savings = originalBytes > 0
+          ? Math.round((1 - resultBytes / originalBytes) * 100)
+          : 0;
+
+        originalSizeEl.textContent = formatBytes(originalBytes);
+        resultSizeEl.textContent = formatBytes(resultBytes);
+        savingsEl.textContent = savings >= 0 ? `-${Math.abs(savings)}%` : `+${Math.abs(savings)}%`;
+        savingsEl.className = savings >= 0
+          ? 'text-green-600 dark:text-green-400'
+          : 'text-red-600 dark:text-red-400';
+
+        statsContainer.classList.remove('hidden');
+      }
+
+      // Update input size
+      function updateInputSize() {
+        const bytes = new Blob([input.value]).size;
+        inputSize.textContent = formatBytes(bytes);
+      }
+
+      // Event listeners
+      input.addEventListener('input', updateInputSize);
+
+      minifyBtn.addEventListener('click', () => {
+        const css = input.value.trim();
+        if (!css) {
+          toast.warning('CSS 코드를 입력하세요.');
+          return;
+        }
+        const result = minifyCSS(css);
+        output.value = result;
+        updateStats(css, result);
+      });
+
+      beautifyBtn.addEventListener('click', () => {
+        const css = input.value.trim();
+        if (!css) {
+          toast.warning('CSS 코드를 입력하세요.');
+          return;
+        }
+        const indentSize = parseInt(indentSelect.value);
+        const result = beautifyCSS(css, indentSize);
+        output.value = result;
+        updateStats(css, result);
+      });
+
+      sampleBtn.addEventListener('click', () => {
+        input.value = sampleCSS;
+        updateInputSize();
+        output.value = '';
+        statsContainer.classList.add('hidden');
+        toast.success('샘플 CSS가 입력되었습니다.');
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) {
+          toast.warning('복사할 내용이 없습니다.');
+          return;
+        }
+        await copyToClipboard(output.value);
+        toast.success('복사되었습니다!');
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        inputSize.textContent = '';
+        statsContainer.classList.add('hidden');
+        input.focus();
+      });
+
+      // Keyboard shortcuts
+      input.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          minifyBtn.click();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

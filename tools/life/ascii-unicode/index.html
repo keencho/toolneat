@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.asciiUnicode.title">ASCII/유니코드 변환기 - Toolneat</title>
+  <meta name="description" data-i18n-desc="tools.asciiUnicode.description" content="문자와 ASCII/유니코드 코드를 변환합니다.">
+  <link rel="canonical" href="https://toolneat.com/tools/life/ascii-unicode/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ascii-unicode/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ascii-unicode/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ascii-unicode/">
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+  <style>
+    .code-table {
+      font-family: ui-monospace, monospace;
+      font-size: 14px;
+    }
+    .code-table td, .code-table th {
+      padding: 8px 12px;
+      text-align: center;
+    }
+    .char-display {
+      font-size: 24px;
+      min-width: 40px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.asciiUnicode.title">ASCII/유니코드 변환기</h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.asciiUnicode.descriptionLong">문자를 ASCII, 유니코드 코드 포인트로 변환하거나, 코드를 문자로 변환합니다.</p>
+      </div>
+
+      <div class="card">
+        <!-- Mode Tabs -->
+        <div class="flex gap-2 mb-6">
+          <button id="tab-text" class="btn btn-primary" data-i18n="tools.asciiUnicode.textToCode">문자 → 코드</button>
+          <button id="tab-code" class="btn btn-secondary" data-i18n="tools.asciiUnicode.codeToText">코드 → 문자</button>
+        </div>
+
+        <!-- Text to Code -->
+        <div id="text-to-code">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.asciiUnicode.inputText">문자 입력</label>
+          <textarea id="input-text" class="input font-mono h-24" placeholder="Hello 안녕"></textarea>
+
+          <div class="mt-4 space-y-4">
+            <!-- Decimal -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <span class="inline-flex items-center gap-2">
+                  <span class="px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs rounded">DEC</span>
+                  <span data-i18n="tools.asciiUnicode.decimal">10진수 (Decimal)</span>
+                </span>
+              </label>
+              <div class="relative">
+                <input type="text" id="output-decimal" class="input font-mono pr-16" readonly>
+                <button class="absolute right-2 top-1/2 -translate-y-1/2 text-xs btn btn-secondary py-1 px-2" onclick="copyToClipboard('output-decimal')" data-i18n="common.copy">복사</button>
+              </div>
+            </div>
+
+            <!-- Hex -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <span class="inline-flex items-center gap-2">
+                  <span class="px-2 py-0.5 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs rounded">HEX</span>
+                  <span data-i18n="tools.asciiUnicode.hex">16진수 (Hex)</span>
+                </span>
+              </label>
+              <div class="relative">
+                <input type="text" id="output-hex" class="input font-mono pr-16" readonly>
+                <button class="absolute right-2 top-1/2 -translate-y-1/2 text-xs btn btn-secondary py-1 px-2" onclick="copyToClipboard('output-hex')" data-i18n="common.copy">복사</button>
+              </div>
+            </div>
+
+            <!-- Unicode Escape -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <span class="inline-flex items-center gap-2">
+                  <span class="px-2 py-0.5 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-xs rounded">\\u</span>
+                  <span data-i18n="tools.asciiUnicode.unicodeEscape">유니코드 이스케이프</span>
+                </span>
+              </label>
+              <div class="relative">
+                <input type="text" id="output-unicode" class="input font-mono pr-16" readonly>
+                <button class="absolute right-2 top-1/2 -translate-y-1/2 text-xs btn btn-secondary py-1 px-2" onclick="copyToClipboard('output-unicode')" data-i18n="common.copy">복사</button>
+              </div>
+            </div>
+
+            <!-- HTML Entity -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <span class="inline-flex items-center gap-2">
+                  <span class="px-2 py-0.5 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 text-xs rounded">&#</span>
+                  <span data-i18n="tools.asciiUnicode.htmlEntity">HTML 엔티티</span>
+                </span>
+              </label>
+              <div class="relative">
+                <input type="text" id="output-html" class="input font-mono pr-16" readonly>
+                <button class="absolute right-2 top-1/2 -translate-y-1/2 text-xs btn btn-secondary py-1 px-2" onclick="copyToClipboard('output-html')" data-i18n="common.copy">복사</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code to Text -->
+        <div id="code-to-text" class="hidden">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.asciiUnicode.inputCode">코드 입력</label>
+          <input type="text" id="input-code" class="input font-mono mb-2" placeholder="72 101 108 108 111 또는 0x48 0x65 또는 \u0048\u0065">
+          <p class="text-xs text-gray-500 mb-4" data-i18n="tools.asciiUnicode.codeHint">10진수(공백구분), 16진수(0x), 유니코드(\u), HTML(&#;) 형식 지원</p>
+
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.asciiUnicode.result">변환 결과</label>
+          <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg min-h-[80px] text-xl font-mono" id="output-text"></div>
+        </div>
+
+        <button id="clear-btn" class="btn btn-secondary mt-6" data-i18n="common.clear">지우기</button>
+      </div>
+
+      <!-- ASCII Table -->
+      <div class="mt-6 card">
+        <h3 class="font-medium text-gray-900 dark:text-white mb-4" data-i18n="tools.asciiUnicode.asciiTable">ASCII 테이블 (32-126)</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full code-table text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 dark:border-gray-700">
+                <th class="py-2">문자</th>
+                <th class="py-2">DEC</th>
+                <th class="py-2">HEX</th>
+                <th class="py-2">문자</th>
+                <th class="py-2">DEC</th>
+                <th class="py-2">HEX</th>
+                <th class="py-2 hidden md:table-cell">문자</th>
+                <th class="py-2 hidden md:table-cell">DEC</th>
+                <th class="py-2 hidden md:table-cell">HEX</th>
+              </tr>
+            </thead>
+            <tbody id="ascii-table" class="text-gray-600 dark:text-gray-400"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">ASCII/유니코드 변환기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            ASCII/유니코드 변환기는 문자를 코드 포인트로, 또는 코드를 문자로 변환하는 도구입니다.
+            프로그래밍, 웹 개발, 문자 인코딩 이해에 유용합니다.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li><strong>문자 → 코드:</strong> 텍스트를 입력하면 10진수, 16진수, 유니코드 이스케이프, HTML 엔티티로 변환됩니다</li>
+            <li><strong>코드 → 문자:</strong> 코드를 입력하면 해당 문자로 변환됩니다</li>
+            <li>복사 버튼으로 결과를 클립보드에 복사합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">지원 형식</h3>
+          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
+            <li><strong>10진수 (DEC):</strong> 공백으로 구분된 숫자 (예: 72 101 108 108 111)</li>
+            <li><strong>16진수 (HEX):</strong> 0x 접두사 (예: 0x48 0x65 0x6C)</li>
+            <li><strong>유니코드 이스케이프:</strong> \u 형식 (예: \u0048\u0065)</li>
+            <li><strong>HTML 엔티티:</strong> &# 형식 (예: &#72;&#101;)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">ASCII와 유니코드의 차이점은?</p>
+              <p class="text-gray-600 dark:text-gray-400">ASCII는 영문 기반 128개 문자만 지원하고, 유니코드는 전 세계 모든 문자(한글, 이모지 등)를 지원합니다.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">\u 형식은 어디에 사용하나요?</p>
+              <p class="text-gray-600 dark:text-gray-400">JavaScript, Python, Java 등 프로그래밍 언어에서 문자열에 특수 문자를 표현할 때 사용합니다.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">HTML 엔티티는 언제 필요한가요?</p>
+              <p class="text-gray-600 dark:text-gray-400">HTML에서 특수 문자(&lt;, &gt;, &amp; 등)를 안전하게 표시하거나, 키보드로 입력하기 어려운 문자를 사용할 때 필요합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script>
+    (function() {
+      'use strict';
+      const tabText = document.getElementById('tab-text');
+      const tabCode = document.getElementById('tab-code');
+      const textToCode = document.getElementById('text-to-code');
+      const codeToText = document.getElementById('code-to-text');
+      const inputText = document.getElementById('input-text');
+      const inputCode = document.getElementById('input-code');
+      const outputDecimal = document.getElementById('output-decimal');
+      const outputHex = document.getElementById('output-hex');
+      const outputUnicode = document.getElementById('output-unicode');
+      const outputHtml = document.getElementById('output-html');
+      const outputText = document.getElementById('output-text');
+      const clearBtn = document.getElementById('clear-btn');
+
+      // Tab switching
+      tabText.addEventListener('click', () => {
+        tabText.className = 'btn btn-primary';
+        tabCode.className = 'btn btn-secondary';
+        textToCode.classList.remove('hidden');
+        codeToText.classList.add('hidden');
+      });
+      tabCode.addEventListener('click', () => {
+        tabCode.className = 'btn btn-primary';
+        tabText.className = 'btn btn-secondary';
+        codeToText.classList.remove('hidden');
+        textToCode.classList.add('hidden');
+      });
+
+      // Text to Code conversion
+      inputText.addEventListener('input', () => {
+        const text = inputText.value;
+        if (!text) {
+          outputDecimal.value = outputHex.value = outputUnicode.value = outputHtml.value = '';
+          return;
+        }
+        const decimals = [], hexes = [], unicodes = [], htmls = [];
+        for (const char of text) {
+          const code = char.codePointAt(0);
+          decimals.push(code);
+          hexes.push('0x' + code.toString(16).toUpperCase().padStart(2, '0'));
+          unicodes.push('\\u' + code.toString(16).toUpperCase().padStart(4, '0'));
+          htmls.push('&#' + code + ';');
+        }
+        outputDecimal.value = decimals.join(' ');
+        outputHex.value = hexes.join(' ');
+        outputUnicode.value = unicodes.join('');
+        outputHtml.value = htmls.join('');
+      });
+
+      // Code to Text conversion
+      inputCode.addEventListener('input', () => {
+        const input = inputCode.value.trim();
+        if (!input) { outputText.textContent = ''; return; }
+        let result = '';
+        try {
+          // Try \uXXXX format
+          if (input.includes('\\u')) {
+            result = input.replace(/\\u([0-9a-fA-F]{4})/g, (_, hex) => String.fromCodePoint(parseInt(hex, 16)));
+          }
+          // Try &#XXXX; format
+          else if (input.includes('&#')) {
+            result = input.replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)));
+          }
+          // Try 0xXX format
+          else if (input.includes('0x')) {
+            const hexes = input.match(/0x[0-9a-fA-F]+/g) || [];
+            result = hexes.map(h => String.fromCodePoint(parseInt(h, 16))).join('');
+          }
+          // Default: space-separated decimals
+          else {
+            const nums = input.split(/[\s,]+/).filter(n => n);
+            result = nums.map(n => String.fromCodePoint(parseInt(n, 10))).join('');
+          }
+        } catch (e) {
+          result = '(유효하지 않은 코드)';
+        }
+        outputText.textContent = result;
+      });
+
+      // Clear
+      clearBtn.addEventListener('click', () => {
+        inputText.value = '';
+        inputCode.value = '';
+        outputDecimal.value = outputHex.value = outputUnicode.value = outputHtml.value = '';
+        outputText.textContent = '';
+      });
+
+      // Generate ASCII table
+      const tbody = document.getElementById('ascii-table');
+      const rows = Math.ceil((126 - 32 + 1) / 3);
+      for (let i = 0; i < rows; i++) {
+        const tr = document.createElement('tr');
+        if (i % 2 === 0) tr.className = 'bg-gray-50 dark:bg-gray-800';
+        for (let j = 0; j < 3; j++) {
+          const code = 32 + i + j * rows;
+          if (code <= 126) {
+            const char = String.fromCharCode(code);
+            const display = code === 32 ? '(space)' : char;
+            tr.innerHTML += `<td>${display}</td><td>${code}</td><td>${code.toString(16).toUpperCase()}</td>`;
+            if (j >= 1) tr.lastElementChild.classList.add('hidden', 'md:table-cell');
+            if (j >= 1) tr.lastElementChild.previousElementSibling.classList.add('hidden', 'md:table-cell');
+            if (j >= 1) tr.lastElementChild.previousElementSibling.previousElementSibling.classList.add('hidden', 'md:table-cell');
+          }
+        }
+        tbody.appendChild(tr);
+      }
+
+      // Copy function
+      window.copyToClipboard = function(id) {
+        const el = document.getElementById(id);
+        navigator.clipboard.writeText(el.value).then(() => toast.success('복사됨'));
+      };
+    })();
+  </script>
+</body>
+</html>

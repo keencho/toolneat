@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반응속도 테스트 - Toolneat</title>
+  <meta name="description" content="당신의 반응속도를 측정해보세요. 색상 변화에 얼마나 빠르게 반응할 수 있는지 테스트하고 평균 인간 반응속도와 비교해보세요.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/life/reaction-test/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/reaction-test/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/reaction-test/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/reaction-test/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="반응속도 테스트 - Toolneat">
+  <meta property="og:description" content="당신의 반응속도를 측정해보세요. 색상 변화에 얼마나 빠르게 반응할 수 있는지 테스트하고 평균 인간 반응속도와 비교해보세요.">
+  <meta property="og:url" content="https://toolneat.com/tools/life/reaction-test/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    .reaction-box {
+      min-height: 350px;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reaction-box:active {
+      transform: scale(0.98);
+    }
+
+    .reaction-box.state-ready {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    }
+
+    .reaction-box.state-waiting {
+      background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    }
+
+    .reaction-box.state-click {
+      background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+    }
+
+    .reaction-box.state-result {
+      background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+    }
+
+    .reaction-box.state-early {
+      background: linear-gradient(135deg, #f97316 0%, #c2410c 100%);
+    }
+
+    .reaction-text {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .reaction-subtext {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    .reaction-time {
+      font-size: 4rem;
+      font-weight: 800;
+      color: white;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(34, 197, 94, 0.8);
+      }
+    }
+
+    .reaction-box.state-click {
+      animation: pulse-glow 0.5s ease-in-out infinite;
+    }
+
+    @keyframes result-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .result-pulse {
+      animation: result-pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide-up {
+      animation: slideUp 0.5s ease-out forwards;
+    }
+
+    .round-indicator {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .round-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #e5e7eb;
+      transition: all 0.3s ease;
+    }
+
+    .round-dot.completed {
+      background-color: #22c55e;
+    }
+
+    .round-dot.current {
+      background-color: #3b82f6;
+      transform: scale(1.3);
+    }
+
+    .dark .round-dot {
+      background-color: #374151;
+    }
+
+    .dark .round-dot.completed {
+      background-color: #22c55e;
+    }
+
+    .dark .round-dot.current {
+      background-color: #3b82f6;
+    }
+
+    .rating-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    .rating-amazing {
+      background-color: #fef3c7;
+      color: #b45309;
+    }
+
+    .rating-good {
+      background-color: #d1fae5;
+      color: #047857;
+    }
+
+    .rating-average {
+      background-color: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .rating-slow {
+      background-color: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .attempt-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      margin-bottom: 0.5rem;
+      background-color: #f3f4f6;
+      transition: all 0.3s ease;
+    }
+
+    .dark .attempt-item {
+      background-color: #374151;
+    }
+
+    .attempt-item.best {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 2px solid #f59e0b;
+    }
+
+    .dark .attempt-item.best {
+      background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+      border: 2px solid #f59e0b;
+    }
+
+    .attempt-item.early {
+      background-color: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .dark .attempt-item.early {
+      background-color: #7f1d1d;
+      color: #fca5a5;
+    }
+
+    .comparison-bar {
+      height: 24px;
+      background-color: #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dark .comparison-bar {
+      background-color: #374151;
+    }
+
+    .comparison-fill {
+      height: 100%;
+      border-radius: 12px;
+      transition: width 0.5s ease;
+    }
+
+    .comparison-marker {
+      position: absolute;
+      top: -8px;
+      bottom: -8px;
+      width: 3px;
+      background-color: #1f2937;
+      transform: translateX(-50%);
+    }
+
+    .dark .comparison-marker {
+      background-color: #f9fafb;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          반응속도 테스트
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          당신의 반응속도를 측정해보세요. 화면이 초록색으로 변하면 최대한 빠르게 클릭하여 반응 시간을 측정하고, 평균 인간 반응속도(250ms)와 비교해보세요.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Round Progress -->
+        <div class="mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">라운드</span>
+            <span id="round-text" class="text-sm text-gray-500 dark:text-gray-400">1 / 5</span>
+          </div>
+          <div id="round-indicator" class="round-indicator">
+            <div class="round-dot current"></div>
+            <div class="round-dot"></div>
+            <div class="round-dot"></div>
+            <div class="round-dot"></div>
+            <div class="round-dot"></div>
+          </div>
+        </div>
+
+        <!-- Reaction Box -->
+        <div id="reaction-box" class="reaction-box state-ready">
+          <div id="reaction-content">
+            <div class="reaction-text">클릭하여 시작</div>
+            <div class="reaction-subtext">화면이 초록색으로 변하면 클릭하세요</div>
+          </div>
+        </div>
+
+        <!-- Current Attempt Results -->
+        <div id="attempts-section" class="mt-6 hidden">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">시도 기록</h3>
+          <div id="attempts-list"></div>
+        </div>
+
+        <!-- Final Results Section -->
+        <div id="results-section" class="hidden mt-6">
+          <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-800">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">최종 결과</h3>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm slide-up" style="animation-delay: 0.1s">
+                <div id="result-average" class="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">평균</div>
+                <div class="text-xs text-gray-400 dark:text-gray-500">ms</div>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm slide-up" style="animation-delay: 0.2s">
+                <div id="result-best" class="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">0</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">최고 기록</div>
+                <div class="text-xs text-gray-400 dark:text-gray-500">ms</div>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm slide-up" style="animation-delay: 0.3s">
+                <div id="result-worst" class="text-2xl md:text-3xl font-bold text-red-600 dark:text-red-400">0</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">최저 기록</div>
+                <div class="text-xs text-gray-400 dark:text-gray-500">ms</div>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm slide-up" style="animation-delay: 0.4s">
+                <div id="result-rating" class="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400">-</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">등급</div>
+              </div>
+            </div>
+
+            <!-- Comparison with Average Human -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm mb-4">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">평균 인간 반응속도와 비교</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">평균: 250ms</span>
+              </div>
+              <div class="comparison-bar">
+                <div id="comparison-fill" class="comparison-fill bg-gradient-to-r from-green-400 to-green-600" style="width: 0%"></div>
+                <div class="comparison-marker" style="left: 50%"></div>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="text-xs text-gray-400">0ms</span>
+                <span class="text-xs text-gray-400">250ms</span>
+                <span class="text-xs text-gray-400">500ms</span>
+              </div>
+              <p id="comparison-text" class="text-center mt-2 text-sm text-gray-600 dark:text-gray-400"></p>
+            </div>
+
+            <!-- Try Again Button -->
+            <div class="text-center">
+              <button id="try-again-btn" class="btn btn-primary">
+                다시 도전하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">반응속도 테스트란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>반응속도 테스트는 시각적 자극에 얼마나 빠르게 반응할 수 있는지 측정하는 도구입니다. 화면의 색상이 변하면 최대한 빠르게 클릭하여 반응 시간을 밀리초(ms) 단위로 확인할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>화면의 파란색 영역을 클릭하여 테스트를 시작합니다</li>
+            <li>화면이 빨간색으로 변하면 기다립니다 ("대기중...")</li>
+            <li>2~5초 후 화면이 초록색으로 변하면 즉시 클릭합니다</li>
+            <li>반응 시간이 밀리초 단위로 표시됩니다</li>
+            <li>5라운드를 완료하면 평균 반응속도와 등급을 확인할 수 있습니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">반응속도 등급</h3>
+          <div class="space-y-2">
+            <div><span class="font-medium text-yellow-600">놀라움 (Amazing):</span> 200ms 미만 - 상위 1%의 반응속도</div>
+            <div><span class="font-medium text-green-600">좋음 (Good):</span> 200-300ms - 평균 이상의 반응속도</div>
+            <div><span class="font-medium text-blue-600">보통 (Average):</span> 300-400ms - 일반적인 반응속도</div>
+            <div><span class="font-medium text-red-600">느림 (Slow):</span> 400ms 이상 - 평균 이하의 반응속도</div>
+          </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 평균 인간 반응속도는 얼마인가요?</h4>
+              <p>시각적 자극에 대한 평균 인간 반응속도는 약 250ms(0.25초)입니다. 이는 눈에서 뇌로 신호가 전달되고, 뇌가 처리한 후 손가락 근육으로 명령을 보내는 전체 과정에 걸리는 시간입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 반응속도를 향상시킬 수 있나요?</h4>
+              <p>네, 규칙적인 연습을 통해 반응속도를 향상시킬 수 있습니다. 충분한 수면, 적절한 카페인 섭취, 집중력 훈련 등이 도움이 됩니다. 프로 게이머들은 훈련을 통해 150-180ms의 반응속도를 달성하기도 합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 왜 5번 테스트하나요?</h4>
+              <p>단일 측정은 우연한 요소에 영향을 받을 수 있습니다. 5번의 테스트를 통해 평균값을 계산하면 더 정확하고 신뢰성 있는 결과를 얻을 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Constants
+      const TOTAL_ROUNDS = 5;
+      const MIN_DELAY = 2000; // 2 seconds
+      const MAX_DELAY = 5000; // 5 seconds
+      const AVERAGE_HUMAN = 250; // 250ms average human reaction time
+
+      // State
+      let currentRound = 0;
+      let attempts = [];
+      let state = 'ready'; // ready, waiting, click, result, early, finished
+      let timeoutId = null;
+      let startTime = null;
+      let clickLock = false; // Prevent double clicks
+
+      // DOM Elements
+      const reactionBox = document.getElementById('reaction-box');
+      const reactionContent = document.getElementById('reaction-content');
+      const roundIndicator = document.getElementById('round-indicator');
+      const roundText = document.getElementById('round-text');
+      const attemptsSection = document.getElementById('attempts-section');
+      const attemptsList = document.getElementById('attempts-list');
+      const resultsSection = document.getElementById('results-section');
+      const tryAgainBtn = document.getElementById('try-again-btn');
+
+      // Result elements
+      const resultAverage = document.getElementById('result-average');
+      const resultBest = document.getElementById('result-best');
+      const resultWorst = document.getElementById('result-worst');
+      const resultRating = document.getElementById('result-rating');
+      const comparisonFill = document.getElementById('comparison-fill');
+      const comparisonText = document.getElementById('comparison-text');
+
+      // Get rating based on reaction time
+      function getRating(time) {
+        if (time < 200) return { text: '놀라움!', class: 'rating-amazing', emoji: '' };
+        if (time < 300) return { text: '좋음', class: 'rating-good', emoji: '' };
+        if (time < 400) return { text: '보통', class: 'rating-average', emoji: '' };
+        return { text: '느림', class: 'rating-slow', emoji: '' };
+      }
+
+      // Get random delay between min and max
+      function getRandomDelay() {
+        return Math.floor(Math.random() * (MAX_DELAY - MIN_DELAY + 1)) + MIN_DELAY;
+      }
+
+      // Update round indicator
+      function updateRoundIndicator() {
+        const dots = roundIndicator.querySelectorAll('.round-dot');
+        dots.forEach((dot, index) => {
+          dot.classList.remove('completed', 'current');
+          if (index < currentRound) {
+            dot.classList.add('completed');
+          } else if (index === currentRound) {
+            dot.classList.add('current');
+          }
+        });
+        roundText.textContent = `${Math.min(currentRound + 1, TOTAL_ROUNDS)} / ${TOTAL_ROUNDS}`;
+      }
+
+      // Update attempts list
+      function updateAttemptsList() {
+        if (attempts.length === 0) {
+          attemptsSection.classList.add('hidden');
+          return;
+        }
+
+        attemptsSection.classList.remove('hidden');
+
+        const validAttempts = attempts.filter(a => a !== 'early');
+        const bestTime = validAttempts.length > 0 ? Math.min(...validAttempts) : null;
+
+        attemptsList.innerHTML = attempts.map((attempt, index) => {
+          if (attempt === 'early') {
+            return `
+              <div class="attempt-item early">
+                <span>라운드 ${index + 1}</span>
+                <span>너무 빨리 클릭!</span>
+              </div>
+            `;
+          }
+          const isBest = attempt === bestTime;
+          return `
+            <div class="attempt-item ${isBest ? 'best' : ''}">
+              <span>라운드 ${index + 1} ${isBest ? '(최고 기록)' : ''}</span>
+              <span class="font-bold">${attempt}ms</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Set state
+      function setState(newState) {
+        state = newState;
+        reactionBox.className = 'reaction-box state-' + newState;
+
+        switch (newState) {
+          case 'ready':
+            reactionContent.innerHTML = `
+              <div class="reaction-text">클릭하여 시작</div>
+              <div class="reaction-subtext">화면이 초록색으로 변하면 클릭하세요</div>
+            `;
+            break;
+          case 'waiting':
+            reactionContent.innerHTML = `
+              <div class="reaction-text">대기중...</div>
+              <div class="reaction-subtext">초록색으로 변할 때까지 기다리세요</div>
+            `;
+            break;
+          case 'click':
+            reactionContent.innerHTML = `
+              <div class="reaction-text">지금 클릭!</div>
+            `;
+            break;
+          case 'early':
+            reactionContent.innerHTML = `
+              <div class="reaction-text">너무 빨리 클릭했습니다!</div>
+              <div class="reaction-subtext">초록색이 될 때까지 기다려야 합니다<br>클릭하여 다시 시도</div>
+            `;
+            break;
+        }
+      }
+
+      // Show result for current round
+      function showRoundResult(time) {
+        state = 'result'; // Important: update state variable
+        const rating = getRating(time);
+        reactionBox.className = 'reaction-box state-result';
+        reactionContent.innerHTML = `
+          <div class="reaction-time result-pulse">${time}ms</div>
+          <div class="rating-badge ${rating.class}">${rating.text}</div>
+          <div class="reaction-subtext mt-4">${currentRound < TOTAL_ROUNDS ? '클릭하여 다음 라운드' : '결과 확인하기'}</div>
+        `;
+      }
+
+      // Show final results
+      function showFinalResults() {
+        state = 'finished';
+        resultsSection.classList.remove('hidden');
+
+        const validAttempts = attempts.filter(a => a !== 'early');
+
+        if (validAttempts.length === 0) {
+          resultAverage.textContent = '-';
+          resultBest.textContent = '-';
+          resultWorst.textContent = '-';
+          resultRating.textContent = '측정 불가';
+          comparisonFill.style.width = '0%';
+          comparisonText.textContent = '유효한 측정값이 없습니다';
+          return;
+        }
+
+        const average = Math.round(validAttempts.reduce((a, b) => a + b, 0) / validAttempts.length);
+        const best = Math.min(...validAttempts);
+        const worst = Math.max(...validAttempts);
+        const rating = getRating(average);
+
+        resultAverage.textContent = average;
+        resultBest.textContent = best;
+        resultWorst.textContent = worst;
+        resultRating.textContent = rating.text;
+        resultRating.className = `text-2xl md:text-3xl font-bold ${
+          rating.class.includes('amazing') ? 'text-yellow-600 dark:text-yellow-400' :
+          rating.class.includes('good') ? 'text-green-600 dark:text-green-400' :
+          rating.class.includes('average') ? 'text-blue-600 dark:text-blue-400' :
+          'text-red-600 dark:text-red-400'
+        }`;
+
+        // Comparison bar (0-500ms scale, 250ms is 50%)
+        const fillPercentage = Math.min((average / 500) * 100, 100);
+        setTimeout(() => {
+          comparisonFill.style.width = fillPercentage + '%';
+        }, 300);
+
+        // Comparison text
+        const diff = average - AVERAGE_HUMAN;
+        if (diff < 0) {
+          comparisonText.textContent = `평균보다 ${Math.abs(diff)}ms 빠릅니다!`;
+          comparisonText.className = 'text-center mt-2 text-sm text-green-600 dark:text-green-400 font-medium';
+        } else if (diff > 0) {
+          comparisonText.textContent = `평균보다 ${diff}ms 느립니다`;
+          comparisonText.className = 'text-center mt-2 text-sm text-red-600 dark:text-red-400 font-medium';
+        } else {
+          comparisonText.textContent = '정확히 평균입니다!';
+          comparisonText.className = 'text-center mt-2 text-sm text-blue-600 dark:text-blue-400 font-medium';
+        }
+
+        // Update reaction box
+        reactionBox.className = 'reaction-box state-result';
+        reactionContent.innerHTML = `
+          <div class="reaction-text">테스트 완료!</div>
+          <div class="reaction-subtext">아래에서 결과를 확인하세요</div>
+        `;
+      }
+
+      // Start waiting phase
+      function startWaiting() {
+        setState('waiting');
+        const delay = getRandomDelay();
+
+        timeoutId = setTimeout(() => {
+          setState('click');
+          startTime = performance.now();
+        }, delay);
+      }
+
+      // Handle click
+      function handleClick() {
+        // Prevent double clicks
+        if (clickLock) return;
+
+        if (state === 'ready') {
+          clickLock = true;
+          startWaiting();
+          setTimeout(() => { clickLock = false; }, 100);
+        } else if (state === 'waiting') {
+          // Clicked too early
+          clickLock = true;
+          clearTimeout(timeoutId);
+          attempts.push('early');
+          currentRound++;
+          updateRoundIndicator();
+          updateAttemptsList();
+
+          if (currentRound >= TOTAL_ROUNDS) {
+            showFinalResults();
+          } else {
+            setState('early');
+          }
+          setTimeout(() => { clickLock = false; }, 300);
+        } else if (state === 'click') {
+          // Valid click - measure reaction time
+          clickLock = true;
+          const reactionTime = Math.round(performance.now() - startTime);
+          startTime = null; // Clear startTime to prevent re-calculation
+          attempts.push(reactionTime);
+          currentRound++;
+          updateRoundIndicator();
+          updateAttemptsList();
+
+          if (currentRound >= TOTAL_ROUNDS) {
+            showRoundResult(reactionTime);
+            setTimeout(() => {
+              showFinalResults();
+            }, 1500);
+          } else {
+            showRoundResult(reactionTime);
+          }
+          setTimeout(() => { clickLock = false; }, 300);
+        } else if (state === 'result' || state === 'early') {
+          if (currentRound < TOTAL_ROUNDS) {
+            clickLock = true;
+            startWaiting();
+            setTimeout(() => { clickLock = false; }, 100);
+          }
+        }
+      }
+
+      // Reset test
+      function resetTest() {
+        clearTimeout(timeoutId);
+        currentRound = 0;
+        attempts = [];
+        state = 'ready';
+        startTime = null;
+        clickLock = false;
+
+        updateRoundIndicator();
+        updateAttemptsList();
+        resultsSection.classList.add('hidden');
+        setState('ready');
+      }
+
+      // Event Listeners
+      reactionBox.addEventListener('click', handleClick);
+      tryAgainBtn.addEventListener('click', resetTest);
+
+      // Prevent context menu on long press (mobile)
+      reactionBox.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+      });
+
+      // Initialize
+      updateRoundIndicator();
+    })();
+  </script>
+</body>
+</html>

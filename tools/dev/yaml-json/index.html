@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YAML ↔ JSON 변환기 - Toolneat</title>
+  <meta name="description" content="YAML과 JSON 형식을 상호 변환합니다.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/dev/yaml-json/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/yaml-json/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/yaml-json/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/yaml-json/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="YAML ↔ JSON 변환기 - Toolneat">
+  <meta property="og:description" content="YAML과 JSON 형식을 상호 변환합니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/dev/yaml-json/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <!-- js-yaml library -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+
+  <style>
+    .converter-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 320px);
+      min-height: 500px;
+      max-height: 800px;
+    }
+    @media (min-width: 1024px) {
+      .converter-container {
+        flex-direction: row;
+        height: calc(100vh - 280px);
+        min-height: 550px;
+      }
+    }
+    .converter-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .converter-panel textarea {
+      flex: 1;
+      min-height: 200px;
+      resize: none;
+      overflow-y: auto;
+      font-size: 12px !important;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          YAML ↔ JSON 변환기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          YAML과 JSON 형식을 상호 변환합니다. 중첩 객체, 배열, 멀티라인 문자열을 지원합니다.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <!-- Options Row -->
+          <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">들여쓰기</span>
+              <select id="indent-size" class="input py-1.5 px-2 w-16 text-sm">
+                <option value="2">2</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input type="checkbox" id="auto-detect" checked class="rounded border-gray-300 dark:border-gray-600">
+              <span>자동 감지</span>
+            </label>
+          </div>
+          <!-- Buttons Row -->
+          <div class="flex flex-wrap gap-2">
+            <button id="yaml-to-json-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0">YAML → JSON</button>
+            <button id="json-to-yaml-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0">JSON → YAML</button>
+            <button id="sample-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">샘플 데이터</button>
+            <button id="clear-all-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0">모두 지우기</button>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+          <p class="text-sm text-red-600 dark:text-red-300" id="error-text"></p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="converter-container gap-4">
+          <!-- YAML Section -->
+          <div class="converter-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">YAML</span>
+              <div class="flex items-center gap-2">
+                <button id="copy-yaml-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">복사</button>
+                <button id="clear-yaml-btn" class="text-xs text-gray-500 dark:text-gray-400 hover:underline">지우기</button>
+              </div>
+            </div>
+            <textarea
+              id="yaml-input"
+              class="textarea font-mono text-sm leading-relaxed"
+              placeholder="YAML 데이터를 입력하세요...
+
+name: John Doe
+age: 30
+hobbies:
+  - reading
+  - coding"
+            ></textarea>
+          </div>
+
+          <!-- JSON Section -->
+          <div class="converter-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">JSON</span>
+              <div class="flex items-center gap-2">
+                <button id="copy-json-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">복사</button>
+                <button id="clear-json-btn" class="text-xs text-gray-500 dark:text-gray-400 hover:underline">지우기</button>
+              </div>
+            </div>
+            <textarea
+              id="json-input"
+              class="textarea font-mono text-sm leading-relaxed"
+              placeholder='JSON 데이터를 입력하세요...
+
+{
+  "name": "John Doe",
+  "age": 30,
+  "hobbies": ["reading", "coding"]
+}'
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">YAML ↔ JSON 변환기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>YAML과 JSON은 데이터 직렬화에 널리 사용되는 형식입니다. YAML은 사람이 읽기 쉬운 형식으로 설정 파일에 많이 사용되며, JSON은 API 통신과 데이터 교환에 표준으로 사용됩니다. 이 도구를 사용하면 두 형식 간의 변환을 쉽게 수행할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>왼쪽 YAML 영역 또는 오른쪽 JSON 영역에 데이터를 입력합니다.</li>
+            <li>'YAML → JSON' 또는 'JSON → YAML' 버튼을 클릭하여 변환합니다.</li>
+            <li>자동 감지가 활성화되면 입력 형식을 자동으로 인식합니다.</li>
+            <li>들여쓰기 크기(2 또는 4 스페이스)를 선택할 수 있습니다.</li>
+            <li>복사 버튼으로 결과를 클립보드에 복사합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: YAML과 JSON의 차이점은 무엇인가요?</h4>
+              <p>YAML은 들여쓰기로 구조를 표현하며 주석을 지원합니다. JSON은 중괄호와 대괄호로 구조를 표현하며 주석을 지원하지 않습니다. YAML은 더 간결하고 읽기 쉽지만, JSON은 더 엄격하고 파싱이 빠릅니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 멀티라인 문자열은 어떻게 변환되나요?</h4>
+              <p>YAML의 멀티라인 문자열(| 또는 >)은 JSON에서 \n으로 이스케이프된 문자열로 변환됩니다. 반대로 JSON의 이스케이프된 줄바꿈은 YAML 변환 시 적절히 처리됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 변환 시 주석은 어떻게 되나요?</h4>
+              <p>YAML의 주석(#)은 JSON으로 변환할 때 제거됩니다. JSON은 주석을 지원하지 않기 때문입니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const yamlInput = document.getElementById('yaml-input');
+      const jsonInput = document.getElementById('json-input');
+      const yamlToJsonBtn = document.getElementById('yaml-to-json-btn');
+      const jsonToYamlBtn = document.getElementById('json-to-yaml-btn');
+      const sampleBtn = document.getElementById('sample-btn');
+      const clearAllBtn = document.getElementById('clear-all-btn');
+      const copyYamlBtn = document.getElementById('copy-yaml-btn');
+      const copyJsonBtn = document.getElementById('copy-json-btn');
+      const clearYamlBtn = document.getElementById('clear-yaml-btn');
+      const clearJsonBtn = document.getElementById('clear-json-btn');
+      const indentSelect = document.getElementById('indent-size');
+      const autoDetectCheckbox = document.getElementById('auto-detect');
+      const errorMessage = document.getElementById('error-message');
+      const errorText = document.getElementById('error-text');
+
+      // Sample data
+      const sampleYaml = `# 사용자 설정 파일 예시
+name: 홍길동
+age: 30
+email: hong@example.com
+active: true
+roles:
+  - admin
+  - developer
+address:
+  city: 서울
+  country: 대한민국
+  zip: "12345"
+projects:
+  - name: 프로젝트 A
+    status: 진행중
+    tags:
+      - web
+      - frontend
+  - name: 프로젝트 B
+    status: 완료
+    tags:
+      - api
+      - backend
+description: |
+  여러 줄의 설명 텍스트입니다.
+  YAML은 멀티라인 문자열을 지원합니다.
+  들여쓰기로 구조를 표현합니다.`;
+
+      // Detect input format
+      function detectFormat(text) {
+        const trimmed = text.trim();
+        if (!trimmed) return null;
+
+        // Check for JSON
+        if ((trimmed.startsWith('{') && trimmed.endsWith('}')) ||
+            (trimmed.startsWith('[') && trimmed.endsWith(']'))) {
+          try {
+            JSON.parse(trimmed);
+            return 'json';
+          } catch (e) {
+            // Not valid JSON
+          }
+        }
+
+        // Assume YAML if contains typical YAML patterns
+        if (trimmed.includes(': ') || trimmed.includes(':\n') || trimmed.startsWith('-')) {
+          return 'yaml';
+        }
+
+        return null;
+      }
+
+      // Convert YAML to JSON
+      function yamlToJson() {
+        const yamlText = yamlInput.value.trim();
+        if (!yamlText) {
+          showError('YAML 데이터를 입력해주세요.');
+          return;
+        }
+
+        try {
+          const parsed = jsyaml.load(yamlText);
+          const indent = parseInt(indentSelect.value);
+          const jsonText = JSON.stringify(parsed, null, indent);
+          jsonInput.value = jsonText;
+          hideError();
+          toast.success('JSON으로 변환되었습니다.');
+        } catch (e) {
+          showError('YAML 파싱 오류: ' + e.message);
+        }
+      }
+
+      // Convert JSON to YAML
+      function jsonToYaml() {
+        const jsonText = jsonInput.value.trim();
+        if (!jsonText) {
+          showError('JSON 데이터를 입력해주세요.');
+          return;
+        }
+
+        try {
+          const parsed = JSON.parse(jsonText);
+          const indent = parseInt(indentSelect.value);
+          const yamlText = jsyaml.dump(parsed, {
+            indent: indent,
+            lineWidth: -1,
+            noRefs: true,
+            quotingType: '"'
+          });
+          yamlInput.value = yamlText;
+          hideError();
+          toast.success('YAML로 변환되었습니다.');
+        } catch (e) {
+          showError('JSON 파싱 오류: ' + e.message);
+        }
+      }
+
+      // Auto-convert based on detected format
+      function autoConvert(source) {
+        if (!autoDetectCheckbox.checked) return;
+
+        const text = source === 'yaml' ? yamlInput.value : jsonInput.value;
+        const format = detectFormat(text);
+
+        if (format === 'yaml' && source === 'yaml') {
+          // Don't auto-convert on typing, only on explicit action
+        } else if (format === 'json' && source === 'json') {
+          // Don't auto-convert on typing, only on explicit action
+        }
+      }
+
+      // Show error
+      function showError(message) {
+        errorMessage.classList.remove('hidden');
+        errorText.textContent = message;
+      }
+
+      // Hide error
+      function hideError() {
+        errorMessage.classList.add('hidden');
+      }
+
+      // Load sample data
+      function loadSample() {
+        yamlInput.value = sampleYaml;
+        jsonInput.value = '';
+        hideError();
+        toast.success('샘플 데이터가 로드되었습니다.');
+      }
+
+      // Clear all
+      function clearAll() {
+        yamlInput.value = '';
+        jsonInput.value = '';
+        hideError();
+        yamlInput.focus();
+      }
+
+      // Event listeners
+      yamlToJsonBtn.addEventListener('click', yamlToJson);
+      jsonToYamlBtn.addEventListener('click', jsonToYaml);
+      sampleBtn.addEventListener('click', loadSample);
+      clearAllBtn.addEventListener('click', clearAll);
+
+      clearYamlBtn.addEventListener('click', () => {
+        yamlInput.value = '';
+        yamlInput.focus();
+      });
+
+      clearJsonBtn.addEventListener('click', () => {
+        jsonInput.value = '';
+        jsonInput.focus();
+      });
+
+      copyYamlBtn.addEventListener('click', async () => {
+        const text = yamlInput.value;
+        if (!text) {
+          toast.warning('복사할 내용이 없습니다.');
+          return;
+        }
+        await copyToClipboard(text);
+        toast.success('YAML이 복사되었습니다.');
+      });
+
+      copyJsonBtn.addEventListener('click', async () => {
+        const text = jsonInput.value;
+        if (!text) {
+          toast.warning('복사할 내용이 없습니다.');
+          return;
+        }
+        await copyToClipboard(text);
+        toast.success('JSON이 복사되었습니다.');
+      });
+
+      // Keyboard shortcuts
+      yamlInput.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          yamlToJson();
+        }
+      });
+
+      jsonInput.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          jsonToYaml();
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

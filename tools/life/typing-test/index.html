@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타이핑 속도 테스트 - Toolneat</title>
+  <meta name="description" content="당신의 타자 속도를 측정해보세요. WPM, CPM, 정확도를 실시간으로 확인할 수 있습니다.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/life/typing-test/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/typing-test/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/typing-test/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/typing-test/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="타이핑 속도 테스트 - Toolneat">
+  <meta property="og:description" content="당신의 타자 속도를 측정해보세요. WPM, CPM, 정확도를 실시간으로 확인할 수 있습니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/life/typing-test/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    .char-correct { color: #22c55e; }
+    .char-wrong { color: #ef4444; text-decoration: underline; }
+    .char-current { background-color: #3b82f6; color: white; border-radius: 2px; }
+    .char-pending { color: #6b7280; }
+
+    .sample-text {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 1.25rem;
+      line-height: 2;
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    .typing-input {
+      caret-color: #3b82f6;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .timer-pulse {
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-animate {
+      animation: slideIn 0.5s ease-out forwards;
+    }
+
+    .result-item {
+      opacity: 0;
+    }
+
+    .result-item:nth-child(1) { animation-delay: 0.1s; }
+    .result-item:nth-child(2) { animation-delay: 0.2s; }
+    .result-item:nth-child(3) { animation-delay: 0.3s; }
+    .result-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .progress-bar {
+      transition: width 0.3s ease;
+    }
+
+    .difficulty-btn.active {
+      background-color: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          타이핑 속도 테스트
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          당신의 타자 속도를 측정해보세요. 제시된 문장을 정확하게 입력하면 WPM(분당 단어수), CPM(분당 글자수), 정확도를 실시간으로 확인할 수 있습니다.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <!-- Difficulty Selection -->
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">난이도:</span>
+            <div class="flex gap-2">
+              <button class="difficulty-btn active px-4 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-level="easy">쉬움</button>
+              <button class="difficulty-btn px-4 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-level="medium">보통</button>
+              <button class="difficulty-btn px-4 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-level="hard">어려움</button>
+            </div>
+          </div>
+
+          <!-- Sound Toggle -->
+          <div class="flex items-center gap-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="sound-toggle" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
+              <span class="text-sm text-gray-700 dark:text-gray-300">키 소리</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Timer and Progress -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-4">
+              <div id="timer-display" class="text-2xl font-mono font-bold text-blue-600 dark:text-blue-400">
+                00:00
+              </div>
+              <div id="status-badge" class="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                준비
+              </div>
+            </div>
+            <button id="restart-btn" class="btn btn-secondary flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              다시 시작
+            </button>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+            <div id="progress-bar" class="progress-bar bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Sample Text Display -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">제시문</label>
+          <div id="sample-text" class="sample-text bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 min-h-[120px]">
+            <!-- Sample text will be rendered here -->
+          </div>
+        </div>
+
+        <!-- Typing Input -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">입력</label>
+          <textarea
+            id="typing-input"
+            class="typing-input textarea h-32 font-mono text-lg"
+            placeholder="위의 제시문을 입력하세요..."
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          ></textarea>
+        </div>
+
+        <!-- Live Stats -->
+        <div id="live-stats" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-wpm" class="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">WPM</div>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-cpm" class="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">CPM</div>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-accuracy" class="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">정확도</div>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-errors" class="text-2xl md:text-3xl font-bold text-red-600 dark:text-red-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">오타</div>
+          </div>
+        </div>
+
+        <!-- Results Section (Hidden by default) -->
+        <div id="results-section" class="hidden mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl border border-blue-200 dark:border-blue-800">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">테스트 결과</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="result-item result-animate bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+              <div id="result-wpm" class="text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">WPM</div>
+              <div class="text-xs text-gray-400 dark:text-gray-500">분당 단어수</div>
+            </div>
+            <div class="result-item result-animate bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+              <div id="result-cpm" class="text-3xl font-bold text-green-600 dark:text-green-400">0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">CPM</div>
+              <div class="text-xs text-gray-400 dark:text-gray-500">분당 글자수</div>
+            </div>
+            <div class="result-item result-animate bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+              <div id="result-accuracy" class="text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">정확도</div>
+              <div class="text-xs text-gray-400 dark:text-gray-500">틀린 글자 비율</div>
+            </div>
+            <div class="result-item result-animate bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+              <div id="result-time" class="text-3xl font-bold text-orange-600 dark:text-orange-400">00:00</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">소요 시간</div>
+              <div class="text-xs text-gray-400 dark:text-gray-500">분:초</div>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <button id="try-again-btn" class="btn btn-primary">
+              다시 도전하기
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">타이핑 속도 테스트란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>타이핑 속도 테스트는 키보드로 문자를 입력하는 속도와 정확도를 측정하는 도구입니다. 제시된 문장을 보고 동일하게 입력하면, WPM(Words Per Minute, 분당 단어수), CPM(Characters Per Minute, 분당 글자수), 정확도를 실시간으로 확인할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>난이도(쉬움/보통/어려움)를 선택합니다</li>
+            <li>제시문을 확인하고 입력창에 동일하게 타이핑합니다</li>
+            <li>첫 글자를 입력하면 타이머가 자동으로 시작됩니다</li>
+            <li>제시문을 모두 입력하면 결과가 표시됩니다</li>
+            <li>'다시 시작' 버튼으로 새로운 테스트를 진행할 수 있습니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">측정 항목 설명</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">WPM (Words Per Minute)</h4>
+              <p>분당 입력 단어 수입니다. 표준적으로 5글자를 1단어로 계산합니다. 일반적인 사무직 평균은 40-50 WPM이며, 전문 타이피스트는 80-100 WPM 이상입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">CPM (Characters Per Minute)</h4>
+              <p>분당 입력 글자 수입니다. 한글의 경우 자모 분리 없이 완성형 글자 기준으로 계산됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">정확도</h4>
+              <p>전체 입력 중 올바르게 입력한 글자의 비율입니다. 95% 이상이면 우수한 정확도로 평가됩니다.</p>
+            </div>
+          </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 한글 타이핑 속도는 어떻게 측정되나요?</h4>
+              <p>한글은 영문과 달리 자모 조합으로 한 글자가 완성되므로, 완성된 글자 수를 기준으로 CPM을 계산합니다. WPM은 표준 방식대로 5글자를 1단어로 환산합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 좋은 타이핑 속도는 어느 정도인가요?</h4>
+              <p>영문 기준으로 40 WPM은 평균, 60 WPM은 양호, 80 WPM 이상은 빠른 편입니다. 한글은 구조 특성상 영문보다 CPM이 낮게 나올 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Korean sample texts by difficulty
+      const sampleTexts = {
+        easy: [
+          "오늘 날씨가 정말 좋습니다. 하늘이 맑고 바람이 시원하게 불어옵니다.",
+          "저는 매일 아침 커피를 마시며 하루를 시작합니다. 커피 향이 참 좋습니다.",
+          "주말에는 가족들과 함께 공원에 갔습니다. 아이들이 뛰어노는 모습이 보기 좋았습니다.",
+          "좋은 책을 읽으면 마음이 풍요로워집니다. 독서는 정말 좋은 습관입니다.",
+          "맛있는 음식을 먹으면 행복해집니다. 오늘 점심은 무엇을 먹을까요?",
+          "봄이 오면 꽃이 피고 새들이 노래합니다. 자연의 아름다움을 느껴보세요.",
+          "운동을 하면 몸과 마음이 건강해집니다. 매일 조금씩 움직여 보세요.",
+          "친구와 함께하는 시간은 소중합니다. 오늘 친구에게 연락해 보세요.",
+          "음악을 들으면 기분이 좋아집니다. 좋아하는 노래를 틀어보세요.",
+          "여행을 떠나면 새로운 경험을 할 수 있습니다. 다음 여행은 어디로 갈까요?"
+        ],
+        medium: [
+          "인공지능 기술이 빠르게 발전하면서 우리 일상생활에 많은 변화가 생기고 있습니다. 스마트폰, 자동차, 가전제품 등 다양한 분야에서 인공지능이 활용되고 있습니다.",
+          "건강한 삶을 위해서는 규칙적인 운동과 균형 잡힌 식단이 중요합니다. 또한 충분한 수면과 스트레스 관리도 건강 유지에 필수적인 요소입니다.",
+          "프로그래밍은 문제를 해결하는 과정입니다. 복잡한 문제를 작은 단위로 나누어 하나씩 해결해 나가면 어려운 과제도 완수할 수 있습니다.",
+          "환경 보호는 우리 모두의 책임입니다. 일회용품 사용을 줄이고 재활용을 생활화하면 지구 환경을 지키는 데 도움이 됩니다.",
+          "외국어를 배우면 새로운 문화를 이해할 수 있습니다. 꾸준한 학습과 실제 사용 경험이 언어 실력 향상의 핵심입니다.",
+          "시간 관리는 성공의 열쇠입니다. 우선순위를 정하고 계획적으로 일하면 더 많은 것을 이룰 수 있습니다. 작은 목표부터 차근차근 달성해 나가세요.",
+          "창의력은 누구에게나 있습니다. 새로운 것을 시도하고 실패를 두려워하지 않으면 창의적인 아이디어가 떠오릅니다. 호기심을 잃지 마세요.",
+          "좋은 습관은 인생을 바꿉니다. 작은 습관이 모여 큰 변화를 만들어냅니다. 오늘부터 하나씩 좋은 습관을 만들어 보세요.",
+          "협업은 혼자서는 할 수 없는 일을 가능하게 합니다. 서로의 강점을 살리고 약점을 보완하면 더 좋은 결과를 얻을 수 있습니다.",
+          "디지털 시대에 정보 활용 능력은 필수입니다. 올바른 정보를 찾고 분석하는 능력이 경쟁력이 됩니다. 비판적 사고를 기르세요."
+        ],
+        hard: [
+          "대한민국 헌법 제1조는 대한민국은 민주공화국이다라고 명시하고 있으며, 대한민국의 주권은 국민에게 있고, 모든 권력은 국민으로부터 나온다고 규정하고 있습니다. 이는 국민이 국가의 주인임을 천명하는 가장 기본적인 조항입니다.",
+          "양자역학은 원자와 아원자 입자의 행동을 설명하는 물리학의 기본 이론입니다. 슈뢰딩거 방정식과 하이젠베르크의 불확정성 원리는 양자역학의 핵심 개념으로, 미시세계의 신비로운 현상들을 수학적으로 기술합니다.",
+          "세계화 시대에 문화 다양성은 인류의 중요한 자산입니다. 각 민족의 고유한 전통과 가치관을 존중하면서도 상호 이해와 협력을 통해 공존의 길을 모색해야 합니다. 문화적 차이는 갈등의 원인이 아니라 풍요로움의 원천이 될 수 있습니다.",
+          "지속 가능한 발전이란 미래 세대가 그들의 필요를 충족시킬 수 있는 능력을 저해하지 않으면서 현재 세대의 필요를 충족시키는 발전을 의미합니다. 경제 성장, 환경 보전, 사회적 형평성이 조화를 이루어야 합니다.",
+          "인터넷과 소셜 미디어의 발달로 정보의 생산과 유통 방식이 근본적으로 변화했습니다. 누구나 콘텐츠를 만들고 공유할 수 있게 되면서 민주적 소통이 활성화되었지만, 동시에 가짜 뉴스와 혐오 표현의 확산이라는 새로운 문제도 대두되고 있습니다.",
+          "블록체인 기술은 분산원장 시스템을 기반으로 하여 거래의 투명성과 보안성을 높이는 혁신적인 기술입니다. 암호화폐뿐만 아니라 공급망 관리, 디지털 신원 확인, 스마트 계약 등 다양한 분야에서 활용 가능성이 주목받고 있습니다.",
+          "뇌과학의 발전으로 인간의 인지 과정과 감정 처리 메커니즘에 대한 이해가 깊어지고 있습니다. 신경가소성 연구는 학습과 기억의 원리를 밝히고, 뇌-컴퓨터 인터페이스 기술은 신체 장애 극복의 새로운 가능성을 제시합니다.",
+          "기후변화로 인한 극단적 기상 현상이 전 세계적으로 증가하고 있습니다. 폭염, 홍수, 가뭄 등의 자연재해가 빈번해지면서 식량 안보와 생태계 보전에 대한 우려가 커지고 있으며, 탄소 중립 달성을 위한 국제적 협력이 시급합니다.",
+          "빅데이터 분석과 머신러닝 알고리즘의 결합은 의료 진단, 금융 예측, 마케팅 전략 수립 등 다양한 영역에서 혁신을 이끌고 있습니다. 그러나 개인정보 보호와 알고리즘 편향성 문제에 대한 윤리적 검토도 함께 이루어져야 합니다.",
+          "현대 사회의 도시화 현상은 교통 혼잡, 환경 오염, 주거 문제 등 복합적인 과제를 야기하고 있습니다. 스마트 시티 개념은 정보통신기술을 활용하여 도시 인프라의 효율성을 높이고 시민의 삶의 질을 향상시키는 해결책을 제시합니다."
+        ]
+      };
+
+      // State
+      let currentText = '';
+      let startTime = null;
+      let timerInterval = null;
+      let isTestActive = false;
+      let isTestComplete = false;
+      let currentDifficulty = 'easy';
+      let soundEnabled = false;
+
+      // Audio context for key sounds
+      let audioContext = null;
+
+      // DOM Elements
+      const sampleTextEl = document.getElementById('sample-text');
+      const typingInput = document.getElementById('typing-input');
+      const timerDisplay = document.getElementById('timer-display');
+      const statusBadge = document.getElementById('status-badge');
+      const progressBar = document.getElementById('progress-bar');
+      const restartBtn = document.getElementById('restart-btn');
+      const tryAgainBtn = document.getElementById('try-again-btn');
+      const soundToggle = document.getElementById('sound-toggle');
+      const resultsSection = document.getElementById('results-section');
+      const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+
+      // Stats elements
+      const statWpm = document.getElementById('stat-wpm');
+      const statCpm = document.getElementById('stat-cpm');
+      const statAccuracy = document.getElementById('stat-accuracy');
+      const statErrors = document.getElementById('stat-errors');
+
+      // Result elements
+      const resultWpm = document.getElementById('result-wpm');
+      const resultCpm = document.getElementById('result-cpm');
+      const resultAccuracy = document.getElementById('result-accuracy');
+      const resultTime = document.getElementById('result-time');
+
+      // Initialize audio context
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      }
+
+      // Play key sound
+      function playKeySound(correct) {
+        if (!soundEnabled || !audioContext) return;
+
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.value = correct ? 800 : 300;
+        oscillator.type = 'sine';
+
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+      }
+
+      // Get random text based on difficulty
+      function getRandomText(difficulty) {
+        const texts = sampleTexts[difficulty];
+        return texts[Math.floor(Math.random() * texts.length)];
+      }
+
+      // Render sample text with highlighting
+      function renderSampleText(inputText) {
+        let html = '';
+        for (let i = 0; i < currentText.length; i++) {
+          const char = currentText[i];
+          let className = 'char-pending';
+
+          if (i < inputText.length) {
+            if (inputText[i] === char) {
+              className = 'char-correct';
+            } else {
+              className = 'char-wrong';
+            }
+          } else if (i === inputText.length) {
+            className = 'char-current';
+          }
+
+          // Handle space character display
+          const displayChar = char === ' ' ? '&nbsp;' : char;
+          html += `<span class="${className}">${displayChar}</span>`;
+        }
+        sampleTextEl.innerHTML = html;
+      }
+
+      // Calculate stats
+      function calculateStats(inputText, elapsedSeconds) {
+        if (elapsedSeconds === 0) return { wpm: 0, cpm: 0, accuracy: 100, errors: 0 };
+
+        let correctChars = 0;
+        let errors = 0;
+
+        for (let i = 0; i < inputText.length; i++) {
+          if (i < currentText.length && inputText[i] === currentText[i]) {
+            correctChars++;
+          } else {
+            errors++;
+          }
+        }
+
+        const minutes = elapsedSeconds / 60;
+        const cpm = Math.round(correctChars / minutes);
+        const wpm = Math.round((correctChars / 5) / minutes); // Standard: 5 chars = 1 word
+        const accuracy = inputText.length > 0 ? Math.round((correctChars / inputText.length) * 100) : 100;
+
+        return { wpm, cpm, accuracy, errors };
+      }
+
+      // Format time
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      // Start timer
+      function startTimer() {
+        startTime = Date.now();
+        isTestActive = true;
+        statusBadge.textContent = '진행 중';
+        statusBadge.className = 'px-3 py-1 text-sm rounded-full bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400';
+        timerDisplay.classList.add('timer-pulse');
+
+        timerInterval = setInterval(() => {
+          const elapsed = Math.floor((Date.now() - startTime) / 1000);
+          timerDisplay.textContent = formatTime(elapsed);
+
+          // Update live stats
+          const inputText = typingInput.value;
+          const stats = calculateStats(inputText, elapsed);
+          statWpm.textContent = stats.wpm;
+          statCpm.textContent = stats.cpm;
+          statAccuracy.textContent = stats.accuracy + '%';
+          statErrors.textContent = stats.errors;
+        }, 1000);
+      }
+
+      // Stop timer
+      function stopTimer() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        timerDisplay.classList.remove('timer-pulse');
+      }
+
+      // Complete test
+      function completeTest() {
+        stopTimer();
+        isTestActive = false;
+        isTestComplete = true;
+
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        const inputText = typingInput.value;
+        const stats = calculateStats(inputText, elapsed);
+
+        // Update status
+        statusBadge.textContent = '완료';
+        statusBadge.className = 'px-3 py-1 text-sm rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400';
+
+        // Show results
+        resultWpm.textContent = stats.wpm;
+        resultCpm.textContent = stats.cpm;
+        resultAccuracy.textContent = stats.accuracy + '%';
+        resultTime.textContent = formatTime(elapsed);
+
+        resultsSection.classList.remove('hidden');
+        typingInput.disabled = true;
+      }
+
+      // Reset test
+      function resetTest() {
+        stopTimer();
+        isTestActive = false;
+        isTestComplete = false;
+        startTime = null;
+
+        currentText = getRandomText(currentDifficulty);
+        renderSampleText('');
+
+        typingInput.value = '';
+        typingInput.disabled = false;
+        typingInput.focus();
+
+        timerDisplay.textContent = '00:00';
+        progressBar.style.width = '0%';
+
+        statusBadge.textContent = '준비';
+        statusBadge.className = 'px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400';
+
+        statWpm.textContent = '0';
+        statCpm.textContent = '0';
+        statAccuracy.textContent = '100%';
+        statErrors.textContent = '0';
+
+        resultsSection.classList.add('hidden');
+      }
+
+      // Handle input
+      function handleInput() {
+        if (isTestComplete) return;
+
+        const inputText = typingInput.value;
+
+        // Start timer on first input
+        if (!isTestActive && inputText.length > 0) {
+          startTimer();
+        }
+
+        // Play sound
+        if (inputText.length > 0) {
+          const lastIndex = inputText.length - 1;
+          const isCorrect = lastIndex < currentText.length && inputText[lastIndex] === currentText[lastIndex];
+          playKeySound(isCorrect);
+        }
+
+        // Update display
+        renderSampleText(inputText);
+
+        // Update progress
+        const progress = Math.min((inputText.length / currentText.length) * 100, 100);
+        progressBar.style.width = progress + '%';
+
+        // Update live stats
+        if (isTestActive) {
+          const elapsed = Math.floor((Date.now() - startTime) / 1000);
+          const stats = calculateStats(inputText, elapsed || 1);
+          statWpm.textContent = stats.wpm;
+          statCpm.textContent = stats.cpm;
+          statAccuracy.textContent = stats.accuracy + '%';
+          statErrors.textContent = stats.errors;
+        }
+
+        // Check if complete
+        if (inputText.length >= currentText.length) {
+          completeTest();
+        }
+      }
+
+      // Event Listeners
+      typingInput.addEventListener('input', handleInput);
+
+      restartBtn.addEventListener('click', resetTest);
+      tryAgainBtn.addEventListener('click', resetTest);
+
+      soundToggle.addEventListener('change', (e) => {
+        soundEnabled = e.target.checked;
+        if (soundEnabled) {
+          initAudio();
+        }
+      });
+
+      difficultyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          difficultyBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentDifficulty = btn.dataset.level;
+          resetTest();
+        });
+      });
+
+      // Prevent paste
+      typingInput.addEventListener('paste', (e) => {
+        e.preventDefault();
+      });
+
+      // Initialize
+      resetTest();
+    })();
+  </script>
+</body>
+</html>

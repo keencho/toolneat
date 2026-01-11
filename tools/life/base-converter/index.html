@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.baseConverter.title">진법 변환기 - Toolneat</title>
+  <meta name="description" data-i18n-desc="tools.baseConverter.description" content="2진수, 8진수, 10진수, 16진수를 변환합니다.">
+  <link rel="canonical" href="https://toolneat.com/tools/life/base-converter/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/base-converter/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/base-converter/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/base-converter/">
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.baseConverter.title">진법 변환기</h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.baseConverter.descriptionLong">2진수, 8진수, 10진수, 16진수를 실시간으로 상호 변환합니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="space-y-4">
+          <!-- Binary -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <span class="inline-flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs font-mono rounded">2</span>
+                <span data-i18n="tools.baseConverter.binary">2진수 (Binary)</span>
+              </span>
+            </label>
+            <input type="text" id="binary" class="input font-mono" placeholder="예: 1010">
+          </div>
+
+          <!-- Octal -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <span class="inline-flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs font-mono rounded">8</span>
+                <span data-i18n="tools.baseConverter.octal">8진수 (Octal)</span>
+              </span>
+            </label>
+            <input type="text" id="octal" class="input font-mono" placeholder="예: 12">
+          </div>
+
+          <!-- Decimal -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <span class="inline-flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 text-xs font-mono rounded">10</span>
+                <span data-i18n="tools.baseConverter.decimal">10진수 (Decimal)</span>
+              </span>
+            </label>
+            <input type="text" id="decimal" class="input font-mono" placeholder="예: 10">
+          </div>
+
+          <!-- Hexadecimal -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <span class="inline-flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-xs font-mono rounded">16</span>
+                <span data-i18n="tools.baseConverter.hex">16진수 (Hexadecimal)</span>
+              </span>
+            </label>
+            <input type="text" id="hex" class="input font-mono" placeholder="예: A">
+          </div>
+        </div>
+
+        <button id="clear-btn" class="btn btn-secondary mt-6" data-i18n="common.clear">지우기</button>
+      </div>
+
+      <!-- Quick Reference -->
+      <div class="mt-6 card">
+        <h3 class="font-medium text-gray-900 dark:text-white mb-4" data-i18n="tools.baseConverter.quickRef">빠른 참조표</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="text-left border-b border-gray-200 dark:border-gray-700">
+                <th class="py-2 px-3 font-medium">10진수</th>
+                <th class="py-2 px-3 font-medium">2진수</th>
+                <th class="py-2 px-3 font-medium">8진수</th>
+                <th class="py-2 px-3 font-medium">16진수</th>
+              </tr>
+            </thead>
+            <tbody class="font-mono text-gray-600 dark:text-gray-400">
+              <tr><td class="py-1.5 px-3">0</td><td class="py-1.5 px-3">0000</td><td class="py-1.5 px-3">0</td><td class="py-1.5 px-3">0</td></tr>
+              <tr class="bg-gray-50 dark:bg-gray-800"><td class="py-1.5 px-3">1</td><td class="py-1.5 px-3">0001</td><td class="py-1.5 px-3">1</td><td class="py-1.5 px-3">1</td></tr>
+              <tr><td class="py-1.5 px-3">8</td><td class="py-1.5 px-3">1000</td><td class="py-1.5 px-3">10</td><td class="py-1.5 px-3">8</td></tr>
+              <tr class="bg-gray-50 dark:bg-gray-800"><td class="py-1.5 px-3">10</td><td class="py-1.5 px-3">1010</td><td class="py-1.5 px-3">12</td><td class="py-1.5 px-3">A</td></tr>
+              <tr><td class="py-1.5 px-3">15</td><td class="py-1.5 px-3">1111</td><td class="py-1.5 px-3">17</td><td class="py-1.5 px-3">F</td></tr>
+              <tr class="bg-gray-50 dark:bg-gray-800"><td class="py-1.5 px-3">16</td><td class="py-1.5 px-3">10000</td><td class="py-1.5 px-3">20</td><td class="py-1.5 px-3">10</td></tr>
+              <tr><td class="py-1.5 px-3">255</td><td class="py-1.5 px-3">11111111</td><td class="py-1.5 px-3">377</td><td class="py-1.5 px-3">FF</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">진법 변환기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            진법 변환기는 2진수, 8진수, 10진수, 16진수를 실시간으로 상호 변환하는 도구입니다.
+            프로그래밍, 컴퓨터 과학 학습, 디지털 시스템 이해에 유용합니다.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>원하는 진법의 입력 필드에 숫자를 입력합니다</li>
+            <li>다른 진법의 값이 자동으로 변환되어 표시됩니다</li>
+            <li>어떤 필드에서든 입력하면 나머지가 동시에 변환됩니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">진법 종류</h3>
+          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
+            <li><strong>2진수 (Binary):</strong> 0과 1만 사용, 컴퓨터의 기본 연산 단위</li>
+            <li><strong>8진수 (Octal):</strong> 0-7 사용, Unix 파일 권한 표기에 사용</li>
+            <li><strong>10진수 (Decimal):</strong> 일상에서 사용하는 숫자 체계</li>
+            <li><strong>16진수 (Hexadecimal):</strong> 0-9, A-F 사용, 색상 코드, 메모리 주소 등</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">왜 2진수를 사용하나요?</p>
+              <p class="text-gray-600 dark:text-gray-400">컴퓨터는 전기 신호의 켜짐(1)과 꺼짐(0) 두 가지 상태로 동작하기 때문에 2진수를 기본으로 사용합니다.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">16진수는 어디에 사용되나요?</p>
+              <p class="text-gray-600 dark:text-gray-400">웹 색상 코드(#FF0000), 메모리 주소, MAC 주소 등 IT 분야에서 널리 사용됩니다.</p>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">음수도 변환할 수 있나요?</p>
+              <p class="text-gray-600 dark:text-gray-400">현재는 양의 정수만 지원합니다. 음수의 경우 2의 보수 표현이 필요합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script>
+    (function() {
+      'use strict';
+      const binary = document.getElementById('binary');
+      const octal = document.getElementById('octal');
+      const decimal = document.getElementById('decimal');
+      const hex = document.getElementById('hex');
+      const clearBtn = document.getElementById('clear-btn');
+
+      let updating = false;
+
+      function convert(source, value) {
+        if (updating) return;
+        updating = true;
+        let num;
+        try {
+          switch (source) {
+            case 'binary': num = parseInt(value, 2); break;
+            case 'octal': num = parseInt(value, 8); break;
+            case 'decimal': num = parseInt(value, 10); break;
+            case 'hex': num = parseInt(value, 16); break;
+          }
+          if (isNaN(num) || value === '') {
+            binary.value = octal.value = decimal.value = hex.value = '';
+          } else {
+            if (source !== 'binary') binary.value = num.toString(2);
+            if (source !== 'octal') octal.value = num.toString(8);
+            if (source !== 'decimal') decimal.value = num.toString(10);
+            if (source !== 'hex') hex.value = num.toString(16).toUpperCase();
+          }
+        } catch (e) {}
+        updating = false;
+      }
+
+      binary.addEventListener('input', () => convert('binary', binary.value.replace(/[^01]/g, '')));
+      octal.addEventListener('input', () => convert('octal', octal.value.replace(/[^0-7]/g, '')));
+      decimal.addEventListener('input', () => convert('decimal', decimal.value.replace(/[^0-9]/g, '')));
+      hex.addEventListener('input', () => convert('hex', hex.value.replace(/[^0-9a-fA-F]/g, '')));
+
+      clearBtn.addEventListener('click', () => {
+        binary.value = octal.value = decimal.value = hex.value = '';
+      });
+    })();
+  </script>
+</body>
+</html>
