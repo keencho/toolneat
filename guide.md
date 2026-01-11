@@ -195,3 +195,135 @@ NODE_VERSION: 20
 ### 광고 안 나옴
 - 광고 차단 확장 프로그램 비활성화
 - 승인 후 24시간 대기
+
+---
+
+## 8. 외부 도메인을 Cloudflare Pages에 연결하기
+
+다른 곳(가비아, 호스팅케이알, GoDaddy 등)에서 구매한 도메인을 연결하는 방법.
+
+### 방법 1: Cloudflare DNS 사용 (권장)
+
+네임서버를 Cloudflare로 변경. Cloudflare의 모든 기능(CDN, 보안, 캐싱) 사용 가능.
+
+#### Step 1: Cloudflare에 도메인 추가
+1. [Cloudflare Dashboard](https://dash.cloudflare.com/) 로그인
+2. **Add a site** 클릭
+3. 도메인 입력 (예: `toolneat.com`)
+4. **Free** 플랜 선택
+5. DNS 레코드 스캔 완료 대기
+
+#### Step 2: 네임서버 변경
+1. Cloudflare가 제공하는 네임서버 2개 확인
+   - 예: `alice.ns.cloudflare.com`, `bob.ns.cloudflare.com`
+2. **도메인 구매처 로그인** (가비아, 호스팅케이알 등)
+3. 도메인 관리 → 네임서버 설정
+4. 기존 네임서버 삭제 후 **Cloudflare 네임서버 입력**
+5. 변경 저장 (적용까지 최대 24시간, 보통 1시간 내)
+
+#### Step 3: Cloudflare Pages에 도메인 연결
+1. Cloudflare Dashboard → **Pages**
+2. 프로젝트 선택 (toolneat)
+3. **Custom domains** 탭
+4. **Set up a custom domain** 클릭
+5. 도메인 입력: `toolneat.com`
+6. **Activate domain** 클릭
+7. `www.toolneat.com`도 같은 방식으로 추가
+
+#### Step 4: DNS 레코드 확인
+자동으로 추가되지만, 확인 필요:
+```
+Type: CNAME
+Name: @
+Target: <project-name>.pages.dev
+
+Type: CNAME
+Name: www
+Target: <project-name>.pages.dev
+```
+
+---
+
+### 방법 2: 외부 DNS 유지 (CNAME 방식)
+
+네임서버 변경 없이 기존 DNS에서 CNAME만 추가.
+
+#### Step 1: Cloudflare Pages에서 도메인 추가
+1. Cloudflare Dashboard → **Pages** → 프로젝트 선택
+2. **Custom domains** → **Set up a custom domain**
+3. 도메인 입력 후 진행
+4. "DNS not configured" 경고 무시하고 계속
+
+#### Step 2: 도메인 구매처에서 DNS 설정
+도메인 구매처의 DNS 관리에서 다음 레코드 추가:
+
+```
+# 루트 도메인 (CNAME flattening 지원 시)
+Type: CNAME
+Name: @ (또는 빈칸)
+Value: <project-name>.pages.dev
+
+# www 서브도메인
+Type: CNAME
+Name: www
+Value: <project-name>.pages.dev
+```
+
+**주의**: 일부 DNS는 루트 도메인(@)에 CNAME을 지원하지 않음.
+→ 이 경우 **방법 1(네임서버 변경)** 권장.
+
+---
+
+### 한국 도메인 업체별 네임서버 변경
+
+#### 가비아 (Gabia)
+1. 가비아 로그인 → My가비아
+2. 도메인 → 관리
+3. 해당 도메인 선택 → 네임서버 → 설정
+4. "외부 네임서버 사용" 선택
+5. Cloudflare 네임서버 입력
+
+#### 호스팅케이알 (Hosting.kr)
+1. 호스팅케이알 로그인
+2. 나의서비스 → 도메인 관리
+3. 도메인 선택 → 네임서버 변경
+4. Cloudflare 네임서버 입력
+
+#### 카페24
+1. 카페24 로그인 → 나의서비스
+2. 도메인 관리 → 도메인 정보 변경
+3. 네임서버 정보 → 직접 입력
+4. Cloudflare 네임서버 입력
+
+---
+
+### SSL 인증서
+
+- **Cloudflare DNS 사용 시**: 자동으로 SSL 발급 (몇 분 소요)
+- **외부 DNS 사용 시**: 도메인 연결 후 자동 발급 (최대 24시간)
+
+---
+
+### 권장 Cloudflare 설정
+
+도메인 연결 후 Dashboard에서:
+
+1. **SSL/TLS**
+   - 암호화 모드: `Full (strict)`
+   - Always Use HTTPS: `On`
+
+2. **Rules → Redirect Rules** (www → apex 리다이렉트)
+   - If: `hostname equals www.toolneat.com`
+   - Then: Dynamic redirect to `https://toolneat.com${http.request.uri.path}`
+   - Status: 301
+
+---
+
+### 문제 해결
+
+| 문제 | 해결 |
+|------|------|
+| "DNS not configured" | 네임서버 변경 후 최대 24시간 대기 |
+| SSL 인증서 발급 안됨 | DNS 전파 대기 |
+| www가 작동 안함 | www CNAME 레코드 추가 확인 |
+| 리다이렉트 루프 | SSL 설정을 "Full" 또는 "Full (strict)"로 |
