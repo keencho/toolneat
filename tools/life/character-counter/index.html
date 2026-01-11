@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.characterCounter.title">글자수 세기 - Toolneat</title>
+  <meta name="description" data-i18n-desc="tools.characterCounter.description" content="텍스트의 글자수, 단어수, 바이트를 계산합니다">
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/character-counter/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/tools/life/character-counter/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/character-counter/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.characterCounter.title">
+          글자수 세기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.characterCounter.descriptionLong">
+          블로그 포스팅, SNS 글, 이력서 등 글자수 제한이 있는 문서 작성 시 유용합니다. 공백 포함/제외 글자수, 단어수, 바이트(UTF-8) 등을 실시간으로 확인할 수 있습니다.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+        <!-- AdSense -->
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Text Input -->
+        <div class="mb-6">
+          <textarea
+            id="text-input"
+            class="textarea h-48 md:h-64 font-mono text-sm"
+            placeholder="텍스트를 입력하세요..."
+            data-i18n-placeholder="tools.characterCounter.placeholder"
+            maxlength="200000"
+          ></textarea>
+          <div class="flex justify-between items-center mt-2 text-sm">
+            <span id="limit-warning" class="text-red-500 dark:text-red-400 hidden" data-i18n="tools.characterCounter.limitReached">글자수 제한에 도달했습니다.</span>
+            <span class="text-gray-400 dark:text-gray-500 ml-auto"><span id="char-count">0</span> / 200,000</span>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <!-- Characters -->
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-chars" class="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="tools.characterCounter.characters">글자</div>
+          </div>
+
+          <!-- Characters (no spaces) -->
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-chars-no-space" class="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="tools.characterCounter.charactersNoSpace">공백 제외</div>
+          </div>
+
+          <!-- Words -->
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-words" class="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="tools.characterCounter.words">단어</div>
+          </div>
+
+          <!-- Bytes -->
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-bytes" class="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="tools.characterCounter.bytes">바이트</div>
+          </div>
+
+          <!-- Lines -->
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-lines" class="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="tools.characterCounter.lines">줄</div>
+          </div>
+
+          <!-- Paragraphs -->
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
+            <div id="stat-paragraphs" class="text-2xl md:text-3xl font-bold text-pink-600 dark:text-pink-400">0</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="tools.characterCounter.paragraphs">문단</div>
+          </div>
+        </div>
+
+        <!-- Clear Button -->
+        <div class="mt-6 flex justify-end">
+          <button id="clear-btn" class="btn btn-secondary" data-i18n="common.clear">
+            지우기
+          </button>
+        </div>
+      </div>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-8">
+        <!-- AdSense -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const MAX_CHARS = 200000;
+      const textInput = document.getElementById('text-input');
+      const clearBtn = document.getElementById('clear-btn');
+      const charCount = document.getElementById('char-count');
+      const limitWarning = document.getElementById('limit-warning');
+
+      const stats = {
+        chars: document.getElementById('stat-chars'),
+        charsNoSpace: document.getElementById('stat-chars-no-space'),
+        words: document.getElementById('stat-words'),
+        bytes: document.getElementById('stat-bytes'),
+        lines: document.getElementById('stat-lines'),
+        paragraphs: document.getElementById('stat-paragraphs')
+      };
+
+      // Calculate stats
+      const calculate = () => {
+        const text = textInput.value;
+        const length = text.length;
+
+        // Update char count display
+        charCount.textContent = formatNumber(length);
+
+        // Show/hide limit warning
+        if (length >= MAX_CHARS) {
+          limitWarning.classList.remove('hidden');
+        } else {
+          limitWarning.classList.add('hidden');
+        }
+
+        // Characters
+        stats.chars.textContent = formatNumber(length);
+
+        // Characters without spaces
+        stats.charsNoSpace.textContent = formatNumber(text.replace(/\s/g, '').length);
+
+        // Words
+        const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+        stats.words.textContent = formatNumber(words);
+
+        // Bytes (UTF-8)
+        const bytes = new Blob([text]).size;
+        stats.bytes.textContent = formatNumber(bytes);
+
+        // Lines
+        const lines = text ? text.split('\n').length : 0;
+        stats.lines.textContent = formatNumber(lines);
+
+        // Paragraphs (non-empty lines)
+        const paragraphs = text.split('\n').filter(line => line.trim().length > 0).length;
+        stats.paragraphs.textContent = formatNumber(paragraphs);
+      };
+
+      // Event listeners
+      textInput.addEventListener('input', debounceImmediate(calculate, 50));
+
+      clearBtn.addEventListener('click', () => {
+        textInput.value = '';
+        calculate();
+        textInput.focus();
+      });
+
+      // Initial calculation
+      calculate();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+/* Tailwind v4 Dark Mode - class 기반 */
+@variant dark (&:where(.dark, .dark *));
+
+/* Tailwind v4 Theme */
+@theme {
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --breakpoint-content: 800px;
+}
+
+/* Pretendard Font - 상대경로 */
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/pretendard/Pretendard-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/pretendard/Pretendard-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/pretendard/Pretendard-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/pretendard/Pretendard-Bold.woff2') format('woff2');
+}
+
+/* Base Styles */
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Button cursor fix - Tailwind preflight sets cursor:default */
+button {
+  cursor: pointer;
+}
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+  @apply transition-colors duration-200;
+}
+
+/* Components */
+.btn {
+  @apply px-4 py-2 rounded-xl font-medium cursor-pointer;
+  @apply transition-all duration-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white;
+  @apply hover:bg-blue-700 hover:scale-[1.02];
+  @apply focus:ring-blue-500;
+  @apply dark:bg-blue-500 dark:hover:bg-blue-600;
+}
+
+.btn-secondary {
+  @apply bg-gray-100 text-gray-700;
+  @apply hover:bg-gray-200 hover:scale-[1.02];
+  @apply focus:ring-gray-400;
+  @apply dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600;
+}
+
+.input {
+  @apply w-full px-4 py-3 rounded-xl;
+  @apply bg-gray-50 border border-gray-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  @apply transition-all duration-200;
+  @apply dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100;
+}
+
+/* Date/time input icon fix for dark mode */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover,
+input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+.dark input[type="date"]::-webkit-calendar-picker-indicator,
+.dark input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+.dark input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.5);
+  opacity: 0.8;
+}
+
+.textarea {
+  @apply w-full px-4 py-3 rounded-xl resize-none;
+  @apply bg-gray-50 border border-gray-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  @apply transition-all duration-200;
+  @apply dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-sm p-6;
+  @apply border border-gray-100;
+  @apply transition-all duration-200;
+  @apply hover:shadow-md;
+  @apply dark:bg-gray-800 dark:border-gray-700;
+}
+
+.tool-card {
+  @apply bg-white rounded-xl shadow-sm p-6 cursor-pointer;
+  @apply border border-gray-100;
+  @apply transition-all duration-200;
+  @apply hover:shadow-md hover:scale-[1.01];
+  @apply dark:bg-gray-800 dark:border-gray-700;
+}
+
+.container-main {
+  @apply max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8;
+}
+
+/* Dropdown Navigation */
+.nav-dropdown {
+  @apply relative;
+}
+
+.nav-dropdown-btn {
+  @apply flex items-center gap-1 px-3 py-2 rounded-lg cursor-pointer;
+  @apply text-gray-600 dark:text-gray-400;
+  @apply hover:text-gray-900 dark:hover:text-white;
+  @apply hover:bg-gray-100 dark:hover:bg-gray-800;
+  @apply transition-all duration-200;
+}
+
+.nav-dropdown-menu {
+  @apply absolute top-full left-0 mt-1 py-2 w-64;
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg;
+  @apply border border-gray-100 dark:border-gray-700;
+  @apply opacity-0 invisible translate-y-2;
+  @apply transition-all duration-200;
+  @apply z-50;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.active .nav-dropdown-menu {
+  @apply opacity-100 visible translate-y-0;
+}
+
+.nav-dropdown-item {
+  @apply flex items-center gap-3 px-4 py-3;
+  @apply text-gray-600 dark:text-gray-400;
+  @apply hover:text-gray-900 dark:hover:text-white;
+  @apply hover:bg-gray-50 dark:hover:bg-gray-700/50;
+  @apply transition-colors duration-150;
+}
+
+.nav-dropdown-item svg {
+  @apply w-5 h-5 text-gray-400 dark:text-gray-500;
+}
+
+.nav-dropdown-item:hover svg {
+  @apply text-blue-500 dark:text-blue-400;
+}
+
+.ad-container {
+  @apply w-full flex justify-center py-4;
+  @apply bg-gray-50 dark:bg-gray-800/50;
+  @apply border-y border-gray-100 dark:border-gray-800;
+}
+
+.icon-btn {
+  @apply p-2 rounded-lg cursor-pointer;
+  @apply text-gray-600 dark:text-gray-400;
+  @apply hover:bg-gray-100 dark:hover:bg-gray-800;
+  @apply transition-all duration-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-gray-400;
+}
+
+/* Utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Global Scrollbar Styling - Light Mode */
+html, body, * {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 transparent;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Dark mode scrollbar - Light gray for visibility */
+html.dark, html.dark body, .dark, .dark * {
+  scrollbar-color: #64748b transparent;
+}
+html.dark ::-webkit-scrollbar-track,
+.dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+html.dark ::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
+  background: #64748b;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+html.dark ::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}

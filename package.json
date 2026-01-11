@@ -1,0 +1,23 @@
+{
+  "name": "toolneat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npx @tailwindcss/cli -i ./src/input.css -o ./assets/css/output.css --watch\" \"npx serve .\"",
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./assets/css/output.css --minify",
+    "serve": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "concurrently": "^9.2.1",
+    "serve": "^14.2.5",
+    "tailwindcss": "^4.1.18"
+  }
+}

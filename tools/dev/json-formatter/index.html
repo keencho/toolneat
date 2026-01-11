@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.jsonFormatter.title">JSON 포맷터 - Toolneat</title>
+  <meta name="description" data-i18n-desc="tools.jsonFormatter.description" content="JSON을 보기 좋게 정리하고 검증합니다.">
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/json-formatter/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/tools/dev/json-formatter/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/json-formatter/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    /* JSON Syntax Highlighting - DuoTone (Blue accent + Gray values) */
+    .json-key { color: #2563eb; }
+    .json-string { color: #475569; }
+    .json-number { color: #475569; }
+    .json-boolean { color: #475569; font-weight: 500; }
+    .json-null { color: #94a3b8; font-style: italic; }
+    .json-bracket { color: #94a3b8; }
+
+    .dark .json-key { color: #60a5fa; }
+    .dark .json-string { color: #cbd5e1; }
+    .dark .json-number { color: #cbd5e1; }
+    .dark .json-boolean { color: #cbd5e1; font-weight: 500; }
+    .dark .json-null { color: #64748b; font-style: italic; }
+    .dark .json-bracket { color: #64748b; }
+
+    /* Collapsible */
+    .json-toggle {
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      color: #6e7781;
+      font-family: monospace;
+      font-size: 10px;
+      font-weight: 600;
+      margin-right: 3px;
+      background: #f1f5f9;
+      transition: all 0.15s;
+    }
+    .json-toggle:hover {
+      color: #0969da;
+      background: #e2e8f0;
+    }
+    .dark .json-toggle {
+      background: #334155;
+    }
+    .dark .json-toggle:hover {
+      color: #58a6ff;
+      background: #475569;
+    }
+    .json-collapsed > .json-content { display: none; }
+    .json-collapsed > .json-toggle::before { content: '+'; }
+    .json-expandable > .json-toggle::before { content: '-'; }
+    .json-collapsed > .json-ellipsis { display: inline; }
+    .json-ellipsis { display: none; color: #6e7781; }
+
+    /* Editor sizing - Full viewport height approach */
+    .json-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 280px);
+      min-height: 500px;
+      max-height: 900px;
+    }
+    @media (min-width: 1024px) {
+      .json-container {
+        flex-direction: row;
+        height: calc(100vh - 250px);
+        min-height: 600px;
+      }
+    }
+    .json-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    #json-input {
+      flex: 1;
+      min-height: 250px;
+      resize: none;
+      overflow-y: auto;
+      font-size: 11px !important;
+      line-height: 1.5;
+    }
+    #json-output {
+      flex: 1;
+      min-height: 250px;
+      overflow: auto;
+      font-size: 11px !important;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-6 md:py-8">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.jsonFormatter.title">
+          JSON 포맷터
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.jsonFormatter.descriptionLong">
+          JSON을 자동으로 정리하고 문법 오류를 검출합니다. 구문 강조로 데이터 구조를 쉽게 파악할 수 있습니다.
+        </p>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card p-4">
+        <!-- Options Bar -->
+        <div class="mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <!-- Options Row - Mobile: 2 columns grid, Desktop: flex row -->
+          <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap" data-i18n="tools.jsonFormatter.indent">들여쓰기</span>
+              <select id="indent-size" class="input py-1.5 px-2 w-16 text-sm">
+                <option value="tab">Tab</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input type="checkbox" id="live-format" checked class="rounded border-gray-300 dark:border-gray-600">
+              <span data-i18n="common.realtime">실시간</span>
+            </label>
+            <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input type="checkbox" id="sort-keys" class="rounded border-gray-300 dark:border-gray-600">
+              <span data-i18n="tools.jsonFormatter.sortKeys">키 정렬</span>
+            </label>
+            <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input type="checkbox" id="show-line-numbers" checked class="rounded border-gray-300 dark:border-gray-600">
+              <span data-i18n="tools.jsonFormatter.lineNumbers">줄 번호</span>
+            </label>
+          </div>
+          <!-- Buttons Row - Scroll on mobile if needed -->
+          <div class="flex flex-wrap gap-2">
+            <button id="format-btn" class="btn btn-primary text-sm py-1.5 px-3 shrink-0" data-i18n="common.format">정리</button>
+            <button id="minify-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0" data-i18n="tools.jsonFormatter.minify">압축</button>
+            <button id="expand-all-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0" data-i18n="tools.jsonFormatter.expandAll">모두 펼치기</button>
+            <button id="collapse-all-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0" data-i18n="tools.jsonFormatter.collapseAll">모두 접기</button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3 shrink-0" data-i18n="common.clear">지우기</button>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+          <p class="text-sm text-red-600 dark:text-red-300" id="error-text"></p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="json-container gap-4">
+          <!-- Input Section -->
+          <div class="json-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-i18n="common.input">입력</span>
+              <span id="input-size" class="text-xs text-gray-400"></span>
+            </div>
+            <textarea
+              id="json-input"
+              class="textarea font-mono text-sm leading-relaxed"
+              placeholder='{"name": "value", "items": [1, 2, 3]}'
+              data-i18n-placeholder="tools.jsonFormatter.placeholder"
+            ></textarea>
+          </div>
+
+          <!-- Output Section -->
+          <div class="json-panel">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-i18n="common.output">출력</span>
+              <div class="flex items-center gap-2">
+                <span id="output-stats" class="text-xs text-gray-400"></span>
+                <button id="copy-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline" data-i18n="common.copy">복사</button>
+              </div>
+            </div>
+            <div id="json-output" class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4 font-mono text-sm leading-relaxed whitespace-pre-wrap">
+              <span class="text-gray-400 dark:text-gray-500" data-i18n="tools.jsonFormatter.outputPlaceholder">JSON을 입력하면 자동으로 정리됩니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+        <!-- AdSense -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const MAX_RENDER_SIZE = 500000;
+      const input = document.getElementById('json-input');
+      const output = document.getElementById('json-output');
+      const formatBtn = document.getElementById('format-btn');
+      const minifyBtn = document.getElementById('minify-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const expandAllBtn = document.getElementById('expand-all-btn');
+      const collapseAllBtn = document.getElementById('collapse-all-btn');
+      const indentSelect = document.getElementById('indent-size');
+      const liveFormatCheckbox = document.getElementById('live-format');
+      const sortKeysCheckbox = document.getElementById('sort-keys');
+      const showLineNumbersCheckbox = document.getElementById('show-line-numbers');
+      const errorMessage = document.getElementById('error-message');
+      const errorText = document.getElementById('error-text');
+      const inputSize = document.getElementById('input-size');
+      const outputStats = document.getElementById('output-stats');
+
+      let formattedJson = '';
+      let parsedJson = null;
+
+      // Sort object keys recursively
+      function sortObjectKeys(obj) {
+        if (Array.isArray(obj)) {
+          return obj.map(sortObjectKeys);
+        } else if (obj !== null && typeof obj === 'object') {
+          return Object.keys(obj).sort().reduce((sorted, key) => {
+            sorted[key] = sortObjectKeys(obj[key]);
+            return sorted;
+          }, {});
+        }
+        return obj;
+      }
+
+      // Build collapsible JSON tree
+      function buildJsonTree(obj, indent = 0, indentStr = '  ') {
+        const isArray = Array.isArray(obj);
+        const entries = isArray ? obj.map((v, i) => [i, v]) : Object.entries(obj);
+
+        if (entries.length === 0) {
+          return isArray ? '[]' : '{}';
+        }
+
+        const openBracket = isArray ? '[' : '{';
+        const closeBracket = isArray ? ']' : '}';
+        const spacing = indentStr.repeat(indent + 1);
+        const closeSpacing = indentStr.repeat(indent);
+
+        let html = `<span class="json-expandable"><span class="json-toggle"></span><span class="json-bracket">${openBracket}</span><span class="json-ellipsis">...</span><span class="json-content">\n`;
+
+        entries.forEach(([key, value], index) => {
+          const comma = index < entries.length - 1 ? ',' : '';
+          const keyPart = isArray ? '' : `<span class="json-key">"${escapeHtml(String(key))}"</span>: `;
+
+          if (value !== null && typeof value === 'object') {
+            const nested = buildJsonTree(value, indent + 1, indentStr);
+            html += `${spacing}${keyPart}${nested}${comma}\n`;
+          } else {
+            html += `${spacing}${keyPart}${formatValue(value)}${comma}\n`;
+          }
+        });
+
+        html += `${closeSpacing}<span class="json-bracket">${closeBracket}</span></span></span>`;
+        return html;
+      }
+
+      function formatValue(value) {
+        if (value === null) {
+          return '<span class="json-null">null</span>';
+        }
+        if (typeof value === 'boolean') {
+          return `<span class="json-boolean">${value}</span>`;
+        }
+        if (typeof value === 'number') {
+          return `<span class="json-number">${value}</span>`;
+        }
+        if (typeof value === 'string') {
+          return `<span class="json-string">"${escapeHtml(value)}"</span>`;
+        }
+        return escapeHtml(String(value));
+      }
+
+      function escapeHtml(str) {
+        return str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      // Live format with immediate debounce for faster response
+      const doFormat = debounceImmediate(() => {
+        const text = input.value.trim();
+        const inputBytes = new Blob([input.value]).size;
+        inputSize.textContent = formatBytes(inputBytes);
+
+        if (!text) {
+          output.innerHTML = `<span class="text-gray-400 dark:text-gray-500">${t('tools.jsonFormatter.outputPlaceholder')}</span>`;
+          outputStats.textContent = '';
+          hideError();
+          formattedJson = '';
+          parsedJson = null;
+          return;
+        }
+
+        // Skip rendering for very large inputs (> 500KB)
+        if (inputBytes > MAX_RENDER_SIZE) {
+          output.innerHTML = `<span class="text-yellow-600 dark:text-yellow-400">${t('tools.jsonFormatter.sizeWarning')}</span>`;
+          outputStats.textContent = '';
+          hideError();
+          // Still try to parse for validation
+          try {
+            parsedJson = JSON.parse(text);
+            formattedJson = text;
+          } catch (e) {
+            showError(e);
+            formattedJson = '';
+            parsedJson = null;
+          }
+          return;
+        }
+
+        try {
+          let json = JSON.parse(text);
+          hideError();
+          parsedJson = json;
+
+          // Sort keys if enabled
+          if (sortKeysCheckbox.checked) {
+            json = sortObjectKeys(json);
+          }
+
+          const indentVal = indentSelect.value;
+          const indentStr = indentVal === 'tab' ? '\t' : ' '.repeat(parseInt(indentVal));
+          const indentNum = indentVal === 'tab' ? 1 : parseInt(indentVal);
+
+          formattedJson = JSON.stringify(json, null, indentVal === 'tab' ? '\t' : indentNum);
+
+          // Render with collapsible tree
+          output.innerHTML = buildJsonTree(json, 0, indentStr);
+
+          // Add click handlers for toggling
+          output.querySelectorAll('.json-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const parent = toggle.parentElement;
+              if (parent.classList.contains('json-collapsed')) {
+                parent.classList.remove('json-collapsed');
+                parent.classList.add('json-expandable');
+              } else {
+                parent.classList.remove('json-expandable');
+                parent.classList.add('json-collapsed');
+              }
+            });
+          });
+
+          const stats = getJsonStats(json);
+          outputStats.textContent = `${stats.keys} keys, ${stats.arrays} arrays`;
+
+        } catch (e) {
+          showError(e);
+          formattedJson = '';
+          parsedJson = null;
+        }
+      }, 100);
+
+      // Re-render on language change
+      document.addEventListener('i18nApplied', () => {
+        if (input.value.trim()) {
+          doFormat();
+        } else {
+          output.innerHTML = `<span class="text-gray-400 dark:text-gray-500">${t('tools.jsonFormatter.outputPlaceholder')}</span>`;
+        }
+      });
+
+      // Event listeners
+      input.addEventListener('input', () => {
+        if (liveFormatCheckbox.checked) {
+          doFormat();
+        } else {
+          inputSize.textContent = formatBytes(new Blob([input.value]).size);
+        }
+      });
+
+      formatBtn.addEventListener('click', doFormat);
+
+      liveFormatCheckbox.addEventListener('change', () => {
+        if (liveFormatCheckbox.checked && input.value.trim()) {
+          doFormat();
+        }
+      });
+
+      indentSelect.addEventListener('change', () => {
+        if (input.value.trim()) {
+          doFormat();
+        }
+      });
+
+      sortKeysCheckbox.addEventListener('change', () => {
+        if (input.value.trim()) {
+          doFormat();
+        }
+      });
+
+      minifyBtn.addEventListener('click', () => {
+        const text = input.value.trim();
+        if (!text) return;
+
+        try {
+          const json = JSON.parse(text);
+          hideError();
+          formattedJson = JSON.stringify(json);
+          output.textContent = formattedJson;
+          outputStats.textContent = formatBytes(new Blob([formattedJson]).size);
+        } catch (e) {
+          showError(e);
+        }
+      });
+
+      expandAllBtn.addEventListener('click', () => {
+        output.querySelectorAll('.json-collapsed').forEach(el => {
+          el.classList.remove('json-collapsed');
+          el.classList.add('json-expandable');
+        });
+      });
+
+      collapseAllBtn.addEventListener('click', () => {
+        output.querySelectorAll('.json-expandable').forEach(el => {
+          el.classList.remove('json-expandable');
+          el.classList.add('json-collapsed');
+        });
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        if (!formattedJson) {
+          toast.warning(t('common.nothingToCopy'));
+          return;
+        }
+        await copyToClipboard(formattedJson);
+        toast.success(t('common.copied'));
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.innerHTML = `<span class="text-gray-400 dark:text-gray-500">${t('tools.jsonFormatter.outputPlaceholder')}</span>`;
+        hideError();
+        inputSize.textContent = '';
+        outputStats.textContent = '';
+        formattedJson = '';
+        parsedJson = null;
+        input.focus();
+      });
+
+      function showError(e) {
+        errorMessage.classList.remove('hidden');
+        const match = e.message.match(/position (\d+)/);
+        if (match) {
+          const pos = parseInt(match[1]);
+          const lines = input.value.substring(0, pos).split('\n');
+          const lineText = getCurrentLang() === 'ko' ? '줄' : 'line';
+          const colText = getCurrentLang() === 'ko' ? '열' : 'col';
+          errorText.textContent = `${e.message} (${lineText} ${lines.length}, ${colText} ${lines[lines.length - 1].length + 1})`;
+        } else {
+          errorText.textContent = e.message;
+        }
+        output.innerHTML = `<span class="text-red-400">${t('tools.jsonFormatter.invalidJson')}</span>`;
+      }
+
+      function hideError() {
+        errorMessage.classList.add('hidden');
+      }
+
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+
+      function getJsonStats(obj) {
+        let keys = 0, arrays = 0;
+        const traverse = (o) => {
+          if (Array.isArray(o)) {
+            arrays++;
+            o.forEach(traverse);
+          } else if (o && typeof o === 'object') {
+            keys += Object.keys(o).length;
+            Object.values(o).forEach(traverse);
+          }
+        };
+        traverse(obj);
+        return { keys, arrays };
+      }
+
+      // Ctrl+Enter shortcut
+      input.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          doFormat();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

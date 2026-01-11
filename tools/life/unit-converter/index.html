@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.unitConverter.title">단위 변환기 - Toolneat</title>
+  <meta name="description" data-i18n-desc="tools.unitConverter.description" content="평수, 면적 등 다양한 단위를 변환합니다.">
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/unit-converter/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/tools/life/unit-converter/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/unit-converter/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../../assets/icons/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <style>
+    .unit-input-group {
+      display: grid;
+      grid-template-columns: 1fr 100px;
+      gap: 8px;
+    }
+    .unit-value-input {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.unitConverter.title">
+          단위 변환기
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.unitConverter.descriptionLong">
+          일상에서 자주 사용하는 단위들을 빠르게 변환할 수 있습니다. 부동산 면적(평/㎡), 길이, 무게, 온도, 데이터 용량 등 다양한 단위를 지원합니다.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6">
+        <!-- AdSense -->
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        <button class="category-tab btn btn-primary text-sm py-1.5 px-4" data-category="area" data-i18n="tools.unitConverter.area">면적</button>
+        <button class="category-tab btn btn-secondary text-sm py-1.5 px-4" data-category="length" data-i18n="tools.unitConverter.length">길이</button>
+        <button class="category-tab btn btn-secondary text-sm py-1.5 px-4" data-category="weight" data-i18n="tools.unitConverter.weight">무게</button>
+        <button class="category-tab btn btn-secondary text-sm py-1.5 px-4" data-category="temperature" data-i18n="tools.unitConverter.temperature">온도</button>
+        <button class="category-tab btn btn-secondary text-sm py-1.5 px-4" data-category="data" data-i18n="tools.unitConverter.data">데이터</button>
+      </div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Area Converter -->
+        <div id="area-panel" class="converter-panel">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.inputValue">값 입력</label>
+              <div class="unit-input-group">
+                <input type="number" id="area-from-value" class="input py-3 unit-value-input" placeholder="0" step="any">
+                <select id="area-from-unit" class="input py-3 text-center text-sm">
+                  <option value="pyeong" data-i18n-text="tools.unitConverter.pyeong">평</option>
+                  <option value="m2">㎡</option>
+                  <option value="ft2">ft²</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.result">결과</label>
+              <div class="unit-input-group">
+                <input type="text" id="area-to-value" class="input py-3 unit-value-input bg-gray-50 dark:bg-gray-900" readonly>
+                <select id="area-to-unit" class="input py-3 text-center text-sm">
+                  <option value="m2">㎡</option>
+                  <option value="pyeong" data-i18n-text="tools.unitConverter.pyeong">평</option>
+                  <option value="ft2">ft²</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-gray-500 dark:text-gray-400" data-i18n="tools.unitConverter.areaNote">1평 = 3.305785㎡ | 10평 ≈ 33㎡ | 30평 ≈ 99㎡</p>
+        </div>
+
+        <!-- Length Converter -->
+        <div id="length-panel" class="converter-panel hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.inputValue">값 입력</label>
+              <div class="unit-input-group">
+                <input type="number" id="length-from-value" class="input py-3 unit-value-input" placeholder="0" step="any">
+                <select id="length-from-unit" class="input py-3 text-center text-sm">
+                  <option value="cm">cm</option>
+                  <option value="m">m</option>
+                  <option value="km">km</option>
+                  <option value="inch">in</option>
+                  <option value="feet">ft</option>
+                  <option value="mile">mi</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.result">결과</label>
+              <div class="unit-input-group">
+                <input type="text" id="length-to-value" class="input py-3 unit-value-input bg-gray-50 dark:bg-gray-900" readonly>
+                <select id="length-to-unit" class="input py-3 text-center text-sm">
+                  <option value="m">m</option>
+                  <option value="cm">cm</option>
+                  <option value="km">km</option>
+                  <option value="inch">in</option>
+                  <option value="feet">ft</option>
+                  <option value="mile">mi</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-gray-500 dark:text-gray-400" data-i18n="tools.unitConverter.lengthNote">1in = 2.54cm | 1ft = 30.48cm | 1mi ≈ 1.6km</p>
+        </div>
+
+        <!-- Weight Converter -->
+        <div id="weight-panel" class="converter-panel hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.inputValue">값 입력</label>
+              <div class="unit-input-group">
+                <input type="number" id="weight-from-value" class="input py-3 unit-value-input" placeholder="0" step="any">
+                <select id="weight-from-unit" class="input py-3 text-center text-sm">
+                  <option value="kg">kg</option>
+                  <option value="g">g</option>
+                  <option value="lb">lb</option>
+                  <option value="oz">oz</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.result">결과</label>
+              <div class="unit-input-group">
+                <input type="text" id="weight-to-value" class="input py-3 unit-value-input bg-gray-50 dark:bg-gray-900" readonly>
+                <select id="weight-to-unit" class="input py-3 text-center text-sm">
+                  <option value="lb">lb</option>
+                  <option value="kg">kg</option>
+                  <option value="g">g</option>
+                  <option value="oz">oz</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-gray-500 dark:text-gray-400" data-i18n="tools.unitConverter.weightNote">1kg ≈ 2.2lb | 1lb ≈ 453g | 1oz ≈ 28g</p>
+        </div>
+
+        <!-- Temperature Converter -->
+        <div id="temperature-panel" class="converter-panel hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.inputValue">값 입력</label>
+              <div class="unit-input-group">
+                <input type="number" id="temperature-from-value" class="input py-3 unit-value-input" placeholder="0" step="any">
+                <select id="temperature-from-unit" class="input py-3 text-center text-sm">
+                  <option value="celsius">°C</option>
+                  <option value="fahrenheit">°F</option>
+                  <option value="kelvin">K</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.result">결과</label>
+              <div class="unit-input-group">
+                <input type="text" id="temperature-to-value" class="input py-3 unit-value-input bg-gray-50 dark:bg-gray-900" readonly>
+                <select id="temperature-to-unit" class="input py-3 text-center text-sm">
+                  <option value="fahrenheit">°F</option>
+                  <option value="celsius">°C</option>
+                  <option value="kelvin">K</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-gray-500 dark:text-gray-400" data-i18n="tools.unitConverter.temperatureNote">0°C = 32°F | 36.5°C ≈ 97.7°F | 100°C = 212°F</p>
+        </div>
+
+        <!-- Data Converter -->
+        <div id="data-panel" class="converter-panel hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.inputValue">값 입력</label>
+              <div class="unit-input-group">
+                <input type="number" id="data-from-value" class="input py-3 unit-value-input" placeholder="0" step="any">
+                <select id="data-from-unit" class="input py-3 text-center text-sm">
+                  <option value="byte">B</option>
+                  <option value="kb">KB</option>
+                  <option value="mb">MB</option>
+                  <option value="gb">GB</option>
+                  <option value="tb">TB</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.unitConverter.result">결과</label>
+              <div class="unit-input-group">
+                <input type="text" id="data-to-value" class="input py-3 unit-value-input bg-gray-50 dark:bg-gray-900" readonly>
+                <select id="data-to-unit" class="input py-3 text-center text-sm">
+                  <option value="mb">MB</option>
+                  <option value="byte">B</option>
+                  <option value="kb">KB</option>
+                  <option value="gb">GB</option>
+                  <option value="tb">TB</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-gray-500 dark:text-gray-400" data-i18n="tools.unitConverter.dataNote">1KB = 1,024B | 1MB = 1,024KB | 1GB = 1,024MB</p>
+        </div>
+
+        <!-- Swap Button -->
+        <div class="flex justify-center mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+          <button id="swap-btn" class="btn btn-secondary py-2 px-5">
+            <svg class="w-4 h-4 inline mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            <span data-i18n="tools.unitConverter.swap">단위 교환</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6">
+        <!-- AdSense -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Tool Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const conversions = {
+        area: { pyeong: 3.305785, m2: 1, ft2: 0.092903 },
+        length: { cm: 0.01, m: 1, km: 1000, inch: 0.0254, feet: 0.3048, mile: 1609.344 },
+        weight: { g: 0.001, kg: 1, lb: 0.453592, oz: 0.0283495 },
+        data: { byte: 1, kb: 1024, mb: 1048576, gb: 1073741824, tb: 1099511627776 }
+      };
+
+      function convertTemperature(value, from, to) {
+        let celsius;
+        if (from === 'celsius') celsius = value;
+        else if (from === 'fahrenheit') celsius = (value - 32) * 5 / 9;
+        else celsius = value - 273.15;
+
+        if (to === 'celsius') return celsius;
+        if (to === 'fahrenheit') return celsius * 9 / 5 + 32;
+        return celsius + 273.15;
+      }
+
+      function convert(value, from, to, category) {
+        if (category === 'temperature') return convertTemperature(value, from, to);
+        const rates = conversions[category];
+        return (value * rates[from]) / rates[to];
+      }
+
+      function formatResult(num) {
+        if (isNaN(num) || !isFinite(num)) return '';
+        if (Math.abs(num) < 0.0001 && num !== 0) return num.toExponential(4);
+        if (Math.abs(num) >= 1000000) return num.toLocaleString('ko-KR', { maximumFractionDigits: 2 });
+        return parseFloat(num.toPrecision(10)).toLocaleString('ko-KR', { maximumFractionDigits: 6 });
+      }
+
+      let currentCategory = 'area';
+      const categoryTabs = document.querySelectorAll('.category-tab');
+      const panels = document.querySelectorAll('.converter-panel');
+
+      categoryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          currentCategory = tab.dataset.category;
+
+          categoryTabs.forEach(t => {
+            t.classList.remove('btn-primary');
+            t.classList.add('btn-secondary');
+          });
+          tab.classList.remove('btn-secondary');
+          tab.classList.add('btn-primary');
+
+          panels.forEach(p => p.classList.add('hidden'));
+          document.getElementById(currentCategory + '-panel').classList.remove('hidden');
+        });
+      });
+
+      const categories = ['area', 'length', 'weight', 'temperature', 'data'];
+
+      categories.forEach(cat => {
+        const fromVal = document.getElementById(cat + '-from-value');
+        const fromUnit = document.getElementById(cat + '-from-unit');
+        const toVal = document.getElementById(cat + '-to-value');
+        const toUnit = document.getElementById(cat + '-to-unit');
+
+        function doConvert() {
+          const val = parseFloat(fromVal.value);
+          if (isNaN(val)) { toVal.value = ''; return; }
+          toVal.value = formatResult(convert(val, fromUnit.value, toUnit.value, cat));
+        }
+
+        fromVal.addEventListener('input', doConvert);
+        fromUnit.addEventListener('change', doConvert);
+        toUnit.addEventListener('change', doConvert);
+      });
+
+      document.getElementById('swap-btn').addEventListener('click', () => {
+        const fromVal = document.getElementById(currentCategory + '-from-value');
+        const fromUnit = document.getElementById(currentCategory + '-from-unit');
+        const toVal = document.getElementById(currentCategory + '-to-value');
+        const toUnit = document.getElementById(currentCategory + '-to-unit');
+
+        const tempUnit = fromUnit.value;
+        fromUnit.value = toUnit.value;
+        toUnit.value = tempUnit;
+
+        if (toVal.value) {
+          fromVal.value = toVal.value.replace(/,/g, '');
+          fromVal.dispatchEvent(new Event('input'));
+        }
+      });
+
+      })();
+  </script>
+</body>
+</html>
