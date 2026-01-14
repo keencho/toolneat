@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT_DIR = path.join(__dirname, '..');
+const ROOT_DIR = path.join(__dirname, '..', '..');
 const COMPONENTS_DIR = path.join(ROOT_DIR, 'components');
 const LOCALES_DIR = path.join(ROOT_DIR, 'locales');
 

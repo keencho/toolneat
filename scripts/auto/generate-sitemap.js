@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = 'https://toolneat.com';
-const ROOT_DIR = path.join(__dirname, '..');
+const ROOT_DIR = path.join(__dirname, '..', '..');
 
 // Configuration for different page types
 const config = {

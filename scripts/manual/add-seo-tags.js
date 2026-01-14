@@ -7,7 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT_DIR = path.join(__dirname, '..');
+const ROOT_DIR = path.join(__dirname, '..', '..');
 
 // Tool metadata for JSON-LD
 const toolMeta = {
@@ -58,6 +58,16 @@ const toolMeta = {
   'image-compressor': { name: '이미지 압축', nameEn: 'Image Compressor', category: 'MultimediaApplication' },
   'image-resizer': { name: '이미지 리사이즈', nameEn: 'Image Resizer', category: 'MultimediaApplication' },
   'image-converter': { name: '이미지 형식 변환', nameEn: 'Image Converter', category: 'MultimediaApplication' },
+  'background-remover': { name: '배경 제거', nameEn: 'Background Remover', category: 'MultimediaApplication' },
+  'video-to-gif': { name: '비디오 GIF 변환', nameEn: 'Video to GIF', category: 'MultimediaApplication' },
+  'screen-recorder': { name: '화면 녹화', nameEn: 'Screen Recorder', category: 'MultimediaApplication' },
+  'ocr': { name: 'OCR 텍스트 추출', nameEn: 'OCR Text Extractor', category: 'MultimediaApplication' },
+
+  // PDF Tools
+  'merge-pdf': { name: 'PDF 합치기', nameEn: 'Merge PDF', category: 'UtilitiesApplication' },
+  'split-pdf': { name: 'PDF 분할', nameEn: 'Split PDF', category: 'UtilitiesApplication' },
+  'pdf-to-image': { name: 'PDF 이미지 변환', nameEn: 'PDF to Image', category: 'UtilitiesApplication' },
+  'image-to-pdf': { name: '이미지 PDF 변환', nameEn: 'Image to PDF', category: 'UtilitiesApplication' },
 
   // Life Tools - Monitor
   'dead-pixel-test': { name: '데드픽셀 테스트', nameEn: 'Dead Pixel Test', category: 'UtilitiesApplication' },
@@ -77,7 +87,7 @@ const toolMeta = {
 // Find all HTML files in tools directories
 function findToolFiles() {
   const files = [];
-  const dirs = ['tools/dev', 'tools/life', 'en/tools/dev', 'en/tools/life'];
+  const dirs = ['tools/dev', 'tools/life', 'tools/pdf', 'en/tools/dev', 'en/tools/life', 'en/tools/pdf'];
 
   for (const dir of dirs) {
     const fullDir = path.join(ROOT_DIR, dir);

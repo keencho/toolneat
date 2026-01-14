@@ -276,11 +276,19 @@ Use absolute paths (`/assets/`) for all favicon links.
 - **JSON-LD**: 구글 검색결과 리치 스니펫 (무료 · 웹 앱)
 
 ### Scripts
-- `node scripts/update-meta-descriptions.js` - Update all meta descriptions
-- `node scripts/update-favicon.js` - Add favicon links to all pages
-- `node scripts/generate-sitemap.js` - Regenerate sitemap.xml
-- `node scripts/add-seo-tags.js` - Add OG tags & JSON-LD to tool pages
-- `node scripts/inject-components.js` - Inject header/footer at build time
+
+스크립트는 `scripts/auto/`와 `scripts/manual/` 폴더로 구분됨.
+
+#### Auto Scripts (빌드 시 자동 실행)
+`npm run build` 실행 시 자동으로 실행되는 스크립트:
+- `scripts/auto/inject-components.js` - header/footer 삽입
+- `scripts/auto/generate-sitemap.js` - sitemap.xml 생성
+
+#### Manual Scripts (필요 시 수동 실행)
+새 페이지 추가나 SEO 업데이트 시 수동으로 실행:
+- `node scripts/manual/add-seo-tags.js` - OG 태그 & JSON-LD 추가 (신규 페이지 추가 필요)
+- `node scripts/manual/update-favicon.js` - favicon 링크 추가
+- `node scripts/manual/update-meta-descriptions.js` - meta description 업데이트
 
 ---
 

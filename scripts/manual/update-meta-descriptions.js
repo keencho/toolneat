@@ -295,7 +295,7 @@ function updateMetaDescription(filePath, description) {
 }
 
 function main() {
-  const rootDir = path.join(__dirname, '..');
+  const rootDir = path.join(__dirname, '..', '..');
   let updated = 0;
   let failed = 0;
 
