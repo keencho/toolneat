@@ -32,18 +32,24 @@
     const headerEl = document.getElementById('header');
     const footerEl = document.getElementById('footer');
 
-    // Load in parallel
+    // Skip fetch if already injected (build-time injection)
+    const headerNeedsLoad = headerEl && !headerEl.innerHTML.trim();
+    const footerNeedsLoad = footerEl && !footerEl.innerHTML.trim();
+
+    // Load in parallel (only if needed)
     const [headerHtml, footerHtml] = await Promise.all([
-      headerEl ? loadComponent('header') : Promise.resolve(''),
-      footerEl ? loadComponent('footer') : Promise.resolve('')
+      headerNeedsLoad ? loadComponent('header') : Promise.resolve(''),
+      footerNeedsLoad ? loadComponent('footer') : Promise.resolve('')
     ]);
 
-    if (headerEl && headerHtml) {
+    if (headerNeedsLoad && headerHtml) {
       headerEl.innerHTML = headerHtml;
+    }
+    if (headerEl) {
       initHeader();
     }
 
-    if (footerEl && footerHtml) {
+    if (footerNeedsLoad && footerHtml) {
       footerEl.innerHTML = footerHtml;
     }
 

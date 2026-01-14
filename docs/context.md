@@ -205,7 +205,8 @@ Use `node scripts/generate-sitemap.js` to regenerate sitemap.
 
 ## SEO Optimization
 
-### Meta Description Guidelines
+### Meta Description Guidelines (필수)
+**모든 페이지에 meta description 필수 작성**
 - Korean: 80-150 characters
 - English: 150-160 characters (Google optimal)
 - Include action words: "무료", "온라인", "바로 사용"
@@ -222,10 +223,17 @@ Use `node scripts/generate-sitemap.js` to regenerate sitemap.
 ```
 Use absolute paths (`/assets/`) for all favicon links.
 
+### Open Graph & JSON-LD (필수)
+모든 도구 페이지에 포함되어야 함:
+- **OG 태그**: 카톡/SNS 링크 공유 미리보기
+- **JSON-LD**: 구글 검색결과 리치 스니펫 (무료 · 웹 앱)
+
 ### Scripts
 - `node scripts/update-meta-descriptions.js` - Update all meta descriptions
 - `node scripts/update-favicon.js` - Add favicon links to all pages
 - `node scripts/generate-sitemap.js` - Regenerate sitemap.xml
+- `node scripts/add-seo-tags.js` - Add OG tags & JSON-LD to tool pages
+- `node scripts/inject-components.js` - Inject header/footer at build time
 
 ---
 
