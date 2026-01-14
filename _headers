@@ -1,7 +1,0 @@
-/tools/life/screen-recorder/*
-  Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: credentialless
-
-/en/tools/life/screen-recorder/*
-  Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: credentialless

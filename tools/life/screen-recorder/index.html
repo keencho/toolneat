@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>화면 녹화 - Toolneat</title>
-  <meta name="description" content="브라우저에서 화면을 녹화하는 무료 온라인 도구입니다. 전체 화면, 창, 탭 녹화 지원. MP4, WEBM 형식 저장. 서버 업로드 없이 안전하게 녹화합니다.">
+  <meta name="description" content="브라우저에서 화면을 녹화하는 무료 온라인 도구입니다. 전체 화면, 창, 탭 녹화 지원. 마이크 음성 포함 가능. 서버 업로드 없이 브라우저에서 안전하게 녹화합니다.">
   <link rel="canonical" href="https://toolneat.com/tools/life/screen-recorder/">
   <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/screen-recorder/">
   <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/screen-recorder/">
@@ -18,8 +18,6 @@
   <script src="../../../assets/js/common.js"></script>
   <script src="../../../assets/js/i18n.js"></script>
   <script src="../../../assets/js/components.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/umd/ffmpeg.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.1.1/dist/umd/index.min.js"></script>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Toolneat">
   <meta property="og:title" content="화면 녹화 - Toolneat">
@@ -40,10 +38,6 @@
     .record-btn.recording::after{content:'';display:block;width:24px;height:24px;background:#fff;border-radius:4px;margin:auto}
     @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 16px rgba(239,68,68,0)}}
     .timer{font-size:2rem;font-weight:bold;font-family:monospace}
-    .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}
-    .loading-overlay.show{display:flex}
-    .spinner{width:48px;height:48px;border:4px solid #e5e7eb;border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -78,14 +72,7 @@
           <div class="preview-container mb-6">
             <video id="result-video" controls></video>
           </div>
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">저장 형식</label>
-            <select id="format" class="input">
-              <option value="mp4">MP4 (권장 - 모든 기기 호환)</option>
-              <option value="webm">WEBM (빠른 저장)</option>
-            </select>
-            <p id="mp4-warning" class="text-xs text-yellow-600 mt-1 hidden">⚠️ MP4 변환은 HTTPS 환경에서만 지원됩니다.</p>
-          </div>
+          <p class="text-sm text-gray-500 mb-4 text-center">WEBM 형식으로 저장됩니다. GIF로 변환하려면 <a href="/tools/life/video-to-gif/" class="text-blue-500 hover:underline">비디오 GIF 변환</a>을 이용하세요.</p>
           <div class="flex gap-3">
             <button id="download-btn" class="btn btn-primary flex-1">다운로드</button>
             <button id="new-btn" class="btn btn-secondary flex-1">새 녹화</button>
@@ -105,16 +92,16 @@
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: MP4와 WEBM 중 어떤 형식을 선택해야 하나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">MP4는 모든 기기에서 호환됩니다. WEBM은 빠르게 저장되지만 일부 기기에서 재생이 안 될 수 있습니다.</p>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: WEBM 파일이 재생이 안 돼요</h4>
+              <p class="text-gray-600 dark:text-gray-400">WEBM은 Chrome, Firefox, Edge 등 대부분의 브라우저와 최신 기기에서 재생됩니다. Windows 미디어 플레이어에서 안 되면 VLC 플레이어를 사용하세요.</p>
             </div>
             <div>
               <h4 class="font-medium text-gray-900 dark:text-white">Q: 마이크 소리도 녹음할 수 있나요?</h4>
               <p class="text-gray-600 dark:text-gray-400">네, '마이크 포함' 옵션을 체크하면 마이크 음성도 함께 녹음됩니다. 튜토리얼 제작에 유용합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: MP4 변환이 안 되는 이유는?</h4>
-              <p class="text-gray-600 dark:text-gray-400">MP4 변환은 HTTPS 환경에서만 가능합니다. HTTP에서는 WEBM으로만 저장됩니다.</p>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: GIF로 변환하고 싶어요</h4>
+              <p class="text-gray-600 dark:text-gray-400">녹화 후 <a href="/tools/life/video-to-gif/" class="text-blue-500 hover:underline">비디오 GIF 변환</a> 도구를 이용하세요. 구간 선택, 크기 조절이 가능합니다.</p>
             </div>
             <div>
               <h4 class="font-medium text-gray-900 dark:text-white">Q: 녹화 시간 제한이 있나요?</h4>
@@ -127,24 +114,10 @@
     </div>
   </main>
   <div id="footer"></div>
-  <div id="loading-overlay" class="loading-overlay">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center">
-      <div class="spinner mx-auto mb-4"></div>
-      <p id="convert-status" class="text-gray-600 dark:text-gray-400">MP4로 변환 중...</p>
-    </div>
-  </div>
   <script>
     (function(){'use strict';
-    const preview=document.getElementById('preview'),previewPlaceholder=document.getElementById('preview-placeholder'),recordBtn=document.getElementById('record-btn'),timer=document.getElementById('timer'),status=document.getElementById('status'),controls=document.getElementById('controls'),resultSection=document.getElementById('result-section'),resultVideo=document.getElementById('result-video'),includeAudio=document.getElementById('include-audio'),loadingOverlay=document.getElementById('loading-overlay'),convertStatus=document.getElementById('convert-status'),formatSelect=document.getElementById('format'),mp4Warning=document.getElementById('mp4-warning');
-    let mediaRecorder,recordedChunks=[],stream,timerInterval,seconds=0,recordingBlob=null,ffmpeg=null;
-
-    // SharedArrayBuffer 체크 - MP4 변환에 필요
-    const canUseMp4=typeof SharedArrayBuffer!=='undefined';
-    if(!canUseMp4){
-      mp4Warning.classList.remove('hidden');
-      formatSelect.value='webm';
-      formatSelect.querySelector('option[value="mp4"]').textContent='MP4 (사용 불가 - HTTPS 필요)';
-    }
+    const preview=document.getElementById('preview'),previewPlaceholder=document.getElementById('preview-placeholder'),recordBtn=document.getElementById('record-btn'),timer=document.getElementById('timer'),status=document.getElementById('status'),controls=document.getElementById('controls'),resultSection=document.getElementById('result-section'),resultVideo=document.getElementById('result-video'),includeAudio=document.getElementById('include-audio');
+    let mediaRecorder,recordedChunks=[],stream,timerInterval,seconds=0,recordingBlob=null;
 
     recordBtn.addEventListener('click',async()=>{
       if(mediaRecorder&&mediaRecorder.state==='recording'){mediaRecorder.stop();return}
@@ -189,58 +162,12 @@
       timer.textContent=`${m}:${s}`;
     }
 
-    document.getElementById('download-btn').addEventListener('click',async()=>{
+    document.getElementById('download-btn').addEventListener('click',()=>{
       if(!recordingBlob)return;
-      const format=document.getElementById('format').value;
-
-      if(format==='webm'||!canUseMp4){
-        const a=document.createElement('a');
-        a.href=URL.createObjectURL(recordingBlob);
-        a.download='recording.webm';
-        a.click();
-        if(format==='mp4'&&!canUseMp4)toast.warning('MP4 변환 불가. WEBM으로 다운로드합니다.');
-        return;
-      }
-
-      // MP4 conversion
-      loadingOverlay.classList.add('show');
-      convertStatus.textContent='FFmpeg 로딩 중...';
-
-      try{
-        if(!ffmpeg){
-          const {FFmpeg}=FFmpegWASM;
-          ffmpeg=new FFmpeg();
-          await ffmpeg.load({
-            coreURL:'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.4/dist/umd/ffmpeg-core.js',
-            wasmURL:'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.4/dist/umd/ffmpeg-core.wasm'
-          });
-        }
-
-        convertStatus.textContent='변환 준비 중...';
-        const {fetchFile}=FFmpegUtil;
-        await ffmpeg.writeFile('input.webm',await fetchFile(recordingBlob));
-
-        convertStatus.textContent='MP4로 변환 중... (잠시 기다려주세요)';
-        await ffmpeg.exec(['-i','input.webm','-c:v','libx264','-preset','fast','-crf','22','-c:a','aac','output.mp4']);
-
-        const data=await ffmpeg.readFile('output.mp4');
-        const mp4Blob=new Blob([data.buffer],{type:'video/mp4'});
-
-        const a=document.createElement('a');
-        a.href=URL.createObjectURL(mp4Blob);
-        a.download='recording.mp4';
-        a.click();
-        toast.success('MP4 변환 완료!');
-      }catch(error){
-        console.error(error);
-        toast.error('MP4 변환 실패. WEBM으로 다운로드합니다.');
-        const a=document.createElement('a');
-        a.href=URL.createObjectURL(recordingBlob);
-        a.download='recording.webm';
-        a.click();
-      }finally{
-        loadingOverlay.classList.remove('show');
-      }
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(recordingBlob);
+      a.download='recording.webm';
+      a.click();
     });
 
     document.getElementById('new-btn').addEventListener('click',()=>{

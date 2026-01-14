@@ -26,28 +26,24 @@ toolneat/
 │   ├── ko.json                 # Korean translations
 │   └── en.json                 # English translations
 ├── scripts/
-│   ├── generate-sitemap.js     # Sitemap generator
-│   ├── update-favicon.js       # Favicon updater for all pages
-│   └── update-meta-descriptions.js # SEO meta description updater
+│   ├── auto/                   # 빌드 시 자동 실행
+│   │   ├── inject-components.js
+│   │   └── generate-sitemap.js
+│   └── manual/                 # 필요 시 수동 실행
+│       ├── add-seo-tags.js
+│       ├── update-favicon.js
+│       └── update-meta-descriptions.js
 ├── src/
 │   └── input.css               # Tailwind source CSS
 ├── tools/
 │   ├── dev/                    # Developer tools (21 tools)
-│   │   ├── base64/
-│   │   ├── json-formatter/
-│   │   ├── uuid-generator/
-│   │   └── ... (see full list below)
-│   └── life/                   # Lifestyle tools (29 tools)
-│       ├── salary-calculator/
-│       ├── qr-generator/
-│       ├── image-compressor/
-│       ├── image-resizer/
-│       ├── image-converter/
-│       ├── barcode-generator/
-│       └── ... (see full list below)
+│   ├── life/                   # Lifestyle tools (33 tools)
+│   └── pdf/                    # PDF tools (4 tools)
 ├── en/                         # English version (mirrors tools/)
 │   ├── tools/dev/
-│   └── tools/life/
+│   ├── tools/life/
+│   └── tools/pdf/
+├── _headers                    # Cloudflare Pages 헤더 설정
 ├── index.html                  # Homepage (Korean)
 ├── en/index.html               # Homepage (English)
 ├── sitemap.xml
@@ -246,7 +242,7 @@ function copyToClipboard(text) {
 
 ### sitemap.xml
 Must be added to sitemap.xml when creating a new tool page. Set the default to ko according to the existing form, and en needs to be added.
-Use `node scripts/generate-sitemap.js` to regenerate sitemap.
+sitemap은 빌드 시 자동 생성됨. 수동 실행: `node scripts/auto/generate-sitemap.js`
 
 ---
 
@@ -297,8 +293,11 @@ Use absolute paths (`/assets/`) for all favicon links.
 ### Dev Tools (21)
 base64, url-encoder, html-entity, uuid-generator, hash-generator, lorem-ipsum, jwt-generator, jwt-decoder, password-generator, cron-generator, json-formatter, color-converter, timestamp-converter, yaml-json, markdown-preview, case-converter, sql-formatter, css-minifier, line-ending, regex-tester, diff-checker
 
-### Life Tools (29)
-salary-calculator, dday-calculator, bmi-calculator, loan-calculator, age-calculator, percent-calculator, compound-calculator, tip-calculator, character-counter, unit-converter, qr-generator, barcode-generator, favicon-generator, image-compressor, image-resizer, image-converter, base-converter, ascii-unicode, emoji-picker, dead-pixel-test, pixel-fixer, screen-burn-test, screen-color-test, lottery-generator, roulette, dice-roller, coin-flip, typing-test, reaction-test
+### Life Tools (33)
+salary-calculator, dday-calculator, bmi-calculator, loan-calculator, age-calculator, percent-calculator, compound-calculator, tip-calculator, character-counter, unit-converter, qr-generator, barcode-generator, favicon-generator, image-compressor, image-resizer, image-converter, background-remover, video-to-gif, screen-recorder, ocr, base-converter, ascii-unicode, emoji-picker, dead-pixel-test, pixel-fixer, screen-burn-test, screen-color-test, lottery-generator, roulette, dice-roller, coin-flip, typing-test, reaction-test
+
+### PDF Tools (4)
+merge-pdf, split-pdf, pdf-to-image, image-to-pdf
 
 ### Barcode Formats Supported (18)
 CODE128, CODE39, EAN-13, EAN-8, EAN-5, EAN-2, UPC-A, UPC-E, ITF-14, ITF, MSI, MSI-10, MSI-11, MSI-1010, Pharmacode, Codabar
