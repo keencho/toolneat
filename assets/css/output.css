@@ -87,8 +87,11 @@
     --color-indigo-500: oklch(58.5% 0.233 277.117);
     --color-indigo-600: oklch(51.1% 0.262 276.966);
     --color-indigo-900: oklch(35.9% 0.144 278.697);
+    --color-violet-100: oklch(94.3% 0.029 294.588);
+    --color-violet-400: oklch(70.2% 0.183 293.541);
     --color-violet-500: oklch(60.6% 0.25 292.717);
     --color-violet-600: oklch(54.1% 0.281 293.009);
+    --color-violet-900: oklch(38% 0.189 293.745);
     --color-purple-50: oklch(97.7% 0.014 308.299);
     --color-purple-100: oklch(94.6% 0.033 307.174);
     --color-purple-200: oklch(90.2% 0.063 306.703);
@@ -343,6 +346,9 @@
   }
   .sticky {
     position: sticky;
+  }
+  .inset-0 {
+    inset: calc(var(--spacing) * 0);
   }
   .top-0 {
     top: calc(var(--spacing) * 0);
@@ -644,14 +650,23 @@
   .max-w-\[300px\] {
     max-width: 300px;
   }
+  .max-w-full {
+    max-width: 100%;
+  }
   .max-w-md {
     max-width: var(--container-md);
   }
   .max-w-none {
     max-width: none;
   }
+  .\!min-w-\[400px\] {
+    min-width: 400px !important;
+  }
   .\!min-w-\[750px\] {
     min-width: 750px !important;
+  }
+  .\!min-w-\[900px\] {
+    min-width: 900px !important;
   }
   .min-w-0 {
     min-width: calc(var(--spacing) * 0);
@@ -661,6 +676,12 @@
   }
   .min-w-\[200px\] {
     min-width: 200px;
+  }
+  .min-w-\[300px\] {
+    min-width: 300px;
+  }
+  .min-w-\[320px\] {
+    min-width: 320px;
   }
   .min-w-full {
     min-width: 100%;
@@ -711,11 +732,17 @@
     --tw-scale-z: 100%;
     scale: var(--tw-scale-x) var(--tw-scale-y);
   }
+  .-rotate-90 {
+    rotate: calc(90deg * -1);
+  }
   .rotate-180 {
     rotate: 180deg;
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .cursor-grab {
+    cursor: grab;
   }
   .cursor-pointer {
     cursor: pointer;
@@ -735,8 +762,14 @@
   .appearance-none {
     appearance: none;
   }
+  .\!grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
   .\!grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+  .\!grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
   }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -1081,6 +1114,9 @@
   .bg-teal-100 {
     background-color: var(--color-teal-100);
   }
+  .bg-violet-100 {
+    background-color: var(--color-violet-100);
+  }
   .bg-white {
     background-color: var(--color-white);
   }
@@ -1367,6 +1403,9 @@
   }
   .p-0\.5 {
     padding: calc(var(--spacing) * 0.5);
+  }
+  .p-1 {
+    padding: calc(var(--spacing) * 1);
   }
   .p-1\.5 {
     padding: calc(var(--spacing) * 1.5);
@@ -1667,6 +1706,9 @@
   .text-teal-600 {
     color: var(--color-teal-600);
   }
+  .text-violet-600 {
+    color: var(--color-violet-600);
+  }
   .text-white {
     color: var(--color-white);
   }
@@ -1835,6 +1877,10 @@
   .select-all {
     -webkit-user-select: all;
     user-select: all;
+  }
+  .select-none {
+    -webkit-user-select: none;
+    user-select: none;
   }
   .group-hover\:scale-105 {
     &:is(:where(.group):hover *) {
@@ -2112,6 +2158,11 @@
       grid-template-columns: repeat(6, minmax(0, 1fr));
     }
   }
+  .md\:grid-cols-8 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+  }
   .md\:grid-cols-12 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -2194,6 +2245,11 @@
   .lg\:grid-cols-6 {
     @media (width >= 64rem) {
       grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+  .lg\:grid-cols-10 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(10, minmax(0, 1fr));
     }
   }
   .lg\:grid-cols-14 {
@@ -2456,6 +2512,14 @@
       }
     }
   }
+  .dark\:bg-violet-900\/30 {
+    &:where(.dark, .dark *) {
+      background-color: color-mix(in srgb, oklch(38% 0.189 293.745) 30%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-violet-900) 30%, transparent);
+      }
+    }
+  }
   .dark\:bg-yellow-900 {
     &:where(.dark, .dark *) {
       background-color: var(--color-yellow-900);
@@ -2648,6 +2712,11 @@
   .dark\:text-teal-400 {
     &:where(.dark, .dark *) {
       color: var(--color-teal-400);
+    }
+  }
+  .dark\:text-violet-400 {
+    &:where(.dark, .dark *) {
+      color: var(--color-violet-400);
     }
   }
   .dark\:text-white {

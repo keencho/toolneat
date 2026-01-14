@@ -489,6 +489,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/life/background-remover</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/background-remover"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/background-remover"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/background-remover"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/background-remover</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/background-remover"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/background-remover"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/background-remover"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/life/barcode-generator</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/barcode-generator"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/barcode-generator"/>
@@ -777,6 +795,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/life/ocr</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ocr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ocr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ocr"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/ocr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ocr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ocr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ocr"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/life/percent-calculator</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/percent-calculator"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/percent-calculator"/>
@@ -921,6 +957,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/life/screen-recorder</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/screen-recorder"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/screen-recorder"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/screen-recorder"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/screen-recorder</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/screen-recorder"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/screen-recorder"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/screen-recorder"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/life/tip-calculator</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/tip-calculator"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/tip-calculator"/>
@@ -970,6 +1024,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/unit-converter"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/unit-converter"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/unit-converter"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/video-to-gif</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/video-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/video-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/video-to-gif"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/video-to-gif</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/video-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/video-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/video-to-gif"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

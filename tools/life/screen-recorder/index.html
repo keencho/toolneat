@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>화면 녹화 - Toolneat</title>
+  <meta name="description" content="브라우저에서 화면을 녹화하는 무료 온라인 도구입니다. 전체 화면, 창, 탭 녹화 지원. MP4, WEBM 형식 저장. 서버 업로드 없이 안전하게 녹화합니다.">
+  <link rel="canonical" href="https://toolneat.com/tools/life/screen-recorder/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/screen-recorder/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/screen-recorder/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/screen-recorder/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/umd/ffmpeg.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.1.1/dist/umd/index.min.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="화면 녹화 - Toolneat">
+  <meta property="og:description" content="브라우저에서 화면을 녹화합니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/life/screen-recorder">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"화면 녹화","description":"브라우저에서 화면을 녹화합니다.","url":"https://toolneat.com/tools/life/screen-recorder","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"author":{"@type":"Organization","name":"Toolneat"}}
+  </script>
+  <style>
+    .preview-container{background:#000;border-radius:16px;overflow:hidden;aspect-ratio:16/9;position:relative}
+    .preview-container video{width:100%;height:100%;object-fit:contain}
+    .preview-container .placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9ca3af}
+    .record-btn{width:80px;height:80px;border-radius:50%;background:#ef4444;border:4px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.2);cursor:pointer;transition:all .2s}
+    .record-btn:hover{transform:scale(1.05)}
+    .record-btn.recording{background:#dc2626;animation:pulse 1s infinite}
+    .record-btn.recording::after{content:'';display:block;width:24px;height:24px;background:#fff;border-radius:4px;margin:auto}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 16px rgba(239,68,68,0)}}
+    .timer{font-size:2rem;font-weight:bold;font-family:monospace}
+    .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}
+    .loading-overlay.show{display:flex}
+    .spinner{width:48px;height:48px;border:4px solid #e5e7eb;border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">화면 녹화</h1>
+        <p class="text-gray-600 dark:text-gray-400">브라우저에서 화면, 창, 탭을 녹화합니다.</p>
+      </div>
+      <div class="card">
+        <div class="preview-container mb-6">
+          <video id="preview" autoplay muted playsinline class="hidden"></video>
+          <div id="preview-placeholder" class="placeholder">
+            <p class="text-center">녹화를 시작하면 여기에 미리보기가 표시됩니다</p>
+          </div>
+        </div>
+        <div id="timer" class="timer text-center text-red-500 mb-4 hidden">00:00</div>
+        <div id="controls" class="space-y-4">
+          <div class="flex items-center gap-4 justify-center">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="include-audio" class="w-4 h-4 rounded">
+              <span class="text-sm text-gray-700 dark:text-gray-300">마이크 포함</span>
+            </label>
+          </div>
+          <div class="flex justify-center">
+            <button id="record-btn" class="record-btn" title="녹화 시작"></button>
+          </div>
+          <p id="status" class="text-center text-gray-500 text-sm">녹화 버튼을 눌러 시작하세요</p>
+        </div>
+        <div id="result-section" class="hidden">
+          <div class="preview-container mb-6">
+            <video id="result-video" controls></video>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">저장 형식</label>
+            <select id="format" class="input">
+              <option value="mp4">MP4 (권장 - 모든 기기 호환)</option>
+              <option value="webm">WEBM (빠른 저장)</option>
+            </select>
+            <p id="mp4-warning" class="text-xs text-yellow-600 mt-1 hidden">⚠️ MP4 변환은 HTTPS 환경에서만 지원됩니다.</p>
+          </div>
+          <div class="flex gap-3">
+            <button id="download-btn" class="btn btn-primary flex-1">다운로드</button>
+            <button id="new-btn" class="btn btn-secondary flex-1">새 녹화</button>
+          </div>
+        </div>
+      </div>
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">화면 녹화 안내</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">브라우저의 화면 공유 기능을 사용하여 화면을 녹화합니다. 별도 프로그램 설치 없이 바로 사용할 수 있습니다.</p>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">녹화 옵션</h3>
+          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
+            <li><strong>전체 화면:</strong> 모니터 전체를 녹화</li>
+            <li><strong>창:</strong> 특정 앱 창만 녹화</li>
+            <li><strong>탭:</strong> 브라우저 탭만 녹화 (탭 오디오 포함 가능)</li>
+          </ul>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: MP4와 WEBM 중 어떤 형식을 선택해야 하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">MP4는 모든 기기에서 호환됩니다. WEBM은 빠르게 저장되지만 일부 기기에서 재생이 안 될 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 마이크 소리도 녹음할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">네, '마이크 포함' 옵션을 체크하면 마이크 음성도 함께 녹음됩니다. 튜토리얼 제작에 유용합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: MP4 변환이 안 되는 이유는?</h4>
+              <p class="text-gray-600 dark:text-gray-400">MP4 변환은 HTTPS 환경에서만 가능합니다. HTTP에서는 WEBM으로만 저장됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 녹화 시간 제한이 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">기술적 제한은 없으나, 긴 녹화는 브라우저 메모리를 많이 사용합니다. 30분 이상 녹화 시 분할 녹화를 권장합니다.</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mt-4">모든 처리는 브라우저에서 이루어지며 서버로 전송되지 않습니다.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center">
+      <div class="spinner mx-auto mb-4"></div>
+      <p id="convert-status" class="text-gray-600 dark:text-gray-400">MP4로 변환 중...</p>
+    </div>
+  </div>
+  <script>
+    (function(){'use strict';
+    const preview=document.getElementById('preview'),previewPlaceholder=document.getElementById('preview-placeholder'),recordBtn=document.getElementById('record-btn'),timer=document.getElementById('timer'),status=document.getElementById('status'),controls=document.getElementById('controls'),resultSection=document.getElementById('result-section'),resultVideo=document.getElementById('result-video'),includeAudio=document.getElementById('include-audio'),loadingOverlay=document.getElementById('loading-overlay'),convertStatus=document.getElementById('convert-status'),formatSelect=document.getElementById('format'),mp4Warning=document.getElementById('mp4-warning');
+    let mediaRecorder,recordedChunks=[],stream,timerInterval,seconds=0,recordingBlob=null,ffmpeg=null;
+
+    // SharedArrayBuffer 체크 - MP4 변환에 필요
+    const canUseMp4=typeof SharedArrayBuffer!=='undefined';
+    if(!canUseMp4){
+      mp4Warning.classList.remove('hidden');
+      formatSelect.value='webm';
+      formatSelect.querySelector('option[value="mp4"]').textContent='MP4 (사용 불가 - HTTPS 필요)';
+    }
+
+    recordBtn.addEventListener('click',async()=>{
+      if(mediaRecorder&&mediaRecorder.state==='recording'){mediaRecorder.stop();return}
+      try{
+        const displayStream=await navigator.mediaDevices.getDisplayMedia({video:{cursor:'always'},audio:true});
+        let audioStream=null;
+        if(includeAudio.checked){try{audioStream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){console.log('No mic access')}}
+        const tracks=[...displayStream.getTracks()];
+        if(audioStream){tracks.push(...audioStream.getTracks())}
+        stream=new MediaStream(tracks);
+        preview.srcObject=stream;
+        preview.classList.remove('hidden');
+        previewPlaceholder.classList.add('hidden');
+        mediaRecorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp9'});
+        recordedChunks=[];
+        mediaRecorder.ondataavailable=e=>{if(e.data.size>0)recordedChunks.push(e.data)};
+        mediaRecorder.onstop=()=>{
+          stream.getTracks().forEach(t=>t.stop());
+          recordingBlob=new Blob(recordedChunks,{type:'video/webm'});
+          resultVideo.src=URL.createObjectURL(recordingBlob);
+          controls.classList.add('hidden');
+          resultSection.classList.remove('hidden');
+          clearInterval(timerInterval);
+          timer.classList.add('hidden');
+          recordBtn.classList.remove('recording');
+          toast.success('녹화 완료!');
+        };
+        mediaRecorder.start();
+        recordBtn.classList.add('recording');
+        status.textContent='녹화 중... 다시 클릭하면 중지';
+        timer.classList.remove('hidden');
+        seconds=0;
+        updateTimer();
+        timerInterval=setInterval(()=>{seconds++;updateTimer()},1000);
+        displayStream.getVideoTracks()[0].onended=()=>{if(mediaRecorder.state==='recording')mediaRecorder.stop()};
+      }catch(error){console.error(error);toast.error('화면 공유가 취소되었습니다.')}
+    });
+
+    function updateTimer(){
+      const m=Math.floor(seconds/60).toString().padStart(2,'0');
+      const s=(seconds%60).toString().padStart(2,'0');
+      timer.textContent=`${m}:${s}`;
+    }
+
+    document.getElementById('download-btn').addEventListener('click',async()=>{
+      if(!recordingBlob)return;
+      const format=document.getElementById('format').value;
+
+      if(format==='webm'||!canUseMp4){
+        const a=document.createElement('a');
+        a.href=URL.createObjectURL(recordingBlob);
+        a.download='recording.webm';
+        a.click();
+        if(format==='mp4'&&!canUseMp4)toast.warning('MP4 변환 불가. WEBM으로 다운로드합니다.');
+        return;
+      }
+
+      // MP4 conversion
+      loadingOverlay.classList.add('show');
+      convertStatus.textContent='FFmpeg 로딩 중...';
+
+      try{
+        if(!ffmpeg){
+          const {FFmpeg}=FFmpegWASM;
+          ffmpeg=new FFmpeg();
+          await ffmpeg.load({
+            coreURL:'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.4/dist/umd/ffmpeg-core.js',
+            wasmURL:'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.4/dist/umd/ffmpeg-core.wasm'
+          });
+        }
+
+        convertStatus.textContent='변환 준비 중...';
+        const {fetchFile}=FFmpegUtil;
+        await ffmpeg.writeFile('input.webm',await fetchFile(recordingBlob));
+
+        convertStatus.textContent='MP4로 변환 중... (잠시 기다려주세요)';
+        await ffmpeg.exec(['-i','input.webm','-c:v','libx264','-preset','fast','-crf','22','-c:a','aac','output.mp4']);
+
+        const data=await ffmpeg.readFile('output.mp4');
+        const mp4Blob=new Blob([data.buffer],{type:'video/mp4'});
+
+        const a=document.createElement('a');
+        a.href=URL.createObjectURL(mp4Blob);
+        a.download='recording.mp4';
+        a.click();
+        toast.success('MP4 변환 완료!');
+      }catch(error){
+        console.error(error);
+        toast.error('MP4 변환 실패. WEBM으로 다운로드합니다.');
+        const a=document.createElement('a');
+        a.href=URL.createObjectURL(recordingBlob);
+        a.download='recording.webm';
+        a.click();
+      }finally{
+        loadingOverlay.classList.remove('show');
+      }
+    });
+
+    document.getElementById('new-btn').addEventListener('click',()=>{
+      controls.classList.remove('hidden');
+      resultSection.classList.add('hidden');
+      recordBtn.classList.remove('recording');
+      status.textContent='녹화 버튼을 눌러 시작하세요';
+      preview.srcObject=null;
+      preview.classList.add('hidden');
+      previewPlaceholder.classList.remove('hidden');
+    });
+    })();
+  </script>
+</body>
+</html>

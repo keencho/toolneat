@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.splitPdf.title">PDF 분할 - Toolneat</title>
+  <meta name="description" data-i18n-desc="tools.splitPdf.description" content="PDF 파일을 여러 개로 나누는 무료 온라인 도구입니다. 페이지 범위 지정, 각 페이지 분리 지원. 모든 처리는 브라우저에서 이루어져 개인정보가 안전합니다.">
+  <link rel="canonical" href="https://toolneat.com/tools/pdf/split-pdf/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/split-pdf/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/split-pdf/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/split-pdf/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="PDF 분할 - Toolneat">
+  <meta property="og:description" content="PDF 파일을 여러 개로 나누는 무료 온라인 도구입니다. 페이지 범위 지정, 각 페이지 분리 지원.">
+  <meta property="og:url" content="https://toolneat.com/tools/pdf/split-pdf">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF 분할",
+    "description": "PDF 파일을 여러 개로 나누는 무료 온라인 도구입니다. 페이지 범위 지정, 각 페이지 분리 지원. 모든 처리는 브라우저에서 이루어져 개인정보가 안전합니다.",
+    "url": "https://toolneat.com/tools/pdf/split-pdf",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+    "author": { "@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com" }
+  }
+  </script>
+  <style>
+    .drop-zone {
+      border: 2px dashed #d1d5db;
+      border-radius: 16px;
+      padding: 48px 24px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .dark .drop-zone { border-color: #4b5563; }
+    .drop-zone.drag-over { border-color: #3b82f6; background: #eff6ff; }
+    .dark .drop-zone.drag-over { background: #1e3a5f; }
+    .page-preview {
+      aspect-ratio: 210/297;
+      background: #f3f4f6;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #6b7280;
+      position: relative;
+    }
+    .dark .page-preview { background: #374151; color: #9ca3af; }
+    .page-preview.selected { ring: 2px; ring-color: #3b82f6; outline: 2px solid #3b82f6; }
+    .page-preview input { position: absolute; top: 8px; right: 8px; }
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .loading-overlay.show { display: flex; }
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #e5e7eb;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.splitPdf.title">PDF 분할</h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.splitPdf.descriptionLong">PDF 파일을 여러 개로 나눕니다. 원하는 페이지를 선택하세요.</p>
+      </div>
+
+      <div class="card">
+        <!-- Drop Zone -->
+        <div id="drop-zone" class="drop-zone mb-6">
+          <input type="file" id="file-input" accept=".pdf" class="hidden" disabled>
+          <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+          </svg>
+          <p class="text-gray-600 dark:text-gray-400 mb-2" data-i18n="tools.splitPdf.dropHere">PDF 파일을 드래그하거나 클릭하여 선택</p>
+          <p id="loading-text" class="text-sm text-blue-500 mt-2">라이브러리 로딩 중...</p>
+        </div>
+
+        <!-- File Info -->
+        <div id="file-info" class="hidden mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <svg class="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-3 9h4v1h-4v-1zm0 2h4v1h-4v-1zm-2-2h1v4H8v-4z"/>
+              </svg>
+              <div>
+                <p id="file-name" class="font-medium text-gray-900 dark:text-white"></p>
+                <p id="page-count" class="text-sm text-gray-500"></p>
+              </div>
+            </div>
+            <button id="change-file" class="text-sm text-blue-600 hover:text-blue-700" data-i18n="tools.splitPdf.changeFile">파일 변경</button>
+          </div>
+        </div>
+
+        <!-- Split Options -->
+        <div id="split-options" class="hidden mb-6">
+          <h3 class="font-medium text-gray-900 dark:text-white mb-4" data-i18n="tools.splitPdf.splitMode">분할 방식</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <label class="flex items-center gap-3 p-4 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
+              <input type="radio" name="split-mode" value="range" checked class="w-4 h-4">
+              <div>
+                <p class="font-medium text-gray-900 dark:text-white" data-i18n="tools.splitPdf.rangeMode">페이지 범위 선택</p>
+                <p class="text-sm text-gray-500" data-i18n="tools.splitPdf.rangeModeDesc">원하는 페이지를 선택하여 추출</p>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 p-4 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
+              <input type="radio" name="split-mode" value="each" class="w-4 h-4">
+              <div>
+                <p class="font-medium text-gray-900 dark:text-white" data-i18n="tools.splitPdf.eachMode">페이지별 분리</p>
+                <p class="text-sm text-gray-500" data-i18n="tools.splitPdf.eachModeDesc">각 페이지를 개별 PDF로 저장</p>
+              </div>
+            </label>
+          </div>
+
+          <!-- Page Selection (for range mode) -->
+          <div id="page-selection" class="mb-6">
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="font-medium text-gray-900 dark:text-white" data-i18n="tools.splitPdf.selectPages">페이지 선택</h4>
+              <div class="flex gap-2">
+                <button id="select-all" class="text-sm text-blue-600 hover:text-blue-700" data-i18n="tools.splitPdf.selectAll">전체 선택</button>
+                <span class="text-gray-300">|</span>
+                <button id="select-none" class="text-sm text-blue-600 hover:text-blue-700" data-i18n="tools.splitPdf.selectNone">선택 해제</button>
+              </div>
+            </div>
+            <div id="pages-grid" class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3"></div>
+          </div>
+        </div>
+
+        <!-- Split Button -->
+        <button id="split-btn" class="btn btn-primary w-full hidden" disabled data-i18n="tools.splitPdf.split">PDF 분할하기</button>
+
+        <!-- Result Section -->
+        <div id="result-section" class="hidden mt-6">
+          <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 text-center mb-4">
+            <svg class="w-16 h-16 mx-auto mb-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">분할 완료!</h3>
+            <p id="result-info" class="text-sm text-gray-600 dark:text-gray-400"></p>
+          </div>
+          <div id="result-files" class="space-y-2 mb-4 max-h-60 overflow-y-auto"></div>
+          <div class="flex gap-3">
+            <button id="download-all-btn" class="btn btn-primary flex-1">전체 다운로드</button>
+            <button id="new-btn" class="btn btn-secondary flex-1">새로 분할하기</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4" data-i18n="tools.splitPdf.faqTitle">PDF 분할이란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4" data-i18n="tools.splitPdf.faqDesc">
+            PDF 분할은 하나의 PDF 파일에서 원하는 페이지만 추출하거나 각 페이지를 개별 파일로 나누는 것입니다. 긴 문서에서 필요한 부분만 추출하거나, 스캔한 문서를 개별 파일로 분리할 때 유용합니다.
+          </p>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>PDF 파일을 드래그하거나 클릭하여 업로드합니다</li>
+            <li>추출할 페이지를 클릭하여 선택합니다 (여러 페이지 선택 가능)</li>
+            <li>'선택 페이지 추출' 버튼을 클릭합니다</li>
+            <li>선택한 페이지만 포함된 새 PDF가 다운로드됩니다</li>
+          </ol>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 여러 페이지를 한 번에 선택할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">네, 원하는 페이지를 여러 개 클릭하여 선택할 수 있습니다. 선택된 페이지는 파란색 테두리로 표시됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 분할 후 페이지 순서를 변경할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">현재는 원본 순서대로 추출됩니다. 순서 변경이 필요하면 분할 후 PDF 병합 도구를 사용하여 재배열할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 원본 PDF 파일이 변경되나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">아니요, 원본 파일은 변경되지 않습니다. 선택한 페이지로 새로운 PDF 파일이 생성됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 분할한 PDF의 품질이 저하되나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">아니요, 원본의 품질이 그대로 유지됩니다. 텍스트, 이미지, 폰트 등 모든 요소가 동일하게 보존됩니다.</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mt-4" data-i18n="tools.splitPdf.privacyNote">모든 처리는 브라우저에서 이루어지며 파일이 서버로 전송되지 않습니다.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center">
+      <div class="spinner mx-auto mb-4"></div>
+      <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.splitPdf.splitting">PDF 분할 중...</p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('file-input');
+      const fileInfo = document.getElementById('file-info');
+      const fileName = document.getElementById('file-name');
+      const pageCount = document.getElementById('page-count');
+      const changeFileBtn = document.getElementById('change-file');
+      const splitOptions = document.getElementById('split-options');
+      const pageSelection = document.getElementById('page-selection');
+      const pagesGrid = document.getElementById('pages-grid');
+      const splitBtn = document.getElementById('split-btn');
+      const loadingOverlay = document.getElementById('loading-overlay');
+      const loadingText = document.getElementById('loading-text');
+      const resultSection = document.getElementById('result-section');
+      const resultInfo = document.getElementById('result-info');
+      const resultFiles = document.getElementById('result-files');
+
+      let pdfFile = null;
+      let pdfDoc = null;
+      let totalPages = 0;
+      let selectedPages = new Set();
+      let libReady = false;
+      let generatedFiles = [];
+
+      // Check library
+      function checkLibrary() {
+        if (typeof PDFLib !== 'undefined') {
+          libReady = true;
+          fileInput.disabled = false;
+          loadingText.classList.add('hidden');
+          toast.success('PDF 도구 준비 완료!');
+        } else {
+          setTimeout(checkLibrary, 100);
+        }
+      }
+      checkLibrary();
+
+      // Drop zone events
+      dropZone.addEventListener('click', () => { if (libReady) fileInput.click(); });
+      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); if (libReady) dropZone.classList.add('drag-over'); });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (!libReady) return;
+        const file = e.dataTransfer.files[0];
+        if (file && file.type === 'application/pdf') loadPdf(file);
+        else toast.warning('PDF 파일만 선택할 수 있습니다.');
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) loadPdf(e.target.files[0]);
+      });
+
+      changeFileBtn.addEventListener('click', () => fileInput.click());
+
+      async function loadPdf(file) {
+        pdfFile = file;
+        try {
+          const arrayBuffer = await file.arrayBuffer();
+          pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+          totalPages = pdfDoc.getPageCount();
+
+          fileName.textContent = file.name;
+          pageCount.textContent = `${totalPages}페이지`;
+
+          dropZone.classList.add('hidden');
+          fileInfo.classList.remove('hidden');
+          splitOptions.classList.remove('hidden');
+          splitBtn.classList.remove('hidden');
+
+          renderPages();
+          updateSplitButton();
+        } catch (error) {
+          console.error(error);
+          toast.error('PDF를 불러올 수 없습니다.');
+        }
+      }
+
+      function renderPages() {
+        selectedPages = new Set([...Array(totalPages).keys()].map(i => i + 1));
+        pagesGrid.innerHTML = Array.from({ length: totalPages }, (_, i) => {
+          const pageNum = i + 1;
+          return `
+            <label class="page-preview selected cursor-pointer" data-page="${pageNum}">
+              ${pageNum}
+              <input type="checkbox" checked class="w-4 h-4 rounded" data-page="${pageNum}">
+            </label>
+          `;
+        }).join('');
+
+        pagesGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.addEventListener('change', (e) => {
+            const page = parseInt(e.target.dataset.page);
+            const preview = e.target.closest('.page-preview');
+            if (e.target.checked) {
+              selectedPages.add(page);
+              preview.classList.add('selected');
+            } else {
+              selectedPages.delete(page);
+              preview.classList.remove('selected');
+            }
+            updateSplitButton();
+          });
+        });
+      }
+
+      document.getElementById('select-all').addEventListener('click', () => {
+        pagesGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.checked = true;
+          cb.closest('.page-preview').classList.add('selected');
+          selectedPages.add(parseInt(cb.dataset.page));
+        });
+        updateSplitButton();
+      });
+
+      document.getElementById('select-none').addEventListener('click', () => {
+        pagesGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.checked = false;
+          cb.closest('.page-preview').classList.remove('selected');
+        });
+        selectedPages.clear();
+        updateSplitButton();
+      });
+
+      document.querySelectorAll('input[name="split-mode"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          pageSelection.style.display = e.target.value === 'range' ? 'block' : 'none';
+          updateSplitButton();
+        });
+      });
+
+      function updateSplitButton() {
+        const mode = document.querySelector('input[name="split-mode"]:checked').value;
+        if (mode === 'range') {
+          splitBtn.disabled = selectedPages.size === 0;
+        } else {
+          splitBtn.disabled = false;
+        }
+      }
+
+      splitBtn.addEventListener('click', async () => {
+        if (!pdfDoc || !libReady) return;
+        loadingOverlay.classList.add('show');
+        generatedFiles = [];
+
+        const mode = document.querySelector('input[name="split-mode"]:checked').value;
+
+        try {
+          if (mode === 'each') {
+            // Split each page into separate PDF
+            for (let i = 0; i < totalPages; i++) {
+              const newPdf = await PDFLib.PDFDocument.create();
+              const [page] = await newPdf.copyPages(pdfDoc, [i]);
+              newPdf.addPage(page);
+              const bytes = await newPdf.save();
+              const blob = new Blob([bytes], { type: 'application/pdf' });
+              generatedFiles.push({ name: `page_${i + 1}.pdf`, blob, pages: 1 });
+            }
+            resultInfo.textContent = `${totalPages}개 PDF 파일 생성됨`;
+          } else {
+            // Extract selected pages
+            const pages = Array.from(selectedPages).sort((a, b) => a - b);
+            const newPdf = await PDFLib.PDFDocument.create();
+            const copiedPages = await newPdf.copyPages(pdfDoc, pages.map(p => p - 1));
+            copiedPages.forEach(page => newPdf.addPage(page));
+            const bytes = await newPdf.save();
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            generatedFiles.push({ name: 'split.pdf', blob, pages: pages.length });
+            resultInfo.textContent = `${pages.length}페이지 추출됨`;
+          }
+
+          // Show result section
+          showResult();
+          toast.success('PDF 분할 완료!');
+        } catch (error) {
+          console.error(error);
+          toast.error('PDF 분할 중 오류가 발생했습니다.');
+        } finally {
+          loadingOverlay.classList.remove('show');
+        }
+      });
+
+      function showResult() {
+        fileInfo.classList.add('hidden');
+        splitOptions.classList.add('hidden');
+        splitBtn.classList.add('hidden');
+        resultSection.classList.remove('hidden');
+
+        // Render file list
+        resultFiles.innerHTML = generatedFiles.map((file, i) => `
+          <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div class="flex items-center gap-3">
+              <svg class="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-3 9h4v1h-4v-1zm0 2h4v1h-4v-1zm-2-2h1v4H8v-4z"/>
+              </svg>
+              <div>
+                <p class="text-sm font-medium text-gray-900 dark:text-white">${file.name}</p>
+                <p class="text-xs text-gray-500">${file.pages}페이지, ${formatSize(file.blob.size)}</p>
+              </div>
+            </div>
+            <button class="download-single-btn text-blue-600 hover:text-blue-700 text-sm" data-index="${i}">다운로드</button>
+          </div>
+        `).join('');
+
+        // Add click handlers
+        resultFiles.querySelectorAll('.download-single-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const index = parseInt(e.currentTarget.dataset.index);
+            downloadFile(generatedFiles[index]);
+          });
+        });
+      }
+
+      function downloadFile(file) {
+        const url = URL.createObjectURL(file.blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file.name;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function formatSize(bytes) {
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+      }
+
+      // Download all button
+      document.getElementById('download-all-btn').addEventListener('click', () => {
+        generatedFiles.forEach(file => downloadFile(file));
+      });
+
+      // New split button
+      document.getElementById('new-btn').addEventListener('click', () => {
+        pdfFile = null;
+        pdfDoc = null;
+        totalPages = 0;
+        selectedPages.clear();
+        generatedFiles = [];
+        dropZone.classList.remove('hidden');
+        fileInfo.classList.add('hidden');
+        splitOptions.classList.add('hidden');
+        splitBtn.classList.add('hidden');
+        resultSection.classList.add('hidden');
+        fileInput.value = '';
+      });
+    })();
+  </script>
+</body>
+</html>

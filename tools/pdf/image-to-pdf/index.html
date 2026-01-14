@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.imageToPdf.title">이미지를 PDF로 - Toolneat</title>
+  <meta name="description" content="여러 이미지를 하나의 PDF로 변환하는 무료 온라인 도구입니다. PNG, JPG, WEBP 지원. 순서 변경 가능. 브라우저에서 처리되어 개인정보가 안전합니다.">
+  <link rel="canonical" href="https://toolneat.com/tools/pdf/image-to-pdf/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/image-to-pdf/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/image-to-pdf/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/image-to-pdf/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="이미지를 PDF로 - Toolneat">
+  <meta property="og:description" content="여러 이미지를 하나의 PDF로 변환하는 무료 온라인 도구입니다. PNG, JPG, WEBP 지원.">
+  <meta property="og:url" content="https://toolneat.com/tools/pdf/image-to-pdf">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "이미지를 PDF로",
+    "description": "여러 이미지를 하나의 PDF로 변환하는 무료 온라인 도구입니다. PNG, JPG, WEBP 지원. 순서 변경 가능. 브라우저에서 처리되어 개인정보가 안전합니다.",
+    "url": "https://toolneat.com/tools/pdf/image-to-pdf",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+    "author": { "@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com" }
+  }
+  </script>
+  <style>
+    .drop-zone{border:2px dashed #d1d5db;border-radius:16px;padding:48px 24px;text-align:center;transition:all .2s}.dark .drop-zone{border-color:#4b5563}.drop-zone.drag-over{border-color:#3b82f6;background:#eff6ff}.dark .drop-zone.drag-over{background:#1e3a5f}
+    .image-item{display:flex;align-items:center;gap:12px;padding:12px;background:#f9fafb;border-radius:12px;cursor:grab}.dark .image-item{background:#374151}.image-item:active{cursor:grabbing}.image-item.dragging{opacity:.5}.image-item.drag-over{border:2px dashed #3b82f6}
+    .image-thumb{width:60px;height:60px;object-fit:cover;border-radius:8px}
+    .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}.loading-overlay.show{display:flex}.spinner{width:48px;height:48px;border:4px solid #e5e7eb;border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">이미지를 PDF로</h1>
+        <p class="text-gray-600 dark:text-gray-400">여러 이미지를 하나의 PDF 파일로 변환합니다.</p>
+      </div>
+      <div class="card">
+        <div id="drop-zone" class="drop-zone mb-6">
+          <input type="file" id="file-input" accept="image/*" multiple class="hidden" disabled>
+          <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <p class="text-gray-600 dark:text-gray-400 mb-2">이미지를 드래그하거나 클릭하여 선택</p>
+          <p class="text-sm text-gray-500">PNG, JPG, WEBP 지원 (여러 파일 선택 가능)</p>
+          <p id="loading-text" class="text-sm text-blue-500 mt-2">라이브러리 로딩 중...</p>
+        </div>
+        <div id="images-list" class="hidden mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-medium text-gray-900 dark:text-white">선택된 이미지 <span id="image-count" class="text-gray-500"></span></h3>
+            <button id="add-more" class="text-sm text-blue-600 hover:text-blue-700" disabled>+ 이미지 추가</button>
+          </div>
+          <div id="images-container" class="space-y-2"></div>
+        </div>
+        <div id="options" class="hidden mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">페이지 크기</label>
+          <select id="page-size" class="input">
+            <option value="fit">이미지 크기에 맞춤</option>
+            <option value="a4">A4</option>
+            <option value="letter">Letter</option>
+          </select>
+        </div>
+        <button id="convert-btn" class="btn btn-primary w-full hidden" disabled>PDF 생성</button>
+
+        <!-- Result Section -->
+        <div id="result-section" class="hidden mt-6">
+          <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 text-center mb-4">
+            <svg class="w-16 h-16 mx-auto mb-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">PDF 생성 완료!</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400"><span id="result-pages">0</span>페이지, <span id="result-size">0</span></p>
+          </div>
+          <div class="flex gap-3">
+            <button id="download-btn" class="btn btn-primary flex-1">다운로드</button>
+            <button id="new-btn" class="btn btn-secondary flex-1">새로 만들기</button>
+          </div>
+        </div>
+      </div>
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">이미지를 PDF로 변환</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">여러 이미지를 하나의 PDF 문서로 만듭니다. 스캔 문서 정리, 사진 앨범 제작, 포트폴리오 작성에 유용합니다.</p>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>이미지 파일을 드래그하거나 클릭하여 업로드합니다</li>
+            <li>이미지를 드래그하여 원하는 순서로 정렬합니다</li>
+            <li>페이지 크기 옵션을 선택합니다</li>
+            <li>'PDF 생성' 버튼을 클릭하여 다운로드합니다</li>
+          </ol>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 어떤 이미지 형식을 지원하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">PNG, JPG, JPEG, WEBP, GIF, BMP 등 대부분의 이미지 형식을 지원합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 이미지 순서를 변경할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">네, 업로드 후 이미지를 드래그하여 원하는 순서로 재배열할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 페이지 크기 옵션은 무엇인가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">'이미지 크기에 맞춤'은 각 이미지 크기대로 페이지가 생성됩니다. A4, Letter는 해당 용지 크기에 이미지가 맞춰집니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 변환 후 이미지 품질이 떨어지나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">원본 이미지의 품질이 그대로 유지됩니다. 추가 압축 없이 PDF에 포함됩니다.</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mt-4">모든 처리는 브라우저에서 이루어지며 파일이 서버로 전송되지 않습니다.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <div id="loading-overlay" class="loading-overlay"><div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center"><div class="spinner mx-auto mb-4"></div><p class="text-gray-600 dark:text-gray-400">PDF 생성 중...</p></div></div>
+  <script>
+    (function(){'use strict';
+    const dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),imagesList=document.getElementById('images-list'),imagesContainer=document.getElementById('images-container'),imageCount=document.getElementById('image-count'),options=document.getElementById('options'),convertBtn=document.getElementById('convert-btn'),addMoreBtn=document.getElementById('add-more'),loadingOverlay=document.getElementById('loading-overlay'),loadingText=document.getElementById('loading-text'),resultSection=document.getElementById('result-section'),resultPages=document.getElementById('result-pages'),resultSize=document.getElementById('result-size');
+    let images=[],libReady=false,pdfBlob=null;
+
+    function checkLibrary(){if(typeof PDFLib!=='undefined'){libReady=true;fileInput.disabled=false;addMoreBtn.disabled=false;loadingText.classList.add('hidden');toast.success('PDF 도구 준비 완료!')}else{setTimeout(checkLibrary,100)}}checkLibrary();
+
+    dropZone.addEventListener('click',()=>{if(libReady)fileInput.click()});dropZone.addEventListener('dragover',e=>{e.preventDefault();if(libReady)dropZone.classList.add('drag-over')});dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(!libReady)return;const files=Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/'));addImages(files)});
+    fileInput.addEventListener('change',e=>{addImages(Array.from(e.target.files));fileInput.value=''});addMoreBtn.addEventListener('click',()=>{if(libReady)fileInput.click()});
+
+    function addImages(files){if(files.length===0){toast.warning('이미지 파일만 선택할 수 있습니다.');return}files.forEach(file=>{const reader=new FileReader();reader.onload=e=>{images.push({file,dataUrl:e.target.result,name:file.name});renderImages()};reader.readAsDataURL(file)})}
+
+    function renderImages(){if(images.length===0){imagesList.classList.add('hidden');options.classList.add('hidden');convertBtn.classList.add('hidden');return}imagesList.classList.remove('hidden');options.classList.remove('hidden');convertBtn.classList.remove('hidden');convertBtn.disabled=false;imageCount.textContent=`(${images.length}개)`;
+    imagesContainer.innerHTML=images.map((img,i)=>`<div class="image-item" draggable="true" data-index="${i}"><svg class="w-5 h-5 text-gray-400 cursor-grab flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg><img src="${img.dataUrl}" class="image-thumb" alt=""><div class="flex-1 min-w-0"><p class="text-sm font-medium text-gray-900 dark:text-white truncate">${img.name}</p></div><button class="remove-btn p-1 text-gray-400 hover:text-red-500" data-index="${i}"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button></div>`).join('');
+    setupDragAndDrop();imagesContainer.querySelectorAll('.remove-btn').forEach(btn=>{btn.addEventListener('click',e=>{images.splice(parseInt(e.currentTarget.dataset.index),1);renderImages()})})}
+
+    function setupDragAndDrop(){const items=imagesContainer.querySelectorAll('.image-item');let draggedItem=null;items.forEach(item=>{item.addEventListener('dragstart',()=>{draggedItem=item;item.classList.add('dragging')});item.addEventListener('dragend',()=>{item.classList.remove('dragging');items.forEach(i=>i.classList.remove('drag-over'))});item.addEventListener('dragover',e=>{e.preventDefault();if(item!==draggedItem)item.classList.add('drag-over')});item.addEventListener('dragleave',()=>item.classList.remove('drag-over'));item.addEventListener('drop',e=>{e.preventDefault();item.classList.remove('drag-over');if(item!==draggedItem){const from=parseInt(draggedItem.dataset.index),to=parseInt(item.dataset.index),[moved]=images.splice(from,1);images.splice(to,0,moved);renderImages()}})})}
+
+    function formatSize(bytes){if(bytes<1024)return bytes+' B';if(bytes<1024*1024)return(bytes/1024).toFixed(1)+' KB';return(bytes/(1024*1024)).toFixed(1)+' MB'}
+
+    convertBtn.addEventListener('click',async()=>{if(images.length===0||!libReady)return;loadingOverlay.classList.add('show');try{const{PDFDocument}=PDFLib,pdfDoc=await PDFDocument.create(),pageSize=document.getElementById('page-size').value;
+    for(const img of images){const imgBytes=await fetch(img.dataUrl).then(r=>r.arrayBuffer());let pdfImage;if(img.file.type==='image/png')pdfImage=await pdfDoc.embedPng(imgBytes);else pdfImage=await pdfDoc.embedJpg(imgBytes);
+    let width=pdfImage.width,height=pdfImage.height;if(pageSize==='a4'){width=595;height=842}else if(pageSize==='letter'){width=612;height=792}
+    const page=pdfDoc.addPage([width,height]);const scale=Math.min(width/pdfImage.width,height/pdfImage.height);const scaledW=pdfImage.width*scale,scaledH=pdfImage.height*scale;page.drawImage(pdfImage,{x:(width-scaledW)/2,y:(height-scaledH)/2,width:scaledW,height:scaledH})}
+    const pdfBytes=await pdfDoc.save();pdfBlob=new Blob([pdfBytes],{type:'application/pdf'});
+    resultPages.textContent=pdfDoc.getPageCount();resultSize.textContent=formatSize(pdfBlob.size);
+    dropZone.classList.add('hidden');imagesList.classList.add('hidden');options.classList.add('hidden');convertBtn.classList.add('hidden');resultSection.classList.remove('hidden');
+    toast.success('PDF 생성 완료!')}catch(error){console.error(error);toast.error('PDF 생성 중 오류가 발생했습니다.')}finally{loadingOverlay.classList.remove('show')}});
+
+    document.getElementById('download-btn').addEventListener('click',()=>{if(!pdfBlob)return;const url=URL.createObjectURL(pdfBlob);const a=document.createElement('a');a.href=url;a.download='images.pdf';a.click();URL.revokeObjectURL(url)});
+
+    document.getElementById('new-btn').addEventListener('click',()=>{images=[];pdfBlob=null;dropZone.classList.remove('hidden');imagesList.classList.add('hidden');options.classList.add('hidden');convertBtn.classList.add('hidden');resultSection.classList.add('hidden');fileInput.value=''});
+    })();
+  </script>
+</body>
+</html>

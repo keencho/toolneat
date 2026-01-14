@@ -147,6 +147,53 @@ Add to `components/header.html`:
 ### 5. Update Homepage
 Add tool card to `index.html` in appropriate section
 
+### 6. FAQ Section (필수)
+**모든 도구 페이지에 FAQ 섹션 필수 포함**
+
+FAQ 섹션은 도구 설명, 사용 방법, 자주 묻는 질문을 포함하며 사용자 이해도와 SEO에 도움이 됨.
+
+#### FAQ 구조
+```html
+<section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+  <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">[도구명]이란?</h2>
+  <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+    <p class="text-gray-600 dark:text-gray-400 mb-4">[도구에 대한 간단한 설명]</p>
+
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">사용 방법</h3>
+    <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+      <li>첫 번째 단계</li>
+      <li>두 번째 단계</li>
+      <li>세 번째 단계</li>
+    </ol>
+
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+    <div class="space-y-4">
+      <div>
+        <h4 class="font-medium text-gray-900 dark:text-white">Q: 질문 1?</h4>
+        <p class="text-gray-600 dark:text-gray-400">답변 1</p>
+      </div>
+      <div>
+        <h4 class="font-medium text-gray-900 dark:text-white">Q: 질문 2?</h4>
+        <p class="text-gray-600 dark:text-gray-400">답변 2</p>
+      </div>
+      <!-- 3-4개 Q&A 권장 -->
+    </div>
+
+    <p class="text-gray-600 dark:text-gray-400 mt-4">모든 처리는 브라우저에서 이루어지며 서버로 전송되지 않습니다.</p>
+  </div>
+</section>
+```
+
+#### FAQ 작성 가이드라인
+- **도구 설명**: 1-2문장으로 도구가 무엇을 하는지 설명
+- **사용 방법**: 3-5단계로 간결하게 작성
+- **Q&A**: 사용자가 실제로 궁금해할 만한 질문 3-4개
+  - 기술적 제한사항 (파일 크기, 지원 형식 등)
+  - 품질/출력 관련
+  - 개인정보/보안 관련
+  - 일반적인 사용 팁
+- **개인정보 안내**: 브라우저 처리임을 명시 (신뢰성 향상)
+
 ## Styling Guidelines
 
 ### CSS Classes (Tailwind)

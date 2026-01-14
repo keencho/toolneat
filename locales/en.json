@@ -6,6 +6,10 @@
   "nav": {
     "dev": "Dev Tools",
     "life": "Life Tools",
+    "pdf": "PDF Tools",
+    "pdfEdit": "PDF Edit",
+    "pdfConvert": "PDF Convert",
+    "mediaAi": "Media & AI",
     "monitorTest": "Monitor Test",
     "encoding": "Encoding",
     "generators": "Generators",
@@ -813,6 +817,38 @@
       "bmpDesc": "Uncompressed, large file size. For editing",
       "icoDesc": "Windows icon format. Used for favicons",
       "privacyNote": "All processing is done in your browser. No data is uploaded to servers."
+    },
+    "mergePdf": {
+      "title": "Merge PDF",
+      "description": "Combine multiple PDFs into one."
+    },
+    "splitPdf": {
+      "title": "Split PDF",
+      "description": "Split PDF into separate pages."
+    },
+    "pdfToImage": {
+      "title": "PDF to Image",
+      "description": "Convert PDF pages to images."
+    },
+    "imageToPdf": {
+      "title": "Image to PDF",
+      "description": "Convert images to PDF."
+    },
+    "backgroundRemover": {
+      "title": "Background Remover AI",
+      "description": "Remove image backgrounds with AI."
+    },
+    "videoToGif": {
+      "title": "Video to GIF",
+      "description": "Convert video to GIF animation."
+    },
+    "screenRecorder": {
+      "title": "Screen Recorder",
+      "description": "Record your screen in browser."
+    },
+    "ocr": {
+      "title": "OCR Text Extractor",
+      "description": "Extract text from images."
     }
   },
   "common": {

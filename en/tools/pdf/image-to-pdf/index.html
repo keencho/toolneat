@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image to PDF - Toolneat</title>
+  <meta name="description" content="Free online tool to convert images to PDF. Supports PNG, JPG, WEBP. Reorder images easily. All processing in browser for privacy.">
+  <link rel="canonical" href="https://toolneat.com/en/tools/pdf/image-to-pdf/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/image-to-pdf/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/image-to-pdf/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/image-to-pdf/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Image to PDF - Toolneat">
+  <meta property="og:description" content="Free online tool to convert images to PDF. Supports PNG, JPG, WEBP.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/pdf/image-to-pdf">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Image to PDF",
+    "description": "Free online tool to convert images to PDF. Supports PNG, JPG, WEBP. Reorder images easily. All processing in browser for privacy.",
+    "url": "https://toolneat.com/en/tools/pdf/image-to-pdf",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com" }
+  }
+  </script>
+  <style>
+    .drop-zone{border:2px dashed #d1d5db;border-radius:16px;padding:48px 24px;text-align:center;transition:all .2s}.dark .drop-zone{border-color:#4b5563}.drop-zone.drag-over{border-color:#3b82f6;background:#eff6ff}.dark .drop-zone.drag-over{background:#1e3a5f}
+    .image-item{display:flex;align-items:center;gap:12px;padding:12px;background:#f9fafb;border-radius:12px;cursor:grab}.dark .image-item{background:#374151}.image-item:active{cursor:grabbing}.image-item.dragging{opacity:.5}.image-item.drag-over{border:2px dashed #3b82f6}
+    .image-thumb{width:60px;height:60px;object-fit:cover;border-radius:8px}
+    .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}.loading-overlay.show{display:flex}.spinner{width:48px;height:48px;border:4px solid #e5e7eb;border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Image to PDF</h1>
+        <p class="text-gray-600 dark:text-gray-400">Convert multiple images into a single PDF file.</p>
+      </div>
+      <div class="card">
+        <div id="drop-zone" class="drop-zone mb-6">
+          <input type="file" id="file-input" accept="image/*" multiple class="hidden" disabled>
+          <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <p class="text-gray-600 dark:text-gray-400 mb-2">Drag images here or click to select</p>
+          <p class="text-sm text-gray-500">PNG, JPG, WEBP supported (multiple files allowed)</p>
+          <p id="loading-text" class="text-sm text-blue-500 mt-2">Loading library...</p>
+        </div>
+        <div id="images-list" class="hidden mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-medium text-gray-900 dark:text-white">Selected Images <span id="image-count" class="text-gray-500"></span></h3>
+            <button id="add-more" class="text-sm text-blue-600 hover:text-blue-700" disabled>+ Add More</button>
+          </div>
+          <div id="images-container" class="space-y-2"></div>
+        </div>
+        <div id="options" class="hidden mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Page Size</label>
+          <select id="page-size" class="input">
+            <option value="fit">Fit to Image</option>
+            <option value="a4">A4</option>
+            <option value="letter">Letter</option>
+          </select>
+        </div>
+        <button id="convert-btn" class="btn btn-primary w-full hidden" disabled>Create PDF</button>
+
+        <!-- Result Section -->
+        <div id="result-section" class="hidden mt-6">
+          <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 text-center mb-4">
+            <svg class="w-16 h-16 mx-auto mb-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">PDF Created!</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400"><span id="result-pages">0</span> pages, <span id="result-size">0</span></p>
+          </div>
+          <div class="flex gap-3">
+            <button id="download-btn" class="btn btn-primary flex-1">Download</button>
+            <button id="new-btn" class="btn btn-secondary flex-1">New PDF</button>
+          </div>
+        </div>
+      </div>
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Image to PDF Conversion</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Combine multiple images into a single PDF document. Great for organizing scanned documents, creating photo albums, or portfolios.</p>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Drag or click to upload image files</li>
+            <li>Drag images to reorder them</li>
+            <li>Select page size option</li>
+            <li>Click 'Create PDF' to download</li>
+          </ol>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What image formats are supported?</h4>
+              <p class="text-gray-600 dark:text-gray-400">PNG, JPG, JPEG, WEBP, GIF, BMP and most common image formats are supported.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I change the image order?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, after uploading you can drag images to rearrange them in any order.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What are the page size options?</h4>
+              <p class="text-gray-600 dark:text-gray-400">'Fit to image' creates pages matching each image size. A4 and Letter fit images to those paper sizes.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is image quality preserved?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, original image quality is maintained. No additional compression is applied.</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No data is uploaded to servers.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <div id="loading-overlay" class="loading-overlay"><div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center"><div class="spinner mx-auto mb-4"></div><p class="text-gray-600 dark:text-gray-400">Creating PDF...</p></div></div>
+  <script>
+    (function(){'use strict';
+    const dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),imagesList=document.getElementById('images-list'),imagesContainer=document.getElementById('images-container'),imageCount=document.getElementById('image-count'),options=document.getElementById('options'),convertBtn=document.getElementById('convert-btn'),addMoreBtn=document.getElementById('add-more'),loadingOverlay=document.getElementById('loading-overlay'),loadingText=document.getElementById('loading-text'),resultSection=document.getElementById('result-section'),resultPages=document.getElementById('result-pages'),resultSize=document.getElementById('result-size');
+    let images=[],libReady=false,pdfBlob=null;
+
+    function checkLibrary(){if(typeof PDFLib!=='undefined'){libReady=true;fileInput.disabled=false;addMoreBtn.disabled=false;loadingText.classList.add('hidden');toast.success('PDF tool ready!')}else{setTimeout(checkLibrary,100)}}checkLibrary();
+
+    dropZone.addEventListener('click',()=>{if(libReady)fileInput.click()});dropZone.addEventListener('dragover',e=>{e.preventDefault();if(libReady)dropZone.classList.add('drag-over')});dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(!libReady)return;const files=Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/'));addImages(files)});
+    fileInput.addEventListener('change',e=>{addImages(Array.from(e.target.files));fileInput.value=''});addMoreBtn.addEventListener('click',()=>{if(libReady)fileInput.click()});
+
+    function addImages(files){if(files.length===0){toast.warning('Please select image files only.');return}files.forEach(file=>{const reader=new FileReader();reader.onload=e=>{images.push({file,dataUrl:e.target.result,name:file.name});renderImages()};reader.readAsDataURL(file)})}
+
+    function renderImages(){if(images.length===0){imagesList.classList.add('hidden');options.classList.add('hidden');convertBtn.classList.add('hidden');return}imagesList.classList.remove('hidden');options.classList.remove('hidden');convertBtn.classList.remove('hidden');convertBtn.disabled=false;imageCount.textContent=`(${images.length})`;
+    imagesContainer.innerHTML=images.map((img,i)=>`<div class="image-item" draggable="true" data-index="${i}"><svg class="w-5 h-5 text-gray-400 cursor-grab flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg><img src="${img.dataUrl}" class="image-thumb" alt=""><div class="flex-1 min-w-0"><p class="text-sm font-medium text-gray-900 dark:text-white truncate">${img.name}</p></div><button class="remove-btn p-1 text-gray-400 hover:text-red-500" data-index="${i}"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button></div>`).join('');
+    setupDragAndDrop();imagesContainer.querySelectorAll('.remove-btn').forEach(btn=>{btn.addEventListener('click',e=>{images.splice(parseInt(e.currentTarget.dataset.index),1);renderImages()})})}
+
+    function setupDragAndDrop(){const items=imagesContainer.querySelectorAll('.image-item');let draggedItem=null;items.forEach(item=>{item.addEventListener('dragstart',()=>{draggedItem=item;item.classList.add('dragging')});item.addEventListener('dragend',()=>{item.classList.remove('dragging');items.forEach(i=>i.classList.remove('drag-over'))});item.addEventListener('dragover',e=>{e.preventDefault();if(item!==draggedItem)item.classList.add('drag-over')});item.addEventListener('dragleave',()=>item.classList.remove('drag-over'));item.addEventListener('drop',e=>{e.preventDefault();item.classList.remove('drag-over');if(item!==draggedItem){const from=parseInt(draggedItem.dataset.index),to=parseInt(item.dataset.index),[moved]=images.splice(from,1);images.splice(to,0,moved);renderImages()}})})}
+
+    function formatSize(bytes){if(bytes<1024)return bytes+' B';if(bytes<1024*1024)return(bytes/1024).toFixed(1)+' KB';return(bytes/(1024*1024)).toFixed(1)+' MB'}
+
+    convertBtn.addEventListener('click',async()=>{if(images.length===0||!libReady)return;loadingOverlay.classList.add('show');try{const{PDFDocument}=PDFLib,pdfDoc=await PDFDocument.create(),pageSize=document.getElementById('page-size').value;
+    for(const img of images){const imgBytes=await fetch(img.dataUrl).then(r=>r.arrayBuffer());let pdfImage;if(img.file.type==='image/png')pdfImage=await pdfDoc.embedPng(imgBytes);else pdfImage=await pdfDoc.embedJpg(imgBytes);
+    let width=pdfImage.width,height=pdfImage.height;if(pageSize==='a4'){width=595;height=842}else if(pageSize==='letter'){width=612;height=792}
+    const page=pdfDoc.addPage([width,height]);const scale=Math.min(width/pdfImage.width,height/pdfImage.height);const scaledW=pdfImage.width*scale,scaledH=pdfImage.height*scale;page.drawImage(pdfImage,{x:(width-scaledW)/2,y:(height-scaledH)/2,width:scaledW,height:scaledH})}
+    const pdfBytes=await pdfDoc.save();pdfBlob=new Blob([pdfBytes],{type:'application/pdf'});
+    resultPages.textContent=pdfDoc.getPageCount();resultSize.textContent=formatSize(pdfBlob.size);
+    dropZone.classList.add('hidden');imagesList.classList.add('hidden');options.classList.add('hidden');convertBtn.classList.add('hidden');resultSection.classList.remove('hidden');
+    toast.success('PDF created!')}catch(error){console.error(error);toast.error('Error creating PDF.')}finally{loadingOverlay.classList.remove('show')}});
+
+    document.getElementById('download-btn').addEventListener('click',()=>{if(!pdfBlob)return;const url=URL.createObjectURL(pdfBlob);const a=document.createElement('a');a.href=url;a.download='images.pdf';a.click();URL.revokeObjectURL(url)});
+
+    document.getElementById('new-btn').addEventListener('click',()=>{images=[];pdfBlob=null;dropZone.classList.remove('hidden');imagesList.classList.add('hidden');options.classList.add('hidden');convertBtn.classList.add('hidden');resultSection.classList.add('hidden');fileInput.value=''});
+    })();
+  </script>
+</body>
+</html>

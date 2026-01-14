@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="tools.pdfToImage.title">PDF to Image - Toolneat</title>
+  <meta name="description" content="Free online tool to convert PDF to PNG or JPG images. High quality conversion, batch processing. All processing in browser for privacy.">
+  <link rel="canonical" href="https://toolneat.com/en/tools/pdf/pdf-to-image/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/pdf-to-image/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/pdf-to-image/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/pdf-to-image/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="PDF to Image - Toolneat">
+  <meta property="og:description" content="Convert PDF pages to PNG or JPG images.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/pdf/pdf-to-image">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"PDF to Image","description":"Convert PDF to PNG or JPG images.","url":"https://toolneat.com/en/tools/pdf/pdf-to-image","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Toolneat"}}
+  </script>
+  <style>
+    .drop-zone{border:2px dashed #d1d5db;border-radius:16px;padding:48px 24px;text-align:center;transition:all .2s}.dark .drop-zone{border-color:#4b5563}.drop-zone.drag-over{border-color:#3b82f6;background:#eff6ff}.dark .drop-zone.drag-over{background:#1e3a5f}.image-preview{background:#f9fafb;border-radius:12px;overflow:hidden}.dark .image-preview{background:#374151}.image-preview img{width:100%;height:auto;display:block}.loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}.loading-overlay.show{display:flex}.spinner{width:48px;height:48px;border:4px solid #e5e7eb;border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">PDF to Image</h1>
+        <p class="text-gray-600 dark:text-gray-400">Convert PDF pages to PNG or JPG images.</p>
+      </div>
+      <div class="card">
+        <div id="drop-zone" class="drop-zone mb-6">
+          <input type="file" id="file-input" accept=".pdf" class="hidden" disabled>
+          <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+          <p class="text-gray-600 dark:text-gray-400 mb-2">Drag PDF file here or click to select</p>
+          <p id="loading-text" class="text-sm text-blue-500 mt-2">Loading library...</p>
+        </div>
+        <div id="options-section" class="hidden mb-6">
+          <div class="flex items-center justify-between mb-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
+            <div class="flex items-center gap-3">
+              <svg class="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-3 9h4v1h-4v-1zm0 2h4v1h-4v-1zm-2-2h1v4H8v-4z"/></svg>
+              <div><p id="file-name" class="font-medium text-gray-900 dark:text-white"></p><p id="page-count" class="text-sm text-gray-500"></p></div>
+            </div>
+            <button id="change-file" class="text-sm text-blue-600 hover:text-blue-700">Change File</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Output Format</label><select id="format" class="input"><option value="png">PNG (Lossless)</option><option value="jpeg">JPG (Smaller size)</option></select></div>
+            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Quality (Scale)</label><select id="quality" class="input"><option value="1">1x (Fast)</option><option value="2" selected>2x (Recommended)</option><option value="3">3x (High Quality)</option></select></div>
+          </div>
+          <button id="convert-btn" class="btn btn-primary w-full">Convert to Images</button>
+        </div>
+        <div id="results-section" class="hidden">
+          <div class="flex items-center justify-between mb-4"><h3 class="font-medium text-gray-900 dark:text-white">Results</h3><button id="download-all" class="btn btn-secondary text-sm">Download All</button></div>
+          <div id="images-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+        </div>
+      </div>
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">PDF to Image Conversion</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Convert each PDF page to an image file. Useful for presentations, social media, and thumbnails.</p>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Drag or click to upload a PDF file</li>
+            <li>Select output format (PNG/JPG) and quality</li>
+            <li>Click 'Convert to Images' button</li>
+            <li>Download individual images or all at once</li>
+          </ol>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Should I choose PNG or JPG?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Choose PNG for documents with text or when you need transparency. Choose JPG for photos or smaller file sizes.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What does the quality scale mean?</h4>
+              <p class="text-gray-600 dark:text-gray-400">1x is fast but lower resolution. 2x is recommended for most uses. 3x provides high quality but larger files.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I convert multiple pages at once?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, all pages are converted automatically. Use 'Download All' to save all images at once.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is image quality affected?</h4>
+              <p class="text-gray-600 dark:text-gray-400">PDF vector elements are rasterized at the selected scale. Higher scale settings produce sharper images.</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No data is uploaded to servers.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <div id="loading-overlay" class="loading-overlay"><div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center"><div class="spinner mx-auto mb-4"></div><p id="progress-text" class="text-gray-600 dark:text-gray-400">Converting...</p></div></div>
+  <script>
+    (function(){'use strict';pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';const dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),optionsSection=document.getElementById('options-section'),resultsSection=document.getElementById('results-section'),imagesGrid=document.getElementById('images-grid'),loadingOverlay=document.getElementById('loading-overlay'),progressText=document.getElementById('progress-text'),loadingText=document.getElementById('loading-text');let pdfDoc=null,imageBlobs=[],libReady=false;function checkLibrary(){if(typeof pdfjsLib!=='undefined'){libReady=true;fileInput.disabled=false;loadingText.classList.add('hidden');toast.success('PDF tool ready!')}else{setTimeout(checkLibrary,100)}}checkLibrary();dropZone.addEventListener('click',()=>{if(libReady)fileInput.click()});dropZone.addEventListener('dragover',e=>{e.preventDefault();if(libReady)dropZone.classList.add('drag-over')});dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(!libReady)return;const file=e.dataTransfer.files[0];if(file&&file.type==='application/pdf')loadPdf(file);else toast.warning('Please select a PDF file.')});fileInput.addEventListener('change',e=>{if(e.target.files[0])loadPdf(e.target.files[0])});document.getElementById('change-file').addEventListener('click',()=>fileInput.click());async function loadPdf(file){try{const arrayBuffer=await file.arrayBuffer();pdfDoc=await pdfjsLib.getDocument({data:arrayBuffer}).promise;document.getElementById('file-name').textContent=file.name;document.getElementById('page-count').textContent=`${pdfDoc.numPages} pages`;dropZone.classList.add('hidden');optionsSection.classList.remove('hidden');resultsSection.classList.add('hidden');imageBlobs=[]}catch(error){console.error(error);toast.error('Could not load PDF.')}}document.getElementById('convert-btn').addEventListener('click',async()=>{if(!pdfDoc||!libReady)return;const format=document.getElementById('format').value,scale=parseFloat(document.getElementById('quality').value);loadingOverlay.classList.add('show');imageBlobs=[];imagesGrid.innerHTML='';try{for(let i=1;i<=pdfDoc.numPages;i++){progressText.textContent=`Converting... ${i}/${pdfDoc.numPages}`;const page=await pdfDoc.getPage(i),viewport=page.getViewport({scale}),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');canvas.width=viewport.width;canvas.height=viewport.height;await page.render({canvasContext:ctx,viewport}).promise;const blob=await new Promise(resolve=>{canvas.toBlob(resolve,format==='jpeg'?'image/jpeg':'image/png',0.92)});imageBlobs.push({blob,name:`page_${i}.${format==='jpeg'?'jpg':'png'}`});const url=URL.createObjectURL(blob);imagesGrid.innerHTML+=`<div class="image-preview"><img src="${url}" alt="Page ${i}"><div class="p-3"><p class="text-sm text-gray-900 dark:text-white mb-2">Page ${i}</p><button class="download-btn btn btn-secondary btn-sm w-full" data-index="${i-1}">Download</button></div></div>`}resultsSection.classList.remove('hidden');toast.success(`${pdfDoc.numPages} images converted!`);imagesGrid.querySelectorAll('.download-btn').forEach(btn=>{btn.addEventListener('click',e=>{const idx=parseInt(e.target.dataset.index);downloadBlob(imageBlobs[idx].blob,imageBlobs[idx].name)})})}catch(error){console.error(error);toast.error('Error during conversion.')}finally{loadingOverlay.classList.remove('show')}});document.getElementById('download-all').addEventListener('click',()=>{imageBlobs.forEach(({blob,name})=>downloadBlob(blob,name))});function downloadBlob(blob,filename){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url)}})();
+  </script>
+</body>
+</html>

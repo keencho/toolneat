@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video to GIF - Toolneat</title>
+  <meta name="description" content="Free online tool to convert video to GIF animation. Supports MP4, WEBM. Select clip range, adjust size. All processing in browser for privacy.">
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/video-to-gif/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/video-to-gif/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/video-to-gif/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/video-to-gif/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.min.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Video to GIF - Toolneat">
+  <meta property="og:description" content="Convert video to GIF animation.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/video-to-gif">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Video to GIF","description":"Convert video to GIF.","url":"https://toolneat.com/en/tools/life/video-to-gif","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Toolneat"}}
+  </script>
+  <style>
+    .drop-zone{border:2px dashed #d1d5db;border-radius:16px;padding:48px 24px;text-align:center;transition:all .2s}.dark .drop-zone{border-color:#4b5563}.drop-zone.drag-over{border-color:#3b82f6;background:#eff6ff}.dark .drop-zone.drag-over{background:#1e3a5f}
+    .video-preview{background:#000;border-radius:12px;overflow:hidden}.video-preview video{width:100%;max-height:400px}
+    .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}.loading-overlay.show{display:flex}.spinner{width:48px;height:48px;border:4px solid #e5e7eb;border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+    .progress-bar{width:100%;height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden}.progress-bar-fill{height:100%;background:#3b82f6;transition:width .1s}
+    input[type="range"]{-webkit-appearance:none;width:100%;height:8px;border-radius:4px;background:#e5e7eb}.dark input[type="range"]{background:#4b5563}input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#3b82f6;cursor:pointer}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Video to GIF</h1>
+        <p class="text-gray-600 dark:text-gray-400">Convert video to GIF animation.</p>
+      </div>
+      <div class="card">
+        <div id="drop-zone" class="drop-zone mb-6">
+          <input type="file" id="file-input" accept="video/*" class="hidden" disabled>
+          <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <p class="text-gray-600 dark:text-gray-400 mb-2">Drag video here or click to select</p>
+          <p class="text-sm text-gray-500">MP4, WEBM, MOV supported (max 100MB)</p>
+          <p id="loading-text" class="text-sm text-blue-500 mt-2">Loading library...</p>
+        </div>
+        <div id="editor-section" class="hidden">
+          <div class="video-preview mb-6"><video id="video" controls></video></div>
+          <div class="space-y-4 mb-6">
+            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Start: <span id="start-display">0.0</span>s</label><input type="range" id="start-time" min="0" max="100" value="0" step="0.1"></div>
+            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">End: <span id="end-display">5.0</span>s</label><input type="range" id="end-time" min="0" max="100" value="5" step="0.1"></div>
+            <div class="grid grid-cols-2 gap-4">
+              <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Width</label><select id="width" class="input"><option value="320">320px</option><option value="480" selected>480px</option><option value="640">640px</option><option value="original">Original</option></select></div>
+              <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">FPS</label><select id="fps" class="input"><option value="5">5 (Small)</option><option value="10" selected>10 (Recommended)</option><option value="15">15 (Smooth)</option><option value="24">24 (Cinema)</option></select></div>
+            </div>
+          </div>
+          <button id="convert-btn" class="btn btn-primary w-full">Convert to GIF</button>
+        </div>
+        <div id="result-section" class="hidden">
+          <div class="text-center mb-6"><img id="result-gif" class="max-w-full mx-auto rounded-lg" alt="GIF Result"><p id="gif-size" class="text-sm text-gray-500 mt-2"></p></div>
+          <div class="flex gap-3"><button id="download-btn" class="btn btn-primary flex-1">Download GIF</button><button id="new-btn" class="btn btn-secondary flex-1">New Video</button></div>
+        </div>
+      </div>
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Video to GIF Conversion</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Convert video clips to GIF animations. Perfect for social media, blogs, and messaging.</p>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Drag or click to upload a video file</li>
+            <li>Adjust start/end time with sliders</li>
+            <li>Select GIF width and FPS</li>
+            <li>Click 'Convert to GIF' button</li>
+          </ol>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is there a length limit for GIFs?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Maximum 30 seconds. Longer GIFs result in very large files, so shorter is recommended.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: How should I set the FPS?</h4>
+              <p class="text-gray-600 dark:text-gray-400">10 FPS is standard. 5 FPS makes smaller files, 15-24 FPS is smoother but larger.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: How can I reduce GIF file size?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Reduce width, lower FPS, and shorten duration to decrease file size.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What video formats are supported?</h4>
+              <p class="text-gray-600 dark:text-gray-400">MP4, WEBM, MOV and most formats that browsers can play are supported.</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No data uploaded to servers.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <div id="loading-overlay" class="loading-overlay"><div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center min-w-[300px]"><div class="spinner mx-auto mb-4"></div><p id="progress-text" class="text-gray-600 dark:text-gray-400 mb-3">Creating GIF...</p><div class="progress-bar"><div id="progress-fill" class="progress-bar-fill" style="width:0%"></div></div></div></div>
+  <script>
+    (function(){'use strict';const dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),editorSection=document.getElementById('editor-section'),resultSection=document.getElementById('result-section'),video=document.getElementById('video'),startTime=document.getElementById('start-time'),endTime=document.getElementById('end-time'),startDisplay=document.getElementById('start-display'),endDisplay=document.getElementById('end-display'),convertBtn=document.getElementById('convert-btn'),loadingOverlay=document.getElementById('loading-overlay'),progressText=document.getElementById('progress-text'),progressFill=document.getElementById('progress-fill'),loadingText=document.getElementById('loading-text'),resultGif=document.getElementById('result-gif'),gifSize=document.getElementById('gif-size');let libReady=false,gifBlob=null,workerBlobUrl=null;
+
+    async function initLibrary(){
+      if(typeof GIF==='undefined'){setTimeout(initLibrary,100);return}
+      try{
+        const res=await fetch('https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js');
+        const blob=new Blob([await res.text()],{type:'application/javascript'});
+        workerBlobUrl=URL.createObjectURL(blob);
+        libReady=true;fileInput.disabled=false;loadingText.classList.add('hidden');toast.success('GIF tool ready!');
+      }catch(e){console.error(e);loadingText.textContent='Library loading failed';toast.error('GIF library loading failed')}
+    }
+    initLibrary();
+    dropZone.addEventListener('click',()=>{if(libReady)fileInput.click()});dropZone.addEventListener('dragover',e=>{e.preventDefault();if(libReady)dropZone.classList.add('drag-over')});dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(!libReady)return;const file=e.dataTransfer.files[0];if(file&&file.type.startsWith('video/'))loadVideo(file);else toast.warning('Please select a video file.')});
+    fileInput.addEventListener('change',e=>{if(e.target.files[0])loadVideo(e.target.files[0])});
+    function loadVideo(file){if(file.size>100*1024*1024){toast.error('File size cannot exceed 100MB.');return}video.src=URL.createObjectURL(file);video.onloadedmetadata=()=>{const dur=video.duration;startTime.max=dur;endTime.max=dur;endTime.value=Math.min(5,dur);startDisplay.textContent=parseFloat(startTime.value).toFixed(1);endDisplay.textContent=parseFloat(endTime.value).toFixed(1);dropZone.classList.add('hidden');editorSection.classList.remove('hidden');resultSection.classList.add('hidden')}}
+    startTime.addEventListener('input',()=>{startDisplay.textContent=parseFloat(startTime.value).toFixed(1);if(parseFloat(startTime.value)>=parseFloat(endTime.value)){endTime.value=parseFloat(startTime.value)+0.5;endDisplay.textContent=parseFloat(endTime.value).toFixed(1)}});endTime.addEventListener('input',()=>{endDisplay.textContent=parseFloat(endTime.value).toFixed(1);if(parseFloat(endTime.value)<=parseFloat(startTime.value)){startTime.value=parseFloat(endTime.value)-0.5;startDisplay.textContent=parseFloat(startTime.value).toFixed(1)}});
+    convertBtn.addEventListener('click',async()=>{if(!libReady)return;const start=parseFloat(startTime.value),end=parseFloat(endTime.value),fps=parseInt(document.getElementById('fps').value),widthSel=document.getElementById('width').value;if(end-start>30){toast.warning('GIF length cannot exceed 30 seconds.');return}loadingOverlay.classList.add('show');progressFill.style.width='0%';const width=widthSel==='original'?video.videoWidth:parseInt(widthSel),height=Math.round(video.videoHeight*(width/video.videoWidth));const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;const ctx=canvas.getContext('2d');const gif=new GIF({workers:2,quality:10,width,height,workerScript:workerBlobUrl});const frameCount=Math.round((end-start)*fps);let currentFrame=0;video.currentTime=start;await new Promise(r=>video.onseeked=r);const captureFrame=()=>{return new Promise(resolve=>{if(video.currentTime>=end||currentFrame>=frameCount){resolve(false);return}ctx.drawImage(video,0,0,width,height);gif.addFrame(ctx,{copy:true,delay:1000/fps});currentFrame++;progressFill.style.width=Math.round((currentFrame/frameCount)*80)+'%';progressText.textContent=`Capturing... ${currentFrame}/${frameCount}`;video.currentTime+=1/fps;video.onseeked=()=>resolve(true)})};while(await captureFrame()){}progressText.textContent='Creating GIF...';gif.on('progress',p=>{progressFill.style.width=(80+p*20)+'%'});gif.on('finished',blob=>{gifBlob=blob;resultGif.src=URL.createObjectURL(blob);gifSize.textContent=`Size: ${(blob.size/1024/1024).toFixed(2)}MB`;editorSection.classList.add('hidden');resultSection.classList.remove('hidden');loadingOverlay.classList.remove('show');toast.success('GIF created!')});gif.render()});
+    document.getElementById('download-btn').addEventListener('click',()=>{if(!gifBlob)return;const a=document.createElement('a');a.href=URL.createObjectURL(gifBlob);a.download='video.gif';a.click()});document.getElementById('new-btn').addEventListener('click',()=>{dropZone.classList.remove('hidden');editorSection.classList.add('hidden');resultSection.classList.add('hidden');fileInput.value=''});})();
+  </script>
+</body>
+</html>

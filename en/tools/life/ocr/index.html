@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCR Image Text Extractor - Toolneat</title>
+  <meta name="description" content="Free OCR tool to extract text from images. Supports English, Korean, Japanese, Chinese. Extract text from scanned documents and screenshots. All processing in browser.">
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/ocr/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ocr/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ocr/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ocr/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="OCR Image Text Extractor - Toolneat">
+  <meta property="og:description" content="Extract text from images.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/ocr">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"OCR Text Extractor","description":"Extract text from images.","url":"https://toolneat.com/en/tools/life/ocr","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Toolneat"}}
+  </script>
+  <style>
+    .drop-zone{border:2px dashed #d1d5db;border-radius:16px;padding:48px 24px;text-align:center;transition:all .2s}.dark .drop-zone{border-color:#4b5563}.drop-zone.drag-over{border-color:#3b82f6;background:#eff6ff}.dark .drop-zone.drag-over{background:#1e3a5f}
+    .preview-box{background:#f9fafb;border-radius:12px;overflow:hidden}.dark .preview-box{background:#374151}.preview-box img{max-width:100%;max-height:300px;margin:0 auto;display:block}
+    .result-box{background:#f9fafb;border-radius:12px;padding:16px;min-height:200px}.dark .result-box{background:#374151}.result-box textarea{width:100%;min-height:180px;border:none;background:transparent;resize:vertical;outline:none}
+    .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}.loading-overlay.show{display:flex}.spinner{width:48px;height:48px;border:4px solid #e5e7eb;border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+    .progress-bar{width:100%;height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden}.progress-bar-fill{height:100%;background:#3b82f6;transition:width .1s}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">OCR Image Text Extractor</h1>
+        <p class="text-gray-600 dark:text-gray-400">Extract text from images using OCR.</p>
+      </div>
+      <div class="card">
+        <div id="drop-zone" class="drop-zone mb-6">
+          <input type="file" id="file-input" accept="image/*" class="hidden" disabled>
+          <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <p class="text-gray-600 dark:text-gray-400 mb-2">Drag image here or click to select</p>
+          <p class="text-sm text-gray-500">PNG, JPG, WEBP, BMP supported</p>
+          <p id="loading-text" class="text-sm text-blue-500 mt-2">Loading OCR engine...</p>
+        </div>
+        <div id="options-section" class="hidden mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="preview-box p-4"><p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Source Image</p><img id="preview-img" alt="Preview"></div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Recognition Language</label>
+              <select id="language" class="input mb-4">
+                <option value="eng">English</option>
+                <option value="kor+eng">Korean + English</option>
+                <option value="kor">Korean</option>
+                <option value="jpn">Japanese</option>
+                <option value="chi_sim">Chinese (Simplified)</option>
+                <option value="chi_tra">Chinese (Traditional)</option>
+              </select>
+              <button id="recognize-btn" class="btn btn-primary w-full">Extract Text</button>
+              <button id="change-file" class="btn btn-secondary w-full mt-2">Choose Another Image</button>
+            </div>
+          </div>
+        </div>
+        <div id="result-section" class="hidden">
+          <div class="flex items-center justify-between mb-3"><h3 class="font-medium text-gray-900 dark:text-white">Extracted Text</h3><button id="copy-btn" class="btn btn-secondary btn-sm">Copy</button></div>
+          <div class="result-box"><textarea id="result-text" class="text-gray-900 dark:text-white" placeholder="Extracted text will appear here"></textarea></div>
+        </div>
+      </div>
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is OCR?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">OCR (Optical Character Recognition) recognizes text in images. Extract text from scanned documents, screenshots, and photos.</p>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Select the language to recognize (English, Korean, Japanese, etc.)</li>
+            <li>Drag or click to upload an image</li>
+            <li>Text is automatically recognized</li>
+            <li>Click 'Copy' button to copy the text</li>
+          </ol>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: How can I improve accuracy?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Use clear, high-contrast images. Text should be level and have good contrast with the background.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can it recognize handwriting?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Neat handwriting can be recognized to some extent, but accuracy is lower than printed text.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Why does it take time to process?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Language data (10-30MB) downloads on first use. After that, it's cached for faster processing.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What about images with multiple languages?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Select multiple languages like 'English+Korean' to recognize mixed-language text.</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No data uploaded to servers.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <div id="loading-overlay" class="loading-overlay"><div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center min-w-[300px]"><div class="spinner mx-auto mb-4"></div><p id="progress-text" class="text-gray-600 dark:text-gray-400 mb-3">Recognizing text...</p><div class="progress-bar"><div id="progress-fill" class="progress-bar-fill" style="width:0%"></div></div></div></div>
+  <script>
+    (function(){'use strict';const dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),optionsSection=document.getElementById('options-section'),resultSection=document.getElementById('result-section'),previewImg=document.getElementById('preview-img'),resultText=document.getElementById('result-text'),loadingOverlay=document.getElementById('loading-overlay'),progressText=document.getElementById('progress-text'),progressFill=document.getElementById('progress-fill'),loadingText=document.getElementById('loading-text');let libReady=false,imageFile=null;
+    function checkLibrary(){if(typeof Tesseract!=='undefined'){libReady=true;fileInput.disabled=false;loadingText.classList.add('hidden');toast.success('OCR tool ready!')}else{setTimeout(checkLibrary,100)}}checkLibrary();
+    dropZone.addEventListener('click',()=>{if(libReady)fileInput.click()});dropZone.addEventListener('dragover',e=>{e.preventDefault();if(libReady)dropZone.classList.add('drag-over')});dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(!libReady)return;const file=e.dataTransfer.files[0];if(file&&file.type.startsWith('image/'))loadImage(file);else toast.warning('Please select an image file.')});
+    fileInput.addEventListener('change',e=>{if(e.target.files[0])loadImage(e.target.files[0])});
+    function loadImage(file){imageFile=file;const reader=new FileReader();reader.onload=e=>{previewImg.src=e.target.result;dropZone.classList.add('hidden');optionsSection.classList.remove('hidden');resultSection.classList.add('hidden')};reader.readAsDataURL(file)}
+    document.getElementById('change-file').addEventListener('click',()=>{fileInput.click()});
+    document.getElementById('recognize-btn').addEventListener('click',async()=>{if(!imageFile||!libReady)return;const lang=document.getElementById('language').value;loadingOverlay.classList.add('show');progressFill.style.width='0%';progressText.textContent='Loading language data...';
+      try{const result=await Tesseract.recognize(imageFile,lang,{logger:m=>{if(m.status==='recognizing text'){const pct=Math.round(m.progress*100);progressFill.style.width=pct+'%';progressText.textContent=`Recognizing... ${pct}%`}else if(m.status==='loading language traineddata'){progressText.textContent='Downloading language data...'}}});resultText.value=result.data.text;resultSection.classList.remove('hidden');toast.success('Text extracted!')}catch(error){console.error(error);toast.error('Error during text recognition.')}finally{loadingOverlay.classList.remove('show')}});
+    document.getElementById('copy-btn').addEventListener('click',()=>{resultText.select();navigator.clipboard.writeText(resultText.value);toast.success('Copied!')});})();
+  </script>
+</body>
+</html>

@@ -6,6 +6,10 @@
   "nav": {
     "dev": "개발 도구",
     "life": "생활 도구",
+    "pdf": "PDF 도구",
+    "pdfEdit": "PDF 편집",
+    "pdfConvert": "PDF 변환",
+    "mediaAi": "미디어/AI",
     "encoding": "인코딩/디코딩",
     "generators": "생성기",
     "converters": "변환기",
@@ -813,6 +817,38 @@
       "bmpDesc": "비압축 포맷, 큰 파일 크기. 편집용",
       "icoDesc": "Windows 아이콘 포맷. 파비콘에 사용",
       "privacyNote": "모든 처리는 브라우저에서 이루어지며 서버로 전송되지 않습니다."
+    },
+    "mergePdf": {
+      "title": "PDF 병합",
+      "description": "여러 PDF 파일을 하나로 합칩니다."
+    },
+    "splitPdf": {
+      "title": "PDF 분할",
+      "description": "PDF를 페이지별로 분할합니다."
+    },
+    "pdfToImage": {
+      "title": "PDF → 이미지",
+      "description": "PDF 페이지를 이미지로 변환합니다."
+    },
+    "imageToPdf": {
+      "title": "이미지 → PDF",
+      "description": "이미지를 PDF로 변환합니다."
+    },
+    "backgroundRemover": {
+      "title": "배경 제거 AI",
+      "description": "AI로 이미지 배경을 자동 제거합니다."
+    },
+    "videoToGif": {
+      "title": "비디오 → GIF",
+      "description": "비디오를 GIF 애니메이션으로 변환합니다."
+    },
+    "screenRecorder": {
+      "title": "화면 녹화",
+      "description": "브라우저에서 화면을 녹화합니다."
+    },
+    "ocr": {
+      "title": "OCR 텍스트 추출",
+      "description": "이미지에서 텍스트를 인식합니다."
     }
   },
   "common": {
