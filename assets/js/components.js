@@ -151,6 +151,23 @@
         }
       });
     });
+
+    // Search buttons (desktop and mobile)
+    const headerSearchBtn = document.getElementById('header-search-btn');
+    const mobileSearchBtn = document.getElementById('mobile-search-btn');
+
+    const handleSearchClick = () => {
+      if (typeof window.openSearch === 'function') {
+        window.openSearch();
+      }
+    };
+
+    if (headerSearchBtn) {
+      headerSearchBtn.addEventListener('click', handleSearchClick);
+    }
+    if (mobileSearchBtn) {
+      mobileSearchBtn.addEventListener('click', handleSearchClick);
+    }
   };
 
   // Run on DOM ready

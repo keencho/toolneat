@@ -5,13 +5,13 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolneat - Online Utility Tools</title>
-  <meta name="description" content="Free online tools for developers and everyday life. JSON formatter, Base64 encoder, calculators, and more.">
+  <title data-i18n-title="site.title">Toolneat - Online Utility Tools</title>
+  <meta name="description" data-i18n-desc="site.description" content="Free online tools for developers and everyday life.">
 
   <!-- Canonical & hreflang -->
   <link rel="canonical" href="https://toolneat.com/en/">
-  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/">
   <link rel="alternate" hreflang="ko" href="https://toolneat.com/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/">
   <link rel="alternate" hreflang="x-default" href="https://toolneat.com/">
 
   <!-- Open Graph -->
@@ -25,27 +25,499 @@
   <meta name="theme-color" content="#2563eb">
 
   <!-- Favicon -->
-  <!-- CSS -->
-    <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
-  <link rel="stylesheet" href="../assets/css/output.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/output.css">
 
   <!-- JS -->
-  <script src="../assets/js/common.js"></script>
+  <script src="/assets/js/common.js"></script>
   <script>localStorage.setItem('toolneat-lang', 'en');</script>
-  <script src="../assets/js/i18n.js"></script>
-  <script src="../assets/js/components.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/tools-data.js"></script>
+  <script src="/assets/js/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="/assets/js/search.js" defer></script>
 </head>
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
-  <div id="header"></div>
+  <div id="header">
+<header class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/en/" class="nav-link text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        Toolneat
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-2">
+
+        <!-- Dev Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">Dev Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu">
+            <!-- Encoding/Decoding -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.encoding">Encoding</h4>
+              <a href="/en/tools/dev/base64" class="mega-link nav-link" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
+              <a href="/en/tools/dev/url-encoder" class="mega-link nav-link" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
+              <a href="/en/tools/dev/html-entity" class="mega-link nav-link" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
+            </div>
+            <!-- Generators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.generators">Generators</h4>
+              <a href="/en/tools/dev/uuid-generator" class="mega-link nav-link" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
+              <a href="/en/tools/dev/hash-generator" class="mega-link nav-link" data-i18n="tools.hashGenerator.title">Hash Generator</a>
+              <a href="/en/tools/dev/lorem-ipsum" class="mega-link nav-link" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
+              <a href="/en/tools/dev/jwt-generator" class="mega-link nav-link" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
+              <a href="/en/tools/dev/password-generator" class="mega-link nav-link" data-i18n="tools.passwordGenerator.title">Password Generator</a>
+              <a href="/en/tools/dev/cron-generator" class="mega-link nav-link" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
+              <a href="/en/tools/dev/gradient-generator" class="mega-link nav-link" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
+            </div>
+            <!-- Converters -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.converters">Converters</h4>
+              <a href="/en/tools/dev/json-formatter" class="mega-link nav-link" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
+              <a href="/en/tools/dev/color-converter" class="mega-link nav-link" data-i18n="tools.colorConverter.title">Color Converter</a>
+              <a href="/en/tools/dev/color-palette" class="mega-link nav-link" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
+              <a href="/en/tools/dev/timestamp-converter" class="mega-link nav-link whitespace-nowrap" data-i18n="tools.timestampConverter.titleShort">Timestamp</a>
+              <a href="/en/tools/dev/yaml-json" class="mega-link nav-link" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/markdown-preview" class="mega-link nav-link" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
+              <a href="/en/tools/dev/case-converter" class="mega-link nav-link" data-i18n="tools.caseConverter.title">Case Converter</a>
+              <a href="/en/tools/dev/sql-formatter" class="mega-link nav-link" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
+              <a href="/en/tools/dev/css-minifier" class="mega-link nav-link" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
+              <a href="/en/tools/dev/line-ending" class="mega-link nav-link" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
+            </div>
+            <!-- Testers -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.testers">Testers</h4>
+              <a href="/en/tools/dev/regex-tester" class="mega-link nav-link" data-i18n="tools.regexTester.title">Regex Tester</a>
+              <a href="/en/tools/dev/jwt-decoder" class="mega-link nav-link" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
+              <a href="/en/tools/dev/diff-checker" class="mega-link nav-link" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-2 !min-w-[400px]">
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfEdit">PDF Edit</h4>
+              <a href="/en/tools/pdf/merge-pdf" class="mega-link nav-link" data-i18n="tools.mergePdf.title">Merge PDF</a>
+              <a href="/en/tools/pdf/split-pdf" class="mega-link nav-link" data-i18n="tools.splitPdf.title">Split PDF</a>
+              <a href="/en/tools/pdf/compress-pdf" class="mega-link nav-link" data-i18n="tools.compressPdf.title">Compress PDF</a>
+              <a href="/en/tools/pdf/rotate-pdf" class="mega-link nav-link" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
+              <a href="/en/tools/pdf/watermark-pdf" class="mega-link nav-link" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
+              <a href="/en/tools/pdf/delete-pdf" class="mega-link nav-link" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
+            </div>
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfConvert">PDF Convert</h4>
+              <a href="/en/tools/pdf/pdf-to-image" class="mega-link nav-link" data-i18n="tools.pdfToImage.title">PDF to Image</a>
+              <a href="/en/tools/pdf/image-to-pdf" class="mega-link nav-link" data-i18n="tools.imageToPdf.title">Image to PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Life Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">Life Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-5 !min-w-[900px]">
+            <!-- Calculators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.calculators">Calculators</h4>
+              <a href="/en/tools/life/salary-calculator" class="mega-link nav-link" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
+              <a href="/en/tools/life/dday-calculator" class="mega-link nav-link" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
+              <a href="/en/tools/life/bmi-calculator" class="mega-link nav-link" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
+              <a href="/en/tools/life/loan-calculator" class="mega-link nav-link" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
+              <a href="/en/tools/life/age-calculator" class="mega-link nav-link" data-i18n="tools.ageCalculator.title">Age Calculator</a>
+              <a href="/en/tools/life/percent-calculator" class="mega-link nav-link" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
+              <a href="/en/tools/life/compound-calculator" class="mega-link nav-link" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
+              <a href="/en/tools/life/tip-calculator" class="mega-link nav-link" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
+            </div>
+            <!-- Media & AI -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.mediaAi">Media & AI</h4>
+              <a href="/en/tools/life/background-remover" class="mega-link nav-link" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
+              <a href="/en/tools/life/video-to-gif" class="mega-link nav-link" data-i18n="tools.videoToGif.title">Video to GIF</a>
+              <a href="/en/tools/life/screen-recorder" class="mega-link nav-link" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
+              <a href="/en/tools/life/ocr" class="mega-link nav-link" data-i18n="tools.ocr.title">OCR Text Extractor</a>
+            </div>
+            <!-- Utilities -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.utilities">Utilities</h4>
+              <a href="/en/tools/life/character-counter" class="mega-link nav-link" data-i18n="tools.characterCounter.title">Character Counter</a>
+              <a href="/en/tools/life/unit-converter" class="mega-link nav-link" data-i18n="tools.unitConverter.title">Unit Converter</a>
+              <a href="/en/tools/life/qr-generator" class="mega-link nav-link" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
+              <a href="/en/tools/life/qr-scanner" class="mega-link nav-link" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
+              <a href="/en/tools/life/barcode-generator" class="mega-link nav-link" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
+              <a href="/en/tools/life/favicon-generator" class="mega-link nav-link" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
+              <a href="/en/tools/life/image-compressor" class="mega-link nav-link" data-i18n="tools.imageCompressor.title">Image Compressor</a>
+              <a href="/en/tools/life/image-resizer" class="mega-link nav-link" data-i18n="tools.imageResizer.title">Image Resizer</a>
+              <a href="/en/tools/life/image-converter" class="mega-link nav-link" data-i18n="tools.imageConverter.title">Image Format Converter</a>
+              <a href="/en/tools/life/image-watermark" class="mega-link nav-link" data-i18n="tools.imageWatermark.title">Image Watermark</a>
+              <a href="/en/tools/life/color-picker" class="mega-link nav-link" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
+              <a href="/en/tools/life/base-converter" class="mega-link nav-link" data-i18n="tools.baseConverter.title">Number Base Converter</a>
+              <a href="/en/tools/life/ascii-unicode" class="mega-link nav-link" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
+              <a href="/en/tools/life/emoji-picker" class="mega-link nav-link" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
+            </div>
+            <!-- Monitor Test -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.monitorTest">Monitor Test</h4>
+              <a href="/en/tools/life/dead-pixel-test" class="mega-link nav-link" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
+              <a href="/en/tools/life/pixel-fixer" class="mega-link nav-link" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
+              <a href="/en/tools/life/screen-burn-test" class="mega-link nav-link" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
+              <a href="/en/tools/life/screen-color-test" class="mega-link nav-link" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
+            </div>
+            <!-- Fun & Games -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.funGames">Fun & Games</h4>
+              <a href="/en/tools/life/lottery-generator" class="mega-link nav-link" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
+              <a href="/en/tools/life/roulette" class="mega-link nav-link" data-i18n="tools.roulette.title">Roulette Wheel</a>
+              <a href="/en/tools/life/dice-roller" class="mega-link nav-link" data-i18n="tools.diceRoller.title">Dice Roller</a>
+              <a href="/en/tools/life/coin-flip" class="mega-link nav-link" data-i18n="tools.coinFlip.title">Coin Flip</a>
+              <a href="/en/tools/life/typing-test" class="mega-link nav-link" data-i18n="tools.typingTest.title">Typing Test</a>
+              <a href="/en/tools/life/reaction-test" class="mega-link nav-link" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <!-- Search Button -->
+        <button id="header-search-btn" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="hidden lg:inline" data-i18n="nav.search">Search</span>
+          <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 dark:bg-gray-700 rounded">
+            <span class="text-[9px]">Ctrl</span>K
+          </kbd>
+        </button>
+
+        <!-- Language Toggle -->
+        <div class="hidden sm:flex items-center gap-1 text-sm">
+          <button data-lang="ko" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">KO</button>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
+          <button data-lang="en" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">EN</button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+          <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="icon-btn md:hidden" aria-label="Menu">
+          <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (2-level accordion) -->
+    <nav id="mobile-menu" class="hidden md:hidden pb-4">
+      <!-- Mobile Search Button -->
+      <button id="mobile-search-btn" class="w-full flex items-center gap-3 py-3 px-3 mb-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <span data-i18n="nav.search">Search</span>
+      </button>
+
+      <!-- Language (Mobile) -->
+      <div class="flex items-center gap-2 py-3 border-b border-gray-100 dark:border-gray-800 mb-2">
+        <span class="text-sm text-gray-500">Language:</span>
+        <button data-lang="ko" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">KO</button>
+        <button data-lang="en" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">EN</button>
+      </div>
+
+      <!-- Dev Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">Dev Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Encoding/Decoding -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.encoding">Encoding</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/base64" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
+              <a href="/en/tools/dev/url-encoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
+              <a href="/en/tools/dev/html-entity" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
+            </div>
+          </div>
+          <!-- Generators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.generators">Generators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/uuid-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
+              <a href="/en/tools/dev/hash-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.hashGenerator.title">Hash Generator</a>
+              <a href="/en/tools/dev/lorem-ipsum" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
+              <a href="/en/tools/dev/jwt-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
+              <a href="/en/tools/dev/password-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.passwordGenerator.title">Password Generator</a>
+              <a href="/en/tools/dev/cron-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
+              <a href="/en/tools/dev/gradient-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
+            </div>
+          </div>
+          <!-- Converters -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.converters">Converters</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/json-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
+              <a href="/en/tools/dev/color-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorConverter.title">Color Converter</a>
+              <a href="/en/tools/dev/color-palette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
+              <a href="/en/tools/dev/timestamp-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.timestampConverter.title">Unix Timestamp Converter</a>
+              <a href="/en/tools/dev/yaml-json" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/markdown-preview" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
+              <a href="/en/tools/dev/case-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.caseConverter.title">Case Converter</a>
+              <a href="/en/tools/dev/sql-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
+              <a href="/en/tools/dev/css-minifier" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
+              <a href="/en/tools/dev/line-ending" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
+            </div>
+          </div>
+          <!-- Testers -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.testers">Testers</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/regex-tester" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.regexTester.title">Regex Tester</a>
+              <a href="/en/tools/dev/jwt-decoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
+              <a href="/en/tools/dev/diff-checker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- PDF Edit -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfEdit">PDF Edit</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/merge-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.mergePdf.title">Merge PDF</a>
+              <a href="/en/tools/pdf/split-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.splitPdf.title">Split PDF</a>
+              <a href="/en/tools/pdf/compress-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compressPdf.title">Compress PDF</a>
+              <a href="/en/tools/pdf/rotate-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
+              <a href="/en/tools/pdf/watermark-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
+              <a href="/en/tools/pdf/delete-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
+            </div>
+          </div>
+          <!-- PDF Convert -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfConvert">PDF Convert</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/pdf-to-image" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pdfToImage.title">PDF to Image</a>
+              <a href="/en/tools/pdf/image-to-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageToPdf.title">Image to PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Life Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">Life Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Calculators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.calculators">Calculators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/salary-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
+              <a href="/en/tools/life/dday-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
+              <a href="/en/tools/life/bmi-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
+              <a href="/en/tools/life/loan-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
+              <a href="/en/tools/life/age-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ageCalculator.title">Age Calculator</a>
+              <a href="/en/tools/life/percent-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
+              <a href="/en/tools/life/compound-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
+              <a href="/en/tools/life/tip-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
+            </div>
+          </div>
+          <!-- Media & AI -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.mediaAi">Media & AI</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/background-remover" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
+              <a href="/en/tools/life/video-to-gif" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.videoToGif.title">Video to GIF</a>
+              <a href="/en/tools/life/screen-recorder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
+              <a href="/en/tools/life/ocr" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ocr.title">OCR Text Extractor</a>
+            </div>
+          </div>
+          <!-- Utilities -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.utilities">Utilities</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/character-counter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.characterCounter.title">Character Counter</a>
+              <a href="/en/tools/life/unit-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.unitConverter.title">Unit Converter</a>
+              <a href="/en/tools/life/qr-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
+              <a href="/en/tools/life/qr-scanner" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
+              <a href="/en/tools/life/barcode-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
+              <a href="/en/tools/life/favicon-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
+              <a href="/en/tools/life/image-compressor" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageCompressor.title">Image Compressor</a>
+              <a href="/en/tools/life/image-resizer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageResizer.title">Image Resizer</a>
+              <a href="/en/tools/life/image-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageConverter.title">Image Format Converter</a>
+              <a href="/en/tools/life/image-watermark" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageWatermark.title">Image Watermark</a>
+              <a href="/en/tools/life/color-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
+              <a href="/en/tools/life/base-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.baseConverter.title">Number Base Converter</a>
+              <a href="/en/tools/life/ascii-unicode" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
+              <a href="/en/tools/life/emoji-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
+            </div>
+          </div>
+          <!-- Monitor Test -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.monitorTest">Monitor Test</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/dead-pixel-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
+              <a href="/en/tools/life/pixel-fixer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
+              <a href="/en/tools/life/screen-burn-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
+              <a href="/en/tools/life/screen-color-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
+            </div>
+          </div>
+          <!-- Fun & Games -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.funGames">Fun & Games</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/lottery-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
+              <a href="/en/tools/life/roulette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.roulette.title">Roulette Wheel</a>
+              <a href="/en/tools/life/dice-roller" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diceRoller.title">Dice Roller</a>
+              <a href="/en/tools/life/coin-flip" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.coinFlip.title">Coin Flip</a>
+              <a href="/en/tools/life/typing-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.typingTest.title">Typing Test</a>
+              <a href="/en/tools/life/reaction-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+</div>
 
   <!-- Main Content -->
   <main class="flex-1 py-8 md:py-12">
     <div class="container-main">
-      <!-- Hero Section -->
+      <!-- Hero Section with Search -->
       <section class="text-center mb-12">
         <div class="flex items-center justify-center gap-3 mb-4">
           <svg class="w-10 h-10 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,869 +528,390 @@
               <path d="M-8 -5 L-8 3 L-6 3 L-6 -1 L-4 -1 L-4 3 L-2 3 L-2 -4 Q-2 -5 -3 -5 Z" fill="#475569"/>
             </g>
           </svg>
-          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white" data-i18n="home.title">
             Online Utility Tools
           </h1>
         </div>
-        <p class="text-lg text-gray-600 dark:text-gray-400">
-          Tools for developers and everyday life
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8" data-i18n="home.subtitle">
+          Tools for developers and everyday life.
         </p>
+
+        <!-- Search Button (Hero) -->
+        <button onclick="openSearch()" class="w-full max-w-xl mx-auto flex items-center gap-3 px-5 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all group">
+          <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="flex-1 text-left text-gray-400" data-i18n="search.placeholder">Search tools...</span>
+          <kbd class="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-md">
+            <span>Ctrl</span><span>K</span>
+          </kbd>
+        </button>
       </section>
 
-      <!-- Ad Container (Top) -->
+      <!-- Category Quick Links -->
+      <section class="mb-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <a href="/en/tools/dev" class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400" data-i18n="nav.dev">Dev Tools</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">26 <span data-i18n="home.toolCount">tools</span></div>
+            </div>
+          </a>
+          <a href="/en/tools/life" class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400" data-i18n="nav.life">Life Tools</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">43 <span data-i18n="home.toolCount">tools</span></div>
+            </div>
+          </a>
+          <a href="/en/tools/pdf" class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400" data-i18n="nav.pdf">PDF Tools</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">8 <span data-i18n="home.toolCount">tools</span></div>
+            </div>
+          </a>
+          <a href="/en/tools" class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400" data-i18n="nav.allTools">All Tools</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">77 <span data-i18n="home.toolCount">tools</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Ad Container -->
       <div class="ad-container mb-8"></div>
 
-      <!-- ========== DEV TOOLS ========== -->
+      <!-- Popular Tools -->
       <section class="mb-12">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
             </svg>
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Developer Tools</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Encoding, conversion, and generation tools for developers</p>
-          </div>
+            <span data-i18n="home.popularTools">Popular Tools</span>
+          </h2>
         </div>
-
-        <div class="grid gap-8 lg:grid-cols-2">
-          <!-- Encoding/Decoding -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">Encoding / Decoding</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <!-- Merge PDF -->
+          <a href="/en/tools/pdf/merge-pdf" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             </div>
-            <div class="grid gap-2">
-              <a href="./tools/dev/base64/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Base64 Encoder/Decoder</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Encode text to Base64 or decode Base64 to text</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/url-encoder/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">URL Encoder/Decoder</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Encode or decode URL strings</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/jwt-decoder/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">JWT Decoder</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Decode JWT tokens and view contents</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/html-entity/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">HTML Entity Encoder</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Encode special characters to HTML entities</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-red-600 dark:group-hover:text-red-400" data-i18n="tools.mergePdf.title">Merge PDF</span>
+          </a>
+          <!-- Background Remover -->
+          <a href="/en/tools/life/background-remover" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-pink-500 dark:hover:border-pink-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/></svg>
             </div>
-          </div>
-
-          <!-- Generators -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">Generators</h3>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-pink-600 dark:group-hover:text-pink-400" data-i18n="tools.backgroundRemover.title">Background Remover</span>
+          </a>
+          <!-- QR Generator -->
+          <a href="/en/tools/life/qr-generator" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h2M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
             </div>
-            <div class="grid gap-2">
-              <a href="./tools/dev/uuid-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">UUID Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate unique UUIDs</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/hash-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Hash Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate MD5, SHA-1, SHA-256 hashes</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/jwt-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">JWT Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate JWT tokens</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/lorem-ipsum/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Lorem Ipsum Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate Lorem Ipsum placeholder text</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/password-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Password Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate secure random passwords</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/cron-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-lime-500 to-lime-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Cron Expression Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate cron expressions easily</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/gradient-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">CSS Gradient Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Create CSS gradients visually</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-emerald-600 dark:group-hover:text-emerald-400" data-i18n="tools.qrGenerator.title">QR Generator</span>
+          </a>
+          <!-- JSON Formatter -->
+          <a href="/en/tools/dev/json-formatter" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
             </div>
-          </div>
-
-          <!-- Converters -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">Converters</h3>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-blue-600 dark:group-hover:text-blue-400" data-i18n="tools.jsonFormatter.title">JSON Formatter</span>
+          </a>
+          <!-- Image Compressor -->
+          <a href="/en/tools/life/image-compressor" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-teal-500 dark:hover:border-teal-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             </div>
-            <div class="grid gap-2">
-              <a href="./tools/dev/json-formatter/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <span class="text-sm font-mono font-bold text-white">{ }</span>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">JSON Formatter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Format and validate JSON data</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/color-converter/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Color Converter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert between HEX, RGB, HSL color formats</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/color-palette/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Color Palette Extractor</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Extract color palette from images</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/timestamp-converter/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Unix Timestamp Converter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert between Unix timestamp and date</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/yaml-json/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">YAML ↔ JSON Converter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert between YAML and JSON formats</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/markdown-preview/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Markdown Preview</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Preview markdown in real-time</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/case-converter/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Case Converter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert text between different cases</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/sql-formatter/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">SQL Formatter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Format and beautify SQL queries</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/css-minifier/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">CSS Minifier</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Minify or beautify CSS code</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/line-ending/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-fuchsia-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Line Ending Converter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert between CRLF, LF line endings</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-teal-600 dark:group-hover:text-teal-400" data-i18n="tools.imageCompressor.title">Image Compressor</span>
+          </a>
+          <!-- Base64 -->
+          <a href="/en/tools/dev/base64" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
             </div>
-          </div>
-
-          <!-- Testing -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">Testing / Validation</h3>
-            </div>
-            <div class="grid gap-2">
-              <a href="./tools/dev/regex-tester/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <span class="text-sm font-mono font-bold text-white">.*</span>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Regex Tester</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Test regular expressions in real-time</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/dev/diff-checker/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-green-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Diff Checker</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Compare differences between two texts</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-purple-600 dark:group-hover:text-purple-400" data-i18n="tools.base64.title">Base64</span>
+          </a>
         </div>
       </section>
 
-      <!-- ========== PDF TOOLS ========== -->
+      <!-- New Tools -->
       <section class="mb-12">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-lg">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
             </svg>
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">PDF Tools</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400">PDF editing, conversion, and merge tools</p>
-          </div>
+            <span data-i18n="home.newTools">New Tools</span>
+          </h2>
         </div>
-
-        <div class="grid gap-8 lg:grid-cols-2">
-          <!-- PDF Edit -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                </svg>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Color Picker -->
+          <a href="/en/tools/life/color-picker" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400" data-i18n="tools.colorPicker.title">Color Picker</span>
+                <span class="px-2 py-0.5 text-[10px] font-bold bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-full">NEW</span>
               </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">PDF Edit</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 truncate" data-i18n="tools.colorPicker.description">Pick colors from screen</p>
             </div>
-            <div class="grid gap-2">
-              <a href="./tools/pdf/merge-pdf/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Merge PDF</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Combine multiple PDFs into one</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/pdf/split-pdf/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Split PDF</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Split PDF into separate pages</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/pdf/compress-pdf/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Compress PDF</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Reduce PDF file size</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
+          </a>
+          <!-- Image Watermark -->
+          <a href="/en/tools/life/image-watermark" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-cyan-500 dark:hover:border-cyan-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
             </div>
-          </div>
-
-          <!-- PDF Convert -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                </svg>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-medium text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400" data-i18n="tools.imageWatermark.title">Watermark</span>
+                <span class="px-2 py-0.5 text-[10px] font-bold bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-full">NEW</span>
               </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">PDF Convert</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 truncate" data-i18n="tools.imageWatermark.description">Add watermark to images</p>
             </div>
-            <div class="grid gap-2">
-              <a href="./tools/pdf/pdf-to-image/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">PDF to Image</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert PDF pages to images</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/pdf/image-to-pdf/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Image to PDF</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert images to PDF</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
+          </a>
+          <!-- Color Palette -->
+          <a href="/en/tools/dev/color-palette" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-violet-500 dark:hover:border-violet-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
             </div>
-          </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-medium text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400" data-i18n="tools.colorPalette.title">Color Palette</span>
+                <span class="px-2 py-0.5 text-[10px] font-bold bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-full">NEW</span>
+              </div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 truncate" data-i18n="tools.colorPalette.description">Extract colors from images</p>
+            </div>
+          </a>
+          <!-- QR Scanner -->
+          <a href="/en/tools/life/qr-scanner" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h2M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-medium text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400" data-i18n="tools.qrScanner.title">QR Scanner</span>
+                <span class="px-2 py-0.5 text-[10px] font-bold bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-full">NEW</span>
+              </div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 truncate" data-i18n="tools.qrScanner.description">Scan QR codes</p>
+            </div>
+          </a>
+          <!-- PDF Compress -->
+          <a href="/en/tools/pdf/compress-pdf" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-medium text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400" data-i18n="tools.compressPdf.title">Compress PDF</span>
+                <span class="px-2 py-0.5 text-[10px] font-bold bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-full">NEW</span>
+              </div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 truncate" data-i18n="tools.compressPdf.description">Reduce PDF file size</p>
+            </div>
+          </a>
+          <!-- Gradient Generator -->
+          <a href="/en/tools/dev/gradient-generator" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-medium text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400" data-i18n="tools.gradientGenerator.title">Gradient</span>
+                <span class="px-2 py-0.5 text-[10px] font-bold bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-full">NEW</span>
+              </div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 truncate" data-i18n="tools.gradientGenerator.description">Create CSS gradients</p>
+            </div>
+          </a>
         </div>
       </section>
 
-      <!-- ========== LIFE TOOLS ========== -->
+      <!-- Dev Tools Preview -->
       <section class="mb-12">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-            </svg>
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Life Tools</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Useful calculators and conversion tools for daily life</p>
-          </div>
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+              </svg>
+            </div>
+            <span data-i18n="home.devTools">Developer Tools</span>
+          </h2>
+          <a href="/en/tools/dev" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+            <span data-i18n="home.viewAll">View All</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
         </div>
-
-        <div class="grid gap-8 lg:grid-cols-2">
-          <!-- Calculators -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">Calculators</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <a href="/en/tools/dev/json-formatter" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
             </div>
-            <div class="grid gap-2">
-              <a href="./tools/life/salary-calculator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Salary Calculator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Calculate take-home pay after taxes (Korea)</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/loan-calculator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Loan Calculator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Calculate loan payments and interest</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/bmi-calculator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">BMI Calculator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Calculate Body Mass Index</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/dday-calculator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">D-day Calculator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Calculate days until a target date</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/age-calculator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Age Calculator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Calculate exact age from birth date</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/percent-calculator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Percentage Calculator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Calculate percentages easily</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/compound-calculator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Compound Interest Calculator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Calculate compound interest growth</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/tip-calculator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Tip Calculator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Calculate tips and split bills</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" data-i18n="tools.jsonFormatter.title">JSON Formatter</span>
+          </a>
+          <a href="/en/tools/dev/regex-tester" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
-          </div>
-
-          <!-- Utilities -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">Utilities</h3>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" data-i18n="tools.regexTester.title">Regex Tester</span>
+          </a>
+          <a href="/en/tools/dev/diff-checker" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
             </div>
-            <div class="grid gap-2">
-              <a href="./tools/life/character-counter/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Character Counter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Count characters, words, and bytes</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/unit-converter/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Unit Converter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert between various units</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/qr-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">QR Code Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate QR codes from text or URL</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/qr-scanner/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">QR Code Scanner</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Scan QR codes</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/barcode-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Barcode Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate various types of barcodes</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/image-compressor/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Image Compressor</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Reduce image file size</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/image-resizer/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Image Resizer</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Resize images to your desired dimensions</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/image-converter/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Image Format Converter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert between PNG, JPG, WEBP formats</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/image-watermark/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-teal-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Image Watermark</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Add watermark to images</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/color-picker/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Color Picker</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Pick colors from your screen</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/favicon-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Favicon Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate favicons from images</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/base-converter/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Number Base Converter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert between binary, octal, decimal, hex</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/ascii-unicode/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">ASCII/Unicode Converter</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert characters and ASCII/Unicode codes</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/emoji-picker/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Emoji Picker</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Search and copy emojis</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" data-i18n="tools.diffChecker.title">Diff Checker</span>
+          </a>
+          <a href="/en/tools/dev/timestamp-converter" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-          </div>
-
-          <!-- Monitor Test -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">Monitor Test</h3>
-            </div>
-            <div class="grid gap-2">
-              <a href="./tools/life/dead-pixel-test/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Dead Pixel Test</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Find dead pixels on your monitor</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/pixel-fixer/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Pixel Fixer</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Repair stuck pixels on your monitor</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/screen-burn-test/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Screen Burn-In Test</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Check for burn-in on OLED monitors</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/screen-color-test/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Screen Color Test</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Test your screen with colors and patterns</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Media & AI -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">Media & AI</h3>
-            </div>
-            <div class="grid gap-2">
-              <a href="./tools/life/background-remover/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Background Remover AI</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Remove image backgrounds with AI</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/video-to-gif/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Video to GIF</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Convert video to GIF animation</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/screen-recorder/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Screen Recorder</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Record your screen in browser</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/ocr/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">OCR Text Extractor</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Extract text from images</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Fun & Games -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-fuchsia-100 dark:bg-fuchsia-900/30 flex items-center justify-center">
-                <svg class="w-4 h-4 text-fuchsia-600 dark:text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold text-gray-900 dark:text-white">Fun & Games</h3>
-            </div>
-            <div class="grid gap-2">
-              <a href="./tools/life/lottery-generator/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Lottery Number Generator</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Generate random lottery numbers</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/roulette/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Random Picker Wheel</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Spin the wheel to pick randomly</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/dice-roller/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Dice Roller</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Roll virtual dice</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/coin-flip/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Coin Flip</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Flip a virtual coin</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/typing-test/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Typing Speed Test</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Test your typing speed</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-              <a href="./tools/life/reaction-test/" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">Reaction Time Test</div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Test your reaction speed</div>
-                </div>
-                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" data-i18n="tools.timestampConverter.titleShort">Timestamp</span>
+          </a>
         </div>
       </section>
 
-      <!-- Ad Container (Bottom) -->
-      <div class="ad-container"></div>
+      <!-- Life Tools Preview -->
+      <section class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <span data-i18n="home.lifeTools">Life Tools</span>
+          </h2>
+          <a href="/en/tools/life" class="text-sm text-green-600 dark:text-green-400 hover:underline flex items-center gap-1">
+            <span data-i18n="home.viewAll">View All</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <a href="/en/tools/life/image-compressor" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-green-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400" data-i18n="tools.imageCompressor.title">Image Compressor</span>
+          </a>
+          <a href="/en/tools/life/image-converter" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-green-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400" data-i18n="tools.imageConverter.title">Image Converter</span>
+          </a>
+          <a href="/en/tools/life/calculator" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-green-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400" data-i18n="tools.calculator.title">Calculator</span>
+          </a>
+          <a href="/en/tools/life/unit-converter" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-green-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400" data-i18n="tools.unitConverter.title">Unit Converter</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- PDF Tools Preview -->
+      <section class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+          </h2>
+          <a href="/en/tools/pdf" class="text-sm text-red-600 dark:text-red-400 hover:underline flex items-center gap-1">
+            <span data-i18n="home.viewAll">View All</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+          <a href="/en/tools/pdf/merge-pdf" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400" data-i18n="tools.mergePdf.title">Merge PDF</span>
+          </a>
+          <a href="/en/tools/pdf/split-pdf" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400" data-i18n="tools.splitPdf.title">Split PDF</span>
+          </a>
+          <a href="/en/tools/pdf/compress-pdf" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400" data-i18n="tools.compressPdf.title">Compress PDF</span>
+          </a>
+          <a href="/en/tools/pdf/pdf-to-image" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-orange-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400" data-i18n="tools.pdfToImage.title">PDF to Image</span>
+          </a>
+          <a href="/en/tools/pdf/image-to-pdf" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-orange-500 hover:shadow-sm transition-all group">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400" data-i18n="tools.imageToPdf.title">Image to PDF</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Privacy Badge -->
+      <section class="text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span data-i18n="home.privacyBadge">100% browser processing - no files are sent to servers</span>
+        </div>
+      </section>
     </div>
   </main>
 
   <!-- Footer -->
-  <div id="footer"></div>
+  <div id="footer">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+  <div class="container-main">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+      <p>&copy; 2026 Toolneat. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/en/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/en/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/en/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
 </body>
 </html>

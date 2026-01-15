@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Tools - Toolneat</title>
+  <meta name="description" content="Free online life tools collection. Calculators, image editors, QR codes, monitor tests and 40+ more useful utilities available instantly in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/output.css">
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/tools-data.js"></script>
+  <script src="/assets/js/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="/assets/js/search.js" defer></script>
+  <script>localStorage.setItem('toolneat-lang', 'en');</script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col">
+  <div id="header">
+<header class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/en/" class="nav-link text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        Toolneat
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-2">
+
+        <!-- Dev Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">Dev Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu">
+            <!-- Encoding/Decoding -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.encoding">Encoding</h4>
+              <a href="/en/tools/dev/base64" class="mega-link nav-link" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
+              <a href="/en/tools/dev/url-encoder" class="mega-link nav-link" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
+              <a href="/en/tools/dev/html-entity" class="mega-link nav-link" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
+            </div>
+            <!-- Generators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.generators">Generators</h4>
+              <a href="/en/tools/dev/uuid-generator" class="mega-link nav-link" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
+              <a href="/en/tools/dev/hash-generator" class="mega-link nav-link" data-i18n="tools.hashGenerator.title">Hash Generator</a>
+              <a href="/en/tools/dev/lorem-ipsum" class="mega-link nav-link" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
+              <a href="/en/tools/dev/jwt-generator" class="mega-link nav-link" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
+              <a href="/en/tools/dev/password-generator" class="mega-link nav-link" data-i18n="tools.passwordGenerator.title">Password Generator</a>
+              <a href="/en/tools/dev/cron-generator" class="mega-link nav-link" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
+              <a href="/en/tools/dev/gradient-generator" class="mega-link nav-link" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
+            </div>
+            <!-- Converters -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.converters">Converters</h4>
+              <a href="/en/tools/dev/json-formatter" class="mega-link nav-link" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
+              <a href="/en/tools/dev/color-converter" class="mega-link nav-link" data-i18n="tools.colorConverter.title">Color Converter</a>
+              <a href="/en/tools/dev/color-palette" class="mega-link nav-link" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
+              <a href="/en/tools/dev/timestamp-converter" class="mega-link nav-link whitespace-nowrap" data-i18n="tools.timestampConverter.titleShort">Timestamp</a>
+              <a href="/en/tools/dev/yaml-json" class="mega-link nav-link" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/markdown-preview" class="mega-link nav-link" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
+              <a href="/en/tools/dev/case-converter" class="mega-link nav-link" data-i18n="tools.caseConverter.title">Case Converter</a>
+              <a href="/en/tools/dev/sql-formatter" class="mega-link nav-link" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
+              <a href="/en/tools/dev/css-minifier" class="mega-link nav-link" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
+              <a href="/en/tools/dev/line-ending" class="mega-link nav-link" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
+            </div>
+            <!-- Testers -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.testers">Testers</h4>
+              <a href="/en/tools/dev/regex-tester" class="mega-link nav-link" data-i18n="tools.regexTester.title">Regex Tester</a>
+              <a href="/en/tools/dev/jwt-decoder" class="mega-link nav-link" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
+              <a href="/en/tools/dev/diff-checker" class="mega-link nav-link" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-2 !min-w-[400px]">
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfEdit">PDF Edit</h4>
+              <a href="/en/tools/pdf/merge-pdf" class="mega-link nav-link" data-i18n="tools.mergePdf.title">Merge PDF</a>
+              <a href="/en/tools/pdf/split-pdf" class="mega-link nav-link" data-i18n="tools.splitPdf.title">Split PDF</a>
+              <a href="/en/tools/pdf/compress-pdf" class="mega-link nav-link" data-i18n="tools.compressPdf.title">Compress PDF</a>
+              <a href="/en/tools/pdf/rotate-pdf" class="mega-link nav-link" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
+              <a href="/en/tools/pdf/watermark-pdf" class="mega-link nav-link" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
+              <a href="/en/tools/pdf/delete-pdf" class="mega-link nav-link" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
+            </div>
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfConvert">PDF Convert</h4>
+              <a href="/en/tools/pdf/pdf-to-image" class="mega-link nav-link" data-i18n="tools.pdfToImage.title">PDF to Image</a>
+              <a href="/en/tools/pdf/image-to-pdf" class="mega-link nav-link" data-i18n="tools.imageToPdf.title">Image to PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Life Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">Life Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-5 !min-w-[900px]">
+            <!-- Calculators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.calculators">Calculators</h4>
+              <a href="/en/tools/life/salary-calculator" class="mega-link nav-link" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
+              <a href="/en/tools/life/dday-calculator" class="mega-link nav-link" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
+              <a href="/en/tools/life/bmi-calculator" class="mega-link nav-link" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
+              <a href="/en/tools/life/loan-calculator" class="mega-link nav-link" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
+              <a href="/en/tools/life/age-calculator" class="mega-link nav-link" data-i18n="tools.ageCalculator.title">Age Calculator</a>
+              <a href="/en/tools/life/percent-calculator" class="mega-link nav-link" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
+              <a href="/en/tools/life/compound-calculator" class="mega-link nav-link" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
+              <a href="/en/tools/life/tip-calculator" class="mega-link nav-link" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
+            </div>
+            <!-- Media & AI -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.mediaAi">Media & AI</h4>
+              <a href="/en/tools/life/background-remover" class="mega-link nav-link" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
+              <a href="/en/tools/life/video-to-gif" class="mega-link nav-link" data-i18n="tools.videoToGif.title">Video to GIF</a>
+              <a href="/en/tools/life/screen-recorder" class="mega-link nav-link" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
+              <a href="/en/tools/life/ocr" class="mega-link nav-link" data-i18n="tools.ocr.title">OCR Text Extractor</a>
+            </div>
+            <!-- Utilities -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.utilities">Utilities</h4>
+              <a href="/en/tools/life/character-counter" class="mega-link nav-link" data-i18n="tools.characterCounter.title">Character Counter</a>
+              <a href="/en/tools/life/unit-converter" class="mega-link nav-link" data-i18n="tools.unitConverter.title">Unit Converter</a>
+              <a href="/en/tools/life/qr-generator" class="mega-link nav-link" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
+              <a href="/en/tools/life/qr-scanner" class="mega-link nav-link" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
+              <a href="/en/tools/life/barcode-generator" class="mega-link nav-link" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
+              <a href="/en/tools/life/favicon-generator" class="mega-link nav-link" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
+              <a href="/en/tools/life/image-compressor" class="mega-link nav-link" data-i18n="tools.imageCompressor.title">Image Compressor</a>
+              <a href="/en/tools/life/image-resizer" class="mega-link nav-link" data-i18n="tools.imageResizer.title">Image Resizer</a>
+              <a href="/en/tools/life/image-converter" class="mega-link nav-link" data-i18n="tools.imageConverter.title">Image Format Converter</a>
+              <a href="/en/tools/life/image-watermark" class="mega-link nav-link" data-i18n="tools.imageWatermark.title">Image Watermark</a>
+              <a href="/en/tools/life/color-picker" class="mega-link nav-link" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
+              <a href="/en/tools/life/base-converter" class="mega-link nav-link" data-i18n="tools.baseConverter.title">Number Base Converter</a>
+              <a href="/en/tools/life/ascii-unicode" class="mega-link nav-link" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
+              <a href="/en/tools/life/emoji-picker" class="mega-link nav-link" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
+            </div>
+            <!-- Monitor Test -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.monitorTest">Monitor Test</h4>
+              <a href="/en/tools/life/dead-pixel-test" class="mega-link nav-link" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
+              <a href="/en/tools/life/pixel-fixer" class="mega-link nav-link" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
+              <a href="/en/tools/life/screen-burn-test" class="mega-link nav-link" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
+              <a href="/en/tools/life/screen-color-test" class="mega-link nav-link" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
+            </div>
+            <!-- Fun & Games -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.funGames">Fun & Games</h4>
+              <a href="/en/tools/life/lottery-generator" class="mega-link nav-link" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
+              <a href="/en/tools/life/roulette" class="mega-link nav-link" data-i18n="tools.roulette.title">Roulette Wheel</a>
+              <a href="/en/tools/life/dice-roller" class="mega-link nav-link" data-i18n="tools.diceRoller.title">Dice Roller</a>
+              <a href="/en/tools/life/coin-flip" class="mega-link nav-link" data-i18n="tools.coinFlip.title">Coin Flip</a>
+              <a href="/en/tools/life/typing-test" class="mega-link nav-link" data-i18n="tools.typingTest.title">Typing Test</a>
+              <a href="/en/tools/life/reaction-test" class="mega-link nav-link" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <!-- Search Button -->
+        <button id="header-search-btn" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="hidden lg:inline" data-i18n="nav.search">Search</span>
+          <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 dark:bg-gray-700 rounded">
+            <span class="text-[9px]">Ctrl</span>K
+          </kbd>
+        </button>
+
+        <!-- Language Toggle -->
+        <div class="hidden sm:flex items-center gap-1 text-sm">
+          <button data-lang="ko" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">KO</button>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
+          <button data-lang="en" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">EN</button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+          <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="icon-btn md:hidden" aria-label="Menu">
+          <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (2-level accordion) -->
+    <nav id="mobile-menu" class="hidden md:hidden pb-4">
+      <!-- Mobile Search Button -->
+      <button id="mobile-search-btn" class="w-full flex items-center gap-3 py-3 px-3 mb-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <span data-i18n="nav.search">Search</span>
+      </button>
+
+      <!-- Language (Mobile) -->
+      <div class="flex items-center gap-2 py-3 border-b border-gray-100 dark:border-gray-800 mb-2">
+        <span class="text-sm text-gray-500">Language:</span>
+        <button data-lang="ko" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">KO</button>
+        <button data-lang="en" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">EN</button>
+      </div>
+
+      <!-- Dev Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">Dev Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Encoding/Decoding -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.encoding">Encoding</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/base64" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
+              <a href="/en/tools/dev/url-encoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
+              <a href="/en/tools/dev/html-entity" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
+            </div>
+          </div>
+          <!-- Generators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.generators">Generators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/uuid-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
+              <a href="/en/tools/dev/hash-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.hashGenerator.title">Hash Generator</a>
+              <a href="/en/tools/dev/lorem-ipsum" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
+              <a href="/en/tools/dev/jwt-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
+              <a href="/en/tools/dev/password-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.passwordGenerator.title">Password Generator</a>
+              <a href="/en/tools/dev/cron-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
+              <a href="/en/tools/dev/gradient-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
+            </div>
+          </div>
+          <!-- Converters -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.converters">Converters</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/json-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
+              <a href="/en/tools/dev/color-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorConverter.title">Color Converter</a>
+              <a href="/en/tools/dev/color-palette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
+              <a href="/en/tools/dev/timestamp-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.timestampConverter.title">Unix Timestamp Converter</a>
+              <a href="/en/tools/dev/yaml-json" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/markdown-preview" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
+              <a href="/en/tools/dev/case-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.caseConverter.title">Case Converter</a>
+              <a href="/en/tools/dev/sql-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
+              <a href="/en/tools/dev/css-minifier" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
+              <a href="/en/tools/dev/line-ending" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
+            </div>
+          </div>
+          <!-- Testers -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.testers">Testers</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/regex-tester" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.regexTester.title">Regex Tester</a>
+              <a href="/en/tools/dev/jwt-decoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
+              <a href="/en/tools/dev/diff-checker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- PDF Edit -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfEdit">PDF Edit</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/merge-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.mergePdf.title">Merge PDF</a>
+              <a href="/en/tools/pdf/split-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.splitPdf.title">Split PDF</a>
+              <a href="/en/tools/pdf/compress-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compressPdf.title">Compress PDF</a>
+              <a href="/en/tools/pdf/rotate-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
+              <a href="/en/tools/pdf/watermark-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
+              <a href="/en/tools/pdf/delete-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
+            </div>
+          </div>
+          <!-- PDF Convert -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfConvert">PDF Convert</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/pdf-to-image" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pdfToImage.title">PDF to Image</a>
+              <a href="/en/tools/pdf/image-to-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageToPdf.title">Image to PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Life Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">Life Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Calculators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.calculators">Calculators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/salary-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
+              <a href="/en/tools/life/dday-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
+              <a href="/en/tools/life/bmi-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
+              <a href="/en/tools/life/loan-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
+              <a href="/en/tools/life/age-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ageCalculator.title">Age Calculator</a>
+              <a href="/en/tools/life/percent-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
+              <a href="/en/tools/life/compound-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
+              <a href="/en/tools/life/tip-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
+            </div>
+          </div>
+          <!-- Media & AI -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.mediaAi">Media & AI</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/background-remover" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
+              <a href="/en/tools/life/video-to-gif" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.videoToGif.title">Video to GIF</a>
+              <a href="/en/tools/life/screen-recorder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
+              <a href="/en/tools/life/ocr" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ocr.title">OCR Text Extractor</a>
+            </div>
+          </div>
+          <!-- Utilities -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.utilities">Utilities</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/character-counter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.characterCounter.title">Character Counter</a>
+              <a href="/en/tools/life/unit-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.unitConverter.title">Unit Converter</a>
+              <a href="/en/tools/life/qr-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
+              <a href="/en/tools/life/qr-scanner" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
+              <a href="/en/tools/life/barcode-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
+              <a href="/en/tools/life/favicon-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
+              <a href="/en/tools/life/image-compressor" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageCompressor.title">Image Compressor</a>
+              <a href="/en/tools/life/image-resizer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageResizer.title">Image Resizer</a>
+              <a href="/en/tools/life/image-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageConverter.title">Image Format Converter</a>
+              <a href="/en/tools/life/image-watermark" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageWatermark.title">Image Watermark</a>
+              <a href="/en/tools/life/color-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
+              <a href="/en/tools/life/base-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.baseConverter.title">Number Base Converter</a>
+              <a href="/en/tools/life/ascii-unicode" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
+              <a href="/en/tools/life/emoji-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
+            </div>
+          </div>
+          <!-- Monitor Test -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.monitorTest">Monitor Test</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/dead-pixel-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
+              <a href="/en/tools/life/pixel-fixer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
+              <a href="/en/tools/life/screen-burn-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
+              <a href="/en/tools/life/screen-color-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
+            </div>
+          </div>
+          <!-- Fun & Games -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.funGames">Fun & Games</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/lottery-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
+              <a href="/en/tools/life/roulette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.roulette.title">Roulette Wheel</a>
+              <a href="/en/tools/life/dice-roller" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diceRoller.title">Dice Roller</a>
+              <a href="/en/tools/life/coin-flip" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.coinFlip.title">Coin Flip</a>
+              <a href="/en/tools/life/typing-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.typingTest.title">Typing Test</a>
+              <a href="/en/tools/life/reaction-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+</div>
+
+  <main class="container-main py-8 flex-1">
+    <!-- Hero -->
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 shadow-lg mb-4">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Life Tools</h1>
+      <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+        40+ free online tools for everyday life. Calculators, image editors, QR codes, monitor tests and more - all in your browser.
+      </p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <button class="filter-btn active" data-filter="all">All (43)</button>
+      <button class="filter-btn" data-filter="calculator">Calculators (8)</button>
+      <button class="filter-btn" data-filter="image">Image (8)</button>
+      <button class="filter-btn" data-filter="utility">Utilities (10)</button>
+      <button class="filter-btn" data-filter="monitor">Monitor (4)</button>
+      <button class="filter-btn" data-filter="game">Fun/Games (6)</button>
+      <button class="filter-btn" data-filter="new">New (7)</button>
+    </div>
+
+    <!-- Calculators -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        Calculators
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="/en/tools/life/salary-calculator" class="tool-card" data-category="calculator"><div class="tool-icon bg-gradient-to-br from-green-500 to-green-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="tool-info"><div class="tool-name">Salary Calculator</div><div class="tool-desc">Net pay calculation</div></div></a>
+        <a href="/en/tools/life/dday-calculator" class="tool-card" data-category="calculator"><div class="tool-icon bg-gradient-to-br from-green-500 to-green-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">D-Day Calculator</div><div class="tool-desc">Date countdown</div></div></a>
+        <a href="/en/tools/life/bmi-calculator" class="tool-card" data-category="calculator"><div class="tool-icon bg-gradient-to-br from-green-500 to-green-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div><div class="tool-info"><div class="tool-name">BMI Calculator</div><div class="tool-desc">Body mass index</div></div></a>
+        <a href="/en/tools/life/loan-calculator" class="tool-card" data-category="calculator"><div class="tool-icon bg-gradient-to-br from-green-500 to-green-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div><div class="tool-info"><div class="tool-name">Loan Calculator</div><div class="tool-desc">Payment schedule</div></div></a>
+        <a href="/en/tools/life/age-calculator" class="tool-card" data-category="calculator"><div class="tool-icon bg-gradient-to-br from-green-500 to-green-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Age Calculator</div><div class="tool-desc">Exact age</div></div></a>
+        <a href="/en/tools/life/percent-calculator" class="tool-card" data-category="calculator"><div class="tool-icon bg-gradient-to-br from-green-500 to-green-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Percent Calculator</div><div class="tool-desc">Percentage math</div></div></a>
+        <a href="/en/tools/life/compound-calculator" class="tool-card" data-category="calculator"><div class="tool-icon bg-gradient-to-br from-green-500 to-green-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div><div class="tool-info"><div class="tool-name">Compound Calculator</div><div class="tool-desc">Compound interest</div></div></a>
+        <a href="/en/tools/life/tip-calculator" class="tool-card" data-category="calculator"><div class="tool-icon bg-gradient-to-br from-green-500 to-green-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div><div class="tool-info"><div class="tool-name">Tip Calculator</div><div class="tool-desc">Split bill</div></div></a>
+      </div>
+    </section>
+
+    <!-- Image Tools -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        Image / Media
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="/en/tools/life/image-compressor" class="tool-card" data-category="image"><div class="tool-icon bg-gradient-to-br from-pink-500 to-pink-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Image Compressor</div><div class="tool-desc">Reduce file size</div></div></a>
+        <a href="/en/tools/life/image-resizer" class="tool-card" data-category="image"><div class="tool-icon bg-gradient-to-br from-pink-500 to-pink-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg></div><div class="tool-info"><div class="tool-name">Image Resizer</div><div class="tool-desc">Change dimensions</div></div></a>
+        <a href="/en/tools/life/image-converter" class="tool-card" data-category="image"><div class="tool-icon bg-gradient-to-br from-pink-500 to-pink-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg></div><div class="tool-info"><div class="tool-name">Image Converter</div><div class="tool-desc">PNG/JPG/WebP</div></div></a>
+        <a href="/en/tools/life/image-watermark" class="tool-card" data-category="image"><div class="tool-icon bg-gradient-to-br from-pink-500 to-pink-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg></div><div class="tool-info"><div class="tool-name">Image Watermark</div><div class="tool-desc">Add watermark</div></div></a>
+        <a href="/en/tools/life/background-remover" class="tool-card" data-category="image"><div class="tool-icon bg-gradient-to-br from-pink-500 to-pink-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></div><div class="tool-info"><div class="tool-name">Background Remover</div><div class="tool-desc">AI background removal</div></div></a>
+        <a href="/en/tools/life/color-picker" class="tool-card" data-category="image"><div class="tool-icon bg-gradient-to-br from-pink-500 to-pink-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg></div><div class="tool-info"><div class="tool-name">Color Picker</div><div class="tool-desc">Eyedropper tool</div></div></a>
+        <a href="/en/tools/life/video-to-gif" class="tool-card" data-category="image"><div class="tool-icon bg-gradient-to-br from-cyan-500 to-cyan-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Video to GIF</div><div class="tool-desc">Convert to GIF</div></div></a>
+        <a href="/en/tools/life/screen-recorder" class="tool-card" data-category="image"><div class="tool-icon bg-gradient-to-br from-cyan-500 to-cyan-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Screen Recorder</div><div class="tool-desc">Record screen</div></div></a>
+      </div>
+    </section>
+
+    <!-- Utilities -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Utilities
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="/en/tools/life/qr-generator" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-indigo-500 to-indigo-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg></div><div class="tool-info"><div class="tool-name">QR Generator</div><div class="tool-desc">Create QR codes</div></div></a>
+        <a href="/en/tools/life/qr-scanner" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-indigo-500 to-indigo-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg></div><div class="tool-info"><div class="tool-name">QR Scanner</div><div class="tool-desc">Read QR codes</div></div></a>
+        <a href="/en/tools/life/barcode-generator" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-indigo-500 to-indigo-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m-4-4v4m8-12v12M4 8v8m16-8v8"/></svg></div><div class="tool-info"><div class="tool-name">Barcode Generator</div><div class="tool-desc">Create barcodes</div></div></a>
+        <a href="/en/tools/life/favicon-generator" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-yellow-500 to-yellow-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Favicon Generator</div><div class="tool-desc">Convert to icons</div></div></a>
+        <a href="/en/tools/life/character-counter" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-yellow-500 to-yellow-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10"/></svg></div><div class="tool-info"><div class="tool-name">Character Counter</div><div class="tool-desc">Count characters</div></div></a>
+        <a href="/en/tools/life/unit-converter" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-yellow-500 to-yellow-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg></div><div class="tool-info"><div class="tool-name">Unit Converter</div><div class="tool-desc">Length/Weight/Temp</div></div></a>
+        <a href="/en/tools/life/base-converter" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-yellow-500 to-yellow-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Base Converter</div><div class="tool-desc">Binary/Octal/Hex</div></div></a>
+        <a href="/en/tools/life/ascii-unicode" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-yellow-500 to-yellow-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10"/></svg></div><div class="tool-info"><div class="tool-name">ASCII/Unicode</div><div class="tool-desc">Character codes</div></div></a>
+        <a href="/en/tools/life/emoji-picker" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-yellow-500 to-yellow-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="tool-info"><div class="tool-name">Emoji Picker</div><div class="tool-desc">Search emojis</div></div></a>
+        <a href="/en/tools/life/ocr" class="tool-card" data-category="utility"><div class="tool-icon bg-gradient-to-br from-cyan-500 to-cyan-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><div class="tool-info"><div class="tool-name">OCR</div><div class="tool-desc">Extract text from images</div></div></a>
+      </div>
+    </section>
+
+    <!-- Monitor Tools -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Monitor Tests
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="/en/tools/life/dead-pixel-test" class="tool-card" data-category="monitor"><div class="tool-icon bg-gradient-to-br from-gray-500 to-gray-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Dead Pixel Test</div><div class="tool-desc">Check for defects</div></div></a>
+        <a href="/en/tools/life/pixel-fixer" class="tool-card" data-category="monitor"><div class="tool-icon bg-gradient-to-br from-gray-500 to-gray-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Pixel Fixer</div><div class="tool-desc">Fix stuck pixels</div></div></a>
+        <a href="/en/tools/life/screen-burn-test" class="tool-card" data-category="monitor"><div class="tool-icon bg-gradient-to-br from-gray-500 to-gray-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Burn-in Test</div><div class="tool-desc">Check screen burn</div></div></a>
+        <a href="/en/tools/life/screen-color-test" class="tool-card" data-category="monitor"><div class="tool-icon bg-gradient-to-br from-gray-500 to-gray-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg></div><div class="tool-info"><div class="tool-name">Color Test</div><div class="tool-desc">Color accuracy</div></div></a>
+      </div>
+    </section>
+
+    <!-- Games -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Fun / Games
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/en/tools/life/lottery-generator" class="tool-card" data-category="game"><div class="tool-icon bg-gradient-to-br from-red-500 to-red-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="tool-info"><div class="tool-name">Lottery Numbers</div><div class="tool-desc">Random generator</div></div></a>
+        <a href="/en/tools/life/roulette" class="tool-card" data-category="game"><div class="tool-icon bg-gradient-to-br from-red-500 to-red-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div><div class="tool-info"><div class="tool-name">Roulette</div><div class="tool-desc">Random picker</div></div></a>
+        <a href="/en/tools/life/dice-roller" class="tool-card" data-category="game"><div class="tool-icon bg-gradient-to-br from-red-500 to-red-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div><div class="tool-info"><div class="tool-name">Dice Roller</div><div class="tool-desc">Roll dice</div></div></a>
+        <a href="/en/tools/life/coin-flip" class="tool-card" data-category="game"><div class="tool-icon bg-gradient-to-br from-red-500 to-red-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="tool-info"><div class="tool-name">Coin Flip</div><div class="tool-desc">Heads or tails</div></div></a>
+        <a href="/en/tools/life/typing-test" class="tool-card" data-category="game"><div class="tool-icon bg-gradient-to-br from-teal-500 to-teal-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><div class="tool-info"><div class="tool-name">Typing Test</div><div class="tool-desc">Test typing speed</div></div></a>
+        <a href="/en/tools/life/reaction-test" class="tool-card" data-category="game"><div class="tool-icon bg-gradient-to-br from-teal-500 to-teal-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><div class="tool-info"><div class="tool-name">Reaction Test</div><div class="tool-desc">Test reaction time</div></div></a>
+      </div>
+    </section>
+
+    <!-- New Tools -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        New Tools
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="/en/tools/life/speech-to-text" class="tool-card" data-category="new"><div class="tool-icon bg-gradient-to-br from-purple-500 to-purple-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div><div class="tool-info"><div class="tool-name">Speech to Text</div><div class="tool-desc">Voice recognition</div></div></a>
+        <a href="/en/tools/life/text-to-speech" class="tool-card" data-category="new"><div class="tool-icon bg-gradient-to-br from-purple-500 to-purple-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg></div><div class="tool-info"><div class="tool-name">Text to Speech</div><div class="tool-desc">Read text aloud</div></div></a>
+        <a href="/en/tools/life/image-crop" class="tool-card" data-category="new"><div class="tool-icon bg-gradient-to-br from-purple-500 to-purple-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="tool-info"><div class="tool-name">Image Crop</div><div class="tool-desc">Crop images</div></div></a>
+        <a href="/en/tools/life/meme-generator" class="tool-card" data-category="new"><div class="tool-icon bg-gradient-to-br from-purple-500 to-purple-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="tool-info"><div class="tool-name">Meme Generator</div><div class="tool-desc">Create memes</div></div></a>
+        <a href="/en/tools/life/pomodoro-timer" class="tool-card" data-category="new"><div class="tool-icon bg-gradient-to-br from-purple-500 to-purple-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="tool-info"><div class="tool-name">Pomodoro Timer</div><div class="tool-desc">Focus timer</div></div></a>
+        <a href="/en/tools/life/meta-tag-generator" class="tool-card" data-category="new"><div class="tool-icon bg-gradient-to-br from-purple-500 to-purple-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div><div class="tool-info"><div class="tool-name">Meta Tag Generator</div><div class="tool-desc">SEO meta tags</div></div></a>
+        <a href="/en/tools/life/utm-generator" class="tool-card" data-category="new"><div class="tool-icon bg-gradient-to-br from-purple-500 to-purple-600"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></div><div class="tool-info"><div class="tool-name">UTM Generator</div><div class="tool-desc">Campaign links</div></div></a>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+  <div class="container-main">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+      <p>&copy; 2026 Toolneat. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/en/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/en/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/en/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+  <style>
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 9999px;
+      border: 1px solid #e5e7eb;
+      color: #4b5563;
+      transition: all 0.15s ease;
+    }
+    .dark .filter-btn {
+      border-color: #374151;
+      color: #9ca3af;
+    }
+    .filter-btn:hover {
+      border-color: #22c55e;
+      color: #16a34a;
+    }
+    .dark .filter-btn:hover {
+      border-color: #22c55e;
+      color: #4ade80;
+    }
+    .filter-btn.active {
+      background-color: #16a34a;
+      color: white;
+      border-color: #16a34a;
+    }
+    .tool-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 0.75rem;
+      border: 1px solid #f3f4f6;
+      transition: all 0.15s ease;
+    }
+    .dark .tool-card {
+      background-color: #1f2937;
+      border-color: #374151;
+    }
+    .tool-card:hover {
+      border-color: #22c55e;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+    .dark .tool-card:hover {
+      border-color: #22c55e;
+    }
+    .tool-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+    .tool-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .tool-name {
+      font-weight: 600;
+      color: #111827;
+      font-size: 0.875rem;
+    }
+    .dark .tool-name {
+      color: white;
+    }
+    .tool-desc {
+      font-size: 0.75rem;
+      color: #6b7280;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .dark .tool-desc {
+      color: #9ca3af;
+    }
+  </style>
+
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.tool-card').forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        // Hide empty sections
+        document.querySelectorAll('main > section').forEach(section => {
+          const cards = section.querySelectorAll('.tool-card');
+          const hasVisible = Array.from(cards).some(c => filter === 'all' || c.dataset.category === filter);
+          section.style.display = hasVisible ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

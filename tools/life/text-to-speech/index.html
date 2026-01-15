@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>텍스트를 음성으로 - Toolneat</title>
+  <meta name="description" content="텍스트를 입력하면 음성으로 읽어주는 무료 온라인 도구입니다. 다양한 음성, 속도, 높낮이 조절 가능. 외국어 발음 확인, 오디오북 제작, 접근성 향상에 유용합니다.">
+  <link rel="canonical" href="https://toolneat.com/tools/life/text-to-speech/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/text-to-speech/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/text-to-speech/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/text-to-speech/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="텍스트를 음성으로 - Toolneat">
+  <meta property="og:description" content="텍스트를 음성으로 변환합니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/life/text-to-speech">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"텍스트를 음성으로","description":"텍스트를 음성으로 변환합니다.","url":"https://toolneat.com/tools/life/text-to-speech","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"author":{"@type":"Organization","name":"Toolneat"}}
+  </script>
+  <style>
+    .play-btn{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#10b981,#059669);border:none;box-shadow:0 4px 12px rgba(16,185,129,.3);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+    .play-btn:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(16,185,129,.4)}
+    .play-btn.speaking{background:linear-gradient(135deg,#f59e0b,#d97706)}
+    .play-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+    .range-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:#e5e7eb;outline:none}
+    .range-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:#3b82f6;cursor:pointer;box-shadow:0 2px 6px rgba(59,130,246,.3)}
+    .dark .range-slider{background:#374151}
+    .dark .range-slider::-webkit-slider-thumb{background:#60a5fa}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="../../../assets/js/tools-data.js"></script>
+  <script src="../../../assets/js/search.js" defer></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header">
+<header class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="nav-link text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        Toolneat
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-2">
+
+        <!-- Dev Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">개발 도구</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu">
+            <!-- Encoding/Decoding -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.encoding">인코딩/디코딩</h4>
+              <a href="/tools/dev/base64" class="mega-link nav-link" data-i18n="tools.base64.title">Base64 인코딩/디코딩</a>
+              <a href="/tools/dev/url-encoder" class="mega-link nav-link" data-i18n="tools.urlEncoder.title">URL 인코딩/디코딩</a>
+              <a href="/tools/dev/html-entity" class="mega-link nav-link" data-i18n="tools.htmlEntity.title">HTML 엔티티 변환기</a>
+            </div>
+            <!-- Generators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.generators">생성기</h4>
+              <a href="/tools/dev/uuid-generator" class="mega-link nav-link" data-i18n="tools.uuidGenerator.title">UUID 생성기</a>
+              <a href="/tools/dev/hash-generator" class="mega-link nav-link" data-i18n="tools.hashGenerator.title">해시 생성기</a>
+              <a href="/tools/dev/lorem-ipsum" class="mega-link nav-link" data-i18n="tools.loremIpsum.title">Lorem Ipsum 생성기</a>
+              <a href="/tools/dev/jwt-generator" class="mega-link nav-link" data-i18n="tools.jwtGenerator.title">JWT 생성기</a>
+              <a href="/tools/dev/password-generator" class="mega-link nav-link" data-i18n="tools.passwordGenerator.title">비밀번호 생성기</a>
+              <a href="/tools/dev/cron-generator" class="mega-link nav-link" data-i18n="tools.cronGenerator.title">Cron 표현식 생성기</a>
+              <a href="/tools/dev/gradient-generator" class="mega-link nav-link" data-i18n="tools.gradientGenerator.title">그라데이션 생성기</a>
+            </div>
+            <!-- Converters -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.converters">변환기</h4>
+              <a href="/tools/dev/json-formatter" class="mega-link nav-link" data-i18n="tools.jsonFormatter.title">JSON 포맷터</a>
+              <a href="/tools/dev/color-converter" class="mega-link nav-link" data-i18n="tools.colorConverter.title">색상 변환기</a>
+              <a href="/tools/dev/color-palette" class="mega-link nav-link" data-i18n="tools.colorPalette.title">색상 팔레트 추출</a>
+              <a href="/tools/dev/timestamp-converter" class="mega-link nav-link whitespace-nowrap" data-i18n="tools.timestampConverter.titleShort">타임스탬프</a>
+              <a href="/tools/dev/yaml-json" class="mega-link nav-link" data-i18n="tools.yamlJson.title">YAML ↔ JSON 변환기</a>
+              <a href="/tools/dev/markdown-preview" class="mega-link nav-link" data-i18n="tools.markdownPreview.title">마크다운 미리보기</a>
+              <a href="/tools/dev/case-converter" class="mega-link nav-link" data-i18n="tools.caseConverter.title">대소문자 변환기</a>
+              <a href="/tools/dev/sql-formatter" class="mega-link nav-link" data-i18n="tools.sqlFormatter.title">SQL 포맷터</a>
+              <a href="/tools/dev/css-minifier" class="mega-link nav-link" data-i18n="tools.cssMinifier.title">CSS 압축/정리</a>
+              <a href="/tools/dev/line-ending" class="mega-link nav-link" data-i18n="tools.lineEnding.title">개행문자 변환기</a>
+            </div>
+            <!-- Testers -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.testers">테스터</h4>
+              <a href="/tools/dev/regex-tester" class="mega-link nav-link" data-i18n="tools.regexTester.title">정규표현식 테스터</a>
+              <a href="/tools/dev/jwt-decoder" class="mega-link nav-link" data-i18n="tools.jwtDecoder.title">JWT 디코더</a>
+              <a href="/tools/dev/diff-checker" class="mega-link nav-link" data-i18n="tools.diffChecker.title">텍스트 비교</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF 도구</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-2 !min-w-[400px]">
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfEdit">PDF 편집</h4>
+              <a href="/tools/pdf/merge-pdf" class="mega-link nav-link" data-i18n="tools.mergePdf.title">PDF 병합</a>
+              <a href="/tools/pdf/split-pdf" class="mega-link nav-link" data-i18n="tools.splitPdf.title">PDF 분할</a>
+              <a href="/tools/pdf/compress-pdf" class="mega-link nav-link" data-i18n="tools.compressPdf.title">PDF 압축</a>
+              <a href="/tools/pdf/rotate-pdf" class="mega-link nav-link" data-i18n="tools.rotatePdf.title">PDF 회전</a>
+              <a href="/tools/pdf/watermark-pdf" class="mega-link nav-link" data-i18n="tools.watermarkPdf.title">PDF 워터마크</a>
+              <a href="/tools/pdf/delete-pdf" class="mega-link nav-link" data-i18n="tools.deletePdf.title">PDF 페이지 삭제</a>
+            </div>
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfConvert">PDF 변환</h4>
+              <a href="/tools/pdf/pdf-to-image" class="mega-link nav-link" data-i18n="tools.pdfToImage.title">PDF → 이미지</a>
+              <a href="/tools/pdf/image-to-pdf" class="mega-link nav-link" data-i18n="tools.imageToPdf.title">이미지 → PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Life Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">생활 도구</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-5 !min-w-[900px]">
+            <!-- Calculators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.calculators">계산기</h4>
+              <a href="/tools/life/salary-calculator" class="mega-link nav-link" data-i18n="tools.salaryCalculator.title">연봉 실수령액 계산기</a>
+              <a href="/tools/life/dday-calculator" class="mega-link nav-link" data-i18n="tools.ddayCalculator.title">D-day 계산기</a>
+              <a href="/tools/life/bmi-calculator" class="mega-link nav-link" data-i18n="tools.bmiCalculator.title">BMI 계산기</a>
+              <a href="/tools/life/loan-calculator" class="mega-link nav-link" data-i18n="tools.loanCalculator.title">대출 이자 계산기</a>
+              <a href="/tools/life/age-calculator" class="mega-link nav-link" data-i18n="tools.ageCalculator.title">나이 계산기</a>
+              <a href="/tools/life/percent-calculator" class="mega-link nav-link" data-i18n="tools.percentCalculator.title">퍼센트 계산기</a>
+              <a href="/tools/life/compound-calculator" class="mega-link nav-link" data-i18n="tools.compoundCalculator.title">복리 계산기</a>
+              <a href="/tools/life/tip-calculator" class="mega-link nav-link" data-i18n="tools.tipCalculator.title">팁 계산기</a>
+            </div>
+            <!-- Media & AI -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.mediaAi">미디어/AI</h4>
+              <a href="/tools/life/background-remover" class="mega-link nav-link" data-i18n="tools.backgroundRemover.title">배경 제거 AI</a>
+              <a href="/tools/life/video-to-gif" class="mega-link nav-link" data-i18n="tools.videoToGif.title">비디오 → GIF</a>
+              <a href="/tools/life/screen-recorder" class="mega-link nav-link" data-i18n="tools.screenRecorder.title">화면 녹화</a>
+              <a href="/tools/life/ocr" class="mega-link nav-link" data-i18n="tools.ocr.title">OCR 텍스트 추출</a>
+            </div>
+            <!-- Utilities -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.utilities">유틸리티</h4>
+              <a href="/tools/life/character-counter" class="mega-link nav-link" data-i18n="tools.characterCounter.title">글자수 세기</a>
+              <a href="/tools/life/unit-converter" class="mega-link nav-link" data-i18n="tools.unitConverter.title">단위 변환기</a>
+              <a href="/tools/life/qr-generator" class="mega-link nav-link" data-i18n="tools.qrGenerator.title">QR 코드 생성기</a>
+              <a href="/tools/life/qr-scanner" class="mega-link nav-link" data-i18n="tools.qrScanner.title">QR 코드 스캐너</a>
+              <a href="/tools/life/barcode-generator" class="mega-link nav-link" data-i18n="tools.barcodeGenerator.title">바코드 생성기</a>
+              <a href="/tools/life/favicon-generator" class="mega-link nav-link" data-i18n="tools.faviconGenerator.title">파비콘 생성기</a>
+              <a href="/tools/life/image-compressor" class="mega-link nav-link" data-i18n="tools.imageCompressor.title">이미지 압축</a>
+              <a href="/tools/life/image-resizer" class="mega-link nav-link" data-i18n="tools.imageResizer.title">이미지 리사이즈</a>
+              <a href="/tools/life/image-converter" class="mega-link nav-link" data-i18n="tools.imageConverter.title">이미지 형식 변환</a>
+              <a href="/tools/life/image-watermark" class="mega-link nav-link" data-i18n="tools.imageWatermark.title">이미지 워터마크</a>
+              <a href="/tools/life/color-picker" class="mega-link nav-link" data-i18n="tools.colorPicker.title">색상 피커 (스포이드)</a>
+              <a href="/tools/life/base-converter" class="mega-link nav-link" data-i18n="tools.baseConverter.title">진법 변환기</a>
+              <a href="/tools/life/ascii-unicode" class="mega-link nav-link" data-i18n="tools.asciiUnicode.title">ASCII/유니코드 변환기</a>
+              <a href="/tools/life/emoji-picker" class="mega-link nav-link" data-i18n="tools.emojiPicker.title">이모지 검색</a>
+            </div>
+            <!-- Monitor Test -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.monitorTest">모니터 테스트</h4>
+              <a href="/tools/life/dead-pixel-test" class="mega-link nav-link" data-i18n="tools.deadPixelTest.title">불량화소 테스트</a>
+              <a href="/tools/life/pixel-fixer" class="mega-link nav-link" data-i18n="tools.pixelFixer.title">픽셀 수리</a>
+              <a href="/tools/life/screen-burn-test" class="mega-link nav-link" data-i18n="tools.screenBurnTest.title">번인 테스트</a>
+              <a href="/tools/life/screen-color-test" class="mega-link nav-link" data-i18n="tools.screenColorTest.title">화면 색상 테스트</a>
+            </div>
+            <!-- Fun & Games -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.funGames">재미/게임</h4>
+              <a href="/tools/life/lottery-generator" class="mega-link nav-link" data-i18n="tools.lotteryGenerator.title">로또 번호 생성기</a>
+              <a href="/tools/life/roulette" class="mega-link nav-link" data-i18n="tools.roulette.title">룰렛 돌리기</a>
+              <a href="/tools/life/dice-roller" class="mega-link nav-link" data-i18n="tools.diceRoller.title">주사위 굴리기</a>
+              <a href="/tools/life/coin-flip" class="mega-link nav-link" data-i18n="tools.coinFlip.title">동전 던지기</a>
+              <a href="/tools/life/typing-test" class="mega-link nav-link" data-i18n="tools.typingTest.title">타자 연습</a>
+              <a href="/tools/life/reaction-test" class="mega-link nav-link" data-i18n="tools.reactionTest.title">반응속도 테스트</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <!-- Search Button -->
+        <button id="header-search-btn" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="hidden lg:inline" data-i18n="nav.search">검색</span>
+          <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 dark:bg-gray-700 rounded">
+            <span class="text-[9px]">Ctrl</span>K
+          </kbd>
+        </button>
+
+        <!-- Language Toggle -->
+        <div class="hidden sm:flex items-center gap-1 text-sm">
+          <button data-lang="ko" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">KO</button>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
+          <button data-lang="en" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">EN</button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+          <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="icon-btn md:hidden" aria-label="Menu">
+          <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (2-level accordion) -->
+    <nav id="mobile-menu" class="hidden md:hidden pb-4">
+      <!-- Mobile Search Button -->
+      <button id="mobile-search-btn" class="w-full flex items-center gap-3 py-3 px-3 mb-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <span data-i18n="nav.search">검색</span>
+      </button>
+
+      <!-- Language (Mobile) -->
+      <div class="flex items-center gap-2 py-3 border-b border-gray-100 dark:border-gray-800 mb-2">
+        <span class="text-sm text-gray-500">Language:</span>
+        <button data-lang="ko" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">KO</button>
+        <button data-lang="en" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">EN</button>
+      </div>
+
+      <!-- Dev Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">개발 도구</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Encoding/Decoding -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.encoding">인코딩/디코딩</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/dev/base64" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.base64.title">Base64 인코딩/디코딩</a>
+              <a href="/tools/dev/url-encoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.urlEncoder.title">URL 인코딩/디코딩</a>
+              <a href="/tools/dev/html-entity" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.htmlEntity.title">HTML 엔티티 변환기</a>
+            </div>
+          </div>
+          <!-- Generators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.generators">생성기</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/dev/uuid-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.uuidGenerator.title">UUID 생성기</a>
+              <a href="/tools/dev/hash-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.hashGenerator.title">해시 생성기</a>
+              <a href="/tools/dev/lorem-ipsum" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loremIpsum.title">Lorem Ipsum 생성기</a>
+              <a href="/tools/dev/jwt-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtGenerator.title">JWT 생성기</a>
+              <a href="/tools/dev/password-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.passwordGenerator.title">비밀번호 생성기</a>
+              <a href="/tools/dev/cron-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cronGenerator.title">Cron 표현식 생성기</a>
+              <a href="/tools/dev/gradient-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.gradientGenerator.title">그라데이션 생성기</a>
+            </div>
+          </div>
+          <!-- Converters -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.converters">변환기</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/dev/json-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsonFormatter.title">JSON 포맷터</a>
+              <a href="/tools/dev/color-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorConverter.title">색상 변환기</a>
+              <a href="/tools/dev/color-palette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPalette.title">색상 팔레트 추출</a>
+              <a href="/tools/dev/timestamp-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.timestampConverter.title">Unix Timestamp 변환기</a>
+              <a href="/tools/dev/yaml-json" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.yamlJson.title">YAML ↔ JSON 변환기</a>
+              <a href="/tools/dev/markdown-preview" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.markdownPreview.title">마크다운 미리보기</a>
+              <a href="/tools/dev/case-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.caseConverter.title">대소문자 변환기</a>
+              <a href="/tools/dev/sql-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.sqlFormatter.title">SQL 포맷터</a>
+              <a href="/tools/dev/css-minifier" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cssMinifier.title">CSS 압축/정리</a>
+              <a href="/tools/dev/line-ending" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lineEnding.title">개행문자 변환기</a>
+            </div>
+          </div>
+          <!-- Testers -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.testers">테스터</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/dev/regex-tester" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.regexTester.title">정규표현식 테스터</a>
+              <a href="/tools/dev/jwt-decoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtDecoder.title">JWT 디코더</a>
+              <a href="/tools/dev/diff-checker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diffChecker.title">텍스트 비교</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF 도구</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- PDF Edit -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfEdit">PDF 편집</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/pdf/merge-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.mergePdf.title">PDF 병합</a>
+              <a href="/tools/pdf/split-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.splitPdf.title">PDF 분할</a>
+              <a href="/tools/pdf/compress-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compressPdf.title">PDF 압축</a>
+              <a href="/tools/pdf/rotate-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.rotatePdf.title">PDF 회전</a>
+              <a href="/tools/pdf/watermark-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.watermarkPdf.title">PDF 워터마크</a>
+              <a href="/tools/pdf/delete-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deletePdf.title">PDF 페이지 삭제</a>
+            </div>
+          </div>
+          <!-- PDF Convert -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfConvert">PDF 변환</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/pdf/pdf-to-image" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pdfToImage.title">PDF → 이미지</a>
+              <a href="/tools/pdf/image-to-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageToPdf.title">이미지 → PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Life Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">생활 도구</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Calculators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.calculators">계산기</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/life/salary-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.salaryCalculator.title">연봉 실수령액 계산기</a>
+              <a href="/tools/life/dday-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ddayCalculator.title">D-day 계산기</a>
+              <a href="/tools/life/bmi-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.bmiCalculator.title">BMI 계산기</a>
+              <a href="/tools/life/loan-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loanCalculator.title">대출 이자 계산기</a>
+              <a href="/tools/life/age-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ageCalculator.title">나이 계산기</a>
+              <a href="/tools/life/percent-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.percentCalculator.title">퍼센트 계산기</a>
+              <a href="/tools/life/compound-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compoundCalculator.title">복리 계산기</a>
+              <a href="/tools/life/tip-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.tipCalculator.title">팁 계산기</a>
+            </div>
+          </div>
+          <!-- Media & AI -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.mediaAi">미디어/AI</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/life/background-remover" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.backgroundRemover.title">배경 제거 AI</a>
+              <a href="/tools/life/video-to-gif" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.videoToGif.title">비디오 → GIF</a>
+              <a href="/tools/life/screen-recorder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenRecorder.title">화면 녹화</a>
+              <a href="/tools/life/ocr" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ocr.title">OCR 텍스트 추출</a>
+            </div>
+          </div>
+          <!-- Utilities -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.utilities">유틸리티</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/life/character-counter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.characterCounter.title">글자수 세기</a>
+              <a href="/tools/life/unit-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.unitConverter.title">단위 변환기</a>
+              <a href="/tools/life/qr-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrGenerator.title">QR 코드 생성기</a>
+              <a href="/tools/life/qr-scanner" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrScanner.title">QR 코드 스캐너</a>
+              <a href="/tools/life/barcode-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.barcodeGenerator.title">바코드 생성기</a>
+              <a href="/tools/life/favicon-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.faviconGenerator.title">파비콘 생성기</a>
+              <a href="/tools/life/image-compressor" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageCompressor.title">이미지 압축</a>
+              <a href="/tools/life/image-resizer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageResizer.title">이미지 리사이즈</a>
+              <a href="/tools/life/image-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageConverter.title">이미지 형식 변환</a>
+              <a href="/tools/life/image-watermark" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageWatermark.title">이미지 워터마크</a>
+              <a href="/tools/life/color-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPicker.title">색상 피커 (스포이드)</a>
+              <a href="/tools/life/base-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.baseConverter.title">진법 변환기</a>
+              <a href="/tools/life/ascii-unicode" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.asciiUnicode.title">ASCII/유니코드 변환기</a>
+              <a href="/tools/life/emoji-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.emojiPicker.title">이모지 검색</a>
+            </div>
+          </div>
+          <!-- Monitor Test -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.monitorTest">모니터 테스트</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/life/dead-pixel-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deadPixelTest.title">불량화소 테스트</a>
+              <a href="/tools/life/pixel-fixer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pixelFixer.title">픽셀 수리</a>
+              <a href="/tools/life/screen-burn-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenBurnTest.title">번인 테스트</a>
+              <a href="/tools/life/screen-color-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenColorTest.title">화면 색상 테스트</a>
+            </div>
+          </div>
+          <!-- Fun & Games -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.funGames">재미/게임</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/tools/life/lottery-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lotteryGenerator.title">로또 번호 생성기</a>
+              <a href="/tools/life/roulette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.roulette.title">룰렛 돌리기</a>
+              <a href="/tools/life/dice-roller" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diceRoller.title">주사위 굴리기</a>
+              <a href="/tools/life/coin-flip" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.coinFlip.title">동전 던지기</a>
+              <a href="/tools/life/typing-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.typingTest.title">타자 연습</a>
+              <a href="/tools/life/reaction-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.reactionTest.title">반응속도 테스트</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+</div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">텍스트를 음성으로</h1>
+        <p class="text-gray-600 dark:text-gray-400">텍스트를 입력하면 자연스러운 음성으로 읽어줍니다. 외국어 발음 확인, 프레젠테이션 연습에 유용합니다.</p>
+      </div>
+
+      <div class="card">
+        <!-- Browser Support Warning -->
+        <div id="browser-warning" class="hidden mb-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            <div>
+              <p class="font-medium text-yellow-800 dark:text-yellow-200">브라우저 호환성 안내</p>
+              <p class="text-sm text-yellow-700 dark:text-yellow-300 mt-1">이 브라우저는 음성 합성을 지원하지 않습니다. Chrome, Edge, Safari를 사용해주세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text Input -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">읽을 텍스트</label>
+          <textarea id="text-input" class="textarea h-40" placeholder="읽을 텍스트를 입력하세요..."></textarea>
+          <div class="text-right text-sm text-gray-400 mt-1"><span id="char-count">0</span>자</div>
+        </div>
+
+        <!-- Voice Selection -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">음성 선택</label>
+            <select id="voice-select" class="select w-full">
+              <option value="">음성 로딩 중...</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">언어 필터</label>
+            <select id="lang-filter" class="select w-full">
+              <option value="">전체</option>
+              <option value="ko">한국어</option>
+              <option value="en">영어</option>
+              <option value="ja">일본어</option>
+              <option value="zh">중국어</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Speed & Pitch Controls -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              속도: <span id="rate-value">1.0</span>x
+            </label>
+            <input type="range" id="rate-slider" class="range-slider" min="0.5" max="2" step="0.1" value="1">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              높낮이: <span id="pitch-value">1.0</span>
+            </label>
+            <input type="range" id="pitch-slider" class="range-slider" min="0.5" max="2" step="0.1" value="1">
+          </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="flex flex-col items-center gap-4">
+          <div class="flex items-center gap-4">
+            <button id="play-btn" class="play-btn">
+              <svg id="play-icon" class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="flex gap-3">
+            <button id="pause-btn" class="btn btn-secondary flex items-center gap-2" disabled>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+              </svg>
+              일시정지
+            </button>
+            <button id="stop-btn" class="btn btn-secondary flex items-center gap-2" disabled>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 6h12v12H6z"/>
+              </svg>
+              정지
+            </button>
+          </div>
+          <p id="status" class="text-gray-500 dark:text-gray-400 text-sm">재생 버튼을 눌러 시작하세요</p>
+        </div>
+      </div>
+
+      <!-- Privacy Badge -->
+      <div class="mt-6 flex justify-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          브라우저 내장 음성 사용 - 텍스트가 서버로 전송되지 않습니다
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">텍스트 음성 변환 안내</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Web Speech API의 음성 합성 기능을 사용합니다. 운영체제와 브라우저에 설치된 음성을 활용하므로 기기마다 사용 가능한 음성이 다를 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">활용 예시</h3>
+          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
+            <li><strong>외국어 학습:</strong> 영어, 일본어 등 외국어 발음 확인</li>
+            <li><strong>프레젠테이션:</strong> 발표 내용 미리 들어보기</li>
+            <li><strong>접근성:</strong> 시각 장애인을 위한 텍스트 낭독</li>
+            <li><strong>교정:</strong> 작성한 글의 어색한 부분 체크</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 한국어 음성이 없어요</h4>
+              <p class="text-gray-600 dark:text-gray-400">운영체제 설정에서 한국어 음성을 추가로 설치해야 할 수 있습니다. Windows는 '설정 > 시간 및 언어 > 음성', macOS는 '시스템 환경설정 > 손쉬운 사용 > 음성 콘텐츠'에서 추가할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 음성이 로봇 같아요</h4>
+              <p class="text-gray-600 dark:text-gray-400">기본 음성은 품질이 낮을 수 있습니다. 운영체제에서 고품질 음성(Enhanced, Premium)을 다운로드하면 더 자연스러운 음성을 사용할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: MP3로 저장할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Web Speech API는 오디오 파일 저장을 지원하지 않습니다. 화면 녹화 도구로 음성을 녹음하거나, 전문 TTS 서비스를 이용해주세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: 글자 수 제한이 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400">브라우저마다 다르지만, 일반적으로 한 번에 수천 자까지 읽을 수 있습니다. 긴 텍스트는 나눠서 재생하는 것을 권장합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+  <div class="container-main">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+      <p>&copy; 2026 Toolneat. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const synth = window.speechSynthesis;
+    const browserWarning = document.getElementById('browser-warning');
+    const textInput = document.getElementById('text-input');
+    const charCount = document.getElementById('char-count');
+    const voiceSelect = document.getElementById('voice-select');
+    const langFilter = document.getElementById('lang-filter');
+    const rateSlider = document.getElementById('rate-slider');
+    const rateValue = document.getElementById('rate-value');
+    const pitchSlider = document.getElementById('pitch-slider');
+    const pitchValue = document.getElementById('pitch-value');
+    const playBtn = document.getElementById('play-btn');
+    const playIcon = document.getElementById('play-icon');
+    const pauseBtn = document.getElementById('pause-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const status = document.getElementById('status');
+
+    let voices = [];
+    let isSpeaking = false;
+    let isPaused = false;
+
+    // Check browser support
+    if (!synth) {
+      browserWarning.classList.remove('hidden');
+      playBtn.disabled = true;
+      return;
+    }
+
+    // Load voices
+    function loadVoices() {
+      voices = synth.getVoices();
+      updateVoiceList();
+    }
+
+    function updateVoiceList() {
+      const filter = langFilter.value;
+      const filteredVoices = filter ? voices.filter(v => v.lang.startsWith(filter)) : voices;
+
+      voiceSelect.innerHTML = '';
+      if (filteredVoices.length === 0) {
+        voiceSelect.innerHTML = '<option value="">음성을 찾을 수 없습니다</option>';
+        return;
+      }
+
+      filteredVoices.forEach((voice, i) => {
+        const option = document.createElement('option');
+        option.value = voices.indexOf(voice);
+        option.textContent = `${voice.name} (${voice.lang})${voice.default ? ' - 기본' : ''}`;
+        voiceSelect.appendChild(option);
+      });
+
+      // Try to select Korean voice by default
+      const koreanVoice = filteredVoices.find(v => v.lang.startsWith('ko'));
+      if (koreanVoice && !filter) {
+        voiceSelect.value = voices.indexOf(koreanVoice);
+      }
+    }
+
+    // Voice loading events
+    if (synth.onvoiceschanged !== undefined) {
+      synth.onvoiceschanged = loadVoices;
+    }
+    loadVoices();
+
+    // Event listeners
+    textInput.addEventListener('input', () => {
+      charCount.textContent = textInput.value.length;
+    });
+
+    langFilter.addEventListener('change', updateVoiceList);
+
+    rateSlider.addEventListener('input', () => {
+      rateValue.textContent = rateSlider.value;
+    });
+
+    pitchSlider.addEventListener('input', () => {
+      pitchValue.textContent = pitchSlider.value;
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (isPaused) {
+        synth.resume();
+        isPaused = false;
+        status.textContent = '재생 중...';
+        pauseBtn.innerHTML = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg> 일시정지';
+        return;
+      }
+
+      const text = textInput.value.trim();
+      if (!text) {
+        toast.error('읽을 텍스트를 입력해주세요');
+        return;
+      }
+
+      synth.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      const selectedVoice = voices[voiceSelect.value];
+      if (selectedVoice) utterance.voice = selectedVoice;
+
+      utterance.rate = parseFloat(rateSlider.value);
+      utterance.pitch = parseFloat(pitchSlider.value);
+
+      utterance.onstart = () => {
+        isSpeaking = true;
+        playBtn.classList.add('speaking');
+        pauseBtn.disabled = false;
+        stopBtn.disabled = false;
+        status.textContent = '재생 중...';
+      };
+
+      utterance.onend = () => {
+        resetState();
+        status.textContent = '재생 완료';
+      };
+
+      utterance.onerror = (e) => {
+        console.error('TTS Error:', e);
+        resetState();
+        if (e.error !== 'canceled') {
+          toast.error('음성 재생 중 오류가 발생했습니다');
+        }
+      };
+
+      synth.speak(utterance);
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      if (synth.paused) {
+        synth.resume();
+        isPaused = false;
+        status.textContent = '재생 중...';
+        pauseBtn.innerHTML = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg> 일시정지';
+      } else {
+        synth.pause();
+        isPaused = true;
+        status.textContent = '일시정지';
+        pauseBtn.innerHTML = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> 계속';
+      }
+    });
+
+    stopBtn.addEventListener('click', () => {
+      synth.cancel();
+      resetState();
+      status.textContent = '정지됨';
+    });
+
+    function resetState() {
+      isSpeaking = false;
+      isPaused = false;
+      playBtn.classList.remove('speaking');
+      pauseBtn.disabled = true;
+      stopBtn.disabled = true;
+      pauseBtn.innerHTML = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg> 일시정지';
+    }
+
+    // Cancel on page unload
+    window.addEventListener('beforeunload', () => synth.cancel());
+    })();
+  </script>
+</body>
+</html>

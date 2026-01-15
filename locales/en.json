@@ -19,12 +19,23 @@
     "convertersGen": "Convert/Generate",
     "utilities": "Utilities",
     "text": "Text",
-    "funGames": "Fun & Games"
+    "funGames": "Fun & Games",
+    "search": "Search",
+    "allTools": "All Tools",
+    "allDevTools": "All Dev Tools",
+    "allLifeTools": "All Life Tools",
+    "allPdfTools": "All PDF Tools"
   },
   "footer": {
     "about": "About",
     "privacy": "Privacy",
     "terms": "Terms"
+  },
+  "search": {
+    "placeholder": "Search tools...",
+    "recentSearches": "Recent Searches",
+    "popularTools": "Popular Tools",
+    "noResults": "No results found"
   },
   "home": {
     "title": "Online Utility Tools",
@@ -33,6 +44,11 @@
     "devToolsDesc": "Encoding, conversion, and generation tools for developers",
     "lifeTools": "Life Tools",
     "lifeToolsDesc": "Useful calculators and conversion tools for daily life",
+    "toolCount": "tools",
+    "popularTools": "Popular Tools",
+    "newTools": "New Tools",
+    "viewAll": "View All",
+    "privacyBadge": "100% browser processing - no files are sent to servers",
     "category": {
       "encoding": "Encoding / Decoding",
       "generators": "Generators",
@@ -833,6 +849,18 @@
     "imageToPdf": {
       "title": "Image to PDF",
       "description": "Convert images to PDF."
+    },
+    "rotatePdf": {
+      "title": "Rotate PDF",
+      "description": "Rotate PDF pages."
+    },
+    "watermarkPdf": {
+      "title": "PDF Watermark",
+      "description": "Add text watermark to PDF."
+    },
+    "deletePdf": {
+      "title": "Delete PDF Pages",
+      "description": "Delete selected pages from PDF."
     },
     "backgroundRemover": {
       "title": "Background Remover AI",

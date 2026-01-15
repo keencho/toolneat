@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meme Generator - Toolneat</title>
+  <meta name="description" content="Free online meme generator. Add text to images with customizable fonts, colors, and outlines. Create memes instantly in your browser.">
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/meme-generator/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/meme-generator/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/meme-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/meme-generator/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+  <script>localStorage.setItem('toolneat-lang', 'en');</script>
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/tools-data.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="../../../../assets/js/search.js" defer></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Meme Generator - Toolneat">
+  <meta property="og:description" content="Add text to images to create memes.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/meme-generator">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Meme Generator","description":"Add text to images to create memes.","url":"https://toolneat.com/en/tools/life/meme-generator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Toolneat"}}
+  </script>
+  <style>
+    .drop-zone{border:2px dashed #d1d5db;border-radius:16px;padding:48px 24px;text-align:center;transition:all .2s;cursor:pointer}
+    .dark .drop-zone{border-color:#4b5563}
+    .drop-zone:hover{border-color:#3b82f6;background:#f0f9ff}
+    .dark .drop-zone:hover{background:#1e3a5f}
+    .drop-zone.drag-over{border-color:#3b82f6;background:#eff6ff}
+    .dark .drop-zone.drag-over{background:#1e3a5f}
+    .preview-area{background:#1f2937;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:400px}
+    .preview-area canvas{max-width:100%;max-height:600px}
+    .range-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:#e5e7eb;outline:none}
+    .range-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:#3b82f6;cursor:pointer}
+    .dark .range-slider{background:#374151}
+    .color-btn{width:32px;height:32px;border-radius:8px;border:2px solid transparent;cursor:pointer;transition:all .2s}
+    .color-btn:hover{transform:scale(1.1)}
+    .color-btn.active{border-color:#3b82f6;box-shadow:0 0 0 2px rgba(59,130,246,.3)}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header">
+<header class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/en/" class="nav-link text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        Toolneat
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-2">
+
+        <!-- Dev Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">Dev Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu">
+            <!-- Encoding/Decoding -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.encoding">Encoding</h4>
+              <a href="/en/tools/dev/base64" class="mega-link nav-link" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
+              <a href="/en/tools/dev/url-encoder" class="mega-link nav-link" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
+              <a href="/en/tools/dev/html-entity" class="mega-link nav-link" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
+            </div>
+            <!-- Generators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.generators">Generators</h4>
+              <a href="/en/tools/dev/uuid-generator" class="mega-link nav-link" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
+              <a href="/en/tools/dev/hash-generator" class="mega-link nav-link" data-i18n="tools.hashGenerator.title">Hash Generator</a>
+              <a href="/en/tools/dev/lorem-ipsum" class="mega-link nav-link" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
+              <a href="/en/tools/dev/jwt-generator" class="mega-link nav-link" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
+              <a href="/en/tools/dev/password-generator" class="mega-link nav-link" data-i18n="tools.passwordGenerator.title">Password Generator</a>
+              <a href="/en/tools/dev/cron-generator" class="mega-link nav-link" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
+              <a href="/en/tools/dev/gradient-generator" class="mega-link nav-link" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
+            </div>
+            <!-- Converters -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.converters">Converters</h4>
+              <a href="/en/tools/dev/json-formatter" class="mega-link nav-link" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
+              <a href="/en/tools/dev/color-converter" class="mega-link nav-link" data-i18n="tools.colorConverter.title">Color Converter</a>
+              <a href="/en/tools/dev/color-palette" class="mega-link nav-link" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
+              <a href="/en/tools/dev/timestamp-converter" class="mega-link nav-link whitespace-nowrap" data-i18n="tools.timestampConverter.titleShort">Timestamp</a>
+              <a href="/en/tools/dev/yaml-json" class="mega-link nav-link" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/markdown-preview" class="mega-link nav-link" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
+              <a href="/en/tools/dev/case-converter" class="mega-link nav-link" data-i18n="tools.caseConverter.title">Case Converter</a>
+              <a href="/en/tools/dev/sql-formatter" class="mega-link nav-link" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
+              <a href="/en/tools/dev/css-minifier" class="mega-link nav-link" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
+              <a href="/en/tools/dev/line-ending" class="mega-link nav-link" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
+            </div>
+            <!-- Testers -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.testers">Testers</h4>
+              <a href="/en/tools/dev/regex-tester" class="mega-link nav-link" data-i18n="tools.regexTester.title">Regex Tester</a>
+              <a href="/en/tools/dev/jwt-decoder" class="mega-link nav-link" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
+              <a href="/en/tools/dev/diff-checker" class="mega-link nav-link" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-2 !min-w-[400px]">
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfEdit">PDF Edit</h4>
+              <a href="/en/tools/pdf/merge-pdf" class="mega-link nav-link" data-i18n="tools.mergePdf.title">Merge PDF</a>
+              <a href="/en/tools/pdf/split-pdf" class="mega-link nav-link" data-i18n="tools.splitPdf.title">Split PDF</a>
+              <a href="/en/tools/pdf/compress-pdf" class="mega-link nav-link" data-i18n="tools.compressPdf.title">Compress PDF</a>
+              <a href="/en/tools/pdf/rotate-pdf" class="mega-link nav-link" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
+              <a href="/en/tools/pdf/watermark-pdf" class="mega-link nav-link" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
+              <a href="/en/tools/pdf/delete-pdf" class="mega-link nav-link" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
+            </div>
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfConvert">PDF Convert</h4>
+              <a href="/en/tools/pdf/pdf-to-image" class="mega-link nav-link" data-i18n="tools.pdfToImage.title">PDF to Image</a>
+              <a href="/en/tools/pdf/image-to-pdf" class="mega-link nav-link" data-i18n="tools.imageToPdf.title">Image to PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Life Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">Life Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-5 !min-w-[900px]">
+            <!-- Calculators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.calculators">Calculators</h4>
+              <a href="/en/tools/life/salary-calculator" class="mega-link nav-link" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
+              <a href="/en/tools/life/dday-calculator" class="mega-link nav-link" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
+              <a href="/en/tools/life/bmi-calculator" class="mega-link nav-link" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
+              <a href="/en/tools/life/loan-calculator" class="mega-link nav-link" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
+              <a href="/en/tools/life/age-calculator" class="mega-link nav-link" data-i18n="tools.ageCalculator.title">Age Calculator</a>
+              <a href="/en/tools/life/percent-calculator" class="mega-link nav-link" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
+              <a href="/en/tools/life/compound-calculator" class="mega-link nav-link" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
+              <a href="/en/tools/life/tip-calculator" class="mega-link nav-link" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
+            </div>
+            <!-- Media & AI -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.mediaAi">Media & AI</h4>
+              <a href="/en/tools/life/background-remover" class="mega-link nav-link" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
+              <a href="/en/tools/life/video-to-gif" class="mega-link nav-link" data-i18n="tools.videoToGif.title">Video to GIF</a>
+              <a href="/en/tools/life/screen-recorder" class="mega-link nav-link" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
+              <a href="/en/tools/life/ocr" class="mega-link nav-link" data-i18n="tools.ocr.title">OCR Text Extractor</a>
+            </div>
+            <!-- Utilities -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.utilities">Utilities</h4>
+              <a href="/en/tools/life/character-counter" class="mega-link nav-link" data-i18n="tools.characterCounter.title">Character Counter</a>
+              <a href="/en/tools/life/unit-converter" class="mega-link nav-link" data-i18n="tools.unitConverter.title">Unit Converter</a>
+              <a href="/en/tools/life/qr-generator" class="mega-link nav-link" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
+              <a href="/en/tools/life/qr-scanner" class="mega-link nav-link" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
+              <a href="/en/tools/life/barcode-generator" class="mega-link nav-link" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
+              <a href="/en/tools/life/favicon-generator" class="mega-link nav-link" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
+              <a href="/en/tools/life/image-compressor" class="mega-link nav-link" data-i18n="tools.imageCompressor.title">Image Compressor</a>
+              <a href="/en/tools/life/image-resizer" class="mega-link nav-link" data-i18n="tools.imageResizer.title">Image Resizer</a>
+              <a href="/en/tools/life/image-converter" class="mega-link nav-link" data-i18n="tools.imageConverter.title">Image Format Converter</a>
+              <a href="/en/tools/life/image-watermark" class="mega-link nav-link" data-i18n="tools.imageWatermark.title">Image Watermark</a>
+              <a href="/en/tools/life/color-picker" class="mega-link nav-link" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
+              <a href="/en/tools/life/base-converter" class="mega-link nav-link" data-i18n="tools.baseConverter.title">Number Base Converter</a>
+              <a href="/en/tools/life/ascii-unicode" class="mega-link nav-link" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
+              <a href="/en/tools/life/emoji-picker" class="mega-link nav-link" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
+            </div>
+            <!-- Monitor Test -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.monitorTest">Monitor Test</h4>
+              <a href="/en/tools/life/dead-pixel-test" class="mega-link nav-link" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
+              <a href="/en/tools/life/pixel-fixer" class="mega-link nav-link" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
+              <a href="/en/tools/life/screen-burn-test" class="mega-link nav-link" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
+              <a href="/en/tools/life/screen-color-test" class="mega-link nav-link" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
+            </div>
+            <!-- Fun & Games -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.funGames">Fun & Games</h4>
+              <a href="/en/tools/life/lottery-generator" class="mega-link nav-link" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
+              <a href="/en/tools/life/roulette" class="mega-link nav-link" data-i18n="tools.roulette.title">Roulette Wheel</a>
+              <a href="/en/tools/life/dice-roller" class="mega-link nav-link" data-i18n="tools.diceRoller.title">Dice Roller</a>
+              <a href="/en/tools/life/coin-flip" class="mega-link nav-link" data-i18n="tools.coinFlip.title">Coin Flip</a>
+              <a href="/en/tools/life/typing-test" class="mega-link nav-link" data-i18n="tools.typingTest.title">Typing Test</a>
+              <a href="/en/tools/life/reaction-test" class="mega-link nav-link" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <!-- Search Button -->
+        <button id="header-search-btn" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="hidden lg:inline" data-i18n="nav.search">Search</span>
+          <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 dark:bg-gray-700 rounded">
+            <span class="text-[9px]">Ctrl</span>K
+          </kbd>
+        </button>
+
+        <!-- Language Toggle -->
+        <div class="hidden sm:flex items-center gap-1 text-sm">
+          <button data-lang="ko" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">KO</button>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
+          <button data-lang="en" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">EN</button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+          <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="icon-btn md:hidden" aria-label="Menu">
+          <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (2-level accordion) -->
+    <nav id="mobile-menu" class="hidden md:hidden pb-4">
+      <!-- Mobile Search Button -->
+      <button id="mobile-search-btn" class="w-full flex items-center gap-3 py-3 px-3 mb-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <span data-i18n="nav.search">Search</span>
+      </button>
+
+      <!-- Language (Mobile) -->
+      <div class="flex items-center gap-2 py-3 border-b border-gray-100 dark:border-gray-800 mb-2">
+        <span class="text-sm text-gray-500">Language:</span>
+        <button data-lang="ko" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">KO</button>
+        <button data-lang="en" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">EN</button>
+      </div>
+
+      <!-- Dev Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">Dev Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Encoding/Decoding -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.encoding">Encoding</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/base64" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
+              <a href="/en/tools/dev/url-encoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
+              <a href="/en/tools/dev/html-entity" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
+            </div>
+          </div>
+          <!-- Generators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.generators">Generators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/uuid-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
+              <a href="/en/tools/dev/hash-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.hashGenerator.title">Hash Generator</a>
+              <a href="/en/tools/dev/lorem-ipsum" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
+              <a href="/en/tools/dev/jwt-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
+              <a href="/en/tools/dev/password-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.passwordGenerator.title">Password Generator</a>
+              <a href="/en/tools/dev/cron-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
+              <a href="/en/tools/dev/gradient-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
+            </div>
+          </div>
+          <!-- Converters -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.converters">Converters</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/json-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
+              <a href="/en/tools/dev/color-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorConverter.title">Color Converter</a>
+              <a href="/en/tools/dev/color-palette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
+              <a href="/en/tools/dev/timestamp-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.timestampConverter.title">Unix Timestamp Converter</a>
+              <a href="/en/tools/dev/yaml-json" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/markdown-preview" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
+              <a href="/en/tools/dev/case-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.caseConverter.title">Case Converter</a>
+              <a href="/en/tools/dev/sql-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
+              <a href="/en/tools/dev/css-minifier" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
+              <a href="/en/tools/dev/line-ending" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
+            </div>
+          </div>
+          <!-- Testers -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.testers">Testers</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/regex-tester" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.regexTester.title">Regex Tester</a>
+              <a href="/en/tools/dev/jwt-decoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
+              <a href="/en/tools/dev/diff-checker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- PDF Edit -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfEdit">PDF Edit</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/merge-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.mergePdf.title">Merge PDF</a>
+              <a href="/en/tools/pdf/split-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.splitPdf.title">Split PDF</a>
+              <a href="/en/tools/pdf/compress-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compressPdf.title">Compress PDF</a>
+              <a href="/en/tools/pdf/rotate-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
+              <a href="/en/tools/pdf/watermark-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
+              <a href="/en/tools/pdf/delete-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
+            </div>
+          </div>
+          <!-- PDF Convert -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfConvert">PDF Convert</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/pdf-to-image" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pdfToImage.title">PDF to Image</a>
+              <a href="/en/tools/pdf/image-to-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageToPdf.title">Image to PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Life Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">Life Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Calculators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.calculators">Calculators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/salary-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
+              <a href="/en/tools/life/dday-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
+              <a href="/en/tools/life/bmi-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
+              <a href="/en/tools/life/loan-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
+              <a href="/en/tools/life/age-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ageCalculator.title">Age Calculator</a>
+              <a href="/en/tools/life/percent-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
+              <a href="/en/tools/life/compound-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
+              <a href="/en/tools/life/tip-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
+            </div>
+          </div>
+          <!-- Media & AI -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.mediaAi">Media & AI</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/background-remover" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
+              <a href="/en/tools/life/video-to-gif" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.videoToGif.title">Video to GIF</a>
+              <a href="/en/tools/life/screen-recorder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
+              <a href="/en/tools/life/ocr" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ocr.title">OCR Text Extractor</a>
+            </div>
+          </div>
+          <!-- Utilities -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.utilities">Utilities</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/character-counter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.characterCounter.title">Character Counter</a>
+              <a href="/en/tools/life/unit-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.unitConverter.title">Unit Converter</a>
+              <a href="/en/tools/life/qr-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
+              <a href="/en/tools/life/qr-scanner" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
+              <a href="/en/tools/life/barcode-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
+              <a href="/en/tools/life/favicon-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
+              <a href="/en/tools/life/image-compressor" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageCompressor.title">Image Compressor</a>
+              <a href="/en/tools/life/image-resizer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageResizer.title">Image Resizer</a>
+              <a href="/en/tools/life/image-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageConverter.title">Image Format Converter</a>
+              <a href="/en/tools/life/image-watermark" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageWatermark.title">Image Watermark</a>
+              <a href="/en/tools/life/color-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
+              <a href="/en/tools/life/base-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.baseConverter.title">Number Base Converter</a>
+              <a href="/en/tools/life/ascii-unicode" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
+              <a href="/en/tools/life/emoji-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
+            </div>
+          </div>
+          <!-- Monitor Test -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.monitorTest">Monitor Test</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/dead-pixel-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
+              <a href="/en/tools/life/pixel-fixer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
+              <a href="/en/tools/life/screen-burn-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
+              <a href="/en/tools/life/screen-color-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
+            </div>
+          </div>
+          <!-- Fun & Games -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.funGames">Fun & Games</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/lottery-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
+              <a href="/en/tools/life/roulette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.roulette.title">Roulette Wheel</a>
+              <a href="/en/tools/life/dice-roller" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diceRoller.title">Dice Roller</a>
+              <a href="/en/tools/life/coin-flip" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.coinFlip.title">Coin Flip</a>
+              <a href="/en/tools/life/typing-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.typingTest.title">Typing Test</a>
+              <a href="/en/tools/life/reaction-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+</div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Meme Generator</h1>
+        <p class="text-gray-600 dark:text-gray-400">Add text to images to create funny memes.</p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Row 1: Image Upload & Preview -->
+        <div class="card">
+          <!-- Drop Zone (shown when no image) -->
+          <div id="drop-zone" class="drop-zone">
+            <input type="file" id="file-input" accept="image/*" class="hidden">
+            <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <p class="text-gray-600 dark:text-gray-400 mb-2">Drag & drop or click to select an image</p>
+            <p class="text-sm text-gray-500">Supports PNG, JPG, WEBP, GIF</p>
+          </div>
+
+          <!-- Preview Area (shown when image loaded) -->
+          <div id="preview-section" class="hidden">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Preview</span>
+              <button id="change-image" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">Change Image</button>
+            </div>
+            <div class="preview-area">
+              <canvas id="meme-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Text Settings -->
+        <div class="space-y-6">
+          <div class="card">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Text Settings</h2>
+
+            <!-- Top Text -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Top Text</label>
+              <input type="text" id="top-text" class="input w-full" placeholder="Text for the top">
+            </div>
+
+            <!-- Bottom Text -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Bottom Text</label>
+              <input type="text" id="bottom-text" class="input w-full" placeholder="Text for the bottom">
+            </div>
+
+            <!-- Font Size -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Font Size: <span id="font-size-value">48</span>px
+              </label>
+              <input type="range" id="font-size" class="range-slider" min="20" max="100" value="48">
+            </div>
+
+            <!-- Text Color -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Text Color</label>
+              <div class="flex gap-2 flex-wrap">
+                <button class="color-btn active" data-color="#ffffff" style="background:#ffffff"></button>
+                <button class="color-btn" data-color="#000000" style="background:#000000"></button>
+                <button class="color-btn" data-color="#ff0000" style="background:#ff0000"></button>
+                <button class="color-btn" data-color="#ffff00" style="background:#ffff00"></button>
+                <button class="color-btn" data-color="#00ff00" style="background:#00ff00"></button>
+                <button class="color-btn" data-color="#00ffff" style="background:#00ffff"></button>
+                <button class="color-btn" data-color="#ff00ff" style="background:#ff00ff"></button>
+              </div>
+            </div>
+
+            <!-- Stroke Color -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Outline Color</label>
+              <div class="flex gap-2 flex-wrap">
+                <button class="stroke-btn color-btn active" data-color="#000000" style="background:#000000"></button>
+                <button class="stroke-btn color-btn" data-color="#ffffff" style="background:#ffffff"></button>
+                <button class="stroke-btn color-btn" data-color="#ff0000" style="background:#ff0000"></button>
+                <button class="stroke-btn color-btn" data-color="#0000ff" style="background:#0000ff"></button>
+                <button class="stroke-btn color-btn" data-color="none" style="background:linear-gradient(45deg,#ccc 25%,transparent 25%,transparent 75%,#ccc 75%),linear-gradient(45deg,#ccc 25%,transparent 25%,transparent 75%,#ccc 75%);background-size:8px 8px;background-position:0 0,4px 4px" title="No outline"></button>
+              </div>
+            </div>
+
+            <!-- Stroke Width -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Outline Width: <span id="stroke-width-value">3</span>px
+              </label>
+              <input type="range" id="stroke-width" class="range-slider" min="0" max="10" value="3">
+            </div>
+          </div>
+
+          <!-- Download Button -->
+          <button id="download-btn" class="btn btn-primary w-full flex items-center justify-center gap-2 py-4 text-lg" disabled>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Download Meme
+          </button>
+        </div>
+      </div>
+
+      <!-- Privacy Badge -->
+      <div class="mt-6 flex justify-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          100% browser processing - images are not uploaded to servers
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About Meme Generator</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Create internet memes by adding text to images. Perfect for social media sharing, chat humor, and content creation.</p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
+            <li>Upload an image</li>
+            <li>Enter top and/or bottom text</li>
+            <li>Adjust font size, color, and outline</li>
+            <li>Click Download</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Tips</h3>
+          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
+            <li>White text + black outline is the most readable combination</li>
+            <li>ALL CAPS gives the classic meme look</li>
+            <li>Long text will automatically wrap to multiple lines</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+  <div class="container-main">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+      <p>&copy; 2026 Toolneat. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/en/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/en/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/en/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const previewSection = document.getElementById('preview-section');
+    const changeImageBtn = document.getElementById('change-image');
+    const canvas = document.getElementById('meme-canvas');
+    const ctx = canvas.getContext('2d');
+    const topTextInput = document.getElementById('top-text');
+    const bottomTextInput = document.getElementById('bottom-text');
+    const fontSizeSlider = document.getElementById('font-size');
+    const fontSizeValue = document.getElementById('font-size-value');
+    const strokeWidthSlider = document.getElementById('stroke-width');
+    const strokeWidthValue = document.getElementById('stroke-width-value');
+    const colorBtns = document.querySelectorAll('.color-btn:not(.stroke-btn)');
+    const strokeBtns = document.querySelectorAll('.stroke-btn');
+    const downloadBtn = document.getElementById('download-btn');
+
+    let image = null;
+    let textColor = '#ffffff';
+    let strokeColor = '#000000';
+
+    // Drop zone events
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('drag-over');
+    });
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('drag-over');
+    });
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('drag-over');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) loadImage(file);
+    });
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) loadImage(file);
+    });
+
+    // Change image button
+    changeImageBtn.addEventListener('click', () => fileInput.click());
+
+    function loadImage(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          image = img;
+          dropZone.classList.add('hidden');
+          previewSection.classList.remove('hidden');
+          downloadBtn.disabled = false;
+          render();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function render() {
+      if (!image) return;
+
+      // Set canvas size
+      const maxWidth = 800;
+      const maxHeight = 800;
+      let width = image.width;
+      let height = image.height;
+
+      if (width > maxWidth) {
+        height = (height * maxWidth) / width;
+        width = maxWidth;
+      }
+      if (height > maxHeight) {
+        width = (width * maxHeight) / height;
+        height = maxHeight;
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
+      // Draw image
+      ctx.drawImage(image, 0, 0, width, height);
+
+      // Text settings
+      const fontSize = parseInt(fontSizeSlider.value);
+      const strokeWidth = parseInt(strokeWidthSlider.value);
+      const padding = fontSize * 0.3;
+
+      ctx.font = `bold ${fontSize}px Impact, Arial Black, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.fillStyle = textColor;
+      ctx.strokeStyle = strokeColor;
+      ctx.lineWidth = strokeWidth;
+      ctx.lineJoin = 'round';
+      ctx.miterLimit = 2;
+
+      // Draw top text
+      const topText = topTextInput.value.toUpperCase();
+      if (topText) {
+        drawText(topText, width / 2, fontSize + padding, width - padding * 2);
+      }
+
+      // Draw bottom text
+      const bottomText = bottomTextInput.value.toUpperCase();
+      if (bottomText) {
+        drawText(bottomText, width / 2, height - padding, width - padding * 2);
+      }
+    }
+
+    function drawText(text, x, y, maxWidth) {
+      const words = text.split(' ');
+      const lines = [];
+      let currentLine = '';
+
+      words.forEach(word => {
+        const testLine = currentLine ? currentLine + ' ' + word : word;
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && currentLine) {
+          lines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = testLine;
+        }
+      });
+      lines.push(currentLine);
+
+      const lineHeight = parseInt(fontSizeSlider.value) * 1.1;
+      const startY = y < canvas.height / 2 ? y : y - (lines.length - 1) * lineHeight;
+
+      lines.forEach((line, i) => {
+        const lineY = startY + i * lineHeight;
+        if (strokeColor !== 'none') {
+          ctx.strokeText(line, x, lineY);
+        }
+        ctx.fillText(line, x, lineY);
+      });
+    }
+
+    // Event listeners
+    topTextInput.addEventListener('input', render);
+    bottomTextInput.addEventListener('input', render);
+
+    fontSizeSlider.addEventListener('input', () => {
+      fontSizeValue.textContent = fontSizeSlider.value;
+      render();
+    });
+
+    strokeWidthSlider.addEventListener('input', () => {
+      strokeWidthValue.textContent = strokeWidthSlider.value;
+      render();
+    });
+
+    colorBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        colorBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        textColor = btn.dataset.color;
+        render();
+      });
+    });
+
+    strokeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        strokeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        strokeColor = btn.dataset.color;
+        render();
+      });
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!image) return;
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'meme.png';
+        a.click();
+        URL.revokeObjectURL(url);
+        toast.success('Meme downloaded');
+      }, 'image/png');
+    });
+    })();
+  </script>
+</body>
+</html>

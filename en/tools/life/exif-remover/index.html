@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXIF Metadata Remover - Toolneat</title>
+  <meta name="description" content="Free online tool to remove EXIF metadata (GPS location, camera info, etc.) from images. Protect your privacy before sharing photos.">
+  <link rel="canonical" href="https://toolneat.com/en/tools/life/exif-remover/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/exif-remover/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/exif-remover/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/exif-remover/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="stylesheet" href="../../../../assets/css/output.css">
+  <script>localStorage.setItem('toolneat-lang', 'en');</script>
+  <script src="../../../../assets/js/common.js"></script>
+  <script src="../../../../assets/js/i18n.js"></script>
+  <script src="../../../../assets/js/tools-data.js"></script>
+  <script src="../../../../assets/js/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="../../../../assets/js/search.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/piexifjs@1.0.6/piexif.min.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="EXIF Metadata Remover - Toolneat">
+  <meta property="og:description" content="Remove EXIF metadata from images.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/life/exif-remover">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"EXIF Metadata Remover","description":"Remove EXIF metadata from images.","url":"https://toolneat.com/en/tools/life/exif-remover","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Toolneat"}}
+  </script>
+  <style>
+    .metadata-table{width:100%;border-collapse:collapse;font-size:14px}
+    .metadata-table th,.metadata-table td{padding:8px 12px;text-align:left;border-bottom:1px solid #e5e7eb}
+    .dark .metadata-table th,.dark .metadata-table td{border-color:#374151}
+    .metadata-table th{background:#f9fafb;font-weight:600;color:#374151;width:40%}
+    .dark .metadata-table th{background:#1f2937;color:#d1d5db}
+    .metadata-table td{color:#6b7280}
+    .dark .metadata-table td{color:#9ca3af}
+    .status-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500}
+    .status-badge.has-exif{background:#fef3c7;color:#92400e}
+    .dark .status-badge.has-exif{background:#78350f;color:#fcd34d}
+    .status-badge.no-exif{background:#d1fae5;color:#065f46}
+    .dark .status-badge.no-exif{background:#064e3b;color:#6ee7b7}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header">
+<header class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/en/" class="nav-link text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        Toolneat
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-2">
+
+        <!-- Dev Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">Dev Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu">
+            <!-- Encoding/Decoding -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.encoding">Encoding</h4>
+              <a href="/en/tools/dev/base64" class="mega-link nav-link" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
+              <a href="/en/tools/dev/url-encoder" class="mega-link nav-link" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
+              <a href="/en/tools/dev/html-entity" class="mega-link nav-link" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
+            </div>
+            <!-- Generators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.generators">Generators</h4>
+              <a href="/en/tools/dev/uuid-generator" class="mega-link nav-link" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
+              <a href="/en/tools/dev/hash-generator" class="mega-link nav-link" data-i18n="tools.hashGenerator.title">Hash Generator</a>
+              <a href="/en/tools/dev/lorem-ipsum" class="mega-link nav-link" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
+              <a href="/en/tools/dev/jwt-generator" class="mega-link nav-link" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
+              <a href="/en/tools/dev/password-generator" class="mega-link nav-link" data-i18n="tools.passwordGenerator.title">Password Generator</a>
+              <a href="/en/tools/dev/cron-generator" class="mega-link nav-link" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
+              <a href="/en/tools/dev/gradient-generator" class="mega-link nav-link" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
+            </div>
+            <!-- Converters -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.converters">Converters</h4>
+              <a href="/en/tools/dev/json-formatter" class="mega-link nav-link" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
+              <a href="/en/tools/dev/color-converter" class="mega-link nav-link" data-i18n="tools.colorConverter.title">Color Converter</a>
+              <a href="/en/tools/dev/color-palette" class="mega-link nav-link" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
+              <a href="/en/tools/dev/timestamp-converter" class="mega-link nav-link whitespace-nowrap" data-i18n="tools.timestampConverter.titleShort">Timestamp</a>
+              <a href="/en/tools/dev/yaml-json" class="mega-link nav-link" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/markdown-preview" class="mega-link nav-link" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
+              <a href="/en/tools/dev/case-converter" class="mega-link nav-link" data-i18n="tools.caseConverter.title">Case Converter</a>
+              <a href="/en/tools/dev/sql-formatter" class="mega-link nav-link" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
+              <a href="/en/tools/dev/css-minifier" class="mega-link nav-link" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
+              <a href="/en/tools/dev/line-ending" class="mega-link nav-link" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
+            </div>
+            <!-- Testers -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.testers">Testers</h4>
+              <a href="/en/tools/dev/regex-tester" class="mega-link nav-link" data-i18n="tools.regexTester.title">Regex Tester</a>
+              <a href="/en/tools/dev/jwt-decoder" class="mega-link nav-link" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
+              <a href="/en/tools/dev/diff-checker" class="mega-link nav-link" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-2 !min-w-[400px]">
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfEdit">PDF Edit</h4>
+              <a href="/en/tools/pdf/merge-pdf" class="mega-link nav-link" data-i18n="tools.mergePdf.title">Merge PDF</a>
+              <a href="/en/tools/pdf/split-pdf" class="mega-link nav-link" data-i18n="tools.splitPdf.title">Split PDF</a>
+              <a href="/en/tools/pdf/compress-pdf" class="mega-link nav-link" data-i18n="tools.compressPdf.title">Compress PDF</a>
+              <a href="/en/tools/pdf/rotate-pdf" class="mega-link nav-link" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
+              <a href="/en/tools/pdf/watermark-pdf" class="mega-link nav-link" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
+              <a href="/en/tools/pdf/delete-pdf" class="mega-link nav-link" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
+            </div>
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.pdfConvert">PDF Convert</h4>
+              <a href="/en/tools/pdf/pdf-to-image" class="mega-link nav-link" data-i18n="tools.pdfToImage.title">PDF to Image</a>
+              <a href="/en/tools/pdf/image-to-pdf" class="mega-link nav-link" data-i18n="tools.imageToPdf.title">Image to PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Life Tools Mega Menu -->
+        <div class="nav-dropdown group">
+          <button class="nav-dropdown-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">Life Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-mega-menu !grid-cols-5 !min-w-[900px]">
+            <!-- Calculators -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.calculators">Calculators</h4>
+              <a href="/en/tools/life/salary-calculator" class="mega-link nav-link" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
+              <a href="/en/tools/life/dday-calculator" class="mega-link nav-link" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
+              <a href="/en/tools/life/bmi-calculator" class="mega-link nav-link" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
+              <a href="/en/tools/life/loan-calculator" class="mega-link nav-link" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
+              <a href="/en/tools/life/age-calculator" class="mega-link nav-link" data-i18n="tools.ageCalculator.title">Age Calculator</a>
+              <a href="/en/tools/life/percent-calculator" class="mega-link nav-link" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
+              <a href="/en/tools/life/compound-calculator" class="mega-link nav-link" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
+              <a href="/en/tools/life/tip-calculator" class="mega-link nav-link" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
+            </div>
+            <!-- Media & AI -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.mediaAi">Media & AI</h4>
+              <a href="/en/tools/life/background-remover" class="mega-link nav-link" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
+              <a href="/en/tools/life/video-to-gif" class="mega-link nav-link" data-i18n="tools.videoToGif.title">Video to GIF</a>
+              <a href="/en/tools/life/screen-recorder" class="mega-link nav-link" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
+              <a href="/en/tools/life/ocr" class="mega-link nav-link" data-i18n="tools.ocr.title">OCR Text Extractor</a>
+            </div>
+            <!-- Utilities -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.utilities">Utilities</h4>
+              <a href="/en/tools/life/character-counter" class="mega-link nav-link" data-i18n="tools.characterCounter.title">Character Counter</a>
+              <a href="/en/tools/life/unit-converter" class="mega-link nav-link" data-i18n="tools.unitConverter.title">Unit Converter</a>
+              <a href="/en/tools/life/qr-generator" class="mega-link nav-link" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
+              <a href="/en/tools/life/qr-scanner" class="mega-link nav-link" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
+              <a href="/en/tools/life/barcode-generator" class="mega-link nav-link" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
+              <a href="/en/tools/life/favicon-generator" class="mega-link nav-link" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
+              <a href="/en/tools/life/image-compressor" class="mega-link nav-link" data-i18n="tools.imageCompressor.title">Image Compressor</a>
+              <a href="/en/tools/life/image-resizer" class="mega-link nav-link" data-i18n="tools.imageResizer.title">Image Resizer</a>
+              <a href="/en/tools/life/image-converter" class="mega-link nav-link" data-i18n="tools.imageConverter.title">Image Format Converter</a>
+              <a href="/en/tools/life/image-watermark" class="mega-link nav-link" data-i18n="tools.imageWatermark.title">Image Watermark</a>
+              <a href="/en/tools/life/color-picker" class="mega-link nav-link" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
+              <a href="/en/tools/life/base-converter" class="mega-link nav-link" data-i18n="tools.baseConverter.title">Number Base Converter</a>
+              <a href="/en/tools/life/ascii-unicode" class="mega-link nav-link" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
+              <a href="/en/tools/life/emoji-picker" class="mega-link nav-link" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
+            </div>
+            <!-- Monitor Test -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.monitorTest">Monitor Test</h4>
+              <a href="/en/tools/life/dead-pixel-test" class="mega-link nav-link" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
+              <a href="/en/tools/life/pixel-fixer" class="mega-link nav-link" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
+              <a href="/en/tools/life/screen-burn-test" class="mega-link nav-link" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
+              <a href="/en/tools/life/screen-color-test" class="mega-link nav-link" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
+            </div>
+            <!-- Fun & Games -->
+            <div class="mega-column">
+              <h4 class="mega-title" data-i18n="nav.funGames">Fun & Games</h4>
+              <a href="/en/tools/life/lottery-generator" class="mega-link nav-link" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
+              <a href="/en/tools/life/roulette" class="mega-link nav-link" data-i18n="tools.roulette.title">Roulette Wheel</a>
+              <a href="/en/tools/life/dice-roller" class="mega-link nav-link" data-i18n="tools.diceRoller.title">Dice Roller</a>
+              <a href="/en/tools/life/coin-flip" class="mega-link nav-link" data-i18n="tools.coinFlip.title">Coin Flip</a>
+              <a href="/en/tools/life/typing-test" class="mega-link nav-link" data-i18n="tools.typingTest.title">Typing Test</a>
+              <a href="/en/tools/life/reaction-test" class="mega-link nav-link" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <!-- Search Button -->
+        <button id="header-search-btn" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="hidden lg:inline" data-i18n="nav.search">Search</span>
+          <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 dark:bg-gray-700 rounded">
+            <span class="text-[9px]">Ctrl</span>K
+          </kbd>
+        </button>
+
+        <!-- Language Toggle -->
+        <div class="hidden sm:flex items-center gap-1 text-sm">
+          <button data-lang="ko" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">KO</button>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
+          <button data-lang="en" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">EN</button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+          <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="icon-btn md:hidden" aria-label="Menu">
+          <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (2-level accordion) -->
+    <nav id="mobile-menu" class="hidden md:hidden pb-4">
+      <!-- Mobile Search Button -->
+      <button id="mobile-search-btn" class="w-full flex items-center gap-3 py-3 px-3 mb-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <span data-i18n="nav.search">Search</span>
+      </button>
+
+      <!-- Language (Mobile) -->
+      <div class="flex items-center gap-2 py-3 border-b border-gray-100 dark:border-gray-800 mb-2">
+        <span class="text-sm text-gray-500">Language:</span>
+        <button data-lang="ko" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">KO</button>
+        <button data-lang="en" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">EN</button>
+      </div>
+
+      <!-- Dev Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">Dev Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Encoding/Decoding -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.encoding">Encoding</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/base64" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
+              <a href="/en/tools/dev/url-encoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
+              <a href="/en/tools/dev/html-entity" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
+            </div>
+          </div>
+          <!-- Generators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.generators">Generators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/uuid-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
+              <a href="/en/tools/dev/hash-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.hashGenerator.title">Hash Generator</a>
+              <a href="/en/tools/dev/lorem-ipsum" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
+              <a href="/en/tools/dev/jwt-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
+              <a href="/en/tools/dev/password-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.passwordGenerator.title">Password Generator</a>
+              <a href="/en/tools/dev/cron-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
+              <a href="/en/tools/dev/gradient-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
+            </div>
+          </div>
+          <!-- Converters -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.converters">Converters</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/json-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
+              <a href="/en/tools/dev/color-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorConverter.title">Color Converter</a>
+              <a href="/en/tools/dev/color-palette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
+              <a href="/en/tools/dev/timestamp-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.timestampConverter.title">Unix Timestamp Converter</a>
+              <a href="/en/tools/dev/yaml-json" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/markdown-preview" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
+              <a href="/en/tools/dev/case-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.caseConverter.title">Case Converter</a>
+              <a href="/en/tools/dev/sql-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
+              <a href="/en/tools/dev/css-minifier" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
+              <a href="/en/tools/dev/line-ending" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
+            </div>
+          </div>
+          <!-- Testers -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.testers">Testers</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/regex-tester" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.regexTester.title">Regex Tester</a>
+              <a href="/en/tools/dev/jwt-decoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
+              <a href="/en/tools/dev/diff-checker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- PDF Edit -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfEdit">PDF Edit</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/merge-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.mergePdf.title">Merge PDF</a>
+              <a href="/en/tools/pdf/split-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.splitPdf.title">Split PDF</a>
+              <a href="/en/tools/pdf/compress-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compressPdf.title">Compress PDF</a>
+              <a href="/en/tools/pdf/rotate-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
+              <a href="/en/tools/pdf/watermark-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
+              <a href="/en/tools/pdf/delete-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
+            </div>
+          </div>
+          <!-- PDF Convert -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfConvert">PDF Convert</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/pdf-to-image" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pdfToImage.title">PDF to Image</a>
+              <a href="/en/tools/pdf/image-to-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageToPdf.title">Image to PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Life Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">Life Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Calculators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.calculators">Calculators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/salary-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
+              <a href="/en/tools/life/dday-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
+              <a href="/en/tools/life/bmi-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
+              <a href="/en/tools/life/loan-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
+              <a href="/en/tools/life/age-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ageCalculator.title">Age Calculator</a>
+              <a href="/en/tools/life/percent-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
+              <a href="/en/tools/life/compound-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
+              <a href="/en/tools/life/tip-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
+            </div>
+          </div>
+          <!-- Media & AI -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.mediaAi">Media & AI</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/background-remover" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
+              <a href="/en/tools/life/video-to-gif" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.videoToGif.title">Video to GIF</a>
+              <a href="/en/tools/life/screen-recorder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
+              <a href="/en/tools/life/ocr" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ocr.title">OCR Text Extractor</a>
+            </div>
+          </div>
+          <!-- Utilities -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.utilities">Utilities</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/character-counter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.characterCounter.title">Character Counter</a>
+              <a href="/en/tools/life/unit-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.unitConverter.title">Unit Converter</a>
+              <a href="/en/tools/life/qr-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
+              <a href="/en/tools/life/qr-scanner" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
+              <a href="/en/tools/life/barcode-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
+              <a href="/en/tools/life/favicon-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
+              <a href="/en/tools/life/image-compressor" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageCompressor.title">Image Compressor</a>
+              <a href="/en/tools/life/image-resizer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageResizer.title">Image Resizer</a>
+              <a href="/en/tools/life/image-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageConverter.title">Image Format Converter</a>
+              <a href="/en/tools/life/image-watermark" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageWatermark.title">Image Watermark</a>
+              <a href="/en/tools/life/color-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
+              <a href="/en/tools/life/base-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.baseConverter.title">Number Base Converter</a>
+              <a href="/en/tools/life/ascii-unicode" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
+              <a href="/en/tools/life/emoji-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
+            </div>
+          </div>
+          <!-- Monitor Test -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.monitorTest">Monitor Test</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/dead-pixel-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
+              <a href="/en/tools/life/pixel-fixer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
+              <a href="/en/tools/life/screen-burn-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
+              <a href="/en/tools/life/screen-color-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
+            </div>
+          </div>
+          <!-- Fun & Games -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.funGames">Fun & Games</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/lottery-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
+              <a href="/en/tools/life/roulette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.roulette.title">Roulette Wheel</a>
+              <a href="/en/tools/life/dice-roller" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diceRoller.title">Dice Roller</a>
+              <a href="/en/tools/life/coin-flip" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.coinFlip.title">Coin Flip</a>
+              <a href="/en/tools/life/typing-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.typingTest.title">Typing Test</a>
+              <a href="/en/tools/life/reaction-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+</div>
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">EXIF Metadata Remover</h1>
+        <p class="text-gray-600 dark:text-gray-400">Remove EXIF metadata (GPS location, camera info, etc.) from images to protect your privacy.</p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Upload Section -->
+        <div class="card">
+          <div id="upload-section">
+            <div class="dropzone" id="dropzone">
+              <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <p class="text-gray-600 dark:text-gray-400 mb-2">Drag & drop or click to select an image</p>
+              <p class="text-sm text-gray-400">JPG/JPEG files only (EXIF exists only in JPG)</p>
+              <input type="file" id="file-input" accept="image/jpeg,.jpg,.jpeg" class="hidden">
+            </div>
+          </div>
+
+          <!-- Result Section -->
+          <div id="result-section" class="hidden">
+            <!-- Image Preview -->
+            <div class="flex items-start gap-6 mb-6">
+              <div class="w-32 h-32 flex-shrink-0 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
+                <img id="preview-image" src="" alt="Preview" class="w-full h-full object-cover">
+              </div>
+              <div class="flex-1">
+                <h3 id="file-name" class="font-semibold text-gray-900 dark:text-white mb-2">filename.jpg</h3>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                  <span id="file-size">- KB</span> • <span id="image-dimensions">- x -</span>
+                </div>
+                <div id="exif-status"></div>
+              </div>
+            </div>
+
+            <!-- EXIF Data Table -->
+            <div id="exif-data-section" class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Detected Metadata</h3>
+              <div class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden">
+                <table class="metadata-table" id="exif-table">
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-3 flex-wrap">
+              <button id="download-btn" class="btn btn-primary flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                Remove EXIF & Download
+              </button>
+              <button id="change-btn" class="btn btn-secondary">Change Image</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Privacy Badge -->
+      <div class="mt-6 flex justify-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          100% browser processing - images are not uploaded to servers
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is EXIF Metadata?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">EXIF (Exchangeable Image File Format) is metadata embedded in digital photos. It's automatically recorded when you take a picture with a camera or smartphone.</p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Information That May Be Included</h3>
+          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
+            <li><strong>GPS Location:</strong> Exact coordinates where the photo was taken</li>
+            <li><strong>Date/Time:</strong> When the photo was captured</li>
+            <li><strong>Camera Info:</strong> Device model and manufacturer</li>
+            <li><strong>Camera Settings:</strong> Aperture, shutter speed, ISO</li>
+            <li><strong>Thumbnail:</strong> Small preview image</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Why Remove It?</h3>
+          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
+            <li>Uploading photos to social media may expose your home location</li>
+            <li>Selling items online could leak personal information</li>
+            <li>Protect privacy when posting to blogs or websites</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="footer">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+  <div class="container-main">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+      <p>&copy; 2026 Toolneat. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/en/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/en/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/en/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('file-input');
+    const uploadSection = document.getElementById('upload-section');
+    const resultSection = document.getElementById('result-section');
+    const previewImage = document.getElementById('preview-image');
+    const fileNameEl = document.getElementById('file-name');
+    const fileSizeEl = document.getElementById('file-size');
+    const imageDimensionsEl = document.getElementById('image-dimensions');
+    const exifStatusEl = document.getElementById('exif-status');
+    const exifDataSection = document.getElementById('exif-data-section');
+    const exifTableBody = document.querySelector('#exif-table tbody');
+
+    let currentFile = null;
+    let currentDataUrl = null;
+    let hasExif = false;
+
+    // Drag & drop
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+    });
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+    });
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+      const file = e.dataTransfer.files[0];
+      if (file && (file.type === 'image/jpeg' || file.name.toLowerCase().endsWith('.jpg') || file.name.toLowerCase().endsWith('.jpeg'))) {
+        loadImage(file);
+      } else {
+        toast.error('Only JPG/JPEG files are supported');
+      }
+    });
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) loadImage(file);
+    });
+
+    function loadImage(file) {
+      currentFile = file;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        currentDataUrl = e.target.result;
+
+        const img = new Image();
+        img.onload = () => {
+          previewImage.src = currentDataUrl;
+          fileNameEl.textContent = file.name;
+          fileSizeEl.textContent = formatFileSize(file.size);
+          imageDimensionsEl.textContent = `${img.width} x ${img.height}`;
+
+          // Read EXIF data
+          try {
+            const exifData = piexif.load(currentDataUrl);
+            displayExifData(exifData);
+          } catch (err) {
+            hasExif = false;
+            exifStatusEl.innerHTML = '<span class="status-badge no-exif"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>No EXIF data</span>';
+            exifDataSection.classList.add('hidden');
+          }
+
+          uploadSection.classList.add('hidden');
+          resultSection.classList.remove('hidden');
+        };
+        img.src = currentDataUrl;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function displayExifData(exifData) {
+      const entries = [];
+
+      // GPS data
+      if (exifData.GPS && Object.keys(exifData.GPS).length > 0) {
+        const gps = exifData.GPS;
+        if (gps[piexif.GPSIFD.GPSLatitude] && gps[piexif.GPSIFD.GPSLongitude]) {
+          const lat = convertDMSToDD(gps[piexif.GPSIFD.GPSLatitude], gps[piexif.GPSIFD.GPSLatitudeRef]);
+          const lng = convertDMSToDD(gps[piexif.GPSIFD.GPSLongitude], gps[piexif.GPSIFD.GPSLongitudeRef]);
+          entries.push(['GPS Location', `${lat.toFixed(6)}, ${lng.toFixed(6)}`]);
+        }
+        if (gps[piexif.GPSIFD.GPSAltitude]) {
+          entries.push(['GPS Altitude', `${(gps[piexif.GPSIFD.GPSAltitude][0] / gps[piexif.GPSIFD.GPSAltitude][1]).toFixed(1)}m`]);
+        }
+      }
+
+      // 0th IFD (basic info)
+      const ifd0 = exifData['0th'];
+      if (ifd0) {
+        if (ifd0[piexif.ImageIFD.Make]) entries.push(['Manufacturer', ifd0[piexif.ImageIFD.Make]]);
+        if (ifd0[piexif.ImageIFD.Model]) entries.push(['Model', ifd0[piexif.ImageIFD.Model]]);
+        if (ifd0[piexif.ImageIFD.Software]) entries.push(['Software', ifd0[piexif.ImageIFD.Software]]);
+        if (ifd0[piexif.ImageIFD.DateTime]) entries.push(['Modified', ifd0[piexif.ImageIFD.DateTime]]);
+      }
+
+      // Exif IFD
+      const exif = exifData.Exif;
+      if (exif) {
+        if (exif[piexif.ExifIFD.DateTimeOriginal]) entries.push(['Date Taken', exif[piexif.ExifIFD.DateTimeOriginal]]);
+        if (exif[piexif.ExifIFD.ExposureTime]) {
+          const exp = exif[piexif.ExifIFD.ExposureTime];
+          entries.push(['Shutter Speed', `1/${Math.round(exp[1]/exp[0])}s`]);
+        }
+        if (exif[piexif.ExifIFD.FNumber]) {
+          const f = exif[piexif.ExifIFD.FNumber];
+          entries.push(['Aperture', `f/${(f[0]/f[1]).toFixed(1)}`]);
+        }
+        if (exif[piexif.ExifIFD.ISOSpeedRatings]) entries.push(['ISO', exif[piexif.ExifIFD.ISOSpeedRatings]]);
+        if (exif[piexif.ExifIFD.FocalLength]) {
+          const fl = exif[piexif.ExifIFD.FocalLength];
+          entries.push(['Focal Length', `${(fl[0]/fl[1]).toFixed(1)}mm`]);
+        }
+        if (exif[piexif.ExifIFD.LensMake]) entries.push(['Lens Make', exif[piexif.ExifIFD.LensMake]]);
+        if (exif[piexif.ExifIFD.LensModel]) entries.push(['Lens Model', exif[piexif.ExifIFD.LensModel]]);
+      }
+
+      // Check thumbnail
+      if (exifData.thumbnail && exifData.thumbnail.length > 0) {
+        entries.push(['Thumbnail', 'Included']);
+      }
+
+      if (entries.length > 0) {
+        hasExif = true;
+        exifStatusEl.innerHTML = '<span class="status-badge has-exif"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>EXIF data detected</span>';
+        exifDataSection.classList.remove('hidden');
+
+        exifTableBody.innerHTML = entries.map(([key, value]) => `
+          <tr>
+            <th>${key}</th>
+            <td>${value}</td>
+          </tr>
+        `).join('');
+      } else {
+        hasExif = false;
+        exifStatusEl.innerHTML = '<span class="status-badge no-exif"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>No EXIF data</span>';
+        exifDataSection.classList.add('hidden');
+      }
+    }
+
+    function convertDMSToDD(dms, ref) {
+      const d = dms[0][0] / dms[0][1];
+      const m = dms[1][0] / dms[1][1];
+      const s = dms[2][0] / dms[2][1];
+      let dd = d + m/60 + s/3600;
+      if (ref === 'S' || ref === 'W') dd = -dd;
+      return dd;
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+    }
+
+    // Download button
+    document.getElementById('download-btn').addEventListener('click', () => {
+      if (!currentDataUrl) return;
+
+      try {
+        // Remove EXIF
+        const cleanedDataUrl = piexif.remove(currentDataUrl);
+
+        // Convert to blob
+        const byteString = atob(cleanedDataUrl.split(',')[1]);
+        const mimeType = 'image/jpeg';
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([ab], { type: mimeType });
+
+        // Download
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const baseName = currentFile.name.replace(/\.[^/.]+$/, '');
+        a.href = url;
+        a.download = `${baseName}_no_exif.jpg`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        toast.success('Image downloaded with EXIF removed');
+      } catch (err) {
+        toast.error('Error removing EXIF');
+      }
+    });
+
+    // Change image button
+    document.getElementById('change-btn').addEventListener('click', () => {
+      uploadSection.classList.remove('hidden');
+      resultSection.classList.add('hidden');
+      fileInput.value = '';
+      currentFile = null;
+      currentDataUrl = null;
+    });
+    })();
+  </script>
+</body>
+</html>

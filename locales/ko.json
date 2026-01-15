@@ -19,12 +19,23 @@
     "utilities": "유틸리티",
     "text": "텍스트",
     "monitorTest": "모니터 테스트",
-    "funGames": "재미/게임"
+    "funGames": "재미/게임",
+    "search": "검색",
+    "allTools": "모든 도구",
+    "allDevTools": "모든 개발 도구",
+    "allLifeTools": "모든 생활 도구",
+    "allPdfTools": "모든 PDF 도구"
   },
   "footer": {
     "about": "소개",
     "privacy": "개인정보처리방침",
     "terms": "이용약관"
+  },
+  "search": {
+    "placeholder": "도구 검색...",
+    "recentSearches": "최근 검색",
+    "popularTools": "인기 도구",
+    "noResults": "검색 결과가 없습니다"
   },
   "home": {
     "title": "온라인 도구 모음",
@@ -33,6 +44,11 @@
     "devToolsDesc": "개발에 필요한 인코딩, 변환, 생성 도구",
     "lifeTools": "생활 도구",
     "lifeToolsDesc": "일상생활에 유용한 계산기와 변환 도구",
+    "toolCount": "도구",
+    "popularTools": "인기 도구",
+    "newTools": "새로운 도구",
+    "viewAll": "모두 보기",
+    "privacyBadge": "100% 브라우저 처리 - 파일이 서버로 전송되지 않습니다",
     "category": {
       "encoding": "인코딩 / 디코딩",
       "generators": "생성기",
@@ -833,6 +849,18 @@
     "imageToPdf": {
       "title": "이미지 → PDF",
       "description": "이미지를 PDF로 변환합니다."
+    },
+    "rotatePdf": {
+      "title": "PDF 회전",
+      "description": "PDF 페이지를 회전합니다."
+    },
+    "watermarkPdf": {
+      "title": "PDF 워터마크",
+      "description": "PDF에 텍스트 워터마크를 추가합니다."
+    },
+    "deletePdf": {
+      "title": "PDF 페이지 삭제",
+      "description": "PDF에서 원하는 페이지를 삭제합니다."
     },
     "backgroundRemover": {
       "title": "배경 제거 AI",
