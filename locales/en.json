@@ -724,6 +724,18 @@
       "title": "Reaction Time Test",
       "description": "Test your reaction speed."
     },
+    "stopwatch": {
+      "title": "Stopwatch",
+      "description": "Free online stopwatch for accurate time measurement."
+    },
+    "colorContrast": {
+      "title": "Color Contrast Checker",
+      "description": "Check color contrast ratio for WCAG accessibility."
+    },
+    "reorderPdf": {
+      "title": "Reorder PDF Pages",
+      "description": "Reorder PDF pages with drag and drop."
+    },
     "ageCalculator": {
       "title": "Age Calculator",
       "description": "Calculate your age from birthdate."
@@ -911,6 +923,50 @@
       "tip1": "Click the button to activate the eyedropper",
       "tip2": "You can pick colors from outside the browser too",
       "tip3": "Press ESC to cancel"
+    },
+    "textEscape": {
+      "title": "Text Escape",
+      "description": "Escape special characters in text."
+    },
+    "metaTagGenerator": {
+      "title": "Meta Tag Generator",
+      "description": "Generate meta tags for SEO."
+    },
+    "utmGenerator": {
+      "title": "UTM Builder",
+      "description": "Create UTM tracking links for marketing campaigns."
+    },
+    "xmlJson": {
+      "title": "XML ↔ JSON Converter",
+      "description": "Convert between XML and JSON formats."
+    },
+    "memeGenerator": {
+      "title": "Meme Generator",
+      "description": "Create memes by adding text to images."
+    },
+    "speechToText": {
+      "title": "Speech to Text",
+      "description": "Convert speech to text."
+    },
+    "textToSpeech": {
+      "title": "Text to Speech",
+      "description": "Convert text to speech."
+    },
+    "imageCrop": {
+      "title": "Image Crop",
+      "description": "Crop images to desired area."
+    },
+    "imageRotate": {
+      "title": "Image Rotate",
+      "description": "Rotate or flip images."
+    },
+    "exifRemover": {
+      "title": "EXIF Remover",
+      "description": "Remove metadata from images."
+    },
+    "pomodoroTimer": {
+      "title": "Pomodoro Timer",
+      "description": "Timer for focus and productivity."
     }
   },
   "common": {

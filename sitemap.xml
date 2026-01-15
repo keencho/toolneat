@@ -1442,4 +1442,58 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://toolneat.com/tools/dev/color-contrast</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/color-contrast"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/color-contrast"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/color-contrast"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/color-contrast</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/color-contrast"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/color-contrast"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/color-contrast"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/reorder-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/reorder-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/reorder-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/reorder-pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/stopwatch</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/stopwatch"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/stopwatch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/stopwatch"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/stopwatch</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/stopwatch"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/stopwatch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/stopwatch"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

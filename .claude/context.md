@@ -255,55 +255,65 @@
 
 ## 도구 수 업데이트 위치
 
-**현재**: Dev 27, Life 43, PDF 8, 총 78
+**현재**: Dev 28, Life 44, PDF 9, 총 81
 
 ### 1. 홈페이지 카테고리 카드
 ```
-/index.html (라인 ~561, ~594)
-  - "27 <span>도구</span>"  ← Dev 수
-  - "78 <span>도구</span>"  ← 전체 수
+/index.html (라인 ~590-623)
+  - Dev: "28 <span>도구</span>"
+  - Life: "44 <span>도구</span>"
+  - PDF: "9 <span>도구</span>"
+  - 전체: "81 <span>도구</span>"
 
-/en/index.html (라인 ~562, ~595)
-  - "27 <span>tools</span>"  ← Dev 수
-  - "78 <span>tools</span>"  ← 전체 수
+/en/index.html (라인 ~590-623)
+  - Dev: "28 <span>tools</span>"
+  - Life: "44 <span>tools</span>"
+  - PDF: "9 <span>tools</span>"
+  - 전체: "81 <span>tools</span>"
 ```
 
-### 2. /tools/index.html 탭 라벨
+### 2. /tools/index.html 필터 버튼 + 히어로
 ```
-/tools/index.html (라인 ~516)
-  - "개발 도구 (27)"
+/tools/index.html
+  - 라인 7: meta description "81개 이상의 도구"
+  - 라인 523: 본문 "81개 이상의 무료 온라인 도구"
+  - 라인 543: "개발 도구 (28)"
+  - 라인 547: "생활 도구 (44)"
+  - 라인 551: "PDF 도구 (9)"
 
-/en/tools/index.html (라인 ~516)
-  - "Dev Tools (27)"
-```
-
-### 3. docs/plan.md
-```
-라인 9: 현재 도구 수: 78개 (Dev: 27, Life: 43, PDF: 8)
-라인 11: 페이지 수: 156개 (78 도구 × 2 언어)
-라인 93: 개발 도구 (27개)
-라인 294: Dev Tools | 27 | ~50
-라인 297: 총합 | 78 | ~135
-```
-
-### 4. /tools/index.html 히어로 섹션
-```
-/tools/index.html (라인 7, 496)
-  - meta description: "78개 이상의 무료 온라인 도구"
-  - 본문: "78개 이상의 무료 온라인 도구를 사용해보세요"
-
-/en/tools/index.html (라인 7, 496)
-  - meta description: "78+ developer tools"
-  - 본문: "Browse 78+ free online tools"
+/en/tools/index.html
+  - 라인 7: meta description "81+ tools"
+  - 라인 523: 본문 "Browse 81+ free online tools"
+  - 라인 543: "Dev Tools (28)"
+  - 라인 547: "Life Tools (44)"
+  - 라인 551: "PDF Tools (9)"
 ```
 
-### 업데이트 체크리스트
-새 도구 추가 시:
+### 3. 카테고리 인덱스 페이지 (새 도구 카드 추가)
+```
+/tools/dev/index.html - tool-card 추가
+/tools/life/index.html - tool-card 추가
+/tools/pdf/index.html - tool-card-large 추가
+
+/en/tools/dev/index.html - tool-card 추가
+/en/tools/life/index.html - tool-card 추가
+/en/tools/pdf/index.html - tool-card-large 추가
+```
+
+### 4. docs/plan.md
+```
+라인 9: 현재 도구 수: 81개 (Dev: 28, Life: 44, PDF: 9)
+라인 11: 페이지 수: 162개 (81 도구 × 2 언어)
+```
+
+### 업데이트 체크리스트 (새 도구 추가 시)
 - [ ] /index.html - 카테고리별 숫자 (Dev/Life/PDF/전체)
 - [ ] /en/index.html - 카테고리별 숫자
-- [ ] /tools/index.html - 탭 라벨 + 히어로 텍스트
-- [ ] /en/tools/index.html - 탭 라벨 + 히어로 텍스트
-- [ ] docs/plan.md - 5곳
+- [ ] /tools/index.html - meta description + 본문 + 필터 버튼 3개
+- [ ] /en/tools/index.html - meta description + 본문 + 필터 버튼 3개
+- [ ] /tools/{category}/index.html - tool-card 추가
+- [ ] /en/tools/{category}/index.html - tool-card 추가
+- [ ] docs/plan.md
 
 ---
 
@@ -359,6 +369,175 @@
 ```
 
 **한글 + 영어 URL 2개씩 추가 필수!**
+
+---
+
+## i18n (국제화) 시스템
+
+### 언어 파일 위치
+- `/locales/ko.json` - 한국어 번역
+- `/locales/en.json` - 영어 번역
+
+### 번역 키 구조
+```json
+{
+  "nav": {
+    "dev": "개발 도구",
+    "life": "생활 도구",
+    "encoding": "인코딩/디코딩",
+    ...
+  },
+  "tools": {
+    "toolKey": {
+      "title": "도구 제목",
+      "description": "간단 설명",
+      "descriptionLong": "상세 설명"
+    }
+  }
+}
+```
+
+### HTML에서 i18n 사용법
+```html
+<!-- 텍스트 번역 -->
+<span data-i18n="nav.dev">개발 도구</span>
+<a href="/tools/dev/base64" data-i18n="tools.base64.title">Base64 인코딩</a>
+
+<!-- 속성 번역 (title, placeholder 등) -->
+<meta name="description" data-i18n-desc="tools.base64.description" content="...">
+<title data-i18n-title="tools.base64.title">... - Toolneat</title>
+```
+
+### 새 도구 번역 추가 시
+1. `/locales/ko.json`의 `tools` 객체에 새 키 추가
+2. `/locales/en.json`에도 동일한 키로 영어 번역 추가
+3. **중요**: data-i18n 속성 + 기본 텍스트(한글) 둘 다 작성해야 함
+
+### 헤더에서 한글 기본값 사용하기
+`/components/header.html`에서:
+```html
+<!-- 올바른 예시: data-i18n 속성 + 한글 기본값 -->
+<a href="/tools/dev/text-escape" class="mega-link nav-link"
+   data-i18n="tools.textEscape.title">텍스트 이스케이프</a>
+
+<!-- 잘못된 예시: 영어만 있고 번역 키 없음 -->
+<a href="/tools/dev/text-escape" class="mega-link nav-link">Text Escape</a>
+```
+
+**⚠️ 헤더는 한글 페이지에 직접 삽입되므로 기본값을 한글로 작성!**
+
+---
+
+## 빌드/자동화 스크립트
+
+### 스크립트 위치: `/scripts/auto/`
+
+| 스크립트 | 용도 |
+|---------|------|
+| `inject-components.js` | 빈 header/footer div에 컴포넌트 주입 |
+| `force-update-headers.js` | 모든 HTML 파일의 헤더 강제 업데이트 |
+| `add-seo-tags.js` | SEO 태그 일괄 추가 |
+
+### 헤더 업데이트 방법
+
+**방법 1: 새 페이지 (빈 header div)**
+```bash
+node scripts/auto/inject-components.js
+```
+- `<div id="header"></div>`가 비어있는 페이지에만 적용
+
+**방법 2: 기존 페이지 헤더 강제 교체**
+```bash
+node scripts/auto/force-update-headers.js
+```
+- 모든 HTML 파일의 header 내용을 `/components/header.html`로 교체
+- i18n 번역 자동 적용 (한글/영어 구분)
+
+### inject-components.js 동작 방식
+1. `components/header.html`, `components/footer.html` 읽기
+2. 모든 HTML 파일 순회
+3. 빈 `<div id="header"></div>` 찾으면 컴포넌트 삽입
+4. `/en/` 경로면 영어 번역 적용 + 링크 변환 (`/tools/` → `/en/tools/`)
+
+### force-update-headers.js 동작 방식
+1. `components/header.html` 읽기
+2. 모든 HTML 파일의 `<div id="header">...</div>` 찾기
+3. 내용 전체 교체 (기존 헤더 삭제 후 새 헤더 삽입)
+4. 영어 페이지는 자동으로 영어 번역 + 링크 변환
+
+---
+
+## 헤더 강제 업데이트 (`force-update-headers.js`)
+
+### 사용법
+```bash
+node scripts/auto/force-update-headers.js
+```
+
+### 동작 원리
+1. `components/header.html` 읽기
+2. 모든 HTML 파일에서 `<div id="header">...<header>...</header>...</div>` 패턴 찾기
+3. 해당 부분을 새 헤더로 교체
+4. `/en/` 경로면 영어 번역 적용 + 링크 변환
+
+### 중요: 헤더 수정 후 반드시 실행
+- `components/header.html` 수정 후 이 스크립트 실행해야 모든 페이지에 반영됨
+- 수정 후 브라우저 강제 새로고침 (Ctrl+Shift+R) 필요할 수 있음
+
+### 정규식 패턴
+```javascript
+/<div\s+id=["']header["']\s*>[\s\S]*?<\/header>\s*<\/div>/i
+```
+- `<div id="header">` 로 시작
+- `</header>` 다음에 `</div>` 로 끝나는 패턴 매칭
+
+---
+
+## 번역 키 누락 문제 해결
+
+### 증상
+- 한글 페이지에서 영어 텍스트가 보임 (예: "Text Escape" 대신 "텍스트 이스케이프"가 보여야 함)
+- 영어 페이지에서 한글 텍스트가 보임 (예: "텍스트 이스케이프" 대신 "Text Escape"가 보여야 함)
+
+### 원인
+1. `locales/ko.json`에 해당 도구의 번역 키가 없음 → 한글 페이지에 영어 기본값 표시
+2. `locales/en.json`에 해당 도구의 번역 키가 없음 → 영어 페이지에 한글 기본값 표시
+3. `force-update-headers.js` 미실행 → 변경사항 미반영
+
+### 해결 방법
+```bash
+# 1. 번역 키 확인 및 추가
+# locales/ko.json에 추가:
+"tools": {
+  "newTool": {
+    "title": "새 도구",
+    "description": "도구 설명"
+  }
+}
+
+# locales/en.json에도 추가:
+"tools": {
+  "newTool": {
+    "title": "New Tool",
+    "description": "Tool description"
+  }
+}
+
+# 2. 헤더 업데이트 스크립트 실행
+node scripts/auto/force-update-headers.js
+
+# 3. 브라우저 강제 새로고침
+Ctrl + Shift + R (또는 Cmd + Shift + R)
+```
+
+### 헤더에 새 도구 추가 시 체크리스트
+- [ ] `components/header.html`에 링크 추가 (Desktop + Mobile 둘 다!)
+- [ ] `data-i18n="tools.newTool.title"` 속성 추가
+- [ ] 기본 텍스트는 **한글**로 작성 (예: `>새 도구</a>`)
+- [ ] `locales/ko.json`에 번역 키 추가
+- [ ] `locales/en.json`에 번역 키 추가
+- [ ] `node scripts/auto/force-update-headers.js` 실행
+- [ ] 한글/영어 페이지 둘 다 확인
 
 ---
 
