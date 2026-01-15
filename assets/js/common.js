@@ -1,4 +1,19 @@
 // Toolneat - Common JS
+
+// Google Analytics (gtag.js)
+(function() {
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XFC6R4YHXS';
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XFC6R4YHXS');
+  window.gtag = gtag;
+})();
+
 // Theme Management (Dark Mode)
 
 (function() {
