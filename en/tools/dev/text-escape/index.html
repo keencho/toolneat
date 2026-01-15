@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Escape/Unescape - Toolneat</title>
+  <meta name="description" content="Free online text escape tool. Escape or unescape special characters for JSON, JavaScript, HTML, URL formats. Essential for handling quotes, backslashes, newlines and other special characters in development.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/en/tools/dev/text-escape/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/text-escape/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/text-escape/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/text-escape/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Text Escape/Unescape - Toolneat">
+  <meta property="og:description" content="Escape or unescape special characters for various formats.">
+  <meta property="og:url" content="https://toolneat.com/en/tools/dev/text-escape/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon & CSS -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/output.css">
+
+  <!-- JS -->
+  <script>localStorage.setItem('toolneat-lang', 'en');</script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/components.js"></script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Text Escape/Unescape",
+    "description": "Free online text escape tool. Escape or unescape special characters for JSON, JavaScript, HTML, URL formats.",
+    "url": "https://toolneat.com/en/tools/dev/text-escape",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Toolneat",
+      "url": "https://toolneat.com"
+    }
+  }
+  </script>
+
+  <!-- Search -->
+  <script src="../../../../assets/js/tools-data.js"></script>
+  <script src="../../../../assets/js/search.js" defer></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Text Escape/Unescape
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Escape or unescape special characters for JSON, JavaScript, HTML, URL and other formats.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6"></div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Options Bar -->
+        <div class="flex flex-wrap items-center gap-3 mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <div class="flex shrink-0">
+            <button id="escape-tab" class="py-1.5 px-3 text-sm font-medium rounded-l-lg border border-r-0 border-gray-200 dark:border-gray-700 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">Escape</button>
+            <button id="unescape-tab" class="py-1.5 px-3 text-sm font-medium rounded-r-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">Unescape</button>
+          </div>
+          <select id="format-select" class="py-1.5 px-3 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+            <option value="json">JSON</option>
+            <option value="javascript">JavaScript</option>
+            <option value="html">HTML</option>
+            <option value="url">URL</option>
+          </select>
+          <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer shrink-0">
+            <input type="checkbox" id="live-convert" checked class="rounded border-gray-300 dark:border-gray-600">
+            <span class="whitespace-nowrap">Live</span>
+          </label>
+          <div class="flex gap-2 ml-auto shrink-0">
+            <button id="convert-btn" class="btn btn-primary text-sm py-1.5 px-3">Convert</button>
+            <button id="swap-btn" class="btn btn-secondary text-sm p-1.5" title="Swap">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            </button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3">Clear</button>
+          </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <!-- Input Section -->
+          <div class="flex flex-col">
+            <div class="flex items-center justify-between mb-2">
+              <span id="input-label" class="text-sm font-medium text-gray-700 dark:text-gray-300">Original Text</span>
+              <span id="input-size" class="text-xs text-gray-400"></span>
+            </div>
+            <textarea
+              id="input-text"
+              class="textarea flex-1 min-h-[250px] font-mono text-sm"
+              placeholder="Enter text to convert..."
+            ></textarea>
+          </div>
+
+          <!-- Output Section -->
+          <div class="flex flex-col">
+            <div class="flex items-center justify-between mb-2">
+              <span id="output-label" class="text-sm font-medium text-gray-700 dark:text-gray-300">Escaped Text</span>
+              <div class="flex items-center gap-2">
+                <span id="output-size" class="text-xs text-gray-400"></span>
+                <button id="copy-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">Copy</button>
+              </div>
+            </div>
+            <textarea
+              id="output-text"
+              class="textarea flex-1 min-h-[250px] font-mono text-sm bg-gray-50 dark:bg-gray-900"
+              readonly
+              placeholder="Result will appear here..."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Text Escaping?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Text escaping is the process of converting special characters into a safe format for use in specific contexts. In programming, characters like quotes and backslashes can cause errors if not properly escaped when used in strings.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select 'Escape' or 'Unescape' mode at the top.</li>
+            <li>Choose the format (JSON, JavaScript, HTML, URL).</li>
+            <li>Enter text in the left input area for automatic conversion.</li>
+            <li>Click 'Copy' to copy the result to clipboard.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Is this tool free?</h4>
+              <p>Yes, it's completely free with no usage limits.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
+              <p>No, all processing happens in your browser. Your data never leaves your device.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What's the difference between JSON and JavaScript escaping?</h4>
+              <p>JSON follows stricter standards, while JavaScript supports additional escape sequences like \x and \u.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When should I use HTML escaping?</h4>
+              <p>Use HTML escaping when displaying user input in HTML documents to prevent XSS attacks by escaping characters like &lt;, &gt;, and &amp;.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6"></div>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('input-text');
+      const output = document.getElementById('output-text');
+      const escapeTab = document.getElementById('escape-tab');
+      const unescapeTab = document.getElementById('unescape-tab');
+      const formatSelect = document.getElementById('format-select');
+      const convertBtn = document.getElementById('convert-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const swapBtn = document.getElementById('swap-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const liveConvert = document.getElementById('live-convert');
+      const inputLabel = document.getElementById('input-label');
+      const outputLabel = document.getElementById('output-label');
+      const inputSize = document.getElementById('input-size');
+      const outputSize = document.getElementById('output-size');
+
+      let isEscapeMode = true;
+
+      const escapers = {
+        json: (str) => JSON.stringify(str).slice(1, -1),
+        javascript: (str) => str
+          .replace(/\\/g, '\\\\')
+          .replace(/'/g, "\\'")
+          .replace(/"/g, '\\"')
+          .replace(/\n/g, '\\n')
+          .replace(/\r/g, '\\r')
+          .replace(/\t/g, '\\t'),
+        html: (str) => str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;'),
+        url: (str) => encodeURIComponent(str)
+      };
+
+      const unescapers = {
+        json: (str) => {
+          try {
+            return JSON.parse('"' + str + '"');
+          } catch {
+            return str;
+          }
+        },
+        javascript: (str) => str
+          .replace(/\\n/g, '\n')
+          .replace(/\\r/g, '\r')
+          .replace(/\\t/g, '\t')
+          .replace(/\\"/g, '"')
+          .replace(/\\'/g, "'")
+          .replace(/\\\\/g, '\\'),
+        html: (str) => {
+          const doc = new DOMParser().parseFromString(str, 'text/html');
+          return doc.documentElement.textContent;
+        },
+        url: (str) => {
+          try {
+            return decodeURIComponent(str);
+          } catch {
+            return str;
+          }
+        }
+      };
+
+      function updateLabels() {
+        if (isEscapeMode) {
+          inputLabel.textContent = 'Original Text';
+          outputLabel.textContent = 'Escaped Text';
+        } else {
+          inputLabel.textContent = 'Escaped Text';
+          outputLabel.textContent = 'Original Text';
+        }
+      }
+
+      function setMode(escape) {
+        isEscapeMode = escape;
+        if (escape) {
+          escapeTab.classList.add('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          escapeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          unescapeTab.classList.remove('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          unescapeTab.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+        } else {
+          unescapeTab.classList.add('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          unescapeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          escapeTab.classList.remove('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          escapeTab.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+        }
+        updateLabels();
+        if (liveConvert.checked) convert();
+      }
+
+      escapeTab.addEventListener('click', () => setMode(true));
+      unescapeTab.addEventListener('click', () => setMode(false));
+
+      function convert() {
+        const text = input.value;
+        if (!text) {
+          output.value = '';
+          outputSize.textContent = '';
+          return;
+        }
+
+        const format = formatSelect.value;
+        try {
+          const result = isEscapeMode ? escapers[format](text) : unescapers[format](text);
+          output.value = result;
+          outputSize.textContent = formatBytes(new Blob([result]).size);
+        } catch (e) {
+          output.value = 'Conversion error: ' + e.message;
+        }
+      }
+
+      convertBtn.addEventListener('click', convert);
+
+      input.addEventListener('input', () => {
+        inputSize.textContent = formatBytes(new Blob([input.value]).size);
+        if (liveConvert.checked) convert();
+      });
+
+      formatSelect.addEventListener('change', () => {
+        if (liveConvert.checked) convert();
+      });
+
+      liveConvert.addEventListener('change', () => {
+        if (liveConvert.checked) convert();
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) {
+          toast.warning('Nothing to copy');
+          return;
+        }
+        await copyToClipboard(output.value);
+        toast.success('Copied');
+      });
+
+      swapBtn.addEventListener('click', () => {
+        const temp = output.value;
+        if (!temp) return;
+        input.value = temp;
+        output.value = '';
+        setMode(!isEscapeMode);
+        inputSize.textContent = formatBytes(new Blob([input.value]).size);
+        outputSize.textContent = '';
+        if (liveConvert.checked) convert();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        inputSize.textContent = '';
+        outputSize.textContent = '';
+        input.focus();
+      });
+
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+    })();
+  </script>
+</body>
+</html>

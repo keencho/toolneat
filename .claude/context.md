@@ -255,37 +255,83 @@
 
 ## 도구 수 업데이트 위치
 
-### 홈페이지
-```html
-<div class="tool-desc">26 도구</div>  <!-- 이 숫자 -->
+**현재**: Dev 27, Life 43, PDF 8, 총 78
+
+### 1. 홈페이지 카테고리 카드
+```
+/index.html (라인 ~561, ~594)
+  - "27 <span>도구</span>"  ← Dev 수
+  - "78 <span>도구</span>"  ← 전체 수
+
+/en/index.html (라인 ~562, ~595)
+  - "27 <span>tools</span>"  ← Dev 수
+  - "78 <span>tools</span>"  ← 전체 수
 ```
 
-### /tools/index.html 탭
-```html
-<a href="#dev">Dev Tools (26)</a>  <!-- 이 숫자 -->
+### 2. /tools/index.html 탭 라벨
+```
+/tools/index.html (라인 ~516)
+  - "개발 도구 (27)"
+
+/en/tools/index.html (라인 ~516)
+  - "Dev Tools (27)"
 ```
 
-### meta description
-```html
-<meta name="description" content="77개 이상의 무료 온라인 도구...">
+### 3. docs/plan.md
 ```
+라인 9: 현재 도구 수: 78개 (Dev: 27, Life: 43, PDF: 8)
+라인 11: 페이지 수: 156개 (78 도구 × 2 언어)
+라인 93: 개발 도구 (27개)
+라인 294: Dev Tools | 27 | ~50
+라인 297: 총합 | 78 | ~135
+```
+
+### 4. /tools/index.html 히어로 섹션
+```
+/tools/index.html (라인 7, 496)
+  - meta description: "78개 이상의 무료 온라인 도구"
+  - 본문: "78개 이상의 무료 온라인 도구를 사용해보세요"
+
+/en/tools/index.html (라인 7, 496)
+  - meta description: "78+ developer tools"
+  - 본문: "Browse 78+ free online tools"
+```
+
+### 업데이트 체크리스트
+새 도구 추가 시:
+- [ ] /index.html - 카테고리별 숫자 (Dev/Life/PDF/전체)
+- [ ] /en/index.html - 카테고리별 숫자
+- [ ] /tools/index.html - 탭 라벨 + 히어로 텍스트
+- [ ] /en/tools/index.html - 탭 라벨 + 히어로 텍스트
+- [ ] docs/plan.md - 5곳
 
 ---
 
 ## 주의사항
 
-1. **경로 주의**
+1. **⚠️ 스크립트 로딩 순서 (중요!)**
+   - Fuse.js가 전역 `var t`를 선언하여 i18n의 `window.t`를 덮어쓸 수 있음
+   - **반드시 Fuse.js를 i18n.js보다 먼저 로드해야 함!**
+   ```html
+   <!-- 올바른 순서 -->
+   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+   <script src="/assets/js/common.js"></script>
+   <script src="/assets/js/i18n.js"></script>
+   <script src="/assets/js/components.js"></script>
+   ```
+
+2. **경로 주의**
    - color-palette, gradient-generator는 `/dev/`에 있음 (`/life/` 아님!)
 
-2. **양쪽 버전 동기화**
+3. **양쪽 버전 동기화**
    - 한글/영어 둘 다 추가 필수
    - 도구 수 맞춰야 함
 
-3. **CSS**
+4. **CSS**
    - `@apply`는 인라인 `<style>`에서 안됨
    - Tailwind 클래스 직접 사용
 
-4. **헤더 수정 시**
+5. **헤더 수정 시**
    - Desktop mega-menu와 Mobile accordion 둘 다 수정!
 
 ---

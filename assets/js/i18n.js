@@ -138,10 +138,13 @@
     }
   };
 
-  // Get translation value
-  window.t = (key) => {
+  // Translation function
+  const translateFn = (key) => {
     return getNestedValue(translations, key) || key;
   };
+
+  // Set translation function globally (will be re-set after translations load to handle Fuse.js conflict)
+  window.t = translateFn;
 
   // Get current language
   window.getCurrentLang = () => currentLang;
@@ -151,6 +154,9 @@
 
   // Initialize
   document.addEventListener('DOMContentLoaded', () => {
+    // Re-assign window.t here to handle Fuse.js overwriting it
+    // Fuse.js uses 'var t' globally which can overwrite window.t
+    window.t = translateFn;
     loadTranslations(currentLang);
   });
 })();

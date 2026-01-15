@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>텍스트 이스케이프/언이스케이프 - Toolneat</title>
+  <meta name="description" content="무료 온라인 텍스트 이스케이프 도구. JSON, JavaScript, HTML, URL 등 다양한 형식으로 특수문자를 이스케이프하거나 원본으로 복원합니다. 따옴표, 백슬래시, 줄바꿈 등 특수문자 처리에 필수적인 개발 도구입니다.">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://toolneat.com/tools/dev/text-escape/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/text-escape/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/text-escape/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/text-escape/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="텍스트 이스케이프/언이스케이프 - Toolneat">
+  <meta property="og:description" content="특수문자를 이스케이프하거나 원본으로 복원합니다.">
+  <meta property="og:url" content="https://toolneat.com/tools/dev/text-escape/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Favicon & CSS -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../../../assets/css/output.css">
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="../../../assets/js/common.js"></script>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/components.js"></script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "텍스트 이스케이프/언이스케이프",
+    "description": "무료 온라인 텍스트 이스케이프 도구. JSON, JavaScript, HTML, URL 등 다양한 형식으로 특수문자를 이스케이프하거나 원본으로 복원합니다.",
+    "url": "https://toolneat.com/tools/dev/text-escape",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Toolneat",
+      "url": "https://toolneat.com"
+    }
+  }
+  </script>
+
+  <!-- Search -->
+  <script src="../../../assets/js/tools-data.js"></script>
+  <script src="../../../assets/js/search.js" defer></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header"></div>
+
+  <main class="flex-1 py-8 md:py-12">
+    <div class="container-main">
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          텍스트 이스케이프/언이스케이프
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          JSON, JavaScript, HTML, URL 등 다양한 형식으로 특수문자를 이스케이프하거나 원본 텍스트로 복원합니다.
+        </p>
+      </div>
+
+      <!-- Ad Container (Top) -->
+      <div class="ad-container mb-6"></div>
+
+      <!-- Tool Card -->
+      <div class="card">
+        <!-- Options Bar -->
+        <div class="flex flex-wrap items-center gap-3 mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <div class="flex shrink-0">
+            <button id="escape-tab" class="py-1.5 px-3 text-sm font-medium rounded-l-lg border border-r-0 border-gray-200 dark:border-gray-700 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">이스케이프</button>
+            <button id="unescape-tab" class="py-1.5 px-3 text-sm font-medium rounded-r-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">언이스케이프</button>
+          </div>
+          <select id="format-select" class="py-1.5 px-3 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+            <option value="json">JSON</option>
+            <option value="javascript">JavaScript</option>
+            <option value="html">HTML</option>
+            <option value="url">URL</option>
+          </select>
+          <label class="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 cursor-pointer shrink-0">
+            <input type="checkbox" id="live-convert" checked class="rounded border-gray-300 dark:border-gray-600">
+            <span class="whitespace-nowrap">실시간</span>
+          </label>
+          <div class="flex gap-2 ml-auto shrink-0">
+            <button id="convert-btn" class="btn btn-primary text-sm py-1.5 px-3">변환</button>
+            <button id="swap-btn" class="btn btn-secondary text-sm p-1.5" title="Swap">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            </button>
+            <button id="clear-btn" class="btn btn-secondary text-sm py-1.5 px-3">지우기</button>
+          </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <!-- Input Section -->
+          <div class="flex flex-col">
+            <div class="flex items-center justify-between mb-2">
+              <span id="input-label" class="text-sm font-medium text-gray-700 dark:text-gray-300">원본 텍스트</span>
+              <span id="input-size" class="text-xs text-gray-400"></span>
+            </div>
+            <textarea
+              id="input-text"
+              class="textarea flex-1 min-h-[250px] font-mono text-sm"
+              placeholder="변환할 텍스트를 입력하세요..."
+            ></textarea>
+          </div>
+
+          <!-- Output Section -->
+          <div class="flex flex-col">
+            <div class="flex items-center justify-between mb-2">
+              <span id="output-label" class="text-sm font-medium text-gray-700 dark:text-gray-300">이스케이프된 텍스트</span>
+              <div class="flex items-center gap-2">
+                <span id="output-size" class="text-xs text-gray-400"></span>
+                <button id="copy-btn" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">복사</button>
+              </div>
+            </div>
+            <textarea
+              id="output-text"
+              class="textarea flex-1 min-h-[250px] font-mono text-sm bg-gray-50 dark:bg-gray-900"
+              readonly
+              placeholder="결과가 여기에 표시됩니다..."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">텍스트 이스케이프란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>텍스트 이스케이프는 특수문자를 안전하게 표현하기 위해 특정 형식으로 변환하는 과정입니다. 프로그래밍에서 문자열을 다룰 때, 따옴표나 백슬래시 같은 특수문자는 그대로 사용하면 오류가 발생할 수 있어 이스케이프 처리가 필요합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>상단에서 '이스케이프' 또는 '언이스케이프' 모드를 선택합니다.</li>
+            <li>변환 형식(JSON, JavaScript, HTML, URL)을 선택합니다.</li>
+            <li>왼쪽 입력창에 텍스트를 입력하면 자동으로 변환됩니다.</li>
+            <li>'복사' 버튼으로 결과를 클립보드에 복사할 수 있습니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 이 도구는 무료인가요?</h4>
+              <p>네, 완전히 무료이며 사용 횟수 제한이 없습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 데이터가 서버로 전송되나요?</h4>
+              <p>아니요, 모든 변환은 브라우저에서만 처리됩니다. 입력한 데이터는 서버로 전송되지 않습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: JSON과 JavaScript 이스케이프의 차이점은?</h4>
+              <p>JSON은 더 엄격한 표준을 따르며, JavaScript는 추가적인 이스케이프 시퀀스(예: \x, \u)를 지원합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: HTML 이스케이프는 언제 사용하나요?</h4>
+              <p>HTML 문서에 사용자 입력을 표시할 때 XSS 공격을 방지하기 위해 &lt;, &gt;, &amp; 등의 문자를 이스케이프합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Container (Bottom) -->
+      <div class="ad-container mt-6"></div>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('input-text');
+      const output = document.getElementById('output-text');
+      const escapeTab = document.getElementById('escape-tab');
+      const unescapeTab = document.getElementById('unescape-tab');
+      const formatSelect = document.getElementById('format-select');
+      const convertBtn = document.getElementById('convert-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const swapBtn = document.getElementById('swap-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const liveConvert = document.getElementById('live-convert');
+      const inputLabel = document.getElementById('input-label');
+      const outputLabel = document.getElementById('output-label');
+      const inputSize = document.getElementById('input-size');
+      const outputSize = document.getElementById('output-size');
+
+      let isEscapeMode = true;
+
+      // Escape functions
+      const escapers = {
+        json: (str) => JSON.stringify(str).slice(1, -1),
+        javascript: (str) => str
+          .replace(/\\/g, '\\\\')
+          .replace(/'/g, "\\'")
+          .replace(/"/g, '\\"')
+          .replace(/\n/g, '\\n')
+          .replace(/\r/g, '\\r')
+          .replace(/\t/g, '\\t'),
+        html: (str) => str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;'),
+        url: (str) => encodeURIComponent(str)
+      };
+
+      // Unescape functions
+      const unescapers = {
+        json: (str) => {
+          try {
+            return JSON.parse('"' + str + '"');
+          } catch {
+            return str;
+          }
+        },
+        javascript: (str) => str
+          .replace(/\\n/g, '\n')
+          .replace(/\\r/g, '\r')
+          .replace(/\\t/g, '\t')
+          .replace(/\\"/g, '"')
+          .replace(/\\'/g, "'")
+          .replace(/\\\\/g, '\\'),
+        html: (str) => {
+          const doc = new DOMParser().parseFromString(str, 'text/html');
+          return doc.documentElement.textContent;
+        },
+        url: (str) => {
+          try {
+            return decodeURIComponent(str);
+          } catch {
+            return str;
+          }
+        }
+      };
+
+      function updateLabels() {
+        if (isEscapeMode) {
+          inputLabel.textContent = '원본 텍스트';
+          outputLabel.textContent = '이스케이프된 텍스트';
+        } else {
+          inputLabel.textContent = '이스케이프된 텍스트';
+          outputLabel.textContent = '원본 텍스트';
+        }
+      }
+
+      function setMode(escape) {
+        isEscapeMode = escape;
+        if (escape) {
+          escapeTab.classList.add('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          escapeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          unescapeTab.classList.remove('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          unescapeTab.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+        } else {
+          unescapeTab.classList.add('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          unescapeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          escapeTab.classList.remove('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          escapeTab.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+        }
+        updateLabels();
+        if (liveConvert.checked) convert();
+      }
+
+      escapeTab.addEventListener('click', () => setMode(true));
+      unescapeTab.addEventListener('click', () => setMode(false));
+
+      function convert() {
+        const text = input.value;
+        if (!text) {
+          output.value = '';
+          outputSize.textContent = '';
+          return;
+        }
+
+        const format = formatSelect.value;
+        try {
+          const result = isEscapeMode ? escapers[format](text) : unescapers[format](text);
+          output.value = result;
+          outputSize.textContent = formatBytes(new Blob([result]).size);
+        } catch (e) {
+          output.value = '변환 오류: ' + e.message;
+        }
+      }
+
+      convertBtn.addEventListener('click', convert);
+
+      input.addEventListener('input', () => {
+        inputSize.textContent = formatBytes(new Blob([input.value]).size);
+        if (liveConvert.checked) convert();
+      });
+
+      formatSelect.addEventListener('change', () => {
+        if (liveConvert.checked) convert();
+      });
+
+      liveConvert.addEventListener('change', () => {
+        if (liveConvert.checked) convert();
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) {
+          toast.warning('복사할 내용이 없습니다');
+          return;
+        }
+        await copyToClipboard(output.value);
+        toast.success('복사되었습니다');
+      });
+
+      swapBtn.addEventListener('click', () => {
+        const temp = output.value;
+        if (!temp) return;
+        input.value = temp;
+        output.value = '';
+        setMode(!isEscapeMode);
+        inputSize.textContent = formatBytes(new Blob([input.value]).size);
+        outputSize.textContent = '';
+        if (liveConvert.checked) convert();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        inputSize.textContent = '';
+        outputSize.textContent = '';
+        input.focus();
+      });
+
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+    })();
+  </script>
+</body>
+</html>
