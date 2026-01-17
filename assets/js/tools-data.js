@@ -260,6 +260,30 @@ const TOOLS_DATA = {
       description: { ko: 'CSS box-shadow 생성기', en: 'Generate CSS box-shadow' },
       tags: ['css', 'shadow', 'box-shadow', 'design', 'style', '그림자', '디자인'],
       icon: 'color'
+    },
+    {
+      id: 'text-escape',
+      path: '/tools/dev/text-escape',
+      name: { ko: '텍스트 이스케이프', en: 'Text Escape' },
+      description: { ko: '특수문자 이스케이프 처리', en: 'Escape special characters' },
+      tags: ['escape', 'text', 'special', 'characters', '이스케이프', '특수문자'],
+      icon: 'code'
+    },
+    {
+      id: 'color-contrast',
+      path: '/tools/dev/color-contrast',
+      name: { ko: '색상 대비 검사기', en: 'Color Contrast Checker' },
+      description: { ko: 'WCAG 색상 대비 검사', en: 'Check WCAG color contrast' },
+      tags: ['color', 'contrast', 'wcag', 'accessibility', 'a11y', '색상', '대비', '접근성'],
+      icon: 'color'
+    },
+    {
+      id: 'json-validator',
+      path: '/tools/dev/json-validator',
+      name: { ko: 'JSON 유효성 검사기', en: 'JSON Validator' },
+      description: { ko: 'JSON 문법 오류 검사', en: 'Validate JSON syntax' },
+      tags: ['json', 'validate', 'syntax', 'error', '검사', '유효성', '문법'],
+      icon: 'code'
     }
   ],
   life: [
@@ -638,6 +662,38 @@ const TOOLS_DATA = {
       description: { ko: '화면 비율 계산 및 해상도 변환', en: 'Calculate aspect ratios and convert resolutions' },
       tags: ['aspect', 'ratio', 'resolution', 'screen', 'width', 'height', '화면비', '해상도', '비율'],
       icon: 'monitor'
+    },
+    {
+      id: 'ai-detector',
+      path: '/tools/life/ai-detector',
+      name: { ko: 'AI 글 감지기', en: 'AI Text Detector' },
+      description: { ko: 'AI가 작성한 글인지 감지', en: 'Detect AI-generated text' },
+      tags: ['ai', 'detect', 'chatgpt', 'gpt', 'text', 'writing', 'AI감지', '인공지능'],
+      icon: 'search'
+    },
+    {
+      id: 'youtube-thumbnail',
+      path: '/tools/life/youtube-thumbnail',
+      name: { ko: '유튜브 썸네일 다운로드', en: 'YouTube Thumbnail Downloader' },
+      description: { ko: '유튜브 영상 썸네일 다운로드', en: 'Download YouTube video thumbnails' },
+      tags: ['youtube', 'thumbnail', 'download', 'video', 'image', '유튜브', '썸네일'],
+      icon: 'video'
+    },
+    {
+      id: 'morse-code',
+      path: '/tools/life/morse-code',
+      name: { ko: '모스 부호 변환기', en: 'Morse Code Converter' },
+      description: { ko: '텍스트와 모스 부호 변환', en: 'Convert text to Morse code and vice versa' },
+      tags: ['morse', 'code', 'convert', 'text', '모스부호', '변환'],
+      icon: 'text'
+    },
+    {
+      id: 'noise-generator',
+      path: '/tools/life/noise-generator',
+      name: { ko: '백색소음 생성기', en: 'White Noise Generator' },
+      description: { ko: '집중과 수면을 위한 백색소음', en: 'White noise for focus and sleep' },
+      tags: ['noise', 'white', 'pink', 'brown', 'sleep', 'focus', '백색소음', '집중', '수면'],
+      icon: 'speaker'
     }
   ],
   pdf: [
@@ -735,17 +791,16 @@ const POPULAR_TOOLS = [
 
 // Recently added tools
 const NEW_TOOLS = [
+  'json-validator',
+  'ai-detector',
+  'youtube-thumbnail',
+  'morse-code',
+  'noise-generator',
   'html-minifier',
   'robots-txt',
   'og-preview',
   'box-shadow',
-  'ip-lookup',
-  'json-csv',
-  'js-minifier',
-  'reorder-pdf',
-  'countdown-timer',
-  'stopwatch',
-  'aspect-ratio'
+  'ip-lookup'
 ];
 
 /**

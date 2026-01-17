@@ -4,6 +4,8 @@
     "description": "Free online tools for developers and everyday life."
   },
   "nav": {
+    "all": "All",
+    "searchPlaceholder": "Search tools...",
     "dev": "Dev Tools",
     "life": "Life Tools",
     "pdf": "PDF Tools",
@@ -1003,6 +1005,31 @@
     "ipLookup": {
       "title": "IP Address Lookup",
       "description": "Check your public IP address and location information."
+    },
+    "aiDetector": {
+      "title": "AI Text Detector",
+      "description": "Free online tool to detect if text was written by AI like ChatGPT, Claude, or Gemini.",
+      "descriptionLong": "Analyze text to detect if it was written by AI like ChatGPT, Claude, or Gemini. Get probability estimates based on text pattern analysis."
+    },
+    "youtubeThumbnail": {
+      "title": "YouTube Thumbnail Downloader",
+      "description": "Download YouTube video thumbnails in various resolutions for free.",
+      "descriptionLong": "Enter a YouTube video URL to download thumbnails in various resolutions."
+    },
+    "morseCode": {
+      "title": "Morse Code Converter",
+      "description": "Free online tool to convert text to Morse code and Morse code to text.",
+      "descriptionLong": "Convert text to Morse code or decode Morse code to text. You can also listen to the audio."
+    },
+    "jsonValidator": {
+      "title": "JSON Validator",
+      "description": "Free online tool to validate JSON syntax and get detailed error locations.",
+      "descriptionLong": "Validate JSON syntax and get the exact location and cause of any errors."
+    },
+    "noiseGenerator": {
+      "title": "Noise Generator",
+      "description": "Free online white noise, pink noise, and brown noise generator for focus, relaxation, and sleep.",
+      "descriptionLong": "Generate white noise, pink noise, and brown noise for concentration, relaxation, and sleep. Includes timer functionality."
     }
   },
   "common": {

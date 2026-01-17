@@ -1,7 +1,7 @@
 # Toolneat 도구 추가 가이드
 
 ## 현재 도구 수
-**Dev 34, Life 47, PDF 9, 총 90개**
+**Dev 35, Life 51, PDF 9, 총 95개**
 
 ---
 
@@ -9,27 +9,49 @@
 
 **⚠️ 도구 추가/삭제 시 이 목록도 업데이트할 것!**
 
-**Dev (34):** base64, box-shadow, case-converter, color-contrast, color-converter, color-palette, cron-generator, css-minifier, diff-checker, gradient-generator, hash-generator, html-entity, html-minifier, json-csv, json-formatter, js-minifier, jwt-decoder, jwt-generator, line-ending, lorem-ipsum, markdown-preview, meta-tag-generator, og-preview, password-generator, regex-tester, robots-txt, sql-formatter, text-escape, timestamp-converter, url-encoder, utm-generator, uuid-generator, xml-json, yaml-json
+**Dev (35):** base64, box-shadow, case-converter, color-contrast, color-converter, color-palette, cron-generator, css-minifier, diff-checker, gradient-generator, hash-generator, html-entity, html-minifier, json-csv, json-formatter, json-validator, js-minifier, jwt-decoder, jwt-generator, line-ending, lorem-ipsum, markdown-preview, meta-tag-generator, og-preview, password-generator, regex-tester, robots-txt, sql-formatter, text-escape, timestamp-converter, url-encoder, utm-generator, uuid-generator, xml-json, yaml-json
 
-**Life (47):** age-calculator, ascii-unicode, aspect-ratio, background-remover, barcode-generator, base-converter, bmi-calculator, character-counter, coin-flip, color-picker, compound-calculator, countdown-timer, dday-calculator, dead-pixel-test, dice-roller, emoji-picker, exif-remover, favicon-generator, image-compressor, image-converter, image-crop, image-resizer, image-rotate, image-watermark, ip-lookup, loan-calculator, lottery-generator, meme-generator, ocr, percent-calculator, pixel-fixer, pomodoro-timer, qr-generator, qr-scanner, reaction-test, roulette, salary-calculator, screen-burn-test, screen-color-test, screen-recorder, speech-to-text, stopwatch, text-to-speech, tip-calculator, typing-test, unit-converter, video-to-gif
+**Life (51):** age-calculator, ai-detector, ascii-unicode, aspect-ratio, background-remover, barcode-generator, base-converter, bmi-calculator, character-counter, coin-flip, color-picker, compound-calculator, countdown-timer, dday-calculator, dead-pixel-test, dice-roller, emoji-picker, exif-remover, favicon-generator, image-compressor, image-converter, image-crop, image-resizer, image-rotate, image-watermark, ip-lookup, loan-calculator, lottery-generator, meme-generator, morse-code, noise-generator, ocr, percent-calculator, pixel-fixer, pomodoro-timer, qr-generator, qr-scanner, reaction-test, roulette, salary-calculator, screen-burn-test, screen-color-test, screen-recorder, speech-to-text, stopwatch, text-to-speech, tip-calculator, typing-test, unit-converter, video-to-gif, youtube-thumbnail
 
 **PDF (9):** compress-pdf, delete-pdf, image-to-pdf, merge-pdf, pdf-to-image, reorder-pdf, rotate-pdf, split-pdf, watermark-pdf
 
 ---
 
-## ⚠️ 흔한 실수: 숫자 업데이트 누락
+## 헤더 시스템 (중요!)
 
-도구 추가 시 숫자가 여러 곳에 있어서 빠뜨리기 쉬움!
+### 헤더 구조
+```
+헤더: fixed top-0, z-50, 높이 64px (h-16)
+드롭다운: fixed top-16, z-60
+Backdrop: fixed top-16, z-55
+```
 
-### 숫자 업데이트 전체 위치 (KO/EN 둘 다!)
-| 파일 | 위치 | 예시 |
-|-----|------|------|
-| `/index.html` | 카테고리 카드 | `34 <span>도구</span>` |
-| `/tools/index.html` | meta, 본문, 필터버튼 3개 | `90개`, `(34)`, `(47)`, `(9)` |
-| `/tools/dev/index.html` | meta, 본문, 필터버튼 | `34개 이상`, `전체 (34)` |
-| `/tools/life/index.html` | meta, 본문, 필터버튼 | `47개 이상`, `전체 (47)` |
+### ⚠️ 헤더가 fixed이므로 main에 mt-16 필수!
+```html
+<!-- 올바른 예시 -->
+<main class="flex-1 mt-16 py-8 md:py-12">
 
-**영어 버전도 동일하게 `/en/` 경로에서 수정!**
+<!-- 잘못된 예시 (콘텐츠가 헤더에 가려짐) -->
+<main class="flex-1 py-8 md:py-12">
+```
+
+### PC 드롭다운 메뉴
+- Dev/PDF/Life 버튼 클릭 시 헤더 아래 드롭다운 열림
+- 도구 목록: `/assets/js/tools-data.js`의 `TOOLS_DATA`에서 동적 로드
+- JS 로직: `/assets/js/components.js`의 `initToolsDropdown()`
+
+### 드롭다운 i18n 키
+- `nav.all`: "전체" 탭
+- `nav.searchPlaceholder`: 검색 placeholder
+- `nav.dev`, `nav.pdf`, `nav.life`: 카테고리 탭
+
+### 헤더 수정 시 해야 할 것
+1. `/components/header.html` 수정
+2. `node scripts/auto/force-update-headers.js` 실행 (모든 HTML 파일 업데이트)
+
+### force-update-headers.js
+- `<div id="header">...</div>` 내용을 `/components/header.html`로 교체
+- 깨진 HTML은 자동 수정 안 됨 → `fix-duplicate-headers.js` 사용
 
 ---
 
@@ -46,121 +68,110 @@
 ### 3. sitemap.xml
 - [ ] 한글 URL + 영어 URL 둘 다 추가
 
-### 4. 도구 목록 페이지 (tool-card 추가 + 숫자!)
-- [ ] `/tools/index.html` - 카드 + meta + 본문 + 필터버튼
-- [ ] `/en/tools/index.html` - 카드 + meta + 본문 + 필터버튼
+### 4. 도구 목록 페이지
+- [ ] `/tools/index.html` - 카드 + 숫자 업데이트
+- [ ] `/en/tools/index.html` - 카드 + 숫자 업데이트
 
-### 5. 카테고리 인덱스 (tool-card 추가 + 숫자!)
-- [ ] `/tools/{category}/index.html` - 카드 + meta + 본문 + 필터버튼
-- [ ] `/en/tools/{category}/index.html` - 카드 + meta + 본문 + 필터버튼
+### 5. 카테고리 인덱스
+- [ ] `/tools/{category}/index.html` - 카드 + 숫자
+- [ ] `/en/tools/{category}/index.html` - 카드 + 숫자
 
-### 6. 헤더 (Desktop + Mobile 둘 다!)
-- [ ] `/components/header.html`
+### 6. 헤더 (Mobile Accordion)
+- [ ] `/components/header.html` - 모바일 메뉴에 도구 추가
 - [ ] `node scripts/auto/force-update-headers.js` 실행
 
-### 7. 홈페이지 숫자
+### 7. 검색 데이터
+- [ ] `/assets/js/tools-data.js` - TOOLS_DATA에 도구 추가
+
+### 8. 홈페이지 숫자
 - [ ] `/index.html` - 카테고리 카드 숫자
 - [ ] `/en/index.html` - 카테고리 카드 숫자
+
+### 9. 이 파일 업데이트
+- [ ] CLAUDE.md 도구 목록 + 숫자 업데이트
+
+---
+
+## 숫자 업데이트 위치
+
+| 파일 | 위치 |
+|-----|------|
+| `/index.html` | 카테고리 카드 숫자 |
+| `/tools/index.html` | meta, 본문, 필터버튼 |
+| `/tools/dev/index.html` | meta, 본문, 필터버튼 |
+| `/tools/life/index.html` | meta, 본문, 필터버튼 |
+
+**영어 버전도 `/en/` 경로에서 동일하게 수정!**
 
 ---
 
 ## 도구 페이지 필수 구조
 
 ```html
-<head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>도구명 - Toolneat</title>
-  <meta name="description" content="150자 이상 설명">
-
-  <!-- Canonical & hreflang -->
-  <link rel="canonical" href="https://toolneat.com/tools/{category}/{tool}/">
-  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/{category}/{tool}/">
-  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/{category}/{tool}/">
-  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/{category}/{tool}/">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Toolneat">
-  <meta property="og:title" content="도구명 - Toolneat">
-  <meta property="og:description" content="설명">
-  <meta property="og:url" content="https://toolneat.com/tools/{category}/{tool}/">
-  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
-
-  <!-- CSS & JS -->
-  <link rel="stylesheet" href="../../../assets/css/output.css">
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
-  <script src="../../../assets/js/common.js"></script>
-  <script src="../../../assets/js/i18n.js"></script>
-  <script src="../../../assets/js/components.js"></script>
-
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"도구명","description":"설명","url":"https://toolneat.com/tools/{category}/{tool}","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"author":{"@type":"Organization","name":"Toolneat"}}
-  </script>
-</head>
-
 <body class="min-h-screen flex flex-col">
   <div id="header"></div>
-  <main class="flex-1 py-8 md:py-12">
+
+  <!-- ⚠️ mt-16 필수! (fixed 헤더 64px 공간 확보) -->
+  <main class="flex-1 mt-16 py-8 md:py-12">
     <div class="container-main">
       <div class="mb-6">
         <h1>도구명</h1>
         <p>설명</p>
       </div>
       <div class="card"><!-- 도구 UI --></div>
-      <section class="mt-8"><!-- FAQ 섹션 (SEO용, 3-5개 Q&A) --></section>
+      <section class="mt-8"><!-- FAQ 섹션 --></section>
     </div>
   </main>
+
   <div id="footer"></div>
 </body>
 ```
 
 ---
 
-## tool-card 형식
+## tools-data.js 형식
 
-```html
-<a href="/tools/dev/{tool}" class="tool-card">
-  <div class="tool-icon bg-gradient-to-br from-blue-500 to-blue-600">
-    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="..."/>
-    </svg>
-  </div>
-  <div class="tool-info">
-    <div class="tool-name" data-i18n="tools.{key}.title">도구명</div>
-    <div class="tool-desc">설명</div>
-  </div>
-</a>
+```js
+{
+  id: 'tool-id',
+  path: '/tools/category/tool-id',
+  name: { ko: '한글 이름', en: 'English Name' },
+  description: { ko: '한글 설명', en: 'English description' },
+  tags: ['tag1', 'tag2', '한글태그'],
+  icon: 'code'
+}
 ```
 
 ---
 
-## 헤더 수정
+## ⚠️ 자주 놓치는 실수
 
-### Desktop Mega Menu
-```html
-<a href="/tools/dev/{tool}" class="mega-link nav-link" data-i18n="tools.{key}.title">도구명</a>
-```
+### 1. main에 mt-16 누락
+- 헤더가 `fixed`라서 `mt-16` 없으면 콘텐츠가 헤더에 가려짐
+- 모든 페이지의 `<main>`에 `mt-16` 필수
 
-### Mobile Accordion
-```html
-<a href="/tools/dev/{tool}" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.{key}.title">도구명</a>
-```
+### 2. tools-data.js 누락
+- 이걸 빠뜨리면 Ctrl+K 검색 + PC 드롭다운에서 도구 안 보임
 
-**⚠️ Desktop + Mobile 둘 다 추가해야 함!**
+### 3. 언어 불일치
+- KO 페이지는 한글, EN 페이지는 영어로 기본 텍스트 작성
+- `data-i18n` 있어도 기본 텍스트가 해당 언어여야 함
 
-수정 후: `node scripts/auto/force-update-headers.js`
+### 4. Textarea 리사이즈
+- `.textarea` 클래스 사용 금지 (resize: none 들어있음)
+- `<style>` 블록으로 직접 스타일 정의
+
+### 5. 버튼 아이콘 정렬
+- SVG 있으면 `flex items-center justify-center` 추가
 
 ---
 
-## 주의사항
+## 스크립트 목록
 
-1. **스크립트 로딩 순서**: Fuse.js → common.js → i18n.js → components.js
-2. **양쪽 버전 동기화**: KO/EN 둘 다 추가
-3. **헤더 기본값은 한글**: `data-i18n` 속성 + 한글 텍스트
-4. **CSS `@apply`**: 인라인 `<style>`에서 안됨, Tailwind 클래스 직접 사용
+| 스크립트 | 용도 |
+|---------|------|
+| `node scripts/auto/force-update-headers.js` | 모든 HTML 헤더 업데이트 |
+| `node scripts/auto/fix-duplicate-headers.js` | 중복 헤더 제거 |
 
 ---
 
@@ -168,8 +179,6 @@
 - **Dev**: blue(인코딩), purple(생성기), green(변환기), orange(테스터)
 - **Life**: green, pink, indigo, yellow, cyan
 - **PDF**: red
-
----
 
 ## applicationCategory (JSON-LD)
 - Dev: `DeveloperApplication`

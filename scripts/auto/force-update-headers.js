@@ -77,12 +77,13 @@ function updateHeader(filePath) {
     header = convertLinksForEnglish(header);
   }
 
-  // Match <div id="header">...<header>...</header>...</div>
-  // The header div contains a <header> element, so we match until </header> followed by </div>
-  const headerRegex = /<div\s+id=["']header["']\s*>[\s\S]*?<\/header>\s*<\/div>/i;
+  // Match <div id="header">...content...</div>
+  // Content can include <header>, dropdown, backdrop etc.
+  // Match until </div> followed by any content until <main
+  const headerRegex = /<div\s+id=["']header["']\s*>[\s\S]*?<\/div>\s*(?=\s*<!--[\s\S]*?-->\s*<main|\s*<main)/i;
 
   if (headerRegex.test(content)) {
-    content = content.replace(headerRegex, `<div id="header">\n${header}\n</div>`);
+    content = content.replace(headerRegex, `<div id="header">\n${header}</div>\n  `);
     fs.writeFileSync(filePath, content, 'utf-8');
     return true;
   }

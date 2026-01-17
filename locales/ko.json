@@ -4,6 +4,8 @@
     "description": "개발자와 일상생활에 필요한 무료 온라인 도구 모음."
   },
   "nav": {
+    "all": "전체",
+    "searchPlaceholder": "도구 검색...",
     "dev": "개발 도구",
     "life": "생활 도구",
     "pdf": "PDF 도구",
@@ -983,6 +985,31 @@
       "tip1": "버튼을 클릭하면 스포이드가 활성화됩니다",
       "tip2": "브라우저 바깥의 앱에서도 색상을 추출할 수 있습니다",
       "tip3": "ESC 키를 누르면 취소됩니다"
+    },
+    "aiDetector": {
+      "title": "AI 글 감지기",
+      "description": "ChatGPT, Claude 등 AI가 작성한 글인지 감지하는 무료 온라인 도구입니다.",
+      "descriptionLong": "ChatGPT, Claude, Gemini 등 AI가 작성한 글인지 분석합니다. 텍스트의 패턴을 분석하여 AI 생성 확률을 제공합니다."
+    },
+    "youtubeThumbnail": {
+      "title": "유튜브 썸네일 다운로더",
+      "description": "유튜브 영상의 썸네일 이미지를 다양한 해상도로 무료 다운로드하세요.",
+      "descriptionLong": "유튜브 영상 URL을 입력하면 해당 영상의 썸네일을 다양한 해상도로 다운로드할 수 있습니다."
+    },
+    "morseCode": {
+      "title": "모스 부호 변환기",
+      "description": "텍스트를 모스 부호로, 모스 부호를 텍스트로 변환하는 무료 온라인 도구입니다.",
+      "descriptionLong": "텍스트를 모스 부호로 변환하거나, 모스 부호를 텍스트로 디코딩합니다. 소리로 들어볼 수도 있습니다."
+    },
+    "jsonValidator": {
+      "title": "JSON 유효성 검사기",
+      "description": "JSON 코드의 문법 오류를 검사하고 상세한 에러 위치를 알려주는 무료 온라인 도구입니다.",
+      "descriptionLong": "JSON 문법을 검사하고 오류가 있으면 정확한 위치와 원인을 알려줍니다."
+    },
+    "noiseGenerator": {
+      "title": "노이즈 생성기",
+      "description": "백색소음, 핑크노이즈, 브라운노이즈로 집중력 향상과 숙면에 도움을 줍니다.",
+      "descriptionLong": "백색소음, 핑크노이즈, 브라운노이즈를 생성하여 집중, 휴식, 수면에 도움을 줍니다. 타이머 기능을 지원합니다."
     }
   },
   "common": {

@@ -52,7 +52,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -60,185 +60,28 @@
         Toolneat
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Nav - 오버레이 트리거 버튼들 -->
       <nav class="hidden md:flex items-center gap-2">
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="dev">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          </svg>
+          <span data-i18n="nav.dev">Dev Tools</span>
+        </button>
 
-        <!-- Dev Tools Mega Menu -->
-        <div class="nav-dropdown group">
-          <button class="nav-dropdown-btn">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-            </svg>
-            <span data-i18n="nav.dev">Dev Tools</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="nav-mega-menu">
-            <!-- Encoding/Decoding -->
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.encoding">Encoding</h4>
-              <a href="/en/tools/dev/base64" class="mega-link nav-link" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
-              <a href="/en/tools/dev/url-encoder" class="mega-link nav-link" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
-              <a href="/en/tools/dev/html-entity" class="mega-link nav-link" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
-              <a href="/en/tools/dev/text-escape" class="mega-link nav-link" data-i18n="tools.textEscape.title">Text Escape</a>
-            </div>
-            <!-- Generators -->
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.generators">Generators</h4>
-              <a href="/en/tools/dev/uuid-generator" class="mega-link nav-link" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
-              <a href="/en/tools/dev/hash-generator" class="mega-link nav-link" data-i18n="tools.hashGenerator.title">Hash Generator</a>
-              <a href="/en/tools/dev/lorem-ipsum" class="mega-link nav-link" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
-              <a href="/en/tools/dev/jwt-generator" class="mega-link nav-link" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
-              <a href="/en/tools/dev/password-generator" class="mega-link nav-link" data-i18n="tools.passwordGenerator.title">Password Generator</a>
-              <a href="/en/tools/dev/cron-generator" class="mega-link nav-link" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
-              <a href="/en/tools/dev/gradient-generator" class="mega-link nav-link" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
-              <a href="/en/tools/dev/meta-tag-generator" class="mega-link nav-link" data-i18n="tools.metaTagGenerator.title">Meta Tag Generator</a>
-              <a href="/en/tools/dev/utm-generator" class="mega-link nav-link" data-i18n="tools.utmGenerator.title">UTM Builder</a>
-              <a href="/en/tools/dev/robots-txt" class="mega-link nav-link" data-i18n="tools.robotsTxt.title">Robots.txt 생성기</a>
-              <a href="/en/tools/dev/box-shadow" class="mega-link nav-link" data-i18n="tools.boxShadow.title">Box Shadow 생성기</a>
-            </div>
-            <!-- Converters -->
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.converters">Converters</h4>
-              <a href="/en/tools/dev/json-formatter" class="mega-link nav-link" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
-              <a href="/en/tools/dev/color-converter" class="mega-link nav-link" data-i18n="tools.colorConverter.title">Color Converter</a>
-              <a href="/en/tools/dev/color-palette" class="mega-link nav-link" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
-              <a href="/en/tools/dev/timestamp-converter" class="mega-link nav-link whitespace-nowrap" data-i18n="tools.timestampConverter.titleShort">Timestamp</a>
-              <a href="/en/tools/dev/yaml-json" class="mega-link nav-link" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
-              <a href="/en/tools/dev/xml-json" class="mega-link nav-link" data-i18n="tools.xmlJson.title">XML ↔ JSON Converter</a>
-              <a href="/en/tools/dev/markdown-preview" class="mega-link nav-link" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
-              <a href="/en/tools/dev/case-converter" class="mega-link nav-link" data-i18n="tools.caseConverter.title">Case Converter</a>
-              <a href="/en/tools/dev/sql-formatter" class="mega-link nav-link" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
-              <a href="/en/tools/dev/css-minifier" class="mega-link nav-link" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
-              <a href="/en/tools/dev/line-ending" class="mega-link nav-link" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
-              <a href="/en/tools/dev/json-csv" class="mega-link nav-link" data-i18n="tools.jsonCsv.title">JSON CSV Converter</a>
-              <a href="/en/tools/dev/js-minifier" class="mega-link nav-link" data-i18n="tools.jsMinifier.title">JavaScript Minifier</a>
-              <a href="/en/tools/dev/html-minifier" class="mega-link nav-link" data-i18n="tools.htmlMinifier.title">HTML 압축기</a>
-            </div>
-            <!-- Testers -->
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.testers">Testers</h4>
-              <a href="/en/tools/dev/regex-tester" class="mega-link nav-link" data-i18n="tools.regexTester.title">Regex Tester</a>
-              <a href="/en/tools/dev/jwt-decoder" class="mega-link nav-link" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
-              <a href="/en/tools/dev/diff-checker" class="mega-link nav-link" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
-              <a href="/en/tools/dev/color-contrast" class="mega-link nav-link" data-i18n="tools.colorContrast.title">Color Contrast Checker</a>
-              <a href="/en/tools/dev/og-preview" class="mega-link nav-link" data-i18n="tools.ogPreview.title">OG 미리보기</a>
-            </div>
-          </div>
-        </div>
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="pdf">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <span data-i18n="nav.pdf">PDF Tools</span>
+        </button>
 
-        <!-- PDF Tools Mega Menu -->
-        <div class="nav-dropdown group">
-          <button class="nav-dropdown-btn">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-            </svg>
-            <span data-i18n="nav.pdf">PDF Tools</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="nav-mega-menu !grid-cols-2 !min-w-[400px]">
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.pdfEdit">PDF Edit</h4>
-              <a href="/en/tools/pdf/merge-pdf" class="mega-link nav-link" data-i18n="tools.mergePdf.title">Merge PDF</a>
-              <a href="/en/tools/pdf/split-pdf" class="mega-link nav-link" data-i18n="tools.splitPdf.title">Split PDF</a>
-              <a href="/en/tools/pdf/compress-pdf" class="mega-link nav-link" data-i18n="tools.compressPdf.title">Compress PDF</a>
-              <a href="/en/tools/pdf/rotate-pdf" class="mega-link nav-link" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
-              <a href="/en/tools/pdf/watermark-pdf" class="mega-link nav-link" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
-              <a href="/en/tools/pdf/delete-pdf" class="mega-link nav-link" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
-              <a href="/en/tools/pdf/reorder-pdf" class="mega-link nav-link" data-i18n="tools.reorderPdf.title">Reorder PDF Pages</a>
-            </div>
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.pdfConvert">PDF Convert</h4>
-              <a href="/en/tools/pdf/pdf-to-image" class="mega-link nav-link" data-i18n="tools.pdfToImage.title">PDF to Image</a>
-              <a href="/en/tools/pdf/image-to-pdf" class="mega-link nav-link" data-i18n="tools.imageToPdf.title">Image to PDF</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Life Tools Mega Menu -->
-        <div class="nav-dropdown group">
-          <button class="nav-dropdown-btn">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-            </svg>
-            <span data-i18n="nav.life">Life Tools</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="nav-mega-menu !grid-cols-5 !min-w-[900px]">
-            <!-- Calculators -->
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.calculators">Calculators</h4>
-              <a href="/en/tools/life/salary-calculator" class="mega-link nav-link" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
-              <a href="/en/tools/life/dday-calculator" class="mega-link nav-link" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
-              <a href="/en/tools/life/bmi-calculator" class="mega-link nav-link" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
-              <a href="/en/tools/life/loan-calculator" class="mega-link nav-link" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
-              <a href="/en/tools/life/age-calculator" class="mega-link nav-link" data-i18n="tools.ageCalculator.title">Age Calculator</a>
-              <a href="/en/tools/life/percent-calculator" class="mega-link nav-link" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
-              <a href="/en/tools/life/compound-calculator" class="mega-link nav-link" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
-              <a href="/en/tools/life/tip-calculator" class="mega-link nav-link" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
-            </div>
-            <!-- Media & AI -->
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.mediaAi">Media & AI</h4>
-              <a href="/en/tools/life/background-remover" class="mega-link nav-link" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
-              <a href="/en/tools/life/video-to-gif" class="mega-link nav-link" data-i18n="tools.videoToGif.title">Video to GIF</a>
-              <a href="/en/tools/life/screen-recorder" class="mega-link nav-link" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
-              <a href="/en/tools/life/ocr" class="mega-link nav-link" data-i18n="tools.ocr.title">OCR Text Extractor</a>
-              <a href="/en/tools/life/meme-generator" class="mega-link nav-link" data-i18n="tools.memeGenerator.title">Meme Generator</a>
-              <a href="/en/tools/life/speech-to-text" class="mega-link nav-link" data-i18n="tools.speechToText.title">Speech to Text</a>
-              <a href="/en/tools/life/text-to-speech" class="mega-link nav-link" data-i18n="tools.textToSpeech.title">Text to Speech</a>
-            </div>
-            <!-- Utilities -->
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.utilities">Utilities</h4>
-              <a href="/en/tools/life/character-counter" class="mega-link nav-link" data-i18n="tools.characterCounter.title">Character Counter</a>
-              <a href="/en/tools/life/unit-converter" class="mega-link nav-link" data-i18n="tools.unitConverter.title">Unit Converter</a>
-              <a href="/en/tools/life/qr-generator" class="mega-link nav-link" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
-              <a href="/en/tools/life/qr-scanner" class="mega-link nav-link" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
-              <a href="/en/tools/life/barcode-generator" class="mega-link nav-link" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
-              <a href="/en/tools/life/favicon-generator" class="mega-link nav-link" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
-              <a href="/en/tools/life/image-compressor" class="mega-link nav-link" data-i18n="tools.imageCompressor.title">Image Compressor</a>
-              <a href="/en/tools/life/image-resizer" class="mega-link nav-link" data-i18n="tools.imageResizer.title">Image Resizer</a>
-              <a href="/en/tools/life/image-converter" class="mega-link nav-link" data-i18n="tools.imageConverter.title">Image Format Converter</a>
-              <a href="/en/tools/life/image-watermark" class="mega-link nav-link" data-i18n="tools.imageWatermark.title">Image Watermark</a>
-              <a href="/en/tools/life/image-crop" class="mega-link nav-link" data-i18n="tools.imageCrop.title">Image Crop</a>
-              <a href="/en/tools/life/image-rotate" class="mega-link nav-link" data-i18n="tools.imageRotate.title">Image Rotate</a>
-              <a href="/en/tools/life/exif-remover" class="mega-link nav-link" data-i18n="tools.exifRemover.title">EXIF Remover</a>
-              <a href="/en/tools/life/color-picker" class="mega-link nav-link" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
-              <a href="/en/tools/life/pomodoro-timer" class="mega-link nav-link" data-i18n="tools.pomodoroTimer.title">Pomodoro Timer</a>
-              <a href="/en/tools/life/base-converter" class="mega-link nav-link" data-i18n="tools.baseConverter.title">Number Base Converter</a>
-              <a href="/en/tools/life/ascii-unicode" class="mega-link nav-link" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
-              <a href="/en/tools/life/emoji-picker" class="mega-link nav-link" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
-              <a href="/en/tools/life/countdown-timer" class="mega-link nav-link" data-i18n="tools.countdownTimer.title">Countdown Timer</a>
-              <a href="/en/tools/life/aspect-ratio" class="mega-link nav-link" data-i18n="tools.aspectRatio.title">Aspect Ratio Calculator</a>
-              <a href="/en/tools/life/ip-lookup" class="mega-link nav-link" data-i18n="tools.ipLookup.title">IP 주소 조회</a>
-            </div>
-            <!-- Monitor Test -->
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.monitorTest">Monitor Test</h4>
-              <a href="/en/tools/life/dead-pixel-test" class="mega-link nav-link" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
-              <a href="/en/tools/life/pixel-fixer" class="mega-link nav-link" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
-              <a href="/en/tools/life/screen-burn-test" class="mega-link nav-link" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
-              <a href="/en/tools/life/screen-color-test" class="mega-link nav-link" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
-            </div>
-            <!-- Fun & Games -->
-            <div class="mega-column">
-              <h4 class="mega-title" data-i18n="nav.funGames">Fun & Games</h4>
-              <a href="/en/tools/life/lottery-generator" class="mega-link nav-link" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
-              <a href="/en/tools/life/roulette" class="mega-link nav-link" data-i18n="tools.roulette.title">Roulette Wheel</a>
-              <a href="/en/tools/life/dice-roller" class="mega-link nav-link" data-i18n="tools.diceRoller.title">Dice Roller</a>
-              <a href="/en/tools/life/coin-flip" class="mega-link nav-link" data-i18n="tools.coinFlip.title">Coin Flip</a>
-              <a href="/en/tools/life/typing-test" class="mega-link nav-link" data-i18n="tools.typingTest.title">Typing Test</a>
-              <a href="/en/tools/life/reaction-test" class="mega-link nav-link" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
-              <a href="/en/tools/life/stopwatch" class="mega-link nav-link" data-i18n="tools.stopwatch.title">Stopwatch</a>
-            </div>
-          </div>
-        </div>
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="life">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <span data-i18n="nav.life">Life Tools</span>
+        </button>
       </nav>
 
       <!-- Actions -->
@@ -389,7 +232,8 @@
               <a href="/en/tools/dev/jwt-decoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
               <a href="/en/tools/dev/diff-checker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
               <a href="/en/tools/dev/color-contrast" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorContrast.title">Color Contrast Checker</a>
-              <a href="/en/tools/dev/og-preview" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ogPreview.title">OG Preview</a>
+              <a href="/en/tools/dev/og-preview" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ogPreview.title">Open Graph Preview</a>
+              <a href="/en/tools/dev/json-validator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsonValidator.title">JSON Validator</a>
             </div>
           </div>
         </div>
@@ -523,7 +367,11 @@
               <a href="/en/tools/life/emoji-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
               <a href="/en/tools/life/countdown-timer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.countdownTimer.title">Countdown Timer</a>
               <a href="/en/tools/life/aspect-ratio" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.aspectRatio.title">Aspect Ratio Calculator</a>
-              <a href="/en/tools/life/ip-lookup" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ipLookup.title">IP Lookup</a>
+              <a href="/en/tools/life/ip-lookup" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ipLookup.title">IP Address Lookup</a>
+              <a href="/en/tools/life/ai-detector" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.aiDetector.title">AI Text Detector</a>
+              <a href="/en/tools/life/youtube-thumbnail" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.youtubeThumbnail.title">YouTube Thumbnail Downloader</a>
+              <a href="/en/tools/life/morse-code" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.morseCode.title">Morse Code Converter</a>
+              <a href="/en/tools/life/noise-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.noiseGenerator.title">Noise Generator</a>
             </div>
           </div>
           <!-- Monitor Test -->
@@ -565,8 +413,56 @@
   </div>
 </header>
 
+<!-- Tools Dropdown (PC Only - 헤더 바로 아래 붙는 방식) -->
+<div id="tools-dropdown" class="hidden fixed left-0 right-0 top-16 z-[60] bg-white dark:bg-gray-900 shadow-2xl border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main py-4">
+    <!-- Header: Tabs + Search + Close -->
+    <div class="flex items-center justify-between gap-4 mb-4">
+      <!-- Category Tabs -->
+      <div class="flex items-center gap-1">
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="all">
+          <span data-i18n="nav.all">All</span>
+        </button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="dev">
+          <span data-i18n="nav.dev">Dev Tools</span>
+        </button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="pdf">
+          <span data-i18n="nav.pdf">PDF Tools</span>
+        </button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="life">
+          <span data-i18n="nav.life">Life Tools</span>
+        </button>
+      </div>
+
+      <!-- Search + Close -->
+      <div class="flex items-center gap-2">
+        <div class="relative">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input type="text" id="tools-dropdown-search" class="w-64 pl-9 pr-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="도구 검색..." data-i18n-placeholder="nav.searchPlaceholder">
+        </div>
+        <button id="tools-dropdown-close" class="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tools Grid (고정 높이 + 스크롤) -->
+    <div class="max-h-[420px] overflow-y-auto">
+      <div id="tools-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2">
+        <!-- Tools will be populated by JS -->
+      </div>
+    </div>
+  </div>
 </div>
-  <main class="flex-1 py-8 md:py-12">
+
+<!-- Dropdown Backdrop (헤더 아래부터 시작) -->
+<div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
+</div>
+  <main class="flex-1 mt-16 py-8 md:py-12">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">EXIF Metadata Remover</h1>
