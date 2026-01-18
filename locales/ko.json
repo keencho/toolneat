@@ -26,7 +26,9 @@
     "allTools": "모든 도구",
     "allDevTools": "모든 개발 도구",
     "allLifeTools": "모든 생활 도구",
-    "allPdfTools": "모든 PDF 도구"
+    "allPdfTools": "모든 PDF 도구",
+    "game": "게임",
+    "allGameTools": "모든 게임"
   },
   "footer": {
     "about": "소개",
@@ -1045,6 +1047,26 @@
       "title": "한국 이름 생성기",
       "description": "랜덤 한국 이름을 생성하는 무료 온라인 도구입니다.",
       "descriptionLong": "작명, 캐릭터 이름, 가명 등에 사용할 수 있는 랜덤 한국 이름을 생성합니다. 성별, 성씨 선택이 가능합니다."
+    },
+    "2048": {
+      "title": "2048",
+      "description": "숫자 블록을 합쳐 2048을 만드세요."
+    },
+    "minesweeper": {
+      "title": "지뢰찾기",
+      "description": "클래식 지뢰찾기 게임입니다."
+    },
+    "snake": {
+      "title": "스네이크",
+      "description": "뱀을 조종해 먹이를 먹는 게임입니다."
+    },
+    "memoryGame": {
+      "title": "기억력 테스트",
+      "description": "카드를 뒤집어 짝을 맞추세요."
+    },
+    "tetris": {
+      "title": "테트리스",
+      "description": "블록을 쌓아 줄을 완성하세요."
     }
   },
   "common": {

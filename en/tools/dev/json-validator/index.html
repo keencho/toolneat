@@ -106,6 +106,14 @@
           </svg>
           <span data-i18n="nav.life">Life Tools</span>
         </button>
+
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="game">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span data-i18n="nav.game">Games</span>
+        </button>
       </nav>
 
       <!-- Actions -->
@@ -440,6 +448,29 @@
           </div>
         </div>
       </div>
+
+      <!-- Game (Mobile) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span data-i18n="nav.game">Games</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4 space-y-1">
+          <a href="/en/tools/game/2048" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.2048.title">2048</a>
+          <a href="/en/tools/game/minesweeper" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.minesweeper.title">Minesweeper</a>
+          <a href="/en/tools/game/snake" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.snake.title">Snake</a>
+          <a href="/en/tools/game/memory-game" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.memoryGame.title">Memory Game</a>
+          <a href="/en/tools/game/tetris" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.tetris.title">Tetris</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
@@ -462,6 +493,9 @@
         </button>
         <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="life">
           <span data-i18n="nav.life">Life Tools</span>
+        </button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="game">
+          <span data-i18n="nav.game">Games</span>
         </button>
       </div>
 

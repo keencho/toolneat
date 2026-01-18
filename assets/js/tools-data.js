@@ -825,6 +825,48 @@ const TOOLS_DATA = {
       tags: ['pdf', 'reorder', 'sort', 'arrange', 'page', '재정렬', '순서'],
       icon: 'document'
     }
+  ],
+  game: [
+    {
+      id: '2048',
+      path: '/tools/game/2048',
+      name: { ko: '2048', en: '2048' },
+      description: { ko: '숫자 블록을 합쳐 2048을 만드세요', en: 'Merge number blocks to reach 2048' },
+      tags: ['game', 'puzzle', '게임', '퍼즐', '2048', '숫자'],
+      icon: 'puzzle'
+    },
+    {
+      id: 'minesweeper',
+      path: '/tools/game/minesweeper',
+      name: { ko: '지뢰찾기', en: 'Minesweeper' },
+      description: { ko: '클래식 지뢰찾기 게임', en: 'Classic minesweeper game' },
+      tags: ['game', 'puzzle', 'minesweeper', '게임', '지뢰찾기', '퍼즐'],
+      icon: 'puzzle'
+    },
+    {
+      id: 'snake',
+      path: '/tools/game/snake',
+      name: { ko: '스네이크', en: 'Snake' },
+      description: { ko: '뱀을 조종해 먹이를 먹는 게임', en: 'Control the snake to eat food' },
+      tags: ['game', 'snake', 'arcade', '게임', '스네이크', '뱀'],
+      icon: 'puzzle'
+    },
+    {
+      id: 'memory-game',
+      path: '/tools/game/memory-game',
+      name: { ko: '기억력 테스트', en: 'Memory Game' },
+      description: { ko: '카드를 뒤집어 짝을 맞추세요', en: 'Flip cards and match pairs' },
+      tags: ['game', 'memory', 'card', '게임', '기억력', '카드'],
+      icon: 'puzzle'
+    },
+    {
+      id: 'tetris',
+      path: '/tools/game/tetris',
+      name: { ko: '테트리스', en: 'Tetris' },
+      description: { ko: '블록을 쌓아 줄을 완성하세요', en: 'Stack blocks to complete lines' },
+      tags: ['game', 'tetris', 'puzzle', 'block', '게임', '테트리스', '블록'],
+      icon: 'puzzle'
+    }
   ]
 };
 
@@ -832,7 +874,8 @@ const TOOLS_DATA = {
 const ALL_TOOLS = [
   ...TOOLS_DATA.dev.map(t => ({ ...t, category: 'dev' })),
   ...TOOLS_DATA.life.map(t => ({ ...t, category: 'life' })),
-  ...TOOLS_DATA.pdf.map(t => ({ ...t, category: 'pdf' }))
+  ...TOOLS_DATA.pdf.map(t => ({ ...t, category: 'pdf' })),
+  ...TOOLS_DATA.game.map(t => ({ ...t, category: 'game' }))
 ];
 
 // Popular tools (manually curated for homepage)

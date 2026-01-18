@@ -363,7 +363,8 @@
       const colorMap = {
         dev: 'from-blue-500 to-blue-600',
         life: 'from-green-500 to-green-600',
-        pdf: 'from-red-500 to-red-600'
+        pdf: 'from-red-500 to-red-600',
+        game: 'from-purple-500 to-pink-500'
       };
 
       grid.innerHTML = tools.map(tool => {

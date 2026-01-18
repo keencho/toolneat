@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Tetris - Toolneat</title>
+  <meta name="description" content="Free online Tetris game. Stack blocks and complete lines!">
+  <link rel="canonical" href="https://toolneat.com/en/tools/game/tetris/">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game/tetris/">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game/tetris/">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game/tetris/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/assets/css/output.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/tools-data.js"></script>
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/search.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tetris",
+    "description": "Free online Tetris game. Stack blocks and complete lines!",
+    "url": "https://toolneat.com/en/tools/game/tetris/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "provider": { "@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com" }
+  }
+  </script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Tetris - Toolneat">
+  <meta property="og:description" content="Free online Tetris game. Stack blocks and complete lines!">
+  <meta property="og:url" content="https://toolneat.com/en/tools/game/tetris/">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta property="og:locale" content="en_US">
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">  <style>
+    .game-container {
+      touch-action: none;
+      user-select: none;
+    }
+    .game-area {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      background: linear-gradient(135deg, #0c1222, #1a1a2e);
+      border-radius: 16px;
+    }
+    .left-panel, .right-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 100px;
+      height: 496px; /* 게임보드 높이에 맞춤 */
+    }
+    .stats-group, .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .game-board-wrapper {
+      position: relative;
+      padding: 8px;
+      background: linear-gradient(135deg, #1e3a5f, #0f2744);
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.3), inset 0 0 20px rgba(0,0,0,0.5);
+    }
+    #gameCanvas {
+      border: 3px solid #06b6d4;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #0a0f1a, #0f172a);
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .game-area {
+        flex-wrap: wrap;
+      }
+      .left-panel, .right-panel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        min-width: auto;
+        width: 100%;
+        height: auto;
+        order: 2;
+      }
+      .left-panel {
+        order: 2;
+      }
+      .right-panel {
+        order: 3;
+      }
+      .game-main {
+        order: 1;
+        width: 100%;
+      }
+      .stats-group, .options-group {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+      }
+      .left-panel .info-box, .right-panel .info-box {
+        min-width: 80px;
+        padding: 8px 12px;
+      }
+      .left-panel .info-box .value, .right-panel .info-box .value {
+        font-size: 20px;
+      }
+      .options-panel {
+        width: 100%;
+      }
+    }
+    .info-box {
+      background: linear-gradient(135deg, #1e3a5f, #0f2744);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 12px;
+      text-align: center;
+      min-width: 110px;
+      border: 2px solid rgba(6, 182, 212, 0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .info-box .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      margin-bottom: 4px;
+    }
+    .info-box .value {
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    }
+    .preview-canvas {
+      background: linear-gradient(180deg, #0a0f1a, #0f172a);
+      border: 2px solid rgba(6, 182, 212, 0.5);
+      border-radius: 8px;
+      display: block;
+      margin: 8px auto 0;
+    }
+    .game-overlay {
+      position: absolute;
+      inset: 8px;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: white;
+      backdrop-filter: blur(4px);
+    }
+    .game-overlay button {
+      background: linear-gradient(135deg, #06b6d4, #0891b2);
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .game-overlay button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
+    }
+    .mobile-controls {
+      display: none;
+      margin-top: 16px;
+    }
+    @media (max-width: 640px) {
+      .game-area {
+        padding: 12px;
+      }
+      .mobile-controls {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .mobile-controls button {
+        width: 56px;
+        height: 56px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1e3a5f, #0f2744);
+        color: white;
+        border-radius: 12px;
+        font-size: 20px;
+        border: 2px solid rgba(6, 182, 212, 0.4);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        line-height: 1;
+      }
+      .mobile-controls button span {
+        font-size: 8px;
+        margin-top: 2px;
+        opacity: 0.7;
+      }
+      .mobile-controls button:active {
+        transform: scale(0.95);
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+      }
+      .control-group {
+        display: flex;
+        gap: 8px;
+      }
+    }
+    .hold-box {
+      border-color: rgba(139, 92, 246, 0.5);
+    }
+    .hold-box .label {
+      color: #c4b5fd;
+    }
+    .options-panel {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .options-panel label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #94a3b8;
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+    .options-panel input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #06b6d4;
+    }
+    .options-panel select {
+      background: #0f172a;
+      color: white;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+    .game-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .game-info-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 240px;
+      margin-top: 12px;
+      gap: 12px;
+    }
+    .play-time {
+      color: #06b6d4;
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    }
+    .pause-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #1e3a5f, #0f2744);
+      border: 2px solid rgba(6, 182, 212, 0.4);
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pause-btn:hover {
+      background: linear-gradient(135deg, #06b6d4, #0891b2);
+      border-color: #06b6d4;
+    }
+    .pause-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col">
+  <div id="header">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/en/" class="nav-link text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        Toolneat
+      </a>
+
+      <!-- Desktop Nav - 오버레이 트리거 버튼들 -->
+      <nav class="hidden md:flex items-center gap-2">
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="dev">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          </svg>
+          <span data-i18n="nav.dev">Dev Tools</span>
+        </button>
+
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="pdf">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <span data-i18n="nav.pdf">PDF Tools</span>
+        </button>
+
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="life">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <span data-i18n="nav.life">Life Tools</span>
+        </button>
+
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="game">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span data-i18n="nav.game">Games</span>
+        </button>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <!-- Search Button -->
+        <button id="header-search-btn" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="hidden lg:inline" data-i18n="nav.search">Search</span>
+          <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 dark:bg-gray-700 rounded">
+            <span class="text-[9px]">Ctrl</span>K
+          </kbd>
+        </button>
+
+        <!-- Language Toggle -->
+        <div class="hidden sm:flex items-center gap-1 text-sm">
+          <button data-lang="ko" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">KO</button>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
+          <button data-lang="en" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">EN</button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+          <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="icon-btn md:hidden" aria-label="Menu">
+          <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (2-level accordion) -->
+    <nav id="mobile-menu" class="hidden md:hidden pb-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
+      <!-- Mobile Search Button -->
+      <button id="mobile-search-btn" class="w-full flex items-center gap-3 py-3 px-3 mb-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <span data-i18n="nav.search">Search</span>
+      </button>
+
+      <!-- Language (Mobile) -->
+      <div class="flex items-center gap-2 py-3 border-b border-gray-100 dark:border-gray-800 mb-2">
+        <span class="text-sm text-gray-500">Language:</span>
+        <button data-lang="ko" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">KO</button>
+        <button data-lang="en" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">EN</button>
+      </div>
+
+      <!-- Dev Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span data-i18n="nav.dev">Dev Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Encoding/Decoding -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.encoding">Encoding</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/base64" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
+              <a href="/en/tools/dev/url-encoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
+              <a href="/en/tools/dev/html-entity" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
+              <a href="/en/tools/dev/text-escape" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400">텍스트 이스케이프</a>
+            </div>
+          </div>
+          <!-- Generators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.generators">Generators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/uuid-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.uuidGenerator.title">UUID Generator</a>
+              <a href="/en/tools/dev/hash-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.hashGenerator.title">Hash Generator</a>
+              <a href="/en/tools/dev/lorem-ipsum" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loremIpsum.title">Lorem Ipsum Generator</a>
+              <a href="/en/tools/dev/jwt-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtGenerator.title">JWT Generator</a>
+              <a href="/en/tools/dev/password-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.passwordGenerator.title">Password Generator</a>
+              <a href="/en/tools/dev/cron-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cronGenerator.title">Cron Expression Generator</a>
+              <a href="/en/tools/dev/gradient-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.gradientGenerator.title">Gradient Generator</a>
+              <a href="/en/tools/dev/meta-tag-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.metaTagGenerator.title">Meta Tag Generator</a>
+              <a href="/en/tools/dev/utm-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.utmGenerator.title">UTM Builder</a>
+              <a href="/en/tools/dev/robots-txt" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.robotsTxt.title">Robots.txt Generator</a>
+              <a href="/en/tools/dev/box-shadow" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.boxShadow.title">Box Shadow Generator</a>
+            </div>
+          </div>
+          <!-- Converters -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.converters">Converters</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/json-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsonFormatter.title">JSON Formatter</a>
+              <a href="/en/tools/dev/color-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorConverter.title">Color Converter</a>
+              <a href="/en/tools/dev/color-palette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPalette.title">Color Palette Extractor</a>
+              <a href="/en/tools/dev/timestamp-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.timestampConverter.title">Unix Timestamp Converter</a>
+              <a href="/en/tools/dev/yaml-json" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.yamlJson.title">YAML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/xml-json" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.xmlJson.title">XML ↔ JSON Converter</a>
+              <a href="/en/tools/dev/markdown-preview" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.markdownPreview.title">Markdown Preview</a>
+              <a href="/en/tools/dev/case-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.caseConverter.title">Case Converter</a>
+              <a href="/en/tools/dev/sql-formatter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.sqlFormatter.title">SQL Formatter</a>
+              <a href="/en/tools/dev/css-minifier" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.cssMinifier.title">CSS Minifier/Beautifier</a>
+              <a href="/en/tools/dev/line-ending" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lineEnding.title">Line Ending Converter</a>
+              <a href="/en/tools/dev/json-csv" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsonCsv.title">JSON CSV Converter</a>
+              <a href="/en/tools/dev/js-minifier" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsMinifier.title">JavaScript Minifier</a>
+              <a href="/en/tools/dev/html-minifier" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.htmlMinifier.title">HTML Minifier</a>
+            </div>
+          </div>
+          <!-- Testers -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.testers">Testers</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/dev/regex-tester" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.regexTester.title">Regex Tester</a>
+              <a href="/en/tools/dev/jwt-decoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jwtDecoder.title">JWT Decoder</a>
+              <a href="/en/tools/dev/diff-checker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diffChecker.title">Text Diff Checker</a>
+              <a href="/en/tools/dev/color-contrast" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorContrast.title">Color Contrast Checker</a>
+              <a href="/en/tools/dev/og-preview" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ogPreview.title">Open Graph Preview</a>
+              <a href="/en/tools/dev/json-validator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.jsonValidator.title">JSON Validator</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.pdf">PDF Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- PDF Edit -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfEdit">PDF Edit</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/merge-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.mergePdf.title">Merge PDF</a>
+              <a href="/en/tools/pdf/split-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.splitPdf.title">Split PDF</a>
+              <a href="/en/tools/pdf/compress-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compressPdf.title">Compress PDF</a>
+              <a href="/en/tools/pdf/rotate-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.rotatePdf.title">Rotate PDF</a>
+              <a href="/en/tools/pdf/watermark-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.watermarkPdf.title">PDF Watermark</a>
+              <a href="/en/tools/pdf/delete-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deletePdf.title">Delete PDF Pages</a>
+              <a href="/en/tools/pdf/reorder-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.reorderPdf.title">Reorder PDF Pages</a>
+            </div>
+          </div>
+          <!-- PDF Convert -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.pdfConvert">PDF Convert</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/pdf/pdf-to-image" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pdfToImage.title">PDF to Image</a>
+              <a href="/en/tools/pdf/image-to-pdf" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageToPdf.title">Image to PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Life Tools (Mobile - 2-level) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="nav.life">Life Tools</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4">
+          <!-- Calculators -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.calculators">Calculators</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/salary-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.salaryCalculator.title">Salary Calculator (Korea)</a>
+              <a href="/en/tools/life/dday-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ddayCalculator.title">D-day Calculator</a>
+              <a href="/en/tools/life/bmi-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.bmiCalculator.title">BMI Calculator</a>
+              <a href="/en/tools/life/loan-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.loanCalculator.title">Loan Calculator</a>
+              <a href="/en/tools/life/age-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ageCalculator.title">Age Calculator</a>
+              <a href="/en/tools/life/percent-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.percentCalculator.title">Percentage Calculator</a>
+              <a href="/en/tools/life/compound-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.compoundCalculator.title">Compound Interest Calculator</a>
+              <a href="/en/tools/life/tip-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.tipCalculator.title">Tip Calculator</a>
+              <a href="/en/tools/life/sleep-calculator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.sleepCalculator.title">Sleep Calculator</a>
+            </div>
+          </div>
+          <!-- Media & AI -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.mediaAi">Media & AI</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/background-remover" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.backgroundRemover.title">Background Remover AI</a>
+              <a href="/en/tools/life/video-to-gif" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.videoToGif.title">Video to GIF</a>
+              <a href="/en/tools/life/screen-recorder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenRecorder.title">Screen Recorder</a>
+              <a href="/en/tools/life/ocr" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ocr.title">OCR Text Extractor</a>
+              <a href="/en/tools/life/meme-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.memeGenerator.title">Meme Generator</a>
+              <a href="/en/tools/life/speech-to-text" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.speechToText.title">Speech to Text</a>
+              <a href="/en/tools/life/text-to-speech" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.textToSpeech.title">Text to Speech</a>
+            </div>
+          </div>
+          <!-- Utilities -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.utilities">Utilities</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/character-counter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.characterCounter.title">Character Counter</a>
+              <a href="/en/tools/life/unit-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.unitConverter.title">Unit Converter</a>
+              <a href="/en/tools/life/qr-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrGenerator.title">QR Code Generator</a>
+              <a href="/en/tools/life/qr-scanner" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.qrScanner.title">QR Code Scanner</a>
+              <a href="/en/tools/life/barcode-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.barcodeGenerator.title">Barcode Generator</a>
+              <a href="/en/tools/life/favicon-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.faviconGenerator.title">Favicon Generator</a>
+              <a href="/en/tools/life/image-compressor" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageCompressor.title">Image Compressor</a>
+              <a href="/en/tools/life/image-resizer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageResizer.title">Image Resizer</a>
+              <a href="/en/tools/life/image-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageConverter.title">Image Format Converter</a>
+              <a href="/en/tools/life/image-watermark" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageWatermark.title">Image Watermark</a>
+              <a href="/en/tools/life/image-crop" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageCrop.title">Image Crop</a>
+              <a href="/en/tools/life/image-rotate" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageRotate.title">Image Rotate</a>
+              <a href="/en/tools/life/exif-remover" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.exifRemover.title">EXIF Remover</a>
+              <a href="/en/tools/life/color-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.colorPicker.title">Color Picker (EyeDropper)</a>
+              <a href="/en/tools/life/pomodoro-timer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pomodoroTimer.title">Pomodoro Timer</a>
+              <a href="/en/tools/life/base-converter" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.baseConverter.title">Number Base Converter</a>
+              <a href="/en/tools/life/ascii-unicode" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.asciiUnicode.title">ASCII/Unicode Converter</a>
+              <a href="/en/tools/life/emoji-picker" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.emojiPicker.title">Emoji Picker</a>
+              <a href="/en/tools/life/countdown-timer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.countdownTimer.title">Countdown Timer</a>
+              <a href="/en/tools/life/aspect-ratio" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.aspectRatio.title">Aspect Ratio Calculator</a>
+              <a href="/en/tools/life/ip-lookup" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.ipLookup.title">IP Address Lookup</a>
+              <a href="/en/tools/life/ai-detector" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.aiDetector.title">AI Text Detector</a>
+              <a href="/en/tools/life/youtube-thumbnail" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.youtubeThumbnail.title">YouTube Thumbnail Downloader</a>
+              <a href="/en/tools/life/morse-code" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.morseCode.title">Morse Code Converter</a>
+              <a href="/en/tools/life/noise-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.noiseGenerator.title">Noise Generator</a>
+              <a href="/en/tools/life/fake-chat" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.fakeChat.title">Fake Chat Generator</a>
+              <a href="/en/tools/life/fancy-text" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.fancyText.title">Fancy Text Generator</a>
+              <a href="/en/tools/life/webcam-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.webcamTest.title">Webcam Test</a>
+              <a href="/en/tools/life/mic-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.micTest.title">Microphone Test</a>
+              <a href="/en/tools/life/image-blur" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.imageBlur.title">Image Blur/Mosaic</a>
+              <a href="/en/tools/life/korean-name-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.koreanNameGenerator.title">Korean Name Generator</a>
+            </div>
+          </div>
+          <!-- Monitor Test -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.monitorTest">Monitor Test</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/dead-pixel-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.deadPixelTest.title">Dead Pixel Test</a>
+              <a href="/en/tools/life/pixel-fixer" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.pixelFixer.title">Pixel Fixer</a>
+              <a href="/en/tools/life/screen-burn-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenBurnTest.title">Screen Burn-In Test</a>
+              <a href="/en/tools/life/screen-color-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.screenColorTest.title">Screen Color Test</a>
+            </div>
+          </div>
+          <!-- Fun & Games -->
+          <div class="mobile-sub-accordion">
+            <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
+              <span data-i18n="nav.funGames">Fun & Games</span>
+              <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="mobile-sub-content hidden pl-4 space-y-1">
+              <a href="/en/tools/life/lottery-generator" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.lotteryGenerator.title">Lottery Number Generator</a>
+              <a href="/en/tools/life/roulette" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.roulette.title">Roulette Wheel</a>
+              <a href="/en/tools/life/dice-roller" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.diceRoller.title">Dice Roller</a>
+              <a href="/en/tools/life/coin-flip" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.coinFlip.title">Coin Flip</a>
+              <a href="/en/tools/life/typing-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.typingTest.title">Typing Test</a>
+              <a href="/en/tools/life/reaction-test" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.reactionTest.title">Reaction Time Test</a>
+              <a href="/en/tools/life/stopwatch" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.stopwatch.title">Stopwatch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game (Mobile) -->
+      <div class="mobile-accordion">
+        <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span data-i18n="nav.game">Games</span>
+          </span>
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mobile-accordion-content hidden pl-4 space-y-1">
+          <a href="/en/tools/game/2048" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.2048.title">2048</a>
+          <a href="/en/tools/game/minesweeper" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.minesweeper.title">Minesweeper</a>
+          <a href="/en/tools/game/snake" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.snake.title">Snake</a>
+          <a href="/en/tools/game/memory-game" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.memoryGame.title">Memory Game</a>
+          <a href="/en/tools/game/tetris" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.tetris.title">Tetris</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Tools Dropdown (PC Only - 헤더 바로 아래 붙는 방식) -->
+<div id="tools-dropdown" class="hidden fixed left-0 right-0 top-16 z-[60] bg-white dark:bg-gray-900 shadow-2xl border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main py-4">
+    <!-- Header: Tabs + Search + Close -->
+    <div class="flex items-center justify-between gap-4 mb-4">
+      <!-- Category Tabs -->
+      <div class="flex items-center gap-1">
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="all">
+          <span data-i18n="nav.all">All</span>
+        </button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="dev">
+          <span data-i18n="nav.dev">Dev Tools</span>
+        </button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="pdf">
+          <span data-i18n="nav.pdf">PDF Tools</span>
+        </button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="life">
+          <span data-i18n="nav.life">Life Tools</span>
+        </button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="game">
+          <span data-i18n="nav.game">Games</span>
+        </button>
+      </div>
+
+      <!-- Search + Close -->
+      <div class="flex items-center gap-2">
+        <div class="relative">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input type="text" id="tools-dropdown-search" class="w-64 pl-9 pr-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="도구 검색..." data-i18n-placeholder="nav.searchPlaceholder">
+        </div>
+        <button id="tools-dropdown-close" class="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tools Grid (고정 높이 + 스크롤) -->
+    <div class="max-h-[420px] overflow-y-auto">
+      <div id="tools-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2">
+        <!-- Tools will be populated by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dropdown Backdrop (헤더 아래부터 시작) -->
+<div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
+</div>
+  <main class="flex-1 mt-16 py-8 md:py-12">
+    <div class="container-main">
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.tetris.title">Tetris</h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.tetris.description">Stack blocks and complete lines</p>
+      </div>
+
+      <div class="card game-container">
+        <div class="game-area">
+          <!-- Left Panel: Hold + Stats -->
+          <div class="left-panel">
+            <div class="info-box hold-box">
+              <div class="label">Hold (Shift)</div>
+              <canvas id="holdCanvas" class="preview-canvas" width="80" height="80"></canvas>
+            </div>
+            <div class="stats-group">
+              <div class="info-box">
+                <div class="label">Score</div>
+                <div class="value" id="score">0</div>
+              </div>
+              <div class="info-box">
+                <div class="label">Level</div>
+                <div class="value" id="level">1</div>
+              </div>
+              <div class="info-box">
+                <div class="label">Lines</div>
+                <div class="value" id="lines">0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center: Main Game -->
+          <div class="game-main">
+            <div class="game-board-wrapper">
+              <canvas id="gameCanvas" width="240" height="480"></canvas>
+              <div id="gameOverlay" class="game-overlay">
+                <div class="text-3xl font-bold mb-2">🧱 Tetris</div>
+                <div class="text-lg mb-4 text-gray-300" id="overlayMessage">Press Space or Tap to Start</div>
+                <button onclick="startGame()">Start Game</button>
+              </div>
+            </div>
+            <!-- Play Time & Pause Button -->
+            <div class="game-info-bar">
+              <span class="play-time" id="playTime">00:00</span>
+              <button class="pause-btn" id="pauseBtn" onclick="togglePause()" disabled>
+                <span id="pauseIcon">⏸</span>
+                <span id="pauseText">Pause</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Panel: Next + Options -->
+          <div class="right-panel">
+            <div class="info-box">
+              <div class="label">Next</div>
+              <canvas id="nextCanvas" class="preview-canvas" width="80" height="80"></canvas>
+            </div>
+            <div class="options-group">
+              <div class="options-panel">
+                <label>
+                  <input type="checkbox" id="optGhost" checked>
+                  Ghost Piece
+                </label>
+                <label>
+                  Start Level:
+                  <select id="optLevel">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="mobile-controls">
+          <div class="control-group">
+            <button onclick="moveLeft()">←</button>
+            <button onclick="moveDown()">↓<span>Soft</span></button>
+            <button onclick="moveRight()">→</button>
+          </div>
+          <div class="control-group">
+            <button onclick="rotate()">↻<span>Rotate</span></button>
+            <button onclick="hardDrop()">⬇<span>Hard</span></button>
+            <button onclick="holdPiece()">H<span>Hold</span></button>
+          </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="mt-6 text-sm text-gray-600 dark:text-gray-400">
+          <p class="mb-2"><strong>PC Controls:</strong></p>
+          <ul class="list-disc list-inside space-y-1">
+            <li><kbd class="px-1 bg-gray-200 dark:bg-gray-700 rounded">←</kbd> <kbd class="px-1 bg-gray-200 dark:bg-gray-700 rounded">→</kbd> : Move left/right</li>
+            <li><kbd class="px-1 bg-gray-200 dark:bg-gray-700 rounded">↓</kbd> : Soft drop (one row)</li>
+            <li><kbd class="px-1 bg-gray-200 dark:bg-gray-700 rounded">Space</kbd> : Hard drop (instant)</li>
+            <li><kbd class="px-1 bg-gray-200 dark:bg-gray-700 rounded">↑</kbd> : Rotate</li>
+            <li><kbd class="px-1 bg-gray-200 dark:bg-gray-700 rounded">Shift</kbd> or <kbd class="px-1 bg-gray-200 dark:bg-gray-700 rounded">C</kbd> : Hold piece</li>
+            <li><kbd class="px-1 bg-gray-200 dark:bg-gray-700 rounded">P</kbd> or <kbd class="px-1 bg-gray-200 dark:bg-gray-700 rounded">ESC</kbd> : Pause</li>
+          </ul>
+          <p class="mt-4 mb-2 sm:hidden"><strong>Mobile Controls:</strong></p>
+          <ul class="list-disc list-inside space-y-1 sm:hidden">
+            <li>Use touch buttons to control</li>
+            <li>Swipe: Left/right to move, up to rotate, down to hard drop</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="mt-8 card">
+        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">FAQ</h3>
+        <div class="space-y-4 text-gray-600 dark:text-gray-400">
+          <div>
+            <h4 class="font-medium text-gray-900 dark:text-white">Q: How is scoring calculated?</h4>
+            <p>Single line: 100pts, Double: 300pts, Triple: 500pts, Tetris (4 lines): 800pts! Score multiplier increases with level.</p>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900 dark:text-white">Q: How do I level up?</h4>
+            <p>Clear 10 lines to advance one level. Higher levels mean faster block drops.</p>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900 dark:text-white">Q: When is game over?</h4>
+            <p>The game ends when new blocks can't spawn because the stack has reached the top.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const nextCanvas = document.getElementById('nextCanvas');
+    const nextCtx = nextCanvas.getContext('2d');
+    const holdCanvas = document.getElementById('holdCanvas');
+    const holdCtx = holdCanvas.getContext('2d');
+
+    const COLS = 10;
+    const ROWS = 20;
+    const BLOCK_SIZE = 24;
+
+    const COLORS = ['#00f0f0', '#0000f0', '#f0a000', '#f0f000', '#00f000', '#a000f0', '#f00000'];
+
+    const SHAPES = [
+      [[1,1,1,1]],
+      [[1,0,0],[1,1,1]],
+      [[0,0,1],[1,1,1]],
+      [[1,1],[1,1]],
+      [[0,1,1],[1,1,0]],
+      [[0,1,0],[1,1,1]],
+      [[1,1,0],[0,1,1]]
+    ];
+
+    let board = [];
+    let currentPiece = null;
+    let nextPiece = null;
+    let holdPieceData = null;
+    let canHold = true;
+    let score = 0;
+    let level = 1;
+    let lines = 0;
+    let gameRunning = false;
+    let gamePaused = false;
+    let gameLoop = null;
+    let dropInterval = 1000;
+    let clearingLines = [];
+    let clearAnimationFrame = 0;
+    let isClearing = false;
+    let lineClearColors = [];
+
+    // Smooth animation variables
+    let animationId = null;
+    let lastDropTime = 0;
+    let visualOffsetY = 0;
+
+    const scoreEl = document.getElementById('score');
+    const levelEl = document.getElementById('level');
+    const linesEl = document.getElementById('lines');
+    const overlayEl = document.getElementById('gameOverlay');
+    const overlayMsgEl = document.getElementById('overlayMessage');
+    const optGhostEl = document.getElementById('optGhost');
+    const optLevelEl = document.getElementById('optLevel');
+
+    // Timer elements
+    const playTimeEl = document.getElementById('playTime');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const pauseText = document.getElementById('pauseText');
+
+    // Timer variables
+    let gameStartTime = 0;
+    let pausedTime = 0;
+    let timerInterval = null;
+    let pauseStartTime = 0;
+
+    // DAS (Delayed Auto Shift) for responsive keyboard
+    const DAS_DELAY = 170;
+    const ARR_RATE = 50;
+    let keyState = {};
+    let dasTimers = {};
+
+    function createPiece(shapeIdx = null) {
+      if (shapeIdx === null) {
+        shapeIdx = Math.floor(Math.random() * SHAPES.length);
+      }
+      return {
+        shapeIdx: shapeIdx,
+        shape: SHAPES[shapeIdx].map(row => [...row]),
+        color: COLORS[shapeIdx],
+        x: Math.floor(COLS / 2) - Math.ceil(SHAPES[shapeIdx][0].length / 2),
+        y: 0
+      };
+    }
+
+    function startGame() {
+      const startLevel = parseInt(optLevelEl.value) || 1;
+
+      board = Array(ROWS).fill(null).map(() => Array(COLS).fill(0));
+      score = 0;
+      level = startLevel;
+      lines = 0;
+      dropInterval = Math.max(50, Math.floor(1000 * Math.pow(0.75, level - 1)));
+      holdPieceData = null;
+      canHold = true;
+      gamePaused = false;
+      isClearing = false;
+      visualOffsetY = 0;
+      lastDropTime = performance.now();
+      updateStats();
+
+      currentPiece = createPiece();
+      nextPiece = createPiece();
+
+      overlayEl.style.display = 'none';
+      gameRunning = true;
+
+      // Start timer
+      gameStartTime = Date.now();
+      pausedTime = 0;
+      playTimeEl.textContent = '00:00';
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(updateTimer, 1000);
+
+      // Enable pause button
+      pauseBtn.disabled = false;
+      pauseIcon.textContent = '⏸';
+      pauseText.textContent = 'Pause';
+
+      // Use requestAnimationFrame for smooth animation
+      if (animationId) cancelAnimationFrame(animationId);
+      gameLoop = null;
+      animationLoop();
+      drawNext();
+      drawHold();
+    }
+
+    function updateTimer() {
+      if (!gameRunning || gamePaused) return;
+      const elapsed = Math.floor((Date.now() - gameStartTime - pausedTime) / 1000);
+      const minutes = Math.floor(elapsed / 60);
+      const seconds = elapsed % 60;
+      playTimeEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function togglePause() {
+      if (!gameRunning || isClearing) return;
+
+      gamePaused = !gamePaused;
+
+      if (gamePaused) {
+        // Track pause start time
+        pauseStartTime = Date.now();
+
+        // Update button
+        pauseIcon.textContent = '▶';
+        pauseText.textContent = 'Resume';
+
+        // Draw pause overlay
+        draw();
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('PAUSED', canvas.width / 2, canvas.height / 2);
+        ctx.font = '14px sans-serif';
+        ctx.fillText('Press P or ESC to continue', canvas.width / 2, canvas.height / 2 + 25);
+      } else {
+        // Track paused duration
+        pausedTime += Date.now() - pauseStartTime;
+
+        // Update button
+        pauseIcon.textContent = '⏸';
+        pauseText.textContent = 'Pause';
+
+        lastDropTime = performance.now();
+      }
+    }
+
+    // Main animation loop (replaces setInterval for smooth animation)
+    function animationLoop(currentTime = performance.now()) {
+      if (!gameRunning) return;
+      animationId = requestAnimationFrame(animationLoop);
+
+      if (gamePaused || isClearing) return;
+
+      const elapsed = currentTime - lastDropTime;
+
+      // Calculate smooth visual offset (0 to 1 representing progress to next drop)
+      visualOffsetY = Math.min(elapsed / dropInterval, 1);
+
+      // Check if it's time to drop
+      if (elapsed >= dropInterval) {
+        lastDropTime = currentTime;
+        visualOffsetY = 0;
+        dropPiece();
+      }
+
+      drawSmooth();
+    }
+
+    function dropPiece() {
+      if (!collision(currentPiece, 0, 1)) {
+        currentPiece.y++;
+      } else {
+        merge();
+        clearLines();
+
+        if (isClearing) return;
+
+        spawnNewPiece();
+      }
+    }
+
+    function updateStats() {
+      scoreEl.textContent = score;
+      levelEl.textContent = level;
+      linesEl.textContent = lines;
+    }
+
+    function getGhostY() {
+      let ghostY = currentPiece.y;
+      while (!collisionAt(currentPiece.shape, currentPiece.x, ghostY + 1)) {
+        ghostY++;
+      }
+      return ghostY;
+    }
+
+    function collisionAt(shape, x, y) {
+      for (let dy = 0; dy < shape.length; dy++) {
+        for (let dx = 0; dx < shape[dy].length; dx++) {
+          if (shape[dy][dx]) {
+            const newX = x + dx;
+            const newY = y + dy;
+            if (newX < 0 || newX >= COLS || newY >= ROWS) return true;
+            if (newY >= 0 && board[newY][newX]) return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    function draw() {
+      // Clear with gradient background
+      const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      bgGradient.addColorStop(0, '#0a0f1a');
+      bgGradient.addColorStop(1, '#0f172a');
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Grid with subtle lines
+      ctx.strokeStyle = 'rgba(30, 41, 59, 0.5)';
+      ctx.lineWidth = 1;
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          ctx.strokeRect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        }
+      }
+
+      // Board
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          if (board[r][c]) {
+            drawBlock(ctx, c, r, board[r][c]);
+          }
+        }
+      }
+
+      // Ghost piece
+      if (currentPiece && optGhostEl.checked) {
+        const ghostY = getGhostY();
+        if (ghostY !== currentPiece.y) {
+          currentPiece.shape.forEach((row, dy) => {
+            row.forEach((val, dx) => {
+              if (val) {
+                drawGhostBlock(ctx, currentPiece.x + dx, ghostY + dy, currentPiece.color);
+              }
+            });
+          });
+        }
+      }
+
+      // Current piece
+      if (currentPiece) {
+        currentPiece.shape.forEach((row, dy) => {
+          row.forEach((val, dx) => {
+            if (val) {
+              drawBlock(ctx, currentPiece.x + dx, currentPiece.y + dy, currentPiece.color);
+            }
+          });
+        });
+      }
+    }
+
+    // Smooth drawing with interpolation for falling piece
+    function drawSmooth() {
+      // Clear with gradient background
+      const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      bgGradient.addColorStop(0, '#0a0f1a');
+      bgGradient.addColorStop(1, '#0f172a');
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Grid with subtle lines
+      ctx.strokeStyle = 'rgba(30, 41, 59, 0.5)';
+      ctx.lineWidth = 1;
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          ctx.strokeRect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        }
+      }
+
+      // Board (static blocks)
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          if (board[r][c]) {
+            drawBlock(ctx, c, r, board[r][c]);
+          }
+        }
+      }
+
+      if (!currentPiece) return;
+
+      // Ghost piece (drawn at final position)
+      if (optGhostEl.checked) {
+        const ghostY = getGhostY();
+        if (ghostY > currentPiece.y) {
+          currentPiece.shape.forEach((row, dy) => {
+            row.forEach((val, dx) => {
+              if (val) {
+                drawGhostBlock(ctx, currentPiece.x + dx, ghostY + dy, currentPiece.color);
+              }
+            });
+          });
+        }
+      }
+
+      // Current piece with smooth interpolation
+      // Only interpolate if piece can fall (not blocked)
+      const canFall = !collision(currentPiece, 0, 1);
+      const smoothOffset = canFall ? visualOffsetY * BLOCK_SIZE : 0;
+
+      currentPiece.shape.forEach((row, dy) => {
+        row.forEach((val, dx) => {
+          if (val) {
+            const px = (currentPiece.x + dx) * BLOCK_SIZE;
+            const py = (currentPiece.y + dy) * BLOCK_SIZE + smoothOffset;
+            drawBlockAt(ctx, px, py, currentPiece.color, BLOCK_SIZE);
+          }
+        });
+      });
+    }
+
+    // Draw block at specific pixel coordinates (for smooth animation)
+    function drawBlockAt(context, px, py, color, blockSize = BLOCK_SIZE) {
+      const padding = 1;
+      const size = blockSize - padding * 2;
+      const bx = px + padding;
+      const by = py + padding;
+
+      // Main block with gradient
+      const gradient = context.createLinearGradient(bx, by, bx + size, by + size);
+      gradient.addColorStop(0, lightenColor(color, 30));
+      gradient.addColorStop(0.5, color);
+      gradient.addColorStop(1, darkenColor(color, 30));
+      context.fillStyle = gradient;
+      context.fillRect(bx, by, size, size);
+
+      // Top-left highlight
+      context.fillStyle = 'rgba(255,255,255,0.4)';
+      context.fillRect(bx, by, size, 3);
+      context.fillRect(bx, by, 3, size);
+
+      // Bottom-right shadow
+      context.fillStyle = 'rgba(0,0,0,0.3)';
+      context.fillRect(bx, by + size - 3, size, 3);
+      context.fillRect(bx + size - 3, by, 3, size);
+
+      // Inner glow
+      context.fillStyle = 'rgba(255,255,255,0.15)';
+      context.fillRect(bx + 4, by + 4, size - 8, size - 8);
+    }
+
+    function drawBlock(context, x, y, color, blockSize = BLOCK_SIZE) {
+      const padding = 1;
+      const size = blockSize - padding * 2;
+      const bx = x * blockSize + padding;
+      const by = y * blockSize + padding;
+
+      // Main block with gradient
+      const gradient = context.createLinearGradient(bx, by, bx + size, by + size);
+      gradient.addColorStop(0, lightenColor(color, 30));
+      gradient.addColorStop(0.5, color);
+      gradient.addColorStop(1, darkenColor(color, 30));
+      context.fillStyle = gradient;
+      context.fillRect(bx, by, size, size);
+
+      // Top-left highlight
+      context.fillStyle = 'rgba(255,255,255,0.4)';
+      context.fillRect(bx, by, size, 3);
+      context.fillRect(bx, by, 3, size);
+
+      // Bottom-right shadow
+      context.fillStyle = 'rgba(0,0,0,0.3)';
+      context.fillRect(bx, by + size - 3, size, 3);
+      context.fillRect(bx + size - 3, by, 3, size);
+
+      // Inner glow
+      context.fillStyle = 'rgba(255,255,255,0.15)';
+      context.fillRect(bx + 4, by + 4, size - 8, size - 8);
+    }
+
+    function lightenColor(color, percent) {
+      const num = parseInt(color.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.min(255, (num >> 16) + amt);
+      const G = Math.min(255, ((num >> 8) & 0x00FF) + amt);
+      const B = Math.min(255, (num & 0x0000FF) + amt);
+      return '#' + (0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1);
+    }
+
+    function darkenColor(color, percent) {
+      const num = parseInt(color.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.max(0, (num >> 16) - amt);
+      const G = Math.max(0, ((num >> 8) & 0x00FF) - amt);
+      const B = Math.max(0, (num & 0x0000FF) - amt);
+      return '#' + (0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1);
+    }
+
+    function drawGhostBlock(context, x, y, color) {
+      const padding = 2;
+      const size = BLOCK_SIZE - padding * 2;
+      const bx = x * BLOCK_SIZE + padding;
+      const by = y * BLOCK_SIZE + padding;
+
+      // Ghost outline with glow effect
+      context.globalAlpha = 0.3;
+      context.fillStyle = color;
+      context.fillRect(bx, by, size, size);
+
+      context.globalAlpha = 0.6;
+      context.strokeStyle = color;
+      context.lineWidth = 2;
+      context.strokeRect(bx, by, size, size);
+      context.globalAlpha = 1;
+    }
+
+    function drawPreviewBlock(context, x, y, color, size = 18) {
+      const padding = 1;
+      const s = size - padding * 2;
+      const bx = x + padding;
+      const by = y + padding;
+
+      // Main block with gradient
+      const gradient = context.createLinearGradient(bx, by, bx + s, by + s);
+      gradient.addColorStop(0, lightenColor(color, 30));
+      gradient.addColorStop(0.5, color);
+      gradient.addColorStop(1, darkenColor(color, 30));
+      context.fillStyle = gradient;
+      context.fillRect(bx, by, s, s);
+
+      // Top-left highlight
+      context.fillStyle = 'rgba(255,255,255,0.4)';
+      context.fillRect(bx, by, s, 2);
+      context.fillRect(bx, by, 2, s);
+
+      // Bottom-right shadow
+      context.fillStyle = 'rgba(0,0,0,0.3)';
+      context.fillRect(bx, by + s - 2, s, 2);
+      context.fillRect(bx + s - 2, by, 2, s);
+    }
+
+    function drawNext() {
+      nextCtx.fillStyle = '#0a0f1a';
+      nextCtx.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
+
+      if (nextPiece) {
+        const blockSize = 18;
+        const offsetX = (80 - nextPiece.shape[0].length * blockSize) / 2;
+        const offsetY = (80 - nextPiece.shape.length * blockSize) / 2;
+
+        nextPiece.shape.forEach((row, dy) => {
+          row.forEach((val, dx) => {
+            if (val) {
+              drawPreviewBlock(nextCtx, offsetX + dx * blockSize, offsetY + dy * blockSize, nextPiece.color, blockSize);
+            }
+          });
+        });
+      }
+    }
+
+    function drawHold() {
+      holdCtx.fillStyle = '#0a0f1a';
+      holdCtx.fillRect(0, 0, holdCanvas.width, holdCanvas.height);
+
+      if (holdPieceData !== null) {
+        const shape = SHAPES[holdPieceData];
+        const color = COLORS[holdPieceData];
+        const blockSize = 18;
+        const offsetX = (80 - shape[0].length * blockSize) / 2;
+        const offsetY = (80 - shape.length * blockSize) / 2;
+
+        // Set opacity based on canHold
+        holdCtx.globalAlpha = canHold ? 1 : 0.4;
+
+        shape.forEach((row, dy) => {
+          row.forEach((val, dx) => {
+            if (val) {
+              drawPreviewBlock(holdCtx, offsetX + dx * blockSize, offsetY + dy * blockSize, color, blockSize);
+            }
+          });
+        });
+
+        holdCtx.globalAlpha = 1;
+      }
+    }
+
+    function collision(piece, offsetX = 0, offsetY = 0) {
+      return collisionAt(piece.shape, piece.x + offsetX, piece.y + offsetY);
+    }
+
+    function merge() {
+      currentPiece.shape.forEach((row, dy) => {
+        row.forEach((val, dx) => {
+          if (val) {
+            const y = currentPiece.y + dy;
+            const x = currentPiece.x + dx;
+            if (y >= 0) board[y][x] = currentPiece.color;
+          }
+        });
+      });
+    }
+
+    function clearLines() {
+      // Find ALL complete lines (from bottom to top for accurate detection)
+      clearingLines = [];
+      for (let r = ROWS - 1; r >= 0; r--) {
+        if (board[r].every(cell => cell !== 0)) {
+          clearingLines.push(r);
+        }
+      }
+
+      if (clearingLines.length > 0) {
+        // Sort from top to bottom for correct animation display
+        clearingLines.sort((a, b) => a - b);
+        isClearing = true;
+        clearAnimationFrame = 0;
+        animateClear();
+      }
+    }
+
+    function animateClear() {
+      const animationDuration = 15;
+      clearAnimationFrame++;
+
+      drawClearAnimation();
+
+      if (clearAnimationFrame < animationDuration) {
+        requestAnimationFrame(animateClear);
+      } else {
+        finishClear();
+      }
+    }
+
+    function drawClearAnimation() {
+      // Redraw board first (preserves original colors)
+      draw();
+
+      // Simple flash overlay (doesn't change underlying block colors)
+      const progress = clearAnimationFrame / 15;
+
+      clearingLines.forEach(row => {
+        const y = row * BLOCK_SIZE;
+
+        // Flash white effect
+        const alpha = clearAnimationFrame % 3 === 0 ? 0.8 * (1 - progress) : 0.3 * (1 - progress);
+        ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+        ctx.fillRect(0, y, canvas.width, BLOCK_SIZE);
+      });
+    }
+
+    function finishClear() {
+      const cleared = clearingLines.length;
+
+      // Remove lines from bottom to top (sort descending)
+      // IMPORTANT: Do all splices first, THEN add empty lines
+      // Otherwise indices shift incorrectly
+      clearingLines.sort((a, b) => b - a);
+      for (const row of clearingLines) {
+        board.splice(row, 1);
+      }
+      // Add new empty lines at top (all at once)
+      for (let i = 0; i < cleared; i++) {
+        board.unshift(Array(COLS).fill(0));
+      }
+
+      // Update score
+      const points = [0, 100, 300, 500, 800];
+      score += points[Math.min(cleared, 4)] * level;
+      lines += cleared;
+
+      const newLevel = Math.floor(lines / 10) + 1;
+      if (newLevel > level) {
+        level = newLevel;
+        dropInterval = Math.max(50, Math.floor(1000 * Math.pow(0.75, level - 1)));
+      }
+      updateStats();
+
+      // Reset state
+      clearingLines = [];
+      isClearing = false;
+
+      // Spawn new piece
+      spawnNewPiece();
+
+      // Resume animation loop
+      if (gameRunning && !gamePaused) {
+        lastDropTime = performance.now();
+        visualOffsetY = 0;
+        drawSmooth();
+      }
+    }
+
+    function drop() {
+      if (isClearing || gamePaused) return;
+
+      if (!collision(currentPiece, 0, 1)) {
+        currentPiece.y++;
+        visualOffsetY = 0;
+        lastDropTime = performance.now();
+      } else {
+        merge();
+        clearLines();
+
+        if (isClearing) return;
+
+        spawnNewPiece();
+      }
+      drawSmooth();
+    }
+
+    function spawnNewPiece() {
+      currentPiece = nextPiece;
+      nextPiece = createPiece();
+      canHold = true;
+      drawNext();
+      drawHold();
+
+      if (collision(currentPiece)) {
+        gameOver();
+      }
+    }
+
+    function moveLeft() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      if (!collision(currentPiece, -1, 0)) {
+        currentPiece.x--;
+        drawSmooth();
+      }
+    }
+
+    function moveRight() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      if (!collision(currentPiece, 1, 0)) {
+        currentPiece.x++;
+        drawSmooth();
+      }
+    }
+
+    function moveDown() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      if (!collision(currentPiece, 0, 1)) {
+        currentPiece.y++;
+        visualOffsetY = 0;
+        lastDropTime = performance.now();
+        score += 1; // Soft drop bonus
+        updateStats();
+        drawSmooth();
+      }
+    }
+
+    function hardDrop() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      let dropDistance = 0;
+      while (!collision(currentPiece, 0, 1)) {
+        currentPiece.y++;
+        dropDistance++;
+      }
+      visualOffsetY = 0;
+      score += dropDistance * 2; // Hard drop bonus
+      updateStats();
+      drop();
+    }
+
+    function rotate() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      const rotated = currentPiece.shape[0].map((_, i) =>
+        currentPiece.shape.map(row => row[i]).reverse()
+      );
+      const original = currentPiece.shape;
+      currentPiece.shape = rotated;
+
+      // Wall kick
+      if (collision(currentPiece)) {
+        if (!collision(currentPiece, -1, 0)) currentPiece.x--;
+        else if (!collision(currentPiece, 1, 0)) currentPiece.x++;
+        else if (!collision(currentPiece, -2, 0)) currentPiece.x -= 2;
+        else if (!collision(currentPiece, 2, 0)) currentPiece.x += 2;
+        else currentPiece.shape = original;
+      }
+      drawSmooth();
+    }
+
+    function holdPiece() {
+      if (!gameRunning || !canHold || isClearing || gamePaused) return;
+
+      const currentIdx = currentPiece.shapeIdx;
+
+      if (holdPieceData === null) {
+        holdPieceData = currentIdx;
+        currentPiece = nextPiece;
+        nextPiece = createPiece();
+        drawNext();
+      } else {
+        const temp = holdPieceData;
+        holdPieceData = currentIdx;
+        currentPiece = createPiece(temp);
+      }
+
+      visualOffsetY = 0;
+      lastDropTime = performance.now();
+      canHold = false;
+      drawHold();
+      drawSmooth();
+    }
+
+    function gameOver() {
+      gameRunning = false;
+      if (animationId) cancelAnimationFrame(animationId);
+
+      // Cleanup timer
+      if (timerInterval) clearInterval(timerInterval);
+
+      // Cleanup DAS timers
+      Object.keys(dasTimers).forEach(key => stopDAS(key));
+
+      // Disable pause button
+      pauseBtn.disabled = true;
+
+      overlayMsgEl.textContent = `Game Over! Score: ${score}`;
+      overlayEl.style.display = 'flex';
+    }
+
+    // DAS helper functions
+    function getKeyAction(key) {
+      const keyMap = {
+        'ArrowLeft': 'left', 'a': 'left', 'A': 'left',
+        'ArrowRight': 'right', 'd': 'right', 'D': 'right',
+        'ArrowDown': 'down', 's': 'down', 'S': 'down'
+      };
+      return keyMap[key] || null;
+    }
+
+    function executeAction(action) {
+      if (!gameRunning || gamePaused || isClearing) return;
+      if (action === 'left') moveLeft();
+      else if (action === 'right') moveRight();
+      else if (action === 'down') moveDown();
+    }
+
+    function startDAS(key, action) {
+      if (dasTimers[key]) return;
+      executeAction(action);
+      dasTimers[key] = {
+        timeout: setTimeout(() => {
+          dasTimers[key].interval = setInterval(() => {
+            executeAction(action);
+          }, ARR_RATE);
+        }, DAS_DELAY),
+        interval: null
+      };
+    }
+
+    function stopDAS(key) {
+      if (dasTimers[key]) {
+        clearTimeout(dasTimers[key].timeout);
+        if (dasTimers[key].interval) clearInterval(dasTimers[key].interval);
+        delete dasTimers[key];
+      }
+      delete keyState[key];
+    }
+
+    // Keyboard with DAS
+    document.addEventListener('keydown', (e) => {
+      // Start game with Enter or Space when not running
+      if (!gameRunning && (e.key === 'Enter' || e.code === 'Space')) {
+        e.preventDefault();
+        startGame();
+        return;
+      }
+
+      if (!gameRunning) return;
+
+      // Check for DAS keys (movement)
+      const action = getKeyAction(e.key);
+      if (action) {
+        e.preventDefault();
+        if (!keyState[e.key]) {
+          keyState[e.key] = true;
+          startDAS(e.key, action);
+        }
+        return;
+      }
+
+      // Non-DAS keys
+      switch(e.key) {
+        case 'ArrowUp':
+        case 'w':
+        case 'W':
+          e.preventDefault();
+          rotate();
+          break;
+        case ' ':
+          e.preventDefault();
+          hardDrop();
+          break;
+        case 'Shift':
+        case 'c':
+        case 'C':
+          e.preventDefault();
+          holdPiece();
+          break;
+        case 'p':
+        case 'P':
+        case 'Escape':
+          e.preventDefault();
+          togglePause();
+          break;
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      const action = getKeyAction(e.key);
+      if (action) {
+        stopDAS(e.key);
+      }
+    });
+
+    // Touch swipe
+    let touchStartX, touchStartY;
+    canvas.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    canvas.addEventListener('touchend', (e) => {
+      if (!touchStartX || !touchStartY) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+
+      if (Math.max(absDx, absDy) > 30) {
+        if (absDx > absDy) {
+          if (dx > 0) moveRight(); else moveLeft();
+        } else {
+          if (dy > 0) hardDrop(); else rotate();
+        }
+      } else {
+        rotate();
+      }
+      touchStartX = touchStartY = null;
+    }, { passive: true });
+
+    // Initial draw
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    holdCtx.fillStyle = '#0f172a';
+    holdCtx.fillRect(0, 0, holdCanvas.width, holdCanvas.height);
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5765109785591518" crossorigin="anonymous"></script>
+</body>
+</html>

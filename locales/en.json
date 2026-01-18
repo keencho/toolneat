@@ -26,7 +26,9 @@
     "allTools": "All Tools",
     "allDevTools": "All Dev Tools",
     "allLifeTools": "All Life Tools",
-    "allPdfTools": "All PDF Tools"
+    "allPdfTools": "All PDF Tools",
+    "game": "Games",
+    "allGameTools": "All Games"
   },
   "footer": {
     "about": "About",
@@ -1065,6 +1067,26 @@
       "title": "Korean Name Generator",
       "description": "Free online tool to generate random Korean names.",
       "descriptionLong": "Generate random Korean names for characters, pen names, or creative projects. Choose gender and surname options."
+    },
+    "2048": {
+      "title": "2048",
+      "description": "Merge number blocks to reach 2048."
+    },
+    "minesweeper": {
+      "title": "Minesweeper",
+      "description": "Classic minesweeper game."
+    },
+    "snake": {
+      "title": "Snake",
+      "description": "Control the snake to eat food."
+    },
+    "memoryGame": {
+      "title": "Memory Game",
+      "description": "Flip cards and match pairs."
+    },
+    "tetris": {
+      "title": "Tetris",
+      "description": "Stack blocks to complete lines."
     }
   },
   "common": {
