@@ -194,14 +194,14 @@
         #tool-tooltip {
           position: fixed;
           padding: 8px 12px;
-          background: #1f2937;
+          background: #3b82f6;
           color: #fff;
           font-size: 13px;
           font-weight: 500;
           white-space: nowrap;
           border-radius: 8px;
           z-index: 9999;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+          box-shadow: 0 4px 16px rgba(0,0,0,0.25);
           pointer-events: none;
           opacity: 0;
           transition: opacity 0.15s ease;
@@ -216,11 +216,11 @@
         }
         #tool-tooltip.arrow-bottom::after {
           top: 100%;
-          border-top-color: #1f2937;
+          border-top-color: #3b82f6;
         }
         #tool-tooltip.arrow-top::after {
           bottom: 100%;
-          border-bottom-color: #1f2937;
+          border-bottom-color: #3b82f6;
         }
       `;
       document.head.appendChild(style);
@@ -372,7 +372,7 @@
         const gradient = colorMap[tool.category] || colorMap.dev;
 
         return `
-          <a href="${path}" class="tool-grid-item group relative flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" title="${name}">
+          <a href="${path}" class="tool-grid-item group relative flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <div class="flex-shrink-0 w-8 h-8 rounded-md bg-gradient-to-br ${gradient} flex items-center justify-center">
               <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
