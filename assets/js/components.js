@@ -324,7 +324,8 @@
         return [
           ...TOOLS_DATA.dev.map(t => ({ ...t, category: 'dev' })),
           ...TOOLS_DATA.pdf.map(t => ({ ...t, category: 'pdf' })),
-          ...TOOLS_DATA.life.map(t => ({ ...t, category: 'life' }))
+          ...TOOLS_DATA.life.map(t => ({ ...t, category: 'life' })),
+          ...(TOOLS_DATA.game || []).map(t => ({ ...t, category: 'game' }))
         ];
       }
       return (TOOLS_DATA[currentCategory] || []).map(t => ({ ...t, category: currentCategory }));

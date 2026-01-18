@@ -359,11 +359,12 @@
     const devText = lang === 'ko' ? '개발 도구' : 'Dev Tools';
     const lifeText = lang === 'ko' ? '생활 도구' : 'Life Tools';
     const pdfText = lang === 'ko' ? 'PDF 도구' : 'PDF Tools';
+    const gameText = lang === 'ko' ? '게임' : 'Games';
 
     return `
       <div class="py-8 text-center">
         <p class="text-gray-500 dark:text-gray-400 mb-4">${lang === 'ko' ? '검색어를 입력하거나 카테고리를 선택하세요' : 'Type to search or select a category'}</p>
-        <div class="flex justify-center gap-2">
+        <div class="flex justify-center gap-2 flex-wrap">
           <a href="${lang === 'ko' ? '/tools/dev/' : '/en/tools/dev/'}" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-sm">
             ${devText}
           </a>
@@ -372,6 +373,9 @@
           </a>
           <a href="${lang === 'ko' ? '/tools/pdf/' : '/en/tools/pdf/'}" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-sm">
             ${pdfText}
+          </a>
+          <a href="${lang === 'ko' ? '/tools/game/' : '/en/tools/game/'}" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-sm">
+            ${gameText}
           </a>
         </div>
       </div>
