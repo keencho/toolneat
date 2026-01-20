@@ -75,6 +75,96 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/dev</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/game</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/game</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/dev/base64</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/base64"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/base64"/>
@@ -93,6 +183,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/dev/box-shadow</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/box-shadow"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/box-shadow"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/box-shadow"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/box-shadow</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/box-shadow"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/box-shadow"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/box-shadow"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/dev/case-converter</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/case-converter"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/case-converter"/>
@@ -106,6 +214,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/case-converter"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/case-converter"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/case-converter"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/dev/color-contrast</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/color-contrast"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/color-contrast"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/color-contrast"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/color-contrast</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/color-contrast"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/color-contrast"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/color-contrast"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -255,6 +381,60 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/dev/html-minifier</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/html-minifier"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/html-minifier"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/html-minifier"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/html-minifier</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/html-minifier"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/html-minifier"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/html-minifier"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/dev/js-minifier</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/js-minifier"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/js-minifier</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/js-minifier"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/dev/json-csv</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/json-csv"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/json-csv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/json-csv"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/json-csv</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/json-csv"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/json-csv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/json-csv"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/dev/json-formatter</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/json-formatter"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/json-formatter"/>
@@ -268,6 +448,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/json-formatter"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/json-formatter"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/json-formatter"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/dev/json-validator</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/json-validator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/json-validator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/json-validator"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -363,6 +561,42 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/dev/meta-tag-generator</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/meta-tag-generator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/meta-tag-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/meta-tag-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/meta-tag-generator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/meta-tag-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/meta-tag-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/meta-tag-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/dev/og-preview</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/og-preview"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/og-preview"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/og-preview"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/og-preview</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/og-preview"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/og-preview"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/og-preview"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/dev/password-generator</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/password-generator"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/password-generator"/>
@@ -399,6 +633,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/dev/robots-txt</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/robots-txt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/robots-txt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/robots-txt"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/robots-txt</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/robots-txt"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/robots-txt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/robots-txt"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/dev/sql-formatter</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/sql-formatter"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/sql-formatter"/>
@@ -412,6 +664,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/sql-formatter"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/sql-formatter"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/sql-formatter"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/dev/text-escape</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/text-escape"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/text-escape"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/text-escape"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/text-escape</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/text-escape"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/text-escape"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/text-escape"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -453,6 +723,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/dev/utm-generator</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/utm-generator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/utm-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/utm-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/utm-generator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/utm-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/utm-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/utm-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/dev/uuid-generator</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/uuid-generator"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/uuid-generator"/>
@@ -466,6 +754,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/uuid-generator"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/uuid-generator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/uuid-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/dev/xml-json</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/xml-json"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/xml-json"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/xml-json"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/dev/xml-json</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/xml-json"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/xml-json"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/xml-json"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -507,6 +813,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/life/ai-detector</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ai-detector"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ai-detector"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ai-detector"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/ai-detector</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ai-detector"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ai-detector"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ai-detector"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/life/ascii-unicode</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ascii-unicode"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ascii-unicode"/>
@@ -520,6 +844,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ascii-unicode"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ascii-unicode"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ascii-unicode"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/aspect-ratio</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/aspect-ratio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/aspect-ratio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/aspect-ratio"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/aspect-ratio</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/aspect-ratio"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/aspect-ratio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/aspect-ratio"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -633,19 +975,19 @@
   </url>
 
   <url>
-    <loc>https://toolneat.com/tools/life/color-palette</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/color-palette"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/color-palette"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/color-palette"/>
+    <loc>https://toolneat.com/tools/life/color-picker</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/color-picker"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://toolneat.com/en/tools/life/color-palette</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/color-palette"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/color-palette"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/color-palette"/>
+    <loc>https://toolneat.com/en/tools/life/color-picker</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/color-picker"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -664,6 +1006,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/compound-calculator"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/compound-calculator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/compound-calculator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/countdown-timer</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/countdown-timer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/countdown-timer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/countdown-timer"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/countdown-timer</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/countdown-timer"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/countdown-timer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/countdown-timer"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -741,6 +1101,60 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/life/exif-remover</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/exif-remover"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/exif-remover"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/exif-remover"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/exif-remover</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/exif-remover"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/exif-remover"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/exif-remover"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/fake-chat</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/fake-chat"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/fake-chat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/fake-chat"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/fake-chat</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/fake-chat"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/fake-chat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/fake-chat"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/fancy-text</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/fancy-text"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/fancy-text"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/fancy-text"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/fancy-text</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/fancy-text"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/fancy-text"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/fancy-text"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/life/favicon-generator</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/favicon-generator"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/favicon-generator"/>
@@ -754,6 +1168,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/favicon-generator"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/favicon-generator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/favicon-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/image-blur</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-blur"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-blur"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-blur"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/image-blur</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-blur"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-blur"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-blur"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -795,6 +1227,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/life/image-crop</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-crop"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-crop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-crop"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/image-crop</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-crop"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-crop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-crop"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/life/image-resizer</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-resizer"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-resizer"/>
@@ -813,6 +1263,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/life/image-rotate</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-rotate"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-rotate"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-rotate"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/image-rotate</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-rotate"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-rotate"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-rotate"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/life/image-watermark</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-watermark"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-watermark"/>
@@ -826,6 +1294,42 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-watermark"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-watermark"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-watermark"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/ip-lookup</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ip-lookup"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ip-lookup"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ip-lookup"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/ip-lookup</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ip-lookup"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ip-lookup"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ip-lookup"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/korean-name-generator</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/korean-name-generator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/korean-name-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/korean-name-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/korean-name-generator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/korean-name-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/korean-name-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/korean-name-generator"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -862,6 +1366,78 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/lottery-generator"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/lottery-generator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/lottery-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/meme-generator</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/meme-generator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/meme-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/meme-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/meme-generator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/meme-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/meme-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/meme-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/mic-test</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/mic-test"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/mic-test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/mic-test"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/mic-test</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/mic-test"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/mic-test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/mic-test"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/morse-code</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/morse-code"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/morse-code"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/morse-code"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/morse-code</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/morse-code"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/morse-code"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/morse-code"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/noise-generator</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/noise-generator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/noise-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/noise-generator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/noise-generator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/noise-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/noise-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/noise-generator"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -916,6 +1492,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/pixel-fixer"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/pixel-fixer"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/pixel-fixer"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/pomodoro-timer</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/pomodoro-timer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/pomodoro-timer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/pomodoro-timer"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/pomodoro-timer</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/pomodoro-timer"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/pomodoro-timer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/pomodoro-timer"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1065,6 +1659,78 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/tools/life/sleep-calculator</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/sleep-calculator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/sleep-calculator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/sleep-calculator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/sleep-calculator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/sleep-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/sleep-calculator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/sleep-calculator"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/speech-to-text</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/speech-to-text"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/speech-to-text"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/speech-to-text"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/speech-to-text</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/speech-to-text"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/speech-to-text"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/speech-to-text"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/stopwatch</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/stopwatch"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/stopwatch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/stopwatch"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/stopwatch</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/stopwatch"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/stopwatch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/stopwatch"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/life/text-to-speech</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/text-to-speech"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/text-to-speech"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/text-to-speech"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/life/text-to-speech</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/text-to-speech"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/text-to-speech"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/text-to-speech"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/tools/life/tip-calculator</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/tip-calculator"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/tip-calculator"/>
@@ -1137,582 +1803,6 @@
   </url>
 
   <url>
-    <loc>https://toolneat.com/tools/life/speech-to-text</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/speech-to-text"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/speech-to-text"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/speech-to-text"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/speech-to-text</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/speech-to-text"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/speech-to-text"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/speech-to-text"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/text-to-speech</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/text-to-speech"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/text-to-speech"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/text-to-speech"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/text-to-speech</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/text-to-speech"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/text-to-speech"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/text-to-speech"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/image-crop</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-crop"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-crop"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-crop"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/image-crop</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-crop"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-crop"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-crop"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/meme-generator</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/meme-generator"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/meme-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/meme-generator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/meme-generator</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/meme-generator"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/meme-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/meme-generator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/pomodoro-timer</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/pomodoro-timer"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/pomodoro-timer"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/pomodoro-timer"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/pomodoro-timer</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/pomodoro-timer"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/pomodoro-timer"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/pomodoro-timer"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/meta-tag-generator</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/meta-tag-generator"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/meta-tag-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/meta-tag-generator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/meta-tag-generator</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/meta-tag-generator"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/meta-tag-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/meta-tag-generator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/utm-generator</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/utm-generator"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/utm-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/utm-generator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/utm-generator</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/utm-generator"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/utm-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/utm-generator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/xml-json</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/xml-json"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/xml-json"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/xml-json"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/xml-json</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/xml-json"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/xml-json"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/xml-json"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/pdf/merge-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/merge-pdf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/merge-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/merge-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/pdf/merge-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/merge-pdf"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/merge-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/merge-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/pdf/split-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/split-pdf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/split-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/split-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/pdf/split-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/split-pdf"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/split-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/split-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/pdf/compress-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/compress-pdf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/compress-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/compress-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/pdf/compress-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/compress-pdf"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/compress-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/compress-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/pdf/pdf-to-image</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/pdf-to-image"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/pdf-to-image"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/pdf-to-image"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/pdf/pdf-to-image</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/pdf-to-image"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/pdf-to-image"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/pdf-to-image"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/pdf/image-to-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/image-to-pdf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/image-to-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/image-to-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/pdf/image-to-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/image-to-pdf"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/image-to-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/image-to-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/pdf/rotate-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/rotate-pdf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/rotate-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/rotate-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/pdf/rotate-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/rotate-pdf"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/rotate-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/rotate-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/pdf/watermark-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/watermark-pdf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/watermark-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/watermark-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/pdf/watermark-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/watermark-pdf"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/watermark-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/watermark-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/pdf/delete-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/delete-pdf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/delete-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/delete-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/pdf/delete-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/delete-pdf"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/delete-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/delete-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/text-escape</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/text-escape"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/text-escape"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/text-escape"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/text-escape</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/text-escape"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/text-escape"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/text-escape"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/color-contrast</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/color-contrast"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/color-contrast"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/color-contrast"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/color-contrast</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/color-contrast"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/color-contrast"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/color-contrast"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/pdf/reorder-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/reorder-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/pdf/reorder-pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/reorder-pdf"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/stopwatch</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/stopwatch"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/stopwatch"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/stopwatch"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/stopwatch</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/stopwatch"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/stopwatch"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/stopwatch"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/json-csv</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/json-csv"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/json-csv"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/json-csv"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/json-csv</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/json-csv"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/json-csv"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/json-csv"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/js-minifier</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/js-minifier"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/js-minifier"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/js-minifier"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/js-minifier</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/js-minifier"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/js-minifier"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/js-minifier"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/countdown-timer</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/countdown-timer"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/countdown-timer"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/countdown-timer"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/countdown-timer</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/countdown-timer"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/countdown-timer"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/countdown-timer"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/aspect-ratio</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/aspect-ratio"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/aspect-ratio"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/aspect-ratio"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/aspect-ratio</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/aspect-ratio"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/aspect-ratio"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/aspect-ratio"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/html-minifier</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/html-minifier"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/html-minifier"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/html-minifier"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/html-minifier</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/html-minifier"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/html-minifier"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/html-minifier"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/robots-txt</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/robots-txt"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/robots-txt"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/robots-txt"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/robots-txt</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/robots-txt"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/robots-txt"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/robots-txt"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/og-preview</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/og-preview"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/og-preview"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/og-preview"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/og-preview</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/og-preview"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/og-preview"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/og-preview"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/dev/box-shadow</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/box-shadow"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/box-shadow"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/box-shadow"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/dev/box-shadow</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/dev/box-shadow"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/dev/box-shadow"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/dev/box-shadow"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/ip-lookup</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ip-lookup"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ip-lookup"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ip-lookup"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/ip-lookup</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/ip-lookup"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/ip-lookup"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/ip-lookup"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/sleep-calculator</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/sleep-calculator"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/sleep-calculator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/sleep-calculator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/sleep-calculator</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/sleep-calculator"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/sleep-calculator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/sleep-calculator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/fake-chat</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/fake-chat"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/fake-chat"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/fake-chat"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/fake-chat</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/fake-chat"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/fake-chat"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/fake-chat"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/fancy-text</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/fancy-text"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/fancy-text"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/fancy-text"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/fancy-text</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/fancy-text"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/fancy-text"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/fancy-text"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://toolneat.com/tools/life/webcam-test</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/webcam-test"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/webcam-test"/>
@@ -1731,76 +1821,21 @@
   </url>
 
   <url>
-    <loc>https://toolneat.com/tools/life/mic-test</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/mic-test"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/mic-test"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/mic-test"/>
+    <loc>https://toolneat.com/tools/life/youtube-thumbnail</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/youtube-thumbnail"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/youtube-thumbnail"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/youtube-thumbnail"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://toolneat.com/en/tools/life/mic-test</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/mic-test"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/mic-test"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/mic-test"/>
+    <loc>https://toolneat.com/en/tools/life/youtube-thumbnail</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/youtube-thumbnail"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/youtube-thumbnail"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/youtube-thumbnail"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/image-blur</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-blur"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-blur"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-blur"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/image-blur</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-blur"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-blur"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-blur"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/tools/life/korean-name-generator</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/korean-name-generator"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/korean-name-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/korean-name-generator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/life/korean-name-generator</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/korean-name-generator"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/korean-name-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/korean-name-generator"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Game Category -->
-  <url>
-    <loc>https://toolneat.com/tools/game</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game"/>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/game</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game"/>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
 
   <url>
@@ -1817,6 +1852,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game/2048"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game/2048"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game/2048"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/game/memory-game</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game/memory-game"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game/memory-game"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game/memory-game"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/game/memory-game</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game/memory-game"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game/memory-game"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game/memory-game"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1858,24 +1911,6 @@
   </url>
 
   <url>
-    <loc>https://toolneat.com/tools/game/memory-game</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game/memory-game"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game/memory-game"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game/memory-game"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://toolneat.com/en/tools/game/memory-game</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game/memory-game"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game/memory-game"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game/memory-game"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://toolneat.com/tools/game/tetris</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game/tetris"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game/tetris"/>
@@ -1889,6 +1924,168 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/game/tetris"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/game/tetris"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/game/tetris"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/compress-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/compress-pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/compress-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/compress-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/compress-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/compress-pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/compress-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/compress-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/delete-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/delete-pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/delete-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/delete-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/delete-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/delete-pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/delete-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/delete-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/image-to-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/image-to-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/image-to-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/image-to-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/merge-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/merge-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/merge-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/merge-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/pdf-to-image</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/pdf-to-image"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/pdf-to-image"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/pdf-to-image"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/pdf-to-image</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/pdf-to-image"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/pdf-to-image"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/pdf-to-image"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/reorder-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/reorder-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/reorder-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/reorder-pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/reorder-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/rotate-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/rotate-pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/rotate-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/rotate-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/rotate-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/rotate-pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/rotate-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/rotate-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/split-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/split-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/split-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/split-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/tools/pdf/watermark-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/watermark-pdf"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/watermark-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/watermark-pdf"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/tools/pdf/watermark-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/watermark-pdf"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/watermark-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/watermark-pdf"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

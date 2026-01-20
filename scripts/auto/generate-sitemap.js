@@ -23,19 +23,31 @@ const config = {
     { path: '/pages/privacy', priority: '0.3', changefreq: 'monthly' },
     { path: '/pages/terms', priority: '0.3', changefreq: 'monthly' },
   ],
+  // Category index pages
+  categoryPages: [
+    { path: '/tools', priority: '0.7', changefreq: 'weekly' },
+    { path: '/tools/dev', priority: '0.7', changefreq: 'weekly' },
+    { path: '/tools/life', priority: '0.7', changefreq: 'weekly' },
+    { path: '/tools/game', priority: '0.7', changefreq: 'weekly' },
+    { path: '/tools/pdf', priority: '0.7', changefreq: 'weekly' },
+  ],
   toolDirs: [
     { dir: 'tools/dev', priority: '0.8', changefreq: 'monthly' },
     { dir: 'tools/life', priority: '0.8', changefreq: 'monthly' },
+    { dir: 'tools/game', priority: '0.8', changefreq: 'monthly' },
+    { dir: 'tools/pdf', priority: '0.8', changefreq: 'monthly' },
   ]
 };
 
-function getDirectories(dirPath) {
+// Get .html files (excluding index.html, category pages like dev.html)
+function getHtmlFiles(dirPath) {
   const fullPath = path.join(ROOT_DIR, dirPath);
   if (!fs.existsSync(fullPath)) return [];
 
   return fs.readdirSync(fullPath, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name);
+    .filter(dirent => dirent.isFile() && dirent.name.endsWith('.html'))
+    .map(dirent => dirent.name.replace('.html', ''))
+    .filter(name => !['dev', 'life', 'game', 'pdf', 'index'].includes(name)); // exclude category pages
 }
 
 function generateUrlEntry(koPath, priority, changefreq) {
@@ -73,9 +85,14 @@ function generateSitemap() {
     urls.push(generateUrlEntry(page.path, page.priority, page.changefreq));
   });
 
-  // Tool pages
+  // Category index pages
+  config.categoryPages.forEach(page => {
+    urls.push(generateUrlEntry(page.path, page.priority, page.changefreq));
+  });
+
+  // Tool pages (now .html files)
   config.toolDirs.forEach(({ dir, priority, changefreq }) => {
-    const tools = getDirectories(dir);
+    const tools = getHtmlFiles(dir);
     tools.forEach(tool => {
       const toolPath = `/${dir}/${tool}`;
       urls.push(generateUrlEntry(toolPath, priority, changefreq));
