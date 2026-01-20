@@ -3,19 +3,19 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://toolneat.com/</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/"/>
+    <loc>https://toolneat.com</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://toolneat.com/en/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/"/>
+    <loc>https://toolneat.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

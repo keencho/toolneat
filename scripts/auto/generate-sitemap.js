@@ -51,22 +51,24 @@ function getHtmlFiles(dirPath) {
 }
 
 function generateUrlEntry(koPath, priority, changefreq) {
-  const enPath = `/en${koPath}`;
+  // Handle root path to avoid trailing slash
+  const koUrlPath = koPath === '/' ? '' : koPath;
+  const enUrlPath = koPath === '/' ? '/en' : `/en${koPath}`;
 
   return `  <url>
-    <loc>${BASE_URL}${koPath}</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="${BASE_URL}${koPath}"/>
-    <xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}${enPath}"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${koPath}"/>
+    <loc>${BASE_URL}${koUrlPath}</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="${BASE_URL}${koUrlPath}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}${enUrlPath}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${koUrlPath}"/>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>
 
   <url>
-    <loc>${BASE_URL}${enPath}</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}${enPath}"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="${BASE_URL}${koPath}"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${koPath}"/>
+    <loc>${BASE_URL}${enUrlPath}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}${enUrlPath}"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="${BASE_URL}${koUrlPath}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${koUrlPath}"/>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`;
