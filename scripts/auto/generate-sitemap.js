@@ -30,13 +30,16 @@ const config = {
     { path: '/tools/life', priority: '0.7', changefreq: 'weekly' },
     { path: '/tools/game', priority: '0.7', changefreq: 'weekly' },
     { path: '/tools/pdf', priority: '0.7', changefreq: 'weekly' },
+    { path: '/blog', priority: '0.7', changefreq: 'weekly' },
   ],
   toolDirs: [
     { dir: 'tools/dev', priority: '0.8', changefreq: 'monthly' },
     { dir: 'tools/life', priority: '0.8', changefreq: 'monthly' },
     { dir: 'tools/game', priority: '0.8', changefreq: 'monthly' },
     { dir: 'tools/pdf', priority: '0.8', changefreq: 'monthly' },
-  ]
+  ],
+  // Blog posts
+  blogDir: { dir: 'blog', priority: '0.7', changefreq: 'monthly' }
 };
 
 // Get .html files (excluding index.html, category pages like dev.html)
@@ -100,6 +103,16 @@ function generateSitemap() {
       urls.push(generateUrlEntry(toolPath, priority, changefreq));
     });
   });
+
+  // Blog posts
+  if (config.blogDir) {
+    const { dir, priority, changefreq } = config.blogDir;
+    const posts = getHtmlFiles(dir);
+    posts.forEach(post => {
+      const postPath = `/${dir}/${post}`;
+      urls.push(generateUrlEntry(postPath, priority, changefreq));
+    });
+  }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

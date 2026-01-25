@@ -95,21 +95,54 @@ function injectComponents(filePath) {
     footer = convertLinksForEnglish(footer);
   }
 
-  // Replace empty div#header and div#footer
-  // Matches: <div id="header"></div> or <div id="header">   </div> (with whitespace)
-  const headerRegex = /<div\s+id=["']header["']\s*>[\s]*<\/div>/i;
-  const footerRegex = /<div\s+id=["']footer["']\s*>[\s]*<\/div>/i;
-
   let modified = false;
 
-  if (headerRegex.test(content)) {
-    content = content.replace(headerRegex, `<div id="header">\n${header}\n</div>`);
-    modified = true;
+  // Use marker-based replacement for header
+  // Match from <div id="header"> to </div> before <div id="search-modal"> or <main
+  const headerStartMarker = /<div\s+id=["']header["']\s*>/i;
+  const headerEndPattern = /<\/div>\s*(?=<div id="search-modal">|<main\s)/;
+
+  if (headerStartMarker.test(content)) {
+    // Find where header div starts
+    const startMatch = content.match(headerStartMarker);
+    const startIndex = startMatch.index;
+    const afterStart = content.substring(startIndex + startMatch[0].length);
+
+    // Find the </div> that comes before search-modal or main
+    const endMatch = afterStart.match(headerEndPattern);
+    if (endMatch) {
+      const endIndex = startIndex + startMatch[0].length + endMatch.index + endMatch[0].length;
+      const oldContent = content.substring(startIndex, endIndex);
+      const newHeader = `<div id="header">\n${header}\n</div>`;
+
+      if (oldContent !== newHeader) {
+        content = content.substring(0, startIndex) + newHeader + content.substring(endIndex);
+        modified = true;
+      }
+    }
   }
 
-  if (footerRegex.test(content)) {
-    content = content.replace(footerRegex, `<div id="footer">\n${footer}\n</div>`);
-    modified = true;
+  // Use marker-based replacement for footer
+  // Match from <div id="footer"> to </div> before </body>
+  const footerStartMarker = /<div\s+id=["']footer["']\s*>/i;
+  const footerEndPattern = /<\/div>\s*(?=<\/body>)/;
+
+  if (footerStartMarker.test(content)) {
+    const startMatch = content.match(footerStartMarker);
+    const startIndex = startMatch.index;
+    const afterStart = content.substring(startIndex + startMatch[0].length);
+
+    const endMatch = afterStart.match(footerEndPattern);
+    if (endMatch) {
+      const endIndex = startIndex + startMatch[0].length + endMatch.index + endMatch[0].length;
+      const oldContent = content.substring(startIndex, endIndex);
+      const newFooter = `<div id="footer">\n${footer}\n</div>`;
+
+      if (oldContent !== newFooter) {
+        content = content.substring(0, startIndex) + newFooter + content.substring(endIndex);
+        modified = true;
+      }
+    }
   }
 
   if (modified) {

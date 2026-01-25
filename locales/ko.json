@@ -28,7 +28,8 @@
     "allLifeTools": "모든 생활 도구",
     "allPdfTools": "모든 PDF 도구",
     "game": "게임",
-    "allGameTools": "모든 게임"
+    "allGameTools": "모든 게임",
+    "blog": "블로그"
   },
   "footer": {
     "about": "소개",
