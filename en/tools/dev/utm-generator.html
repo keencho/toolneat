@@ -672,35 +672,89 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What are UTM Parameters?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a UTM Parameter Generator?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">UTM (Urchin Tracking Module) parameters are tags added to URLs that allow you to track marketing campaign effectiveness in Google Analytics.</p>
+          <p>UTM (Urchin Tracking Module) parameters are tracking tags appended to URLs that let you identify exactly where your website traffic comes from. By adding UTM parameters to your marketing links, you can track campaign performance in Google Analytics and other analytics platforms. For example, using different UTM links for Facebook ads, email newsletters, and Google search ads allows you to compare channel-by-channel results at a glance.</p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Three required parameters:</strong> Enter utm_source (traffic origin), utm_medium (marketing channel type), and utm_campaign (campaign name) to instantly generate a UTM-tagged URL.</li>
+            <li><strong>Optional parameters:</strong> Add utm_term (paid search keywords) and utm_content (ad variation for A/B testing) when needed.</li>
+            <li><strong>Real-time preview:</strong> See the generated URL and each parameter value update as you type.</li>
+            <li><strong>Smart suggestions:</strong> Commonly used values like google, facebook, cpc, and email are suggested via autocomplete for source and medium fields.</li>
+            <li><strong>Link history:</strong> Recently generated links are saved locally so you can revisit or copy them later.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Enter the website URL you want to track (include https://).</li>
+            <li>Fill in the Campaign Source (utm_source). Example: google, facebook, newsletter</li>
+            <li>Fill in the Campaign Medium (utm_medium). Example: cpc, banner, email</li>
+            <li>Fill in the Campaign Name (utm_campaign). Example: spring_sale_2025</li>
+            <li>Optionally add Campaign Term (utm_term) and Campaign Content (utm_content).</li>
+            <li>Click the Copy button to copy the generated link to your clipboard.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Social media marketing:</strong> Tag links for Facebook, Instagram, Twitter, and LinkedIn campaigns separately to compare performance across platforms.</li>
+            <li><strong>Email campaigns:</strong> Add UTM parameters to newsletter links to measure email marketing conversion rates and click-through performance.</li>
+            <li><strong>A/B testing:</strong> Use utm_content to differentiate between banner variants, CTA button styles, or ad copy within the same campaign.</li>
+            <li><strong>Offline-to-online tracking:</strong> Embed UTM links in QR codes on flyers, posters, or business cards to track offline marketing impact online.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Always use lowercase for parameter values. Google Analytics treats "Google" and "google" as separate sources, which splits your data.</li>
+            <li>Use underscores (_) or hyphens (-) instead of spaces in parameter values.</li>
+            <li>Establish consistent naming conventions across your team. Mixing "facebook" and "fb" fragments your analytics data.</li>
+            <li>For long UTM URLs, use URL shorteners like bit.ly or tinyurl to make links cleaner and more shareable.</li>
+            <li>Never use UTM parameters on internal links (within the same site). This overwrites the original referral data and distorts your reports.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Required Parameters</h3>
-              <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
-                <li><strong>utm_source:</strong> Traffic source (google, facebook)</li>
-                <li><strong>utm_medium:</strong> Marketing medium (cpc, email)</li>
-                <li><strong>utm_campaign:</strong> Campaign name</li>
-              </ul>
+              <h4 class="font-medium">Q: Do UTM parameters affect SEO?</h4>
+              <p>No. Google does not treat URLs with UTM parameters as separate pages for indexing purposes. However, it is good practice to ensure your canonical tags are properly configured to avoid any edge cases.</p>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Optional Parameters</h3>
-              <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
-                <li><strong>utm_term:</strong> Paid search keywords</li>
-                <li><strong>utm_content:</strong> Ad/link differentiation (A/B testing)</li>
-              </ul>
+              <h4 class="font-medium">Q: Can I use just one UTM parameter instead of all three required ones?</h4>
+              <p>Technically yes, but all three required parameters (source, medium, campaign) should be used together for accurate campaign reporting in Google Analytics. Missing parameters may appear as "(not set)" in your reports.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What values should I use for utm_source and utm_medium?</h4>
+              <p>utm_source identifies the actual traffic origin (google, facebook, newsletter), while utm_medium describes the marketing channel type (cpc, email, social, banner). Following Google's recommended conventions ensures consistency and clean reporting.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does the order of UTM parameters in the URL matter?</h4>
+              <p>No, the order does not matter. URL query parameters are interpreted the same regardless of sequence. However, the conventional order is source, medium, campaign, term, content for readability.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use non-English characters in UTM parameter values?</h4>
+              <p>Technically yes, but non-ASCII characters get URL-encoded, making links very long and hard to read. Stick to lowercase English letters, numbers, hyphens, and underscores for best results.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do analytics tools other than Google Analytics support UTM parameters?</h4>
+              <p>Yes. UTM parameters are an industry standard. Besides GA4, platforms like Adobe Analytics, Mixpanel, Amplitude, HubSpot, and most marketing analytics tools recognize and process UTM parameters.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What happens if the URL already has query parameters?</h4>
+              <p>This tool preserves existing query parameters and appends UTM parameters correctly. For example, if your URL already has ?page=1, the tool will add &utm_source=google automatically using proper URL syntax.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I edit a UTM link after sharing it?</h4>
+              <p>UTM links are simply URLs with added parameters, so you cannot modify a link that has already been distributed. For new campaigns or corrections, generate a fresh UTM link and use it going forward.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Where can I see UTM data in Google Analytics?</h4>
+              <p>In GA4, navigate to Reports > Acquisition > Traffic acquisition. Select the Source/Medium dimension to see utm_source and utm_medium values, and use the Campaign dimension to view utm_campaign data.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Any tips for managing UTM parameters across a team?</h4>
+              <p>Create a shared spreadsheet documenting your UTM naming conventions. Define standard values for sources, mediums, and campaign name formats. This prevents data fragmentation and produces much cleaner analytics reports.</p>
             </div>
           </div>
-
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Best Practices</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
-            <li>Use lowercase (Google Analytics is case-sensitive)</li>
-            <li>Use underscores (_) or hyphens (-) instead of spaces</li>
-            <li>Maintain consistent naming conventions (e.g., facebook vs fb)</li>
-            <li>Special characters are automatically encoded</li>
-          </ul>
         </div>
       </section>
     </div>

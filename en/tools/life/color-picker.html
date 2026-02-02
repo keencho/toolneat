@@ -661,37 +661,93 @@
         </ul>
       </div>
 
-      <!-- FAQ Section -->
+      <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Color Picker?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Color Picker (EyeDropper)?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Color Picker (EyeDropper) is a tool that allows you to extract colors from anywhere on your screen. Using the EyeDropper API, you can pick colors not only from web pages but also from other applications like Slack, Figma, Photoshop, and more.</p>
+          <p>Color Picker is a screen-based color extraction tool that lets you grab the exact color of any pixel on your display. Powered by the browser's EyeDropper API, it works not only on web pages but also across other desktop applications like Figma, Photoshop, Slack, and more. Designers and developers use it to quickly identify and copy color codes while working on any project.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li>Click the "Pick Color" button</li>
-            <li>Move your cursor over any color on the screen</li>
-            <li>Click to extract the color</li>
-            <li>Copy the color in HEX, RGB, or HSL format</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Extract colors from anywhere on your screen with a single click</li>
+            <li>Works beyond the browser window, including other desktop applications</li>
+            <li>Displays color codes in HEX, RGB, and HSL formats simultaneously</li>
+            <li>One-click copy to clipboard for any color format</li>
+            <li>Color history to revisit recently picked colors</li>
+            <li>Live preview of the extracted color</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Click the "Pick Color" button to activate the eyedropper</li>
+            <li>Move your cursor over the color you want to capture anywhere on the screen</li>
+            <li>Click to extract the color at the cursor's position</li>
+            <li>Click the copy button next to HEX, RGB, or HSL to copy the code</li>
+            <li>Press ESC at any time to cancel the eyedropper</li>
           </ol>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Sampling a color from a website to reuse in your own design project</li>
+            <li>Quickly grabbing color values from a design mockup to enter into CSS</li>
+            <li>Analyzing brand colors on competitor websites and apps</li>
+            <li>Extracting exact color values from images and photographs</li>
+            <li>Maintaining a consistent color theme across presentation slides</li>
+            <li>Referencing trending colors when creating social media content</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>The EyeDropper API is supported in Chrome 95+ and Edge 95+ only; Safari and Firefox do not support it yet</li>
+            <li>Display color profiles (sRGB, DCI-P3, etc.) can cause slight color differences between what you see and the extracted value</li>
+            <li>On high-DPI (Retina) displays, pixel-level colors may be affected by display scaling</li>
+            <li>On gradient areas, the extracted color depends on the exact click position, so aim carefully</li>
+            <li>All processing happens locally in your browser; no screen data or colors are ever sent to a server</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Which browsers are supported?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Chrome 95+ and Edge 95+ are supported. Safari and Firefox do not yet support the EyeDropper API.</p>
+              <h4 class="font-medium">Q: Which browsers are supported?</h4>
+              <p>Chrome 95+ and Edge 95+ are supported. Safari and Firefox do not yet implement the EyeDropper API, and their support timelines are uncertain.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I pick colors from outside the browser?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes! Once the eyedropper is activated, you can pick colors from anywhere on your screen, including other applications.</p>
+              <h4 class="font-medium">Q: Can I pick colors from outside the browser?</h4>
+              <p>Yes. Once the eyedropper is activated, you can click on any pixel on your screen, including other applications like Figma, Photoshop, file explorer, and more.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: The extracted color doesn't seem accurate</h4>
-              <p class="text-gray-600 dark:text-gray-400">Color accuracy may vary slightly depending on your display color profile and browser rendering. For precise colors, check the original source's color code.</p>
+              <h4 class="font-medium">Q: The extracted color looks slightly different from the original</h4>
+              <p>This can happen due to your monitor's color profile, the browser's rendering engine, or color space conversion. If you need pixel-perfect accuracy, refer to the color code in the original design file.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between HEX, RGB, and HSL?</h4>
+              <p>HEX represents colors as a 6-digit hexadecimal value (#FF5733). RGB specifies red, green, and blue intensity from 0 to 255 (rgb(255,87,51)). HSL uses hue, saturation, and lightness (hsl(11,100%,60%)). All three are valid in CSS, so choose whichever fits your workflow.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How many colors are kept in the history?</h4>
+              <p>Recently picked colors appear in the history panel. You can click any previous color to instantly view and copy its code again, which helps speed up your workflow.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I cancel the eyedropper after activating it?</h4>
+              <p>Yes. Press the ESC key to immediately exit eyedropper mode. This prevents accidentally picking an unwanted color.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I find complementary or analogous colors?</h4>
+              <p>This tool focuses on color extraction. To explore complementary, analogous, or triadic color schemes, try Toolneat's Color Converter or Color Palette Extractor tools alongside this one.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does this work on mobile devices?</h4>
+              <p>The EyeDropper API is currently available on desktop browsers only. Mobile browsers do not support eyedropper functionality. Please use Chrome or Edge on a desktop or laptop computer.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can extracted colors be copied automatically?</h4>
+              <p>After extraction, HEX, RGB, and HSL codes are all displayed at once. Click the copy button next to any format to copy it to your clipboard instantly.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data collected or sent anywhere?</h4>
+              <p>No. All color extraction and processing happens entirely within your browser. No screen data, colors, or personal information is ever sent to any server.</p>
             </div>
           </div>
-
-          <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No data is sent to any server.</p>
         </div>
       </section>
 

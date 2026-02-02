@@ -796,32 +796,90 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Diff Checker?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Diff Checker / Text Compare Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A Diff Checker (also known as text comparison tool) is a utility that finds and visually displays differences between two pieces of text. It's commonly used for code reviews, document version comparison, manuscript editing verification, and many other purposes. Added lines are shown in green, removed lines in red, and changed lines in yellow, making it easy to spot differences at a glance.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is a Diff Checker?</h3>
+          <p>A Diff Checker is a utility that places two pieces of text side by side and highlights every difference between them on a line-by-line basis. In software development it is indispensable for reviewing code changes before merging branches, and in everyday work it is equally useful for comparing contract revisions, verifying manuscript edits, or auditing configuration files between environments. Added lines appear in green, deleted lines in red, and modified lines in yellow, so even in documents hundreds of lines long you can instantly see what changed and where.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Line-by-line comparison:</strong> Analyzes differences at the individual line level for precise results.</li>
+            <li><strong>Color-coded highlights:</strong> Green for additions, red for deletions, and yellow for modifications -- instantly recognizable.</li>
+            <li><strong>Ignore Whitespace:</strong> Filters out indentation and trailing-space differences so you see only meaningful content changes.</li>
+            <li><strong>Ignore Case:</strong> Treats uppercase and lowercase letters as identical during comparison.</li>
+            <li><strong>Swap Sides:</strong> Switch the original and modified text positions with a single click.</li>
+            <li><strong>Change Statistics:</strong> Displays a summary of how many lines were added, removed, or changed.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Paste or type the original text in the left input area.</li>
-            <li>Paste or type the modified text in the right input area.</li>
-            <li>Click the 'Compare' button to view the differences.</li>
-            <li>Enable 'Ignore Whitespace' or 'Ignore Case' options as needed.</li>
-            <li>Use the 'Swap' button to switch the positions of original and modified text.</li>
+            <li>Paste or type the original text into the left input area.</li>
+            <li>Paste or type the modified text into the right input area.</li>
+            <li>Click the "Compare" button to generate the diff view below.</li>
+            <li>If indentation differences are cluttering the result, enable "Ignore Whitespace."</li>
+            <li>To disregard letter casing, toggle "Ignore Case" on.</li>
+            <li>Use the "Swap" button to quickly reverse which side is treated as the original.</li>
+            <li>Review the highlighted output to understand every change at a glance.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Code review:</strong> Inspect changed lines before submitting a pull request to catch mistakes or omissions early.</li>
+            <li><strong>Document versioning:</strong> Compare an older draft of a contract or proposal against the current version to pinpoint every revision.</li>
+            <li><strong>Config file audits:</strong> Spot differences between development, staging, and production configuration files.</li>
+            <li><strong>Translation review:</strong> Place source text and its translation side by side to check for missing or added content.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Files created on different operating systems may use different line endings (LF vs. CRLF), causing false positives. The Ignore Whitespace option handles this.</li>
+            <li>Very large texts (tens of thousands of lines) are supported but may take a moment to process since all computation happens in your browser.</li>
+            <li>For structured formats like JSON or XML, formatting both sides consistently before comparing yields much cleaner diff results.</li>
+            <li>Consider taking a screenshot of the diff output for your records -- it makes a handy attachment for code-review notes or change-history documents.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium">Q: What do the colors mean?</h4>
-              <p>Green background indicates newly added lines, red background indicates removed lines, and yellow background indicates lines where content has been modified. This color coding helps you intuitively understand what has changed and how.</p>
+              <h4 class="font-medium">Q: What does each color mean?</h4>
+              <p>Green highlights lines that exist only in the modified (right) text -- they were added. Red highlights lines that exist only in the original (left) text -- they were removed. Yellow highlights lines present on both sides but with different content.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I compare large texts?</h4>
-              <p>Yes, you can compare large texts. However, very long texts may take a bit longer to process. All processing is done locally in your browser, so your data is never sent to any server.</p>
+              <h4 class="font-medium">Q: Can I compare very large texts?</h4>
+              <p>Yes, there is no hard limit. Keep in mind that texts with tens of thousands of lines will use more browser memory and may take a few extra seconds. All processing is local, so nothing leaves your machine.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: When should I use the Ignore Whitespace option?</h4>
-              <p>This is useful when comparing code and you want to ignore differences in indentation or trailing whitespace and focus only on the actual content. It's particularly helpful when comparing code written in different editors or environments.</p>
+              <h4 class="font-medium">Q: When should I use Ignore Whitespace?</h4>
+              <p>Whenever code was edited in different environments where tabs, spaces, or trailing whitespace differ. This option lets you focus on actual content changes and skip formatting noise.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I compare binary files?</h4>
+              <p>This tool is designed for text-based content only. Binary files such as images, PDFs, or compiled executables are not supported. Use it for source code, config files, documents, and similar text content.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it detect line-ending differences (LF vs. CRLF)?</h4>
+              <p>By default, yes. If you are comparing files from Windows (CRLF) and Linux (LF) and want to ignore those differences, enable the Ignore Whitespace option.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I save or share the comparison result?</h4>
+              <p>There is no built-in export feature at this time, but you can use your browser's screenshot tool or print-to-PDF function to capture the diff output for sharing.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How is this different from git diff?</h4>
+              <p>Git diff shows changes between commits inside a version control repository. This tool lets you paste any two texts directly -- no Git setup required. It is ideal for quick, ad-hoc comparisons outside of a VCS workflow.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data sent to any server?</h4>
+              <p>No. All comparison logic runs locally in your browser. The text you paste is never transmitted or stored externally, so it is safe to use with confidential documents or proprietary source code.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I compare more than two files at once?</h4>
+              <p>This tool compares exactly two texts at a time. If you need to compare multiple files, run separate comparisons for each pair.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it support word-level diffing?</h4>
+              <p>The primary mode is line-level comparison. Within a modified line, the yellow highlight gives a general indication of where the change occurred. For fine-grained, word-by-word analysis, specialized diff libraries would be needed.</p>
             </div>
           </div>
         </div>

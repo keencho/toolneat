@@ -736,32 +736,93 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is JSON Formatter?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">JSON Formatter Tool Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A JSON Formatter (also called JSON Beautifier or JSON Pretty Printer) is a tool that transforms raw JSON data into a well-structured, readable format with proper indentation and syntax highlighting. JSON (JavaScript Object Notation) is the most popular data interchange format used in web APIs and configuration files. This tool helps developers validate JSON syntax, visualize data structures, and debug API responses quickly.</p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is JSON Formatter?</h3>
+          <p>A JSON Formatter (also called JSON Beautifier or Pretty Printer) transforms raw or compressed JSON data into a well-structured, readable format with proper indentation and line breaks. JSON (JavaScript Object Notation) is the most widely used data interchange format in web APIs, configuration files, and data storage. During development, you frequently need to inspect and analyze JSON data. This tool provides syntax highlighting, collapsible sections, key sorting, and validation to help you quickly navigate complex JSON structures and spot errors.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Syntax highlighting to distinguish keys, strings, numbers, and booleans by color</li>
+            <li>Configurable indentation (Tab, 2 spaces, 4 spaces)</li>
+            <li>Alphabetical key sorting option</li>
+            <li>Expand/collapse toggle for exploring nested structures</li>
+            <li>JSON minification to remove all whitespace</li>
+            <li>Live formatting mode for real-time results</li>
+            <li>Validation with precise error location (line and column)</li>
+            <li>Copy to clipboard and file download</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Paste your JSON data into the input area on the left side of the tool.</li>
-            <li>With "Live" mode enabled, formatting happens automatically. Otherwise, click the "Format" button.</li>
-            <li>Choose your preferred indentation (Tab, 2 spaces, or 4 spaces) and enable "Sort Keys" to alphabetize object keys.</li>
-            <li>Use "Expand All" or "Collapse All" buttons to control the visibility of nested structures in the output.</li>
-            <li>Click "Copy" to copy the formatted JSON, or "Minify" to compress JSON by removing whitespace.</li>
+            <li>Paste or type your JSON data into the input area on the left.</li>
+            <li>With Live mode enabled, formatting happens instantly. Otherwise, click the "Format" button.</li>
+            <li>Select your preferred indentation size (Tab, 2, or 4 spaces) to set the output style.</li>
+            <li>Enable "Sort Keys" to alphabetically order object keys at every level.</li>
+            <li>Use the "Minify" button to strip all whitespace for a compact output.</li>
+            <li>Click expand/collapse toggles to explore deeply nested structures section by section.</li>
+            <li>Copy the result to your clipboard or download it as a file.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Formatting API response data for analysis and debugging</li>
+            <li>Reviewing configuration file structures (package.json, tsconfig.json, etc.) before editing</li>
+            <li>Expanding compressed JSON log data for readability</li>
+            <li>Sorting keys across multiple JSON files for consistency</li>
+            <li>Inspecting JSON column data stored in databases</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>JSON is stricter than JavaScript object literals. Keys and strings must use double quotes, and trailing commas and comments are not allowed.</li>
+            <li>Files larger than 500KB are displayed without syntax highlighting for performance, but formatting and validation still work normally.</li>
+            <li>The "Sort Keys" feature is especially useful for diff comparisons when APIs return the same data with different key orders.</li>
+            <li>Use expand/collapse to quickly locate specific parts within JSON data spanning hundreds of lines.</li>
+            <li>All data is processed locally in your browser and is never sent to any server.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: What causes "Invalid JSON" errors?</h4>
-              <p>Common JSON syntax errors include: missing or extra commas, unquoted keys or values, single quotes instead of double quotes, trailing commas after the last item, comments (JSON doesn't support comments), and unescaped special characters in strings. The error message will indicate the approximate position of the problem to help you locate and fix it.</p>
+              <p>Check the line and column number in the error message. Common causes include trailing commas after the last item, single quotes instead of double quotes, unquoted keys, comments in the data, and unescaped special characters. JSON requires strict syntax compliance.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the difference between formatting and minifying JSON?</h4>
-              <p>Formatting (beautifying) adds indentation and line breaks to make JSON human-readable, which is helpful for debugging and understanding data structures. Minifying removes all unnecessary whitespace to reduce file size, which is preferred for production environments and API responses to minimize bandwidth usage and improve load times.</p>
+              <h4 class="font-medium">Q: What is the difference between JSON and JavaScript objects?</h4>
+              <p>JSON is derived from JavaScript object literal syntax but is more restrictive. In JSON, all keys and string values must be enclosed in double quotes, and functions, undefined values, comments, and trailing commas are not permitted.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between formatting and minifying?</h4>
+              <p>Formatting adds indentation and line breaks so humans can read the data easily. Minifying removes all unnecessary whitespace to minimize file size. Use formatted JSON during development and minified JSON in production environments.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can this tool handle large JSON files?</h4>
+              <p>Files up to 500KB are displayed with full syntax highlighting. Larger files are shown in a simplified format for performance, but validation and formatting continue to work correctly.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between Live mode and manual mode?</h4>
+              <p>Live mode formats automatically as you type. If you experience lag while typing, switch to manual mode and click the "Format" button only when needed.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What sort order does key sorting use?</h4>
+              <p>Keys are sorted in Unicode alphabetical (lexicographic) order. Keys containing numbers are compared as strings, so "item10" comes before "item2". Nested object keys are sorted independently at each level.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I use the expand/collapse feature?</h4>
+              <p>In the formatted output, click the toggle button next to objects ({}) or arrays ([]) to collapse or expand that section. Use the "Expand All" and "Collapse All" buttons to control the entire structure at once.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Is my JSON data sent to a server?</h4>
-              <p>No, this tool processes all JSON data locally in your browser using JavaScript. Your data never leaves your computer, making it safe to use with sensitive or confidential information. The formatting, validation, and all other operations are performed entirely client-side.</p>
+              <p>No. All formatting and validation is performed locally in your browser using JavaScript. Your data never leaves your computer, making it safe to use with sensitive or confidential information.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can this tool handle JSONC (JSON with comments)?</h4>
+              <p>Standard JSON does not support comments, so data containing comments will cause parsing errors. Remove comments from JSONC files before pasting them into this tool.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use the formatted output directly in other tools?</h4>
+              <p>Yes. Click "Copy" to copy the formatted JSON to your clipboard and paste it into any editor or API testing tool. You can also download the result as a file for direct use in your project.</p>
             </div>
           </div>
         </div>

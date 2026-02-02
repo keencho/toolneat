@@ -645,38 +645,91 @@
       </div>
 
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4" data-i18n="tools.splitPdf.faqTitle">What is PDF Split?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About PDF Split</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4" data-i18n="tools.splitPdf.faqDesc">
-            PDF split extracts specific pages from a PDF or separates each page into individual files. Great for extracting needed sections from long documents or splitting scanned documents.
-          </p>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li>Drag or click to upload a PDF file</li>
-            <li>Click pages to select them (multiple selection supported)</li>
-            <li>Click 'Extract Selected Pages' button</li>
-            <li>A new PDF with selected pages will download</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is PDF Split?</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">PDF splitting lets you extract specific pages from a PDF file or separate every page into its own individual file. Whether you need a few pages from a lengthy report or want to break up a scanned document into separate files, this tool handles it quickly and privately. Everything runs in your browser with no file uploads to any server, so even sensitive documents stay secure.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Page range selection mode: pick specific pages to extract into a single PDF</li>
+            <li>Split each page mode: automatically create a separate PDF for every page</li>
+            <li>Select All / Select None buttons for quick page management</li>
+            <li>Download individual result files or all at once</li>
+            <li>File size and page count displayed for each result</li>
+            <li>100% browser-based processing for complete privacy</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Drag and drop a PDF file or click the upload area to select one</li>
+            <li>Choose your split mode: page range selection or split each page</li>
+            <li>In range mode, click the checkboxes on pages you want to extract</li>
+            <li>Click "Split PDF" to process</li>
+            <li>Download files individually or use the "Download All" button</li>
           </ol>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Extracting a 3-page summary from a 100-page report to share</li>
+            <li>Separating scanned receipts into individual PDF files</li>
+            <li>Pulling out signature pages from a contract</li>
+            <li>Isolating specific chapters from a textbook for study materials</li>
+            <li>Splitting a combined document into department-specific files</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Select all pages first, then uncheck the ones you do not need for faster workflow.</li>
+            <li>When using split-each mode, multiple files are created. Use the "Download All" button to grab everything at once.</li>
+            <li>Password-protected PDFs must have the password removed before splitting.</li>
+            <li>The original file is never modified. Only new files are created.</li>
+            <li>To reorder pages after splitting, use the PDF Reorder tool.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I select multiple pages at once?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, click multiple pages to select them. Selected pages are highlighted with a blue border.</p>
+              <h4 class="font-medium">Q: Can I select multiple pages at once?</h4>
+              <p>Yes, click on as many pages as you need. Selected pages are highlighted with a blue outline. Use the Select All / Select None buttons for convenience.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I change the page order after splitting?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Currently pages are extracted in original order. To reorder, use the PDF Merge tool after splitting.</p>
+              <h4 class="font-medium">Q: Can I change the page order after splitting?</h4>
+              <p>Pages are extracted in their original order. If you need a different arrangement, use the PDF Reorder tool or split first and then merge in the desired order.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is the original PDF file modified?</h4>
-              <p class="text-gray-600 dark:text-gray-400">No, the original file remains unchanged. A new PDF is created with your selected pages.</p>
+              <h4 class="font-medium">Q: Is the original PDF file modified?</h4>
+              <p>No. The original file remains completely untouched. A new PDF is generated with your selected pages.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is quality lost when splitting?</h4>
-              <p class="text-gray-600 dark:text-gray-400">No, original quality is preserved. Text, images, fonts, and all elements remain identical.</p>
+              <h4 class="font-medium">Q: Is quality lost when splitting?</h4>
+              <p>Not at all. Pages are copied directly, so text, images, fonts, and layouts are preserved identically to the original.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is there a file size limit?</h4>
+              <p>Since there is no server upload, there is no strict limit. Very large files may take longer to process depending on your browser memory.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I split password-protected PDFs?</h4>
+              <p>Encrypted PDFs must have the password removed first. This tool cannot process protected files directly.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How are files named in split-each mode?</h4>
+              <p>They are automatically named page_1.pdf, page_2.pdf, and so on. Each file contains only the corresponding page from the original.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it work on mobile devices?</h4>
+              <p>Yes, it works in mobile browsers. You can tap to select pages and split PDFs on your phone or tablet.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I start a new split?</h4>
+              <p>On the results screen, click "New Split" to return to the beginning and upload a different file.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What does "no server upload" mean?</h4>
+              <p>All processing happens locally in your browser. Your files are never transmitted over the internet, making it safe for confidential documents.</p>
             </div>
           </div>
-          <p class="text-gray-600 dark:text-gray-400 mt-4" data-i18n="tools.splitPdf.privacyNote">All processing is done in your browser. No data is uploaded to servers.</p>
         </div>
       </section>
     </div>

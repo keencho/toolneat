@@ -552,35 +552,92 @@
         </div>
       </div>
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Screen Recording Guide</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Screen Recorder Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Uses browser's screen sharing feature to record. No software installation required.</p>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Recording Options</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li><strong>Entire Screen:</strong> Record full monitor</li>
-            <li><strong>Window:</strong> Record specific app window</li>
-            <li><strong>Tab:</strong> Record browser tab only (can include tab audio)</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is the Screen Recorder?</h3>
+          <p>The Screen Recorder uses your browser's built-in Screen Capture API to record your screen and save it as a WEBM video file, all without installing any software. You can choose to capture your entire screen, a specific application window, or a single browser tab. An optional microphone toggle lets you narrate over the recording. It is ideal for creating software tutorials, attaching bug reproduction videos to reports, recording online meetings, or capturing lecture content on the fly.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Choose recording scope: full screen, app window, or browser tab</li>
+            <li>Include microphone audio for voice-over narration</li>
+            <li>Capture tab audio when recording a browser tab</li>
+            <li>Real-time elapsed time display during recording</li>
+            <li>Instant WEBM file download after stopping the recording</li>
+            <li>Zero installation, runs entirely in the browser</li>
           </ul>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Check "Include Microphone" if you want voice narration</li>
+            <li>Click "Start Recording" and a sharing prompt will appear</li>
+            <li>Select the screen, window, or tab you want to capture, then click "Share"</li>
+            <li>Recording begins and the elapsed time is displayed on screen</li>
+            <li>Click "Stop Recording" to finish. The WEBM file downloads automatically</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Creating step-by-step software tutorial videos</li>
+            <li>Recording bug reproduction steps to attach to developer reports</li>
+            <li>Capturing online meetings or webinar highlights</li>
+            <li>Recording presentation rehearsals for self-review</li>
+            <li>Saving online lectures or class material for later study</li>
+            <li>Clipping game-play highlights for sharing</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>For recordings over 30 minutes, split into shorter sessions to avoid high memory usage</li>
+            <li>Tab recording captures only that tab's audio, not system-wide sound</li>
+            <li>Closing the recorded window or tab during capture will automatically stop the recording</li>
+            <li>To convert WEBM to MP4, use a tool like VLC or HandBrake</li>
+            <li>All processing happens locally in your browser. No data is sent to any server</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: WEBM file won't play</h4>
-              <p class="text-gray-600 dark:text-gray-400">WEBM plays in most browsers (Chrome, Firefox, Edge) and modern devices. If Windows Media Player doesn't work, try VLC player.</p>
+              <h4 class="font-medium">Q: The WEBM file will not play on my computer</h4>
+              <p>WEBM plays natively in Chrome, Firefox, and Edge. If your default media player cannot open it, install VLC media player, which handles WEBM files without issues.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I record microphone audio?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, check 'Include Microphone' to record your voice. Great for tutorials.</p>
+              <h4 class="font-medium">Q: Can I record microphone audio?</h4>
+              <p>Yes. Check "Include Microphone" before starting and your voice will be mixed into the recording. This is especially useful for tutorials and narrated walkthroughs.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: How do I convert to GIF?</h4>
-              <p class="text-gray-600 dark:text-gray-400">After recording, use the <a href="/en/tools/life/video-to-gif" class="text-blue-500 hover:underline">Video to GIF</a> tool. You can select clip range and adjust size.</p>
+              <h4 class="font-medium">Q: How do I convert the recording to GIF?</h4>
+              <p>Upload the downloaded WEBM file to the <a href="/en/tools/life/video-to-gif" class="text-blue-500 hover:underline">Video to GIF</a> tool. You can trim the clip, resize, and adjust the frame rate before exporting.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is there a recording time limit?</h4>
-              <p class="text-gray-600 dark:text-gray-400">No technical limit, but long recordings use more browser memory. Consider splitting recordings over 30 minutes.</p>
+              <h4 class="font-medium">Q: Is there a recording time limit?</h4>
+              <p>There is no hard time limit. However, longer recordings consume more browser memory. If memory runs low the recording may stop unexpectedly. Splitting sessions at around 30 minutes is a good practice.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Which browsers support this tool?</h4>
+              <p>Chrome, Edge, and Firefox all support the Screen Capture API. Safari has limited support. For the most reliable experience use a Chromium-based browser.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I save as MP4 instead of WEBM?</h4>
+              <p>Browser-based recording outputs WEBM by default. If you need MP4, convert the file afterward using VLC, HandBrake, or an online conversion service.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it capture system audio?</h4>
+              <p>Tab recording can capture the tab's own audio. For full-screen or window recording, system audio capture depends on your OS and browser. The microphone option is always available as a separate audio source.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does this work on mobile?</h4>
+              <p>Most mobile browsers do not support the Screen Capture API, so this tool is primarily for desktop use. For mobile screen recording, use the built-in screen recording feature on your device (available on both iOS and Android).</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What resolution is the recording?</h4>
+              <p>The recording resolution matches the actual resolution of the selected screen or window. For example, capturing a 1920x1080 display produces a 1920x1080 video.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is any data sent to a server?</h4>
+              <p>No. Recording and file creation are processed entirely in your browser. The video file is saved only on your device and nothing is transmitted to any external server.</p>
             </div>
           </div>
-          <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No data uploaded to servers.</p>
         </div>
       </section>
     </div>

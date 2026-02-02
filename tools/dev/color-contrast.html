@@ -624,31 +624,88 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">색상 대비 검사란?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">색상 대비 검사기 안내</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">웹 콘텐츠 접근성 지침(WCAG)에서 정의한 색상 대비율을 검사하여 시각 장애인이나 색각 이상자도 콘텐츠를 읽을 수 있는지 확인합니다.</p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">색상 대비 검사란?</h3>
+          <p>색상 대비 검사기는 웹 콘텐츠 접근성 지침(WCAG 2.1)에 따라 전경색(텍스트)과 배경색 사이의 대비율을 측정하는 도구입니다. 적절한 색상 대비를 유지해야 시각 장애인, 색각 이상자, 고령자는 물론 밝은 햇빛 아래에서 모바일 기기를 사용하는 일반 사용자도 콘텐츠를 읽을 수 있습니다. 이 도구는 두 색상의 상대 휘도를 계산하여 대비율을 산출하고, WCAG AA 및 AAA 등급 기준으로 통과 여부를 판정합니다.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">WCAG 등급 기준</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li><strong>AA 일반 텍스트</strong>: 최소 4.5:1 대비율 필요</li>
-            <li><strong>AA 큰 텍스트</strong>: 최소 3:1 대비율 필요 (18pt 이상 또는 14pt 굵게)</li>
-            <li><strong>AAA 일반 텍스트</strong>: 최소 7:1 대비율 필요</li>
-            <li><strong>AAA 큰 텍스트</strong>: 최소 4.5:1 대비율 필요</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>실시간 대비율 계산</strong> - 색상을 변경하면 즉시 대비율과 등급 판정 결과가 업데이트됩니다.</li>
+            <li><strong>WCAG AA/AAA 등급 표시</strong> - 일반 텍스트와 큰 텍스트에 대해 각각 AA, AAA 통과 여부를 보여줍니다.</li>
+            <li><strong>실시간 미리보기</strong> - 선택한 전경색과 배경색 조합으로 실제 텍스트가 어떻게 보이는지 확인합니다.</li>
+            <li><strong>색상 교체</strong> - 전경색과 배경색을 원클릭으로 서로 바꿔볼 수 있습니다.</li>
+            <li><strong>추천 색상 조합</strong> - 접근성 기준을 만족하는 검증된 색상 조합을 제안합니다.</li>
+            <li><strong>HEX 코드 직접 입력</strong> - 색상 선택기 외에 HEX 코드를 직접 타이핑하여 정확한 색상을 지정합니다.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>전경색(텍스트 색상)을 색상 선택기로 고르거나, HEX 코드를 직접 입력합니다.</li>
+            <li>배경색도 같은 방식으로 설정합니다.</li>
+            <li>미리보기 영역에서 실제 텍스트 표시를 확인합니다.</li>
+            <li>대비율 수치와 AA/AAA 등급 판정 결과를 확인합니다.</li>
+            <li>기준을 만족하지 않으면 색상을 조정하거나, 하단의 추천 조합을 클릭하여 적용합니다.</li>
+            <li>교체 버튼으로 전경색과 배경색을 바꿔서 반전된 조합도 테스트해 봅니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">WCAG 등급 기준</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>AA 일반 텍스트</strong> - 최소 4.5:1 대비율이 필요합니다. 웹 접근성의 기본 기준입니다.</li>
+            <li><strong>AA 큰 텍스트</strong> - 최소 3:1 대비율이 필요합니다 (18pt 이상 또는 14pt 굵게).</li>
+            <li><strong>AAA 일반 텍스트</strong> - 최소 7:1 대비율이 필요합니다. 강화된 접근성 기준입니다.</li>
+            <li><strong>AAA 큰 텍스트</strong> - 최소 4.5:1 대비율이 필요합니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>웹사이트 디자인 검수</strong> - 본문 텍스트, 버튼, 링크 등의 색상이 접근성 기준을 충족하는지 확인합니다.</li>
+            <li><strong>브랜드 가이드라인 검증</strong> - 브랜드 색상이 웹에서 사용될 때 접근성을 유지하는지 점검합니다.</li>
+            <li><strong>다크 모드 테스트</strong> - 라이트/다크 모드 전환 시 두 테마 모두에서 충분한 대비를 유지하는지 확인합니다.</li>
+            <li><strong>법적 요구사항 준수</strong> - 공공기관, 정부 웹사이트 등에서 요구하는 웹 접근성 기준을 충족합니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>순수 회색(#767676)은 흰색 배경에서 AA 기준을 간신히 통과합니다. 좀 더 어두운 회색을 사용하면 안전합니다.</li>
+            <li>밝은 색상 위의 흰색 텍스트는 대부분 접근성 기준을 충족하지 못합니다. 어두운 색상 배경을 사용하세요.</li>
+            <li>대비율 검사 외에도 실제 다양한 환경(밝은 곳, 어두운 곳)에서의 가독성 테스트를 병행하는 것이 좋습니다.</li>
+            <li>플레이스홀더 텍스트도 접근성 기준을 충족하는 것이 권장됩니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: 대비율은 어떻게 계산되나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">두 색상의 상대 휘도를 계산한 뒤, (밝은색 + 0.05) / (어두운색 + 0.05) 공식으로 계산합니다.</p>
+              <h4 class="font-medium">Q: 대비율은 어떻게 계산되나요?</h4>
+              <p>두 색상의 상대 휘도(Relative Luminance)를 각각 계산한 뒤, (밝은색 + 0.05) / (어두운색 + 0.05) 공식으로 산출합니다. 결과값은 1:1(동일)부터 21:1(흑백)까지의 범위입니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: AA와 AAA의 차이는?</h4>
-              <p class="text-gray-600 dark:text-gray-400">AA는 최소 기준, AAA는 권장 기준입니다. 법적 요구사항은 대부분 AA 등급입니다.</p>
+              <h4 class="font-medium">Q: AA와 AAA의 차이는?</h4>
+              <p>AA는 최소 요구 기준으로 대부분의 법적 요구사항을 충족합니다. AAA는 더 높은 접근성을 보장하는 권장 기준으로, 가능하면 AAA를 목표로 하는 것이 좋습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: 큰 텍스트의 기준은?</h4>
-              <p class="text-gray-600 dark:text-gray-400">18pt(24px) 이상 또는 14pt(약 18.5px) 굵은 글씨를 큰 텍스트로 분류합니다.</p>
+              <h4 class="font-medium">Q: 큰 텍스트의 기준은?</h4>
+              <p>18pt(24px) 이상 또는 14pt(약 18.5px) 이상의 굵은(bold) 글씨를 큰 텍스트로 분류합니다. 큰 텍스트는 더 낮은 대비율 기준이 적용됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 색상 대비가 왜 중요한가요?</h4>
+              <p>전 세계 인구의 약 8%가 색각 이상을 가지고 있으며, 고령자의 시력 저하도 흔합니다. 충분한 색상 대비는 이런 사용자들이 콘텐츠를 읽을 수 있게 보장하며, 밝은 환경에서 모바일 사용 시에도 가독성을 높입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 어떤 색상 조합이 가장 안전한가요?</h4>
+              <p>검정 텍스트에 흰 배경(21:1)이 가장 높은 대비율을 제공합니다. 디자인에서는 짙은 남색(#1e3a5f) + 흰색, 짙은 회색(#333) + 밝은 회색(#f5f5f5) 같은 조합이 자주 사용됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 브랜드 색상이 접근성 기준을 만족하지 않으면?</h4>
+              <p>브랜드 색상을 약간 어둡게 또는 밝게 조정하거나, 배경색을 변경하여 대비율을 맞출 수 있습니다. 브랜드 색상을 큰 텍스트나 아이콘에만 사용하고, 본문에는 안전한 색상을 사용하는 방법도 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 이 도구는 어떤 색상 형식을 지원하나요?</h4>
+              <p>HEX 코드(#000000, #FFF 등 3자리/6자리)를 지원합니다. 색상 선택기를 통해 시각적으로 선택할 수도 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 모든 처리가 브라우저에서 이루어지나요?</h4>
+              <p>네, 색상 대비 계산은 모두 브라우저 내에서 실행됩니다. 입력한 색상 데이터가 서버로 전송되지 않습니다.</p>
             </div>
           </div>
         </div>

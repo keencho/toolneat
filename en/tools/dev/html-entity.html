@@ -652,33 +652,90 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What are HTML Entities?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">HTML Entity Encoder/Decoder Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>HTML entities are special codes used to represent characters that have special meaning in HTML or characters that cannot be easily typed on a keyboard. They start with an ampersand (&amp;) and end with a semicolon (;). For example, &amp;lt; represents the less-than sign (&lt;), and &amp;amp; represents the ampersand (&amp;) itself. These entities ensure that special characters are displayed correctly in web browsers without being interpreted as HTML code.</p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is an HTML Entity?</h3>
+          <p>HTML entities are special character codes that safely represent reserved or hard-to-type characters in web documents. They begin with an ampersand (&amp;) and end with a semicolon (;), and browsers interpret them as the corresponding character on screen. Beyond the common reserved characters like &lt;, &gt;, and &amp;, entities also handle copyright symbols (&copy;), currency signs (&euro;), and many other characters not readily available on a standard keyboard. Using HTML entities correctly is essential for both proper page rendering and web security.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Encode HTML special characters into entity codes</li>
+            <li>Decode entity codes back to their original characters</li>
+            <li>Three entity formats supported: Named (&amp;amp;), Numeric (&amp;#38;), and Hex (&amp;#x26;)</li>
+            <li>Option to encode only special characters or all non-ASCII characters</li>
+            <li>Real-time live conversion and instant input/output swap</li>
+            <li>One-click clipboard copy for results</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Select "Encode" or "Decode" mode depending on your needs.</li>
-            <li>Choose encoding options: encode only special characters or all characters.</li>
-            <li>Select the entity format: Named (&amp;amp;), Numeric (&amp;#38;), or Hex (&amp;#x26;).</li>
-            <li>Enter your text in the input field on the left.</li>
-            <li>With "Live" mode enabled, the result updates automatically. Otherwise, click the Convert button.</li>
-            <li>Use the "Copy" button to copy the result to your clipboard.</li>
+            <li>Select "Encode" or "Decode" mode from the tabs at the top.</li>
+            <li>Choose whether to encode only special characters or all characters in the options.</li>
+            <li>Pick the entity format: Named, Numeric, or Hex.</li>
+            <li>Paste or type your text in the left input area.</li>
+            <li>With "Live" mode enabled, results appear instantly on the right side.</li>
+            <li>Use the swap button to move the output back to input and automatically toggle the mode.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Displaying HTML code examples as plain text in blog posts or tutorials</li>
+            <li>Sanitizing user input to prevent XSS attacks before rendering on a web page</li>
+            <li>Encoding special characters in email templates to prevent display issues</li>
+            <li>Escaping HTML tags in CMS platforms and forum posts</li>
+            <li>Converting international characters (accented letters, CJK, etc.) to ASCII-safe formats</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Always encode user-supplied data before inserting it into HTML for security purposes.</li>
+            <li>Named entities are more readable but do not exist for every character.</li>
+            <li>Numeric and Hex formats can represent any Unicode character universally.</li>
+            <li>Avoid double-encoding by checking whether text is already encoded before processing.</li>
+            <li>This tool runs entirely in your browser; no data is sent to any server.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: Why do I need HTML entities?</h4>
-              <p>In HTML, characters like &lt;, &gt;, and &amp; have special meanings - they define tags and entities. To display these characters as text instead of being interpreted as code, you must convert them to entities. Without this conversion, your content might break the page layout or cause security vulnerabilities.</p>
+              <p>Characters like &lt;, &gt;, and &amp; are reserved in HTML for defining tags and entities. To display these characters as visible text rather than having them interpreted as code, you must convert them to their entity equivalents.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: What is the difference between Named and Numeric entities?</h4>
-              <p>Named entities like &amp;amp; use human-readable names, making them easier to understand in source code. Numeric entities like &amp;#38; use the character's Unicode code point. While named entities are more readable, not all characters have named versions. Numeric entities can represent any Unicode character, providing universal coverage.</p>
+              <p>Named entities (&amp;amp;, etc.) use human-readable names, making source code easier to understand. Numeric entities (&amp;#38;, etc.) use the Unicode code point number. Named entities exist only for certain characters, while Numeric entities can represent any Unicode character.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: How do HTML entities help prevent XSS attacks?</h4>
-              <p>Cross-Site Scripting (XSS) attacks occur when malicious scripts are injected into web pages. By encoding user input as HTML entities before displaying it, you prevent scripts from executing. For example, &lt;script&gt; becomes &amp;lt;script&amp;gt;, which is displayed as text rather than executed as code.</p>
+              <p>When user input is encoded as HTML entities before being rendered, tags like &lt;script&gt; become &amp;lt;script&amp;gt; and are displayed as plain text instead of being executed. This effectively blocks malicious script injection (XSS).</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When should I use Hex entities?</h4>
+              <p>Hex format (&amp;#x26;, etc.) uses hexadecimal codes, which are familiar to developers who work with Unicode escapes in CSS or JavaScript. It is especially useful when dealing with non-Latin characters.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between encoding special chars only and all chars?</h4>
+              <p>Encoding special characters only converts the five HTML-reserved characters (&lt;, &gt;, &amp;, ", '). Encoding all characters additionally converts every non-ASCII character (such as accented letters, CJK characters, and emojis) into entities.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is double encoding?</h4>
+              <p>Double encoding happens when already-encoded text is encoded again, producing results like &amp;amp;amp;. To avoid this, always verify that text has not been previously encoded before processing it through the encoder.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How is &amp;nbsp; different from a regular space?</h4>
+              <p>&amp;nbsp; is a non-breaking space that prevents line wrapping at its position. Unlike regular spaces, which browsers collapse into a single space when multiple appear consecutively, &amp;nbsp; characters are preserved exactly as entered.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
+              <p>No. All encoding and decoding is performed locally in your browser using JavaScript. Your input data never leaves your computer, making it safe to use with sensitive or confidential information.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What does the swap button do?</h4>
+              <p>The swap button moves the output result to the input area and automatically toggles between encode and decode modes. This is useful when you want to verify an encoding by immediately decoding the result back.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do all browsers handle HTML entities the same way?</h4>
+              <p>Some less common Named entities may not be supported in very old browsers. The safest approach is to use Numeric or Hex formats. The basic entities (&amp;lt;, &amp;gt;, &amp;amp;, &amp;quot;) are universally supported across all browsers.</p>
             </div>
           </div>
         </div>

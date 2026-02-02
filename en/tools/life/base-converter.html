@@ -604,43 +604,81 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
+      <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Number Base Converter?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">
-            A number base converter is a tool that converts between binary, octal, decimal, and hexadecimal in real-time.
-            Useful for programming, computer science learning, and understanding digital systems.
-          </p>
+          <p>A number base converter is an essential tool for developers and students that converts between binary, octal, decimal, and hexadecimal number systems in real time. Whether you are debugging code, studying computer architecture, or working with low-level data representations, base conversion is a frequent task. This tool eliminates manual calculation by instantly showing the equivalent value in all four common bases as you type.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li>Enter a number in any base's input field</li>
-            <li>Other bases are automatically converted and displayed</li>
-            <li>Input in any field converts all others simultaneously</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Number Base Types</h3>
-          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
-            <li><strong>Binary (Base 2):</strong> Uses only 0 and 1, fundamental unit of computer operations</li>
-            <li><strong>Octal (Base 8):</strong> Uses 0-7, commonly used in Unix file permissions</li>
-            <li><strong>Decimal (Base 10):</strong> Number system used in everyday life</li>
-            <li><strong>Hexadecimal (Base 16):</strong> Uses 0-9 and A-F, used in color codes, memory addresses</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Real-time conversion between binary, octal, decimal, and hexadecimal</li>
+            <li>Bidirectional input from any number base field</li>
+            <li>One-click copy to clipboard for each converted value</li>
+            <li>Automatic input validation with error messages for invalid characters</li>
+            <li>Case-insensitive hexadecimal input (accepts both a-f and A-F)</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">FAQ</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Enter a number in any of the four base input fields</li>
+            <li>The other three fields update automatically with the converted values</li>
+            <li>Click the copy icon next to any result to copy it to your clipboard</li>
+            <li>You can also type in a different field to perform a reverse conversion</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Checking memory addresses or bitwise operation results while programming</li>
+            <li>Converting hex color codes (#FF5733) to RGB values in web development</li>
+            <li>Translating subnet masks or IP addresses to binary for network configuration</li>
+            <li>Understanding Unix file permissions (chmod 755) using octal notation</li>
+            <li>Verifying base conversion homework or exam answers in computer science courses</li>
+            <li>Reading register values during embedded systems or hardware debugging</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Binary accepts only 0 and 1; octal accepts only 0-7. Out-of-range characters trigger an error</li>
+            <li>In hexadecimal, A=10, B=11, C=12, D=13, E=14, F=15</li>
+            <li>Very large numbers beyond JavaScript's safe integer range (2^53 - 1) may lose precision</li>
+            <li>Only whole integers are supported; decimal points are not allowed</li>
+            <li>Do not include prefixes like 0x, 0b, or 0o when entering values</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">Why is binary used?</p>
-              <p class="text-gray-600 dark:text-gray-400">Computers operate using two electrical states: on (1) and off (0), so binary is the fundamental number system.</p>
+              <h4 class="font-medium">Q: Why do computers use binary?</h4>
+              <p>Transistors inside a computer can only distinguish between two states: on (1) and off (0). Because of this physical limitation, all data is processed as combinations of 0s and 1s, which is the binary number system.</p>
             </div>
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">Where is hexadecimal used?</p>
-              <p class="text-gray-600 dark:text-gray-400">Widely used in IT fields including web color codes (#FF0000), memory addresses, and MAC addresses.</p>
+              <h4 class="font-medium">Q: Where is hexadecimal commonly used?</h4>
+              <p>Hexadecimal is widely used for web color codes (#FF0000 for red), memory addresses, MAC addresses, and binary data representation. It is popular because four binary digits map neatly to a single hex digit, making long binary strings much more readable.</p>
             </div>
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">Can negative numbers be converted?</p>
-              <p class="text-gray-600 dark:text-gray-400">Currently only positive integers are supported. Negative numbers require two's complement representation.</p>
+              <h4 class="font-medium">Q: What is octal used for?</h4>
+              <p>Octal is primarily used in Unix and Linux file permission settings (chmod). For example, chmod 755 grants the owner read, write, and execute permissions while giving the group and others read and execute permissions.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I convert negative numbers?</h4>
+              <p>This tool currently supports positive integers only. Representing negative numbers in binary requires two's complement notation, which depends on a specific bit width (8-bit, 16-bit, 32-bit, etc.).</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How does base conversion work?</h4>
+              <p>To convert decimal 13 to binary, repeatedly divide by 2 and read the remainders in reverse: 13/2=6 r1, 6/2=3 r0, 3/2=1 r1, 1/2=0 r1, giving 1101 in binary. The same principle applies when converting between other bases.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do I need to type prefixes like 0xFF?</h4>
+              <p>No. Simply type the digits in the appropriate field. The tool automatically knows which base you are entering based on the field you are typing in.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the maximum number I can convert?</h4>
+              <p>The tool accurately converts numbers up to JavaScript's safe integer limit of 2^53 - 1 (approximately 9 quadrillion). Numbers larger than this may suffer precision loss.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does this tool work on mobile devices?</h4>
+              <p>Yes. The interface is fully responsive and works on smartphones and tablets. All calculations happen locally in your browser, and no data is sent to any server.</p>
             </div>
           </div>
         </div>

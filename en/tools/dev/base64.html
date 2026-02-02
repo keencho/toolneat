@@ -626,30 +626,84 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Base64 Encoder/Decoder?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>Base64 is a binary-to-text encoding scheme that converts binary data into an ASCII string format using 64 printable characters. It is commonly used for encoding data in email attachments, embedding images in HTML/CSS, transmitting data in URLs, and storing complex data in JSON or XML formats. This tool allows you to quickly encode text to Base64 or decode Base64 strings back to their original text.</p>
+          <p>Base64 is a binary-to-text encoding scheme that converts binary data into an ASCII string format using 64 printable characters (A-Z, a-z, 0-9, +, /). It is widely used in email attachments (SMTP/MIME), image data URIs for web development, JWT tokens, HTTP Basic Authentication, and anywhere binary data needs to travel through text-only channels. While the encoded output is roughly 33% larger than the original, Base64 guarantees lossless round-trip conversion and remains one of the most essential encoding tools for developers.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Encode &amp; Decode Toggle:</strong> Switch between text-to-Base64 and Base64-to-text modes with a single click.</li>
+            <li><strong>Live Conversion:</strong> Results update instantly as you type, giving you immediate feedback.</li>
+            <li><strong>URL-safe Option:</strong> Replaces +, /, and = with URL-friendly characters (-, _) for safe use in URLs and filenames.</li>
+            <li><strong>Full UTF-8 Support:</strong> Handles Korean, Chinese, Japanese, emoji, and all Unicode characters correctly.</li>
+            <li><strong>Input/Output Swap:</strong> Reverse the conversion direction instantly with the swap button.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>Select the operation mode: click "Encode" to convert text to Base64, or "Decode" to convert Base64 back to text.</li>
             <li>Enter your text or Base64 string in the input area on the left side.</li>
-            <li>Enable "URL-safe" option if you need Base64 encoding that is safe for use in URLs (replaces + and / with - and _).</li>
-            <li>With "Live" mode enabled, the conversion happens automatically as you type. Otherwise, click the Convert button.</li>
-            <li>Copy the result using the "Copy" button or use the swap button to reverse the input and output.</li>
+            <li>Enable the "URL-safe" option if you need encoding safe for URLs (replaces + and / with - and _).</li>
+            <li>With "Live" mode enabled, conversion happens automatically as you type. Otherwise, click the Convert button.</li>
+            <li>Copy the result using the "Copy" button or use the swap button to reverse input and output.</li>
+            <li>Click "Clear" to reset both input and output fields.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Image Data URIs:</strong> Encode small images as Base64 and embed them directly in HTML or CSS to reduce HTTP requests and speed up page loads.</li>
+            <li><strong>API Authentication:</strong> HTTP Basic Auth requires encoding username:password in Base64 for the Authorization header.</li>
+            <li><strong>JWT Token Inspection:</strong> JWT headers and payloads are Base64url-encoded. Decode them to inspect claims and debug authentication issues.</li>
+            <li><strong>Email Attachments:</strong> MIME format uses Base64 to encode binary attachments so they can travel through text-based email protocols.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Base64 is not encryption. Never rely on it to protect sensitive data - use AES or other encryption algorithms instead.</li>
+            <li>Encoded output is about 33% larger than the original. Avoid Base64-encoding large files unnecessarily.</li>
+            <li>Use URL-safe mode when the encoded string will appear in query strings, URL paths, or filenames.</li>
+            <li>If decoding fails, check for stray whitespace, line breaks, or mismatched URL-safe settings.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: What is Base64 encoding used for?</h4>
-              <p>Base64 encoding is primarily used when you need to transmit binary data over text-based protocols like email (SMTP) or embed binary data in text formats like JSON, XML, or HTML. Common use cases include encoding images for data URIs, encoding authentication credentials in HTTP headers, and storing binary data in databases that only support text.</p>
+              <p>Base64 encoding is used whenever binary data needs to be transmitted over text-only channels. Common examples include email attachments (SMTP/MIME), embedding images as data URIs in HTML/CSS, encoding credentials for HTTP Basic Authentication, and storing binary blobs in JSON or XML.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: What is the difference between standard Base64 and URL-safe Base64?</h4>
-              <p>Standard Base64 uses the characters A-Z, a-z, 0-9, +, /, and = for padding. URL-safe Base64 replaces + with -, / with _, and typically removes the = padding characters. This makes the encoded string safe to use in URLs and filenames without requiring additional encoding.</p>
+              <p>Standard Base64 uses A-Z, a-z, 0-9, +, /, and = for padding. URL-safe Base64 (defined in RFC 4648) replaces + with -, / with _, and typically removes padding (=). This prevents conflicts with URL-reserved characters in query strings and path segments.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Does Base64 encoding provide encryption or security?</h4>
-              <p>No, Base64 is an encoding scheme, not an encryption method. It does not provide any security or privacy protection. Base64-encoded data can be easily decoded by anyone. If you need to secure your data, use proper encryption methods like AES before encoding to Base64.</p>
+              <p>No. Base64 is a reversible encoding scheme, not an encryption algorithm. Anyone can decode Base64 data without a key. For actual security, apply proper encryption (AES, RSA) before encoding to Base64.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why is Base64 output larger than the original data?</h4>
+              <p>Base64 converts every 3 bytes of input into 4 ASCII characters. This means the output is always approximately 33% (4/3x) larger than the input. The overhead is the cost of representing binary data using only 64 safe printable characters.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Should I always use Base64 for embedding images?</h4>
+              <p>Not always. Base64 data URIs work well for small assets (icons under a few KB) because they eliminate an HTTP request. For larger images, the 33% size increase and inability to leverage browser caching make regular image files more efficient.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between Base64 and Base64url?</h4>
+              <p>Both are defined in RFC 4648. Base64 is the standard alphabet; Base64url is a variant that replaces + with - and / with _, and omits padding. JWT tokens, OAuth parameters, and URL query values typically use Base64url encoding.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why does decoding fail with an error?</h4>
+              <p>Common causes include invalid characters in the input, incorrect padding, or a mismatch between URL-safe and standard modes. Ensure the input contains only valid Base64 characters and that the URL-safe toggle matches how the data was originally encoded.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
+              <p>No. All encoding and decoding happens entirely in your browser using JavaScript. Your data never leaves your device, making it safe to process private or sensitive information.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Which programming languages support Base64?</h4>
+              <p>Nearly all modern languages include built-in Base64 support: JavaScript (btoa/atob), Python (base64 module), Java (java.util.Base64), PHP (base64_encode/base64_decode), C# (Convert.ToBase64String), Go (encoding/base64), and Ruby (Base64 module).</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I calculate the Base64 output length in advance?</h4>
+              <p>Yes. The formula is 4 x ceil(n / 3), where n is the number of input bytes. For example, 100 bytes of input produces a 136-character Base64 string (rounded up to the next multiple of 4 when padding is included).</p>
             </div>
           </div>
         </div>

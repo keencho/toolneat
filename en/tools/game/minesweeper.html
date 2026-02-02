@@ -660,21 +660,72 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">FAQ</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: What are the Minesweeper rules?</h4>
-            <p>The goal is to reveal all cells without mines. Numbers show how many mines are in the 8 adjacent cells. Flag cells you think contain mines.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I hit a mine on first click?</h4>
-            <p>No! The first click is always safe. Mines are placed after your first click.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: How many mines per difficulty?</h4>
-            <p>Easy: 10 mines on 9x9, Medium: 40 mines on 16x16, Hard: 99 mines on 30x16.</p>
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Minesweeper?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Minesweeper is a classic logic puzzle game that became world-famous after being included with Microsoft Windows in 1989. The objective is to clear a grid of hidden mines without detonating any. Using number clues to deduce safe and dangerous cells is the core mechanic, making it an excellent game for developing logical thinking and pattern recognition. Toolneat's Minesweeper can be played directly in your browser with a faithful recreation of the classic Windows design.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Controls</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Left click:</strong> Reveal a cell to check if it is safe.</li>
+            <li><strong>Right click:</strong> Place a flag on a cell you believe contains a mine.</li>
+            <li><strong>Mobile long press:</strong> On touch devices, press and hold a cell to toggle a flag.</li>
+            <li><strong>Smiley button:</strong> Click the face button in the center to start a new game.</li>
+          </ul>
+          <p>When a cell is revealed, a number indicates how many of the 8 surrounding cells contain mines. If a blank cell (zero mines nearby) is revealed, all adjacent safe cells open automatically.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Strategy and Tips</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>Start at edges:</strong> Clicking corners or edges first often opens large safe areas at once.</li>
+            <li><strong>Use the 1-1 pattern:</strong> When two 1s sit side by side, the space between them is often safe.</li>
+            <li><strong>Flag confidently:</strong> Marking confirmed mines makes it easier to interpret surrounding numbers.</li>
+            <li><strong>Apply elimination:</strong> If a number already has that many adjacent flags, all remaining neighbors are safe.</li>
+            <li><strong>Minimize guessing:</strong> Solve all logically deducible cells first before tackling uncertain ones.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What is the goal of Minesweeper?</h4>
+              <p>Reveal every cell that does not contain a mine. Numbers indicate how many of the 8 adjacent cells hold mines.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I hit a mine on my first click?</h4>
+              <p>No. The first click is always safe. Mines are placed after your first click, and the clicked cell and its neighbors are kept clear.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What are the grid sizes and mine counts per difficulty?</h4>
+              <p>Easy: 9x9 with 10 mines, Medium: 16x16 with 40 mines, Hard: 30x16 with 99 mines.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What do the numbers mean?</h4>
+              <p>Each number tells you how many mines exist in the 8 cells surrounding it. A 1 means one adjacent mine, a 3 means three, and so on.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I use flags?</h4>
+              <p>Right-click (PC) or long-press (mobile) a cell to place or remove a flag marking a suspected mine.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When does the timer start?</h4>
+              <p>The timer begins the moment you click your first cell. It displays up to 999 seconds.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why do multiple cells open when I click a blank cell?</h4>
+              <p>Blank cells with zero adjacent mines trigger a cascade that automatically reveals all connected safe cells.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can Minesweeper always be solved with logic?</h4>
+              <p>Most situations are solvable through logic, but occasionally a 50/50 guess may be necessary.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the win condition?</h4>
+              <p>You win by revealing all non-mine cells. You do not need to flag every mine to win.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I right-click on mobile?</h4>
+              <p>On mobile devices, press and hold a cell for about 0.5 seconds to toggle the flag.</p>
+            </div>
           </div>
         </div>
       </section>

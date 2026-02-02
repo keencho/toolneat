@@ -633,38 +633,81 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What are Line Endings?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Line Ending Converter Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>Line endings (also known as line breaks or newline characters) are special characters that mark the end of a line in text files. Different operating systems have historically used different line ending conventions, which can cause issues when opening files created on one OS in another. This tool helps you convert between different line ending formats easily.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Line Ending Types</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What are Line Endings?</h3>
+          <p>Line endings (also called line breaks or newline characters) are invisible control characters that mark where one line ends and the next begins in a text file. The problem is that different operating systems use different conventions: Windows uses CRLF (\r\n), Unix/Linux/macOS uses LF (\n), and classic Mac OS used CR (\r). These differences can cause garbled text, script failures, and messy diffs when files are shared across platforms.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
-            <li><strong>LF (Line Feed, \n)</strong>: Standard line ending used by Unix, Linux, and modern macOS.</li>
-            <li><strong>CRLF (Carriage Return + Line Feed, \r\n)</strong>: Line ending used by Windows.</li>
-            <li><strong>CR (Carriage Return, \r)</strong>: Line ending used by classic Mac OS (version 9 and earlier).</li>
+            <li>Automatic detection of the current line ending format (LF, CRLF, CR, or Mixed)</li>
+            <li>One-click conversion between LF, CRLF, and CR</li>
+            <li>Statistics showing the count of each line ending type</li>
+            <li>Copy and download support for converted output</li>
+            <li>File upload for loading text from local files</li>
+            <li>Real-time conversion preview</li>
           </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Paste or type the text you want to convert in the input area.</li>
-            <li>Click the "Detect Format" button to identify the current line ending format.</li>
-            <li>Click the desired conversion button (LF, CRLF, or CR).</li>
-            <li>Copy the converted result using the "Copy" button.</li>
+            <li>Paste text into the input area, type directly, or drag a file to upload its contents.</li>
+            <li>Click "Detect Format" to identify the line ending format currently in use.</li>
+            <li>Click the target format button (LF, CRLF, or CR) to convert.</li>
+            <li>Copy the result to your clipboard or download it as a file.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Converting shell scripts (.sh) from CRLF to LF before deploying to Linux servers</li>
+            <li>Fixing unnecessary Git diff changes caused by mixed line endings</li>
+            <li>Normalizing line endings across a codebase before setting up .gitattributes</li>
+            <li>Preparing CSV or config files for use on a different operating system</li>
+            <li>Debugging script execution errors in CI/CD pipelines</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>LF is the standard for modern projects. Git, Docker, and most CI tools default to LF.</li>
+            <li>Most editors (VS Code, IntelliJ, etc.) let you configure line endings, but existing files must be converted manually.</li>
+            <li>Binary files (images, executables) should not be converted. Only apply line ending conversion to text files.</li>
+            <li>Adding <code>* text=auto</code> to .gitattributes makes Git normalize line endings to LF on commit and restore them for the OS on checkout.</li>
+            <li>Dockerfiles, Makefiles, and shell scripts must use LF. CRLF in these files can cause build failures.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: Why do I need to convert line endings?</h4>
-              <p>Line ending mismatches can cause issues when uploading files from Windows to Linux servers, collaborating on Git repositories, or running shell scripts. For example, shell scripts with Windows line endings may fail to execute, or Git diffs may show unnecessary changes.</p>
+              <p>When you upload Windows files to a Linux server or collaborate via Git, mismatched line endings can prevent shell scripts from running or make every line appear changed in diffs. Normalizing line endings avoids these issues.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is "Mixed" format?</h4>
-              <p>Mixed format indicates that a file contains multiple types of line endings. This often happens when a file has been edited on different operating systems. It's recommended to normalize to a single format for consistency.</p>
+              <h4 class="font-medium">Q: What does "Mixed" format mean?</h4>
+              <p>It means the file contains a mix of LF, CRLF, and possibly CR line endings. This commonly happens when the same file is edited on different operating systems. Normalizing to a single format is recommended for consistency.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Which format should I use?</h4>
-              <p>For modern projects, LF is generally recommended. Git defaults to LF, and most code editors and IDEs handle LF well. Use CRLF only if you're working on a Windows-only project or with legacy Windows applications that require it.</p>
+              <h4 class="font-medium">Q: Should I use LF, CRLF, or CR?</h4>
+              <p>LF is the recommended choice for nearly all modern projects. Git, Docker, and most development tools assume LF. Use CRLF only for Windows-only legacy projects that specifically require it.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I prevent line ending issues in Git?</h4>
+              <p>Create a .gitattributes file in your project root and add <code>* text=auto</code>. Git will then normalize to LF on commit and convert to the OS-appropriate format on checkout.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Will editing an LF file on Windows change it to CRLF?</h4>
+              <p>It depends on your editor settings. Modern editors like VS Code preserve the existing line ending format by default. You can check and change the format in the status bar at the bottom of the editor.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does converting line endings change the visible content?</h4>
+              <p>No. The visible text remains identical. Only the invisible control characters at the end of each line change. However, the file size may differ slightly since CRLF uses one extra byte per line compared to LF.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can line endings cause shell scripts to fail?</h4>
+              <p>Yes, this is very common. Running a script with CRLF endings on Linux produces errors like "bad interpreter" or "\r: command not found." Converting to LF resolves the issue immediately.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my text sent to a server?</h4>
+              <p>No. All detection and conversion happens in your browser. Your text is never transmitted externally, so you can safely convert code and config files without privacy concerns.</p>
             </div>
           </div>
         </div>

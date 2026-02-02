@@ -618,35 +618,88 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About Text to Speech</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Text to Speech (TTS)?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">This tool uses the Web Speech API's speech synthesis feature. It uses voices installed on your operating system and browser, so available voices may vary by device.</p>
+          <p>Text to Speech (TTS) is a technology that reads written text aloud using synthesized human-like voices. This tool leverages the Web Speech API's speech synthesis engine built into your browser, using voices installed on your operating system. From checking foreign language pronunciation to proofreading documents and supporting accessibility, TTS has a wide range of practical applications.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Use Cases</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li><strong>Language Learning:</strong> Check pronunciation in foreign languages</li>
-            <li><strong>Presentations:</strong> Preview your speech content</li>
-            <li><strong>Accessibility:</strong> Text reading for visually impaired users</li>
-            <li><strong>Proofreading:</strong> Catch awkward phrasing by listening</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Multiple voices</strong> - Choose from various voices installed on your device</li>
+            <li><strong>Speed control</strong> - Adjust playback speed from slow to fast</li>
+            <li><strong>Pitch control</strong> - Modify voice pitch to match your preferred tone</li>
+            <li><strong>Multi-language support</strong> - Voices available in English, Korean, Japanese, Chinese, and more</li>
+            <li><strong>Privacy-friendly</strong> - Your text is processed locally and never sent to our servers</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">FAQ</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Type or paste the text you want read aloud</li>
+            <li>Select a voice from the dropdown list</li>
+            <li>Adjust speed and pitch if needed</li>
+            <li>Click the Play button to start listening</li>
+            <li>Use Pause/Resume to control playback</li>
+            <li>Click Stop to end playback completely</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Language learning</strong> - Hear correct pronunciation of foreign words and sentences</li>
+            <li><strong>Presentation practice</strong> - Listen to your script to check flow and timing</li>
+            <li><strong>Accessibility</strong> - Enables visually impaired users to consume text content</li>
+            <li><strong>Proofreading</strong> - Hearing your writing read aloud reveals awkward phrasing and typos</li>
+            <li><strong>Children's education</strong> - Read stories and learning material aloud for young learners</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Download high-quality voices (Enhanced or Premium) from your OS settings for much more natural speech</li>
+            <li>Long texts play more reliably when split into paragraphs</li>
+            <li>Match the voice language to the text language for accurate pronunciation</li>
+            <li>Available voices differ by device, so install additional voices in your OS if needed</li>
+            <li>Lowering speed to 0.7-0.8x helps when studying foreign language pronunciation</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: I don't see any voices</h4>
-              <p class="text-gray-600 dark:text-gray-400">You may need to install additional voices in your OS settings. Windows: Settings > Time & Language > Speech. macOS: System Preferences > Accessibility > Spoken Content.</p>
+              <h4 class="font-medium">Q: I don't see any voices in the list</h4>
+              <p>You may need to install additional voice packs in your OS settings. On Windows, go to Settings > Time and Language > Speech. On macOS, go to System Preferences > Accessibility > Spoken Content.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: The voice sounds robotic</h4>
-              <p class="text-gray-600 dark:text-gray-400">Default voices may be lower quality. Download high-quality voices (Enhanced, Premium) from your OS settings for more natural speech.</p>
+              <h4 class="font-medium">Q: The voice sounds robotic</h4>
+              <p>Default voices are often lower quality. Download "Enhanced" or "Premium" grade voices from your OS settings for significantly more natural-sounding speech.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I save as MP3?</h4>
-              <p class="text-gray-600 dark:text-gray-400">The Web Speech API doesn't support audio file export. Use a screen recording tool to capture the audio, or try a professional TTS service.</p>
+              <h4 class="font-medium">Q: Can I save the audio as an MP3 file?</h4>
+              <p>The Web Speech API does not support direct audio file export. To record the audio, use a screen recording tool or a dedicated TTS service that offers file downloads.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is there a character limit?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Limits vary by browser, but generally you can read several thousand characters at once. For very long text, consider breaking it into smaller parts.</p>
+              <h4 class="font-medium">Q: Is there a character limit?</h4>
+              <p>Limits vary by browser, but most can handle several thousand characters in a single read. Very long texts may cut off, so splitting into paragraphs is recommended.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my text data sent anywhere?</h4>
+              <p>Your text is not sent to this website's servers. The browser's built-in speech synthesis engine processes everything locally, keeping your content private.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why do different devices produce different voices?</h4>
+              <p>The Web Speech API relies on voices installed by the operating system. Windows, macOS, Android, and iOS each come with different default voices and quality levels.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it work offline?</h4>
+              <p>TTS generally works offline since voice data is stored on your device. However, some cloud-based voices may require an internet connection.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What playback speed should I use?</h4>
+              <p>Normal listening works well at 1.0x speed. For language learning, slow it down to 0.7-0.8x. For quick scanning, speeds of 1.5-2.0x can be convenient.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it read special characters and emojis?</h4>
+              <p>Common punctuation (periods, commas) is handled as natural pauses. Emojis are generally skipped or sometimes read as descriptions, depending on the voice engine.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it work on mobile devices?</h4>
+              <p>Yes. It works in mobile browsers on smartphones and tablets. Mobile devices typically come with several TTS voices pre-installed, so you can use the tool right away.</p>
             </div>
           </div>
         </div>

@@ -889,17 +889,31 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Cron 표현식이란?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Cron 표현식 생성기 가이드</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>Cron 표현식은 Unix/Linux 시스템에서 반복 작업(스케줄링)을 정의하는 문자열 형식입니다. 5개의 필드로 구성되며, 각 필드는 분, 시, 일, 월, 요일을 나타냅니다. 서버 관리, 백업 자동화, 주기적 데이터 처리 등 다양한 용도로 활용됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Cron 표현식이란?</h3>
+          <p>Cron 표현식은 Unix/Linux 기반 시스템에서 작업 스케줄링을 정의하기 위해 사용하는 문자열 포맷입니다. 분(minute), 시(hour), 일(day of month), 월(month), 요일(day of week) 총 5개의 필드로 구성되어 있으며, 각 필드에 숫자나 특수 문자를 조합해 실행 시점을 지정합니다. 서버 운영자라면 로그 정리, DB 백업, 캐시 초기화 같은 반복 작업을 자동화할 때 반드시 알아야 하는 개념입니다. 이 도구는 cron 문법에 익숙하지 않더라도 시각적 인터페이스로 원하는 스케줄을 쉽게 만들 수 있도록 도와줍니다. 직접 표현식을 입력해 파싱하는 역방향 모드도 지원하므로, 다른 사람이 작성한 crontab을 분석할 때도 유용합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>시각적 빌더:</strong> 드롭다운과 버튼으로 각 필드를 직관적으로 설정할 수 있습니다.</li>
+            <li><strong>프리셋 템플릿:</strong> 매분, 매시간, 매일, 매주, 매월 등 자주 쓰는 패턴을 원클릭으로 적용합니다.</li>
+            <li><strong>한국어 설명:</strong> 생성된 표현식의 의미를 사람이 읽을 수 있는 한국어로 바로 보여줍니다.</li>
+            <li><strong>표현식 파싱:</strong> 기존 cron 표현식을 입력하면 각 필드가 무엇을 뜻하는지 분석해줍니다.</li>
+            <li><strong>클립보드 복사:</strong> 생성된 표현식을 한 번에 복사하여 crontab이나 설정 파일에 바로 붙여넣을 수 있습니다.</li>
+            <li><strong>Quartz 확장 문법:</strong> L(Last), W(Weekday), #(N번째) 같은 확장 문법도 지원합니다.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>시각적 빌더 모드에서 각 필드(분, 시, 일, 월, 요일)를 선택합니다.</li>
-            <li>자주 사용하는 프리셋 버튼으로 빠르게 설정할 수 있습니다.</li>
-            <li>생성된 표현식과 한국어 설명을 확인합니다.</li>
-            <li>복사 버튼으로 표현식을 클립보드에 복사합니다.</li>
-            <li>표현식 파싱 모드에서는 기존 cron 표현식을 입력해 의미를 확인할 수 있습니다.</li>
+            <li>페이지 상단에서 '시각적 빌더' 또는 '표현식 파싱' 모드를 선택합니다.</li>
+            <li>시각적 빌더 모드에서는 분, 시, 일, 월, 요일 각 필드를 드롭다운으로 설정합니다.</li>
+            <li>빠른 설정이 필요하면 프리셋 버튼(매분 실행, 매일 자정, 평일 오전 9시 등)을 클릭합니다.</li>
+            <li>표현식이 생성되면 하단에 한국어 설명이 함께 표시됩니다.</li>
+            <li>표현식 파싱 모드에서는 기존 cron 표현식(예: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 9 * * MON-FRI</code>)을 입력합니다.</li>
+            <li>입력된 표현식의 각 필드별 의미와 실행 스케줄을 확인합니다.</li>
+            <li>복사 버튼을 눌러 결과를 클립보드에 저장합니다.</li>
           </ol>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Cron 필드 설명</h3>
@@ -942,44 +956,64 @@
             </table>
           </div>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">지원하는 문법</h3>
-          <div class="space-y-3 text-sm">
-            <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <h4 class="font-medium mb-2">Vixie Cron 표준 (Linux/Unix)</h4>
-              <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
-                <li>월 필드: 숫자(1-12) 또는 영문 이름(JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)</li>
-                <li>요일 필드: 숫자(0-6, 0=일요일) 또는 영문 이름(SUN, MON, TUE, WED, THU, FRI, SAT)</li>
-                <li>예시: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 9 * * MON-FRI</code> = 평일 오전 9시</li>
-              </ul>
-            </div>
-            <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <h4 class="font-medium mb-2">Quartz 확장 (일부 시스템)</h4>
-              <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
-                <li><strong>L</strong> (Last): 마지막 날. 일 필드에서 L = 월의 마지막 날, 요일 필드에서 5L = 마지막 금요일</li>
-                <li><strong>W</strong> (Weekday): 가장 가까운 평일. 15W = 15일에 가장 가까운 평일</li>
-                <li><strong>#</strong> (N번째): n번째 특정 요일. 2#3 = 3번째 화요일</li>
-                <li class="text-amber-600 dark:text-amber-400">⚠️ 이 기능들은 표준 Unix cron에서는 지원되지 않습니다</li>
-              </ul>
-            </div>
-          </div>
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>서버 관리:</strong> 매일 새벽 3시에 오래된 로그 파일을 자동 삭제하는 스케줄 설정 (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 3 * * *</code>)</li>
+            <li><strong>DB 백업:</strong> 매주 일요일 자정에 데이터베이스 전체 백업을 수행 (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 0 * * 0</code>)</li>
+            <li><strong>모니터링 알림:</strong> 5분마다 서버 상태를 점검하고 이상 시 슬랙 알림 전송 (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">*/5 * * * *</code>)</li>
+            <li><strong>리포트 생성:</strong> 매월 1일 오전 9시에 월간 매출 리포트를 이메일로 발송 (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 9 1 * *</code>)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>crontab에 등록하기 전에 반드시 표현식의 의미를 확인하세요. 실수로 매분 실행되는 작업을 등록하면 서버에 부하가 걸립니다.</li>
+            <li>서버 시간대(timezone)와 cron 실행 시간대가 다를 수 있으니, <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">date</code> 명령으로 서버 시간을 먼저 확인하세요.</li>
+            <li>L, W, # 같은 확장 문법은 표준 Unix cron에서 지원하지 않습니다. Quartz Scheduler나 Spring에서만 사용 가능합니다.</li>
+            <li>요일 필드에서 0과 7 모두 일요일을 나타내지만, 호환성을 위해 0을 쓰는 것이 안전합니다.</li>
+            <li>복잡한 스케줄은 여러 개의 crontab 항목으로 나누는 것이 유지보수에 유리합니다.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium">Q: *는 무엇을 의미하나요?</h4>
-              <p>별표(*)는 "모든 값"을 의미합니다. 예를 들어 분 필드에 *를 사용하면 매분을, 시 필드에 사용하면 매시를 의미합니다.</p>
+              <h4 class="font-medium">Q: * (별표)는 무엇을 의미하나요?</h4>
+              <p>별표(*)는 해당 필드의 "모든 값"을 의미합니다. 분 필드에 *를 넣으면 매분, 시 필드에 넣으면 매시, 요일 필드에 넣으면 매일을 뜻합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: */5는 무엇을 의미하나요?</h4>
-              <p>슬래시(/)는 간격을 나타냅니다. */5는 "5단위로"를 의미합니다. 분 필드에서 */5는 0, 5, 10, 15... 분에 실행됩니다.</p>
+              <h4 class="font-medium">Q: */5는 어떤 뜻인가요?</h4>
+              <p>슬래시(/)는 간격을 나타냅니다. */5는 "5단위마다"라는 의미로, 분 필드에서 사용하면 0분, 5분, 10분, 15분... 이렇게 5분 간격으로 실행됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 1-5는 무엇을 의미하나요?</h4>
-              <p>하이픈(-)은 범위를 나타냅니다. 요일 필드에서 1-5는 월요일부터 금요일까지를 의미합니다.</p>
+              <h4 class="font-medium">Q: 하이픈(-)과 콤마(,)의 차이는 무엇인가요?</h4>
+              <p>하이픈은 연속 범위를 나타냅니다. 1-5는 1, 2, 3, 4, 5를 모두 포함합니다. 콤마는 개별 값을 나열할 때 사용하며, 1,3,5는 1과 3과 5만 해당됩니다.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: MON, JAN 같은 영문 이름을 사용할 수 있나요?</h4>
-              <p>네, Vixie cron(Linux 표준)에서는 월에 JAN-DEC, 요일에 SUN-SAT 영문 약자를 사용할 수 있습니다. 대소문자를 구분하지 않습니다.</p>
+              <p>네, 표준 Vixie cron에서는 월 필드에 JAN-DEC, 요일 필드에 SUN-SAT 약어를 사용할 수 있습니다. 대소문자는 구분하지 않습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: L, W, # 문법은 모든 cron에서 사용 가능한가요?</h4>
+              <p>아닙니다. 이 문법들은 Quartz Scheduler의 확장 기능으로, 표준 Unix crontab에서는 지원되지 않습니다. Java Spring, Jenkins 등 Quartz 기반 시스템에서만 사용할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Cron 표현식을 테스트하는 방법이 있나요?</h4>
+              <p>이 도구의 표현식 파싱 모드를 사용하면 실제 등록하기 전에 의미를 확인할 수 있습니다. 실제 서버에서는 <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">crontab -l</code>로 등록된 내용을 확인할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 초 단위 실행도 가능한가요?</h4>
+              <p>표준 Unix cron은 분 단위가 최소입니다. 초 단위 실행이 필요하면 Quartz Scheduler(6필드 또는 7필드 형식)를 사용하거나, 스크립트 내에서 sleep을 활용하는 방법이 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 데이터가 서버로 전송되나요?</h4>
+              <p>아닙니다. 모든 처리는 브라우저 내에서 로컬로 수행됩니다. 입력한 표현식이나 설정 내용이 외부로 전송되는 일은 없으므로 안심하고 사용할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: crontab에 등록하려면 어떻게 하나요?</h4>
+              <p>터미널에서 <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">crontab -e</code> 명령으로 편집기를 열고, 생성된 표현식 뒤에 실행할 명령을 붙여 한 줄로 입력하면 됩니다. 예: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 3 * * * /home/user/backup.sh</code></p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 요일 번호에서 0과 7의 차이는 무엇인가요?</h4>
+              <p>대부분의 cron 구현에서 0과 7 모두 일요일을 나타냅니다. 다만 시스템마다 차이가 있을 수 있으므로, 호환성을 위해 0을 사용하거나 SUN이라는 이름을 쓰는 것이 안전합니다.</p>
             </div>
           </div>
         </div>

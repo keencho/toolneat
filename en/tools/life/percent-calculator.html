@@ -747,30 +747,80 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Percentage Calculator?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A percentage calculator is a versatile tool that helps you perform various percentage-related calculations quickly and easily. Whether you need to find a percentage of a number, calculate discounts, or determine percentage changes, this calculator offers five different modes to handle all your percentage calculation needs.</p>
+          <p>A percentage calculator is a practical tool that helps you perform various percentage-related calculations quickly and accurately. Whether you are figuring out a shopping discount, calculating exam scores, analyzing sales growth, or estimating tips and taxes, this calculator offers five different modes to handle any percentage calculation you might need.</p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li><strong>X% of Y</strong> - Calculate what percentage of a number equals (e.g., What is 15% of 200?)</li>
-            <li><strong>X is what % of Y?</strong> - Find what percentage one number is of another (e.g., 30 is what % of 200?)</li>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>X% of Y</strong> - Calculate a percentage of any number instantly (e.g., 15% of 200 = 30)</li>
+            <li><strong>X is what % of Y?</strong> - Find what percentage one number represents of another (e.g., 30 is 15% of 200)</li>
             <li><strong>% Change</strong> - Calculate the percentage increase or decrease between two values</li>
-            <li><strong>Adjust by %</strong> - Increase or decrease a value by a specific percentage</li>
-            <li><strong>Discount Calculator</strong> - Calculate sale prices and savings from discount percentages</li>
+            <li><strong>Adjust by %</strong> - Increase or decrease a value by a specific percentage amount</li>
+            <li><strong>Discount Calculator</strong> - Calculate final prices and savings from discount percentages</li>
+            <li>Real-time calculation results displayed as you type</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select the calculation mode from the tabs at the top</li>
+            <li>Enter your numbers in the input fields</li>
+            <li>Results are calculated and displayed in real time</li>
+            <li>Switch between modes for different types of calculations</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Calculating the actual payment amount during sales and promotions</li>
+            <li>Determining exam scores and pass rates as percentages</li>
+            <li>Analyzing monthly revenue or expense growth and decline</li>
+            <li>Quickly estimating tips or tax amounts at restaurants</li>
+            <li>Calculating investment returns or interest rates</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Decimal numbers are fully supported in all input fields</li>
+            <li>Percentage change cannot be calculated when the base value is zero</li>
+            <li>Successive discounts (e.g., 20% then 10%) do not equal their sum (30%)</li>
+            <li>Entering negative values will calculate in the opposite direction</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium">Q: What does percent mean?</h4>
-              <p>Percent means "per hundred" or "out of 100." When you say 50%, it means 50 out of 100, which equals half (1/2). Similarly, 25% means a quarter (1/4) of the whole.</p>
+              <h4 class="font-medium">Q: What exactly does "percent" mean?</h4>
+              <p>Percent comes from the Latin "per centum" meaning "per hundred." It represents a ratio out of 100. So 50% means half (1/2), 25% means a quarter (1/4), and 100% represents the whole amount.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How do I calculate percentage increase vs decrease?</h4>
-              <p>An increase shows as a positive percentage (+), while a decrease shows as negative (-). For example, going from 100 to 120 is a +20% increase, while going from 100 to 80 is a -20% decrease.</p>
+              <h4 class="font-medium">Q: How do I tell percentage increase from decrease?</h4>
+              <p>An increase is shown as a positive number (+), while a decrease is shown as negative (-). For instance, going from 100 to 130 is a +30% increase, while 100 to 70 is a -30% decrease. The formula is (new - old) / old x 100.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How do I calculate a discount?</h4>
-              <p>To calculate a discount, multiply the original price by the discount percentage, then subtract from the original. For example, 30% off $100: $100 x 0.30 = $30 discount, final price = $70.</p>
+              <h4 class="font-medium">Q: How does discount calculation work?</h4>
+              <p>Sale price = original price x (1 - discount/100). For example, a $50 item with a 30% discount: $50 x 0.70 = $35 final price, saving you $15.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is 20% off plus 10% off the same as 30% off?</h4>
+              <p>No. Successive discounts are not simply added. A $100 item with 20% off becomes $80, then an additional 10% off makes it $72, not $70. The actual total discount is 28%, not 30%.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I convert percentages to decimals or fractions?</h4>
+              <p>Divide the percentage by 100 to get a decimal: 75% = 0.75, 12.5% = 0.125. To convert to a fraction, simplify the decimal: 75% = 3/4, about 33.3% = 1/3.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can percentages go above 100%?</h4>
+              <p>Absolutely. 100% represents the whole, 200% means double, and 150% means 1.5 times. For example, if this year's revenue is 250% of last year's, the business has grown 2.5 times.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between percentage points and percent?</h4>
+              <p>Percentage points measure the absolute difference between two percentages. If an interest rate rises from 3% to 5%, that is a 2 percentage point increase, but a roughly 66.7% increase in relative terms.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I enter decimal numbers?</h4>
+              <p>Yes, all input fields accept decimal values. For example, you can calculate with 3.5% or use values like 12,450.75 for precise results.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use this for sales tax or VAT calculations?</h4>
+              <p>Yes, use the "Adjust by %" mode. To add 10% tax to a price, apply a 10% increase. To find the pre-tax price from a tax-inclusive amount, divide by 1.1 (for 10% tax).</p>
             </div>
           </div>
         </div>

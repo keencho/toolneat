@@ -555,23 +555,87 @@
         <a href="/en/tools/life/qr-generator" class="text-blue-500 hover:underline">Generate QR Code →</a>
       </div>
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is QR Code Scanner?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a QR Code Scanner?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">A tool that reads information from QR codes. Recognizes URLs, text, contacts, Wi-Fi info and more.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">A QR code scanner is an online tool that reads and decodes data from QR codes. You can scan QR codes in real time using your webcam or smartphone camera, or upload an image containing a QR code to extract its data. It supports a wide range of QR code formats including URLs, plain text, contacts (vCard), WiFi credentials, and email addresses. No app installation is needed -- it works directly in your browser.</p>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Live QR code scanning via camera</li>
+            <li>QR code recognition from uploaded image files</li>
+            <li>Drag and drop image upload support</li>
+            <li>Instant copy-to-clipboard for scan results</li>
+            <li>Direct "Open" button for URL results</li>
+            <li>All processing done locally in the browser for privacy</li>
+          </ul>
+
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li>Choose camera or image upload</li>
-            <li>Camera: Point at QR code</li>
-            <li>Image: Upload image with QR code</li>
-            <li>View result and copy/open</li>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Select the "Camera" or "Upload Image" tab</li>
+            <li>Camera mode: Click "Start Camera" and point at a QR code</li>
+            <li>Image mode: Drag a QR code image or click to select a file</li>
+            <li>The result is automatically displayed once the QR code is recognized</li>
+            <li>Click "Copy" to save the result to your clipboard, or "Open" to visit a URL</li>
           </ol>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">FAQ</h3>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Scanning QR codes on a PC when you do not have a smartphone handy</li>
+            <li>Reading QR code images embedded in emails or documents</li>
+            <li>Checking the content of QR codes displayed on websites</li>
+            <li>Decoding QR codes from screenshots</li>
+            <li>Scanning WiFi QR codes to view network credentials</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Camera mode requires an HTTPS connection</li>
+            <li>Clear, undamaged QR codes produce the best recognition results</li>
+            <li>For image uploads, cropping around the QR code area improves detection</li>
+            <li>Be cautious when opening URLs from unknown QR codes</li>
+            <li>Check your browser's camera permission settings beforehand</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
-            <div><h4 class="font-medium text-gray-900 dark:text-white">Q: Camera not working?</h4><p class="text-gray-600 dark:text-gray-400">Allow camera permission in your browser. Only works on HTTPS.</p></div>
-            <div><h4 class="font-medium text-gray-900 dark:text-white">Q: What QR codes are supported?</h4><p class="text-gray-600 dark:text-gray-400">URLs, text, vCard, Wi-Fi, email and most QR code formats.</p></div>
-            <div><h4 class="font-medium text-gray-900 dark:text-white">Q: Can it scan barcodes?</h4><p class="text-gray-600 dark:text-gray-400">This is QR code only. Use Barcode Generator for barcodes.</p></div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Why is my camera not turning on?</h4>
+              <p class="text-gray-600 dark:text-gray-400">You need to grant camera permission in your browser. Click the lock icon in the address bar to check permission settings. Camera access also requires an HTTPS environment.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What types of QR codes can it read?</h4>
+              <p class="text-gray-600 dark:text-gray-400">It supports URLs, plain text, vCard (contacts), WiFi credentials, email addresses, phone numbers, SMS, and most other standard QR code formats.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can it scan regular barcodes?</h4>
+              <p class="text-gray-600 dark:text-gray-400">This tool is designed exclusively for QR codes. It does not recognize 1D barcodes (EAN, UPC, etc.). For barcode-related features, use the Barcode Generator tool.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is my scanned data stored anywhere?</h4>
+              <p class="text-gray-600 dark:text-gray-400">No. All QR code decoding is processed locally in your browser. Neither camera footage nor uploaded images are sent to any server, ensuring your data remains private.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can it read blurry or damaged QR codes?</h4>
+              <p class="text-gray-600 dark:text-gray-400">QR codes include built-in error correction, so minor damage can still be read. However, heavily blurred or extensively damaged codes may not be recognized. Use the clearest image available for best results.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Does it work on mobile devices?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, both camera mode and image upload work in mobile browsers. However, most smartphones have built-in QR scanning in their default camera app, which may be more convenient for everyday scanning.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Why is scanning slow?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Low camera resolution, small QR code display size, or poor lighting can slow recognition. Bring the QR code closer to the camera and ensure good lighting for faster scanning.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What happens if the image has multiple QR codes?</h4>
+              <p class="text-gray-600 dark:text-gray-400">If an image contains multiple QR codes, only the first one detected will be decoded. To scan each one individually, crop the image to show only one QR code at a time.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: I want to create my own QR code</h4>
+              <p class="text-gray-600 dark:text-gray-400">Use the QR Code Generator tool. Enter your URL, text, WiFi info, or other data, customize the design, and download the QR code as PNG or SVG.</p>
+            </div>
           </div>
-          <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No data uploaded to servers.</p>
+          <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No camera footage or image data is uploaded to any server.</p>
         </div>
       </section>
     </div>

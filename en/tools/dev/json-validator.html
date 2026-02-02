@@ -596,27 +596,94 @@
         </div>
       </div>
 
+      <!-- Description -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is JSON Validation?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">JSON Validator Tool Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>JSON (JavaScript Object Notation) is a lightweight data format widely used for storing and transmitting data. JSON validation is the process of checking if the JSON syntax is correct.</p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is JSON Validation?</h3>
+          <p>JSON (JavaScript Object Notation) validation is the process of checking whether JSON data conforms to the standard syntax rules. JSON is the most widely used data interchange format for web APIs, configuration files, and data storage. Even a minor syntax error can cause parsing failures, so verifying JSON validity before use is an essential step in development. This tool checks the syntax of your input and, if errors are found, reports their exact location and cause.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common JSON Errors</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
-            <li><strong>Quote errors:</strong> Keys and string values must be wrapped in double quotes ("")</li>
-            <li><strong>Trailing commas:</strong> No comma after the last element</li>
-            <li><strong>Comments:</strong> JSON does not support comments</li>
-            <li><strong>Single quotes:</strong> Strings cannot use single quotes (')</li>
+            <li>Real-time JSON syntax validation</li>
+            <li>Precise error location (line and column) with descriptive messages</li>
+            <li>Structure statistics for valid JSON (depth, key count, array count, object count)</li>
+            <li>Format (prettify) and minify (compress) functionality</li>
+            <li>Copy results and download as file</li>
+            <li>File drag and drop input support</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Valid JSON Example</h3>
-          <pre class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-x-auto"><code>{
-  "name": "John Doe",
-  "age": 30,
-  "isActive": true,
-  "hobbies": ["reading", "music"],
-  "address": null
-}</code></pre>
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Paste or type your JSON data into the input area.</li>
+            <li>Click the "Validate" button to check the syntax.</li>
+            <li>If the JSON is valid, a success message appears along with structure statistics.</li>
+            <li>If errors are found, the tool displays the problem location (line, column) and a description.</li>
+            <li>Use the "Format" button for pretty output, or "Minify" to compress the JSON.</li>
+            <li>Save results using the "Copy" or "Download" buttons.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Checking API request/response data for syntax errors before sending</li>
+            <li>Validating configuration files (package.json, .eslintrc, etc.) after editing</li>
+            <li>Verifying the integrity of JSON data received from other systems</li>
+            <li>Checking the format of JSON values before storing in databases</li>
+            <li>Learning and practicing JSON syntax rules</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>JSON keys and string values must use double quotes (""). Single quotes (') are not allowed.</li>
+            <li>Trailing commas after the last item cause errors. Unlike JavaScript, JSON does not allow trailing commas.</li>
+            <li>JSON does not support comments (// or /* */). If you need comments, use a separate key for descriptions or use the JSONC format.</li>
+            <li>The six valid data types in JSON are: string, number, boolean (true/false), null, object, and array. undefined and functions cannot be used.</li>
+            <li>Pay attention to the line and column numbers in error messages to quickly locate problems.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What are the most common JSON errors?</h4>
+              <p>Trailing commas (commas after the last item), single quotes instead of double quotes, unquoted keys, and comments are the most frequent issues. Avoiding these four mistakes will prevent the majority of JSON errors.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between JSON and JavaScript object literals?</h4>
+              <p>JSON is stricter than JavaScript objects. JSON requires double quotes for keys and strings, and does not allow trailing commas, comments, functions, or undefined. All of these are valid in JavaScript.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is syntax validation the same as schema validation?</h4>
+              <p>No. This tool checks whether JSON syntax is correct. Schema validation verifies whether the data structure (field existence, types, value ranges, etc.) conforms to defined rules, which is a separate process.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are empty objects {} and empty arrays [] valid JSON?</h4>
+              <p>Yes, both are perfectly valid JSON. The top-level value in JSON can be an object or array, and they can be empty without any syntax issues.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use comments in JSON?</h4>
+              <p>Standard JSON does not support comments. Data containing comments will cause parsing errors. If you need annotations, use the JSONC format or add descriptions in a separate key like "_comment".</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between null, undefined, and NaN?</h4>
+              <p>In JSON, null is a valid value, but undefined and NaN are not part of the JSON standard and cannot be used. When using JavaScript's JSON.stringify(), undefined values are automatically excluded from the output.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What happens with duplicate keys?</h4>
+              <p>The JSON standard does not explicitly forbid duplicate keys, but most parsers use the value from the last occurrence. Duplicate keys can cause unpredictable behavior, so they should be avoided.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are there restrictions on number formats in JSON?</h4>
+              <p>JSON supports integers and decimals, but hexadecimal numbers (0x), numbers with leading zeros (e.g., 07), Infinity, and NaN are not allowed. Very large numbers may experience precision loss.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What does "depth" mean in the structure statistics?</h4>
+              <p>It indicates the deepest nesting level in the JSON data. For example, {"a": {"b": {"c": 1}}} has a depth of 3. A higher depth means a more complex data structure.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
+              <p>No. All validation and processing is performed locally in your browser using JavaScript. Your data never leaves your computer, making it safe to use with sensitive or confidential JSON.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

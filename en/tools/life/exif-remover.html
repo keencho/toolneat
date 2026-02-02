@@ -593,23 +593,89 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is EXIF Metadata?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">EXIF (Exchangeable Image File Format) is metadata embedded in digital photos. It's automatically recorded when you take a picture with a camera or smartphone.</p>
+          <p>EXIF (Exchangeable Image File Format) is metadata embedded in digital photos. When you take a picture with a camera or smartphone, information like GPS location, date, and camera settings is automatically saved inside the image file.</p>
+          <p class="mt-3">This tool lets you view and safely remove EXIF data from JPG/JPEG images. All processing happens in your browser, so your photos are never uploaded to any external server.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Information That May Be Included</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li><strong>GPS Location:</strong> Exact coordinates where the photo was taken</li>
-            <li><strong>Date/Time:</strong> When the photo was captured</li>
-            <li><strong>Camera Info:</strong> Device model and manufacturer</li>
-            <li><strong>Camera Settings:</strong> Aperture, shutter speed, ISO</li>
-            <li><strong>Thumbnail:</strong> Small preview image</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>EXIF Viewer:</strong> See GPS location, date/time, camera info, and settings at a glance</li>
+            <li><strong>Full EXIF Removal:</strong> Strip all metadata from your photos in one click</li>
+            <li><strong>Image Preview:</strong> View the uploaded image along with file information</li>
+            <li><strong>Drag and Drop:</strong> Simply drag a file to start analyzing</li>
+            <li><strong>100% Browser Processing:</strong> Photos never leave your device for complete privacy</li>
+            <li><strong>Clean Download:</strong> Download the EXIF-free image immediately</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Why Remove It?</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li>Uploading photos to social media may expose your home location</li>
-            <li>Selling items online could leak personal information</li>
-            <li>Protect privacy when posting to blogs or websites</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Drag and drop a JPG/JPEG image, or click to browse and upload</li>
+            <li>The tool automatically displays any EXIF information found in the image</li>
+            <li>Review the GPS location, date/time, camera details, and other metadata</li>
+            <li>Click the "Remove EXIF" button to strip all metadata</li>
+            <li>Download the clean image with all EXIF data removed</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Social Media:</strong> Remove location data before posting to Instagram, Facebook, etc.</li>
+            <li><strong>Online Selling:</strong> Prevent home address exposure when listing product photos on marketplaces</li>
+            <li><strong>Blogging:</strong> Strip personal metadata from photos before publishing to your blog or website</li>
+            <li><strong>Email Attachments:</strong> Remove sensitive metadata before sending photos via email</li>
+            <li><strong>Corporate Security:</strong> Strip internal information from images shared externally</li>
           </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Currently supports JPG/JPEG format only. PNG and GIF files rarely contain EXIF data</li>
+            <li>Removing EXIF does not affect image quality in any way</li>
+            <li>The original file is not modified; a new clean file is created for download</li>
+            <li>Smartphone photos are very likely to contain GPS location data</li>
+            <li>If no EXIF data is found, the photo is already clean and safe to share</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What information can EXIF data contain?</h4>
+              <p>EXIF may include GPS coordinates (latitude/longitude), capture date and time, camera manufacturer and model, aperture, shutter speed, ISO, flash usage, and embedded thumbnail images.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does removing EXIF reduce image quality?</h4>
+              <p>No. EXIF metadata is separate from the image data itself. Removing it does not affect resolution, colors, sharpness, or any other aspect of image quality.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are my photos uploaded to a server?</h4>
+              <p>No. All processing happens entirely within your browser. Your photos never leave your device, ensuring complete privacy protection.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it support formats other than JPG?</h4>
+              <p>Currently, only JPG/JPEG is supported. PNG, WebP, and GIF files rarely contain EXIF data, so removal is usually unnecessary for those formats.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is the original file modified?</h4>
+              <p>No, the original file remains untouched. A new file with EXIF removed is generated separately for download.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why is GPS location data risky?</h4>
+              <p>If you upload a photo with GPS data to social media or marketplace platforms, others can extract the metadata to determine where the photo was taken, potentially revealing your home, workplace, or other sensitive locations.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do all photos have EXIF data?</h4>
+              <p>No. Screenshots, photos that have already been stripped, and images saved by certain editing tools may not contain EXIF. In that case, the tool will display "No EXIF data found."</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do social media platforms automatically remove EXIF?</h4>
+              <p>Most major platforms like Instagram, Facebook, and Twitter strip EXIF on upload. However, not all services do, so it is safer to remove it yourself before sharing.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I process multiple photos at once?</h4>
+              <p>Currently, the tool processes one image at a time. For multiple photos, upload and process them sequentially.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it work on mobile devices?</h4>
+              <p>Yes, you can use it on smartphone or tablet browsers. Tap the upload area to select a photo from your gallery for processing.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

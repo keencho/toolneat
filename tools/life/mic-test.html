@@ -566,20 +566,91 @@
           </ul>
         </div>
       </div>
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4">자주 묻는 질문</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 마이크가 작동하지 않아요</h4>
-            <p>1. 브라우저에서 마이크 권한을 허용했는지 확인하세요. 2. 다른 앱에서 마이크를 사용 중인지 확인하세요. 3. 시스템 설정에서 마이크가 활성화되어 있는지 확인하세요.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 볼륨이 너무 작아요</h4>
-            <p>시스템 설정에서 마이크 입력 볼륨을 높여보세요. 마이크와의 거리도 확인해보세요.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 녹음한 소리가 안 들려요</h4>
-            <p>녹음 후 "녹음 듣기" 버튼을 클릭하세요. 스피커 볼륨이 켜져 있는지 확인하고, 헤드폰 사용 시 연결 상태를 확인하세요.</p>
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">마이크 테스트란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>마이크 테스트는 컴퓨터나 모바일 기기에 연결된 마이크가 정상적으로 작동하는지 빠르게 확인할 수 있는 온라인 도구입니다. 화상회의, 온라인 수업, 음성 녹음, 게임 보이스챗 등을 시작하기 전에 마이크 상태를 미리 점검할 수 있습니다.</p>
+          <p class="mt-3">별도의 프로그램 설치 없이 브라우저에서 바로 테스트할 수 있으며, 실시간 볼륨 바를 통해 마이크 입력 레벨을 시각적으로 확인하고, 녹음 후 재생 기능으로 실제 음질까지 체크할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>실시간 볼륨 바로 마이크 입력 레벨 즉시 확인</li>
+            <li>연결된 마이크 목록 표시 및 선택 기능</li>
+            <li>마이크 이름과 상태 정보 표시</li>
+            <li>녹음 후 재생으로 실제 음질 확인</li>
+            <li>작동 상태(대기/정상/오류) 배지 표시</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>"마이크 시작" 버튼을 클릭합니다</li>
+            <li>브라우저에서 마이크 권한 허용 팝업이 뜨면 "허용"을 선택합니다</li>
+            <li>마이크에 말을 하면 볼륨 바가 움직입니다</li>
+            <li>볼륨 바가 반응하면 마이크가 정상 작동 중입니다</li>
+            <li>녹음 버튼을 눌러 녹음 후, 재생 버튼으로 음질을 확인합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>줌(Zoom), 구글 미트(Google Meet) 등 화상회의 전 마이크 점검</li>
+            <li>온라인 수업이나 강의 시작 전 음성 입력 확인</li>
+            <li>팟캐스트나 음성 콘텐츠 녹음 전 마이크 상태 테스트</li>
+            <li>게임 내 보이스챗 사용 전 마이크 설정 확인</li>
+            <li>새 마이크나 헤드셋 구매 후 정상 연결 여부 확인</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>처음 사용 시 브라우저의 마이크 권한 요청을 반드시 "허용"해야 합니다</li>
+            <li>다른 앱에서 마이크를 사용 중이면 이 도구에서 접근이 안 될 수 있습니다</li>
+            <li>외장 마이크 사용 시 드롭다운 메뉴에서 해당 기기를 선택하세요</li>
+            <li>볼륨이 너무 작으면 시스템 설정에서 마이크 입력 볼륨을 높여보세요</li>
+            <li>조용한 환경에서 테스트하면 마이크 감도를 더 정확하게 파악할 수 있습니다</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 마이크가 작동하지 않아요. 어떻게 해야 하나요?</h4>
+              <p>먼저 브라우저 주소창 왼쪽의 자물쇠 아이콘을 클릭하여 마이크 권한이 "허용"되어 있는지 확인하세요. 그래도 안 되면 다른 앱에서 마이크를 사용 중인지, 시스템 설정에서 마이크가 활성화되어 있는지 확인해보세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 볼륨 바가 움직이지만 레벨이 너무 낮아요.</h4>
+              <p>시스템 설정(Windows의 경우 소리 설정, Mac의 경우 시스템 환경설정 > 사운드)에서 마이크 입력 볼륨을 높여보세요. 마이크와 입 사이의 거리가 너무 멀지 않은지도 확인하세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 녹음한 소리가 재생되지 않아요.</h4>
+              <p>"녹음 듣기" 버튼을 클릭했는지 확인하세요. 스피커나 헤드폰의 볼륨이 켜져 있는지, 올바른 출력 장치가 선택되어 있는지도 함께 확인해보세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 여러 마이크가 연결되어 있을 때 어떻게 선택하나요?</h4>
+              <p>마이크 시작 후 드롭다운 메뉴에 연결된 모든 마이크가 표시됩니다. 원하는 마이크를 선택하면 즉시 해당 기기로 전환됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 블루투스 헤드셋의 마이크도 테스트할 수 있나요?</h4>
+              <p>네, 블루투스 기기가 시스템에 정상 연결되어 있다면 마이크 목록에 나타납니다. 블루투스 연결이 불안정하면 먼저 기기 페어링 상태를 확인하세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 모바일 브라우저에서도 사용할 수 있나요?</h4>
+              <p>네, 대부분의 모바일 브라우저(Chrome, Safari 등)에서 사용 가능합니다. 마이크 권한을 허용하면 스마트폰 내장 마이크로 테스트할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 녹음된 데이터가 외부로 전송되나요?</h4>
+              <p>아닙니다. 모든 오디오 처리는 브라우저 내에서만 이루어지며, 녹음된 음성이 서버로 전송되거나 저장되지 않습니다. 안심하고 사용하세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 마이크 테스트 중 잡음이 심해요.</h4>
+              <p>주변 소음이 많은 환경이거나 마이크 감도가 높으면 잡음이 클 수 있습니다. 조용한 장소로 이동하거나, 시스템 설정에서 노이즈 억제 옵션을 활성화해보세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 특정 브라우저에서만 작동하나요?</h4>
+              <p>Chrome, Edge, Firefox, Safari 등 주요 최신 브라우저에서 모두 지원됩니다. WebRTC를 지원하는 브라우저라면 정상 작동합니다. Internet Explorer에서는 사용할 수 없습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 마이크 권한을 한 번 거부했는데 다시 허용하려면요?</h4>
+              <p>브라우저 주소창 왼쪽의 자물쇠(또는 정보) 아이콘을 클릭하고, 마이크 권한을 "허용"으로 변경한 후 페이지를 새로고침하세요.</p>
+            </div>
           </div>
         </div>
       </section>

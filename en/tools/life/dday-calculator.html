@@ -665,30 +665,87 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a D-Day Calculator?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A D-Day calculator is a date counting tool that helps you track the number of days until or since a specific date. Whether you are counting down to a wedding, birthday, graduation, vacation, or any important milestone, this calculator provides precise day counts. It is also useful for tracking anniversaries, project deadlines, or how long since a memorable event occurred.</p>
+          <p>A D-Day calculator is a date counting tool that helps you track the number of days until or since a specific date. Whether you are counting down to a wedding, birthday, graduation, vacation, or any important milestone, this calculator provides precise day counts.</p>
+          <p class="mt-3">Future dates are displayed as D- (days remaining), and past dates as D+ (days elapsed). The result is also converted into weeks, months, and hours for flexible time planning.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>D-Day Count:</strong> Real-time display of remaining days to your target date</li>
+            <li><strong>Multi-Unit Conversion:</strong> Automatic conversion to days, weeks, months, and hours</li>
+            <li><strong>Quick Select:</strong> Preset buttons for common dates like 1 week, 100 days, or Christmas</li>
+            <li><strong>Date Difference:</strong> Calculate exact days between any two dates</li>
+            <li><strong>Past/Future Support:</strong> Works for both upcoming and past events</li>
+            <li><strong>Event Labels:</strong> Add custom names to each D-Day for easy tracking</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>Select your target date using the date picker</li>
             <li>Optionally add a title or description for your event</li>
-            <li>Choose whether to count days from today or from a specific start date</li>
-            <li>View the number of days remaining (for future dates) or elapsed (for past dates)</li>
-            <li>Save multiple D-Days to track various important dates simultaneously</li>
+            <li>Or use quick select buttons for common dates</li>
+            <li>View the D-Day count along with detailed breakdowns in weeks, months, and hours</li>
+            <li>Use the date difference calculator to find the gap between any two dates</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Exam Prep:</strong> Track remaining days until certification exams, finals, or interviews</li>
+            <li><strong>Anniversary Tracking:</strong> Count 100-day, 200-day, or yearly relationship milestones</li>
+            <li><strong>Travel Planning:</strong> Count down to departure dates for motivation and preparation</li>
+            <li><strong>Project Management:</strong> Monitor days until project deadlines</li>
+            <li><strong>Due Dates:</strong> Track expected delivery or due dates for important events</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>D-Day calculations are based on midnight (00:00), so time zones may cause a one-day difference</li>
+            <li>Leap years (February 29) are automatically handled in all calculations</li>
+            <li>When calculating anniversaries, confirm whether day 1 includes the start date</li>
+            <li>For tracking multiple D-Days, calculate each one separately</li>
+            <li>If you need business days only, manually exclude weekends and holidays</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: What does D-Day mean?</h4>
-              <p>D-Day originally referred to the day of a military operation, most famously the Normandy landings in World War II. Today, it commonly refers to any designated day for an important event or deadline. In Korea and other countries, counting D-Days is popular for tracking relationship anniversaries, exam dates, and other personal milestones.</p>
+              <p>D-Day originally referred to the day of a military operation. Today, it commonly refers to any designated day for an important event or deadline. Counting D-Days is popular for tracking relationship anniversaries, exam dates, and personal milestones.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Does the calculator account for leap years?</h4>
-              <p>Yes, our D-Day calculator automatically accounts for leap years when calculating the number of days between dates. February 29th is properly included in leap years (years divisible by 4, except century years not divisible by 400), ensuring accurate day counts for any date range.</p>
+              <p>Yes, leap years are automatically factored into all calculations. February 29th is properly included in leap years (divisible by 4, except century years not divisible by 400), ensuring accurate day counts.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Can I calculate D-Day for past events?</h4>
-              <p>Absolutely! The calculator works for both future and past dates. For past dates, it shows how many days have elapsed since that event. This is useful for tracking anniversaries, remembering how long ago something happened, or calculating ages and durations.</p>
+              <p>Absolutely. The calculator works for both future and past dates. Past dates show as D+ with the number of elapsed days, useful for tracking anniversaries or measuring how long ago something happened.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I set the start date to something other than today?</h4>
+              <p>Yes, the date difference feature allows you to set both start and end dates freely, so you can calculate the gap between any two arbitrary dates.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it auto-update at midnight?</h4>
+              <p>If you keep the page open, the calculation updates when midnight passes. You can also refresh the page at any time to get the latest count based on today's date.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I save or share the D-Day result?</h4>
+              <p>You can copy the calculation result as text and paste it into messages or notes. Bookmarking the page allows quick revisits for recalculation.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it handle very large numbers like 1,000 or 10,000 days?</h4>
+              <p>Yes, there is no limit on the date range. The calculator accurately handles dates spanning decades in either direction.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can it calculate business days only?</h4>
+              <p>Currently, the calculator uses calendar days. For business day calculations, you would need to manually account for weekends and public holidays.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is any data sent to a server?</h4>
+              <p>No, all calculations happen in your browser. No date information is transmitted to any server, so you can use it without privacy concerns.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it support lunar calendar dates?</h4>
+              <p>The calculator uses the Gregorian (solar) calendar only. If you need lunar calendar dates, convert them to the Gregorian calendar first, then use this tool.</p>
             </div>
           </div>
         </div>

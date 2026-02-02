@@ -611,22 +611,88 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About PDF Page Rotation</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Rotate scanned documents or fix PDF pages that are in the wrong orientation.</p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is PDF Page Rotation?</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">PDF page rotation changes the orientation of individual pages within a document. Scanned documents often end up with pages in the wrong direction, and this tool lets you fix that directly in your browser without installing any software. You can rotate all pages at once or adjust specific pages individually, making it practical for everyday document management.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li>Drag & drop or click to upload a PDF file</li>
-            <li>Click rotate buttons for all pages or individual pages</li>
-            <li>Click 'Download' to save the rotated PDF</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Bulk rotation for all pages (left 90, right 90, or 180 degrees)</li>
+            <li>Individual page-by-page rotation control</li>
+            <li>Visual preview showing rotation angle on each page</li>
+            <li>100% original PDF quality preserved</li>
+            <li>Reset function to restore original orientation at any time</li>
+            <li>All processing happens in your browser with no server uploads</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Drag and drop a PDF file or click the upload area to select one</li>
+            <li>Once loaded, page previews appear with page numbers</li>
+            <li>Use the bulk rotation buttons at the top for all pages, or click the arrow buttons on each page for individual rotation</li>
+            <li>Review the results and click "Download" to save the rotated PDF</li>
           </ol>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Features</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li>Bulk rotate all pages at once</li>
-            <li>Rotate individual pages separately</li>
-            <li>Support for left/right 90° and 180° rotation</li>
-            <li>Maintains original file quality</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Fixing landscape pages that should be portrait in scanned documents</li>
+            <li>Correcting upside-down pages from duplex scanning</li>
+            <li>Adjusting specific slide orientations in presentation PDFs</li>
+            <li>Rotating documents captured with a mobile phone camera</li>
+            <li>Standardizing page orientation before submitting contracts or reports</li>
           </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Rotation is available in 90-degree increments only. For minor skew correction, use a dedicated deskew tool.</li>
+            <li>Password-protected PDFs cannot be opened. Remove the password first.</li>
+            <li>Large PDFs can be processed in the browser, but files with many pages may take longer to load.</li>
+            <li>The original file is never modified. A new file with rotations applied is generated for download.</li>
+            <li>Text, images, fonts, and all elements are preserved identically to the original.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Does rotating degrade text or image quality?</h4>
+              <p>No. This tool only changes the page rotation metadata, so all text, images, and vector graphics remain at their original quality.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I rotate different pages by different amounts?</h4>
+              <p>Yes. Each page can be rotated independently using the arrow buttons below its preview. You can set different angles for every page.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is the original PDF file modified?</h4>
+              <p>No. The original file remains untouched. A new PDF with the rotations applied is downloaded separately.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is there a file size limit?</h4>
+              <p>Since there is no server upload, there is no strict size limit. However, very large files may slow down processing depending on your browser memory.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does the file size change after rotation?</h4>
+              <p>It stays nearly the same. Rotation is a metadata change and does not significantly affect file size.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When would I use 180-degree rotation?</h4>
+              <p>When a document is completely upside down, typically caused by feeding paper into a scanner the wrong way.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I undo a rotation?</h4>
+              <p>Yes. Click the "Reset" button to restore all pages to their original orientation. You can adjust freely before downloading.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I rotate password-protected PDFs?</h4>
+              <p>Protected PDFs must have their password removed first. This tool cannot process encrypted files directly.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it work on mobile devices?</h4>
+              <p>Yes, it works in mobile browsers. The page previews and rotation buttons are accessible even on smaller screens.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What does "no server upload" mean?</h4>
+              <p>All PDF processing happens locally in your browser. Your files are never transmitted over the internet to any external server, making it safe for confidential documents.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

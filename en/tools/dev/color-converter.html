@@ -817,30 +817,78 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Color Converter?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A Color Converter is an essential tool for web designers and developers that converts color values between different formats including HEX, RGB, HSL, RGBA, HSLA, and HEX8. Different color formats are used in various contexts - HEX codes in CSS, RGB values in image editing software, and HSL for intuitive color manipulation. This tool instantly converts between all formats while providing a visual preview and related color suggestions.</p>
+          <p>Color Converter is a tool that instantly translates color values between HEX, RGB, HSL, RGBA, HSLA, and HEX8 formats. Whether you need to convert a HEX code from a Figma design into HSL for your CSS theme system, or turn an RGB value from a JavaScript calculation into a HEX string, this tool handles it in real time. Enter one color and see all six format conversions at once, along with complementary colors, brightness variations, and saturation adjustments to help you build complete color palettes.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Six-Format Simultaneous Conversion</strong> - View and copy HEX, RGB, HSL, RGBA, HSLA, and HEX8 values all at once from a single input.</li>
+            <li><strong>Visual Color Picker</strong> - Select colors intuitively with the built-in picker, or type a HEX code directly into the input field.</li>
+            <li><strong>Individual RGB Sliders</strong> - Fine-tune Red, Green, and Blue channels separately using sliders for precise color adjustments.</li>
+            <li><strong>Alpha/Opacity Control</strong> - Adjust transparency from 0% to 100% with the Alpha slider, reflected in RGBA, HSLA, and HEX8 outputs.</li>
+            <li><strong>Related Color Suggestions</strong> - Automatically calculates complementary, lighter, darker, and more saturated versions of your selected color.</li>
+            <li><strong>Quick Color Palette</strong> - Click preset color swatches to start with commonly used colors without typing any codes.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Enter a color value in the HEX input field (e.g., #3b82f6) or use the color picker button to select visually.</li>
-            <li>Alternatively, click any of the quick color swatches to start with a preset color.</li>
-            <li>View all converted formats (HEX, RGB, HSL, RGBA, HSLA, HEX8) displayed automatically below.</li>
-            <li>Adjust the opacity using the Alpha slider to see RGBA, HSLA, and HEX8 values with transparency.</li>
-            <li>Fine-tune colors using the RGB sliders, or explore related colors (complementary, lighter, darker, saturated).</li>
+            <li>Click the color picker to choose a color visually, or type a HEX code directly into the input field.</li>
+            <li>Use the quick color palette to start with a preset color by clicking any swatch.</li>
+            <li>Adjust individual Red, Green, and Blue values using the RGB sliders for fine-tuning.</li>
+            <li>If you need transparency, move the Alpha slider to set the desired opacity level.</li>
+            <li>Click the copy button next to any format (HEX, RGB, HSL, RGBA, HSLA, HEX8) to copy the value to your clipboard.</li>
+            <li>Explore the Related Colors section to find complementary, lighter, darker, or more saturated variations, and click any to apply it.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>CSS Theming</strong> - Convert brand HEX colors to HSL format to build flexible theme systems where you can adjust lightness and saturation programmatically.</li>
+            <li><strong>Design System Setup</strong> - Start from one brand color and use complementary and brightness variations to define Primary, Secondary, and Accent colors.</li>
+            <li><strong>Semi-Transparent Overlays</strong> - Adjust the Alpha value to get the exact RGBA code for overlay backgrounds on hero images or modal backdrops.</li>
+            <li><strong>Cross-Platform Development</strong> - Convert the same color into HEX for web, HEX8 for Android, and RGB for iOS development without manual calculations.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>HSL is ideal for building color scales: keep Hue and Saturation constant, then vary Lightness to create consistent shade progressions.</li>
+            <li>HEX8 alpha byte ordering can differ across platforms. If broad compatibility is important, prefer RGBA in CSS.</li>
+            <li>Complementary colors create strong visual contrast, but using them at equal proportions on large areas can cause eye strain. Use a 70-30 or 80-20 ratio.</li>
+            <li>All conversions happen entirely in your browser. No color data is sent to any external server.</li>
+            <li>The tool works on mobile devices as well. Sliders and the color picker respond to touch input.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: What is the difference between HEX, RGB, and HSL?</h4>
-              <p>HEX uses hexadecimal values (#RRGGBB) and is the most common format in web development. RGB specifies colors using Red, Green, and Blue values (0-255 each) and is used in many graphics applications. HSL uses Hue (0-360 degrees), Saturation, and Lightness (both 0-100%), making it more intuitive for creating color variations and adjusting brightness.</p>
+              <p>HEX represents colors as a 6-digit hexadecimal string (#RRGGBB) and is the most common format in CSS. RGB uses three numeric values (0-255) for Red, Green, and Blue channels, which is useful for programmatic color manipulation. HSL separates color into Hue (0-360 degrees), Saturation (0-100%), and Lightness (0-100%), making it more intuitive for adjusting tone and brightness.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: What is HEX8 and when should I use it?</h4>
-              <p>HEX8 (#RRGGBBAA) is an 8-digit hexadecimal color format that includes an alpha channel for transparency. The last two digits represent opacity (00 = fully transparent, FF = fully opaque). Use HEX8 when you need transparency in environments that support it, though RGBA is more widely supported and often preferred for CSS.</p>
+              <p>HEX8 (#RRGGBBAA) adds two alpha digits to the standard HEX format to represent transparency. FF means fully opaque and 00 means fully transparent. It is supported by modern browsers and is commonly used in Android development. For CSS, RGBA tends to be more widely used and readable.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: What is a complementary color?</h4>
-              <p>A complementary color is the color that sits opposite on the color wheel (180 degrees apart in HSL). Complementary colors create strong contrast and visual impact when used together. This tool automatically calculates complementary colors along with lighter, darker, and more saturated variations to help you build cohesive color palettes.</p>
+              <p>A complementary color sits directly opposite on the color wheel (180 degrees apart in HSL). These pairs create strong visual contrast and are frequently used for call-to-action buttons, accent elements, or highlight colors in design.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between RGB and RGBA?</h4>
+              <p>RGB defines colors using three channels: Red, Green, and Blue. RGBA adds a fourth channel, Alpha, which controls transparency. The Alpha value ranges from 0 (fully transparent) to 1 (fully opaque), expressed as a decimal like 0.5 for 50% opacity.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What do H, S, and L stand for in HSL?</h4>
+              <p>H (Hue) is the color angle on the color wheel from 0 to 360 degrees (0 = red, 120 = green, 240 = blue). S (Saturation) ranges from 0% (gray) to 100% (pure color). L (Lightness) goes from 0% (black) to 100% (white), with 50% being the normal color.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I copy a color code?</h4>
+              <p>Click the copy icon next to any color format field. A checkmark will appear to confirm the value has been copied to your clipboard, ready to paste into your code editor or design tool.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How are the lighter and darker color variations calculated?</h4>
+              <p>They are calculated by adjusting the L (Lightness) value in HSL. Lighter variations increase L while darker variations decrease it. The Hue and Saturation values remain unchanged, so the variations stay in the same color family.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my color data sent to a server?</h4>
+              <p>No. All color conversions and calculations run locally in your browser using JavaScript. No color information is transmitted to any external server at any point.</p>
             </div>
           </div>
         </div>

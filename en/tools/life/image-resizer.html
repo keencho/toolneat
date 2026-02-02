@@ -713,34 +713,62 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
+      <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Image Resizing?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">
-            Image resizing changes the dimensions (resolution) of an image. It's useful for website uploads, social media posts, thumbnail creation, and more.
-          </p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Image resizing is the process of changing the width and height (resolution) of a photo or graphic. Whether you need to reduce an image for faster web page loading, match social media dimensions, or create icons and thumbnails, resizing is an essential step. This tool works directly in your browser, letting you adjust image dimensions quickly without installing any software.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li>Drag or click to upload an image</li>
-            <li>Enter desired size in pixels or percent</li>
-            <li>Click 'Apply' to resize</li>
-            <li>Click 'Download' to save the result</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Preset Guide</h3>
-          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
-            <li><strong>1920x1080 (FHD):</strong> Full HD resolution, YouTube thumbnails</li>
-            <li><strong>1080x1080 (IG):</strong> Instagram square posts</li>
-            <li><strong>1200x630 (OG):</strong> Open Graph images (for SNS sharing)</li>
-            <li><strong>256x256, 128x128:</strong> Icons, profile images</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Resize by pixel (px) or percentage (%) values</li>
+            <li>Aspect ratio lock to prevent image distortion</li>
+            <li>Built-in presets for FHD, Instagram, Open Graph, and more</li>
+            <li>Real-time size comparison before and after resizing</li>
+            <li>High-quality PNG download</li>
+            <li>All processing happens in-browser with no server uploads</li>
           </ul>
 
-          <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-            <p class="text-blue-800 dark:text-blue-300 text-sm">
-              All processing is done in your browser. No data is uploaded to servers.
-            </p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Drag and drop or click to upload your image</li>
+            <li>Select pixel or percentage mode, then enter your target dimensions</li>
+            <li>Check the aspect ratio lock icon; toggle it off if you need independent width/height control</li>
+            <li>Click a preset button to auto-fill common dimensions</li>
+            <li>Click "Apply" to resize, then "Download" to save the result</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Reducing image size for blogs and websites to improve load times</li>
+            <li>Formatting images for Instagram square posts (1080x1080)</li>
+            <li>Creating YouTube thumbnails at 1920x1080 resolution</li>
+            <li>Generating Open Graph images (1200x630) for optimized social media previews</li>
+            <li>Making small icons or favicons for apps and websites</li>
+            <li>Shrinking images for email attachments to stay under size limits</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>With aspect ratio locked, changing one dimension automatically calculates the other</li>
+            <li>Upscaling beyond the original resolution can result in blurry or pixelated images</li>
+            <li>Percentage mode is convenient when you want to scale relative to the original size</li>
+            <li>Use presets to quickly apply recommended dimensions for popular platforms</li>
+            <li>The original file is never modified; a new file is downloaded after resizing</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div><h4 class="font-medium">Q: What image formats are supported?</h4><p>All major formats including JPG, PNG, GIF, and WebP are supported for upload.</p></div>
+            <div><h4 class="font-medium">Q: Does resizing reduce image quality?</h4><p>Downscaling preserves quality well. However, upscaling beyond the original dimensions may cause the image to appear blurry or pixelated.</p></div>
+            <div><h4 class="font-medium">Q: Can I resize without maintaining the aspect ratio?</h4><p>Yes, click the aspect ratio lock icon to unlock it, and you can set width and height independently.</p></div>
+            <div><h4 class="font-medium">Q: Can I specify custom dimensions not in the presets?</h4><p>Absolutely. Simply type any width and height values directly into the input fields.</p></div>
+            <div><h4 class="font-medium">Q: Does it work on mobile devices?</h4><p>Yes, it works on mobile browsers. You can resize photos taken on your smartphone right away.</p></div>
+            <div><h4 class="font-medium">Q: Is my image uploaded to a server?</h4><p>No. All processing happens entirely in your browser. Your images never leave your device.</p></div>
+            <div><h4 class="font-medium">Q: Can I resize multiple images at once?</h4><p>Currently images are processed one at a time. After resizing, click "New Image" to continue with the next file.</p></div>
+            <div><h4 class="font-medium">Q: What format is the downloaded file?</h4><p>The result is saved as a PNG file regardless of the original format, ensuring high quality output.</p></div>
+            <div><h4 class="font-medium">Q: Will the file size decrease after resizing?</h4><p>Generally yes, reducing dimensions also reduces file size. The exact size depends on the image content.</p></div>
+            <div><h4 class="font-medium">Q: Can I resize animated GIFs?</h4><p>You can upload GIF files, but only the first frame will be resized. Full animated GIF resizing is not supported.</p></div>
           </div>
         </div>
       </section>

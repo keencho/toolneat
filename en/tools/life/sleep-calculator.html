@@ -569,20 +569,89 @@
           </ul>
         </div>
       </div>
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4">Frequently Asked Questions</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: What is a sleep cycle?</h4>
-            <p>A sleep cycle is approximately 90 minutes long and includes light sleep, deep sleep, and REM sleep phases. Waking up at the end of a cycle helps you feel more refreshed.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: Why add 15 minutes?</h4>
-            <p>Most people take about 15 minutes to fall asleep after getting into bed. This time is factored into the calculations for more accurate recommendations.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: How many sleep cycles are recommended?</h4>
-            <p>For adults, 5-6 cycles (7.5-9 hours) is ideal. A minimum of 4 cycles (6 hours) is recommended for adequate rest.</p>
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Sleep Calculator?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>A sleep calculator helps you find the ideal bedtime or wake-up time based on natural sleep cycles. Human sleep follows roughly 90-minute cycles consisting of light sleep, deep sleep, and REM stages. Waking at the end of a complete cycle leaves you feeling refreshed rather than groggy. This tool factors in the average sleep onset time of about 15 minutes, so the recommendations reflect when you actually fall asleep rather than when you get into bed.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Wake-up time calculation</strong> - Enter your alarm time and get the best bedtimes</li>
+            <li><strong>Bedtime calculation</strong> - Enter when you plan to sleep and see when to wake up</li>
+            <li><strong>Multiple options</strong> - Displays results for 3 to 6 cycles so you can pick what fits your schedule</li>
+            <li><strong>Sleep onset adjustment</strong> - Automatically accounts for the 15 minutes it takes to fall asleep</li>
+            <li><strong>Recommended hours highlighted</strong> - Suggested cycles for adults (5-6 cycles) are visually marked</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Choose your calculation mode (by wake-up time or by bedtime)</li>
+            <li>Enter the time</li>
+            <li>Review the results and look for the recommended options (highlighted in green)</li>
+            <li>Plan your sleep schedule around those times whenever possible</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Work mornings</strong> - Find the best bedtime for your alarm clock</li>
+            <li><strong>Exam periods</strong> - Maximize rest within limited study schedules</li>
+            <li><strong>Shift work</strong> - Calculate sleep windows for irregular shift patterns</li>
+            <li><strong>Travel and jet lag</strong> - Adjust your sleep rhythm when changing time zones</li>
+            <li><strong>Nap planning</strong> - Figure out the ideal duration for a short daytime nap (1-2 cycles)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Going to bed and waking up at the same time every day is the best way to improve sleep quality</li>
+            <li>Reduce blue light exposure from screens at least 1-2 hours before bed</li>
+            <li>Avoid caffeine within 6 hours of your planned bedtime</li>
+            <li>Sleep onset time varies between individuals, so adjust the 15-minute estimate to match your experience</li>
+            <li>Try to keep weekend wake times within 1 hour of your weekday schedule</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What exactly is a sleep cycle?</h4>
+              <p>A sleep cycle is a roughly 90-minute pattern that repeats through the night. Each cycle moves through light sleep (N1, N2), deep sleep (N3), and REM sleep (the dreaming stage). Waking at the end of a cycle feels much better than waking in the middle of one.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why does the calculator add 15 minutes?</h4>
+              <p>Most people take about 10-20 minutes to fall asleep after lying down. The calculator uses 15 minutes as an average so that your cycle timing is based on when you actually fall asleep, not when you get into bed.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How much sleep do adults need?</h4>
+              <p>Adults generally need 7-9 hours of sleep (5-6 cycles). The absolute minimum for maintaining cognitive function is about 6 hours (4 cycles). The right amount varies by person, so aim for the duration that leaves you alert during the day.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is the 90-minute cycle accurate for everyone?</h4>
+              <p>The 90 minutes is an average. Individual cycles can range from 80 to 120 minutes, and cycles earlier in the night tend to differ from those later on. Still, 90 minutes works well as a practical estimate for most people.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why do I feel groggy when waking up mid-cycle?</h4>
+              <p>Waking during deep sleep (N3) causes sleep inertia, a state where the brain hasn't fully transitioned out of deep sleep. This can leave you feeling foggy and sluggish for up to 30 minutes after waking.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How long should a nap be?</h4>
+              <p>A 20-30 minute power nap is ideal because you stay in light sleep and wake easily. If you want a longer rest, aim for a full 90 minutes (one complete cycle) to avoid waking during deep sleep.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I train myself to wake up without an alarm?</h4>
+              <p>Yes. Maintaining a consistent sleep and wake schedule for 2-3 weeks helps your internal clock adjust. Using the sleep calculator to align your bedtime with full cycles makes it more likely you will wake naturally before your alarm.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What if I can't fall asleep?</h4>
+              <p>If you haven't fallen asleep within 20 minutes, get up and do a calm activity until you feel drowsy, then return to bed. Warm herbal tea, meditation, and gentle stretching before bed can also help you fall asleep faster.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does sleeping in on weekends fix sleep debt?</h4>
+              <p>Weekend catch-up sleep can relieve short-term fatigue but doesn't fully repay accumulated sleep debt. It can also disrupt your Monday morning routine. Keeping your weekend and weekday wake times within an hour of each other is a better long-term strategy.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does this work on mobile devices?</h4>
+              <p>Yes. This sleep calculator works on any device with a web browser, including smartphones and tablets. No app installation is required.</p>
+            </div>
           </div>
         </div>
       </section>

@@ -622,30 +622,85 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Character Counter?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A character counter is a text analysis tool that counts the number of characters, words, sentences, and paragraphs in your text. This tool is essential for writers, students, social media managers, and anyone who needs to meet specific text length requirements. Whether you are writing tweets, essays, meta descriptions, or SMS messages, accurate character counting helps you stay within limits.</p>
+          <p>A character counter is a real-time text analysis tool that tracks the number of characters, words, sentences, paragraphs, and bytes in your text. Writers, students, marketers, and developers rely on it whenever they need to meet specific length requirements. From tweets and Instagram captions to meta descriptions and SMS messages, knowing your exact character count helps you communicate effectively within every platform's limits.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Real-time character count with and without spaces</li>
+            <li>Word count, sentence count, line count, and paragraph count displayed simultaneously</li>
+            <li>Byte count (UTF-8) for SMS and database field size checks</li>
+            <li>Estimated reading time and speaking time</li>
+            <li>One-click copy and clear buttons for convenience</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>Type or paste your text into the input area</li>
-            <li>View real-time counts for characters, words, sentences, and paragraphs</li>
-            <li>Toggle options to include or exclude spaces in character count</li>
-            <li>Check reading time and speaking time estimates</li>
-            <li>Use the copy or clear buttons for convenience</li>
+            <li>All metrics update instantly as you type: characters, words, sentences, and more</li>
+            <li>Check the byte count if you need to stay within SMS or database limits</li>
+            <li>Use the copy button to copy your text to the clipboard, or the clear button to reset</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Staying within Twitter/X's 280-character limit when composing posts</li>
+            <li>Checking Instagram caption length against the 2,200-character maximum</li>
+            <li>Writing SEO meta descriptions within the recommended 155-160 characters</li>
+            <li>Verifying SMS message byte count before sending (160 chars for ASCII, 70 for Unicode)</li>
+            <li>Meeting essay or report word count requirements for school or work</li>
+            <li>Estimating presentation speaking time based on word count</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Different platforms define character limits differently; always check whether spaces are included</li>
+            <li>In UTF-8, standard ASCII characters use 1 byte while many other scripts use 2-4 bytes per character</li>
+            <li>Emojis count as one character but can take 4 or more bytes; keep this in mind for byte-limited contexts</li>
+            <li>Line breaks (Enter key) are included in the characters-with-spaces count</li>
+            <li>Reading time estimates are based on an average adult reading speed of 200-250 words per minute</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: What is the difference between characters with and without spaces?</h4>
-              <p>Characters with spaces counts every single character including spaces between words. Characters without spaces counts only letters, numbers, and punctuation. Different platforms have different requirements - Twitter counts spaces, while some SMS services may not. Always check your specific platform requirements.</p>
+              <p>Characters with spaces includes every character: letters, numbers, punctuation, spaces, and line breaks. Characters without spaces excludes whitespace characters. Most social media platforms and cover letters count spaces, but certain SMS services may not.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What are common character limits I should know?</h4>
-              <p>Twitter/X posts: 280 characters. Instagram captions: 2,200 characters. Meta descriptions for SEO: 155-160 characters. SMS messages: 160 characters (or 70 for Unicode). LinkedIn posts: 3,000 characters. Facebook posts: 63,206 characters. Always verify current limits as platforms may update them.</p>
+              <h4 class="font-medium">Q: What does byte count mean?</h4>
+              <p>A byte is a unit of digital data. In UTF-8 encoding, English letters and numbers are 1 byte each, while characters from other scripts (such as Korean, Chinese, or Japanese) can be 2-3 bytes each. Byte count is important for SMS messaging, database storage limits, and API payload constraints.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How are words counted in this tool?</h4>
-              <p>Words are counted by identifying sequences of characters separated by spaces or punctuation. Hyphenated words like "well-known" may be counted as one or two words depending on the implementation. Numbers and abbreviations are typically counted as individual words. The word count helps estimate reading time at an average of 200-250 words per minute.</p>
+              <h4 class="font-medium">Q: How are words counted?</h4>
+              <p>Words are defined as sequences of non-whitespace characters separated by spaces, tabs, or line breaks. Hyphenated terms like "well-known" may count as one or two words depending on the context. The word count is useful for estimating reading time.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the Twitter/X character limit?</h4>
+              <p>Twitter (now X) allows up to 280 characters per post for standard accounts. URLs are automatically shortened to 23 characters regardless of their actual length. Premium subscribers may have higher limits.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do emojis count as one character?</h4>
+              <p>Most emojis count as a single character, but they can take 4 or more bytes in UTF-8 encoding. Some compound emojis (like family or flag emojis) are composed of multiple code points and may count as more than one character on certain platforms.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How is reading time estimated?</h4>
+              <p>Reading time is calculated based on the average adult reading speed of about 200-250 words per minute. Speaking time uses a slightly slower rate of about 130-150 words per minute. These are estimates and will vary depending on the complexity of the text.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the ideal length for a meta description?</h4>
+              <p>Google typically displays 155-160 characters of a meta description in search results. Content beyond this limit gets truncated with an ellipsis. Aim to communicate your key message within this range for the best SEO impact.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my text stored on any server?</h4>
+              <p>No. All character counting is done in real time within your browser. Your text is never transmitted to or stored on any server, ensuring complete privacy.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How are paragraphs counted?</h4>
+              <p>Paragraphs are identified by blocks of text separated by one or more blank lines (two consecutive line breaks). A single line break within text is treated as a new line within the same paragraph, not a new paragraph.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use this tool on my phone?</h4>
+              <p>Yes. The tool is fully responsive and works on smartphones, tablets, and desktops. All processing happens locally in your browser with no app installation required.</p>
             </div>
           </div>
         </div>

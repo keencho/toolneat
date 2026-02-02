@@ -589,22 +589,91 @@
 
       <!-- Description -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is HTML Minification?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">HTML Minifier Tool Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">HTML minification is the process of reducing file size while maintaining functionality. By removing unnecessary whitespace, line breaks, and comments, you can improve web page loading speed.</p>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Benefits</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li>Reduced file size (typically 10-30%)</li>
-            <li>Faster page load times</li>
-            <li>Lower bandwidth costs</li>
-            <li>Improved SEO scores</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is HTML Minification?</h3>
+          <p>HTML minification is the process of removing unnecessary characters from HTML code without changing its functionality. Whitespace, line breaks, indentation, and comments make code easier for humans to read, but browsers do not need them to render the page. By stripping out these extra characters, you reduce file size and improve page load times. Typical HTML files see a 10-30% size reduction after minification, with heavily commented or deeply indented files benefiting the most.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Removes unnecessary whitespace and line breaks to minimize file size</li>
+            <li>Strips HTML comments automatically</li>
+            <li>Merges consecutive whitespace into a single space</li>
+            <li>Automatically preserves whitespace inside pre, code, and textarea tags</li>
+            <li>Displays real-time before/after size comparison with reduction percentage</li>
+            <li>Copy to clipboard and file download support</li>
           </ul>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Notes</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
-            <li>Whitespace in pre, code, textarea tags is preserved</li>
-            <li>Minified code is harder to read</li>
-            <li>Keep the original source for development</li>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Paste or type your HTML code into the input area on the left.</li>
+            <li>Click the "Minify" button to generate the compressed output on the right.</li>
+            <li>Review the size information above the result to see original size, minified size, and reduction percentage.</li>
+            <li>Use the "Copy" button to copy to clipboard, or "Download" to save as a file.</li>
+            <li>Click "Reset" to clear both input and output areas when needed.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Optimizing HTML files before deploying to production for faster page loads</li>
+            <li>Reducing email template size to meet email client size limits</li>
+            <li>Compressing static HTML before uploading to a CDN</li>
+            <li>Improving web performance scores (PageSpeed Insights, Lighthouse)</li>
+            <li>Shrinking embedded HTML widgets and ad code snippets</li>
           </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Always keep a copy of your original source code. Minified code is difficult to read and modify.</li>
+            <li>Whitespace inside pre, code, and textarea tags is meaningful content, so this tool automatically preserves those areas.</li>
+            <li>If your HTML contains inline CSS or JavaScript, HTML minification alone may not be sufficient. Use dedicated CSS and JS minifiers for those parts.</li>
+            <li>Always test the minified output in a browser. In rare cases, whitespace removal can affect layouts that depend on inline-block spacing.</li>
+            <li>HTML minification and server-side compression (Gzip, Brotli) are complementary. Apply both for the best results.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: How much size reduction can I expect from HTML minification?</h4>
+              <p>It depends on your coding style, but typically 10-30%. Files with deep indentation, many comments, and verbose formatting will see the largest reductions.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can minification break my web page?</h4>
+              <p>In most cases, no. However, layouts that rely on whitespace between inline-block elements may display differently. Always verify the minified output in a browser to be safe.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does this tool minify content inside pre tags?</h4>
+              <p>No. Whitespace inside pre, code, and textarea elements is considered meaningful content. This tool automatically detects and preserves those sections.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why are HTML comments removed?</h4>
+              <p>HTML comments are not used by browsers for rendering but still get transmitted as part of the file. Removing them reduces file size and also prevents development notes from being exposed in the source code.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does this tool also minify CSS and JavaScript?</h4>
+              <p>This tool focuses on HTML structure only. For inline CSS in style tags or JavaScript in script tags, dedicated CSS and JS minifiers will produce better results.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: If my server uses Gzip, do I still need HTML minification?</h4>
+              <p>Yes. They are complementary techniques. Minifying HTML first removes unnecessary characters, which then allows Gzip to achieve even better compression ratios. Using both together yields the best performance.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I reverse the minification process?</h4>
+              <p>You can use an HTML beautifier to add indentation and line breaks back. However, original comments and specific whitespace patterns cannot be recovered, so always keep a backup of your source code.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my HTML data sent to a server?</h4>
+              <p>No. All minification happens locally in your browser using JavaScript. Your code never leaves your computer, making it safe to use with sensitive or proprietary HTML.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I verify that minified HTML works the same as the original?</h4>
+              <p>Open both versions in a browser and compare them visually. For important projects, use automated testing tools to compare DOM structures, or test in a staging environment before deploying.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can this tool handle large HTML files?</h4>
+              <p>Since processing happens in your browser, files of several megabytes can be handled without issues. For very large files, processing may take a moment. For build pipelines, consider using HTML minification plugins for Webpack, Gulp, or similar tools.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

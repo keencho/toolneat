@@ -589,36 +589,89 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About Speech Recognition</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Speech to Text?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">This tool uses the Web Speech API to convert your voice to text in real-time. It's perfect for taking meeting notes, transcribing interviews, or hands-free typing.</p>
+          <p>Speech to Text (STT) is a technology that converts spoken words into written text in real time. This tool uses the Web Speech API built into your browser, so there is nothing to install. It is especially useful for meeting notes, interview transcription, dictation, and quick memos whenever typing on a keyboard is inconvenient.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li>Select your language from the dropdown</li>
-            <li>Click the microphone button</li>
-            <li>Allow microphone access in your browser</li>
-            <li>Start speaking - text appears in real-time</li>
-            <li>Click again to stop recording</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Real-time conversion</strong> - Text appears on screen as you speak</li>
+            <li><strong>Multi-language support</strong> - Recognizes English, Korean, Japanese, Chinese, and more</li>
+            <li><strong>Continuous recognition</strong> - Keeps listening until you stop it</li>
+            <li><strong>Editable output</strong> - Edit or copy the recognized text directly</li>
+            <li><strong>Privacy-friendly</strong> - No voice data is sent to this website's servers</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select the recognition language from the dropdown</li>
+            <li>Click the microphone button to start</li>
+            <li>Allow microphone access when prompted by the browser</li>
+            <li>Speak clearly toward the microphone</li>
+            <li>Watch your words appear as text in real time</li>
+            <li>Click the microphone button again to stop</li>
+            <li>Copy or edit the resulting text for your needs</li>
           </ol>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">FAQ</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Meeting notes</strong> - Capture meeting discussions as text in real time</li>
+            <li><strong>Interview transcription</strong> - Quickly turn interviews into written records</li>
+            <li><strong>Lecture notes</strong> - Automatically convert lecture content to text while you listen</li>
+            <li><strong>Quick memos</strong> - Record thoughts and ideas by speaking rather than typing</li>
+            <li><strong>Accessibility</strong> - Provides text input for users who have difficulty using a keyboard</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>A quiet environment significantly improves recognition accuracy</li>
+            <li>Keep the microphone about 15-30 cm from your mouth</li>
+            <li>Speaking at a moderate pace produces better results than rushing</li>
+            <li>An external microphone (headset or USB mic) can improve quality</li>
+            <li>Breaking long speech into medium-length sentences helps accuracy</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Which browsers are supported?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Chrome, Edge, and Safari work best. Firefox has limited Web Speech API support.</p>
+              <h4 class="font-medium">Q: Which browsers are supported?</h4>
+              <p>Chrome and Edge offer the best experience. Safari is supported but may have limited features. Firefox currently has incomplete Web Speech API support.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Why is accuracy low?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Speak clearly in a quiet environment, close to your microphone. Using an external microphone can also improve results.</p>
+              <h4 class="font-medium">Q: How can I improve accuracy?</h4>
+              <p>Speak clearly in a quiet environment and position the microphone close to your mouth. Minimize background noise and consider using an external microphone. For technical terms, slowing down your speech helps.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is my voice data sent to servers?</h4>
-              <p class="text-gray-600 dark:text-gray-400">The Web Speech API uses your browser's built-in speech recognition. Depending on your browser, it may use cloud services, but no data is sent to our servers.</p>
+              <h4 class="font-medium">Q: Is my voice data sent to a server?</h4>
+              <p>No voice data is sent to this website's servers. However, the Web Speech API may use cloud-based speech recognition services from Google or Apple depending on your browser.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Does it work offline?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Most browsers require an internet connection. Some devices support offline speech recognition.</p>
+              <h4 class="font-medium">Q: Does it work offline?</h4>
+              <p>Most browsers require an internet connection for speech recognition. Some newer Android devices support offline recognition, but on desktop browsers an active internet connection is generally needed.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: I allowed microphone access but it still doesn't work</h4>
+              <p>Click the lock icon in your browser's address bar and confirm that microphone permission is set to "Allow." If another application is using the microphone, close it first and try again.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can it recognize numbers and special characters?</h4>
+              <p>Speech recognition primarily outputs regular text. Numbers may be transcribed as words or digits depending on context. For exact special characters, manually edit the output text.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why does the text keep changing as I speak?</h4>
+              <p>The speech engine continuously analyzes context and refines its output. Interim results are displayed first and updated to more accurate final results as your sentence progresses. This is normal behavior.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can it distinguish between different speakers?</h4>
+              <p>The Web Speech API does not support speaker diarization (separating different voices). If multiple people speak at once, accuracy drops. It works best when one person speaks at a time.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I save the results to a file?</h4>
+              <p>You can copy the recognized text (Ctrl+C or Cmd+C) and paste it into any text editor or document. The tool itself does not offer a file download feature, but copying works just as well.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it work on mobile devices?</h4>
+              <p>Yes. You can use it on smartphones through supported browsers like Chrome or Safari. It uses the built-in microphone on your device, so no extra equipment is needed.</p>
             </div>
           </div>
         </div>

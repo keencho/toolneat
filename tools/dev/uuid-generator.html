@@ -630,18 +630,46 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">UUID란?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">UUID 생성기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>UUID(Universally Unique Identifier)는 전역적으로 고유한 128비트 식별자입니다. 중앙 서버 없이도 분산 시스템에서 고유한 ID를 생성할 수 있어 데이터베이스 기본키, API 트랜잭션 ID, 파일 이름, 세션 ID 등에 널리 사용됩니다. 표준 형식은 8-4-4-4-12 형태의 32자 16진수 문자열입니다 (예: 550e8400-e29b-41d4-a716-446655440000).</p>
+          <p>UUID(Universally Unique Identifier)는 전역적으로 고유한 128비트 식별자입니다. 중앙 서버 없이도 분산 시스템에서 충돌 걱정 없이 고유한 ID를 만들 수 있어 소프트웨어 개발에서 광범위하게 활용됩니다. 표준 형식은 8-4-4-4-12 패턴의 32자리 16진수 문자열이며(예: 550e8400-e29b-41d4-a716-446655440000), 이 도구에서는 v7, v4, v1 세 가지 버전과 다양한 포맷 옵션을 지원합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>세 가지 UUID 버전:</strong> v7(시간순 정렬, 최신 표준), v4(완전 랜덤), v1(타임스탬프+MAC 기반)을 지원합니다.</li>
+            <li><strong>포맷 옵션:</strong> 대문자/소문자 전환과 하이픈 포함/제거를 선택할 수 있습니다.</li>
+            <li><strong>대량 생성:</strong> 한 번에 최대 100개까지 UUID를 일괄 생성하고 복사할 수 있습니다.</li>
+            <li><strong>원클릭 복사:</strong> 생성된 UUID를 버튼 한 번으로 클립보드에 복사합니다.</li>
+            <li><strong>브라우저 내 처리:</strong> 모든 생성이 브라우저에서 이루어지므로 서버에 데이터가 전송되지 않습니다.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>UUID 버전을 선택합니다: v7(시간순 정렬), v4(완전 랜덤), v1(타임스탬프 기반)</li>
-            <li>형식(소문자/대문자)과 구분자(하이픈) 옵션을 설정합니다.</li>
-            <li>새로고침 버튼을 클릭하거나 옵션을 변경하면 새 UUID가 생성됩니다.</li>
-            <li>복사 버튼으로 생성된 UUID를 클립보드에 복사합니다.</li>
-            <li>여러 개가 필요하면 대량 생성 기능을 사용하세요 (최대 100개).</li>
+            <li>페이지를 열면 자동으로 UUID가 하나 생성됩니다.</li>
+            <li>UUID 버전을 선택합니다: v7(데이터베이스 권장), v4(순수 랜덤), v1(타임스탬프 기반)</li>
+            <li>형식(소문자/대문자)과 구분자(하이픈 포함/제거) 옵션을 설정합니다.</li>
+            <li>새로고침 버튼을 클릭하면 새 UUID가 즉시 생성됩니다.</li>
+            <li>복사 버튼으로 클립보드에 복사하여 사용합니다.</li>
+            <li>여러 개가 필요하면 수량을 지정하고 대량 생성 버튼을 클릭하세요.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>데이터베이스 기본키:</strong> 테이블의 Primary Key로 UUID를 사용하면 분산 데이터베이스에서도 충돌 없이 레코드를 생성할 수 있습니다.</li>
+            <li><strong>API 트랜잭션 ID:</strong> 각 API 요청에 고유 UUID를 부여하여 로그 추적과 디버깅을 용이하게 합니다.</li>
+            <li><strong>파일 이름 생성:</strong> 업로드 파일의 이름을 UUID로 변환하면 파일명 충돌을 방지할 수 있습니다.</li>
+            <li><strong>세션 관리:</strong> 웹 애플리케이션의 세션 ID나 사용자 토큰으로 UUID를 활용합니다.</li>
+            <li><strong>테스트 데이터:</strong> 개발 및 테스트 환경에서 더미 데이터의 고유 식별자로 사용합니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>데이터베이스 인덱스 성능을 고려한다면 시간순 정렬이 가능한 v7을 사용하세요. B-Tree 인덱스에서 삽입 성능이 크게 향상됩니다.</li>
+            <li>보안 토큰 용도라면 v4를 사용하세요. 완전 랜덤이라 예측이 불가능합니다.</li>
+            <li>UUID는 암호학적으로 안전한 crypto.getRandomValues()를 사용하여 생성됩니다.</li>
+            <li>하이픈을 제거하면 32자로 줄어들어 저장 공간을 절약할 수 있지만, 가독성은 떨어집니다.</li>
+            <li>UUID를 정수형 인덱스 대신 사용하면 저장 공간은 더 필요하지만, 분산 환경에서의 장점이 이를 상쇄합니다.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
           <div class="space-y-4">
@@ -651,11 +679,39 @@
             </div>
             <div>
               <h4 class="font-medium">Q: UUID가 중복될 가능성은 없나요?</h4>
-              <p>이론적으로는 가능하지만 확률이 극히 낮습니다. v4 UUID의 경우 103조 개를 생성해야 50% 확률로 중복이 발생합니다. 실질적으로 중복 걱정 없이 사용할 수 있습니다.</p>
+              <p>이론적으로는 가능하지만 확률이 극히 낮습니다. v4 UUID의 경우 약 2.71경(quintillion) 개를 생성해야 50% 확률로 중복이 발생합니다. 실무에서는 중복을 걱정할 필요가 없습니다.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: 하이픈을 제거해도 되나요?</h4>
-              <p>네, 하이픈은 가독성을 위한 것으로 필수는 아닙니다. 저장 공간을 절약하거나 URL에서 사용할 때는 하이픈 없이 32자로 사용하기도 합니다.</p>
+              <p>네, 하이픈은 가독성을 위한 것으로 필수가 아닙니다. 저장 공간을 절약하거나 URL에서 사용할 때는 하이픈 없이 32자로 사용하기도 합니다. 대부분의 라이브러리와 시스템에서 양쪽 형식 모두 인식합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: UUID v7이 v4보다 나은 이유는 무엇인가요?</h4>
+              <p>v7은 앞부분에 타임스탬프가 포함되어 시간순 정렬이 가능합니다. 데이터베이스에서 B-Tree 인덱스의 순차 삽입 성능이 크게 향상되고, 생성 시간을 대략적으로 알 수 있는 장점이 있습니다. RFC 9562에서 공식 표준화되었습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: UUID를 Primary Key로 사용하면 성능 문제가 있나요?</h4>
+              <p>v4 UUID는 완전 랜덤이라 B-Tree 인덱스에서 무작위 위치에 삽입되어 성능이 저하될 수 있습니다. 이 문제를 해결하려면 시간순 정렬이 가능한 v7을 사용하거나, 별도의 auto-increment 컬럼을 클러스터드 인덱스로 사용하는 방법이 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: UUID와 GUID는 같은 것인가요?</h4>
+              <p>사실상 같습니다. GUID(Globally Unique Identifier)는 Microsoft에서 사용하는 용어이고, UUID는 RFC 표준 용어입니다. 내부 구조와 생성 방식은 동일합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 생성된 UUID의 보안성은 어떤가요?</h4>
+              <p>이 도구는 브라우저의 crypto.getRandomValues() API를 사용하여 암호학적으로 안전한 난수를 생성합니다. v4와 v7 모두 충분한 랜덤 비트를 포함하고 있어 예측이 불가능합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: UUID를 어떤 프로그래밍 언어에서 사용할 수 있나요?</h4>
+              <p>대부분의 주요 언어에서 UUID 라이브러리를 지원합니다. Python의 uuid 모듈, Java의 java.util.UUID, JavaScript의 crypto.randomUUID(), Go의 google/uuid 등을 사용할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: UUID의 각 버전별 구조는 어떻게 다른가요?</h4>
+              <p>v1은 타임스탬프(60비트)+클럭시퀀스(14비트)+노드(48비트), v4는 122비트가 모두 랜덤, v7은 타임스탬프(48비트)+랜덤(74비트)으로 구성됩니다. 버전 정보는 7번째 옥텟의 상위 4비트에 담깁니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 대량 생성된 UUID의 고유성은 보장되나요?</h4>
+              <p>네, 각 UUID는 독립적으로 생성되며 암호학적 난수를 사용합니다. 100개를 한꺼번에 생성해도 중복될 확률은 사실상 0에 가깝습니다. v7의 경우 타임스탬프까지 포함되어 있어 고유성이 더욱 강화됩니다.</p>
             </div>
           </div>
         </div>

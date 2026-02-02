@@ -584,20 +584,62 @@
           <div id="nameList"></div>
         </div>
       </div>
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4">자주 묻는 질문</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 이 이름들은 실제로 사용되나요?</h4>
-            <p>네, 생성되는 이름들은 실제 한국에서 많이 사용되는 성과 이름을 조합한 것입니다.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 한자는 어떻게 생성되나요?</h4>
-            <p>각 한글 이름에 대해 일반적으로 사용되는 한자를 매칭하여 표시합니다. 실제 한자는 다를 수 있습니다.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 특정 성(姓)을 지정할 수 있나요?</h4>
-            <p>네, 설정에서 원하는 성을 선택하면 해당 성으로만 이름이 생성됩니다. "랜덤"을 선택하면 다양한 성이 사용됩니다.</p>
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">한국 이름 생성기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">한국 이름 생성기는 실제 한국에서 사용되는 성과 이름을 조합하여 자연스러운 한국식 이름을 만들어주는 도구입니다. 소설이나 시나리오에 등장하는 캐릭터 이름이 필요하거나, 게임 닉네임에 한국 이름을 사용하고 싶거나, 한국 문화에 관심 있는 외국인이 한국식 이름을 체험해 보고 싶을 때 유용합니다. 한글 이름과 함께 대응하는 한자도 표시되어 이름의 의미를 파악할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>실제 한국에서 사용되는 성과 이름 데이터 기반 생성</li>
+            <li>성별(남성, 여성, 혼합) 선택 가능</li>
+            <li>특정 성(姓)을 지정하거나 랜덤 선택</li>
+            <li>한 번에 여러 개의 이름 동시 생성</li>
+            <li>각 이름에 대응하는 한자(漢字) 표시</li>
+            <li>이름의 뜻(한자 의미) 함께 제공</li>
+            <li>생성된 이름 복사 기능</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>성별을 선택합니다 (남성, 여성, 또는 혼합)</li>
+            <li>원하는 성(姓)을 드롭다운에서 선택하거나 '랜덤'으로 둡니다</li>
+            <li>생성할 이름 개수를 설정합니다</li>
+            <li>'이름 생성' 버튼을 클릭합니다</li>
+            <li>생성된 이름 목록에서 한글 이름, 한자, 의미를 확인합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>소설, 웹소설, 시나리오의 캐릭터 이름 짓기</li>
+            <li>게임이나 온라인 서비스에서 한국식 닉네임 사용하기</li>
+            <li>한국어를 공부하는 외국인이 한국식 이름 체험하기</li>
+            <li>만화, 웹툰, 애니메이션 등 창작물의 등장인물 작명</li>
+            <li>역할극(RP)이나 TRPG에서 한국인 캐릭터 이름 만들기</li>
+            <li>아이 이름을 고민할 때 참고용으로 다양한 이름 살펴보기</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>생성되는 이름은 실제 사용되는 이름 데이터를 기반으로 하지만, 실존 인물과의 관련은 없습니다</li>
+            <li>한자 뜻은 일반적으로 대응되는 한자를 매칭한 것이며, 실제 한자는 다를 수 있습니다</li>
+            <li>같은 한글 이름이라도 한자에 따라 의미가 달라질 수 있습니다</li>
+            <li>한국의 상위 20개 성(김, 이, 박, 최 등)을 기반으로 합니다</li>
+            <li>공식적인 작명이 필요한 경우에는 전문 작명가와 상담하시기 바랍니다</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div><h4 class="font-medium">Q: 생성되는 이름은 실제로 사용되는 이름인가요?</h4><p>네, 실제 한국에서 많이 사용되는 성과 이름 데이터를 조합하여 생성합니다. 다만 조합 자체가 실존 인물의 이름과 일치하는 것은 우연입니다.</p></div>
+            <div><h4 class="font-medium">Q: 한자는 어떤 기준으로 매칭되나요?</h4><p>각 한글 이름 음절에 대해 일반적으로 널리 사용되는 한자를 자동 매칭합니다. 같은 음절이라도 여러 한자가 가능하므로 참고용으로 활용해 주세요.</p></div>
+            <div><h4 class="font-medium">Q: 특정 성(姓)을 지정할 수 있나요?</h4><p>네, 드롭다운 메뉴에서 원하는 성을 선택하면 해당 성으로만 이름이 생성됩니다. '랜덤'을 선택하면 상위 20개 성 중 무작위로 선택됩니다.</p></div>
+            <div><h4 class="font-medium">Q: 한 번에 몇 개의 이름을 생성할 수 있나요?</h4><p>설정에서 생성 개수를 조절할 수 있습니다. 여러 개를 한꺼번에 생성하여 비교해 볼 수 있습니다.</p></div>
+            <div><h4 class="font-medium">Q: 영어 표기(로마자)도 제공되나요?</h4><p>현재는 한글과 한자 표기를 제공합니다. 로마자 표기는 추후 업데이트를 검토 중입니다.</p></div>
+            <div><h4 class="font-medium">Q: 생성된 이름을 상업적으로 사용해도 되나요?</h4><p>생성된 이름 자체에 저작권은 없으므로 소설, 게임 등에 자유롭게 사용할 수 있습니다. 다만 실존 인물과 우연히 일치할 수 있으니 주의하세요.</p></div>
+            <div><h4 class="font-medium">Q: 3글자가 아닌 이름도 생성되나요?</h4><p>한국 이름은 주로 성 1자 + 이름 2자로 구성됩니다. 이 도구는 가장 일반적인 3글자 형식의 이름을 생성합니다.</p></div>
+            <div><h4 class="font-medium">Q: 외국인도 한국 이름을 가질 수 있나요?</h4><p>물론입니다. 한국어를 공부하거나 한국에 거주하는 외국인들이 한국식 이름을 사용하는 경우가 많습니다. 이 도구로 마음에 드는 이름을 찾아보세요.</p></div>
+            <div><h4 class="font-medium">Q: 이름의 뜻이 중요한가요?</h4><p>한국 문화에서 이름의 한자 뜻은 매우 중요하게 여겨집니다. 좋은 의미를 가진 한자를 선택하여 이름을 짓는 것이 전통입니다.</p></div>
+            <div><h4 class="font-medium">Q: 아이 이름 짓기에 활용해도 되나요?</h4><p>참고용으로는 활용할 수 있지만, 실제 아이의 공식 이름을 지을 때는 작명 전문가와 상담하시는 것을 권장합니다.</p></div>
           </div>
         </div>
       </section>

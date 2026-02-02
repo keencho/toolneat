@@ -1049,41 +1049,89 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About Coin Flip</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Coin Flip?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>The Coin Flip tool is a simple yet fair way to randomly decide between two options. Instead of using a real coin, this virtual coin allows you to make quick decisions anytime, anywhere.</p>
-          <p class="mt-3">Featuring realistic 3D animation that mimics a real coin toss, you can also flip multiple coins at once and track your statistics over time.</p>
+          <p>Coin Flip is a virtual coin toss tool that helps you make fair, random decisions between two options instantly. Instead of searching for a physical coin, simply click and let the tool decide for you. With a realistic 3D spinning animation, built-in statistics tracking, and the option to flip multiple coins at once, it brings both fun and functionality to everyday decision-making.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Realistic 3D coin flip animation for an authentic tossing experience</li>
+            <li>Support for flipping 1, 2, 5, or 10 coins simultaneously</li>
+            <li>Automatic tracking of cumulative heads/tails counts and percentages</li>
+            <li>Sound effect toggle for audio feedback on each flip</li>
+            <li>Statistics reset option to start fresh at any time</li>
+            <li>Persistent storage so your stats survive page refreshes</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Select the number of coins to flip (1, 2, 5, or 10)</li>
-            <li>Click the 'Flip Coin' button</li>
-            <li>Watch the 3D animation and see your result</li>
-            <li>Check the statistics section for heads/tails counts and percentages</li>
-            <li>Toggle the sound button to turn sound effects on or off</li>
+            <li>Choose how many coins you want to flip (1, 2, 5, or 10)</li>
+            <li>Click the "Flip Coin" button or press the spacebar</li>
+            <li>Watch the 3D animation and see the result (heads or tails)</li>
+            <li>Review your cumulative statistics in the stats panel below</li>
+            <li>Toggle the sound icon to enable or mute flip sound effects</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Use Cases</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
           <ul class="list-disc list-inside space-y-2">
-            <li>Making decisions when you can't choose between two options</li>
-            <li>Determining turn order or teams in games</li>
-            <li>Probability experiments and statistics learning</li>
-            <li>Board games and tabletop RPGs</li>
+            <li>Settling everyday decisions when you cannot pick between two choices</li>
+            <li>Deciding who goes first or which team kicks off in sports and games</li>
+            <li>Running probability experiments in math and statistics classes</li>
+            <li>Making random selections during board games, tabletop RPGs, or card games</li>
+            <li>Choosing where to eat or what to watch in a fun, lighthearted way</li>
+            <li>Creating fair outcomes for bets or dare games among friends</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>The tool uses a software random number generator, guaranteeing an exact 50/50 probability</li>
+            <li>Small sample sizes may look skewed, but results converge to 50% as flips increase (Law of Large Numbers)</li>
+            <li>Statistics are saved to your browser's local storage and persist between sessions</li>
+            <li>Press the spacebar for quick, rapid-fire consecutive flips</li>
+            <li>When flipping multiple coins, each coin's result is determined independently</li>
           </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: Is the result truly random?</h4>
-              <p>Yes, the result uses your computer's random number generator, giving heads and tails each a 50% probability.</p>
+              <p>Yes. The tool uses the browser's Math.random() function, which ensures heads and tails each have exactly a 50% chance. This is actually more fair than a physical coin, which can have slight biases from weight distribution.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Are statistics saved?</h4>
-              <p>Statistics are saved in your browser's local storage and persist even after refreshing the page. You can reset them anytime using the Reset button.</p>
+              <h4 class="font-medium">Q: Are my statistics saved?</h4>
+              <p>Yes. Statistics are automatically saved to your browser's local storage. They persist even after you close the tab or refresh the page. Click the reset button to clear your stats whenever you like.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: What happens when I flip multiple coins?</h4>
-              <p>When you select multiple coins, they all flip simultaneously with slightly different timing. You'll see individual results for each coin and a summary of total heads and tails. All results count toward your statistics.</p>
+              <p>All selected coins flip simultaneously, and you see each individual result along with a summary of total heads and tails. Every coin outcome is recorded in your cumulative statistics.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: If I get heads several times in a row, is tails more likely next?</h4>
+              <p>No. Each coin flip is an independent event, meaning previous results have no influence on the next one. Even after 10 heads in a row, the probability of heads on the next flip remains exactly 50%. This common misconception is known as the "gambler's fallacy."</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the Law of Large Numbers?</h4>
+              <p>It is a mathematical principle stating that as the number of trials increases, the observed ratio converges toward the theoretical probability. Flip a coin 10 times and you might get 7:3, but flip it 10,000 times and the ratio will be very close to 50:50.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How does this compare to a real coin flip?</h4>
+              <p>A real coin can have subtle physical biases from uneven weight distribution, flipping technique, and landing surface. This tool eliminates all physical variables and delivers a mathematically perfect 50/50 result every time.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use keyboard shortcuts?</h4>
+              <p>Yes. Press the spacebar to flip coins without clicking the button. This is especially handy when you want to flip coins quickly in succession.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do my statistics carry over to other browsers or devices?</h4>
+              <p>No. Statistics are stored in the local storage of the specific browser you are using. If you switch to a different browser or device, your stats will start from zero. On the same browser, they persist between sessions.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: The sound effects are not playing. What should I check?</h4>
+              <p>Make sure the sound icon is toggled on. Also check your browser's site permissions and your system volume. Some browsers block auto-play audio until you interact with the page at least once.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does this tool work on mobile?</h4>
+              <p>Yes. The interface is fully responsive and works on smartphones and tablets. Tap the flip button to toss the coin. All processing happens locally in your browser with no data sent to any server.</p>
             </div>
           </div>
         </div>

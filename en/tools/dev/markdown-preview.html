@@ -788,38 +788,82 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Markdown?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Markdown Preview?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>Markdown is a lightweight markup language that converts plain text into HTML. It's widely used for developer documentation, README files, and blog posts. With simple syntax, you can easily create headings, lists, links, images, code blocks, and more.</p>
+          <p>Markdown Preview is an online tool that converts Markdown syntax into rendered HTML in real time. Markdown is a lightweight markup language widely used for writing documentation, README files, blog posts, and technical notes. This tool lets you type or paste Markdown in an editor and instantly see how it will look when published, making it ideal for drafting and proofreading content before sharing.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Supported Syntax</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
-            <li><strong>Headings:</strong> # H1, ## H2, ### H3, etc.</li>
-            <li><strong>Emphasis:</strong> **bold**, *italic*, ~~strikethrough~~</li>
-            <li><strong>Lists:</strong> - or * for unordered, 1. 2. 3. for ordered</li>
-            <li><strong>Checkboxes:</strong> - [ ] incomplete, - [x] complete (Task List)</li>
-            <li><strong>Links:</strong> [link text](URL)</li>
-            <li><strong>Images:</strong> ![alt text](image URL)</li>
-            <li><strong>Code:</strong> `inline code` or ```language code block``` (with syntax highlighting)</li>
-            <li><strong>Math:</strong> $inline math$ or $$block math$$ (MathJax/LaTeX)</li>
-            <li><strong>Blockquotes:</strong> > quoted text</li>
-            <li><strong>Tables:</strong> | Header1 | Header2 | GFM table format</li>
-            <li><strong>Horizontal rules:</strong> --- or ***</li>
+            <li><strong>Real-time preview:</strong> See rendered output as you type with no delay.</li>
+            <li><strong>Syntax highlighting:</strong> Code blocks display with language-specific color coding for readability.</li>
+            <li><strong>GFM support:</strong> Full GitHub Flavored Markdown including tables, task lists, and strikethrough.</li>
+            <li><strong>Math rendering:</strong> Inline and block LaTeX math expressions rendered via MathJax.</li>
+            <li><strong>HTML export:</strong> Download the rendered output as a standalone HTML file.</li>
+            <li><strong>Dark mode:</strong> Comfortable editing in both light and dark themes.</li>
+            <li><strong>Responsive layout:</strong> Split or stacked editor/preview layout adapts to screen size.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Type or paste your Markdown content into the editor on the left.</li>
+            <li>The preview panel on the right updates automatically as you edit.</li>
+            <li>Use the toolbar buttons to insert common elements like headings, bold, or links.</li>
+            <li>Toggle between split view and full-screen preview using the layout controls.</li>
+            <li>Click "Download HTML" to export a complete standalone HTML file.</li>
+            <li>Copy the rendered HTML output directly if you need to embed it elsewhere.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>README authoring:</strong> Draft GitHub or GitLab README files and verify formatting before committing.</li>
+            <li><strong>Blog drafting:</strong> Write blog posts in Markdown and preview the final rendered appearance.</li>
+            <li><strong>Documentation:</strong> Create technical documentation with code samples and check rendering accuracy.</li>
+            <li><strong>Note taking:</strong> Use Markdown for structured notes and export them as clean HTML.</li>
+            <li><strong>Email templates:</strong> Format content with headings and lists, then export for use in newsletters.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Use triple backticks with a language name (e.g., ```javascript) for syntax-highlighted code blocks.</li>
+            <li>Leave a blank line between paragraphs; single line breaks within a block are treated as spaces.</li>
+            <li>For LaTeX math, use single dollar signs for inline ($E=mc^2$) and double dollar signs for block equations.</li>
+            <li>All processing happens in your browser, so your content is never uploaded to any server.</li>
+            <li>Test your Markdown on different screen sizes to ensure tables and images render well on mobile.</li>
           </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium">Q: Where is Markdown used?</h4>
-              <p>Many platforms support Markdown including GitHub, GitLab, Notion, Slack, and Discord. It's the standard format for README files, technical documentation, and blog posts.</p>
+              <h4 class="font-medium">Q: Where is Markdown commonly used?</h4>
+              <p>Markdown is the standard format on platforms like GitHub, GitLab, Notion, Slack, and Discord. It is widely adopted for README files, technical documentation, wikis, and blog content.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Is my content sent to a server?</h4>
-              <p>No, all conversion happens locally in your browser. Your content is never transmitted externally and can be used safely with sensitive information.</p>
+              <p>No. All Markdown conversion is performed entirely in your browser. Your text never leaves your device, so you can safely work with confidential or sensitive material.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How do I use the exported HTML?</h4>
-              <p>Use the 'Download HTML' button to get a complete HTML file. You can upload this file to a web server or open it locally in your browser.</p>
+              <h4 class="font-medium">Q: How do I export my work?</h4>
+              <p>Click the "Download HTML" button to save a complete HTML file that includes styling. You can open it in any browser or upload it to a web server directly.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does the tool support tables?</h4>
+              <p>Yes. GitHub Flavored Markdown table syntax is fully supported. Use pipes (|) and hyphens (-) to define columns and alignment, and the preview will render a properly formatted table.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I include images in my Markdown?</h4>
+              <p>Yes. Use the syntax ![alt text](image URL) to embed images. The preview will display the image if the URL is publicly accessible. Local file paths will not work in the browser preview.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is GitHub Flavored Markdown (GFM)?</h4>
+              <p>GFM is an extension of standard Markdown used by GitHub. It adds features like task lists (- [x]), tables, strikethrough (~~text~~), and fenced code blocks with syntax highlighting.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why does my line break not appear in the preview?</h4>
+              <p>In Markdown, a single line break is treated as a space. To create a new paragraph, leave a blank line between blocks of text. For a forced line break within a paragraph, add two spaces at the end of the line.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use HTML inside Markdown?</h4>
+              <p>Yes, most Markdown renderers allow inline HTML. You can use tags like &lt;details&gt;, &lt;summary&gt;, or &lt;kbd&gt; for advanced formatting not covered by standard Markdown syntax.</p>
             </div>
           </div>
         </div>

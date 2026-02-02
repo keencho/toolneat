@@ -600,24 +600,62 @@
         <button id="refresh-btn" class="btn btn-primary w-full mt-6">새로고침</button>
       </div>
 
-      <!-- Description -->
-      <section class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">IP 주소란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">IP(Internet Protocol) 주소는 인터넷에 연결된 기기를 식별하는 고유한 숫자입니다. 공인 IP 주소는 인터넷에서 직접 접근 가능한 주소이며, 사설 IP 주소는 내부 네트워크에서만 사용됩니다.</p>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">IP 주소 종류</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li><strong>IPv4</strong>: 32비트 주소 (예: 192.168.1.1)</li>
-            <li><strong>IPv6</strong>: 128비트 주소 (예: 2001:db8::1)</li>
-            <li><strong>공인 IP</strong>: 인터넷에서 고유한 주소</li>
-            <li><strong>사설 IP</strong>: 내부 네트워크 전용 주소</li>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">IP(Internet Protocol) 주소는 인터넷에 연결된 모든 기기에 부여되는 고유한 식별 번호입니다. 우편 주소처럼 데이터가 올바른 목적지로 전달되도록 하는 역할을 합니다. IP 조회 도구를 사용하면 현재 사용 중인 공인 IP 주소를 확인하고, 해당 IP의 대략적인 위치, ISP 정보, 시간대 등을 한눈에 파악할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>현재 공인 IP 주소 자동 감지 및 표시</li>
+            <li>IP 기반 대략적 위치(국가, 지역, 도시) 조회</li>
+            <li>ISP(인터넷 서비스 제공자) 및 조직 정보 확인</li>
+            <li>시간대(Timezone) 정보 표시</li>
+            <li>IPv4 및 IPv6 주소 모두 지원</li>
+            <li>지도 위에 대략적 위치 시각적으로 표시</li>
           </ul>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">알아두세요</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
-            <li>VPN 사용 시 다른 IP가 표시될 수 있습니다</li>
-            <li>위치 정보는 대략적인 것이며 정확하지 않을 수 있습니다</li>
-            <li>ISP에 따라 IP 주소가 변경될 수 있습니다</li>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>페이지에 접속하면 자동으로 현재 IP 주소가 감지됩니다</li>
+            <li>IP 주소, 위치, ISP, 시간대 등 상세 정보가 표시됩니다</li>
+            <li>지도에서 대략적인 위치를 시각적으로 확인할 수 있습니다</li>
+            <li>필요한 정보를 복사하여 활용합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>VPN이나 프록시가 제대로 작동하는지 IP 주소로 확인하기</li>
+            <li>네트워크 문제 해결 시 현재 공인 IP 주소 파악하기</li>
+            <li>해외 출장이나 여행 중 현지 IP 정보 확인하기</li>
+            <li>웹 서비스 개발 시 접속자 IP 기반 테스트하기</li>
+            <li>IP 기반 접근 제한 설정 시 자신의 IP 확인하기</li>
+            <li>ISP 변경 후 새로운 IP 정보 확인하기</li>
           </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>표시되는 위치는 IP 데이터베이스 기반이므로 실제 위치와 다를 수 있습니다</li>
+            <li>VPN이나 프록시 사용 시 해당 서버의 IP와 위치가 표시됩니다</li>
+            <li>대부분의 가정용 인터넷은 동적 IP를 사용하여 주기적으로 변경됩니다</li>
+            <li>모바일 데이터 사용 시 Wi-Fi와 다른 IP가 표시될 수 있습니다</li>
+            <li>IP 주소만으로는 개인을 특정할 수 없으니 지나치게 걱정하지 않아도 됩니다</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div><h4 class="font-medium">Q: 공인 IP와 사설 IP의 차이는 무엇인가요?</h4><p>공인 IP는 인터넷에서 직접 접근 가능한 고유 주소이고, 사설 IP는 가정이나 사무실 내부 네트워크에서만 사용되는 주소입니다. 이 도구에서는 공인 IP를 조회합니다.</p></div>
+            <div><h4 class="font-medium">Q: IPv4와 IPv6는 무엇이 다른가요?</h4><p>IPv4는 32비트(예: 192.168.1.1) 형식이고, IPv6는 128비트(예: 2001:db8::1) 형식입니다. IPv4 주소가 부족해지면서 IPv6로 전환이 진행 중입니다.</p></div>
+            <div><h4 class="font-medium">Q: 표시된 위치가 정확하지 않은데 왜 그런가요?</h4><p>IP 위치 정보는 데이터베이스 기반 추정치이므로 도시 수준까지는 대략적으로 맞지만, 정확한 주소까지는 알 수 없습니다.</p></div>
+            <div><h4 class="font-medium">Q: VPN을 사용하면 어떤 IP가 표시되나요?</h4><p>VPN 서버의 IP 주소와 해당 서버의 위치가 표시됩니다. VPN이 정상 작동하는지 확인하는 용도로 활용할 수 있습니다.</p></div>
+            <div><h4 class="font-medium">Q: IP 주소가 계속 바뀌는 이유는 무엇인가요?</h4><p>대부분의 가정용 인터넷은 동적 IP를 할당합니다. ISP가 주기적으로 또는 라우터 재시작 시 새 IP를 부여하기 때문입니다.</p></div>
+            <div><h4 class="font-medium">Q: 다른 사람의 IP 주소도 조회할 수 있나요?</h4><p>이 도구는 현재 접속 중인 사용자의 공인 IP를 자동으로 감지합니다. 특정 IP를 직접 조회하는 기능은 제공하지 않습니다.</p></div>
+            <div><h4 class="font-medium">Q: IP 주소로 정확한 집 주소를 알 수 있나요?</h4><p>아닙니다. IP 주소로는 대략적인 지역(도시 수준)만 추정할 수 있으며, 정확한 주소는 ISP만 알 수 있습니다.</p></div>
+            <div><h4 class="font-medium">Q: 모바일과 Wi-Fi의 IP가 다른 이유는 무엇인가요?</h4><p>모바일 데이터는 통신사 네트워크를, Wi-Fi는 가정/사무실 인터넷을 사용하므로 서로 다른 공인 IP가 부여됩니다.</p></div>
+            <div><h4 class="font-medium">Q: 제 IP 정보가 저장되나요?</h4><p>이 도구는 외부 API를 통해 IP 정보를 조회하지만, 이 사이트에서 사용자의 IP 정보를 별도로 저장하지는 않습니다.</p></div>
+            <div><h4 class="font-medium">Q: ISP 정보는 어디에 활용되나요?</h4><p>ISP 정보는 네트워크 문제 진단, 인터넷 속도 비교, 또는 접속 환경 파악 등에 참고용으로 활용됩니다.</p></div>
+          </div>
         </div>
       </section>
     </div>

@@ -550,22 +550,32 @@
 
       <!-- Description Section -->
       <section class="mb-6 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Case Converter?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Case Converter Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>Case Converter is a tool that transforms text into various case formats. In programming, you need to use the appropriate case format for variable names, function names, constants, and more according to language conventions. This tool allows you to easily convert text to UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, and other formats.</p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is Case Converter?</h3>
+          <p>Case Converter is an online tool that instantly transforms text into various case formats. In programming, you must follow specific naming conventions for variables, functions, classes, and constants depending on the language. This tool supports 10 formats, from programming-specific styles like camelCase, PascalCase, snake_case, and kebab-case to general text formats like UPPERCASE, lowercase, and Title Case. It automatically detects the existing format of your text, so even text already written in snake_case converts cleanly to camelCase.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>10 Case Formats</strong> - Supports UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and dot.case.</li>
+            <li><strong>Real-time Conversion</strong> - Text is converted instantly as you type or select a format.</li>
+            <li><strong>Smart Word Splitting</strong> - Automatically recognizes existing formats like camelCase, snake_case, and kebab-case to split words accurately.</li>
+            <li><strong>Character and Word Count</strong> - Displays real-time character and word counts for your input.</li>
+            <li><strong>One-click Copy</strong> - Copies the converted result to your clipboard instantly.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Supported Case Formats</h3>
-          <ul class="list-disc list-inside space-y-1">
-            <li><strong>UPPERCASE</strong>: Convert all characters to uppercase</li>
-            <li><strong>lowercase</strong>: Convert all characters to lowercase</li>
-            <li><strong>Title Case</strong>: Capitalize the first letter of each word</li>
-            <li><strong>Sentence case</strong>: Capitalize only the first letter of each sentence</li>
-            <li><strong>camelCase</strong>: First word lowercase, capitalize subsequent words</li>
-            <li><strong>PascalCase</strong>: Capitalize the first letter of every word</li>
-            <li><strong>snake_case</strong>: Words joined by underscores, all lowercase</li>
-            <li><strong>kebab-case</strong>: Words joined by hyphens, all lowercase</li>
-            <li><strong>CONSTANT_CASE</strong>: Words joined by underscores, all uppercase</li>
-            <li><strong>dot.case</strong>: Words joined by dots, all lowercase</li>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>UPPERCASE</strong> - Converts all characters to uppercase. Used for emphasis and headings.</li>
+            <li><strong>lowercase</strong> - Converts all characters to lowercase. Useful for email addresses and URL normalization.</li>
+            <li><strong>Title Case</strong> - Capitalizes the first letter of each word. Best for titles and headings.</li>
+            <li><strong>Sentence case</strong> - Capitalizes only the first letter of each sentence. Standard paragraph style.</li>
+            <li><strong>camelCase</strong> - The standard format for JavaScript variables and functions.</li>
+            <li><strong>PascalCase</strong> - Commonly used for class names and React component names.</li>
+            <li><strong>snake_case</strong> - The standard in Python, Ruby, and database column names.</li>
+            <li><strong>kebab-case</strong> - Used for CSS class names, URL slugs, and HTML attributes.</li>
+            <li><strong>CONSTANT_CASE</strong> - Used for constant declarations to indicate immutable values.</li>
+            <li><strong>dot.case</strong> - Used in Java package names and configuration file keys.</li>
           </ul>
         </div>
       </section>
@@ -628,24 +638,66 @@
 
       <!-- FAQ Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Use Cases and Frequently Asked Questions</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Enter or paste the text you want to convert in the input field above.</li>
+            <li>Click the desired case format button (e.g., camelCase, snake_case).</li>
+            <li>The converted text appears instantly in the result field below.</li>
+            <li>Click the Copy button to copy the result to your clipboard.</li>
+            <li>To try another format, simply click a different button. Editing the input text automatically re-converts.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Code Refactoring</strong> - Batch-convert variable names when changing a project's naming convention.</li>
+            <li><strong>API Integration</strong> - Convert field names between backend (snake_case) and frontend (camelCase) formats.</li>
+            <li><strong>CSS Class Naming</strong> - Transform component names into kebab-case CSS class names.</li>
+            <li><strong>Document Titles</strong> - Standardize blog post or report titles to Title Case.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Text already in a specific format (e.g., myVariableName) is automatically split into words before converting.</li>
+            <li>Non-Latin characters remain unchanged for case conversions, but mixed text converts the Latin portions correctly.</li>
+            <li>Multi-line text can be converted at once.</li>
+            <li>Programming formats (camelCase, snake_case, etc.) produce a single identifier without spaces, so entering multiple words on one line works best.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium">Q: What's the difference between camelCase and PascalCase?</h4>
-              <p>camelCase starts the first word in lowercase and capitalizes the first letter of subsequent words (e.g., myVariableName). PascalCase capitalizes the first letter of every word (e.g., MyVariableName). In JavaScript, camelCase is typically used for variables and functions, while PascalCase is used for classes and components.</p>
+              <h4 class="font-medium">Q: What is the difference between camelCase and PascalCase?</h4>
+              <p>camelCase starts the first word in lowercase and capitalizes subsequent words (myVariableName). PascalCase capitalizes every word (MyVariableName). In JavaScript, camelCase is standard for variables and functions, while PascalCase is used for classes and React components.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Where is snake_case commonly used?</h4>
-              <p>snake_case is widely used in Python, Ruby, and PHP for variable and function names. It's also the standard naming convention for database table names and column names in many systems.</p>
+              <p>Python, Ruby, and PHP use snake_case for variable and function names. It is also the standard for database table and column names, and widely used in REST API JSON keys.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: When should I use kebab-case?</h4>
-              <p>kebab-case is commonly used for URLs, CSS class names, HTML attributes, and file names. Most programming languages don't allow hyphens in variable names because they're interpreted as minus operators, so kebab-case is mainly used outside of code.</p>
+              <p>kebab-case is used for URL slugs, CSS class names, HTML custom attributes, and file names. Hyphens are interpreted as minus operators in most languages, so it cannot be used as a variable name in code.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: When should I use CONSTANT_CASE?</h4>
-              <p>CONSTANT_CASE is used for constants that shouldn't change. In JavaScript, it's used with const declarations, in Python for global constants, and in Java for static final variables. Using this format makes it clear that the value is immutable.</p>
+              <p>Use it for constant declarations that should not change. JavaScript const, Python global constants, and Java static final variables all use this format to clearly signal immutability.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is dot.case used for?</h4>
+              <p>dot.case is used in Java package paths (com.example.app), configuration keys (app.config.debug), and object property access path notation.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I convert multiple lines at once?</h4>
+              <p>Yes. Multi-line input is supported and each line is processed. However, programming formats like camelCase merge all text into a single identifier, so single-line input is recommended for those.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between Title Case and Sentence case?</h4>
+              <p>Title Case capitalizes the first letter of every word (This Is A Title). Sentence case only capitalizes the first letter of the sentence (This is a sentence). Title Case suits headings, while Sentence case is better for body text.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it handle non-English text?</h4>
+              <p>Characters without uppercase/lowercase distinctions (like CJK characters) remain unchanged. English portions within mixed text are converted normally.</p>
             </div>
           </div>
         </div>

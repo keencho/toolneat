@@ -893,17 +893,31 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Cron Expression?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Cron Expression Generator Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A cron expression is a string format used in Unix/Linux systems to define scheduled tasks. It consists of 5 fields representing minute, hour, day of month, month, and day of week. Cron expressions are widely used for server administration, backup automation, periodic data processing, and other scheduling needs.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is a Cron Expression?</h3>
+          <p>A cron expression is a compact string format used in Unix and Linux environments to schedule recurring tasks. It consists of five fields -- minute, hour, day of month, month, and day of week -- and each field accepts numbers, ranges, or special characters to define exactly when a job should run. System administrators rely on cron expressions for everything from log rotation and database backups to cache clearing and health-check scripts. This tool lets you build cron expressions visually without memorizing the syntax, and it also works in reverse: paste an existing expression and get a plain-English explanation of what it does.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Visual Builder:</strong> Configure each field through dropdowns and buttons -- no manual typing required.</li>
+            <li><strong>Preset Templates:</strong> Apply common patterns like every minute, hourly, daily at midnight, or weekdays at 9 AM with a single click.</li>
+            <li><strong>Human-Readable Output:</strong> See exactly what your expression means in plain language as you build it.</li>
+            <li><strong>Expression Parser:</strong> Paste any cron expression to get a field-by-field breakdown of its schedule.</li>
+            <li><strong>One-Click Copy:</strong> Copy the generated expression to your clipboard for immediate use in crontab or config files.</li>
+            <li><strong>Quartz Extended Syntax:</strong> Supports L (Last), W (Weekday), and # (Nth) operators for frameworks like Spring and Quartz Scheduler.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>In Visual Builder mode, configure each field (minute, hour, day, month, weekday).</li>
-            <li>Use preset buttons for quick common configurations.</li>
-            <li>View the generated expression and human-readable description.</li>
-            <li>Click the copy button to copy the expression to clipboard.</li>
-            <li>In Parse Expression mode, enter an existing cron expression to see its meaning.</li>
+            <li>Choose between Visual Builder mode or Parse Expression mode at the top of the page.</li>
+            <li>In Visual Builder, set the minute, hour, day, month, and weekday fields using the dropdown selectors.</li>
+            <li>For quick setup, click a preset button such as "Every Minute," "Daily at Midnight," or "Weekdays at 9 AM."</li>
+            <li>Review the generated expression and its human-readable description displayed below.</li>
+            <li>In Parse Expression mode, type or paste an existing cron expression (e.g., <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 9 * * MON-FRI</code>).</li>
+            <li>Read through the field-by-field breakdown to understand the schedule.</li>
+            <li>Click the Copy button to save the expression to your clipboard.</li>
           </ol>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Cron Field Reference</h3>
@@ -946,44 +960,64 @@
             </table>
           </div>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Supported Syntax</h3>
-          <div class="space-y-3 text-sm">
-            <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <h4 class="font-medium mb-2">Vixie Cron Standard (Linux/Unix)</h4>
-              <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
-                <li>Month field: numbers (1-12) or names (JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)</li>
-                <li>Weekday field: numbers (0-6, 0=Sunday) or names (SUN, MON, TUE, WED, THU, FRI, SAT)</li>
-                <li>Example: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 9 * * MON-FRI</code> = Weekdays at 9am</li>
-              </ul>
-            </div>
-            <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <h4 class="font-medium mb-2">Quartz Extensions (Some Systems)</h4>
-              <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
-                <li><strong>L</strong> (Last): Last day. In day field, L = last day of month. In weekday field, 5L = last Friday</li>
-                <li><strong>W</strong> (Weekday): Nearest weekday. 15W = weekday nearest to the 15th</li>
-                <li><strong>#</strong> (Nth): Nth occurrence. 2#3 = third Tuesday</li>
-                <li class="text-amber-600 dark:text-amber-400">Note: These features are not supported in standard Unix cron</li>
-              </ul>
-            </div>
-          </div>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Server maintenance:</strong> Delete old log files every night at 3 AM (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 3 * * *</code>).</li>
+            <li><strong>Database backups:</strong> Run a full database dump every Sunday at midnight (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 0 * * 0</code>).</li>
+            <li><strong>Health monitoring:</strong> Check server status every 5 minutes and send a Slack alert on failure (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">*/5 * * * *</code>).</li>
+            <li><strong>Monthly reports:</strong> Generate and email a revenue report on the 1st of each month at 9 AM (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 9 1 * *</code>).</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Always double-check your expression before adding it to crontab. An accidental "every minute" job can overload your server quickly.</li>
+            <li>Server timezone may differ from your local timezone. Run <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">date</code> on the server to confirm before scheduling time-sensitive tasks.</li>
+            <li>Extended syntax (L, W, #) only works in Quartz-based schedulers. Standard Unix cron does not support these operators.</li>
+            <li>Both 0 and 7 represent Sunday in most cron implementations, but using 0 or SUN is safer for cross-platform compatibility.</li>
+            <li>For complex schedules, splitting them into multiple crontab entries is often easier to read and maintain than a single complicated expression.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium">Q: What does * mean?</h4>
-              <p>The asterisk (*) means "every value". For example, * in the minute field means every minute, and * in the hour field means every hour.</p>
+              <h4 class="font-medium">Q: What does the asterisk (*) mean?</h4>
+              <p>The asterisk represents "every possible value" for that field. An * in the minute field means every minute, in the hour field it means every hour, and so on.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: What does */5 mean?</h4>
-              <p>The slash (/) indicates an interval. */5 means "every 5 units". In the minute field, */5 runs at 0, 5, 10, 15... minutes.</p>
+              <p>The slash indicates a step value. */5 in the minute field means the job fires at minutes 0, 5, 10, 15, and so on -- essentially every 5 minutes.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What does 1-5 mean?</h4>
-              <p>The hyphen (-) indicates a range. In the weekday field, 1-5 means Monday through Friday.</p>
+              <h4 class="font-medium">Q: What is the difference between a hyphen (-) and a comma (,)?</h4>
+              <p>A hyphen defines a continuous range. For example, 1-5 in the weekday field covers Monday through Friday. A comma lists specific individual values: 1,3,5 means only Monday, Wednesday, and Friday.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I use names like MON or JAN?</h4>
-              <p>Yes, Vixie cron (Linux standard) supports JAN-DEC for months and SUN-SAT for weekdays. Names are case-insensitive.</p>
+              <h4 class="font-medium">Q: Can I use names like MON or JAN instead of numbers?</h4>
+              <p>Yes. Standard Vixie cron supports three-letter abbreviations -- JAN through DEC for months and SUN through SAT for weekdays. They are case-insensitive.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do L, W, and # work in all cron implementations?</h4>
+              <p>No. These are Quartz Scheduler extensions and are not available in standard Unix crontab. They work in Java Spring, Jenkins, and other Quartz-based systems.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How can I test a cron expression before deploying it?</h4>
+              <p>Use the Parse Expression mode in this tool to verify what your expression means. On the server, you can list registered jobs with <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">crontab -l</code> to review your entries.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can cron run tasks at second-level precision?</h4>
+              <p>Standard Unix cron supports minute-level precision at best. For second-level scheduling, use Quartz Scheduler (which has a 6- or 7-field format) or handle sub-minute timing within your script using sleep commands.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data sent to any server?</h4>
+              <p>No. Everything runs locally in your browser. Your expressions and configurations are never transmitted anywhere, so you can use this tool freely with sensitive scheduling data.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I register a cron job on my server?</h4>
+              <p>Open the crontab editor by running <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">crontab -e</code> in your terminal, then add a line with the cron expression followed by the command. For example: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0 3 * * * /home/user/backup.sh</code></p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between 0 and 7 in the weekday field?</h4>
+              <p>In most cron implementations, both 0 and 7 represent Sunday. However, behavior can vary across systems, so using 0 or the name SUN is the safest choice for portability.</p>
             </div>
           </div>
         </div>

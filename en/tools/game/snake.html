@@ -850,21 +850,71 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">FAQ</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: When does the game end?</h4>
-            <p>The game ends when the snake's head hits its own body or the wall.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: How is the score calculated?</h4>
-            <p>Each food item gives 10 points. Faster speeds make it harder but the score per food is the same.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: Is my high score saved?</h4>
-            <p>Yes, it's saved in your browser's local storage and persists across visits.</p>
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Snake Game?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Snake is a classic arcade game that originated from the 1976 game Blockade and gained worldwide popularity when it was included on Nokia mobile phones in 1997. You control a snake that grows longer each time it eats food, while avoiding collisions with walls and its own body. Its simple yet addictive gameplay has kept players entertained for decades. Play instantly on Toolneat -- no installation needed, works on both desktop and mobile browsers.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Controls</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Keyboard:</strong> Use arrow keys or WASD to change the snake's direction.</li>
+            <li><strong>Touch/Swipe:</strong> On mobile, swipe the screen to steer the snake.</li>
+            <li><strong>Mobile Buttons:</strong> Tap the directional buttons at the bottom of the screen.</li>
+          </ul>
+          <p>The snake moves forward automatically. You can only change its direction. Note that you cannot instantly reverse into the opposite direction of travel.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Strategy and Tips</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>Hug the edges:</strong> Moving along the grid borders helps maintain safe pathways.</li>
+            <li><strong>Plan ahead:</strong> Do not rush toward food. Always consider your escape route after eating.</li>
+            <li><strong>Follow your tail:</strong> As the snake grows longer, tracing a spiral pattern behind your tail is a safe approach.</li>
+            <li><strong>Keep space open:</strong> Avoid entering tight corridors where escape becomes impossible.</li>
+            <li><strong>Start slow:</strong> Begin at a lower speed to learn the controls, then increase as you improve.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What causes a game over?</h4>
+              <p>The game ends when the snake's head collides with its own body or the grid boundary.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How is the score calculated?</h4>
+              <p>Each piece of food earns 10 points. The score per food stays the same regardless of speed.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my high score saved?</h4>
+              <p>Yes, your best score is automatically stored in your browser's local storage and persists across visits.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does the snake get faster?</h4>
+              <p>As the snake grows, maneuvering becomes more challenging. Speed may vary based on settings.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I turn in the opposite direction instantly?</h4>
+              <p>No. You cannot reverse direction immediately. You must first turn sideways, then turn again.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Where does the food appear?</h4>
+              <p>Food spawns randomly on empty cells that are not occupied by the snake's body.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it work well on mobile?</h4>
+              <p>Yes, the game fully supports touch swipe controls and on-screen buttons for smooth mobile play.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the maximum possible score?</h4>
+              <p>The theoretical maximum is reached when the snake fills every cell on the grid. This depends on the grid size.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is there a pause feature?</h4>
+              <p>You can pause the game using the spacebar or the pause button on screen.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the history of the Snake game?</h4>
+              <p>It originated from the 1976 arcade game Blockade and became a global phenomenon when Nokia included it on the 6110 phone in 1997.</p>
+            </div>
           </div>
         </div>
       </section>

@@ -850,21 +850,71 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">자주 묻는 질문</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 게임이 끝나는 조건은?</h4>
-            <p>뱀의 머리가 자신의 몸이나 벽에 부딪히면 게임이 종료됩니다.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 점수는 어떻게 계산되나요?</h4>
-            <p>먹이 하나당 10점입니다. 속도가 빠를수록 반응이 어려워지지만, 점수는 같습니다.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 최고 기록은 저장되나요?</h4>
-            <p>네, 브라우저의 로컬 저장소에 저장되어 다음 방문 시에도 유지됩니다.</p>
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">스네이크 게임이란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>스네이크(Snake) 게임은 1976년 아케이드 게임 Blockade에서 시작된 고전 게임으로, 1997년 노키아 휴대폰에 탑재되면서 전 세계적인 인기를 얻었습니다. 뱀을 조종해 먹이를 먹으면 몸이 길어지고, 벽이나 자기 몸에 부딪히지 않도록 해야 합니다. 단순하지만 중독성 있는 게임성 덕분에 수십 년이 지난 지금도 사랑받는 게임입니다. Toolneat에서 설치 없이 바로 브라우저에서 즐겨보세요.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">게임 조작법</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>키보드:</strong> 방향키 또는 WASD 키로 뱀의 이동 방향을 변경합니다.</li>
+            <li><strong>터치/스와이프:</strong> 모바일에서 화면을 스와이프하여 방향을 바꿀 수 있습니다.</li>
+            <li><strong>모바일 버튼:</strong> 화면 하단의 방향 버튼을 터치하여 조작할 수도 있습니다.</li>
+          </ul>
+          <p>뱀은 자동으로 앞으로 이동하며, 플레이어는 방향만 변경할 수 있습니다. 현재 진행 방향의 반대 방향으로는 즉시 회전할 수 없습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">게임 전략과 팁</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>가장자리 활용:</strong> 격자의 가장자리를 따라 이동하면 안전한 경로를 유지하기 쉽습니다.</li>
+            <li><strong>미리 경로 계획:</strong> 먹이를 향해 돌진하지 말고, 먹이를 먹은 후 탈출할 경로도 미리 생각하세요.</li>
+            <li><strong>꼬리 따라가기:</strong> 뱀이 길어지면 자신의 꼬리를 따라가는 나선형 패턴이 안전합니다.</li>
+            <li><strong>넓은 공간 확보:</strong> 좁은 공간에 들어가면 탈출이 어려워집니다. 항상 열린 공간을 유지하세요.</li>
+            <li><strong>속도 조절:</strong> 처음에는 느린 속도로 시작해 조작에 익숙해진 후 속도를 높이세요.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 게임 오버 조건은 무엇인가요?</h4>
+              <p>뱀의 머리가 자기 몸이나 격자 벽에 부딪히면 게임이 종료됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 점수는 어떻게 계산되나요?</h4>
+              <p>먹이 하나를 먹을 때마다 10점이 추가됩니다. 속도가 빨라져도 점수는 동일합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 최고 기록은 저장되나요?</h4>
+              <p>네, 브라우저의 로컬 저장소에 자동 저장되어 다음 방문 시에도 기록이 유지됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 뱀의 속도는 점점 빨라지나요?</h4>
+              <p>먹이를 먹을수록 뱀이 길어지면서 조작 난이도가 높아집니다. 속도 설정에 따라 다를 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 반대 방향으로 바로 회전할 수 있나요?</h4>
+              <p>아닙니다. 현재 진행 방향의 반대로 즉시 돌 수 없습니다. 먼저 옆으로 방향을 바꾼 후 돌아야 합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 먹이는 어디에 나타나나요?</h4>
+              <p>먹이는 뱀의 몸이 없는 빈 칸에 무작위로 생성됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 모바일에서도 잘 작동하나요?</h4>
+              <p>네, 터치 스와이프와 화면 버튼으로 모바일에서도 원활하게 플레이할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 게임에서 최대 점수는 얼마인가요?</h4>
+              <p>격자의 모든 칸을 뱀으로 채우면 이론적 최대 점수에 도달합니다. 격자 크기에 따라 달라집니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 일시 정지 기능이 있나요?</h4>
+              <p>스페이스바나 일시정지 버튼으로 게임을 잠시 멈출 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 스네이크 게임의 역사는?</h4>
+              <p>1976년 아케이드 게임 Blockade에서 유래했으며, 1997년 노키아 6110에 탑재되어 전 세계적으로 유명해졌습니다.</p>
+            </div>
           </div>
         </div>
       </section>

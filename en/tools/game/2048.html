@@ -715,21 +715,71 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">FAQ</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: What are the rules of 2048?</h4>
-            <p>Use arrow keys or swipe to move tiles. When two tiles with the same number touch, they merge into one with doubled value. Win by creating a 2048 tile!</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: Is my high score saved?</h4>
-            <p>Yes, your best score is saved in your browser's local storage. Return with the same browser to see your record.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I continue after reaching 2048?</h4>
-            <p>Yes! The game continues after 2048. Challenge yourself to reach 4096, 8192, and beyond!</p>
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is 2048?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>2048 is a sliding block puzzle game created by Italian developer Gabriele Cirulli in 2014. The goal is to combine numbered tiles on a 4x4 grid to create the 2048 tile. Despite its simple rules, the game requires deep strategic thinking, making it a worldwide phenomenon. It helps develop mathematical reasoning and spatial logic skills. On Toolneat, you can play instantly in your browser without any installation, on both desktop and mobile devices.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Controls</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Keyboard:</strong> Use arrow keys or WASD to slide all tiles in one direction.</li>
+            <li><strong>Touch/Swipe:</strong> On mobile, swipe up, down, left, or right on the screen.</li>
+            <li><strong>Mobile Buttons:</strong> Use the directional buttons at the bottom of the screen.</li>
+          </ul>
+          <p>When you slide tiles, they all move in that direction. Matching numbers merge when they collide. After each move, a new tile (2 or 4) appears randomly on an empty cell.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Strategy and Tips</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>Corner strategy:</strong> Keep your highest tile in one corner (e.g., top-left). This is the most fundamental and effective approach.</li>
+            <li><strong>Limit directions:</strong> Try to use only two directions (e.g., left and down), avoiding pushing your large tile away from its corner.</li>
+            <li><strong>Maintain order:</strong> Arrange tiles in descending order along one edge to enable chain merges.</li>
+            <li><strong>Keep empty spaces:</strong> Always maintain open cells. Running out of space limits your moves dramatically.</li>
+            <li><strong>Merge small tiles first:</strong> Quickly combine smaller numbers and funnel them toward your larger tiles.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: What are the basic rules of 2048?</h4>
+              <p>Slide tiles on a 4x4 grid using arrow keys. Matching numbers merge when they collide: 2+2=4, 4+4=8, and so on. Create a 2048 tile to win.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does the game end when I reach 2048?</h4>
+              <p>No. You can keep playing after reaching 2048. Try pushing for 4096, 8192, or even higher numbers.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my high score saved?</h4>
+              <p>Yes, your best score is automatically stored in your browser's local storage and persists across visits.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What causes a game over?</h4>
+              <p>The game ends when the grid is full and no adjacent tiles share the same number, meaning no moves are possible.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the highest possible tile in 2048?</h4>
+              <p>Theoretically, 131,072 (2 to the power of 17) is possible, but in practice even reaching 8192 or 16384 is extremely challenging.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are new tiles always 2?</h4>
+              <p>New tiles have a 90% chance of being 2 and a 10% chance of being 4.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I play on mobile?</h4>
+              <p>Yes, the game fully supports touch swipe controls and on-screen buttons for mobile play.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is there an undo feature?</h4>
+              <p>The current version does not include an undo function. Think carefully before each move.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is 2048 mostly luck or skill?</h4>
+              <p>While there is a luck element in tile placement, using proper strategy allows most games to reach 2048 consistently.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How is the score calculated?</h4>
+              <p>Each time two tiles merge, the value of the resulting tile is added to your score. For example, merging 16+16=32 adds 32 points.</p>
+            </div>
           </div>
         </div>
       </section>

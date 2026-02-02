@@ -884,21 +884,74 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">FAQ</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: How is scoring calculated?</h4>
-            <p>Single line: 100pts, Double: 300pts, Triple: 500pts, Tetris (4 lines): 800pts! Score multiplier increases with level.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: How do I level up?</h4>
-            <p>Clear 10 lines to advance one level. Higher levels mean faster block drops.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: When is game over?</h4>
-            <p>The game ends when new blocks can't spawn because the stack has reached the top.</p>
+      <!-- Content Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About Tetris</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>Tetris is one of the most iconic puzzle games in gaming history. Originally created by Soviet software engineer Alexey Pajitnov in 1985, it was first developed on an Elektronika 60 computer. The game's name combines the Greek prefix "tetra" (meaning four) and "tennis," Pajitnov's favorite sport. When the Game Boy launched in 1989 bundled with Tetris, it became a worldwide cultural phenomenon. To this day, Tetris remains one of the best-selling games of all time, enjoyed by hundreds of millions of players around the globe.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Controls</h3>
+          <p>On desktop, use the following keyboard controls:</p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Left/Right Arrow</strong> - Move piece left or right</li>
+            <li><strong>Up Arrow / Z key</strong> - Rotate piece</li>
+            <li><strong>Down Arrow</strong> - Soft drop (faster descent)</li>
+            <li><strong>Spacebar</strong> - Hard drop (instant placement)</li>
+            <li><strong>P key / ESC</strong> - Pause the game</li>
+          </ul>
+          <p class="mt-2">On mobile devices, use the on-screen touch buttons or swipe gestures. Swipe left/right to move, swipe up to rotate, and swipe down to hard drop.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Strategy Tips</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>Keep the board flat</strong> - Try to maintain an even surface across all columns. A flat board gives you more options for placing incoming pieces and prevents awkward gaps.</li>
+            <li><strong>Save space for Tetrises</strong> - Reserve one column (ideally the far left or right) for the I-piece to clear four lines at once. A Tetris scores 800 points, far more than clearing lines individually.</li>
+            <li><strong>Use the preview</strong> - Always check the next piece display. Planning ahead lets you position the current piece in the best spot for what is coming next.</li>
+            <li><strong>Avoid stacking too high</strong> - Keep your stack low, especially in the center columns. High stacks reduce your reaction time and increase the risk of topping out.</li>
+            <li><strong>Learn T-spins and combos</strong> - Advanced players use T-spin techniques and back-to-back combos for massive bonus points. Mastering these moves can dramatically boost your score.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">FAQ</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: How is scoring calculated?</h4>
+              <p>Single line clear: 100 points, Double: 300, Triple: 500, Tetris (4 lines): 800. Points are multiplied by your current level, so a Tetris at level 5 earns 4,000 points. Back-to-back Tetrises and T-spins award additional bonus multipliers.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: How do levels work?</h4>
+              <p>Every 10 lines cleared advances you one level. As you level up, pieces fall faster, increasing the challenge. The speed formula means early levels are relaxed while higher levels demand quick reflexes and fast decision-making.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: When does the game end?</h4>
+              <p>The game is over when a new piece spawns at the top of the board but cannot be placed because existing blocks are already occupying that space. Keeping your stack low is the key to surviving longer.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What are all the Tetris pieces called?</h4>
+              <p>The seven standard pieces are named after letters they resemble: I (straight line), O (square), T (T-shape), S (S-shape), Z (Z-shape), L (L-shape), and J (reverse L-shape). Each piece is made up of exactly four blocks, which is why they are called "tetrominoes."</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What is a T-spin?</h4>
+              <p>A T-spin is an advanced technique where you rotate a T-piece into a tight gap that it could not fit into without rotation. T-spins earn bonus points and are a key part of competitive Tetris strategy.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I play on mobile?</h4>
+              <p>Yes, this version is fully optimized for mobile devices. On-screen touch buttons are provided for movement, rotation, and dropping. You can also use swipe gestures for a more natural mobile experience.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What is the difference between soft drop and hard drop?</h4>
+              <p>Soft drop (Down Arrow) speeds up the piece's descent but lets you still move it horizontally. Hard drop (Spacebar) instantly places the piece at the lowest available position. Hard drop is faster but gives you no time to adjust.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is there a maximum level?</h4>
+              <p>There is no fixed maximum level in this version. However, at very high levels the pieces fall almost instantly, making it extremely challenging to continue playing. How far can you go?</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Does my progress get saved?</h4>
+              <p>Your high score is saved locally in your browser. All data stays on your device, so nothing is sent to any server. Clearing your browser data will reset your saved score.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is this game free?</h4>
+              <p>Yes, completely free with no ads interrupting gameplay, no sign-up required, and no data collection. Play as much as you want right in your browser.</p>
+            </div>
           </div>
         </div>
       </section>

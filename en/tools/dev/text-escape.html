@@ -611,37 +611,91 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
+      <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Text Escaping?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>Text escaping is the process of converting special characters into a safe format for use in specific contexts. In programming, characters like quotes and backslashes can cause errors if not properly escaped when used in strings.</p>
+          <p>Text escaping is the process of converting special characters into a safe format so they can be used within specific contexts without causing errors. In programming, characters like quotes, backslashes, and angle brackets have special meaning. If these characters appear in string data without proper escaping, they can break code parsing, corrupt data structures, or even create security vulnerabilities. Whether you are building JSON APIs, rendering HTML content, writing JavaScript strings, or constructing URL parameters, text escaping is an essential technique for reliable data handling.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Supports four escaping formats: JSON, JavaScript, HTML, and URL</li>
+            <li>Bidirectional conversion between escaped and unescaped text</li>
+            <li>Real-time automatic conversion as you type</li>
+            <li>One-click copy to clipboard</li>
+            <li>Swap button for quick reverse conversion between input and output</li>
+            <li>All processing happens locally in your browser with no data sent to servers</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Select 'Escape' or 'Unescape' mode at the top.</li>
-            <li>Choose the format (JSON, JavaScript, HTML, URL).</li>
-            <li>Enter text in the left input area for automatic conversion.</li>
-            <li>Click 'Copy' to copy the result to clipboard.</li>
+            <li>Select "Escape" or "Unescape" mode at the top of the tool.</li>
+            <li>Choose the escaping format: JSON, JavaScript, HTML, or URL.</li>
+            <li>Enter or paste your text in the left input area. The result appears automatically on the right.</li>
+            <li>Click the "Copy" button to copy the converted result to your clipboard.</li>
+            <li>Use the swap button to exchange input and output for quick reverse conversion.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Preparing string data containing quotes for inclusion in JSON payloads</li>
+            <li>Sanitizing user input for safe HTML rendering to prevent XSS attacks</li>
+            <li>Handling file paths with backslashes in JavaScript strings</li>
+            <li>Encoding non-ASCII characters like Korean or Chinese text for URL parameters</li>
+            <li>Restoring escaped API response strings to their original readable form</li>
+            <li>Processing CSV data that contains commas, quotes, or line breaks</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Watch out for double escaping. Escaping an already-escaped string makes it very difficult to restore the original text.</li>
+            <li>JSON escaping is stricter than JavaScript escaping. Use JSON format for API communication and data exchange.</li>
+            <li>Always apply HTML escaping when rendering user-supplied content to protect against XSS vulnerabilities.</li>
+            <li>URL escaping works the same way as JavaScript's encodeURIComponent and is best suited for query parameter values.</li>
+            <li>If text looks corrupted after unescaping, verify the original encoding format matches what you selected.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium">Q: Is this tool free?</h4>
-              <p>Yes, it's completely free with no usage limits.</p>
+              <h4 class="font-medium">Q: Is this tool free to use?</h4>
+              <p>Yes, it is completely free with no usage limits or text length restrictions. No sign-up is required.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Is my data sent to a server?</h4>
-              <p>No, all processing happens in your browser. Your data never leaves your device.</p>
+              <p>No, all conversions happen entirely in your browser. Your text is never transmitted to any server, making it safe to use with sensitive or confidential data.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What's the difference between JSON and JavaScript escaping?</h4>
-              <p>JSON follows stricter standards, while JavaScript supports additional escape sequences like \x and \u.</p>
+              <h4 class="font-medium">Q: What is the difference between JSON and JavaScript escaping?</h4>
+              <p>JSON follows the RFC 8259 standard and only escapes double quotes, backslashes, and control characters. JavaScript escaping additionally supports \x (hexadecimal), \u (Unicode), and single quote escaping. Use JSON for API data and JavaScript for code-level string handling.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: When should I use HTML escaping?</h4>
-              <p>Use HTML escaping when displaying user input in HTML documents to prevent XSS attacks by escaping characters like &lt;, &gt;, and &amp;.</p>
+              <p>Use HTML escaping whenever you render user input on a web page. If an input containing a &lt;script&gt; tag or event handler is rendered without escaping, it creates an XSS (Cross-Site Scripting) vulnerability. Always escape these five characters: &lt;, &gt;, &amp;, ", and '.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What happens if I mix up URL escaping and HTML escaping?</h4>
+              <p>Using HTML escaping in a URL produces invalid sequences like &amp;amp; instead of &amp;. Conversely, URL escaping in HTML renders literal %3C instead of interpreting it as a character. Always match the escaping method to the context where the data will be used.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is double escaping and why is it a problem?</h4>
+              <p>Double escaping occurs when already-escaped text is escaped again. For example, \" becomes \\\" and requires two rounds of unescaping to restore. This commonly happens when data passes through multiple processing layers. To avoid it, apply escaping only at the final output stage.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How are newline characters escaped?</h4>
+              <p>In JSON and JavaScript, a line feed (LF) is escaped as \n and a carriage return (CR) as \r. In HTML, line breaks are typically replaced with &lt;br&gt; tags or preserved as-is. Note that different operating systems use different line break conventions: Windows uses \r\n while macOS and Linux use \n.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can this tool handle Unicode characters like emoji or CJK text?</h4>
+              <p>Yes. In JavaScript mode, Unicode characters are escaped to \uXXXX format. JSON also supports \uXXXX notation for non-ASCII characters. Characters outside the Basic Multilingual Plane, such as emoji, are represented as surrogate pairs (e.g., \uD83D\uDE00).</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Will very long text cause performance issues?</h4>
+              <p>For typical use, there are no performance concerns. However, converting extremely large texts (tens of thousands of lines) at once may briefly slow down the browser. In such cases, consider splitting the text into smaller chunks for processing.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do different programming languages have different escaping rules?</h4>
+              <p>Yes, each language has its own conventions. Python supports escaping in both single and double quotes and offers raw strings (r"..."). Java processes Unicode escapes at compile time. The JSON and JavaScript escaping in this tool is broadly compatible across most languages, but always consult your language's documentation for edge cases.</p>
             </div>
           </div>
         </div>

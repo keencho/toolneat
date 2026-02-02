@@ -621,46 +621,91 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
+      <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Barcode Generator?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">
-            A barcode generator converts text or numeric data into various barcode image formats.
-            It can be used for product labels, inventory management, membership cards, and more.
-          </p>
+          <p>A barcode generator converts text or numeric data into standard barcode images. It supports industry formats like CODE128, EAN-13, and UPC, and lets you download the generated barcode as PNG or SVG. Whether you need product labels, inventory tags, membership cards, or shipping labels, this tool produces scannable barcodes in seconds right from your browser.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li>Select the barcode format (CODE128, EAN-13, etc.)</li>
-            <li>Enter the data to encode</li>
-            <li>Configure width, height, and text display options</li>
-            <li>Download in PNG or SVG format</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Supported Barcode Formats</h3>
-          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
-            <li><strong>CODE128:</strong> Supports all ASCII characters, most versatile format</li>
-            <li><strong>EAN-13:</strong> International product barcode, 13 digits</li>
-            <li><strong>EAN-8:</strong> For small products, 8 digits</li>
-            <li><strong>UPC:</strong> US/Canada product barcode, 12 digits</li>
-            <li><strong>CODE39:</strong> Uppercase letters, numbers, special characters</li>
-            <li><strong>ITF-14:</strong> For logistics/shipping, 14 digits</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>10+ Barcode Formats:</strong> CODE128, CODE39, EAN-13, EAN-8, UPC-A, UPC-E, ITF-14, MSI, Pharmacode, Codabar, and more</li>
+            <li><strong>Live Preview:</strong> The barcode image generates in real time as you type data</li>
+            <li><strong>Size Customization:</strong> Adjust barcode width, height, and margin freely</li>
+            <li><strong>Text Display Option:</strong> Toggle whether the encoded data text appears below the barcode</li>
+            <li><strong>PNG/SVG Download:</strong> PNG for digital use and SVG for print-quality scalability</li>
+            <li><strong>Color Settings:</strong> Change barcode line color and background color to match your design</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">FAQ</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Select a barcode format (CODE128 is the most versatile)</li>
+            <li>Enter the data (text or numbers) to encode</li>
+            <li>Adjust width, height, text display, and color options</li>
+            <li>Check the live preview to verify the barcode</li>
+            <li>Download as PNG or SVG</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Creating product barcode labels for small businesses or private-label brands</li>
+            <li>Generating inventory and asset tracking labels for warehouses or offices</li>
+            <li>Making barcodes for library book management</li>
+            <li>Adding identification barcodes to membership cards or coupons</li>
+            <li>Producing barcodes for event tickets and admission passes</li>
+            <li>Creating shipping and delivery management labels</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Each barcode format has specific data requirements, so check the format specifications</li>
+            <li>EAN-13 accepts only 12-13 digit numbers; UPC-A accepts only 11-12 digit numbers</li>
+            <li>For print materials, download in SVG format so the barcode stays sharp at any size</li>
+            <li>Leave enough quiet zone (margin) around the barcode for reliable scanner recognition</li>
+            <li>Always test your barcode with a scanner before mass production</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">Which format should I use?</p>
-              <p class="text-gray-600 dark:text-gray-400">CODE128 is recommended for general purposes, EAN-13 or UPC for retail products.</p>
+              <h4 class="font-medium">Q: Which barcode format should I use?</h4>
+              <p>CODE128 is recommended for general purposes since it supports all ASCII characters. For retail products, use EAN-13 (international) or UPC-A (US/Canada).</p>
             </div>
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">Should I download PNG or SVG?</p>
-              <p class="text-gray-600 dark:text-gray-400">Use SVG for printing or when scaling is needed, PNG for web or general use.</p>
+              <h4 class="font-medium">Q: Should I download PNG or SVG?</h4>
+              <p>Use SVG for print materials or when you need to scale the barcode up. As a vector format, SVG remains sharp at any size. PNG works well for digital and web use.</p>
             </div>
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">I'm getting an "Invalid data" error</p>
-              <p class="text-gray-600 dark:text-gray-400">Enter data that matches the selected barcode format. For example, EAN-13 only accepts 12-13 digits.</p>
+              <h4 class="font-medium">Q: I am getting an "Invalid data" error</h4>
+              <p>This happens when the data does not match the selected format's specifications. For example, EAN-13 only accepts 12 to 13 digit numbers, and CODE39 only supports uppercase letters, digits, and a few special characters.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between CODE128 and CODE39?</h4>
+              <p>CODE128 supports all ASCII characters and produces more compact barcodes. CODE39 is limited to uppercase letters, numbers, and a few symbols, but has wider compatibility with older systems.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is the EAN-13 check digit generated automatically?</h4>
+              <p>Yes, entering 12 digits automatically calculates the check digit. If you enter all 13 digits, the tool validates the check digit for correctness.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use generated barcodes commercially?</h4>
+              <p>The barcode images themselves have no usage restrictions. However, to officially use EAN or UPC codes for retail products, you need to register and obtain numbers from GS1.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: My barcode is not scanning properly</h4>
+              <p>This may be due to insufficient quiet zone (margin) around the barcode or low print quality. Try downloading as SVG and printing at a higher resolution.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I change the barcode colors?</h4>
+              <p>Yes, both the bar color and background color can be customized. Just make sure there is enough contrast between bars and background for scanners to read it reliably.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I encode non-Latin characters like Korean or Chinese?</h4>
+              <p>CODE128 supports standard ASCII characters only. Non-ASCII characters cannot be directly encoded in traditional barcodes. For multilingual data, consider using a QR code instead.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is this tool free?</h4>
+              <p>Yes, it is completely free with no usage limits. All processing runs in your browser, so no installation is needed.</p>
             </div>
           </div>
         </div>

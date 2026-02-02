@@ -568,36 +568,62 @@
         </div>
       </div>
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Image to PDF Conversion</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Image to PDF?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Combine multiple images into a single PDF document. Great for organizing scanned documents, creating photo albums, or portfolios.</p>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Image to PDF lets you combine multiple photos or scanned images into a single, well-organized PDF document. Upload your images, drag them into the order you want, choose a page size, and generate the PDF with one click. No software installation required -- everything runs directly in your browser, and your files are never sent to an external server.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Supports PNG, JPG, WEBP, and other common image formats</li>
+            <li>Upload multiple images at once</li>
+            <li>Drag-and-drop reordering of images</li>
+            <li>Page size options: Fit to Image, A4, and Letter</li>
+            <li>Remove individual images or add more after initial upload</li>
+            <li>100% original image quality preserved (no additional compression)</li>
+            <li>Complete privacy with in-browser processing</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li>Drag or click to upload image files</li>
-            <li>Drag images to reorder them</li>
-            <li>Select page size option</li>
-            <li>Click 'Create PDF' to download</li>
+            <li>Drag image files onto the upload area or click to select them (multi-select supported)</li>
+            <li>Rearrange the uploaded images by dragging them into the desired order</li>
+            <li>Remove unwanted images with the X button, or click "Add More" to upload additional files</li>
+            <li>Choose a page size option (Fit to Image / A4 / Letter)</li>
+            <li>Click "Create PDF"</li>
+            <li>Review the result (page count and file size) and click "Download" to save</li>
           </ol>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Organizing scanned receipts, documents, or contracts into a single PDF</li>
+            <li>Creating a design portfolio in PDF format</li>
+            <li>Making a photo album PDF from travel or event pictures</li>
+            <li>Attaching photo references to school assignments as a PDF</li>
+            <li>Compiling real estate listings or product catalog images</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>For print-ready PDFs, choose A4 or Letter page size</li>
+            <li>For on-screen viewing, "Fit to Image" produces the cleanest results</li>
+            <li>More images means a larger PDF. Consider compressing images beforehand if size matters</li>
+            <li>WEBP images are internally processed as PNG, which may result in slightly larger files</li>
+            <li>The output file is named "images.pdf" by default -- rename it as needed after downloading</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: What image formats are supported?</h4>
-              <p class="text-gray-600 dark:text-gray-400">PNG, JPG, JPEG, WEBP, GIF, BMP and most common image formats are supported.</p>
-            </div>
-            <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I change the image order?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, after uploading you can drag images to rearrange them in any order.</p>
-            </div>
-            <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: What are the page size options?</h4>
-              <p class="text-gray-600 dark:text-gray-400">'Fit to image' creates pages matching each image size. A4 and Letter fit images to those paper sizes.</p>
-            </div>
-            <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is image quality preserved?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, original image quality is maintained. No additional compression is applied.</p>
-            </div>
+            <div><h4 class="font-medium">Q: What image formats are supported?</h4><p class="text-gray-600 dark:text-gray-400">PNG, JPG, JPEG, and WEBP are fully supported. GIF and BMP also work in most cases.</p></div>
+            <div><h4 class="font-medium">Q: Can I change the image order after uploading?</h4><p class="text-gray-600 dark:text-gray-400">Yes. Simply drag and drop images in the list to rearrange them in any order you like.</p></div>
+            <div><h4 class="font-medium">Q: What is the difference between page size options?</h4><p class="text-gray-600 dark:text-gray-400">"Fit to Image" creates each page matching the original image dimensions. A4 (210x297mm) and Letter (8.5x11in) scale images to fit within those standard paper sizes, centered with automatic margins.</p></div>
+            <div><h4 class="font-medium">Q: Is image quality preserved during conversion?</h4><p class="text-gray-600 dark:text-gray-400">Yes. Images are embedded in the PDF at their original quality with no additional compression applied.</p></div>
+            <div><h4 class="font-medium">Q: How many images can I add?</h4><p class="text-gray-600 dark:text-gray-400">There is no hard limit, but processing speed depends on your browser's available memory. Up to about 50 images works smoothly on most devices.</p></div>
+            <div><h4 class="font-medium">Q: Can I add more images after the initial upload?</h4><p class="text-gray-600 dark:text-gray-400">Yes. Click the "Add More" button to upload additional images at any time. They will be appended to the existing list.</p></div>
+            <div><h4 class="font-medium">Q: Does this work on mobile devices?</h4><p class="text-gray-600 dark:text-gray-400">Yes, it works in mobile browsers. You can select photos directly from your gallery to create a PDF on the go.</p></div>
+            <div><h4 class="font-medium">Q: Is my data uploaded to a server?</h4><p class="text-gray-600 dark:text-gray-400">No. All processing happens entirely in your browser. Your images never leave your device.</p></div>
+            <div><h4 class="font-medium">Q: Will my images get cropped when using A4 size?</h4><p class="text-gray-600 dark:text-gray-400">No. Images are scaled proportionally to fit within the A4 page while maintaining their aspect ratio, with automatic margins around the edges.</p></div>
+            <div><h4 class="font-medium">Q: Can I edit the generated PDF afterward?</h4><p class="text-gray-600 dark:text-gray-400">Yes. You can use other Toolneat PDF tools (page delete, reorder, merge, etc.) to further edit the generated PDF.</p></div>
           </div>
-          <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No data is uploaded to servers.</p>
         </div>
       </section>
     </div>

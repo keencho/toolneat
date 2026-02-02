@@ -757,27 +757,90 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Spin the Wheel?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Spin the Wheel Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>Spin the Wheel is a fun random selection tool. Use it when you need to pick one option randomly from multiple choices, like deciding what to eat for lunch or picking a winner.</p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is Spin the Wheel?</h3>
+          <p>Spin the Wheel is a random selection tool that helps you make quick decisions when faced with multiple options. Whether you are picking a lunch spot, assigning tasks in a team, or drawing a winner for a giveaway, the wheel takes the pressure out of choosing. You type in your own items, press a single button, and watch a colorful spinning animation land on the result. It is simple, visual, and makes group decisions more fun.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Add and remove up to 12 custom items freely</li>
+            <li>Smooth spinning animation with natural deceleration</li>
+            <li>Distinct colors automatically assigned to each item</li>
+            <li>Result popup clearly shows the selected item</li>
+            <li>Per-item delete button for easy list management</li>
+            <li>Works on both desktop and mobile browsers</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Enter text in the input field and click 'Add' button</li>
-            <li>Add at least 2 items to enable the 'SPIN' button</li>
-            <li>Click 'SPIN' to spin the wheel</li>
-            <li>When the wheel stops, the result will be displayed</li>
+            <li>Type an item name in the input field and click "Add"</li>
+            <li>Add at least 2 items to enable the "SPIN" button</li>
+            <li>Press "SPIN" to start the wheel rotation</li>
+            <li>The wheel naturally slows down and stops, revealing the selected item in a popup</li>
+            <li>Edit or remove items as needed, then spin again</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">FAQ</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Deciding what to eat for lunch when the team cannot agree</li>
+            <li>Fairly assigning presentation order or team roles</li>
+            <li>Drawing winners for giveaways, raffles, or contests</li>
+            <li>Randomly selecting students for classroom activities</li>
+            <li>Choosing a movie, travel destination, or weekend activity</li>
+            <li>Couples deciding on a date plan in a fun way</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Keep item names short so they display clearly on the wheel</li>
+            <li>Eight or fewer items is ideal. More items make each segment narrower</li>
+            <li>The wheel ignores clicks while it is still spinning</li>
+            <li>You can spin again as many times as you like, but honoring the first result keeps things fair</li>
+            <li>All processing happens in your browser. Nothing is sent to a server</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: How many items can I add?</h4>
-              <p>You can add up to 12 items.</p>
+              <p>You can add up to 12 items. As more items are added the segments become smaller, so keeping the count reasonable improves readability.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Is the result truly random?</h4>
-              <p>Yes, completely random. Each item has an equal probability of being selected.</p>
+              <p>Yes. Each item has an equal probability of being selected. The result is generated independently every time using JavaScript's random number function, so previous outcomes do not influence the next spin.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I increase the probability of a specific item?</h4>
+              <p>The default probability is equal for all items. If you want a higher chance for one option, add it multiple times. For example, placing the same item in 3 out of 12 slots gives it a 25% chance.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I stop the wheel while it is spinning?</h4>
+              <p>There is no manual stop button. The wheel decelerates naturally and the result is determined as it comes to rest. Just wait a few seconds for it to finish.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are my items saved if I refresh?</h4>
+              <p>Items reset when the page is refreshed. If you use the same list often, keep a note of your items so you can re-enter them quickly.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does it work on mobile?</h4>
+              <p>Yes. The wheel adapts to your screen size and works with touch input. Just tap the buttons as you would click on desktop.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use emoji or special characters?</h4>
+              <p>Absolutely. You can enter any text including English, Korean, emoji, and numbers. Just keep entries short so they fit neatly inside the wheel segments.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is this suitable for professional use?</h4>
+              <p>Definitely. Teams use it for assigning presentation order, task distribution, or icebreaker games. When everyone watches the spin together on screen, the outcome feels fair and transparent.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is any data sent to a server?</h4>
+              <p>No. Everything you enter and every result stays in your browser. No data is transmitted to any external server, so your information remains completely private.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I use this for serious decisions?</h4>
+              <p>The tool is genuinely random and fair, so it works well for low-stakes decisions. For high-stakes or legally binding draws, you may want a certified random number generator with an audit trail.</p>
             </div>
           </div>
         </div>

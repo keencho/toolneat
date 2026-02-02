@@ -621,49 +621,91 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
+      <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">바코드 생성기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">
-            바코드 생성기는 텍스트나 숫자 데이터를 다양한 형식의 바코드 이미지로 변환하는 도구입니다.
-            제품 라벨, 재고 관리, 회원 카드 등 다양한 용도로 활용할 수 있습니다.
-          </p>
+          <p>바코드 생성기는 텍스트나 숫자 데이터를 다양한 형식의 바코드 이미지로 변환해주는 도구입니다. CODE128, EAN-13, UPC 등 업계 표준 형식을 지원하며, 생성된 바코드를 PNG 또는 SVG로 다운로드할 수 있습니다. 제품 라벨 제작, 재고 관리, 회원 카드, 도서 관리 등 다양한 비즈니스 용도에 활용할 수 있습니다.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li>바코드 형식을 선택합니다 (CODE128, EAN-13 등)</li>
-            <li>인코딩할 데이터를 입력합니다</li>
-            <li>너비, 높이, 텍스트 표시 여부를 설정합니다</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>10+ 바코드 형식:</strong> CODE128, CODE39, EAN-13, EAN-8, UPC-A, UPC-E, ITF-14, MSI, Pharmacode, Codabar 등</li>
+            <li><strong>실시간 미리보기:</strong> 데이터 입력 즉시 바코드 이미지가 생성되어 화면에 표시</li>
+            <li><strong>크기 커스터마이즈:</strong> 바코드의 너비, 높이, 여백을 자유롭게 조절</li>
+            <li><strong>텍스트 표시 옵션:</strong> 바코드 하단에 데이터 텍스트 표시 여부 선택</li>
+            <li><strong>PNG/SVG 다운로드:</strong> 웹용 PNG와 인쇄용 SVG 형식 지원</li>
+            <li><strong>색상 설정:</strong> 바코드 선 색상과 배경색을 원하는 대로 변경</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>바코드 형식을 선택합니다 (CODE128이 가장 범용적)</li>
+            <li>인코딩할 데이터(텍스트 또는 숫자)를 입력합니다</li>
+            <li>너비, 높이, 텍스트 표시 여부 등 옵션을 설정합니다</li>
+            <li>실시간 미리보기에서 결과를 확인합니다</li>
             <li>PNG 또는 SVG 형식으로 다운로드합니다</li>
           </ol>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">지원 바코드 형식</h3>
-          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
-            <li><strong>CODE128:</strong> 모든 ASCII 문자 지원, 가장 범용적인 형식</li>
-            <li><strong>CODE39:</strong> 영문 대문자, 숫자, 특수문자 지원</li>
-            <li><strong>EAN-13/8:</strong> 국제 상품 바코드 (13자리/8자리)</li>
-            <li><strong>EAN-5/2:</strong> 잡지 가격, 책 부가정보용 부가코드</li>
-            <li><strong>UPC-A/E:</strong> 미국/캐나다 상품 바코드 (12자리/축약형)</li>
-            <li><strong>ITF-14/ITF:</strong> 물류/배송 박스용 바코드</li>
-            <li><strong>MSI:</strong> 창고, 재고관리 시스템용</li>
-            <li><strong>Pharmacode:</strong> 의약품 포장 전용</li>
-            <li><strong>Codabar:</strong> 도서관, 혈액은행, 택배 송장용</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>소규모 쇼핑몰이나 자체 브랜드 제품의 바코드 라벨 제작</li>
+            <li>창고나 사무실의 재고 관리 및 자산 추적 라벨</li>
+            <li>도서관 장서 관리용 바코드 생성</li>
+            <li>회원 카드나 쿠폰에 부착할 식별 바코드</li>
+            <li>행사 입장권이나 티켓에 들어갈 바코드</li>
+            <li>택배 송장이나 배송 관리용 바코드</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>각 바코드 형식마다 입력 가능한 데이터가 다르므로 형식 사양을 확인하세요</li>
+            <li>EAN-13은 12~13자리 숫자만, UPC-A는 11~12자리 숫자만 입력 가능합니다</li>
+            <li>인쇄물에 사용할 바코드는 SVG 형식으로 다운로드하면 크기를 늘려도 깨지지 않습니다</li>
+            <li>바코드 주변에 충분한 여백(quiet zone)을 확보해야 스캐너가 정확하게 인식합니다</li>
+            <li>스캐너로 실제 테스트 후 사용하는 것을 권장합니다</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
           <div class="space-y-4">
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">어떤 형식을 사용해야 하나요?</p>
-              <p class="text-gray-600 dark:text-gray-400">일반적인 용도에는 CODE128을, 제품 판매용에는 EAN-13 또는 UPC를 권장합니다.</p>
+              <h4 class="font-medium">Q: 어떤 바코드 형식을 사용해야 하나요?</h4>
+              <p>일반적인 용도에는 CODE128을 권장합니다. 소매점에서 판매하는 제품이라면 EAN-13(국제) 또는 UPC-A(미국/캐나다)를 사용하세요.</p>
             </div>
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">PNG와 SVG 중 어떤 것을 다운로드해야 하나요?</p>
-              <p class="text-gray-600 dark:text-gray-400">인쇄용이나 확대가 필요하면 SVG를, 웹이나 일반 용도에는 PNG를 사용하세요.</p>
+              <h4 class="font-medium">Q: PNG와 SVG 중 어떤 것을 다운로드해야 하나요?</h4>
+              <p>인쇄물이나 크기 확대가 필요한 경우 SVG를 사용하세요. 벡터 형식이라 확대해도 깨지지 않습니다. 웹이나 일반 디지털 용도에는 PNG면 충분합니다.</p>
             </div>
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">"유효하지 않은 데이터" 오류가 나타나요</p>
-              <p class="text-gray-600 dark:text-gray-400">선택한 바코드 형식에 맞는 데이터를 입력하세요. 예: EAN-13은 12-13자리 숫자만 가능합니다.</p>
+              <h4 class="font-medium">Q: "유효하지 않은 데이터" 오류가 나타나요</h4>
+              <p>선택한 바코드 형식의 데이터 규격에 맞지 않을 때 발생합니다. 예를 들어 EAN-13은 12~13자리 숫자만 허용하고, CODE39는 영문 대문자와 숫자, 일부 특수문자만 가능합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: CODE128과 CODE39의 차이점은?</h4>
+              <p>CODE128은 모든 ASCII 문자를 지원하고 더 압축된 바코드를 생성합니다. CODE39는 영문 대문자, 숫자, 제한된 특수문자만 지원하지만 구형 시스템과 호환성이 높습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: EAN-13 바코드의 체크디지트는 자동 생성되나요?</h4>
+              <p>네, 12자리를 입력하면 마지막 체크디지트가 자동으로 계산됩니다. 13자리를 모두 입력하면 체크디지트의 유효성을 검증합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 생성한 바코드를 상업적으로 사용해도 되나요?</h4>
+              <p>이 도구로 생성한 바코드 이미지 자체에는 제한이 없습니다. 다만 EAN이나 UPC 코드를 공식적으로 사용하려면 GS1에서 번호를 할당받아야 합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 바코드가 스캐너에서 인식이 안 돼요</h4>
+              <p>바코드 주변 여백(quiet zone)이 부족하거나 인쇄 품질이 낮으면 인식이 안 될 수 있습니다. SVG로 다운로드하여 고해상도로 인쇄해 보세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 바코드 색상을 바꿀 수 있나요?</h4>
+              <p>네, 바코드 선 색상과 배경색을 자유롭게 변경할 수 있습니다. 단, 스캐너 인식을 위해 선과 배경 사이 충분한 명암 대비를 유지하세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 한글이나 특수문자도 바코드로 만들 수 있나요?</h4>
+              <p>CODE128은 표준 ASCII 범위 내의 문자를 지원합니다. 한글 등 비ASCII 문자는 직접 인코딩할 수 없으며, 필요하다면 QR코드 사용을 추천합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 이 도구는 무료인가요?</h4>
+              <p>네, 완전히 무료이며 사용 횟수 제한이 없습니다. 모든 처리는 브라우저에서 이루어지므로 별도 설치도 필요 없습니다.</p>
             </div>
           </div>
         </div>

@@ -696,32 +696,89 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Salary Calculator?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Salary Calculator Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A salary calculator is a financial tool that helps you determine your actual take-home pay after all deductions. This calculator specifically uses Korean tax law and social insurance rates to compute your net salary after deducting the 4 major insurances (National Pension, Health Insurance, Long-term Care Insurance, Employment Insurance), income tax, and local income tax. It is invaluable for job seekers, employees considering job changes, or anyone negotiating salary packages.</p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is a Salary Calculator?</h3>
+          <p>A salary calculator converts your gross annual salary into an estimated monthly take-home pay by deducting the four major social insurances (National Pension, Health Insurance, Long-term Care Insurance, Employment Insurance), income tax, and local income tax under Korean tax law. It is designed for salaried workers in Korea who want to know exactly how much will land in their bank account each month. Whether you are evaluating a job offer, negotiating a raise, or comparing two positions, this tool turns abstract numbers into practical monthly figures. The 2025 insurance rates (National Pension 4.5%, Health Insurance 3.545%, Long-term Care 12.95% of health insurance, Employment Insurance 0.9%) are applied, along with tax credits based on dependents and children.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Automatic calculation of all four social insurance premiums and taxes</li>
+            <li>Tax credits based on number of dependents and children under 20</li>
+            <li>Configurable monthly non-taxable allowance (meal allowance, etc.)</li>
+            <li>Option to include or exclude severance pay in annual salary</li>
+            <li>SME youth income tax relief (90% reduction) toggle</li>
+            <li>Detailed breakdown of each deduction alongside monthly net pay</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Enter your annual pre-tax salary in Korean Won (KRW)</li>
-            <li>Select the number of dependents including yourself</li>
-            <li>Select the number of children under 20 years old</li>
-            <li>Enter your monthly non-taxable allowance (meal allowance, etc.)</li>
-            <li>Check optional boxes if applicable (severance included, youth tax relief) and click Calculate</li>
+            <li>Enter your pre-tax annual salary in ten-thousand KRW units (e.g., 5000 for 50 million won)</li>
+            <li>Select the number of dependents (including yourself) and children under 20</li>
+            <li>Enter your monthly non-taxable allowance (default is 200,000 KRW for meal allowance)</li>
+            <li>Check any applicable options such as severance included or youth tax relief</li>
+            <li>Click "Calculate" to see your estimated monthly take-home pay and itemized deductions</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Job seekers converting posted annual salary into monthly net pay for budgeting</li>
+            <li>Comparing actual take-home pay between a current job and a new offer</li>
+            <li>Reverse-calculating the gross salary needed to reach a target net pay</li>
+            <li>Checking the impact of SME youth tax relief before and after applying the benefit</li>
+            <li>Simulating how changes in non-taxable allowances (meal allowance increase) affect net pay</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Insurance rates used are for 2025 and may change annually</li>
+            <li>Actual pay may differ due to company-specific bonuses, allowances, and year-end tax adjustments</li>
+            <li>When severance is included in the salary, roughly 1/13 is set aside, reducing monthly pay</li>
+            <li>Maximize non-taxable items to lower the taxable base and increase net pay</li>
+            <li>For exact figures always refer to your official pay stub. This tool provides estimates</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium">Q: What are the 4 major insurances in Korea?</h4>
-              <p>The 4 major social insurances in Korea are National Pension (4.5%), Health Insurance (3.545%), Long-term Care Insurance (12.95% of health insurance), and Employment Insurance (0.9%). Both employees and employers contribute to these insurances, and this calculator shows only the employee portion.</p>
+              <h4 class="font-medium">Q: What are the 4 major social insurances?</h4>
+              <p>They are National Pension, Health Insurance, Long-term Care Insurance, and Employment Insurance. Employees and employers each pay a share, and this calculator reflects only the employee portion.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the youth tax reduction for SME employees?</h4>
-              <p>Young workers (ages 15-34) employed at small and medium enterprises in Korea can receive a 90% reduction in income tax for up to 5 years. This significant tax benefit makes SME employment attractive for young professionals starting their careers.</p>
+              <h4 class="font-medium">Q: What is the SME youth income tax relief?</h4>
+              <p>Workers aged 15-34 employed at small and medium enterprises in Korea can receive a 90% income tax reduction for up to 5 years. Military service extends the age limit by the length of service. The savings can be substantial, so be sure to check this option if you qualify.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Why is my actual salary different from this calculation?</h4>
-              <p>This calculator provides an estimate based on standard rates. Actual take-home pay may vary due to company-specific policies, additional allowances, bonuses, year-end tax adjustments, and other individual circumstances. Always refer to your official pay stub for accurate figures.</p>
+              <h4 class="font-medium">Q: What are non-taxable allowances?</h4>
+              <p>These are salary components exempt from taxation. Common examples include meal allowance (up to 200,000 KRW/month), vehicle maintenance allowance, and childcare subsidies. Higher non-taxable portions reduce the taxable base and boost your net pay.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between severance included and excluded?</h4>
+              <p>Severance excluded means your full annual salary is paid as wages and severance is paid separately upon leaving. Severance included means about 1/13 of your salary is set aside for the severance fund, lowering your monthly paycheck, though total compensation remains the same.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why does my actual paycheck differ from this estimate?</h4>
+              <p>This calculator uses standard rates and formulas. Real-world pay varies due to company-specific allowance structures, performance bonuses, overtime, year-end tax settlement adjustments, and individual deductions. Always check your official pay slip for precise numbers.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is there a cap on National Pension contributions?</h4>
+              <p>Yes. National Pension has a standard monthly income ceiling (about 5.9 million KRW in 2025). Even if your income exceeds this limit, the premium does not increase further. This is why the pension percentage feels relatively smaller for high earners.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is Long-term Care Insurance included in Health Insurance?</h4>
+              <p>Long-term Care is calculated separately as 12.95% of your Health Insurance premium. Both are deducted as individual line items on your pay stub, and this calculator shows them separately as well.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can my income tax be zero?</h4>
+              <p>Yes. After applying earned income deductions and personal exemptions, if your taxable base falls to zero or below, no income tax is owed. Having more dependents increases deductions, which can bring the tax liability to zero.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How is local income tax calculated?</h4>
+              <p>Local income tax is simply 10% of your calculated income tax. It is deducted as a separate item. If your income tax is zero, local income tax is also zero.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can freelancers use this calculator?</h4>
+              <p>This tool is designed for salaried employees covered by the four social insurances. Freelancers (business income) are subject to a different withholding rate (3.3%) and comprehensive income tax rules, so the results would not be accurate for freelance income.</p>
             </div>
           </div>
         </div>

@@ -695,32 +695,90 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Hash Generator?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Hash Generator Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A Hash Generator is a tool that creates cryptographic hash values from text or files using various algorithms like MD5, SHA-1, SHA-256, SHA-384, and SHA-512. Hash functions convert data of any size into a fixed-size string of characters, creating a unique "fingerprint" of the input. Hashes are essential for data integrity verification, password storage, digital signatures, and file deduplication.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">What is a Hash Function?</h3>
+          <p>A hash function is a cryptographic algorithm that takes data of any length and produces a fixed-length string -- called a hash value, digest, or fingerprint -- that uniquely represents the input. The same input always yields the same hash, yet recovering the original data from the hash alone is computationally infeasible. This one-way property makes hashing fundamental to file integrity verification, secure password storage, digital signatures, blockchain transaction validation, and countless other security-critical systems. This tool generates hashes using five algorithms at once -- MD5, SHA-1, SHA-256, SHA-384, and SHA-512 -- for both text input and file uploads.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Five algorithms at once:</strong> See MD5, SHA-1, SHA-256, SHA-384, and SHA-512 results side by side.</li>
+            <li><strong>Text and file modes:</strong> Type or paste text directly, or drag-and-drop a file to hash its binary contents.</li>
+            <li><strong>Live calculation:</strong> Enable Live mode and every hash updates automatically as you type -- no need to press a button.</li>
+            <li><strong>Uppercase toggle:</strong> Switch the output between lowercase and uppercase hex characters.</li>
+            <li><strong>Individual copy buttons:</strong> Copy any single hash value to your clipboard with one click.</li>
+            <li><strong>100% local processing:</strong> All computation happens in your browser via the Web Crypto API. Nothing is uploaded.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Select the input mode: "Text" for typing or pasting text, or "File" for hashing files.</li>
-            <li>For text mode, enter your text in the input field. With "Live" mode enabled, hashes update automatically as you type.</li>
-            <li>For file mode, drag and drop a file or click to browse and select a file from your computer.</li>
-            <li>View the generated hash values for all supported algorithms (MD5, SHA-1, SHA-256, SHA-384, SHA-512).</li>
-            <li>Click "Copy" next to any hash value to copy it to your clipboard. Enable "Uppercase output" for capital letters.</li>
+            <li>Select either "Text" or "File" input mode at the top of the tool.</li>
+            <li>In Text mode, type or paste the string you want to hash into the input field.</li>
+            <li>In File mode, drag and drop a file onto the drop area, or click to open the file picker.</li>
+            <li>If Live mode is on, hash values update instantly as you type. Otherwise, click the generate button.</li>
+            <li>Review the hash output for each of the five supported algorithms.</li>
+            <li>Click the Copy button next to any hash to save it to your clipboard. Toggle "Uppercase" if you need capital letters.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>File integrity checks:</strong> Compare the SHA-256 hash of a downloaded file against the hash published by the distributor to confirm the file has not been tampered with.</li>
+            <li><strong>Password verification:</strong> Hash a password and compare it to the stored hash in your database to authenticate users without ever storing plaintext passwords.</li>
+            <li><strong>API signature validation:</strong> Generate hash-based message authentication codes (HMAC) or verify API request signatures during development.</li>
+            <li><strong>Duplicate detection:</strong> Hash a batch of files and look for identical hash values to find and remove duplicates.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Always use SHA-256 or stronger for anything security-related. MD5 and SHA-1 have known collision vulnerabilities.</li>
+            <li>For password storage, do not use general-purpose hashes. Use purpose-built functions like bcrypt, scrypt, or Argon2 that are intentionally slow to resist brute-force attacks.</li>
+            <li>The same text encoded differently (e.g., UTF-8 vs. ASCII with extended characters) will produce different hashes, so encoding consistency matters.</li>
+            <li>Hashing is not encryption. You cannot recover the original data from a hash. If you need reversible protection, use an encryption algorithm like AES.</li>
+            <li>The avalanche effect means even a 1-bit change in the input produces a completely different hash, making hashes highly sensitive tamper detectors.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium">Q: Which hash algorithm should I use?</h4>
-              <p>For security-critical applications, use SHA-256 or SHA-512 as they are currently considered secure. SHA-1 and MD5 are cryptographically broken and should only be used for non-security purposes like checksums or cache keys. For password hashing, specialized algorithms like bcrypt or Argon2 are recommended instead of general-purpose hash functions.</p>
+              <h4 class="font-medium">Q: Which algorithm should I choose -- MD5 or SHA-256?</h4>
+              <p>For security-sensitive tasks (password hashing, digital signatures, integrity verification) always use SHA-256 or higher. MD5 is vulnerable to collision attacks and unsuitable for security, but it remains practical for non-security purposes like cache keys or quick checksums where speed and short output matter more.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I reverse a hash to get the original data?</h4>
-              <p>No, cryptographic hash functions are designed to be one-way functions. You cannot mathematically reverse a hash to obtain the original input. However, weak passwords can be cracked using rainbow tables or brute force attacks, which is why strong, unique passwords and proper salting are important for password security.</p>
+              <h4 class="font-medium">Q: If two inputs have the same hash, are they identical?</h4>
+              <p>In practice, yes. While different inputs can theoretically produce the same hash (a collision), the probability for SHA-256 is so astronomically small that it is treated as impossible for all practical purposes.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Why do small changes in input create completely different hashes?</h4>
-              <p>This property is called the "avalanche effect" - a core feature of cryptographic hash functions. Even changing a single bit in the input produces a completely different hash output. This makes hashes excellent for detecting any modifications to data, as even the smallest change results in a noticeably different hash value.</p>
+              <h4 class="font-medium">Q: Can I reverse a hash to recover the original data?</h4>
+              <p>No. Hash functions are one-way by design. However, short or common passwords can be guessed through rainbow tables or brute-force attacks, which is why strong passwords and salting are essential.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is SHA-256 enough for password storage?</h4>
+              <p>General-purpose hashes are too fast, making them easy targets for brute-force attacks. Password storage should use intentionally slow functions like bcrypt, scrypt, or Argon2 that impose a time cost on each guess attempt.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the avalanche effect?</h4>
+              <p>It is the property where a tiny change in the input -- even flipping a single bit -- causes a drastic, unpredictable change in the output hash. This makes hashes extremely effective at detecting even the smallest data modifications.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why does the file hash differ from the text hash of the same content?</h4>
+              <p>Text mode hashes the character string you enter. File mode hashes the raw binary data of the file. Differences in encoding, line endings, or byte-order marks (BOM) can cause the two results to diverge even when the visible content looks the same.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: When would I use SHA-384 or SHA-512?</h4>
+              <p>These are chosen when a higher security margin is needed or when a specification explicitly requires them. For most everyday use cases, SHA-256 provides more than enough security.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I hash large files?</h4>
+              <p>Yes. The tool leverages the browser's Web Crypto API, which handles large files efficiently. Processing time scales with file size, so very large files may take a moment.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data sent to any server?</h4>
+              <p>No. Every hash calculation runs entirely within your browser. Your text and files are never uploaded or stored anywhere, so you can safely hash sensitive or confidential data.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the difference between hashing and encryption?</h4>
+              <p>Hashing is one-way: you cannot retrieve the original data from the hash. Encryption is two-way: with the correct key, you can decrypt the ciphertext back to the original plaintext. Use hashing for verification and integrity checks; use encryption (e.g., AES) when you need to protect data and later recover it.</p>
             </div>
           </div>
         </div>

@@ -650,43 +650,91 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
+      <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">ASCII/유니코드 변환기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">
-            ASCII/유니코드 변환기는 문자를 코드 포인트로, 또는 코드를 문자로 변환하는 도구입니다.
-            프로그래밍, 웹 개발, 문자 인코딩 이해에 유용합니다.
-          </p>
+          <p>ASCII/유니코드 변환기는 문자를 코드 포인트로, 또는 코드를 문자로 변환하는 도구입니다. 프로그래밍 중 특수 문자의 코드값을 확인하거나, 코드 포인트를 실제 문자로 복원할 때 유용합니다. 10진수, 16진수, 유니코드 이스케이프, HTML 엔티티 등 다양한 형식을 지원하며, 웹 개발이나 문자 인코딩 관련 작업에서 자주 쓰이는 필수 도구입니다.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li><strong>문자 → 코드:</strong> 텍스트를 입력하면 10진수, 16진수, 유니코드 이스케이프, HTML 엔티티로 변환됩니다</li>
-            <li><strong>코드 → 문자:</strong> 코드를 입력하면 해당 문자로 변환됩니다</li>
-            <li>복사 버튼으로 결과를 클립보드에 복사합니다</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">지원 형식</h3>
-          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
-            <li><strong>10진수 (DEC):</strong> 공백으로 구분된 숫자 (예: 72 101 108 108 111)</li>
-            <li><strong>16진수 (HEX):</strong> 0x 접두사 (예: 0x48 0x65 0x6C)</li>
-            <li><strong>유니코드 이스케이프:</strong> \u 형식 (예: \u0048\u0065)</li>
-            <li><strong>HTML 엔티티:</strong> &# 형식 (예: &#72;&#101;)</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>문자 → 코드 변환:</strong> 입력한 텍스트를 10진수, 16진수, 유니코드 이스케이프, HTML 엔티티로 동시 변환</li>
+            <li><strong>코드 → 문자 변환:</strong> 코드 포인트를 입력하면 해당하는 실제 문자로 복원</li>
+            <li><strong>다중 형식 지원:</strong> DEC, HEX, \u 이스케이프, HTML &#; 엔티티 등 4가지 형식</li>
+            <li><strong>실시간 변환:</strong> 입력 즉시 모든 형식으로 변환 결과 표시</li>
+            <li><strong>원클릭 복사:</strong> 각 변환 결과를 버튼 하나로 클립보드에 복사</li>
+            <li><strong>ASCII 테이블:</strong> 표준 ASCII 코드 참조 테이블 제공</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">자주 묻는 질문</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>상단 탭에서 '문자 → 코드' 또는 '코드 → 문자' 모드를 선택합니다</li>
+            <li>문자 → 코드: 변환할 텍스트를 입력창에 입력합니다</li>
+            <li>코드 → 문자: 코드 형식을 선택하고 코드값을 입력합니다</li>
+            <li>변환 결과가 실시간으로 아래에 표시됩니다</li>
+            <li>복사 버튼으로 원하는 형식의 결과를 클립보드에 복사합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>JavaScript나 Python 코드에서 특수 문자 이스케이프 시퀀스 확인</li>
+            <li>HTML 페이지에서 특수 문자를 엔티티 코드로 안전하게 표시</li>
+            <li>데이터베이스에서 문자 인코딩 오류 디버깅</li>
+            <li>이모지나 다국어 문자의 유니코드 코드 포인트 조회</li>
+            <li>CSV나 텍스트 파일의 비정상 문자 원인 파악</li>
+            <li>API 응답에 포함된 이스케이프 문자 해독</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>ASCII 코드는 0~127 범위로, 영문 알파벳과 기본 기호만 포함합니다</li>
+            <li>한글, 이모지 등은 유니코드 범위에 해당하며 ASCII로는 표현 불가합니다</li>
+            <li>16진수 입력 시 0x 접두사를 포함해야 올바르게 인식됩니다</li>
+            <li>HTML 엔티티는 &#; 형식과 &이름; 형식 두 가지가 있으며, 이 도구는 숫자 형식을 사용합니다</li>
+            <li>유니코드 이스케이프 \u는 BMP(기본 다국어 평면) 범위 문자에 주로 사용됩니다</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
           <div class="space-y-4">
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">ASCII와 유니코드의 차이점은?</p>
-              <p class="text-gray-600 dark:text-gray-400">ASCII는 영문 기반 128개 문자만 지원하고, 유니코드는 전 세계 모든 문자(한글, 이모지 등)를 지원합니다.</p>
+              <h4 class="font-medium">Q: ASCII와 유니코드의 차이점은 무엇인가요?</h4>
+              <p>ASCII는 영문 기반 128개 문자만 지원하는 7비트 인코딩입니다. 유니코드는 전 세계 모든 문자(한글, 중국어, 이모지 등)를 포함하는 국제 표준으로, 14만 자 이상을 지원합니다.</p>
             </div>
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">\u 형식은 어디에 사용하나요?</p>
-              <p class="text-gray-600 dark:text-gray-400">JavaScript, Python, Java 등 프로그래밍 언어에서 문자열에 특수 문자를 표현할 때 사용합니다.</p>
+              <h4 class="font-medium">Q: \u 이스케이프 형식은 어디에 사용하나요?</h4>
+              <p>JavaScript, Python, Java 등 프로그래밍 언어에서 소스 코드 안에 특수 문자나 비영어권 문자를 표현할 때 사용합니다. 예를 들어 \uD55C은 '한'을 나타냅니다.</p>
             </div>
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">HTML 엔티티는 언제 필요한가요?</p>
-              <p class="text-gray-600 dark:text-gray-400">HTML에서 특수 문자(&lt;, &gt;, &amp; 등)를 안전하게 표시하거나, 키보드로 입력하기 어려운 문자를 사용할 때 필요합니다.</p>
+              <h4 class="font-medium">Q: HTML 엔티티는 언제 필요한가요?</h4>
+              <p>HTML에서 &lt;, &gt;, &amp; 같은 특수 문자를 안전하게 표시하거나, 키보드로 직접 입력하기 어려운 기호나 문자를 웹페이지에 넣을 때 사용합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: UTF-8과 유니코드는 같은 건가요?</h4>
+              <p>다릅니다. 유니코드는 문자에 번호를 부여하는 표준이고, UTF-8은 그 번호를 실제 바이트로 저장하는 인코딩 방식입니다. UTF-16, UTF-32도 유니코드 인코딩의 일종입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 이모지의 유니코드 코드도 확인할 수 있나요?</h4>
+              <p>네, 이모지를 입력하면 해당 유니코드 코드 포인트를 확인할 수 있습니다. 일부 이모지는 여러 코드 포인트가 결합된 형태입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 10진수와 16진수 코드의 차이는 무엇인가요?</h4>
+              <p>같은 코드 포인트를 다른 진법으로 표현한 것입니다. 예를 들어 'A'는 10진수로 65, 16진수로 0x41입니다. 프로그래밍에서는 16진수가 더 자주 사용됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 한글의 유니코드 범위는 어떻게 되나요?</h4>
+              <p>한글 자모는 U+3131~U+318E, 완성형 한글은 U+AC00~U+D7A3 범위에 있습니다. 총 11,172개의 완성형 한글 음절이 유니코드에 등록되어 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 코드 → 문자 변환 시 잘못된 값을 입력하면 어떻게 되나요?</h4>
+              <p>유효하지 않은 코드 포인트를 입력하면 변환이 실패하거나 빈 결과가 나옵니다. 올바른 형식(예: 10진수는 숫자만, 16진수는 0x 접두사)을 확인해 주세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 대량의 텍스트도 변환할 수 있나요?</h4>
+              <p>네, 긴 텍스트도 한 번에 변환 가능합니다. 다만 매우 긴 텍스트는 브라우저 성능에 따라 잠시 시간이 걸릴 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 이 도구는 무료인가요?</h4>
+              <p>네, 완전히 무료이며 사용 횟수 제한도 없습니다. 모든 처리는 브라우저에서 이루어져 별도 설치도 필요 없습니다.</p>
             </div>
           </div>
         </div>

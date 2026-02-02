@@ -713,34 +713,62 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
+      <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4" data-i18n="tools.imageResizer.faqTitle">이미지 리사이즈란?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">이미지 리사이즈란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4" data-i18n="tools.imageResizer.faqDesc">
-            이미지 리사이즈는 이미지의 크기(해상도)를 변경하는 것입니다. 웹사이트 업로드, SNS 게시, 썸네일 생성 등 다양한 용도로 활용됩니다.
-          </p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">이미지 리사이즈는 사진이나 그래픽의 가로/세로 크기(해상도)를 변경하는 작업입니다. 웹사이트에 업로드할 이미지를 가볍게 만들거나, SNS 규격에 맞추거나, 아이콘이나 썸네일을 제작할 때 필수적인 과정입니다. 이 도구는 브라우저에서 바로 동작하므로 프로그램 설치 없이 빠르게 이미지 크기를 조정할 수 있습니다.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3" data-i18n="tools.imageResizer.howToUse">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li data-i18n="tools.imageResizer.step1">이미지를 드래그하거나 클릭하여 업로드합니다</li>
-            <li data-i18n="tools.imageResizer.step2">픽셀 또는 퍼센트로 원하는 크기를 입력합니다</li>
-            <li data-i18n="tools.imageResizer.step3">'적용' 버튼을 클릭하여 리사이즈합니다</li>
-            <li data-i18n="tools.imageResizer.step4">'다운로드' 버튼으로 결과를 저장합니다</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3" data-i18n="tools.imageResizer.presetsTitle">프리셋 안내</h3>
-          <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 mb-4">
-            <li><strong>1920×1080 (FHD):</strong> Full HD 해상도, 유튜브 썸네일</li>
-            <li><strong>1080×1080 (IG):</strong> 인스타그램 정사각형 포스트</li>
-            <li><strong>1200×630 (OG):</strong> Open Graph 이미지 (SNS 공유용)</li>
-            <li><strong>256×256, 128×128:</strong> 아이콘, 프로필 이미지</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>픽셀(px) 또는 퍼센트(%) 단위로 크기 지정 가능</li>
+            <li>가로세로 비율 잠금으로 이미지 왜곡 방지</li>
+            <li>FHD, 인스타그램, Open Graph 등 자주 쓰는 프리셋 제공</li>
+            <li>리사이즈 전후 크기를 실시간 비교</li>
+            <li>PNG 형식으로 고품질 다운로드</li>
+            <li>모든 처리가 브라우저에서 이루어져 서버 전송 없음</li>
           </ul>
 
-          <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-            <p class="text-blue-800 dark:text-blue-300 text-sm" data-i18n="tools.imageResizer.privacyNote">
-              모든 처리는 브라우저에서 이루어지며 이미지가 서버로 전송되지 않습니다.
-            </p>
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>이미지를 드래그하거나 클릭하여 업로드합니다</li>
+            <li>픽셀 또는 퍼센트 모드를 선택한 뒤 원하는 크기를 입력합니다</li>
+            <li>비율 잠금 아이콘을 확인하고, 필요시 해제하여 자유롭게 조정합니다</li>
+            <li>프리셋 버튼을 클릭하면 해당 크기가 자동 입력됩니다</li>
+            <li>'적용' 버튼으로 리사이즈를 실행하고 '다운로드'로 결과를 저장합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>블로그나 웹사이트에 올릴 이미지를 적절한 크기로 줄이기</li>
+            <li>인스타그램 정사각형 포스트(1080x1080)에 맞추기</li>
+            <li>유튜브 썸네일(1920x1080) 규격에 맞춰 리사이즈하기</li>
+            <li>Open Graph 이미지(1200x630)로 SNS 공유 미리보기 최적화</li>
+            <li>프로필 아이콘이나 파비콘용 작은 이미지 만들기</li>
+            <li>이메일 첨부용으로 이미지 용량 줄이기</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>비율 잠금 상태에서 한쪽 값만 변경하면 나머지가 자동으로 계산됩니다</li>
+            <li>원본보다 크게 리사이즈하면 화질이 떨어질 수 있으니 주의하세요</li>
+            <li>퍼센트 모드는 원본 대비 비율로 크기를 지정할 때 편리합니다</li>
+            <li>프리셋을 활용하면 플랫폼별 권장 크기를 바로 적용할 수 있습니다</li>
+            <li>리사이즈 후 원본 파일은 변경되지 않으며 새 파일로 다운로드됩니다</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div><h4 class="font-medium">Q: 어떤 이미지 형식을 지원하나요?</h4><p>JPG, PNG, GIF, WebP 등 주요 이미지 형식을 모두 지원합니다.</p></div>
+            <div><h4 class="font-medium">Q: 리사이즈하면 화질이 떨어지나요?</h4><p>이미지를 줄이는 경우에는 화질 저하가 거의 없습니다. 다만 원본보다 크게 확대하면 픽셀이 뭉개져 보일 수 있습니다.</p></div>
+            <div><h4 class="font-medium">Q: 가로세로 비율을 유지하지 않고 리사이즈할 수 있나요?</h4><p>네, 비율 잠금 아이콘을 클릭하여 해제하면 가로와 세로를 독립적으로 지정할 수 있습니다.</p></div>
+            <div><h4 class="font-medium">Q: 프리셋에 없는 크기도 지정할 수 있나요?</h4><p>물론입니다. 입력 필드에 원하는 가로/세로 픽셀 값을 직접 입력하면 됩니다.</p></div>
+            <div><h4 class="font-medium">Q: 모바일에서도 사용 가능한가요?</h4><p>네, 모바일 브라우저에서도 정상 작동합니다. 스마트폰으로 찍은 사진을 바로 리사이즈할 수 있습니다.</p></div>
+            <div><h4 class="font-medium">Q: 이미지가 서버에 업로드되나요?</h4><p>아닙니다. 모든 작업은 브라우저 내에서 이루어지며 이미지가 외부로 전송되지 않습니다.</p></div>
+            <div><h4 class="font-medium">Q: 여러 장을 한꺼번에 리사이즈할 수 있나요?</h4><p>현재는 한 장씩 처리됩니다. 리사이즈 후 '새 이미지' 버튼으로 다음 이미지를 이어서 편집할 수 있습니다.</p></div>
+            <div><h4 class="font-medium">Q: 다운로드 파일 형식은 무엇인가요?</h4><p>결과물은 PNG 형식으로 다운로드됩니다. 원본 형식과 관계없이 고품질 PNG로 저장됩니다.</p></div>
+            <div><h4 class="font-medium">Q: 리사이즈 후 파일 용량은 어떻게 되나요?</h4><p>크기를 줄이면 보통 파일 용량도 함께 줄어듭니다. 정확한 용량은 이미지 내용에 따라 다릅니다.</p></div>
+            <div><h4 class="font-medium">Q: GIF 애니메이션도 리사이즈되나요?</h4><p>GIF 파일을 업로드할 수 있지만 첫 프레임만 리사이즈됩니다. 애니메이션 GIF 전체 리사이즈는 지원하지 않습니다.</p></div>
           </div>
         </div>
       </section>

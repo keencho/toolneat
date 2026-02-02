@@ -592,23 +592,89 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">EXIF 메타데이터란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">EXIF(Exchangeable Image File Format)는 디지털 사진에 포함된 메타데이터입니다. 카메라나 스마트폰으로 사진을 찍으면 자동으로 저장됩니다.</p>
+          <p>EXIF(Exchangeable Image File Format)는 디지털 사진에 포함된 메타데이터입니다. 카메라나 스마트폰으로 사진을 찍으면 촬영 위치, 날짜, 카메라 정보 등이 자동으로 사진 파일에 저장됩니다.</p>
+          <p class="mt-3">이 도구는 JPG/JPEG 이미지에서 EXIF 데이터를 확인하고 안전하게 제거할 수 있습니다. 모든 처리는 브라우저에서 이루어져 사진이 외부 서버로 전송되지 않습니다.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">포함될 수 있는 정보</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li><strong>GPS 위치:</strong> 사진이 촬영된 정확한 위치 (위도/경도)</li>
-            <li><strong>촬영 일시:</strong> 사진이 찍힌 날짜와 시간</li>
-            <li><strong>카메라 정보:</strong> 기기 모델, 제조사</li>
-            <li><strong>촬영 설정:</strong> 조리개, 셔터 속도, ISO</li>
-            <li><strong>썸네일:</strong> 작은 미리보기 이미지</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>EXIF 데이터 확인:</strong> 사진에 포함된 GPS 위치, 촬영 일시, 카메라 정보 등을 한눈에 확인</li>
+            <li><strong>EXIF 일괄 제거:</strong> 모든 메타데이터를 한 번에 안전하게 제거</li>
+            <li><strong>미리보기:</strong> 업로드한 이미지의 미리보기와 파일 정보 표시</li>
+            <li><strong>드래그 앤 드롭:</strong> 파일을 끌어다 놓기만 하면 바로 분석</li>
+            <li><strong>100% 브라우저 처리:</strong> 이미지가 서버로 전송되지 않아 프라이버시 보장</li>
+            <li><strong>다운로드:</strong> EXIF가 제거된 깨끗한 이미지를 바로 다운로드</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">왜 제거해야 하나요?</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li>SNS에 사진 업로드 시 집 위치가 노출될 수 있습니다</li>
-            <li>중고 거래 사진으로 개인정보가 유출될 수 있습니다</li>
-            <li>블로그나 웹사이트에 올릴 때 프라이버시 보호</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>JPG/JPEG 이미지를 드래그 앤 드롭하거나 클릭하여 업로드합니다</li>
+            <li>이미지에 포함된 EXIF 정보가 자동으로 표시됩니다</li>
+            <li>GPS 위치, 촬영 일시, 카메라 정보 등을 확인합니다</li>
+            <li>'EXIF 제거' 버튼을 클릭하여 메타데이터를 삭제합니다</li>
+            <li>EXIF가 제거된 이미지를 다운로드합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>SNS 업로드:</strong> 인스타그램, 페이스북 등에 올리기 전 위치 정보 제거</li>
+            <li><strong>중고 거래:</strong> 당근마켓, 번개장터 등에 사진 올릴 때 집 주소 노출 방지</li>
+            <li><strong>블로그:</strong> 블로그나 웹사이트에 올리는 사진에서 개인정보 제거</li>
+            <li><strong>이메일 첨부:</strong> 이메일로 사진을 보내기 전 민감한 메타데이터 삭제</li>
+            <li><strong>기업 보안:</strong> 외부에 공유하는 이미지에서 내부 정보 제거</li>
           </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>현재 JPG/JPEG 형식만 지원합니다. PNG, GIF 등은 EXIF 데이터가 거의 포함되지 않습니다</li>
+            <li>EXIF를 제거해도 이미지 품질에는 영향이 없습니다</li>
+            <li>원본 파일은 변경되지 않으며, 새로운 파일이 생성됩니다</li>
+            <li>스마트폰 사진에는 GPS 위치가 포함되어 있을 가능성이 높습니다</li>
+            <li>EXIF 데이터가 없는 사진도 있으므로, 없다고 표시되면 안심하세요</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: EXIF 데이터에는 어떤 정보가 포함되나요?</h4>
+              <p>GPS 위치(위도/경도), 촬영 날짜와 시간, 카메라 제조사와 모델, 조리개, 셔터 속도, ISO, 플래시 사용 여부, 썸네일 이미지 등이 포함될 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: EXIF를 제거하면 사진 품질이 떨어지나요?</h4>
+              <p>아니요, EXIF 메타데이터는 이미지 화질과 별개의 데이터입니다. EXIF를 제거해도 사진의 해상도, 색감, 선명도 등 화질에는 전혀 영향이 없습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 사진이 서버에 업로드되나요?</h4>
+              <p>아니요, 모든 처리가 브라우저 내에서 이루어집니다. 사진은 외부 서버로 전송되지 않으므로 프라이버시가 완벽하게 보호됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: JPG 외 다른 포맷도 지원하나요?</h4>
+              <p>현재는 JPG/JPEG 형식만 지원합니다. PNG, WebP, GIF 등은 EXIF 데이터가 거의 포함되지 않아 별도 처리가 불필요한 경우가 많습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 원본 파일이 변경되나요?</h4>
+              <p>아니요, 원본 파일은 그대로 유지됩니다. EXIF가 제거된 새로운 파일이 별도로 생성되어 다운로드됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: GPS 위치 정보가 위험한 이유는 무엇인가요?</h4>
+              <p>GPS 정보가 포함된 사진을 SNS나 중고 거래 플랫폼에 올리면, 다른 사람이 사진의 메타데이터를 확인하여 촬영 장소(집, 직장 등)를 알아낼 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 모든 사진에 EXIF 데이터가 있나요?</h4>
+              <p>아닙니다. 스크린샷, 이미 EXIF가 제거된 사진, 일부 편집 프로그램으로 저장한 사진에는 EXIF가 없을 수 있습니다. 이 경우 'EXIF 데이터 없음'으로 표시됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: SNS 플랫폼은 자동으로 EXIF를 제거하나요?</h4>
+              <p>대부분의 주요 SNS(인스타그램, 페이스북, 트위터 등)는 업로드 시 EXIF를 자동으로 제거합니다. 하지만 모든 플랫폼이 그런 것은 아니므로, 안전을 위해 미리 제거하는 것을 권장합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 여러 장의 사진을 한꺼번에 처리할 수 있나요?</h4>
+              <p>현재는 한 번에 한 장씩 처리합니다. 여러 장이 필요한 경우 한 장씩 순서대로 업로드하여 처리해주세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 모바일에서도 사용할 수 있나요?</h4>
+              <p>네, 스마트폰이나 태블릿의 브라우저에서도 사용할 수 있습니다. 파일 선택 버튼을 탭하여 갤러리에서 사진을 선택하면 됩니다.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -617,40 +617,91 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
+      <!-- Content Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4" data-i18n="tools.mergePdf.faqTitle">What is PDF Merge?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is PDF Merge?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4" data-i18n="tools.mergePdf.faqDesc">
-            PDF merge combines multiple PDF files into a single document. Useful for organizing contracts, reports, scanned documents, and more.
-          </p>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3" data-i18n="tools.mergePdf.howToUse">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li data-i18n="tools.mergePdf.step1">Drag or click to upload PDF files</li>
-            <li data-i18n="tools.mergePdf.step2">Drag files to reorder them</li>
-            <li data-i18n="tools.mergePdf.step3">Click 'Merge PDFs' button</li>
-            <li data-i18n="tools.mergePdf.step4">The merged PDF will download automatically</li>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">PDF Merge is the process of combining multiple PDF files into a single document. Whether you need to consolidate contracts, reports, receipts, or scanned paperwork, this tool lets you do it instantly in your browser without installing any software. Since all processing happens locally on your device, your files are never uploaded to external servers, keeping sensitive and confidential documents completely private.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Upload multiple PDF files at once and combine them into one</li>
+            <li>Drag and drop to freely reorder files before merging</li>
+            <li>All original text, images, vectors, and fonts preserved at full quality</li>
+            <li>No file count limit (within browser memory constraints)</li>
+            <li>100% client-side processing for complete privacy</li>
+            <li>No software installation or account registration required</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Drag PDF files into the upload area or click to browse (multiple selection supported)</li>
+            <li>Drag files in the list to arrange them in your desired order</li>
+            <li>Remove any unwanted files using the X button</li>
+            <li>Click the "Merge PDFs" button</li>
+            <li>Once complete, click "Download" to save the merged file</li>
           </ol>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Combining multiple contracts into a single PDF for email attachment</li>
+            <li>Consolidating scanned documents into one organized file</li>
+            <li>Merging presentation slides with supplementary materials</li>
+            <li>Preparing submission documents for schools or government agencies</li>
+            <li>Archiving monthly reports or receipts into a single file</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>If total file size exceeds 100MB, browser processing may slow down. Consider merging in smaller batches for large files</li>
+            <li>Password-protected PDFs must be unlocked before they can be merged</li>
+            <li>If you arranged files in the wrong order, use the "New Merge" button to start over</li>
+            <li>Your original files are never modified during the merge process</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is there a limit to how many files I can merge?</h4>
-              <p class="text-gray-600 dark:text-gray-400">There's no technical limit, but browser memory constraints may slow processing for files totaling over 100MB. For large files, consider merging in batches.</p>
+              <h4 class="font-medium">Q: Is there a limit to how many files I can merge?</h4>
+              <p class="text-gray-600 dark:text-gray-400">There is no technical file count limit. However, if the total size exceeds about 100MB, processing may slow down due to browser memory constraints. In such cases, merging in batches is recommended.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I change the file order?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, after uploading you can drag files to rearrange them. The PDF will be merged in the order shown.</p>
+              <h4 class="font-medium">Q: Can I change the file order after uploading?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, you can drag files in the list to rearrange them in any order. The final PDF will be merged in the order shown on screen.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is the original file quality preserved?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, all text, images, and vector graphics from the original PDFs are preserved. No recompression or quality loss occurs.</p>
+              <h4 class="font-medium">Q: Is the original file quality preserved after merging?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, all text, images, vector graphics, and fonts from the original PDFs are preserved exactly as they are. Pages are combined without any recompression or quality loss.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I merge password-protected PDFs?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Password-protected PDFs cannot be merged. Please unlock the PDF first before attempting to merge.</p>
+              <h4 class="font-medium">Q: Can I merge password-protected PDFs?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Password-protected PDFs cannot be merged directly. You need to remove the password protection first, then try the merge again.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are my files uploaded to a server?</h4>
+              <p class="text-gray-600 dark:text-gray-400">No. All processing happens entirely in your browser. Files are never sent to any external server, making it safe for confidential documents.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does this work on mobile devices?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, it works on mobile browsers. However, for large files, using a desktop browser provides a more stable experience.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I delete specific pages after merging?</h4>
+              <p class="text-gray-600 dark:text-gray-400">This tool is designed for file-level merging. To delete specific pages, use the "Delete PDF Pages" tool after merging.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What will the merged file be named?</h4>
+              <p class="text-gray-600 dark:text-gray-400">The default filename is "merged.pdf". You can rename the file after downloading it to your device.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I convert other file formats to PDF and merge them?</h4>
+              <p class="text-gray-600 dark:text-gray-400">This tool only accepts PDF files. To convert images to PDF first, use the "Image to PDF" tool, then merge the resulting PDFs.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What if my browser freezes during merging?</h4>
+              <p class="text-gray-600 dark:text-gray-400">This can happen with very large files. Refresh the page and try merging fewer files at once, or close unused browser tabs to free up memory.</p>
             </div>
           </div>
-          <p class="text-gray-600 dark:text-gray-400 mt-4" data-i18n="tools.mergePdf.privacyNote">All processing is done in your browser. No data is uploaded to servers.</p>
         </div>
       </section>
     </div>

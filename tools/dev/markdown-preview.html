@@ -779,38 +779,82 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">마크다운이란?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">마크다운 미리보기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>마크다운(Markdown)은 텍스트를 HTML로 변환하는 간단한 마크업 언어입니다. 개발자 문서, README 파일, 블로그 포스트 작성에 널리 사용됩니다. 간단한 문법으로 제목, 목록, 링크, 이미지, 코드 블록 등을 쉽게 작성할 수 있습니다.</p>
+          <p>마크다운 미리보기는 마크다운(Markdown) 문법으로 작성한 텍스트를 실시간으로 HTML 렌더링 결과를 확인할 수 있는 온라인 에디터입니다. 마크다운은 2004년 존 그루버가 개발한 경량 마크업 언어로, 읽기 쉬운 텍스트 형식으로 작성하면 구조화된 HTML 문서로 변환됩니다. 개발자 문서, README 파일, 기술 블로그, 위키 등 다양한 곳에서 표준 문서 포맷으로 활용되고 있습니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">지원하는 문법</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
           <ul class="list-disc list-inside space-y-2">
-            <li><strong>제목:</strong> # H1, ## H2, ### H3 등</li>
-            <li><strong>강조:</strong> **굵게**, *기울임*, ~~취소선~~</li>
-            <li><strong>목록:</strong> - 또는 * 로 순서 없는 목록, 1. 2. 3. 으로 순서 있는 목록</li>
-            <li><strong>체크박스:</strong> - [ ] 미완료, - [x] 완료 (Task List)</li>
-            <li><strong>링크:</strong> [링크 텍스트](URL)</li>
-            <li><strong>이미지:</strong> ![대체 텍스트](이미지URL)</li>
-            <li><strong>코드:</strong> `인라인 코드` 또는 ```언어 코드블록``` (구문 강조 지원)</li>
-            <li><strong>수식:</strong> $인라인 수식$ 또는 $$블록 수식$$ (MathJax/LaTeX)</li>
-            <li><strong>인용:</strong> > 인용문</li>
-            <li><strong>테이블:</strong> | 헤더1 | 헤더2 | 형식의 GFM 테이블</li>
-            <li><strong>수평선:</strong> --- 또는 ***</li>
+            <li><strong>실시간 렌더링:</strong> 입력과 동시에 미리보기가 갱신되어 결과를 바로 확인 가능</li>
+            <li><strong>GFM 지원:</strong> GitHub Flavored Markdown의 테이블, 체크박스, 취소선 등 확장 문법 완벽 지원</li>
+            <li><strong>코드 구문 강조:</strong> Highlight.js 기반으로 JavaScript, Python, HTML 등 180개 이상의 언어 하이라이팅</li>
+            <li><strong>수식 렌더링:</strong> MathJax를 통한 LaTeX 수식 지원 (인라인 및 블록 수식)</li>
+            <li><strong>HTML 내보내기:</strong> 렌더링 결과를 완전한 HTML 파일로 다운로드하거나 HTML 코드 복사 가능</li>
+            <li><strong>테마 전환:</strong> 미리보기 영역의 라이트/다크 테마를 개별 전환하여 다양한 배경에서 확인</li>
+            <li><strong>DOMPurify 보안:</strong> XSS 공격을 방지하기 위해 렌더링된 HTML을 자동으로 살균 처리</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>왼쪽(또는 상단) 입력 영역에 마크다운 텍스트를 작성합니다.</li>
+            <li>오른쪽(또는 하단) 미리보기 영역에서 렌더링 결과를 실시간으로 확인합니다.</li>
+            <li>'샘플 마크다운' 버튼으로 다양한 문법 예제를 불러올 수 있습니다.</li>
+            <li>'HTML 복사' 버튼으로 변환된 HTML 코드를 클립보드에 복사합니다.</li>
+            <li>'HTML 다운로드' 버튼으로 스타일이 포함된 완전한 HTML 파일을 다운로드합니다.</li>
+            <li>Tab 키로 들여쓰기를 삽입할 수 있어 코드 작성이 편리합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>GitHub README 작성:</strong> 프로젝트 소개 문서를 미리 확인하며 작성</li>
+            <li><strong>기술 문서 작성:</strong> API 문서, 설치 가이드 등 개발 문서를 작성하고 검토</li>
+            <li><strong>블로그 포스트:</strong> 마크다운 기반 블로그 플랫폼에 올릴 글을 미리보기</li>
+            <li><strong>수학/과학 문서:</strong> LaTeX 수식이 포함된 학술 자료나 강의 노트 작성</li>
+            <li><strong>회의록/메모:</strong> 구조화된 메모를 빠르게 작성하고 공유</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>제목(#) 뒤에 반드시 공백을 넣어야 올바르게 렌더링됩니다.</li>
+            <li>빈 줄을 넣어야 단락이 분리됩니다. 줄바꿈만으로는 새 단락이 만들어지지 않습니다.</li>
+            <li>코드 블록에서 언어를 명시하면(예: ```javascript) 구문 강조가 적용됩니다.</li>
+            <li>이미지 URL은 외부에서 접근 가능한 전체 URL을 사용해야 미리보기에서 표시됩니다.</li>
+            <li>수식 기능은 $ 기호가 다른 용도로 쓰일 수 있으니, 수식이 아닌 경우 \$로 이스케이프하세요.</li>
           </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: 마크다운은 어디서 사용되나요?</h4>
-              <p>GitHub, GitLab, Notion, Slack, Discord 등 많은 플랫폼에서 마크다운을 지원합니다. README 파일, 기술 문서, 블로그 포스트 작성에 표준으로 사용됩니다.</p>
+              <p>GitHub, GitLab, Notion, Slack, Discord, Reddit 등 수많은 플랫폼에서 마크다운을 지원합니다. README 파일, 기술 문서, 블로그 포스트 작성에 사실상 표준으로 사용됩니다.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: 입력한 내용이 서버로 전송되나요?</h4>
-              <p>아니요, 모든 변환은 브라우저에서 로컬로 처리됩니다. 입력한 내용은 외부로 전송되지 않으며 안전하게 사용할 수 있습니다.</p>
+              <p>아니요, 모든 변환은 브라우저에서 로컬로 처리됩니다. 입력한 내용은 외부로 전송되지 않으며, 민감한 내용이 포함된 문서도 안전하게 작업할 수 있습니다.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: HTML로 내보낸 결과물을 어떻게 사용하나요?</h4>
-              <p>'HTML 다운로드' 버튼으로 완전한 HTML 파일을 받을 수 있습니다. 이 파일을 웹서버에 업로드하거나 로컬에서 열어 확인할 수 있습니다.</p>
+              <p>'HTML 다운로드' 버튼으로 스타일이 포함된 완전한 HTML 파일을 받을 수 있습니다. 이 파일을 웹서버에 업로드하거나 이메일에 첨부하거나 로컬에서 열어 확인할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: GFM이란 무엇인가요?</h4>
+              <p>GFM(GitHub Flavored Markdown)은 GitHub에서 확장한 마크다운 사양입니다. 기본 마크다운에 테이블, 체크박스(Task List), 취소선, 자동 링크 등의 기능이 추가되어 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 수식(LaTeX)은 어떻게 입력하나요?</h4>
+              <p>인라인 수식은 $ 기호로 감싸고(예: $E=mc^2$), 블록 수식은 $$ 기호로 감쌉니다. LaTeX 문법을 그대로 사용할 수 있으며, MathJax 엔진이 렌더링합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 코드 블록에서 특정 언어 강조를 하려면?</h4>
+              <p>코드 블록 시작 시 백틱 세 개 뒤에 언어 이름을 적으면 됩니다. 예를 들어 ```python을 입력하면 Python 구문 강조가 적용됩니다. 지원 언어는 180개 이상입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 미리보기 테마를 바꿀 수 있나요?</h4>
+              <p>네, '미리보기 테마' 버튼으로 라이트와 다크 모드를 전환할 수 있습니다. 다크 배경에서 문서가 어떻게 보이는지 미리 확인할 때 유용합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 작성 중인 내용이 사라지면 어떻게 하나요?</h4>
+              <p>브라우저를 새로고침하면 입력 내용이 사라집니다. 중요한 내용은 작성 중 수시로 'HTML 복사' 또는 별도 파일로 저장해두는 것을 권장합니다.</p>
             </div>
           </div>
         </div>

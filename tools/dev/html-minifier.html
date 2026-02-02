@@ -589,22 +589,91 @@
 
       <!-- Description -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">HTML 압축이란?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">HTML 압축(Minify) 도구 안내</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">HTML 압축(Minification)은 HTML 코드의 기능을 유지하면서 파일 크기를 줄이는 과정입니다. 불필요한 공백, 줄바꿈, 주석을 제거하여 웹 페이지 로딩 속도를 향상시킵니다.</p>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">압축 효과</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li>파일 크기 감소 (보통 10~30%)</li>
-            <li>페이지 로딩 시간 단축</li>
-            <li>서버 대역폭 절약</li>
-            <li>SEO 점수 향상</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">HTML 압축이란?</h3>
+          <p>HTML 압축(Minification)은 코드의 동작을 그대로 유지하면서 파일 크기를 줄이는 최적화 기법입니다. 사람이 읽기 쉽도록 넣은 들여쓰기, 줄바꿈, 공백, 주석 등은 브라우저 렌더링에 영향을 주지 않지만 전송되는 데이터 양을 늘립니다. 이런 불필요한 문자를 제거하면 파일 크기가 줄어들고, 결과적으로 페이지 로딩 속도가 빨라집니다. 보통 HTML 파일은 압축 후 10~30% 정도 크기가 줄어드는데, 주석이 많거나 들여쓰기가 깊은 파일일수록 효과가 큽니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>불필요한 공백과 줄바꿈 제거로 파일 크기 최소화</li>
+            <li>HTML 주석 자동 제거</li>
+            <li>연속 공백을 하나로 병합</li>
+            <li>pre, code, textarea 태그 내부 공백 자동 보존</li>
+            <li>압축 전후 크기 비교 및 절감률 실시간 표시</li>
+            <li>결과 복사 및 파일 다운로드 지원</li>
           </ul>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">주의사항</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
-            <li>pre, code, textarea 태그 내 공백은 유지됩니다</li>
-            <li>압축된 코드는 가독성이 떨어집니다</li>
-            <li>개발 시에는 원본을 보관하세요</li>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>왼쪽 입력 영역에 HTML 코드를 붙여넣거나 직접 입력합니다.</li>
+            <li>'압축' 버튼을 클릭하면 오른쪽에 결과가 표시됩니다.</li>
+            <li>결과 영역 위의 크기 정보에서 원본과 압축 후 크기, 절감률을 확인합니다.</li>
+            <li>'복사' 버튼으로 클립보드에 복사하거나 '다운로드'로 파일을 저장합니다.</li>
+            <li>필요하면 '초기화' 버튼으로 입력과 결과를 모두 지울 수 있습니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>프로덕션 배포 전 HTML 파일 경량화로 페이지 속도 개선</li>
+            <li>이메일 템플릿 용량 줄이기 (이메일 클라이언트 크기 제한 대응)</li>
+            <li>CDN에 올리기 전 정적 HTML 최적화</li>
+            <li>웹 성능 점수(PageSpeed, Lighthouse) 향상을 위한 리소스 최적화</li>
+            <li>임베디드 HTML 위젯이나 광고 코드 경량화</li>
           </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>개발용 원본 코드는 반드시 별도로 보관하세요. 압축된 코드는 가독성이 떨어져 수정이 어렵습니다.</li>
+            <li>pre, code, textarea 태그 내 공백은 의미가 있으므로 이 도구는 해당 영역을 자동으로 보존합니다.</li>
+            <li>CSS나 JavaScript가 인라인으로 포함된 경우, HTML 압축만으로는 최적화가 부족할 수 있습니다. 별도 CSS/JS 압축 도구를 함께 사용하세요.</li>
+            <li>압축 후 반드시 브라우저에서 렌더링 결과를 확인하세요. 드물지만 특수한 레이아웃에서 공백 제거가 표시에 영향을 줄 수 있습니다.</li>
+            <li>Gzip이나 Brotli 같은 서버 압축과 HTML 압축은 별개입니다. 둘 다 적용하면 효과가 더 좋습니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: HTML 압축을 하면 실제로 얼마나 크기가 줄어드나요?</h4>
+              <p>코드 스타일에 따라 다르지만, 일반적으로 10~30% 정도 줄어듭니다. 들여쓰기 수준이 깊고 주석이 많은 코드일수록 절감 효과가 큽니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 압축하면 웹 페이지가 깨질 수 있나요?</h4>
+              <p>대부분의 경우 문제없습니다. 다만 CSS에서 inline-block 요소 사이의 공백에 의존하는 레이아웃이 있으면 표시가 달라질 수 있습니다. 압축 후 항상 결과를 확인하는 것이 좋습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: pre 태그 안의 내용도 압축되나요?</h4>
+              <p>아닙니다. pre, code, textarea 태그 내부의 공백은 콘텐츠의 일부이므로 이 도구는 해당 영역을 자동으로 감지하고 보존합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: HTML 주석은 왜 제거하나요?</h4>
+              <p>HTML 주석은 브라우저가 렌더링에 사용하지 않지만 전송되는 데이터에 포함됩니다. 제거하면 파일 크기가 줄어들고, 소스 코드에 남긴 개발 메모가 외부에 노출되는 것도 방지할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: CSS나 JavaScript 압축도 같이 되나요?</h4>
+              <p>이 도구는 HTML 구조만 압축합니다. style 태그나 script 태그 내부의 CSS/JS 코드는 별도의 CSS 압축기, JS 압축기를 사용하는 것이 효과적입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 서버에서 Gzip 압축을 하면 HTML 압축은 불필요한가요?</h4>
+              <p>아닙니다. 둘은 보완 관계입니다. HTML 압축으로 불필요한 문자를 먼저 제거하면 Gzip 압축률도 더 좋아지므로, 최적의 결과를 위해 둘 다 적용하는 것이 권장됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 압축된 코드를 다시 보기 좋게 만들 수 있나요?</h4>
+              <p>HTML 포맷터(Beautifier) 도구를 사용하면 압축된 코드에 들여쓰기와 줄바꿈을 다시 추가할 수 있습니다. 다만 원본의 주석이나 특정 공백 스타일은 복원되지 않으므로 원본을 보관하는 것이 가장 좋습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 입력한 HTML 데이터는 서버로 전송되나요?</h4>
+              <p>아닙니다. 모든 압축 작업은 브라우저에서 JavaScript로 처리됩니다. 입력한 코드는 서버로 전송되지 않으며, 민감한 코드도 안심하고 사용할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 압축 결과가 원본과 동일하게 동작하는지 어떻게 검증하나요?</h4>
+              <p>압축 전후의 HTML을 각각 브라우저에서 열어 시각적으로 비교하거나, 자동화 테스트 도구로 DOM 구조를 비교하는 방법이 있습니다. 중요한 프로젝트라면 스테이징 환경에서 먼저 테스트하세요.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 대용량 HTML 파일도 처리할 수 있나요?</h4>
+              <p>브라우저에서 처리하므로 수 MB 수준의 파일도 문제없이 압축됩니다. 다만 매우 큰 파일의 경우 처리에 시간이 걸릴 수 있으며, 빌드 도구(Webpack, Gulp 등)의 HTML 압축 플러그인을 사용하는 것도 좋은 방법입니다.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

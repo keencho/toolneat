@@ -610,24 +610,61 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About PDF Page Delete</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is PDF Page Delete?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Remove unwanted pages from PDF documents by selecting them visually.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">PDF Page Delete lets you visually select and remove unwanted pages from any PDF document. Each page is displayed as a thumbnail preview so you can verify the content before deleting. No software installation is needed -- everything runs directly in your browser, and your files are never uploaded to an external server.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li>Upload a PDF file</li>
-            <li>Click on pages you want to delete</li>
-            <li>Use quick select buttons to select multiple pages at once</li>
-            <li>Click 'Delete Selected Pages & Download' button</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Automatic thumbnail previews for every page</li>
+            <li>Click-to-toggle selection on individual pages</li>
+            <li>Quick select buttons: Select All, Deselect All, Odd Pages, Even Pages</li>
+            <li>Real-time count of pages marked for deletion</li>
+            <li>Built-in safeguard preventing you from deleting all pages</li>
+            <li>100% in-browser processing -- no server uploads</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Drag and drop a PDF file or click the upload area to select one</li>
+            <li>Wait for thumbnail previews to load in a grid layout</li>
+            <li>Click on pages you want to remove -- a red border and X badge will appear</li>
+            <li>Use the quick select buttons (Select All, Odd, Even) to select multiple pages at once</li>
+            <li>Click "Delete Selected Pages & Download"</li>
+            <li>The new PDF with selected pages removed will download automatically</li>
           </ol>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Use Cases</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li>Remove unnecessary cover or ad pages</li>
-            <li>Delete blank pages from scanned documents</li>
-            <li>Extract specific portions of a document for sharing</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Removing unnecessary cover pages, tables of contents, or ad pages</li>
+            <li>Deleting blank or incorrectly scanned pages from scanned documents</li>
+            <li>Extracting only the relevant sections from a long report for sharing</li>
+            <li>Keeping specific chapters from course materials</li>
+            <li>Trimming forms or contracts to include only applicable sections before submission</li>
           </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Always keep a backup of the original file before deleting pages</li>
+            <li>You cannot delete every page -- at least one page must remain in the document</li>
+            <li>The Odd/Even selection is handy for removing one side of double-sided scans</li>
+            <li>Documents with many pages may take a moment to generate thumbnails</li>
+            <li>Page numbers in the output file are automatically renumbered</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div><h4 class="font-medium">Q: Can I undo the deletion after downloading?</h4><p class="text-gray-600 dark:text-gray-400">The downloaded file cannot be reverted. However, your original file is never modified, so keep it as a backup.</p></div>
+            <div><h4 class="font-medium">Q: Can I process password-protected PDFs?</h4><p class="text-gray-600 dark:text-gray-400">Encrypted PDFs cannot be read by the tool. Please remove the password protection first.</p></div>
+            <div><h4 class="font-medium">Q: Does deleting pages affect the remaining content?</h4><p class="text-gray-600 dark:text-gray-400">No. All text, images, and formatting on the remaining pages stay exactly as they were in the original.</p></div>
+            <div><h4 class="font-medium">Q: Is there a file size limit?</h4><p class="text-gray-600 dark:text-gray-400">There is no strict size limit, but very large files (over 100MB) may process slowly depending on your browser's available memory.</p></div>
+            <div><h4 class="font-medium">Q: What if I want to reorder pages instead?</h4><p class="text-gray-600 dark:text-gray-400">For reordering, please use the PDF Page Reorder tool. This tool is designed specifically for deletion.</p></div>
+            <div><h4 class="font-medium">Q: Does this work on mobile?</h4><p class="text-gray-600 dark:text-gray-400">Yes, it works in mobile browsers. The thumbnail grid adapts automatically to smaller screens.</p></div>
+            <div><h4 class="font-medium">Q: Can I process multiple files at once?</h4><p class="text-gray-600 dark:text-gray-400">Only one PDF can be processed at a time. After finishing, click "Change file" to load the next document.</p></div>
+            <div><h4 class="font-medium">Q: Is my file uploaded to a server?</h4><p class="text-gray-600 dark:text-gray-400">No. All processing happens entirely in your browser. Your file never leaves your device.</p></div>
+            <div><h4 class="font-medium">Q: How can I tell which page is which?</h4><p class="text-gray-600 dark:text-gray-400">Each thumbnail displays a page number beneath it. Check the thumbnail content carefully to select the correct pages for deletion.</p></div>
+            <div><h4 class="font-medium">Q: What is the output file named?</h4><p class="text-gray-600 dark:text-gray-400">The output file appends "_edited" to the original filename. For example, "report.pdf" becomes "report_edited.pdf".</p></div>
+          </div>
         </div>
       </section>
     </div>

@@ -568,20 +568,91 @@
           <p class="text-sm text-gray-500 mt-2">Drag to apply blur/mosaic effect to areas</p>
         </div>
       </div>
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4">Frequently Asked Questions</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: What image formats are supported?</h4>
-            <p>JPG, PNG, GIF, WebP and most image formats supported by your browser can be used.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: Are processed images stored on the server?</h4>
-            <p>No, all processing is done in your browser and images are downloaded directly. Nothing is sent to or stored on any server.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: What's the difference between blur and mosaic?</h4>
-            <p>Blur smoothly obscures the area, while mosaic creates a pixelated effect. Both are effective for privacy protection.</p>
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Image Blur/Mosaic?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            The Image Blur/Mosaic tool obscures or pixelates specific areas of photos and images to protect personal information. You can easily cover faces, license plates, and sensitive details by simply dragging your mouse over the target area. Choose between a smooth Gaussian blur or a pixelated mosaic effect. All processing happens in your browser for complete privacy.
+          </p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Choose between Gaussian blur and mosaic (pixelation) effects</li>
+            <li>Selectively apply effects by mouse dragging over target areas</li>
+            <li>Adjustable blur/mosaic intensity and brush size</li>
+            <li>Undo functionality to recover from mistakes</li>
+            <li>Support for JPG, PNG, WebP, and other common formats</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Drag and drop or click to upload an image</li>
+            <li>Select the blur or mosaic effect</li>
+            <li>Adjust the brush size and intensity</li>
+            <li>Drag your mouse over the areas you want to obscure</li>
+            <li>Download the processed image</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Hiding faces or personal details before posting photos on social media</li>
+            <li>Masking sensitive information in blog posts or YouTube thumbnails</li>
+            <li>Protecting license plates, addresses, and phone numbers in photos</li>
+            <li>Redacting confidential information in work-related screenshots</li>
+            <li>Covering background details in photos for online marketplace listings</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Low blur intensity may allow original content to be guessed, so apply a strong enough level</li>
+            <li>Mosaic is harder to reverse than blur, making it better for security-sensitive use</li>
+            <li>Use a smaller brush size for precise processing of small text or details</li>
+            <li>Use the undo feature if you accidentally process the wrong area</li>
+            <li>Keep a copy of the original file and save the processed version separately</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What image formats are supported?</h4>
+              <p class="text-gray-600 dark:text-gray-400">JPG, PNG, GIF, WebP, and most image formats supported by your browser can be used.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Are processed images stored on the server?</h4>
+              <p class="text-gray-600 dark:text-gray-400">No, all processing is done in your browser and images are downloaded directly. Nothing is sent to or stored on any server.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: What is the difference between blur and mosaic?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Blur smoothly obscures the area with a Gaussian effect, while mosaic creates a pixelated look. Both are effective for privacy, but mosaic is recommended when security is a priority.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can a blurred image be restored to its original?</h4>
+              <p class="text-gray-600 dark:text-gray-400">No, once blur or mosaic is applied, the original information is lost. With sufficient intensity, restoration is impossible.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: How do I adjust the brush size?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Use the slider in the settings panel to adjust the brush size. Use a larger brush for wide areas and a smaller brush for fine details.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I undo if I make a mistake?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, use the undo feature to revert to the previous step. You can also use the reset button to remove all effects.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is there a file size limit?</h4>
+              <p class="text-gray-600 dark:text-gray-400">It depends on your browser memory, but generally images up to several thousand pixels can be processed without issues.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I choose the output format when downloading?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Processed images are downloaded in PNG format. If you need a different format, use the Image Converter tool alongside this one.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Does it work on mobile devices?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, it works on mobile browsers. You can drag with touch to apply blur or mosaic effects on your phone or tablet.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can I apply effects to multiple areas?</h4>
+              <p class="text-gray-600 dark:text-gray-400">Yes, you can apply blur or mosaic to as many areas as needed. Simply drag over each area you want to process.</p>
+            </div>
           </div>
         </div>
       </section>

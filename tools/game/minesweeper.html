@@ -660,21 +660,72 @@
         </div>
       </div>
 
-      <!-- FAQ Section -->
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">자주 묻는 질문</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 지뢰찾기 규칙이 뭔가요?</h4>
-            <p>지뢰가 없는 모든 칸을 여는 것이 목표입니다. 숫자는 인접한 8칸 중 지뢰가 있는 칸의 개수를 나타냅니다. 지뢰가 있다고 생각되는 칸에는 깃발을 꽂으세요.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 첫 클릭에 지뢰가 터지나요?</h4>
-            <p>아니요! 첫 번째 클릭은 항상 안전합니다. 첫 클릭 후에 지뢰가 배치됩니다.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: 난이도별 지뢰 개수는?</h4>
-            <p>쉬움: 9x9 격자에 10개, 보통: 16x16 격자에 40개, 어려움: 30x16 격자에 99개의 지뢰가 있습니다.</p>
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">지뢰찾기란?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>지뢰찾기(Minesweeper)는 1989년 마이크로소프트 윈도우에 기본 탑재되면서 전 세계적으로 유명해진 클래식 논리 퍼즐 게임입니다. 격자판에 숨겨진 지뢰를 피해 안전한 칸을 모두 여는 것이 목표입니다. 숫자 단서를 활용한 추론이 핵심이며, 논리적 사고력과 패턴 인식 능력을 키우는 데 훌륭한 게임입니다. Toolneat의 지뢰찾기는 브라우저에서 바로 플레이 가능하며, 클래식 윈도우 디자인을 충실히 재현했습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">게임 조작법</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>왼쪽 클릭:</strong> 칸을 열어 안전한지 확인합니다.</li>
+            <li><strong>오른쪽 클릭:</strong> 지뢰가 있다고 생각되는 칸에 깃발을 표시합니다.</li>
+            <li><strong>모바일 길게 누르기:</strong> 터치 기기에서 깃발을 꽂으려면 칸을 길게 누르세요.</li>
+            <li><strong>이모지 버튼:</strong> 중앙의 얼굴 버튼을 클릭하면 새 게임이 시작됩니다.</li>
+          </ul>
+          <p>칸을 열면 숫자가 나타나는데, 이 숫자는 주변 8칸에 있는 지뢰의 개수를 의미합니다. 빈 칸(숫자 0)을 열면 주변의 안전한 칸이 자동으로 열립니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">게임 전략과 팁</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>가장자리부터 시작:</strong> 코너나 가장자리를 먼저 클릭하면 넓은 영역이 한 번에 열릴 확률이 높습니다.</li>
+            <li><strong>1-1 패턴 활용:</strong> 숫자 1이 나란히 있으면 그 사이 공간은 안전할 가능성이 높습니다.</li>
+            <li><strong>깃발 적극 활용:</strong> 확실한 지뢰 위치에 깃발을 꽂으면 주변 숫자 해석이 쉬워집니다.</li>
+            <li><strong>소거법 사용:</strong> 한 숫자 주변에 이미 해당 수만큼 깃발이 있다면, 나머지 칸은 모두 안전합니다.</li>
+            <li><strong>50:50 상황 최소화:</strong> 논리로 풀 수 있는 칸을 먼저 모두 처리한 후 추측이 필요한 칸에 도전하세요.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: 지뢰찾기의 목표는 무엇인가요?</h4>
+              <p>지뢰가 없는 모든 칸을 여는 것이 목표입니다. 숫자는 인접한 8칸 중 지뢰가 있는 칸의 개수를 나타냅니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 첫 클릭에 지뢰가 터지나요?</h4>
+              <p>아닙니다. 첫 클릭은 항상 안전합니다. 지뢰는 첫 클릭 이후에 배치되며, 클릭한 칸과 주변 칸에는 지뢰가 놓이지 않습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 난이도별 격자 크기와 지뢰 수는?</h4>
+              <p>쉬움: 9x9에 지뢰 10개, 보통: 16x16에 지뢰 40개, 어려움: 30x16에 지뢰 99개입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 숫자의 의미는 무엇인가요?</h4>
+              <p>각 숫자는 해당 칸을 둘러싼 8칸 중 지뢰가 있는 칸의 수를 나타냅니다. 1이면 주변에 지뢰가 1개, 3이면 3개입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 깃발은 어떻게 사용하나요?</h4>
+              <p>오른쪽 클릭(PC) 또는 길게 누르기(모바일)로 지뢰가 있다고 생각되는 칸에 깃발을 꽂거나 제거할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 타이머는 언제 시작되나요?</h4>
+              <p>첫 칸을 클릭하는 순간부터 타이머가 시작됩니다. 최대 999초까지 표시됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 빈 칸을 클릭하면 왜 여러 칸이 열리나요?</h4>
+              <p>주변에 지뢰가 없는 빈 칸(숫자 0)을 열면 인접한 안전 칸들이 자동으로 연쇄적으로 열립니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 지뢰찾기에서 항상 논리로 풀 수 있나요?</h4>
+              <p>대부분의 경우 논리로 풀 수 있지만, 간혹 50:50 확률로 추측이 필요한 상황이 발생할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 승리 조건은 무엇인가요?</h4>
+              <p>지뢰가 아닌 모든 칸을 열면 승리합니다. 깃발을 모두 꽂을 필요는 없습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 모바일에서 오른쪽 클릭은 어떻게 하나요?</h4>
+              <p>모바일 기기에서는 칸을 약 0.5초 길게 누르면 깃발이 토글됩니다.</p>
+            </div>
           </div>
         </div>
       </section>

@@ -623,25 +623,84 @@
         </div>
       </div>
 
-      <!-- Description -->
+      <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Open Graph란?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">OG 미리보기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Open Graph는 Facebook이 만든 프로토콜로, 웹페이지가 SNS에서 공유될 때 제목, 설명, 이미지 등을 정의합니다. 대부분의 소셜 플랫폼이 이 프로토콜을 지원합니다.</p>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">필수 태그</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
-            <li><strong>og:title</strong>: 콘텐츠 제목 (60자 권장)</li>
-            <li><strong>og:description</strong>: 콘텐츠 설명 (155자 권장)</li>
-            <li><strong>og:image</strong>: 미리보기 이미지 URL</li>
-            <li><strong>og:url</strong>: 페이지의 표준 URL</li>
+          <p>OG(Open Graph) 미리보기는 웹페이지 URL을 소셜 미디어에 공유했을 때 어떻게 표시되는지 미리 확인할 수 있는 도구입니다. Facebook이 개발한 Open Graph 프로토콜은 페이지의 제목, 설명, 대표 이미지 등을 정의하며, Facebook, LinkedIn, KakaoTalk, Slack 등 대부분의 플랫폼이 이를 지원합니다. 공유 전에 미리보기를 확인하면 의도한 대로 정보가 표시되는지 검증할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>URL 분석:</strong> 웹페이지 URL을 입력하면 OG 태그를 자동으로 읽어와 분석합니다.</li>
+            <li><strong>플랫폼별 미리보기:</strong> Facebook, Twitter, LinkedIn 등 각 플랫폼에서의 표시 형태를 확인합니다.</li>
+            <li><strong>태그 검증:</strong> 필수 OG 태그가 누락되었는지, 값이 올바른지 검사합니다.</li>
+            <li><strong>이미지 확인:</strong> og:image로 지정된 이미지의 크기와 비율이 적절한지 확인합니다.</li>
+            <li><strong>실시간 편집:</strong> 태그 값을 직접 수정하며 결과를 바로 확인할 수 있습니다.</li>
+            <li><strong>코드 출력:</strong> 올바른 OG 태그 코드를 생성하여 복사할 수 있습니다.</li>
           </ul>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">이미지 권장사항</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
-            <li>최소 크기: 1200 x 630 픽셀</li>
-            <li>비율: 1.91:1</li>
-            <li>파일 크기: 8MB 미만</li>
-            <li>형식: JPG, PNG, GIF</li>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>확인할 웹페이지의 URL을 입력합니다.</li>
+            <li>"분석" 버튼을 클릭하여 해당 페이지의 OG 태그를 가져옵니다.</li>
+            <li>미리보기 영역에서 각 플랫폼에서의 표시 형태를 확인합니다.</li>
+            <li>누락되거나 수정이 필요한 태그가 있으면 직접 편집합니다.</li>
+            <li>수정된 OG 태그 코드를 복사하여 웹페이지에 적용합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>마케팅 캠페인:</strong> 소셜 광고나 프로모션 링크를 공유하기 전에 미리보기를 점검합니다.</li>
+            <li><strong>블로그 배포:</strong> 새 글을 발행하고 SNS에 공유하기 전에 제목과 이미지가 올바르게 표시되는지 확인합니다.</li>
+            <li><strong>쇼핑몰 상품:</strong> 상품 페이지가 공유될 때 상품명, 가격, 이미지가 제대로 나타나는지 검증합니다.</li>
+            <li><strong>웹사이트 리뉴얼:</strong> 사이트 개편 후 모든 페이지의 OG 태그가 정상인지 일괄 점검합니다.</li>
+            <li><strong>경쟁사 분석:</strong> 다른 사이트의 OG 태그 설정을 참고하여 자사 페이지를 개선합니다.</li>
           </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>OG 이미지는 1200x630px(비율 1.91:1)이 가장 안정적이며, JPG 또는 PNG 형식이 권장됩니다.</li>
+            <li>og:title은 60자 이내, og:description은 155자 이내로 작성하면 대부분의 플랫폼에서 잘리지 않습니다.</li>
+            <li>og:url에는 항상 정식(canonical) URL을 사용하여 중복 문제를 방지하세요.</li>
+            <li>소셜 플랫폼은 OG 정보를 캐시하므로 태그 수정 후에는 각 플랫폼의 디버거 도구로 캐시를 새로고침하세요.</li>
+            <li>모든 분석은 브라우저에서 로컬로 수행되므로 입력한 URL이나 데이터가 외부로 전송되지 않습니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: Open Graph 태그가 없으면 어떻게 되나요?</h4>
+              <p>OG 태그가 없으면 소셜 플랫폼이 페이지의 title 태그와 본문에서 자동으로 정보를 추출하는데, 이 경우 의도와 다른 제목이나 이미지가 표시될 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: og:image의 최소 크기는 얼마인가요?</h4>
+              <p>Facebook 기준 최소 200x200px이지만, 1200x630px(비율 1.91:1)을 권장합니다. 작은 이미지는 표시되지 않거나 흐리게 나타날 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Twitter는 OG 태그를 사용하나요?</h4>
+              <p>Twitter는 자체 twitter:card 태그를 우선 사용하지만, 없을 경우 OG 태그를 대체로 읽습니다. 정확한 표시를 위해서는 Twitter Card 태그도 함께 설정하는 것이 좋습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: OG 태그를 수정했는데 소셜 미디어에서 반영이 안 돼요.</h4>
+              <p>소셜 플랫폼은 캐시를 사용합니다. Facebook Sharing Debugger(developers.facebook.com/tools/debug)에서 URL을 입력하고 "Scrape Again"을 클릭하면 최신 정보로 갱신됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: og:type에는 어떤 값을 넣어야 하나요?</h4>
+              <p>일반 웹페이지는 "website", 블로그 글은 "article", 상품 페이지는 "product"를 사용합니다. 대부분의 경우 "website"로 설정하면 무난합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 여러 이미지를 OG에 등록할 수 있나요?</h4>
+              <p>og:image 태그를 여러 개 사용하면 가능합니다. 첫 번째 이미지가 기본 미리보기로 사용되며, 일부 플랫폼에서는 사용자가 이미지를 선택할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: 로컬호스트 URL도 분석할 수 있나요?</h4>
+              <p>이 도구는 브라우저에서 직접 URL에 접근하여 분석하므로, 로컬 개발 서버(localhost)의 OG 태그도 확인할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: OG 태그와 메타 디스크립션의 차이는 무엇인가요?</h4>
+              <p>메타 디스크립션은 검색 엔진 결과에 표시되는 설명이고, og:description은 소셜 미디어 공유 시 표시되는 설명입니다. 둘은 별도로 설정하며, 내용이 다를 수 있습니다.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

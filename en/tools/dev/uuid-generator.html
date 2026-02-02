@@ -639,32 +639,88 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is UUID Generator?</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a UUID Generator?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>A UUID (Universally Unique Identifier) Generator creates unique 128-bit identifiers that are virtually guaranteed to be unique across all systems and time. UUIDs are essential in distributed systems, databases, and applications where unique identification is required without central coordination. This tool supports multiple UUID versions including v7 (time-sortable), v4 (random), and v1 (timestamp-based), with options for formatting and bulk generation.</p>
+          <p>A UUID (Universally Unique Identifier) is a 128-bit identifier that is globally unique across all systems and time. UUIDs allow distributed systems to generate unique IDs without any central coordination server, making them essential for modern software development. The standard format is a 32-character hexadecimal string in an 8-4-4-4-12 pattern (e.g., 550e8400-e29b-41d4-a716-446655440000). This tool supports three UUID versions -- v7, v4, and v1 -- along with formatting and bulk generation options.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Three UUID versions:</strong> Supports v7 (time-sortable, latest standard), v4 (fully random), and v1 (timestamp + MAC address based).</li>
+            <li><strong>Format options:</strong> Toggle between uppercase and lowercase, with or without hyphens to match your project conventions.</li>
+            <li><strong>Bulk generation:</strong> Generate up to 100 UUIDs at once and copy them all with a single click.</li>
+            <li><strong>One-click copy:</strong> Instantly copy any generated UUID to your clipboard with the copy button.</li>
+            <li><strong>Browser-only processing:</strong> All generation happens locally in your browser. No data is sent to any server.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
           <ol class="list-decimal list-inside space-y-2">
-            <li>Click the refresh button to generate a new UUID instantly, or simply load the page for an automatic first UUID.</li>
-            <li>Select the UUID version: v7 for time-sortable IDs (recommended for databases), v4 for pure randomness, or v1 for timestamp-based.</li>
-            <li>Choose the format: lowercase or uppercase, with or without hyphens.</li>
-            <li>For multiple UUIDs, enter the desired count (1-100) and click "Generate Bulk" to create multiple at once.</li>
-            <li>Copy individual UUIDs with the copy button, or copy all bulk-generated UUIDs at once.</li>
+            <li>A UUID is automatically generated when the page loads.</li>
+            <li>Select the UUID version: v7 (recommended for databases), v4 (pure random), or v1 (timestamp-based).</li>
+            <li>Choose the format (lowercase or uppercase) and separator (with or without hyphens).</li>
+            <li>Click the refresh button to generate a new UUID instantly.</li>
+            <li>Use the copy button to copy the UUID to your clipboard.</li>
+            <li>For multiple UUIDs, set the desired count and click the Bulk Generate button.</li>
           </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Database primary keys:</strong> Use UUIDs as primary keys to create records across distributed databases without collision risks.</li>
+            <li><strong>API transaction IDs:</strong> Assign a unique UUID to each API request for easier log tracing and debugging across microservices.</li>
+            <li><strong>File naming:</strong> Convert uploaded file names to UUIDs to prevent naming conflicts and ensure uniqueness in storage systems.</li>
+            <li><strong>Session management:</strong> Use UUIDs as session IDs or user tokens in web applications for secure session handling.</li>
+            <li><strong>Test data:</strong> Generate unique identifiers for dummy records during development and testing environments.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>For database index performance, use v7. Its time-sorted prefix provides significantly better B-Tree insert performance compared to random v4.</li>
+            <li>For security tokens where unpredictability is critical, use v4. Its fully random nature makes it impossible to predict.</li>
+            <li>All UUIDs in this tool are generated using the cryptographically secure crypto.getRandomValues() API.</li>
+            <li>Removing hyphens reduces the string to 32 characters, saving storage space but reducing readability.</li>
+            <li>While UUIDs require more storage than integer IDs, their distributed generation advantage outweighs this cost in most modern architectures.</li>
+          </ul>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
           <div class="space-y-4">
             <div>
               <h4 class="font-medium">Q: What is the difference between UUID v1, v4, and v7?</h4>
-              <p>UUID v1 is based on timestamp and MAC address, making it sortable but potentially exposing device information. UUID v4 is completely random, providing excellent uniqueness but not sortable. UUID v7 (newest standard) combines a Unix timestamp with random data, offering both time-sortability for database performance and strong uniqueness - making it ideal for modern applications.</p>
+              <p>UUID v1 embeds a timestamp and MAC address, making it time-sortable but potentially exposing device information. UUID v4 is completely random with 122 random bits, providing excellent uniqueness but no ordering. UUID v7 (RFC 9562) combines a 48-bit Unix timestamp with random data, delivering both time-sortability for database performance and strong uniqueness -- the best choice for modern applications.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Can UUIDs ever collide or duplicate?</h4>
-              <p>While theoretically possible, UUID collisions are astronomically unlikely. UUID v4, for example, has 122 random bits, meaning you would need to generate about 2.71 quintillion UUIDs to have a 50% chance of a single collision. In practical terms, UUIDs are considered universally unique and safe to use as primary keys in distributed systems.</p>
+              <p>While theoretically possible, collisions are astronomically unlikely. For UUID v4, you would need to generate approximately 2.71 quintillion UUIDs to reach a 50% probability of a single collision. In practice, UUIDs are considered universally unique and completely safe for use as primary keys.</p>
             </div>
             <div>
               <h4 class="font-medium">Q: Should I use UUIDs with or without hyphens?</h4>
-              <p>Both formats represent the same value. Hyphens improve readability and are the standard format (8-4-4-4-12 pattern). However, removing hyphens saves 4 characters of storage and is sometimes preferred for URLs or when storage space is critical. Most systems accept both formats, so choose based on your specific use case and conventions.</p>
+              <p>Both formats represent the same value. Hyphens improve readability and follow the standard 8-4-4-4-12 pattern. Removing them saves 4 characters and is sometimes preferred for URLs or compact storage. Most libraries and systems accept both formats, so choose based on your project conventions.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why is UUID v7 better than v4 for databases?</h4>
+              <p>UUID v7 includes a timestamp prefix that ensures chronological ordering. This dramatically improves B-Tree index insert performance because new records are always appended near the end rather than scattered randomly. It also allows approximate creation time extraction. V7 was officially standardized in RFC 9562.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are there performance issues using UUIDs as primary keys?</h4>
+              <p>Random v4 UUIDs can cause B-Tree index fragmentation due to random insertions. To mitigate this, use time-sortable v7 UUIDs or maintain a separate auto-increment clustered index column. Most modern databases handle UUID primary keys efficiently, especially with v7.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is UUID the same as GUID?</h4>
+              <p>Essentially yes. GUID (Globally Unique Identifier) is Microsoft's terminology, while UUID is the RFC standard term. The internal structure and generation methods are identical. You can use them interchangeably in most contexts.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How secure are the generated UUIDs?</h4>
+              <p>This tool uses the browser's crypto.getRandomValues() API, which provides cryptographically secure random number generation. Both v4 and v7 contain sufficient random bits to be unpredictable, making them suitable for security-sensitive applications like session tokens.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Which programming languages support UUIDs?</h4>
+              <p>All major languages have UUID support. Python has the uuid module, Java has java.util.UUID, JavaScript provides crypto.randomUUID(), Go has google/uuid, C# has System.Guid, and Ruby has SecureRandom.uuid. Most languages support at least v4 natively.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the internal structure of each UUID version?</h4>
+              <p>UUID v1 consists of a 60-bit timestamp, 14-bit clock sequence, and 48-bit node ID. UUID v4 has 122 random bits. UUID v7 contains a 48-bit Unix timestamp in milliseconds followed by 74 random bits. The version number is encoded in the upper 4 bits of the 7th octet.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Are bulk-generated UUIDs guaranteed to be unique?</h4>
+              <p>Yes. Each UUID is generated independently using cryptographic random numbers. Even when generating 100 at once, the probability of duplication is effectively zero. For v7 UUIDs, the embedded timestamp adds an additional layer of uniqueness assurance.</p>
             </div>
           </div>
         </div>

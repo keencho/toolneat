@@ -639,28 +639,84 @@
 
       <!-- Description Section -->
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About Meta Tags</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Meta Tag Generator?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Meta tags determine how your page appears in search engines and social media. Proper meta tag configuration is essential for SEO and social sharing.</p>
+          <p>Meta Tag Generator is a tool that automatically creates the HTML meta tags needed for SEO and social media sharing. Search engines use meta tags to understand a page's title, description, and keywords, while social platforms read Open Graph and Twitter Card tags to build link previews. Setting up proper meta tags can significantly improve search visibility and click-through rates.</p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Basic meta tags:</strong> Generates essential SEO tags including title, description, and keywords.</li>
+            <li><strong>Open Graph tags:</strong> Configures og:title, og:description, og:image for Facebook, LinkedIn, and other platforms.</li>
+            <li><strong>Twitter Card tags:</strong> Creates card-style link previews for Twitter (X) sharing.</li>
+            <li><strong>Live preview:</strong> Instantly see how your page will appear in search results and social feeds.</li>
+            <li><strong>One-click copy:</strong> Copy all generated meta tag code to your clipboard with a single click.</li>
+            <li><strong>Canonical URL:</strong> Includes canonical tags to prevent duplicate content issues.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Enter your page title (50-60 characters recommended).</li>
+            <li>Write a page description (120-160 characters recommended).</li>
+            <li>Provide a representative image URL (1200x630px recommended).</li>
+            <li>Enter the canonical URL for your page.</li>
+            <li>Optionally add keywords and author information.</li>
+            <li>Check the preview area to see how it will appear in search results and social shares.</li>
+            <li>Click the "Copy Code" button and paste the generated tags into the head section of your HTML.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Blog SEO:</strong> Set unique titles and descriptions for each post to improve search visibility.</li>
+            <li><strong>E-commerce product pages:</strong> Specify product names and images for attractive social previews when shared.</li>
+            <li><strong>Landing pages:</strong> Apply appropriate meta tags to marketing campaign pages to improve conversion rates.</li>
+            <li><strong>Portfolio sites:</strong> Configure custom meta information for each project in your portfolio.</li>
+            <li><strong>Multilingual sites:</strong> Manage language-specific meta tags alongside hreflang tags.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Titles exceeding 60 characters may get truncated in search results. Place important keywords at the beginning.</li>
+            <li>Descriptions of 120-160 characters with a call-to-action tend to get higher click-through rates.</li>
+            <li>The optimal OG image size is 1200x630px (1.91:1 ratio), and file size should stay under 8MB.</li>
+            <li>Never use the same meta tags across all pages. Each page needs unique titles and descriptions.</li>
+            <li>After updating meta tags, use Google Search Console's URL inspection tool to request re-crawling for faster indexing.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Open Graph</h3>
-              <p class="text-gray-600 dark:text-gray-400">Defines how links appear when shared on Facebook, LinkedIn, etc. Includes og:title, og:description, og:image and more.</p>
+              <h4 class="font-medium">Q: Will adding meta tags immediately improve my search ranking?</h4>
+              <p>Meta tags influence how your page appears in search results rather than directly affecting ranking. Well-written titles and descriptions improve click-through rate (CTR), which indirectly contributes to better rankings over time.</p>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Twitter Card</h3>
-              <p class="text-gray-600 dark:text-gray-400">Controls how links appear as cards on Twitter. Using summary_large_image displays a large image preview.</p>
+              <h4 class="font-medium">Q: Do I need both Open Graph and Twitter Card tags?</h4>
+              <p>Including both is recommended. Twitter falls back to OG tags when its own card tags are missing, but dedicated Twitter Card tags produce more accurate previews on that platform.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is the keywords meta tag still important?</h4>
+              <p>Google does not use the keywords meta tag for ranking. However, some other search engines and internal search systems may reference it, so including a few relevant keywords does no harm.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: What is the best size for OG images?</h4>
+              <p>1200x630 pixels with a 1.91:1 aspect ratio is the most widely recommended size. This dimension displays cleanly on Facebook, LinkedIn, and most other social platforms.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Why do I need a canonical URL?</h4>
+              <p>When the same content is accessible via multiple URLs (e.g., http/https, with or without www, query parameters), the canonical tag tells search engines which URL is the original, preventing duplicate content issues.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Do changes to meta tags show up on social media right away?</h4>
+              <p>Most social platforms cache link previews. You can use Facebook's Sharing Debugger or Twitter's Card Validator to refresh the cache and see your updated meta tags immediately.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my data stored on a server?</h4>
+              <p>No. All meta tag generation is performed locally in your browser. Your input is never transmitted anywhere, so you can use this tool safely with any content.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Where do I paste the generated code?</h4>
+              <p>Paste the code inside the &lt;head&gt; tag of your HTML file. If the same meta tags already exist, remove the old ones first to avoid duplicates before inserting the new code.</p>
             </div>
           </div>
-
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Best Practices</h3>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
-            <li>Title: 50-60 characters (won't be truncated in search results)</li>
-            <li>Description: 120-160 characters (concise summary)</li>
-            <li>Image: 1200x630px (optimal for Open Graph)</li>
-            <li>Use unique meta tags for each page</li>
-          </ul>
         </div>
       </section>
     </div>

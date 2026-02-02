@@ -566,20 +566,91 @@
           </ul>
         </div>
       </div>
-      <section class="mt-8 card">
-        <h3 class="text-lg font-semibold mb-4">Frequently Asked Questions</h3>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: Microphone not working?</h4>
-            <p>1. Check if you've allowed microphone permission in your browser. 2. Make sure no other app is using the microphone. 3. Check if the microphone is enabled in your system settings.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: Volume is too low?</h4>
-            <p>Try increasing the microphone input volume in your system settings. Also check the distance between you and the microphone.</p>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900 dark:text-white">Q: Can't hear the recording?</h4>
-            <p>After recording, click "Play Recording" button. Make sure your speakers are on, and if using headphones, check the connection.</p>
+      <!-- Description Section -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is the Microphone Test?</h2>
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <p>The Microphone Test is a free online tool that lets you quickly check whether your computer or mobile microphone is working properly. Before joining a video call, online class, voice recording session, or game voice chat, you can verify your mic status right from your browser.</p>
+          <p class="mt-3">No software installation is required. The real-time volume bar shows your mic input level visually, and the built-in record-and-playback feature lets you hear exactly how your voice sounds through the microphone.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Real-time volume bar showing microphone input level instantly</li>
+            <li>List and selection of all connected microphone devices</li>
+            <li>Display of microphone name and connection status</li>
+            <li>Record and playback to check actual audio quality</li>
+            <li>Status badges indicating Waiting, Active, or Error states</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Click the "Start Microphone" button</li>
+            <li>Allow microphone access when the browser permission prompt appears</li>
+            <li>Speak into your microphone and watch the volume bar respond</li>
+            <li>If the bar moves, your microphone is working correctly</li>
+            <li>Use the Record button to capture audio, then Play to review quality</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Pre-check before Zoom, Google Meet, or Teams video conferences</li>
+            <li>Verifying audio input before online classes or webinars</li>
+            <li>Testing mic quality before podcast or voice-over recording</li>
+            <li>Checking voice chat setup before gaming sessions</li>
+            <li>Confirming a newly purchased microphone or headset is connected properly</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>You must click "Allow" on the browser permission prompt the first time you use the tool</li>
+            <li>If another application is using the microphone, this tool may not be able to access it</li>
+            <li>When using an external mic, select it from the dropdown menu after starting</li>
+            <li>If the volume level is too low, increase the microphone input volume in your system settings</li>
+            <li>Testing in a quiet environment gives the most accurate reading of your mic sensitivity</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium">Q: My microphone is not working. What should I do?</h4>
+              <p>Click the lock icon to the left of the browser address bar and make sure microphone permission is set to "Allow." If it still does not work, check if another app is using the mic and verify that the microphone is enabled in your system sound settings.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: The volume bar moves but the level is very low.</h4>
+              <p>Increase the microphone input volume in your system settings (Sound settings on Windows, System Preferences > Sound on Mac). Also make sure you are not too far from the microphone.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: I cannot hear the recording playback.</h4>
+              <p>Make sure you clicked the "Play Recording" button after stopping the recording. Check that your speakers or headphones are turned on and the correct output device is selected.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: How do I switch between multiple connected microphones?</h4>
+              <p>After starting the microphone, a dropdown menu lists all connected devices. Select the one you want to test and it will switch immediately.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Can I test a Bluetooth headset microphone?</h4>
+              <p>Yes, as long as the Bluetooth device is properly paired and connected to your system, it will appear in the microphone list. If the connection is unstable, re-pair the device first.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Does this work on mobile browsers?</h4>
+              <p>Yes, it works on most mobile browsers including Chrome and Safari. Grant microphone permission when prompted and you can test the built-in microphone on your phone or tablet.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Is my recorded audio sent to a server?</h4>
+              <p>No. All audio processing happens entirely within your browser. No recordings are transmitted to or stored on any external server. Your privacy is fully protected.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: There is a lot of background noise during the test.</h4>
+              <p>High ambient noise or a very sensitive microphone can cause this. Move to a quieter location, or enable noise suppression in your system audio settings if available.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: Which browsers are supported?</h4>
+              <p>All major modern browsers are supported, including Chrome, Edge, Firefox, and Safari. Any browser that supports WebRTC will work. Internet Explorer is not supported.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Q: I denied microphone permission earlier. How do I allow it again?</h4>
+              <p>Click the lock or info icon to the left of the address bar, change the microphone permission to "Allow," and then refresh the page.</p>
+            </div>
           </div>
         </div>
       </section>
