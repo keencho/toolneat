@@ -262,9 +262,9 @@ Tailwind CSS v4의 `oklch()` 색상을 파싱 못함 → Canvas API 직접 사�
 ### 현재 블로그 수
 | 언어 | 수량 |
 |-----|------|
-| 한글 (KO) | 12 |
-| 영어 (EN) | 12 |
-| **총합** | **24** |
+| 한글 (KO) | 17 |
+| 영어 (EN) | 17 |
+| **총합** | **34** |
 
 ---
 
@@ -433,7 +433,7 @@ Tailwind CSS v4의 `oklch()` 색상을 파싱 못함 → Canvas API 직접 사�
 
 ### 6. 현재 블로그 목록
 
-**한글 (12):**
+**한글 (17):**
 - hash-guide - 해시 함수 완벽 가이드
 - regex-tutorial - 정규표현식 입문 가이드
 - base64-encoding - Base64 인코딩의 원리
@@ -446,8 +446,13 @@ Tailwind CSS v4의 `oklch()` 색상을 파싱 못함 → Canvas API 직접 사�
 - screen-recorder-guide - 화면 녹화 방법
 - bmi-guide - BMI 계산하는 방법
 - typing-test-guide - 타이핑 속도 측정 가이드
+- url-encoding-guide - URL 인코딩 완벽 가이드
+- pdf-management-tips - PDF 파일 관리 완벽 가이드
+- online-privacy-guide - 온라인 개인정보 보호 가이드
+- color-theory-guide - 웹 디자인을 위한 색상 이론 가이드
+- unit-conversion-guide - 단위 변환 완벽 가이드
 
-**영어 (12):**
+**영어 (17):**
 - hash-guide - Complete Guide to Hash Functions
 - regex-tutorial - Beginner's Guide to Regular Expressions
 - base64-encoding - Understanding Base64 Encoding
@@ -460,6 +465,11 @@ Tailwind CSS v4의 `oklch()` 색상을 파싱 못함 → Canvas API 직접 사�
 - screen-recorder-guide - Screen Recording Guide
 - bmi-guide - BMI Calculator Guide
 - typing-test-guide - Typing Speed Test Guide
+- url-encoding-guide - Complete Guide to URL Encoding
+- pdf-management-tips - Complete PDF Management Guide
+- online-privacy-guide - Online Privacy Protection Guide
+- color-theory-guide - Color Theory Guide for Web Design
+- unit-conversion-guide - Complete Unit Conversion Guide
 
 ---
 

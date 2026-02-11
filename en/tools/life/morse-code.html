@@ -606,28 +606,19 @@
         </div>
       </div>
 
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Morse Code Chart</h2>
         <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-9 gap-2 text-sm" id="morse-chart"></div>
       </section>
 
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is the Morse Code Converter?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>The Morse Code Converter is a free online tool that translates plain text into Morse code and Morse code back into text. Morse code is a communication system developed by Samuel Morse in the 1830s that represents every letter, number, and common punctuation mark using combinations of dots (·) and dashes (-).</p>
           <p class="mt-3">Whether you are studying Morse code for education, amateur radio, emergency preparedness, or just for fun, this tool provides instant conversion with optional audio playback so you can hear how each message sounds as real Morse signals.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Bidirectional conversion: text to Morse and Morse to text</li>
-            <li>Supports English alphabet, numbers, and common punctuation</li>
-            <li>Real-time conversion as you type</li>
-            <li>Audio playback of Morse code signals</li>
-            <li>Complete Morse code reference chart</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
             <li>Choose the conversion direction (text to Morse or Morse to text)</li>
             <li>Type your text or Morse code in the input field</li>
             <li>The conversion result appears instantly below</li>
@@ -635,8 +626,17 @@
             <li>Use the copy button to save the result to your clipboard</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Bidirectional conversion: text to Morse and Morse to text</li>
+            <li>Supports English alphabet, numbers, and common punctuation</li>
+            <li>Real-time conversion as you type</li>
+            <li>Audio playback of Morse code signals</li>
+            <li>Complete Morse code reference chart</li>
+          </ul>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Learning and practicing Morse code as an educational exercise</li>
             <li>Looking up codes for amateur radio (HAM) communication</li>
             <li>Studying basic emergency signals like SOS for preparedness</li>
@@ -644,8 +644,52 @@
             <li>Decoding Morse code seen in movies, TV shows, or video games</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How does Morse code work?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Each character has a unique combination of dots and dashes. For example, A is ·-, B is -···, S is ···, and O is ---. These patterns can be transmitted via light, sound, or electrical signals.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I convert non-English text to Morse code?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">International Morse code is based on the Latin alphabet and Arabic numerals. To convert text in other scripts, first romanize it (e.g., Korean "annyeong" for "hello"), then enter the romanized version.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Why is SOS represented as ··· --- ···?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">SOS is not an abbreviation for any phrase. It was adopted because the pattern (three dots, three dashes, three dots) is easy to send and unmistakable to receive, making it ideal as a universal distress signal.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How do I indicate spaces between words in Morse code?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Letters within a word are separated by a single space, and words are separated by a slash (/) or multiple spaces. This tool handles spacing automatically during conversion.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How does the audio playback work?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">After conversion, click the play button to hear the Morse code as beep tones. Dots produce a short beep and dashes produce a longer beep, with appropriate pauses between characters and words.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is Morse code still used today?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Official maritime use was discontinued in 1999, but Morse code remains active in amateur radio (HAM), aviation navigation aids, and emergency communication. It is also widely studied as an educational hobby.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Are special characters supported?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Common punctuation marks like periods, commas, question marks, and exclamation points are supported. Unsupported special characters may be skipped during conversion.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the fastest way to learn Morse code?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Start with the most common letters (E, T, A, I, N) and practice listening to the patterns repeatedly. Use the audio playback feature of this tool to train both visually and aurally at the same time.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I copy the conversion result?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, click the copy button to copy the converted Morse code or text to your clipboard. You can then paste it into messages, notes, documents, or anywhere else.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does it work on mobile devices?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, the tool works on smartphones and tablets. The interface adjusts automatically to fit your screen size, and audio playback works through your device speakers or headphones.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>A dot (·) is a short signal (dit), and a dash (-) is a long signal (dah) three times the dot length</li>
             <li>The gap between letters equals three dot-lengths, and the gap between words equals seven dot-lengths</li>
             <li>SOS (··· --- ···) is the internationally recognized distress signal</li>
@@ -653,50 +697,6 @@
             <li>Non-Latin characters (like Korean or Chinese) are not directly supported; use romanized text instead</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: How does Morse code work?</h4>
-              <p>Each character has a unique combination of dots and dashes. For example, A is ·-, B is -···, S is ···, and O is ---. These patterns can be transmitted via light, sound, or electrical signals.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I convert non-English text to Morse code?</h4>
-              <p>International Morse code is based on the Latin alphabet and Arabic numerals. To convert text in other scripts, first romanize it (e.g., Korean "annyeong" for "hello"), then enter the romanized version.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Why is SOS represented as ··· --- ···?</h4>
-              <p>SOS is not an abbreviation for any phrase. It was adopted because the pattern (three dots, three dashes, three dots) is easy to send and unmistakable to receive, making it ideal as a universal distress signal.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How do I indicate spaces between words in Morse code?</h4>
-              <p>Letters within a word are separated by a single space, and words are separated by a slash (/) or multiple spaces. This tool handles spacing automatically during conversion.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How does the audio playback work?</h4>
-              <p>After conversion, click the play button to hear the Morse code as beep tones. Dots produce a short beep and dashes produce a longer beep, with appropriate pauses between characters and words.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is Morse code still used today?</h4>
-              <p>Official maritime use was discontinued in 1999, but Morse code remains active in amateur radio (HAM), aviation navigation aids, and emergency communication. It is also widely studied as an educational hobby.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Are special characters supported?</h4>
-              <p>Common punctuation marks like periods, commas, question marks, and exclamation points are supported. Unsupported special characters may be skipped during conversion.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What is the fastest way to learn Morse code?</h4>
-              <p>Start with the most common letters (E, T, A, I, N) and practice listening to the patterns repeatedly. Use the audio playback feature of this tool to train both visually and aurally at the same time.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I copy the conversion result?</h4>
-              <p>Yes, click the copy button to copy the converted Morse code or text to your clipboard. You can then paste it into messages, notes, documents, or anywhere else.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Does it work on mobile devices?</h4>
-              <p>Yes, the tool works on smartphones and tablets. The interface adjusts automatically to fit your screen size, and audio playback works through your device speakers or headphones.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

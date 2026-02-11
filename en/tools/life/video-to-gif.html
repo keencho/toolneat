@@ -542,13 +542,13 @@
           <div class="flex gap-3"><button id="download-btn" class="btn btn-primary flex-1">Download GIF</button><button id="new-btn" class="btn btn-secondary flex-1">New Video</button></div>
         </div>
       </div>
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Video to GIF?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>The Video to GIF tool is a free online converter that turns video clips into GIF animations directly in your browser. It supports MP4, WEBM, MOV, and other common video formats, with options to select a specific time range, adjust output width, and choose the frame rate. Since all processing happens locally using JavaScript and Web Workers, your video files are never uploaded to any server, keeping your content private.</p>
           <p class="mt-3">GIF animations play automatically in web browsers and messaging apps without requiring a separate video player. This makes them ideal for sharing quick reactions, product demonstrations, tutorial highlights, and more. While videos require a play button and sometimes buffering, GIFs loop seamlessly and load inline, giving your content an immediate, eye-catching quality that static images cannot match.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">What Can You Do?</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Drag-and-drop or click-to-upload for easy video file selection</li>
             <li>Precise start/end time selection with slider controls (up to 30 seconds)</li>
@@ -559,7 +559,7 @@
             <li>One-click GIF download</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Getting Started Guide</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>Drag a video file onto the upload area, or click to browse your files. Supported formats include MP4, WEBM, and MOV (up to 100MB).</li>
             <li>Once the video loads, a preview player appears. Use the start time and end time sliders to select the exact portion you want to convert.</li>
@@ -569,7 +569,7 @@
             <li>When finished, preview the result and check the file size. Click "Download GIF" to save it to your device.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Recommended Uses</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Social media content: Create GIFs from funny video moments to share on Twitter, Discord, Slack, and other platforms</li>
             <li>Blog posts and forums: Embed animated GIFs in tutorials and guides to illustrate steps visually</li>
@@ -579,7 +579,7 @@
             <li>Educational materials: Record experiments or procedures as GIFs for study resources</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Things to Keep in Mind</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>To minimize file size, use a small width (320px), low FPS (5), and short duration (3-5 seconds). These three factors have the biggest impact on output size.</li>
             <li>The GIF format supports only 256 colors, so videos with rich gradients may lose some color detail. Scenes with simpler, flatter colors convert more cleanly.</li>
@@ -587,47 +587,47 @@
             <li>GIFs longer than 10 seconds can easily reach tens of megabytes. For web sharing, keeping it under 5 seconds is usually best.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Q&A</h3>
+          <div class="divide-y divide-gray-100 dark:divide-gray-700">
             <div>
-              <h4 class="font-medium">Q: Is there a length limit for GIFs?</h4>
-              <p>The maximum duration is 30 seconds. However, longer GIFs result in very large file sizes, so keeping your GIF between 3 and 10 seconds is recommended for practical web use.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Is there a length limit for GIFs?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">The maximum duration is 30 seconds. However, longer GIFs result in very large file sizes, so keeping your GIF between 3 and 10 seconds is recommended for practical web use.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What FPS setting should I use?</h4>
-              <p>10 FPS offers the best balance between smooth animation and manageable file size. Use 5 FPS when file size is critical, and 15-24 FPS when you need very smooth motion and can tolerate larger files.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What FPS setting should I use?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">10 FPS offers the best balance between smooth animation and manageable file size. Use 5 FPS when file size is critical, and 15-24 FPS when you need very smooth motion and can tolerate larger files.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How can I reduce the GIF file size?</h4>
-              <p>Three strategies work best: reduce the output width to 320px, lower the FPS to 5, and shorten the clip duration. Combining all three can dramatically cut file size while still producing a usable GIF.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How can I reduce the GIF file size?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Three strategies work best: reduce the output width to 320px, lower the FPS to 5, and shorten the clip duration. Combining all three can dramatically cut file size while still producing a usable GIF.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What video formats are supported?</h4>
-              <p>MP4, WEBM, MOV, and most formats that modern browsers can play natively. For best compatibility, use standard H.264-encoded MP4 files. Videos with uncommon codecs may not load in the browser.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What video formats are supported?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">MP4, WEBM, MOV, and most formats that modern browsers can play natively. For best compatibility, use standard H.264-encoded MP4 files. Videos with uncommon codecs may not load in the browser.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is my video uploaded to a server?</h4>
-              <p>No. All processing happens entirely in your browser using JavaScript and Web Workers. Your video never leaves your device, and the resulting GIF is generated locally as well.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Is my video uploaded to a server?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">No. All processing happens entirely in your browser using JavaScript and Web Workers. Your video never leaves your device, and the resulting GIF is generated locally as well.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the maximum upload file size?</h4>
-              <p>You can upload videos up to 100MB. Very large files may cause slower performance due to browser memory constraints, so using a shorter clip when possible is recommended.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What is the maximum upload file size?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">You can upload videos up to 100MB. Very large files may cause slower performance due to browser memory constraints, so using a shorter clip when possible is recommended.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Which width option should I choose?</h4>
-              <p>For web sharing and messaging, 480px is a good all-around choice. Use 320px for mobile-focused content that needs fast loading, and 640px or original size when clarity is a priority, such as blog posts or presentations.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Which width option should I choose?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">For web sharing and messaging, 480px is a good all-around choice. Use 320px for mobile-focused content that needs fast loading, and 640px or original size when clarity is a priority, such as blog posts or presentations.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How long does conversion take?</h4>
-              <p>It depends on the clip length, resolution, and FPS. A 5-second clip at 480px/10FPS typically takes 10 to 30 seconds. A progress bar is displayed so you can monitor the process.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How long does conversion take?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">It depends on the clip length, resolution, and FPS. A 5-second clip at 480px/10FPS typically takes 10 to 30 seconds. A progress bar is displayed so you can monitor the process.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Does this work on mobile devices?</h4>
-              <p>Yes, it works in mobile browsers. However, conversion speed depends on your device's processing power and will generally be slower than on a desktop. Shorter clips convert more smoothly on mobile.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Does this work on mobile devices?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Yes, it works in mobile browsers. However, conversion speed depends on your device's processing power and will generally be slower than on a desktop. Shorter clips convert more smoothly on mobile.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Are there better alternatives to the GIF format?</h4>
-              <p>GIF has excellent compatibility and plays everywhere. However, it is limited to 256 colors and produces large files. For higher quality at smaller sizes, consider WebP animations or short looping MP4 videos, though platform support varies.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Are there better alternatives to the GIF format?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">GIF has excellent compatibility and plays everywhere. However, it is limited to 256 colors and produces large files. For higher quality at smaller sizes, consider WebP animations or short looping MP4 videos, though platform support varies.</p>
             </div>
           </div>
         </div>

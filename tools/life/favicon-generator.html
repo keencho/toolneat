@@ -605,24 +605,15 @@
       </div>
 
       <!-- FAQ Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">파비콘 생성기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">
             파비콘(Favicon)은 브라우저 탭, 북마크, 모바일 홈 화면 등에 표시되는 작은 아이콘입니다. 웹사이트의 브랜드 아이덴티티를 나타내며 사용자가 여러 탭 중에서 사이트를 쉽게 구분할 수 있게 해줍니다. 이 도구는 하나의 이미지를 업로드하면 웹사이트에 필요한 모든 크기의 파비콘을 자동으로 생성합니다. 모든 처리는 브라우저에서 이루어져 안전합니다.
           </p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
-            <li>하나의 이미지로 8가지 크기(16x16~512x512)의 파비콘 자동 생성</li>
-            <li>ICO 형식 및 PNG 형식 동시 지원</li>
-            <li>개별 크기 다운로드 또는 전체 ZIP 파일 일괄 다운로드</li>
-            <li>PNG, JPG, SVG 등 다양한 원본 형식 지원</li>
-            <li>실시간 미리보기로 각 크기별 결과 확인</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">시작하기</h3>
+          <ol class="list-decimal ml-5 space-y-2 text-gray-600 dark:text-gray-400">
             <li>정사각형 이미지를 업로드합니다 (PNG, JPG, SVG)</li>
             <li>다양한 크기의 파비콘이 자동으로 생성됩니다</li>
             <li>각 크기별 미리보기를 확인합니다</li>
@@ -630,7 +621,7 @@
             <li>다운로드한 파일을 웹사이트 루트 디렉토리에 배치합니다</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">생성되는 크기</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">생성되는 크기</h3>
           <ul class="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
             <li><strong>16x16:</strong> 브라우저 탭 기본 크기</li>
             <li><strong>32x32:</strong> 고해상도 디스플레이 탭</li>
@@ -642,17 +633,17 @@
             <li><strong>512x512:</strong> PWA 스플래시 화면</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
-            <li>개인 블로그나 포트폴리오 사이트에 파비콘 설정</li>
-            <li>회사 웹사이트에 로고 기반 파비콘 적용</li>
-            <li>PWA(Progressive Web App) 개발 시 필요한 아이콘 세트 생성</li>
-            <li>Chrome 익스텐션이나 웹 스토어 앱 아이콘 제작</li>
-            <li>모바일 홈 화면 바로가기 아이콘 준비</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">기능 소개</h3>
+          <ul class="list-disc ml-5 space-y-2 text-gray-600 dark:text-gray-400">
+            <li>하나의 이미지로 8가지 크기(16x16~512x512)의 파비콘 자동 생성</li>
+            <li>ICO 형식 및 PNG 형식 동시 지원</li>
+            <li>개별 크기 다운로드 또는 전체 ZIP 파일 일괄 다운로드</li>
+            <li>PNG, JPG, SVG 등 다양한 원본 형식 지원</li>
+            <li>실시간 미리보기로 각 크기별 결과 확인</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">주의할 점</h3>
+          <ul class="list-disc ml-5 space-y-2 text-gray-600 dark:text-gray-400">
             <li>512x512 이상의 고해상도 정사각형 이미지를 사용하면 최상의 결과를 얻을 수 있습니다</li>
             <li>투명 배경이 필요하면 PNG 형식의 원본을 사용하세요</li>
             <li>너무 복잡한 디자인은 작은 크기에서 식별이 어려우므로 단순한 디자인을 추천합니다</li>
@@ -660,47 +651,56 @@
             <li>HTML에 여러 크기의 link 태그를 모두 추가하면 최적의 호환성을 확보할 수 있습니다</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">활용 팁</h3>
+          <ul class="list-disc ml-5 space-y-2 text-gray-600 dark:text-gray-400">
+            <li>개인 블로그나 포트폴리오 사이트에 파비콘 설정</li>
+            <li>회사 웹사이트에 로고 기반 파비콘 적용</li>
+            <li>PWA(Progressive Web App) 개발 시 필요한 아이콘 세트 생성</li>
+            <li>Chrome 익스텐션이나 웹 스토어 앱 아이콘 제작</li>
+            <li>모바일 홈 화면 바로가기 아이콘 준비</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 하는 질문</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: 어떤 크기의 이미지를 업로드해야 하나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">512x512 이상의 정사각형 이미지를 권장합니다. 작은 이미지는 확대 시 품질이 저하됩니다.</p>
+              <h4 class="font-semibold text-sm">Q: 어떤 크기의 이미지를 업로드해야 하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">512x512 이상의 정사각형 이미지를 권장합니다. 작은 이미지는 확대 시 품질이 저하됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: ICO 파일은 어디에 사용하나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">ICO는 Windows와 구형 브라우저에서 사용됩니다. 최신 브라우저는 PNG도 지원하지만, 호환성을 위해 ICO도 함께 제공하는 것이 좋습니다.</p>
+              <h4 class="font-semibold text-sm">Q: ICO 파일은 어디에 사용하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">ICO는 Windows와 구형 브라우저에서 사용됩니다. 최신 브라우저는 PNG도 지원하지만, 호환성을 위해 ICO도 함께 제공하는 것이 좋습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: 파비콘을 웹사이트에 어떻게 적용하나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">HTML &lt;head&gt;에 &lt;link rel="icon" href="favicon.png"&gt;를 추가하세요. 다양한 크기를 지원하려면 각 크기별 link 태그를 추가합니다.</p>
+              <h4 class="font-semibold text-sm">Q: 파비콘을 웹사이트에 어떻게 적용하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">HTML &lt;head&gt;에 &lt;link rel="icon" href="favicon.png"&gt;를 추가하세요. 다양한 크기를 지원하려면 각 크기별 link 태그를 추가합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: 정사각형이 아닌 이미지도 사용할 수 있나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">사용은 가능하지만, 파비콘은 정사각형이므로 이미지가 잘리거나 비율이 변형될 수 있습니다. 정사각형 이미지를 권장합니다.</p>
+              <h4 class="font-semibold text-sm">Q: 정사각형이 아닌 이미지도 사용할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">사용은 가능하지만, 파비콘은 정사각형이므로 이미지가 잘리거나 비율이 변형될 수 있습니다. 정사각형 이미지를 권장합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: SVG 파일도 업로드할 수 있나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">네, SVG 파일도 지원합니다. SVG는 벡터 형식이라 어떤 크기로 변환해도 품질이 유지되어 가장 이상적인 원본 형식입니다.</p>
+              <h4 class="font-semibold text-sm">Q: SVG 파일도 업로드할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">네, SVG 파일도 지원합니다. SVG는 벡터 형식이라 어떤 크기로 변환해도 품질이 유지되어 가장 이상적인 원본 형식입니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: 파비콘이 브라우저에 바로 반영되지 않아요</h4>
-              <p class="text-gray-600 dark:text-gray-400">브라우저 캐시 때문에 즉시 반영되지 않을 수 있습니다. 강력 새로고침(Ctrl+Shift+R)을 하거나 캐시를 비우면 확인할 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 파비콘이 브라우저에 바로 반영되지 않아요</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">브라우저 캐시 때문에 즉시 반영되지 않을 수 있습니다. 강력 새로고침(Ctrl+Shift+R)을 하거나 캐시를 비우면 확인할 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: 투명 배경 파비콘을 만들 수 있나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">네, 투명 배경이 있는 PNG 이미지를 업로드하면 투명도가 유지된 파비콘이 생성됩니다.</p>
+              <h4 class="font-semibold text-sm">Q: 투명 배경 파비콘을 만들 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">네, 투명 배경이 있는 PNG 이미지를 업로드하면 투명도가 유지된 파비콘이 생성됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: 이미지가 서버로 전송되나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">아니요, 모든 처리는 브라우저에서 이루어지며 이미지가 서버로 전송되지 않습니다. 개인정보 걱정 없이 사용하세요.</p>
+              <h4 class="font-semibold text-sm">Q: 이미지가 서버로 전송되나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">아니요, 모든 처리는 브라우저에서 이루어지며 이미지가 서버로 전송되지 않습니다. 개인정보 걱정 없이 사용하세요.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Apple Touch Icon은 무엇인가요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">iPhone이나 iPad에서 웹사이트를 홈 화면에 추가할 때 표시되는 아이콘입니다. 180x180 크기가 표준입니다.</p>
+              <h4 class="font-semibold text-sm">Q: Apple Touch Icon은 무엇인가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">iPhone이나 iPad에서 웹사이트를 홈 화면에 추가할 때 표시되는 아이콘입니다. 180x180 크기가 표준입니다.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: 모든 크기를 다 사용해야 하나요?</h4>
-              <p class="text-gray-600 dark:text-gray-400">기본적으로 16x16, 32x32, 180x180(Apple), 192x192(Android)를 사용하면 대부분의 환경을 지원합니다. PWA를 개발한다면 512x512도 필요합니다.</p>
+              <h4 class="font-semibold text-sm">Q: 모든 크기를 다 사용해야 하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">기본적으로 16x16, 32x32, 180x180(Apple), 192x192(Android)를 사용하면 대부분의 환경을 지원합니다. PWA를 개발한다면 512x512도 필요합니다.</p>
             </div>
           </div>
         </div>

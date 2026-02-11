@@ -561,14 +561,23 @@
           </div>
         </div>
       </div>
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Webcam Test Tool Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <h3 class="text-lg font-semibold mt-6 mb-3">What is Webcam Test?</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">All About Webcam Test</h3>
           <p>Webcam Test is a free online tool that lets you check whether your camera is working properly right in your browser. No software installation is needed -- simply open this page and verify your camera's status, resolution, and frame rate in real time. It is perfect for a quick check before video calls, online interviews, remote classes, or live streaming sessions, helping you avoid unexpected camera issues when they matter most.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
+          <ol class="list-decimal ml-5 space-y-2">
+            <li>Click the "Start Webcam" button on this page.</li>
+            <li>When your browser asks for camera access permission, click "Allow."</li>
+            <li>Once the camera activates, the live video feed appears along with resolution, frame rate, and camera name details.</li>
+            <li>To switch to an external webcam or another device, select it from the dropdown menu.</li>
+            <li>When you are done testing, click "Stop Webcam" to turn off the camera.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Feature Overview</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Live webcam preview displayed directly in the browser</li>
             <li>Automatic detection and display of camera resolution (width x height)</li>
             <li>Real-time frames-per-second (fps) measurement</li>
@@ -577,26 +586,8 @@
             <li>Start and stop buttons for full camera control</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Click the "Start Webcam" button on this page.</li>
-            <li>When your browser asks for camera access permission, click "Allow."</li>
-            <li>Once the camera activates, the live video feed appears along with resolution, frame rate, and camera name details.</li>
-            <li>To switch to an external webcam or another device, select it from the dropdown menu.</li>
-            <li>When you are done testing, click "Stop Webcam" to turn off the camera.</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Pre-meeting camera check for Zoom, Google Meet, or Microsoft Teams</li>
-            <li>Verifying webcam functionality before online job interviews or exams</li>
-            <li>Testing resolution and frame rate of a newly purchased external webcam</li>
-            <li>Equipment check before remote classes or online lectures</li>
-            <li>Confirming video quality and frame rate before starting a live stream</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Important Notes</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Works best in modern browsers like Chrome, Edge, and Firefox.</li>
             <li>If camera permission is blocked, click the lock icon in the address bar to reset permissions and then refresh the page.</li>
             <li>Other apps (Zoom, Skype, etc.) may lock the camera exclusively. Close those apps first if you cannot access your webcam here.</li>
@@ -605,47 +596,56 @@
             <li>When using both a built-in laptop camera and an external webcam, double-check that you have selected the correct device from the dropdown.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Usage Tips</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>Pre-meeting camera check for Zoom, Google Meet, or Microsoft Teams</li>
+            <li>Verifying webcam functionality before online job interviews or exams</li>
+            <li>Testing resolution and frame rate of a newly purchased external webcam</li>
+            <li>Equipment check before remote classes or online lectures</li>
+            <li>Confirming video quality and frame rate before starting a live stream</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">FAQ</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: My webcam is not working. What should I do?</h4>
-              <p>Make sure you have allowed camera permission in your browser. Click the lock icon next to the address bar, set the camera permission to "Allow," and reload the page.</p>
+              <h4 class="font-semibold text-sm">Q: My webcam is not working. What should I do?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Make sure you have allowed camera permission in your browser. Click the lock icon next to the address bar, set the camera permission to "Allow," and reload the page.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: I see an error saying another app is using the camera.</h4>
-              <p>Video conferencing apps like Zoom, Skype, or Discord may be holding exclusive access to the camera. Fully close those applications and try again.</p>
+              <h4 class="font-semibold text-sm">Q: I see an error saying another app is using the camera.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Video conferencing apps like Zoom, Skype, or Discord may be holding exclusive access to the camera. Fully close those applications and try again.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: The video appears mirrored or flipped.</h4>
-              <p>Web browsers typically show the raw, unmirrored camera feed. Most video conferencing apps apply mirroring automatically on their end, so the other person will see you correctly.</p>
+              <h4 class="font-semibold text-sm">Q: The video appears mirrored or flipped.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Web browsers typically show the raw, unmirrored camera feed. Most video conferencing apps apply mirroring automatically on their end, so the other person will see you correctly.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: The image looks blurry or dark.</h4>
-              <p>Improving your lighting is the most effective fix. Also check that your camera lens is clean and free of dust. Updating your camera driver to the latest version can also help.</p>
+              <h4 class="font-semibold text-sm">Q: The image looks blurry or dark.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Improving your lighting is the most effective fix. Also check that your camera lens is clean and free of dust. Updating your camera driver to the latest version can also help.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: My frame rate (fps) is very low.</h4>
-              <p>High CPU or GPU usage can cause dropped frames. Close unnecessary programs and reduce the number of open browser tabs. If you are using an external camera, try connecting it to a USB 3.0 port instead of USB 2.0.</p>
+              <h4 class="font-semibold text-sm">Q: My frame rate (fps) is very low.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">High CPU or GPU usage can cause dropped frames. Close unnecessary programs and reduce the number of open browser tabs. If you are using an external camera, try connecting it to a USB 3.0 port instead of USB 2.0.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: My external webcam does not appear in the device list.</h4>
-              <p>Try unplugging the USB cable and plugging it back in. If it still does not show up, check your operating system's device manager to verify the camera is recognized.</p>
+              <h4 class="font-semibold text-sm">Q: My external webcam does not appear in the device list.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Try unplugging the USB cable and plugging it back in. If it still does not show up, check your operating system's device manager to verify the camera is recognized.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I use this on my phone or tablet?</h4>
-              <p>Yes. Mobile browsers such as Chrome and Safari support camera access. Once you grant permission, you can switch between front and rear cameras using the dropdown selector.</p>
+              <h4 class="font-semibold text-sm">Q: Can I use this on my phone or tablet?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes. Mobile browsers such as Chrome and Safari support camera access. Once you grant permission, you can switch between front and rear cameras using the dropdown selector.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is my video recorded or sent to a server?</h4>
-              <p>No. All video processing happens entirely in your browser. No data is transmitted to any external server. Your privacy is fully protected.</p>
+              <h4 class="font-semibold text-sm">Q: Is my video recorded or sent to a server?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">No. All video processing happens entirely in your browser. No data is transmitted to any external server. Your privacy is fully protected.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: The resolution shown is lower than my camera's actual specs.</h4>
-              <p>Browsers may open the camera at a default resolution rather than the maximum for performance reasons. The actual resolution depends on the browser's media constraints and your system's capabilities.</p>
+              <h4 class="font-semibold text-sm">Q: The resolution shown is lower than my camera's actual specs.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Browsers may open the camera at a default resolution rather than the maximum for performance reasons. The actual resolution depends on the browser's media constraints and your system's capabilities.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: It works in Chrome but not in Safari. Why?</h4>
-              <p>Different browsers have varying levels of camera API support. For the most reliable experience, use the latest version of Chrome or Edge.</p>
+              <h4 class="font-semibold text-sm">Q: It works in Chrome but not in Safari. Why?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Different browsers have varying levels of camera API support. For the most reliable experience, use the latest version of Chrome or Edge.</p>
             </div>
           </div>
         </div>

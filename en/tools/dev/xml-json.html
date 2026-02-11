@@ -595,13 +595,22 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is XML ↔ JSON Converter?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>XML and JSON are the two most widely used formats for representing structured data. XML is a tag-based markup language commonly used for SOAP APIs, configuration files, and document exchange, while JSON is a lightweight format that has become the standard for REST APIs and web applications. This tool lets you convert between the two formats instantly in your browser without any coding.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Select the conversion direction at the top (XML → JSON or JSON → XML).</li>
+            <li>Paste your XML or JSON data into the left input area.</li>
+            <li>Click the "Convert" button to see the result on the right side.</li>
+            <li>Adjust the Compact, Ignore Comments, and Trim options as needed.</li>
+            <li>Click "Copy" to copy the result to your clipboard.</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Bidirectional conversion between XML and JSON</li>
             <li>Compact output mode to remove unnecessary whitespace</li>
             <li>Option to ignore XML comments during conversion</li>
@@ -611,17 +620,8 @@
             <li>One-click copy of conversion results</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Select the conversion direction at the top (XML → JSON or JSON → XML).</li>
-            <li>Paste your XML or JSON data into the left input area.</li>
-            <li>Click the "Convert" button to see the result on the right side.</li>
-            <li>Adjust the Compact, Ignore Comments, and Trim options as needed.</li>
-            <li>Click "Copy" to copy the result to your clipboard.</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Converting SOAP API responses to REST API format</li>
             <li>Migrating legacy XML configurations to JSON-based tools</li>
             <li>Parsing XML feeds (RSS, Atom) into JSON for web applications</li>
@@ -629,8 +629,52 @@
             <li>Adapting Spring or .NET XML configs for Node.js projects</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the fundamental difference between XML and JSON?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">XML is a markup language that wraps data in tags, while JSON is a lightweight format using key-value pairs. XML supports attributes, namespaces, and schema validation, whereas JSON has a simpler structure and faster parsing speed.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How are XML attributes represented in JSON?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">XML attributes are converted to keys prefixed with @. For example, &lt;book category="fiction"&gt; becomes {"@category": "fiction"} in JSON.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How are CDATA sections handled?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">XML CDATA sections are represented as a #cdata key in the JSON output. Reverse conversion handles them properly as well.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is the XML declaration (&lt;?xml ...?&gt;) included in conversion?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">By default, the XML declaration is ignored. It is stripped when converting to JSON and not automatically added when converting from JSON to XML.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What does the Compact output option do?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Enabling Compact output removes indentation and line breaks from the result, reducing file size. This is useful for API transmission or storage optimization.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I convert XML that contains comments?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes. When the "Ignore Comments" option is enabled, XML comments are automatically removed during conversion since JSON does not natively support comments.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does it handle XML with namespaces?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Namespace prefixes (e.g., ns:tag) are preserved as-is in key names by default. For complex namespace handling, manual review of the output is recommended.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What happens if the input data is invalid?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">An error message is displayed if invalid XML or JSON is provided. Review the error details, fix your data, and try converting again.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is my data sent to a server?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. All conversions are processed locally in your browser. Your input data is never transmitted to or stored on any server, so you can use the tool with confidence.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I use this on mobile devices?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes. The tool is built with a responsive design and works seamlessly on smartphones, tablets, and all other devices.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>XML attributes are represented as keys with an @ prefix in JSON (e.g., @category).</li>
             <li>When text nodes and attributes coexist, text content uses the #text key.</li>
             <li>Arrays in JSON become repeated elements with the same tag name in XML.</li>
@@ -638,50 +682,6 @@
             <li>For very large files (several MB), consider splitting data to avoid browser performance issues.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: What is the fundamental difference between XML and JSON?</h4>
-              <p>XML is a markup language that wraps data in tags, while JSON is a lightweight format using key-value pairs. XML supports attributes, namespaces, and schema validation, whereas JSON has a simpler structure and faster parsing speed.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How are XML attributes represented in JSON?</h4>
-              <p>XML attributes are converted to keys prefixed with @. For example, &lt;book category="fiction"&gt; becomes {"@category": "fiction"} in JSON.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How are CDATA sections handled?</h4>
-              <p>XML CDATA sections are represented as a #cdata key in the JSON output. Reverse conversion handles them properly as well.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is the XML declaration (&lt;?xml ...?&gt;) included in conversion?</h4>
-              <p>By default, the XML declaration is ignored. It is stripped when converting to JSON and not automatically added when converting from JSON to XML.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What does the Compact output option do?</h4>
-              <p>Enabling Compact output removes indentation and line breaks from the result, reducing file size. This is useful for API transmission or storage optimization.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I convert XML that contains comments?</h4>
-              <p>Yes. When the "Ignore Comments" option is enabled, XML comments are automatically removed during conversion since JSON does not natively support comments.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Does it handle XML with namespaces?</h4>
-              <p>Namespace prefixes (e.g., ns:tag) are preserved as-is in key names by default. For complex namespace handling, manual review of the output is recommended.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What happens if the input data is invalid?</h4>
-              <p>An error message is displayed if invalid XML or JSON is provided. Review the error details, fix your data, and try converting again.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
-              <p>No. All conversions are processed locally in your browser. Your input data is never transmitted to or stored on any server, so you can use the tool with confidence.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I use this on mobile devices?</h4>
-              <p>Yes. The tool is built with a responsive design and works seamlessly on smartphones, tablets, and all other devices.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

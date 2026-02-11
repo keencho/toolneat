@@ -628,12 +628,12 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is URL Encoder/Decoder?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>URL encoding (also known as percent-encoding) is a method for converting special characters in URLs into a safe format using %XX hexadecimal codes. Since URLs can only contain a limited set of ASCII characters, spaces, non-English characters, and symbols with reserved meanings must be encoded before they can be included in a URL. For example, a space becomes %20, an ampersand (&) becomes %26, and the Korean character '&#44032;' becomes %EA%B0%80. Whether you are passing data through query parameters, submitting forms, or calling REST APIs, URL encoding is an essential skill in web development.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">What Can You Do?</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Bidirectional encoding and decoding conversion</li>
             <li>Three encoding modes: Component (for parameter values), URI (for full URLs), and Full (all characters)</li>
@@ -644,7 +644,7 @@
             <li>All processing happens locally in your browser for complete data security</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Getting Started Guide</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>Choose "Encode" or "Decode" mode at the top of the tool.</li>
             <li>Select the encoding method: Component (for query parameter values), URI (for full URLs), or Full (for all special characters).</li>
@@ -653,7 +653,7 @@
             <li>Use the "Copy" button to copy the result, or the swap button to exchange input and output.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Recommended Uses</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Passing non-ASCII characters (Korean, Chinese, Japanese, etc.) in search API query parameters</li>
             <li>Including titles or descriptions as query parameters in social media share links</li>
@@ -663,7 +663,7 @@
             <li>Decoding encoded data in OAuth callback URLs or cookie values</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Things to Keep in Mind</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Use Component mode for query parameter values. URI mode preserves delimiters like &, =, and ?, which can break parameter values.</li>
             <li>Watch out for double encoding. Encoding an already-encoded URL turns % into %25, making the original value unrecoverable in a single decode pass.</li>
@@ -672,47 +672,47 @@
             <li>UTF-8 is the standard encoding, but some legacy systems use other character sets. Encoding mismatches can result in garbled text.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Q&A</h3>
+          <div class="divide-y divide-gray-100 dark:divide-gray-700">
             <div>
-              <h4 class="font-medium">Q: What is the difference between encodeURIComponent and encodeURI?</h4>
-              <p>encodeURIComponent encodes all special characters including /, ?, #, &, and =, making it ideal for encoding individual query parameter values. encodeURI preserves these URL-structural characters, so it is appropriate for encoding a complete URL while keeping its structure intact. Using encodeURI on a parameter value can leave & and = unencoded, breaking the URL structure.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What is the difference between encodeURIComponent and encodeURI?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">encodeURIComponent encodes all special characters including /, ?, #, &, and =, making it ideal for encoding individual query parameter values. encodeURI preserves these URL-structural characters, so it is appropriate for encoding a complete URL while keeping its structure intact. Using encodeURI on a parameter value can leave & and = unencoded, breaking the URL structure.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Why is URL encoding necessary?</h4>
-              <p>The URL standard (RFC 3986) only allows a limited set of ASCII characters. Characters like & (parameter separator), = (key-value separator), and ? (query start) have reserved meanings. If your data contains these characters without encoding, the URL parser will misinterpret them as structural elements rather than data. Encoding ensures data and URL structure remain distinct.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Why is URL encoding necessary?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">The URL standard (RFC 3986) only allows a limited set of ASCII characters. Characters like & (parameter separator), = (key-value separator), and ? (query start) have reserved meanings. If your data contains these characters without encoding, the URL parser will misinterpret them as structural elements rather than data. Encoding ensures data and URL structure remain distinct.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the difference between %20 and + for spaces?</h4>
-              <p>Both represent a space, but they are used in different contexts. %20 is the standard percent-encoding for spaces and works everywhere in URLs. The + sign represents spaces only in the application/x-www-form-urlencoded format used by HTML forms. Most servers accept both, but %20 is the safer choice for REST APIs and URL paths.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What is the difference between %20 and + for spaces?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Both represent a space, but they are used in different contexts. %20 is the standard percent-encoding for spaces and works everywhere in URLs. The + sign represents spaces only in the application/x-www-form-urlencoded format used by HTML forms. Most servers accept both, but %20 is the safer choice for REST APIs and URL paths.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is double encoding and how do I prevent it?</h4>
-              <p>Double encoding happens when an already-encoded string is encoded again, turning %20 into %2520. Decoding such a string returns %20 instead of the original space. To prevent this, always check whether the input is already encoded before applying encoding, and apply encoding only once at the final URL assembly stage.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What is double encoding and how do I prevent it?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Double encoding happens when an already-encoded string is encoded again, turning %20 into %2520. Decoding such a string returns %20 instead of the original space. To prevent this, always check whether the input is already encoded before applying encoding, and apply encoding only once at the final URL assembly stage.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Why do non-English characters like Korean produce such long encoded strings?</h4>
-              <p>Korean characters require 3 bytes in UTF-8 encoding. Each byte is represented as %XX, so a single Korean character becomes 9 characters long (e.g., %EA%B0%80). Chinese and Japanese characters are similarly encoded. This is an inherent characteristic of UTF-8 percent-encoding.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Why do non-English characters like Korean produce such long encoded strings?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Korean characters require 3 bytes in UTF-8 encoding. Each byte is represented as %XX, so a single Korean character becomes 9 characters long (e.g., %EA%B0%80). Chinese and Japanese characters are similarly encoded. This is an inherent characteristic of UTF-8 percent-encoding.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can emoji be used in URLs?</h4>
-              <p>Yes, emoji can be included in URLs through URL encoding. Emoji require 4 bytes in UTF-8, resulting in 12-character encoded sequences like %F0%9F%98%80. Some browsers display emoji directly in the address bar, but the actual HTTP request always uses the encoded form.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Can emoji be used in URLs?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Yes, emoji can be included in URLs through URL encoding. Emoji require 4 bytes in UTF-8, resulting in 12-character encoded sequences like %F0%9F%98%80. Some browsers display emoji directly in the address bar, but the actual HTTP request always uses the encoded form.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: When should I use Full encoding mode?</h4>
-              <p>Full encoding mode encodes all characters except alphanumerics and a few safe characters (-, _, ., ~). This is the safest option when dealing with Base64 strings or binary data in URLs, or when you are unsure which characters are reserved. It ensures nothing is misinterpreted as a URL structural character.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: When should I use Full encoding mode?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Full encoding mode encodes all characters except alphanumerics and a few safe characters (-, _, ., ~). This is the safest option when dealing with Base64 strings or binary data in URLs, or when you are unsure which characters are reserved. It ensures nothing is misinterpreted as a URL structural character.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Are non-English URLs in the browser address bar actually encoded?</h4>
-              <p>Yes, browsers display decoded characters in the address bar for readability, but the actual HTTP request is sent with the encoded form. When you copy a URL from the address bar, some browsers copy the encoded version while others copy the human-readable version. Use this tool to verify the actual encoded form.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Are non-English URLs in the browser address bar actually encoded?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Yes, browsers display decoded characters in the address bar for readability, but the actual HTTP request is sent with the encoded form. When you copy a URL from the address bar, some browsers copy the encoded version while others copy the human-readable version. Use this tool to verify the actual encoded form.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is there a text length limit for this tool?</h4>
-              <p>There is no specific length limit in this tool. However, keep in mind that servers and browsers typically enforce URL length limits (usually 2,048 to 8,192 characters). For large amounts of data, consider sending it in the body of a POST request rather than as URL parameters.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Is there a text length limit for this tool?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">There is no specific length limit in this tool. However, keep in mind that servers and browsers typically enforce URL length limits (usually 2,048 to 8,192 characters). For large amounts of data, consider sending it in the body of a POST request rather than as URL parameters.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is this tool free to use?</h4>
-              <p>Yes, it is completely free with no usage limits. All conversions are processed entirely in your browser, so your data is never sent to any external server.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Is this tool free to use?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Yes, it is completely free with no usage limits. All conversions are processed entirely in your browser, so your data is never sent to any external server.</p>
             </div>
           </div>
         </div>

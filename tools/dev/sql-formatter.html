@@ -661,23 +661,13 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">SQL 포맷터란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>SQL 포맷터는 복잡하거나 읽기 어려운 SQL 쿼리를 일관된 형식으로 정리해주는 온라인 도구입니다. 적절한 들여쓰기와 줄바꿈을 자동으로 추가하여 쿼리의 구조를 한눈에 파악할 수 있게 만들어 줍니다. 반대로 포맷팅된 SQL을 한 줄로 압축하는 Minify 기능도 제공합니다. 데이터베이스 개발, 디버깅, 코드 리뷰, 문서 작성 등 SQL을 다루는 모든 상황에서 생산성을 높여 줍니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>8가지 SQL 방언 지원: 표준 SQL, MySQL, PostgreSQL, MariaDB, SQLite, SQL Server, Oracle PL/SQL, BigQuery</li>
-            <li>들여쓰기 옵션: 2칸, 4칸, Tab 중 선택 가능</li>
-            <li>키워드 대문자 변환: SELECT, FROM 등 키워드를 자동으로 대문자로 통일</li>
-            <li>SQL 압축(Minify): 공백과 줄바꿈을 제거하여 한 줄로 압축</li>
-            <li>샘플 SQL 제공: 테스트용 예제 쿼리를 바로 불러올 수 있음</li>
-            <li>Ctrl+Enter 단축키로 빠른 포맷팅 지원</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">시작하기</h3>
+          <ol class="list-decimal ml-5 space-y-2">
             <li>왼쪽 입력창에 SQL 쿼리를 붙여넣거나 직접 입력합니다.</li>
             <li>사용 중인 데이터베이스에 맞는 SQL 방언을 드롭다운에서 선택합니다.</li>
             <li>들여쓰기 옵션(2칸, 4칸, Tab)을 원하는 대로 설정합니다.</li>
@@ -687,24 +677,25 @@
             <li>결과를 복사 버튼으로 클립보드에 복사할 수 있습니다.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>ORM이나 로그에서 추출한 한 줄짜리 쿼리를 읽기 좋게 정리할 때</li>
-            <li>코드 리뷰에서 SQL 구조를 명확하게 보여줘야 할 때</li>
-            <li>기술 문서나 위키에 정돈된 SQL 예제를 첨부할 때</li>
-            <li>프로덕션 배포 전 SQL을 압축하여 네트워크 전송량을 줄이고 싶을 때</li>
-            <li>복잡한 JOIN이나 서브쿼리의 구조를 시각적으로 파악하고 싶을 때</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">기능 소개</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>8가지 SQL 방언 지원: 표준 SQL, MySQL, PostgreSQL, MariaDB, SQLite, SQL Server, Oracle PL/SQL, BigQuery</li>
+            <li>들여쓰기 옵션: 2칸, 4칸, Tab 중 선택 가능</li>
+            <li>키워드 대문자 변환: SELECT, FROM 등 키워드를 자동으로 대문자로 통일</li>
+            <li>SQL 압축(Minify): 공백과 줄바꿈을 제거하여 한 줄로 압축</li>
+            <li>샘플 SQL 제공: 테스트용 예제 쿼리를 바로 불러올 수 있음</li>
+            <li>Ctrl+Enter 단축키로 빠른 포맷팅 지원</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">주의할 점</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>방언 선택에 따라 특정 구문의 포맷팅 결과가 달라질 수 있으니 사용 중인 DB에 맞게 설정하세요.</li>
             <li>주석은 포맷팅 시 유지되지만, 압축 모드에서는 제거됩니다.</li>
             <li>옵션을 변경하면 입력된 SQL이 자동으로 다시 포맷팅됩니다.</li>
             <li>매우 긴 쿼리(수천 줄 이상)도 브라우저에서 처리되므로 성능 저하 없이 사용 가능합니다.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">지원하는 SQL 문</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">지원하는 SQL 문</h3>
           <ul class="list-disc list-inside space-y-1">
             <li>SELECT, INSERT, UPDATE, DELETE 기본 문</li>
             <li>JOIN (INNER, LEFT, RIGHT, FULL, CROSS)</li>
@@ -716,39 +707,48 @@
             <li>WITH (CTE - Common Table Expression)</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">활용 팁</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>ORM이나 로그에서 추출한 한 줄짜리 쿼리를 읽기 좋게 정리할 때</li>
+            <li>코드 리뷰에서 SQL 구조를 명확하게 보여줘야 할 때</li>
+            <li>기술 문서나 위키에 정돈된 SQL 예제를 첨부할 때</li>
+            <li>프로덕션 배포 전 SQL을 압축하여 네트워크 전송량을 줄이고 싶을 때</li>
+            <li>복잡한 JOIN이나 서브쿼리의 구조를 시각적으로 파악하고 싶을 때</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 하는 질문</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: 어떤 SQL 방언을 선택해야 하나요?</h4>
-              <p>사용하는 데이터베이스에 맞는 방언을 선택하세요. MySQL을 사용하면 MySQL, PostgreSQL을 사용하면 PostgreSQL을 선택합니다. 일반적인 SQL이라면 '표준 SQL'을 선택해도 대부분의 쿼리가 올바르게 포맷팅됩니다.</p>
+              <h4 class="font-semibold text-sm">Q: 어떤 SQL 방언을 선택해야 하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">사용하는 데이터베이스에 맞는 방언을 선택하세요. MySQL을 사용하면 MySQL, PostgreSQL을 사용하면 PostgreSQL을 선택합니다. 일반적인 SQL이라면 '표준 SQL'을 선택해도 대부분의 쿼리가 올바르게 포맷팅됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 포맷팅 후 SQL이 제대로 동작하나요?</h4>
-              <p>네, 이 도구는 SQL의 구문을 변경하지 않고 공백과 줄바꿈만 조정합니다. 포맷팅 전후의 SQL은 동일한 결과를 반환합니다.</p>
+              <h4 class="font-semibold text-sm">Q: 포맷팅 후 SQL이 제대로 동작하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">네, 이 도구는 SQL의 구문을 변경하지 않고 공백과 줄바꿈만 조정합니다. 포맷팅 전후의 SQL은 동일한 결과를 반환합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 데이터가 서버로 전송되나요?</h4>
-              <p>아니요, 모든 포맷팅은 브라우저에서 로컬로 처리됩니다. 입력한 SQL은 어떤 서버로도 전송되지 않으므로 회사 내부 쿼리도 안전하게 사용할 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 데이터가 서버로 전송되나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">아니요, 모든 포맷팅은 브라우저에서 로컬로 처리됩니다. 입력한 SQL은 어떤 서버로도 전송되지 않으므로 회사 내부 쿼리도 안전하게 사용할 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 저장 프로시저나 함수도 포맷팅할 수 있나요?</h4>
-              <p>기본적인 CREATE PROCEDURE, CREATE FUNCTION 구문은 지원됩니다. 다만 PL/SQL이나 T-SQL의 복잡한 제어문(IF, WHILE, CURSOR 등)은 방언을 정확히 선택해야 최적의 결과를 얻을 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 저장 프로시저나 함수도 포맷팅할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">기본적인 CREATE PROCEDURE, CREATE FUNCTION 구문은 지원됩니다. 다만 PL/SQL이나 T-SQL의 복잡한 제어문(IF, WHILE, CURSOR 등)은 방언을 정확히 선택해야 최적의 결과를 얻을 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 포맷팅 스타일을 커스터마이징할 수 있나요?</h4>
-              <p>현재 들여쓰기 크기, 키워드 대문자 변환 옵션을 제공합니다. SELECT 절의 각 컬럼을 별도 줄로 분리하는 등의 세부 스타일은 표준 포맷팅 규칙에 따라 자동 적용됩니다.</p>
+              <h4 class="font-semibold text-sm">Q: 포맷팅 스타일을 커스터마이징할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">현재 들여쓰기 크기, 키워드 대문자 변환 옵션을 제공합니다. SELECT 절의 각 컬럼을 별도 줄로 분리하는 등의 세부 스타일은 표준 포맷팅 규칙에 따라 자동 적용됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 여러 SQL 문을 동시에 포맷팅할 수 있나요?</h4>
-              <p>네, 세미콜론(;)으로 구분된 여러 SQL 문을 한 번에 입력해도 각각 올바르게 포맷팅됩니다. 샘플 SQL 버튼을 눌러보면 여러 문이 함께 처리되는 것을 확인할 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 여러 SQL 문을 동시에 포맷팅할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">네, 세미콜론(;)으로 구분된 여러 SQL 문을 한 번에 입력해도 각각 올바르게 포맷팅됩니다. 샘플 SQL 버튼을 눌러보면 여러 문이 함께 처리되는 것을 확인할 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 압축(Minify) 기능은 어떤 용도로 사용하나요?</h4>
-              <p>동적 SQL을 코드에 문자열로 작성할 때, 로그에 기록할 때, API로 전송할 때 등 한 줄로 된 SQL이 필요한 경우에 유용합니다. 주석도 함께 제거됩니다.</p>
+              <h4 class="font-semibold text-sm">Q: 압축(Minify) 기능은 어떤 용도로 사용하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">동적 SQL을 코드에 문자열로 작성할 때, 로그에 기록할 때, API로 전송할 때 등 한 줄로 된 SQL이 필요한 경우에 유용합니다. 주석도 함께 제거됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 키보드 단축키가 있나요?</h4>
-              <p>입력창에서 Ctrl+Enter(Mac은 Cmd+Enter)를 누르면 바로 포맷팅이 실행됩니다. 반복 작업 시 마우스 없이 빠르게 처리할 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 키보드 단축키가 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">입력창에서 Ctrl+Enter(Mac은 Cmd+Enter)를 누르면 바로 포맷팅이 실행됩니다. 반복 작업 시 마우스 없이 빠르게 처리할 수 있습니다.</p>
             </div>
           </div>
         </div>

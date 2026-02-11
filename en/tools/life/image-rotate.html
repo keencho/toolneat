@@ -623,13 +623,22 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Image Rotate/Flip?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">Image rotation and flipping lets you change the orientation of a photo or create mirror-image reflections. It is one of the most common fixes for smartphone photos that were saved sideways, selfies that appear reversed, or scanned documents that ended up upside down. This tool handles it all right in your browser with a single click, no software installation required.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Drag and drop or click to upload your image</li>
+            <li>Click a rotation button (Left 90, Right 90, or 180 degrees)</li>
+            <li>Optionally click the horizontal or vertical flip button</li>
+            <li>Stack multiple transformations until the orientation is correct</li>
+            <li>Click "Download" to save the final result</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Rotate left 90 degrees, right 90 degrees, or 180 degrees</li>
             <li>Flip horizontally (mirror left-to-right) or vertically (mirror top-to-bottom)</li>
             <li>Combine multiple transformations in any order</li>
@@ -638,17 +647,8 @@
             <li>Fully browser-based with no server uploads</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Drag and drop or click to upload your image</li>
-            <li>Click a rotation button (Left 90, Right 90, or 180 degrees)</li>
-            <li>Optionally click the horizontal or vertical flip button</li>
-            <li>Stack multiple transformations until the orientation is correct</li>
-            <li>Click "Download" to save the final result</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Correcting sideways photos taken on a smartphone</li>
             <li>Un-mirroring selfies to restore the original orientation</li>
             <li>Flipping upside-down scanned documents by rotating 180 degrees</li>
@@ -657,8 +657,22 @@
             <li>Matching image direction to printer settings for print-ready files</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What image formats are supported?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Most common formats including JPG, PNG, GIF, and WebP are supported.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does rotating affect image quality?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">No. Pixels are simply rearranged, so there is zero quality loss from rotation or flipping.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I rotate by a custom angle like 45 degrees?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Currently only 90-degree increments and flipping are supported. For arbitrary angle rotation, a dedicated image editor would be needed.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I apply multiple transformations at once?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Yes, you can stack as many rotations and flips as you like. Each transformation is applied immediately.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does it work on mobile devices?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Yes, it works on mobile browsers. You can rotate photos taken on your phone right away.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is my image uploaded to a server?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">No. All processing happens in your browser. Your images never leave your device.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Are transparent PNG backgrounds preserved?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Yes, PNG transparency is fully maintained after any rotation or flip.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I undo transformations?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Yes, click the "Reset" button to discard all transformations and return to the original image.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What format is the downloaded file?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">The result is saved as a PNG file at the original resolution.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I process multiple images at once?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Images are processed one at a time. After saving, click "New Image" to immediately start editing the next one.</p></div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Combining rotation and flip operations can achieve any orientation you need</li>
             <li>Use the reset button to return to the original state at any time</li>
             <li>A 90-degree rotation swaps width and height, so check the resulting dimensions</li>
@@ -666,20 +680,6 @@
             <li>Your original file is never changed; a new file is generated on download</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div><h4 class="font-medium">Q: What image formats are supported?</h4><p>Most common formats including JPG, PNG, GIF, and WebP are supported.</p></div>
-            <div><h4 class="font-medium">Q: Does rotating affect image quality?</h4><p>No. Pixels are simply rearranged, so there is zero quality loss from rotation or flipping.</p></div>
-            <div><h4 class="font-medium">Q: Can I rotate by a custom angle like 45 degrees?</h4><p>Currently only 90-degree increments and flipping are supported. For arbitrary angle rotation, a dedicated image editor would be needed.</p></div>
-            <div><h4 class="font-medium">Q: Can I apply multiple transformations at once?</h4><p>Yes, you can stack as many rotations and flips as you like. Each transformation is applied immediately.</p></div>
-            <div><h4 class="font-medium">Q: Does it work on mobile devices?</h4><p>Yes, it works on mobile browsers. You can rotate photos taken on your phone right away.</p></div>
-            <div><h4 class="font-medium">Q: Is my image uploaded to a server?</h4><p>No. All processing happens in your browser. Your images never leave your device.</p></div>
-            <div><h4 class="font-medium">Q: Are transparent PNG backgrounds preserved?</h4><p>Yes, PNG transparency is fully maintained after any rotation or flip.</p></div>
-            <div><h4 class="font-medium">Q: Can I undo transformations?</h4><p>Yes, click the "Reset" button to discard all transformations and return to the original image.</p></div>
-            <div><h4 class="font-medium">Q: What format is the downloaded file?</h4><p>The result is saved as a PNG file at the original resolution.</p></div>
-            <div><h4 class="font-medium">Q: Can I process multiple images at once?</h4><p>Images are processed one at a time. After saving, click "New Image" to immediately start editing the next one.</p></div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

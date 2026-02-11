@@ -754,15 +754,24 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">JWT 디코더 안내</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">JWT(JSON Web Token)란?</h3>
+          <h3 class="text-lg font-bold mt-8 mb-2">JWT(JSON Web Token)란?</h3>
           <p>JWT는 JSON 형식의 데이터를 안전하게 전송하기 위한 개방형 표준(RFC 7519)입니다. 웹 애플리케이션에서 사용자 인증, 권한 부여, 정보 교환에 널리 사용됩니다. JWT는 Header(알고리즘 정보), Payload(실제 데이터), Signature(서명) 세 부분으로 구성되고, 각 부분이 점(.)으로 연결된 문자열입니다. 서버는 비밀키로 서명을 검증해서 토큰이 변조되지 않았는지 확인합니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">이용 가이드</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>JWT 토큰 문자열을 입력창에 붙여넣습니다. 클립보드에서 바로 붙여넣기하면 자동 디코딩됩니다.</li>
+            <li>'디코딩' 버튼을 클릭하면 Header, Payload, Signature가 JSON 형태로 분리 표시됩니다.</li>
+            <li>토큰 상태 표시에서 현재 토큰이 유효한지, 만료되었는지 확인합니다.</li>
+            <li>클레임 상세 섹션에서 각 클레임의 키, 값, 설명을 확인합니다.</li>
+            <li>서명을 검증하고 싶다면 비밀키 입력 후 '서명 검증' 버튼을 클릭하세요.</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">핵심 기능</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>JWT 토큰의 Header, Payload, Signature를 분리하여 보기 쉽게 표시</li>
             <li>토큰 만료 상태(유효, 만료, 아직 유효하지 않음) 자동 판별</li>
             <li>남은 유효 시간 또는 만료 이후 경과 시간 표시</li>
@@ -771,17 +780,8 @@
             <li>붙여넣기 시 자동 디코딩으로 빠른 작업 가능</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>JWT 토큰 문자열을 입력창에 붙여넣습니다. 클립보드에서 바로 붙여넣기하면 자동 디코딩됩니다.</li>
-            <li>'디코딩' 버튼을 클릭하면 Header, Payload, Signature가 JSON 형태로 분리 표시됩니다.</li>
-            <li>토큰 상태 표시에서 현재 토큰이 유효한지, 만료되었는지 확인합니다.</li>
-            <li>클레임 상세 섹션에서 각 클레임의 키, 값, 설명을 확인합니다.</li>
-            <li>서명을 검증하고 싶다면 비밀키 입력 후 '서명 검증' 버튼을 클릭하세요.</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">이런 상황에서 유용해요</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>API 개발 중 인증 토큰의 Payload 내용을 빠르게 확인할 때</li>
             <li>토큰 만료 시간을 디버깅하거나 유효 기간을 점검할 때</li>
             <li>다른 서비스에서 받은 JWT의 클레임 구조를 파악할 때</li>
@@ -789,8 +789,44 @@
             <li>서명 알고리즘이 올바른지 확인하고 비밀키로 검증할 때</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">궁금한 점 모음</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: JWT를 디코딩하면 내용이 노출되는데 안전한가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">JWT의 Header와 Payload는 Base64 인코딩이라 누구든 디코딩할 수 있습니다. 그래서 민감한 정보는 JWT에 담으면 안 됩니다. JWT의 보안 핵심은 서명 검증입니다. 서명이 유효해야만 내용을 신뢰할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: exp, iat, nbf 클레임은 각각 무엇인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">exp(Expiration)는 토큰 만료 시간, iat(Issued At)는 발급 시간, nbf(Not Before)는 유효 시작 시간입니다. 모두 Unix Timestamp(초 단위)로 표현됩니다. 이 도구에서는 이 값을 사람이 읽을 수 있는 날짜 형식으로 변환해서 보여줍니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: RS256과 HS256의 차이점은 무엇인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">HS256은 대칭키 알고리즘으로, 서명과 검증에 같은 비밀키를 사용합니다. RS256은 비대칭키 알고리즘으로, 개인키로 서명하고 공개키로 검증합니다. 이 도구는 HMAC 계열(HS256/384/512)만 서명 검증을 지원합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: sub, iss, aud 클레임은 어떤 용도인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">sub(Subject)는 토큰이 나타내는 주체(보통 사용자 ID), iss(Issuer)는 토큰을 발급한 주체, aud(Audience)는 토큰을 사용할 대상을 지정합니다. 모두 선택 사항이지만, 보안과 토큰 관리를 위해 포함하는 것이 좋습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 토큰이 만료된 후에도 디코딩할 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">네, 만료 여부와 관계없이 토큰의 내용은 언제든 디코딩해서 볼 수 있습니다. 만료는 서버가 토큰을 받아들일지 결정하는 기준이지, 디코딩 가능 여부와는 무관합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 서명 검증에 실패하면 어떤 의미인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">입력한 비밀키가 토큰 생성 시 사용된 키와 다르거나, 토큰 내용이 중간에 변조되었을 가능성이 있습니다. 서명 검증 실패한 토큰은 신뢰할 수 없으므로 사용하면 안 됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: jti 클레임은 무엇인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">jti(JWT ID)는 토큰의 고유 식별자입니다. 같은 토큰이 재사용(리플레이 공격)되는 것을 방지하기 위해 사용됩니다. 서버에서 이미 사용된 jti를 추적하면 토큰 재사용을 차단할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 입력한 토큰이나 비밀키가 외부로 전송되나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">아닙니다. 모든 디코딩과 서명 검증은 브라우저 내에서만 처리됩니다. 입력한 토큰이나 비밀키는 서버로 전송되지 않으므로 안심하고 사용할 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">알아두면 좋은 점</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>JWT의 Payload는 Base64로 인코딩된 것이지 암호화된 것이 아닙니다. 비밀번호 같은 민감 정보는 절대 넣지 마세요.</li>
             <li>서명 검증은 HMAC 알고리즘(HS256/384/512)만 지원합니다. RSA나 EC 서명은 별도 도구가 필요합니다.</li>
             <li>모든 디코딩과 검증은 브라우저에서 처리되며, 토큰이 서버로 전송되지 않습니다.</li>
@@ -798,42 +834,6 @@
             <li>프로덕션 비밀키를 이 도구에 입력하는 것은 피하세요. 테스트용 키를 사용하는 것을 권장합니다.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: JWT를 디코딩하면 내용이 노출되는데 안전한가요?</h4>
-              <p>JWT의 Header와 Payload는 Base64 인코딩이라 누구든 디코딩할 수 있습니다. 그래서 민감한 정보는 JWT에 담으면 안 됩니다. JWT의 보안 핵심은 서명 검증입니다. 서명이 유효해야만 내용을 신뢰할 수 있습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: exp, iat, nbf 클레임은 각각 무엇인가요?</h4>
-              <p>exp(Expiration)는 토큰 만료 시간, iat(Issued At)는 발급 시간, nbf(Not Before)는 유효 시작 시간입니다. 모두 Unix Timestamp(초 단위)로 표현됩니다. 이 도구에서는 이 값을 사람이 읽을 수 있는 날짜 형식으로 변환해서 보여줍니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: RS256과 HS256의 차이점은 무엇인가요?</h4>
-              <p>HS256은 대칭키 알고리즘으로, 서명과 검증에 같은 비밀키를 사용합니다. RS256은 비대칭키 알고리즘으로, 개인키로 서명하고 공개키로 검증합니다. 이 도구는 HMAC 계열(HS256/384/512)만 서명 검증을 지원합니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: sub, iss, aud 클레임은 어떤 용도인가요?</h4>
-              <p>sub(Subject)는 토큰이 나타내는 주체(보통 사용자 ID), iss(Issuer)는 토큰을 발급한 주체, aud(Audience)는 토큰을 사용할 대상을 지정합니다. 모두 선택 사항이지만, 보안과 토큰 관리를 위해 포함하는 것이 좋습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 토큰이 만료된 후에도 디코딩할 수 있나요?</h4>
-              <p>네, 만료 여부와 관계없이 토큰의 내용은 언제든 디코딩해서 볼 수 있습니다. 만료는 서버가 토큰을 받아들일지 결정하는 기준이지, 디코딩 가능 여부와는 무관합니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 서명 검증에 실패하면 어떤 의미인가요?</h4>
-              <p>입력한 비밀키가 토큰 생성 시 사용된 키와 다르거나, 토큰 내용이 중간에 변조되었을 가능성이 있습니다. 서명 검증 실패한 토큰은 신뢰할 수 없으므로 사용하면 안 됩니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: jti 클레임은 무엇인가요?</h4>
-              <p>jti(JWT ID)는 토큰의 고유 식별자입니다. 같은 토큰이 재사용(리플레이 공격)되는 것을 방지하기 위해 사용됩니다. 서버에서 이미 사용된 jti를 추적하면 토큰 재사용을 차단할 수 있습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 입력한 토큰이나 비밀키가 외부로 전송되나요?</h4>
-              <p>아닙니다. 모든 디코딩과 서명 검증은 브라우저 내에서만 처리됩니다. 입력한 토큰이나 비밀키는 서버로 전송되지 않으므로 안심하고 사용할 수 있습니다.</p>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- Ad Container (Bottom) -->

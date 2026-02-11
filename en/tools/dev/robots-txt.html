@@ -605,12 +605,12 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Robots.txt Generator?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>A robots.txt file is a plain text file placed in the root directory of your website that instructs search engine crawlers which pages or sections they are allowed to access. It is the first file bots check when visiting your site, making it a fundamental part of any SEO strategy. This generator lets you create a properly formatted robots.txt file using an intuitive GUI without memorizing the syntax.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">What Can You Do?</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Built-in presets: Allow All, Block All, Block AI Crawlers, and Standard configurations ready to use</li>
             <li>Per-bot rule management: Set specific rules for Googlebot, Bingbot, GPTBot, and other crawlers</li>
@@ -619,7 +619,7 @@
             <li>Real-time preview with copy and download functionality</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Getting Started Guide</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>Choose a preset or start in Custom mode to build rules manually.</li>
             <li>Click a User-agent tag or type one manually to specify the target crawler.</li>
@@ -629,7 +629,7 @@
             <li>Use the Copy or Download button to save the file, then upload it to your site root.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Recommended Uses</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Blocking admin panels, login pages, or staging environments from appearing in search results</li>
             <li>Preventing AI crawlers like GPTBot and ChatGPT-User from scraping your content for training data</li>
@@ -638,7 +638,7 @@
             <li>Temporarily blocking all crawlers before a site launch or during maintenance</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Things to Keep in Mind</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Robots.txt is advisory, not a security measure. Malicious bots may ignore it entirely.</li>
             <li>Never rely on robots.txt alone to protect sensitive data. Use server-side authentication and access controls.</li>
@@ -647,39 +647,39 @@
             <li>After making changes, validate with Google Search Console's robots.txt tester before deploying.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Q&A</h3>
+          <div class="divide-y divide-gray-100 dark:divide-gray-700">
             <div>
-              <h4 class="font-medium">Q: Where should I upload the robots.txt file?</h4>
-              <p>It must be placed in the root directory of your website so that it is accessible at https://example.com/robots.txt. Placing it in a subdirectory will prevent crawlers from finding it.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Where should I upload the robots.txt file?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">It must be placed in the root directory of your website so that it is accessible at https://example.com/robots.txt. Placing it in a subdirectory will prevent crawlers from finding it.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Which bots are included in the Block AI Crawlers preset?</h4>
-              <p>The preset includes GPTBot, ChatGPT-User, Claude-Web, Bytespider, CCBot, anthropic-ai, and Google-Extended. These are the primary crawlers used by AI companies to collect training data from the web.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Which bots are included in the Block AI Crawlers preset?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">The preset includes GPTBot, ChatGPT-User, Claude-Web, Bytespider, CCBot, anthropic-ai, and Google-Extended. These are the primary crawlers used by AI companies to collect training data from the web.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Do all search engines support Crawl-delay?</h4>
-              <p>No. Google does not officially support the Crawl-delay directive; you need to adjust crawl rate through Google Search Console instead. Bing and Yandex do honor this directive.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Do all search engines support Crawl-delay?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">No. Google does not officially support the Crawl-delay directive; you need to adjust crawl rate through Google Search Console instead. Bing and Yandex do honor this directive.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What happens when Allow and Disallow rules conflict?</h4>
-              <p>Most crawlers apply the most specific (longest path) rule. For example, if you have Disallow: /blog/ and Allow: /blog/public/, the /blog/public/ path will be crawled.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What happens when Allow and Disallow rules conflict?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Most crawlers apply the most specific (longest path) rule. For example, if you have Disallow: /blog/ and Allow: /blog/public/, the /blog/public/ path will be crawled.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What if I misconfigure robots.txt?</h4>
-              <p>Accidentally blocking the entire site can cause your pages to disappear from search results. Always review the preview before deploying and test with your search engine's webmaster tools.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What if I misconfigure robots.txt?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Accidentally blocking the entire site can cause your pages to disappear from search results. Always review the preview before deploying and test with your search engine's webmaster tools.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I use wildcard patterns?</h4>
-              <p>Google and Bing support * and $ pattern matching. The * matches any sequence of characters, and $ matches the end of the URL. For example, Disallow: /*.json$ blocks all .json files.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Can I use wildcard patterns?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Google and Bing support * and $ pattern matching. The * matches any sequence of characters, and $ matches the end of the URL. For example, Disallow: /*.json$ blocks all .json files.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
-              <p>No. All processing happens locally in your browser. Your URLs and rules are never transmitted to any server, so you can use this tool safely.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Is my data sent to a server?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">No. All processing happens locally in your browser. Your URLs and rules are never transmitted to any server, so you can use this tool safely.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is specifying a sitemap in robots.txt mandatory?</h4>
-              <p>It is not required, but specifying the sitemap location helps crawlers discover and index your pages more efficiently. You can list multiple sitemaps on separate lines.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Is specifying a sitemap in robots.txt mandatory?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">It is not required, but specifying the sitemap location helps crawlers discover and index your pages more efficiently. You can list multiple sitemaps on separate lines.</p>
             </div>
           </div>
         </div>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>온라인 개인정보 보호 가이드: 디지털 흔적 줄이기 - Toolneat</title>
+  <meta name="description" content="온라인에서 개인정보를 보호하는 실용적인 방법. EXIF 데이터 제거, 안전한 비밀번호 생성, IP 주소 이해 등 일상에서 실천할 수 있는 보안 팁을 소개합니다.">
+
+  <link rel="canonical" href="https://toolneat.com/blog/online-privacy-guide">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/online-privacy-guide">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/online-privacy-guide">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/online-privacy-guide">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="온라인 개인정보 보호 가이드: 디지털 흔적 줄이기">
+  <meta property="og:description" content="온라인에서 개인정보를 보호하는 실용적인 방법. EXIF 데이터 제거, 안전한 비밀번호 생성, IP 주소 이해 등 일상에서 실천할 수 있는 보안 팁을 소개합니다.">
+  <meta property="og:url" content="https://toolneat.com/blog/online-privacy-guide">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <link rel="stylesheet" href="/assets/css/output.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/tools-data.js"></script>
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/search.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "온라인 개인정보 보호 가이드: 디지털 흔적 줄이기",
+    "description": "온라인에서 개인정보를 보호하는 실용적인 방법. EXIF 데이터 제거, 안전한 비밀번호 생성, IP 주소 이해 등 일상에서 실천할 수 있는 보안 팁을 소개합니다.",
+    "datePublished": "2025-02-10",
+    "dateModified": "2025-02-10",
+    "author": {"@type": "Organization", "name": "Toolneat"},
+    "publisher": {"@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com"},
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://toolneat.com/blog/online-privacy-guide"},
+    "inLanguage": "ko"
+  }
+  </script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="nav-link text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        Toolneat
+      </a>
+      <nav class="hidden md:flex items-center gap-2">
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="dev">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          </svg>
+          <span data-i18n="nav.dev">개발 도구</span>
+        </button>
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="pdf">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <span data-i18n="nav.pdf">PDF 도구</span>
+        </button>
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="life">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <span data-i18n="nav.life">생활 도구</span>
+        </button>
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="game">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span data-i18n="nav.game">게임</span>
+        </button>
+        <a href="/blog" class="nav-link nav-dropdown-btn">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+          </svg>
+          <span data-i18n="nav.blog">블로그</span>
+        </a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="header-search-btn" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="hidden lg:inline" data-i18n="nav.search">검색</span>
+          <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 dark:bg-gray-700 rounded">
+            <span class="text-[9px]">Ctrl</span>K
+          </kbd>
+        </button>
+        <div class="hidden sm:flex items-center gap-1 text-sm">
+          <button data-lang="ko" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">KO</button>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
+          <button data-lang="en" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">EN</button>
+        </div>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+          <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+        <button id="menu-toggle" class="icon-btn md:hidden" aria-label="Menu">
+          <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden md:hidden pb-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
+      <button id="mobile-search-btn" class="w-full flex items-center gap-3 py-3 px-3 mb-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <span data-i18n="nav.search">검색</span>
+      </button>
+      <div class="flex items-center gap-2 py-3 border-b border-gray-100 dark:border-gray-800 mb-2">
+        <span class="text-sm text-gray-500">Language:</span>
+        <button data-lang="ko" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">KO</button>
+        <button data-lang="en" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">EN</button>
+      </div>
+      <a href="/blog" class="nav-link flex items-center gap-2 py-3 text-gray-900 dark:text-white font-medium">
+        <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+        </svg>
+        <span data-i18n="nav.blog">블로그</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<div id="tools-dropdown" class="hidden fixed left-0 right-0 top-16 z-[60] bg-white dark:bg-gray-900 shadow-2xl border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main py-4">
+    <div class="flex items-center justify-between gap-4 mb-4">
+      <div class="flex items-center gap-1">
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="all"><span data-i18n="nav.all">전체</span></button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="dev"><span data-i18n="nav.dev">개발 도구</span></button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="pdf"><span data-i18n="nav.pdf">PDF 도구</span></button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="life"><span data-i18n="nav.life">생활 도구</span></button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="game"><span data-i18n="nav.game">게임</span></button>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="relative">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input type="text" id="tools-dropdown-search" class="w-64 pl-9 pr-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="도구 검색..." data-i18n-placeholder="nav.searchPlaceholder">
+        </div>
+        <button id="tools-dropdown-close" class="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="max-h-[420px] overflow-y-auto">
+      <div id="tools-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2"></div>
+    </div>
+  </div>
+</div>
+
+<div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
+
+</div><main class="flex-1 mt-16 py-8 md:py-12">
+    <article class="container-main max-w-3xl">
+      <div class="mb-8">
+        <a href="/blog" class="text-sm text-blue-600 dark:text-blue-400 hover:underline mb-4 inline-block">&#8592; 블로그</a>
+        <span class="inline-block px-3 py-1 text-sm font-medium bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 rounded-full">생활</span>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">온라인 개인정보 보호 가이드: 디지털 흔적 줄이기</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">2025년 2월 10일</p>
+      </div>
+
+      <div class="prose dark:prose-invert max-w-none">
+        <p class="text-lg text-gray-700 dark:text-gray-300">얼마 전에 중고 거래 사이트에 물건 사진을 올렸다가 깜짝 놀란 적이 있습니다. 사진에 촬영 위치 정보가 그대로 남아있었거든요. 집 주소가 GPS 좌표로 박혀 있었던 셈입니다. 이렇게 우리는 자신도 모르게 온라인에 개인정보를 흘리고 다닙니다. 오늘은 일상에서 바로 실천할 수 있는 디지털 프라이버시 보호 방법을 공유해보겠습니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">디지털 흔적이란?</h2>
+        <p>인터넷에서 하는 모든 활동은 흔적을 남깁니다. 검색 기록, 방문한 웹사이트, 클릭한 광고, 좋아요를 누른 게시물, 업로드한 사진까지. 이런 정보들이 모이면 한 사람의 생활 패턴, 관심사, 위치, 인간관계까지 파악할 수 있게 됩니다. 무서운 건 이 과정이 대부분 자동으로, 본인도 모르는 사이에 일어난다는 것입니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">사진 속 숨은 정보: EXIF 데이터</h2>
+        <p>스마트폰으로 찍은 사진에는 눈에 보이는 이미지 외에도 많은 정보가 담겨 있습니다. EXIF(Exchangeable Image File Format) 데이터라고 불리는 메타데이터가 그것입니다. 여기에는 촬영 날짜와 시간, GPS 좌표(위치 정보), 카메라 모델명, 렌즈 정보, 심지어 촬영 설정값까지 기록됩니다.</p>
+        <p class="mt-2">SNS에 사진을 올릴 때는 플랫폼이 자동으로 EXIF를 제거해주는 경우가 많습니다. 하지만 블로그, 커뮤니티, 중고 거래 사이트 등에 직접 업로드할 때는 그렇지 않을 수 있습니다. 사진을 공개적으로 공유하기 전에 EXIF 데이터를 제거하는 습관을 들이는 것이 좋습니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">비밀번호, 진짜 안전한가요?</h2>
+        <p>많은 사람들이 하나의 비밀번호를 여러 사이트에서 돌려씁니다. 기억하기 편하니까요. 문제는 이 중 하나라도 유출되면 나머지 계정이 전부 위험해진다는 것입니다. 크리덴셜 스터핑이라고 불리는 공격은 유출된 아이디/비밀번호 조합을 다른 사이트에 무차별적으로 시도하는 방식입니다.</p>
+        <p class="mt-2">안전한 비밀번호의 조건은 간단합니다. 길어야 하고(최소 12자 이상), 대소문자와 숫자, 특수문자를 섞어야 하며, 개인정보(생일, 이름 등)를 포함하지 않아야 합니다. 무엇보다 사이트마다 다른 비밀번호를 써야 합니다. 외우기 어렵다면 비밀번호 관리자 프로그램을 사용하거나, 비밀번호 생성기를 활용해보세요.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">IP 주소가 말해주는 것들</h2>
+        <p>IP 주소는 인터넷에 접속한 기기의 주소입니다. 웹사이트에 접속할 때마다 상대방 서버에 내 IP 주소가 전달됩니다. IP 주소만으로 정확한 집 주소를 알아내기는 어렵지만, 대략적인 지역(도시 수준), 인터넷 서비스 제공자(ISP), 접속 시간 등의 정보를 알 수 있습니다.</p>
+        <p class="mt-2">내 IP로 어떤 정보를 알 수 있는지 궁금하다면, IP 조회 도구를 통해 직접 확인해볼 수 있습니다. 생각보다 많은 정보가 노출된다는 걸 체감하게 될 겁니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">쿠키와 추적기</h2>
+        <p>웹사이트를 방문하면 브라우저에 쿠키라는 작은 데이터 파일이 저장됩니다. 로그인 상태를 유지하거나 장바구니 정보를 기억하는 데 쓰이는 유용한 기능입니다. 하지만 서드파티 쿠키는 다른 이야기입니다. 광고 네트워크가 여러 사이트에 걸쳐 사용자의 행동을 추적하기 위해 심는 쿠키로, 여러분이 어떤 상품을 검색하면 다른 사이트에서 관련 광고가 따라오는 이유가 바로 이것입니다.</p>
+        <p class="mt-2">대부분의 브라우저에서 서드파티 쿠키를 차단하는 설정을 제공합니다. 크롬의 경우 설정에서 쿠키 관련 옵션을 찾을 수 있고, Safari나 Firefox는 기본적으로 상당 부분 차단하고 있습니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">오늘부터 실천할 수 있는 보안 습관</h2>
+        <p>거창한 것이 아니어도 됩니다. 작은 습관 몇 가지만 들여도 개인정보 노출을 크게 줄일 수 있습니다.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>사진 공유 전 EXIF 제거</strong>: 위치 정보가 담긴 사진을 함부로 올리지 마세요.</li>
+          <li><strong>사이트별 고유 비밀번호 사용</strong>: 비밀번호 관리자를 적극 활용하세요.</li>
+          <li><strong>2단계 인증(2FA) 활성화</strong>: 비밀번호가 유출돼도 추가 방어선이 됩니다.</li>
+          <li><strong>불필요한 계정 삭제</strong>: 더 이상 사용하지 않는 서비스의 계정은 탈퇴하세요.</li>
+          <li><strong>공용 Wi-Fi 주의</strong>: 카페나 공항의 무료 Wi-Fi에서는 민감한 작업(은행, 로그인)을 피하세요.</li>
+          <li><strong>소프트웨어 업데이트</strong>: 보안 패치가 포함된 업데이트를 미루지 마세요.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">완벽한 보안은 없지만</h2>
+        <p>솔직히 말해서, 인터넷을 사용하면서 디지털 흔적을 완전히 없앨 수는 없습니다. 하지만 조금만 신경 쓰면 불필요한 노출을 크게 줄일 수 있습니다. 사진에서 EXIF를 지우고, 강한 비밀번호를 쓰고, 쿠키 설정을 관리하는 것만으로도 훨씬 안전한 온라인 생활이 가능합니다. 중요한 건 완벽함이 아니라 꾸준한 실천입니다.</p>
+      </div>
+
+      <!-- 관련 도구 -->
+      <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
+        <h3 class="font-bold text-gray-900 dark:text-white mb-3">관련 도구</h3>
+        <div class="flex flex-wrap gap-4">
+          <a href="/tools/life/exif-remover" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            EXIF 정보 제거
+          </a>
+          <a href="/tools/dev/password-generator" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            비밀번호 생성기
+          </a>
+          <a href="/tools/life/ip-lookup" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            IP Lookup
+          </a>
+        </div>
+      </div>
+
+      <!-- 다른 글 -->
+      <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="font-bold text-gray-900 dark:text-white mb-4">다른 글 읽기</h3>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <a href="/blog/password-guide" class="block p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+            <p class="font-medium text-gray-900 dark:text-white">안전한 비밀번호 만들기</p>
+            <p class="text-sm text-gray-500 mt-1">비밀번호 보안의 모든 것</p>
+          </a>
+          <a href="/blog/hash-guide" class="block p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+            <p class="font-medium text-gray-900 dark:text-white">해시 함수 완벽 가이드</p>
+            <p class="text-sm text-gray-500 mt-1">MD5부터 SHA-512까지 한눈에</p>
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <div id="footer">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+  <div class="container-main">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+      <p>&copy; 2026 Toolneat. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div></body>
+</html>

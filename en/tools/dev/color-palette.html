@@ -556,23 +556,13 @@
         </div>
       </div>
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Color Palette Extractor?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>Color Palette Extractor analyzes uploaded images and automatically identifies the dominant colors, presenting them as HEX and RGB codes you can copy and use. Instead of manually eyedropping colors one at a time, upload any photo or illustration and extract 3 to 10 key colors in a single step. The tool uses the Median Cut algorithm to find the most representative colors in your image, making it useful for setting up website color schemes, documenting brand guidelines, matching social media design palettes, and finding color inspiration from any visual source.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>Automatic Color Analysis</strong> - Upload an image and the Median Cut algorithm detects and extracts dominant colors automatically.</li>
-            <li><strong>Adjustable Color Count</strong> - Use the slider to extract anywhere from 3 to 10 colors depending on how detailed a palette you need.</li>
-            <li><strong>Click to Copy</strong> - Click any extracted color to instantly copy its HEX code to your clipboard.</li>
-            <li><strong>Dual Format Display</strong> - View both HEX and RGB values for each color, ready to use in CSS, design tools, or code.</li>
-            <li><strong>Drag and Drop Upload</strong> - Simply drag an image file from your file explorer onto the upload area to start analysis.</li>
-            <li><strong>Wide Format Support</strong> - Processes JPG, PNG, GIF, WebP, and other common image formats.</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
             <li>Click the upload area or drag and drop an image file onto it.</li>
             <li>Once the image loads, dominant colors are extracted automatically.</li>
             <li>Move the color count slider to adjust how many colors to extract (3 to 10).</li>
@@ -581,16 +571,62 @@
             <li>Paste the copied codes into your CSS files, Figma projects, Photoshop, or any other tool.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Automatic Color Analysis</strong> - Upload an image and the Median Cut algorithm detects and extracts dominant colors automatically.</li>
+            <li><strong>Adjustable Color Count</strong> - Use the slider to extract anywhere from 3 to 10 colors depending on how detailed a palette you need.</li>
+            <li><strong>Click to Copy</strong> - Click any extracted color to instantly copy its HEX code to your clipboard.</li>
+            <li><strong>Dual Format Display</strong> - View both HEX and RGB values for each color, ready to use in CSS, design tools, or code.</li>
+            <li><strong>Drag and Drop Upload</strong> - Simply drag an image file from your file explorer onto the upload area to start analysis.</li>
+            <li><strong>Wide Format Support</strong> - Processes JPG, PNG, GIF, WebP, and other common image formats.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li><strong>Website Color Schemes</strong> - Extract colors from a reference image to build a cohesive website palette with matching backgrounds, text, and accent colors.</li>
             <li><strong>Brand Guidelines</strong> - Pull exact color codes from logos and brand imagery to document official brand colors accurately.</li>
             <li><strong>Social Media Design</strong> - Match backgrounds, text overlays, and button colors to the main colors in your featured photo for a unified look.</li>
             <li><strong>Interior and Fashion</strong> - Extract color combinations from inspirational photos to guide room decoration or outfit coordination decisions.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What image formats are supported?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">JPG, PNG, GIF, WebP, and most browser-displayable image formats are supported. SVG files are vector-based and may not produce accurate color extraction results.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What algorithm is used for extraction?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">The tool uses the Color Thief library with the Median Cut algorithm. This algorithm analyzes all pixels in the image across the color space and groups them to find the most representative dominant colors.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I see RGB codes as well?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, hover over any extracted color swatch to see both its HEX code and RGB values displayed. Clicking copies the HEX code to your clipboard.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the maximum number of colors I can extract?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">You can extract between 3 and 10 colors using the slider. For images with lots of color variety, 7 to 10 works well. For simpler images, 3 to 5 is usually enough to capture the key colors.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: The extracted colors do not match what I expected. What can I do?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Large background areas tend to dominate the extraction. If you want colors from a specific region, crop the image to that area before uploading. Increasing the color count also helps capture more subtle colors.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is there a file size limit?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">There is no strict size limit since processing happens in your browser. However, very large files (over 10MB) may take longer to analyze. Standard photo sizes process without any noticeable delay.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I export all colors at once?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Currently, colors are copied individually by clicking each swatch. If you need multiple colors, click them in sequence and paste into a text editor or your code file.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Are uploaded images stored on a server?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. All image analysis is performed entirely in your browser. No image data is transmitted to or stored on any external server, so you can safely use personal or confidential images.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Images with more color variety produce richer palette results. Monochromatic images may yield several similar shades.</li>
             <li>Setting the count too high can result in near-duplicate colors. Five to six colors is usually a good starting point.</li>
             <li>If a large background area dominates the image, that color will be extracted first. Crop to the specific area you want if you need more targeted results.</li>
@@ -598,42 +634,6 @@
             <li>High-resolution images are supported, though very large files may take slightly longer to analyze.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: What image formats are supported?</h4>
-              <p>JPG, PNG, GIF, WebP, and most browser-displayable image formats are supported. SVG files are vector-based and may not produce accurate color extraction results.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What algorithm is used for extraction?</h4>
-              <p>The tool uses the Color Thief library with the Median Cut algorithm. This algorithm analyzes all pixels in the image across the color space and groups them to find the most representative dominant colors.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I see RGB codes as well?</h4>
-              <p>Yes, hover over any extracted color swatch to see both its HEX code and RGB values displayed. Clicking copies the HEX code to your clipboard.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What is the maximum number of colors I can extract?</h4>
-              <p>You can extract between 3 and 10 colors using the slider. For images with lots of color variety, 7 to 10 works well. For simpler images, 3 to 5 is usually enough to capture the key colors.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: The extracted colors do not match what I expected. What can I do?</h4>
-              <p>Large background areas tend to dominate the extraction. If you want colors from a specific region, crop the image to that area before uploading. Increasing the color count also helps capture more subtle colors.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is there a file size limit?</h4>
-              <p>There is no strict size limit since processing happens in your browser. However, very large files (over 10MB) may take longer to analyze. Standard photo sizes process without any noticeable delay.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I export all colors at once?</h4>
-              <p>Currently, colors are copied individually by clicking each swatch. If you need multiple colors, click them in sequence and paste into a text editor or your code file.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Are uploaded images stored on a server?</h4>
-              <p>No. All image analysis is performed entirely in your browser. No image data is transmitted to or stored on any external server, so you can safely use personal or confidential images.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

@@ -582,13 +582,13 @@
       </div>
 
       <!-- Description -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">JSON CSV Converter Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <h3 class="text-lg font-semibold mt-6 mb-3">What is JSON CSV Converter?</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Understanding JSON CSV Converter</h3>
           <p>JSON and CSV are two of the most common data formats. JSON (JavaScript Object Notation) supports nested structures and is widely used in APIs and configuration files. CSV (Comma-Separated Values) represents tabular data as plain text and is the standard import/export format for spreadsheets and data analysis tools. This converter handles the transformation between these two formats seamlessly. When converting JSON to CSV, object keys become column headers and each object becomes a row. When converting CSV to JSON, each row becomes a JSON object with column headers as keys.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">What Can You Do?</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Convert JSON arrays to CSV with automatic header extraction from object keys</li>
             <li>Convert CSV data to JSON object arrays</li>
@@ -598,7 +598,7 @@
             <li>Real-time conversion preview</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Getting Started Guide</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>Select the conversion direction (JSON to CSV, or CSV to JSON).</li>
             <li>Paste your data into the input area, or drag and drop a file.</li>
@@ -607,7 +607,7 @@
             <li>Use the "Copy" button to copy the result, or "Download" to save it as a file.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Recommended Uses</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Converting API response data to CSV for analysis in Excel or Google Sheets</li>
             <li>Transforming spreadsheet data into JSON for use in web applications</li>
@@ -616,7 +616,7 @@
             <li>Bridging format differences between systems during data migration</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Things to Keep in Mind</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>JSON input for CSV conversion must be an array of objects. Single objects or nested arrays are difficult to represent as a flat table structure.</li>
             <li>If a CSV value contains commas, it must be enclosed in double quotes for correct parsing.</li>
@@ -625,47 +625,47 @@
             <li>Tab-separated (TSV) and semicolon-separated files can be processed by changing the delimiter setting.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Q&A</h3>
+          <div class="divide-y divide-gray-100 dark:divide-gray-700">
             <div>
-              <h4 class="font-medium">Q: Can I convert a single JSON object (not an array) to CSV?</h4>
-              <p>Wrap it in an array like [{"key": "value"}] first. CSV is inherently a multi-row table format, so an array structure is required for the conversion.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Can I convert a single JSON object (not an array) to CSV?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Wrap it in an array like [{"key": "value"}] first. CSV is inherently a multi-row table format, so an array structure is required for the conversion.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How are nested JSON objects handled?</h4>
-              <p>Nested objects and arrays are stored as JSON strings within CSV cells. If your data has complex nesting, consider flattening the JSON structure before converting.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How are nested JSON objects handled?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Nested objects and arrays are stored as JSON strings within CSV cells. If your data has complex nesting, consider flattening the JSON structure before converting.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How does the tool distinguish between numbers and strings in CSV?</h4>
-              <p>During CSV to JSON conversion, values that are purely numeric are automatically converted to number types, "true"/"false" become booleans, and everything else becomes a string.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How does the tool distinguish between numbers and strings in CSV?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">During CSV to JSON conversion, values that are purely numeric are automatically converted to number types, "true"/"false" become booleans, and everything else becomes a string.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I paste data copied from Excel?</h4>
-              <p>Yes. Data copied from Excel is stored as tab-separated values on the clipboard. Set the delimiter to "Tab" and paste your data for correct conversion.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Can I paste data copied from Excel?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Yes. Data copied from Excel is stored as tab-separated values on the clipboard. Set the delimiter to "Tab" and paste your data for correct conversion.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Does this tool support non-ASCII characters?</h4>
-              <p>Yes. The tool uses UTF-8 encoding by default, so characters from any language (Korean, Japanese, Chinese, Arabic, etc.) and emoji are fully supported.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Does this tool support non-ASCII characters?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Yes. The tool uses UTF-8 encoding by default, so characters from any language (Korean, Japanese, Chinese, Arabic, etc.) and emoji are fully supported.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What happens if a CSV value contains commas?</h4>
-              <p>Following the CSV standard, values containing commas are automatically wrapped in double quotes. If a value also contains double quotes, they are escaped by doubling them ("").</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What happens if a CSV value contains commas?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Following the CSV standard, values containing commas are automatically wrapped in double quotes. If a value also contains double quotes, they are escaped by doubling them ("").</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can this tool handle large datasets?</h4>
-              <p>Processing happens in your browser, so datasets with several thousand rows work smoothly. For very large datasets (tens of thousands of rows or more), processing time may increase, and using a programming library would be more efficient.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Can this tool handle large datasets?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Processing happens in your browser, so datasets with several thousand rows work smoothly. For very large datasets (tens of thousands of rows or more), processing time may increase, and using a programming library would be more efficient.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
-              <p>No. All conversions are processed locally in your browser using JavaScript. Your data never leaves your computer, so it is safe to use with sensitive information.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Is my data sent to a server?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">No. All conversions are processed locally in your browser using JavaScript. Your data never leaves your computer, so it is safe to use with sensitive information.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Does JSON key order affect CSV column order?</h4>
-              <p>Yes. Column order is determined by the keys of the first object in the JSON array. Keys that appear only in some objects result in empty values in those columns for objects that lack them.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Does JSON key order affect CSV column order?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Yes. Column order is determined by the keys of the first object in the JSON array. Keys that appear only in some objects result in empty values in those columns for objects that lack them.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I work with TSV (tab-separated) files?</h4>
-              <p>Yes. Select "Tab" as the delimiter to convert TSV files to JSON or export JSON as TSV. Other delimiters like semicolons and pipes (|) are also supported.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Can I work with TSV (tab-separated) files?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Yes. Select "Tab" as the delimiter to convert TSV files to JSON or export JSON as TSV. Other delimiters like semicolons and pipes (|) are also supported.</p>
             </div>
           </div>
         </div>

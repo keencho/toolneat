@@ -651,13 +651,22 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is an ASCII/Unicode Converter?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>An ASCII/Unicode converter transforms characters into their code point representations and vice versa. Whether you need to look up the hex value of a special character while coding or decode an escape sequence from an API response, this tool handles it instantly. It supports decimal, hexadecimal, Unicode escape, and HTML entity formats, making it an essential utility for web development and programming tasks.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Select the conversion mode: "Text to Code" or "Code to Text" from the tabs</li>
+            <li>Text to Code: type or paste the text you want to convert</li>
+            <li>Code to Text: choose a code format and enter the code values</li>
+            <li>Conversion results appear in real time below the input</li>
+            <li>Click the copy button next to each result to copy it to your clipboard</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li><strong>Text to Code:</strong> Converts input text into decimal, hex, Unicode escape, and HTML entity simultaneously</li>
             <li><strong>Code to Text:</strong> Restores code points back into their original characters</li>
             <li><strong>Four Format Support:</strong> DEC, HEX (0x prefix), \u escape, and HTML &#; entity</li>
@@ -666,17 +675,8 @@
             <li><strong>ASCII Reference Table:</strong> Built-in standard ASCII code lookup table</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Select the conversion mode: "Text to Code" or "Code to Text" from the tabs</li>
-            <li>Text to Code: type or paste the text you want to convert</li>
-            <li>Code to Text: choose a code format and enter the code values</li>
-            <li>Conversion results appear in real time below the input</li>
-            <li>Click the copy button next to each result to copy it to your clipboard</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Looking up escape sequences for special characters in JavaScript or Python</li>
             <li>Encoding special characters as HTML entities for safe rendering on web pages</li>
             <li>Debugging character encoding issues in databases or file imports</li>
@@ -685,8 +685,52 @@
             <li>Decoding escape sequences found in API responses</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the difference between ASCII and Unicode?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">ASCII is a 7-bit encoding supporting only 128 English-based characters. Unicode is an international standard covering all world scripts, including CJK characters and emojis, with over 140,000 characters defined.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Where is the \u escape format used?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Programming languages like JavaScript, Python, and Java use \u sequences to represent non-ASCII or special characters in source code strings. For instance, \u0041 represents the letter 'A'.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: When are HTML entities needed?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">HTML entities are needed to safely display reserved characters like &lt;, &gt;, and &amp; in web pages, or to insert symbols that are not easily typed on a standard keyboard.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Are UTF-8 and Unicode the same thing?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. Unicode assigns a number (code point) to each character, while UTF-8 is an encoding scheme that defines how those numbers are stored as bytes. UTF-16 and UTF-32 are other Unicode encodings.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I look up emoji Unicode codes?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, enter any emoji and you will see its Unicode code point. Some emojis are composed of multiple code points combined with zero-width joiners.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the difference between decimal and hexadecimal codes?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">They represent the same code point in different number bases. For example, the letter 'A' is 65 in decimal and 0x41 in hexadecimal. Hex is more commonly used in programming contexts.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the Unicode range for Korean characters?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Korean Jamo (consonants and vowels) span U+3131 to U+318E, and precomposed Hangul syllables span U+AC00 to U+D7A3, covering 11,172 syllable blocks.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What happens if I enter an invalid code point?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">The conversion will fail or return an empty result. Make sure to use the correct format: plain numbers for decimal, 0x prefix for hex, and so on.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I convert large blocks of text at once?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, you can paste long strings and convert them all at once. Very large inputs may take a moment depending on your browser's performance.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is this tool free?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, it is completely free with no usage limits. All processing runs in your browser, so no installation is required.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>ASCII covers codes 0 through 127 and only includes English letters and basic symbols</li>
             <li>Non-Latin characters like Korean, Chinese, and emojis fall outside the ASCII range and require Unicode</li>
             <li>When entering hex values, include the 0x prefix for correct recognition</li>
@@ -694,50 +738,6 @@
             <li>The \u escape format is mainly used for characters in the Basic Multilingual Plane (BMP)</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: What is the difference between ASCII and Unicode?</h4>
-              <p>ASCII is a 7-bit encoding supporting only 128 English-based characters. Unicode is an international standard covering all world scripts, including CJK characters and emojis, with over 140,000 characters defined.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Where is the \u escape format used?</h4>
-              <p>Programming languages like JavaScript, Python, and Java use \u sequences to represent non-ASCII or special characters in source code strings. For instance, \u0041 represents the letter 'A'.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: When are HTML entities needed?</h4>
-              <p>HTML entities are needed to safely display reserved characters like &lt;, &gt;, and &amp; in web pages, or to insert symbols that are not easily typed on a standard keyboard.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Are UTF-8 and Unicode the same thing?</h4>
-              <p>No. Unicode assigns a number (code point) to each character, while UTF-8 is an encoding scheme that defines how those numbers are stored as bytes. UTF-16 and UTF-32 are other Unicode encodings.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I look up emoji Unicode codes?</h4>
-              <p>Yes, enter any emoji and you will see its Unicode code point. Some emojis are composed of multiple code points combined with zero-width joiners.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What is the difference between decimal and hexadecimal codes?</h4>
-              <p>They represent the same code point in different number bases. For example, the letter 'A' is 65 in decimal and 0x41 in hexadecimal. Hex is more commonly used in programming contexts.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What is the Unicode range for Korean characters?</h4>
-              <p>Korean Jamo (consonants and vowels) span U+3131 to U+318E, and precomposed Hangul syllables span U+AC00 to U+D7A3, covering 11,172 syllable blocks.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What happens if I enter an invalid code point?</h4>
-              <p>The conversion will fail or return an empty result. Make sure to use the correct format: plain numbers for decimal, 0x prefix for hex, and so on.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I convert large blocks of text at once?</h4>
-              <p>Yes, you can paste long strings and convert them all at once. Very large inputs may take a moment depending on your browser's performance.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is this tool free?</h4>
-              <p>Yes, it is completely free with no usage limits. All processing runs in your browser, so no installation is required.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

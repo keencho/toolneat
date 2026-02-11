@@ -540,13 +540,22 @@
         </div>
       </div>
       <!-- Content Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is PDF to Image Conversion?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">PDF to Image conversion transforms each page of a PDF document into individual PNG or JPG image files. This is useful when you need to share document content on social media, embed pages in presentations, create thumbnails, or view document content in environments without a PDF viewer. All processing happens in your browser, so your files are never uploaded to any external server.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5 text-gray-600 dark:text-gray-400">
+            <li>Drag a PDF file into the upload area or click to browse</li>
+            <li>Select the output format (PNG or JPG)</li>
+            <li>Choose the desired scale (1x, 2x, or 3x)</li>
+            <li>Click the "Convert to Images" button</li>
+            <li>Use "Download" on individual pages or "Download All" to save everything</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-600 dark:text-gray-400">
             <li>Batch convert all PDF pages to PNG or JPG images</li>
             <li>Adjustable quality with 1x, 2x, and 3x scale options</li>
             <li>Download images individually or all at once</li>
@@ -555,17 +564,8 @@
             <li>No software installation required</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400">
-            <li>Drag a PDF file into the upload area or click to browse</li>
-            <li>Select the output format (PNG or JPG)</li>
-            <li>Choose the desired scale (1x, 2x, or 3x)</li>
-            <li>Click the "Convert to Images" button</li>
-            <li>Use "Download" on individual pages or "Download All" to save everything</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-600 dark:text-gray-400">
             <li>Sharing specific PDF pages as images on social media or messaging apps</li>
             <li>Converting presentation slides into images for website embedding</li>
             <li>Extracting charts and tables from PDF reports as image files</li>
@@ -573,58 +573,58 @@
             <li>Generating preview images for documents in systems without PDF support</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Should I choose PNG or JPG?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Choose PNG for documents with lots of text or when you need transparency. Choose JPG for photo-heavy documents or when you want smaller file sizes.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What do the scale options (1x, 2x, 3x) mean?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">The scale determines the output image resolution. 1x is fast but lower resolution, 2x is recommended for general use, and 3x provides high-quality output suitable for printing.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I convert multiple pages at once?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, all pages in the PDF are automatically converted in batch. Use the "Download All" button to save every page image at once.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is image quality affected by the conversion?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Vector elements like text and shapes in the PDF are rasterized at the selected scale. Choosing a higher scale produces sharper, more detailed images closer to the original quality.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Are my files uploaded to a server?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. The entire conversion process happens in your browser. Your PDF files never leave your device, making it safe for confidential documents.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I convert only specific pages?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Currently, all pages are converted automatically. After conversion, you can download only the specific page images you need.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Why is the conversion slow?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">PDFs with many pages or high scale settings take longer to process. Try lowering the scale to 1x or closing unused browser tabs to free up memory.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does this work on mobile devices?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, it works on mobile browsers. However, for PDFs with many pages, a desktop environment provides a more stable experience.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I convert password-protected PDFs?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Password-protected PDFs may fail to convert. Remove the password protection first, then try the conversion again.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I convert the images back to PDF?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, you can use the "Image to PDF" tool to convert image files back into a PDF document.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-600 dark:text-gray-400">
             <li>PNG produces sharper results for text-heavy documents, while JPG is better for photo-heavy documents with smaller file sizes</li>
             <li>2x scale is recommended for most purposes. Use 3x for print-quality output</li>
             <li>For PDFs with many pages, conversion may take some time. Watch the progress indicator</li>
             <li>Higher scale settings produce larger files, so choose based on your intended use</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: Should I choose PNG or JPG?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Choose PNG for documents with lots of text or when you need transparency. Choose JPG for photo-heavy documents or when you want smaller file sizes.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What do the scale options (1x, 2x, 3x) mean?</h4>
-              <p class="text-gray-600 dark:text-gray-400">The scale determines the output image resolution. 1x is fast but lower resolution, 2x is recommended for general use, and 3x provides high-quality output suitable for printing.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I convert multiple pages at once?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, all pages in the PDF are automatically converted in batch. Use the "Download All" button to save every page image at once.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is image quality affected by the conversion?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Vector elements like text and shapes in the PDF are rasterized at the selected scale. Choosing a higher scale produces sharper, more detailed images closer to the original quality.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Are my files uploaded to a server?</h4>
-              <p class="text-gray-600 dark:text-gray-400">No. The entire conversion process happens in your browser. Your PDF files never leave your device, making it safe for confidential documents.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I convert only specific pages?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Currently, all pages are converted automatically. After conversion, you can download only the specific page images you need.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Why is the conversion slow?</h4>
-              <p class="text-gray-600 dark:text-gray-400">PDFs with many pages or high scale settings take longer to process. Try lowering the scale to 1x or closing unused browser tabs to free up memory.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Does this work on mobile devices?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, it works on mobile browsers. However, for PDFs with many pages, a desktop environment provides a more stable experience.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I convert password-protected PDFs?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Password-protected PDFs may fail to convert. Remove the password protection first, then try the conversion again.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I convert the images back to PDF?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, you can use the "Image to PDF" tool to convert image files back into a PDF document.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

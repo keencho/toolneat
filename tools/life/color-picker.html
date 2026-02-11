@@ -658,13 +658,22 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">색상 피커(스포이드)란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>색상 피커(스포이드)는 화면의 어떤 위치에서든 원하는 색상을 정확하게 추출할 수 있는 도구입니다. 브라우저의 EyeDropper API를 활용하여 웹 페이지는 물론, Figma, Photoshop, Slack 등 다른 앱에서도 색상을 가져올 수 있습니다. 디자이너와 개발자가 작업 중 특정 색상을 빠르게 확인하고 복사하는 데 유용합니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">이용 가이드</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>"색상 선택" 버튼을 클릭하면 스포이드가 활성화됩니다</li>
+            <li>화면 어디서든 원하는 색상 위에 마우스 커서를 놓습니다</li>
+            <li>클릭하면 해당 위치의 색상이 추출됩니다</li>
+            <li>HEX, RGB, HSL 중 원하는 형식의 복사 버튼을 클릭합니다</li>
+            <li>ESC 키를 누르면 스포이드를 취소할 수 있습니다</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">핵심 기능</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>화면 어디서든 클릭 한 번으로 색상 추출</li>
             <li>브라우저 바깥 영역(다른 앱)의 색상도 추출 가능</li>
             <li>HEX, RGB, HSL 세 가지 형식으로 색상 코드 표시</li>
@@ -673,17 +682,8 @@
             <li>추출한 색상의 실시간 미리보기</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>"색상 선택" 버튼을 클릭하면 스포이드가 활성화됩니다</li>
-            <li>화면 어디서든 원하는 색상 위에 마우스 커서를 놓습니다</li>
-            <li>클릭하면 해당 위치의 색상이 추출됩니다</li>
-            <li>HEX, RGB, HSL 중 원하는 형식의 복사 버튼을 클릭합니다</li>
-            <li>ESC 키를 누르면 스포이드를 취소할 수 있습니다</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">이런 상황에서 유용해요</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>웹사이트에서 마음에 드는 색상을 추출해 자신의 프로젝트에 적용</li>
             <li>디자인 시안의 색상 코드를 빠르게 확인하여 CSS에 입력</li>
             <li>경쟁사 웹사이트나 앱의 브랜드 색상 분석</li>
@@ -692,8 +692,52 @@
             <li>SNS 콘텐츠 제작 시 트렌디한 색상 참고</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">궁금한 점 모음</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 어떤 브라우저에서 사용할 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Chrome 95 이상, Edge 95 이상에서 사용 가능합니다. Safari와 Firefox는 아직 EyeDropper API를 지원하지 않으며, 향후 지원 여부는 미정입니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 브라우저 바깥에서도 색상을 추출할 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">네. 스포이드가 활성화되면 브라우저 창 바깥의 데스크톱, 다른 앱 화면에서도 색상을 추출할 수 있습니다. Figma, Photoshop, 파일 탐색기 등 어디서든 가능합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 추출한 색상이 원본과 약간 다르게 보여요</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">모니터의 색상 프로필, 브라우저 렌더링 엔진, 색 공간 변환 등에 의해 미세한 차이가 발생할 수 있습니다. 정확한 색상이 필요하면 원본 디자인 파일의 색상 코드를 직접 확인하는 것이 좋습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: HEX, RGB, HSL의 차이는 무엇인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">HEX는 16진수로 표현한 색상(#FF5733), RGB는 빨강/초록/파랑의 0-255 값(rgb(255,87,51)), HSL은 색상/채도/밝기로 표현(hsl(11,100%,60%))합니다. CSS에서는 세 가지 모두 사용 가능하며, 상황에 맞게 선택하면 됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 색상 히스토리는 몇 개까지 저장되나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">최근 추출한 색상들이 히스토리에 표시됩니다. 이전에 추출한 색상을 다시 선택하면 해당 색상의 코드를 바로 복사할 수 있어 작업 효율을 높여줍니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 스포이드를 중간에 취소할 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">네, ESC 키를 누르면 스포이드 모드가 즉시 취소됩니다. 원하지 않는 색상을 클릭하기 전에 취소할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 특정 색상의 보색이나 유사색을 알 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">이 도구는 색상 추출에 특화되어 있습니다. 보색이나 유사색을 찾으려면 Toolneat의 색상 변환기나 색상 팔레트 추출 도구를 함께 활용하면 편리합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 모바일에서도 사용할 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">EyeDropper API는 현재 데스크톱 브라우저에서만 지원됩니다. 모바일 브라우저에서는 스포이드 기능을 사용할 수 없으며, 데스크톱 Chrome이나 Edge에서 이용해 주세요.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 추출한 색상 코드를 자동으로 복사할 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">색상이 추출되면 HEX, RGB, HSL 코드가 모두 표시됩니다. 원하는 형식 옆의 복사 버튼을 클릭하면 클립보드에 즉시 복사됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 개인 정보가 수집되나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">아닙니다. 색상 추출과 모든 처리는 브라우저에서만 이루어지며, 추출한 색상이나 화면 정보가 서버로 전송되지 않습니다.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">알아두면 좋은 점</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>EyeDropper API는 Chrome 95+, Edge 95+에서만 지원됩니다. Safari와 Firefox는 현재 미지원입니다</li>
             <li>디스플레이 색상 프로필(sRGB, DCI-P3 등)에 따라 추출된 색상이 미세하게 달라질 수 있습니다</li>
             <li>고해상도(Retina) 디스플레이에서는 픽셀 레벨의 색상이 스케일링에 영향을 받을 수 있습니다</li>
@@ -701,50 +745,6 @@
             <li>모든 처리는 브라우저에서 이루어지며 서버로 데이터가 전송되지 않습니다</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: 어떤 브라우저에서 사용할 수 있나요?</h4>
-              <p>Chrome 95 이상, Edge 95 이상에서 사용 가능합니다. Safari와 Firefox는 아직 EyeDropper API를 지원하지 않으며, 향후 지원 여부는 미정입니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 브라우저 바깥에서도 색상을 추출할 수 있나요?</h4>
-              <p>네. 스포이드가 활성화되면 브라우저 창 바깥의 데스크톱, 다른 앱 화면에서도 색상을 추출할 수 있습니다. Figma, Photoshop, 파일 탐색기 등 어디서든 가능합니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 추출한 색상이 원본과 약간 다르게 보여요</h4>
-              <p>모니터의 색상 프로필, 브라우저 렌더링 엔진, 색 공간 변환 등에 의해 미세한 차이가 발생할 수 있습니다. 정확한 색상이 필요하면 원본 디자인 파일의 색상 코드를 직접 확인하는 것이 좋습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: HEX, RGB, HSL의 차이는 무엇인가요?</h4>
-              <p>HEX는 16진수로 표현한 색상(#FF5733), RGB는 빨강/초록/파랑의 0-255 값(rgb(255,87,51)), HSL은 색상/채도/밝기로 표현(hsl(11,100%,60%))합니다. CSS에서는 세 가지 모두 사용 가능하며, 상황에 맞게 선택하면 됩니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 색상 히스토리는 몇 개까지 저장되나요?</h4>
-              <p>최근 추출한 색상들이 히스토리에 표시됩니다. 이전에 추출한 색상을 다시 선택하면 해당 색상의 코드를 바로 복사할 수 있어 작업 효율을 높여줍니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 스포이드를 중간에 취소할 수 있나요?</h4>
-              <p>네, ESC 키를 누르면 스포이드 모드가 즉시 취소됩니다. 원하지 않는 색상을 클릭하기 전에 취소할 수 있습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 특정 색상의 보색이나 유사색을 알 수 있나요?</h4>
-              <p>이 도구는 색상 추출에 특화되어 있습니다. 보색이나 유사색을 찾으려면 Toolneat의 색상 변환기나 색상 팔레트 추출 도구를 함께 활용하면 편리합니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 모바일에서도 사용할 수 있나요?</h4>
-              <p>EyeDropper API는 현재 데스크톱 브라우저에서만 지원됩니다. 모바일 브라우저에서는 스포이드 기능을 사용할 수 없으며, 데스크톱 Chrome이나 Edge에서 이용해 주세요.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 추출한 색상 코드를 자동으로 복사할 수 있나요?</h4>
-              <p>색상이 추출되면 HEX, RGB, HSL 코드가 모두 표시됩니다. 원하는 형식 옆의 복사 버튼을 클릭하면 클립보드에 즉시 복사됩니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 개인 정보가 수집되나요?</h4>
-              <p>아닙니다. 색상 추출과 모든 처리는 브라우저에서만 이루어지며, 추출한 색상이나 화면 정보가 서버로 전송되지 않습니다.</p>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- Ad Container (Bottom) -->

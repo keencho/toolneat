@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>웹 디자인을 위한 색상 이론 가이드 - Toolneat</title>
+  <meta name="description" content="웹 디자인에 필요한 색상 이론의 기초. HEX, RGB, HSL 색상 체계의 이해와 조화로운 색상 팔레트를 만드는 방법을 알아봅니다.">
+
+  <link rel="canonical" href="https://toolneat.com/blog/color-theory-guide">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/color-theory-guide">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/color-theory-guide">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/color-theory-guide">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="웹 디자인을 위한 색상 이론 가이드">
+  <meta property="og:description" content="웹 디자인에 필요한 색상 이론의 기초. HEX, RGB, HSL 색상 체계의 이해와 조화로운 색상 팔레트를 만드는 방법을 알아봅니다.">
+  <meta property="og:url" content="https://toolneat.com/blog/color-theory-guide">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <link rel="stylesheet" href="/assets/css/output.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/tools-data.js"></script>
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/search.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "웹 디자인을 위한 색상 이론 가이드",
+    "description": "웹 디자인에 필요한 색상 이론의 기초. HEX, RGB, HSL 색상 체계의 이해와 조화로운 색상 팔레트를 만드는 방법을 알아봅니다.",
+    "datePublished": "2025-02-10",
+    "dateModified": "2025-02-10",
+    "author": {"@type": "Organization", "name": "Toolneat"},
+    "publisher": {"@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com"},
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://toolneat.com/blog/color-theory-guide"},
+    "inLanguage": "ko"
+  }
+  </script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="nav-link text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        Toolneat
+      </a>
+      <nav class="hidden md:flex items-center gap-2">
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="dev">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          </svg>
+          <span data-i18n="nav.dev">개발 도구</span>
+        </button>
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="pdf">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <span data-i18n="nav.pdf">PDF 도구</span>
+        </button>
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="life">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <span data-i18n="nav.life">생활 도구</span>
+        </button>
+        <button class="tools-overlay-trigger nav-dropdown-btn" data-category="game">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span data-i18n="nav.game">게임</span>
+        </button>
+        <a href="/blog" class="nav-link nav-dropdown-btn">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+          </svg>
+          <span data-i18n="nav.blog">블로그</span>
+        </a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="header-search-btn" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="hidden lg:inline" data-i18n="nav.search">검색</span>
+          <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 dark:bg-gray-700 rounded">
+            <span class="text-[9px]">Ctrl</span>K
+          </kbd>
+        </button>
+        <div class="hidden sm:flex items-center gap-1 text-sm">
+          <button data-lang="ko" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">KO</button>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
+          <button data-lang="en" class="px-2 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">EN</button>
+        </div>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+          <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+        <button id="menu-toggle" class="icon-btn md:hidden" aria-label="Menu">
+          <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden md:hidden pb-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
+      <button id="mobile-search-btn" class="w-full flex items-center gap-3 py-3 px-3 mb-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <span data-i18n="nav.search">검색</span>
+      </button>
+      <div class="flex items-center gap-2 py-3 border-b border-gray-100 dark:border-gray-800 mb-2">
+        <span class="text-sm text-gray-500">Language:</span>
+        <button data-lang="ko" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">KO</button>
+        <button data-lang="en" class="px-3 py-1 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">EN</button>
+      </div>
+      <a href="/blog" class="nav-link flex items-center gap-2 py-3 text-gray-900 dark:text-white font-medium">
+        <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+        </svg>
+        <span data-i18n="nav.blog">블로그</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<div id="tools-dropdown" class="hidden fixed left-0 right-0 top-16 z-[60] bg-white dark:bg-gray-900 shadow-2xl border-b border-gray-200 dark:border-gray-700">
+  <div class="container-main py-4">
+    <div class="flex items-center justify-between gap-4 mb-4">
+      <div class="flex items-center gap-1">
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="all"><span data-i18n="nav.all">전체</span></button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="dev"><span data-i18n="nav.dev">개발 도구</span></button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="pdf"><span data-i18n="nav.pdf">PDF 도구</span></button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="life"><span data-i18n="nav.life">생활 도구</span></button>
+        <button class="tools-tab px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" data-tab="game"><span data-i18n="nav.game">게임</span></button>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="relative">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input type="text" id="tools-dropdown-search" class="w-64 pl-9 pr-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="도구 검색..." data-i18n-placeholder="nav.searchPlaceholder">
+        </div>
+        <button id="tools-dropdown-close" class="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="max-h-[420px] overflow-y-auto">
+      <div id="tools-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2"></div>
+    </div>
+  </div>
+</div>
+
+<div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
+
+</div><main class="flex-1 mt-16 py-8 md:py-12">
+    <article class="container-main max-w-3xl">
+      <div class="mb-8">
+        <a href="/blog" class="text-sm text-blue-600 dark:text-blue-400 hover:underline mb-4 inline-block">&#8592; 블로그</a>
+        <span class="inline-block px-3 py-1 text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full">개발</span>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">웹 디자인을 위한 색상 이론 가이드</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">2025년 2월 10일</p>
+      </div>
+
+      <div class="prose dark:prose-invert max-w-none">
+        <p class="text-lg text-gray-700 dark:text-gray-300">개발자로서 디자이너가 건네주는 색상 코드를 그저 복사 붙여넣기만 하던 시절이 있었습니다. #FF5733이 무슨 색인지 감도 안 오고, RGB와 HSL의 차이도 몰랐죠. 그런데 사이드 프로젝트를 하면서 직접 색상을 골라야 하는 상황이 되니, 기본적인 색상 이론을 모르면 답이 없더라고요. 이 글은 그때 공부했던 내용을 정리한 겁니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">웹에서 색상을 표현하는 세 가지 방법</h2>
+        <p>웹에서 색상을 지정하는 방식은 여러 가지가 있지만, 실무에서 주로 쓰는 건 세 가지입니다.</p>
+
+        <p class="mt-4"><strong>HEX (헥스 코드)</strong></p>
+        <p>가장 많이 보는 형식입니다. #으로 시작하고 6자리 16진수로 구성됩니다. 앞에서부터 2자리씩 빨강(R), 초록(G), 파랑(B) 값을 나타냅니다. <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">#FF0000</code>은 빨강 최대, 초록 0, 파랑 0이니까 순수한 빨간색입니다. 간결해서 CSS에서 널리 사용되지만, 직관적으로 어떤 색인지 바로 떠올리기 어렵다는 단점이 있습니다.</p>
+
+        <p class="mt-4"><strong>RGB</strong></p>
+        <p>빨강, 초록, 파랑 각각의 값을 0부터 255까지 숫자로 지정합니다. <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">rgb(255, 0, 0)</code>은 HEX의 #FF0000과 같은 빨간색입니다. 투명도가 필요할 때는 rgba를 써서 네 번째 값으로 알파(0~1)를 추가할 수 있습니다. 프로그래밍적으로 색상을 조작할 때 유리합니다.</p>
+
+        <p class="mt-4"><strong>HSL</strong></p>
+        <p>색조(Hue), 채도(Saturation), 밝기(Lightness)로 색상을 표현합니다. 개인적으로 가장 직관적인 방식이라고 생각합니다. 색조는 0~360도(색상환의 각도), 채도와 밝기는 0~100% 범위입니다. <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">hsl(0, 100%, 50%)</code>이 빨간색이고, 여기서 밝기만 80%로 올리면 연한 빨간색이 됩니다. 색상 팔레트를 만들 때 HSL이 훨씬 편합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">색상환과 조화로운 배색</h2>
+        <p>색상환(Color Wheel)은 색상들을 원형으로 배치한 것입니다. 이걸 기반으로 여러 배색 기법이 만들어졌는데, 자주 쓰이는 세 가지를 소개합니다.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>보색 배색(Complementary)</strong>: 색상환에서 정반대에 위치한 두 색을 조합합니다. 파란색과 주황색, 빨간색과 초록색 같은 조합이죠. 대비가 강해서 주목성이 높습니다. CTA 버튼에 배경과 보색 관계인 색을 쓰면 눈에 확 띕니다.</li>
+          <li><strong>유사색 배색(Analogous)</strong>: 색상환에서 서로 이웃한 색들을 씁니다. 파랑-청록-초록 같은 조합입니다. 자연스럽고 편안한 느낌을 줘서 배경이나 전체적인 분위기를 잡을 때 좋습니다.</li>
+          <li><strong>삼색 배색(Triadic)</strong>: 색상환에서 120도 간격으로 세 색을 선택합니다. 빨강-노랑-파랑이 대표적이죠. 다채롭지만 균형 잡힌 느낌을 줍니다. 다만 세 색을 동일한 비율로 쓰면 산만해질 수 있어서, 보통 하나를 주색으로 쓰고 나머지를 보조색으로 사용합니다.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">접근성: 색상 대비가 중요한 이유</h2>
+        <p>색상을 예쁘게 조합하는 것도 중요하지만, 모든 사용자가 잘 볼 수 있느냐도 생각해야 합니다. 전 세계 남성의 약 8%가 색각 이상(색맹, 색약)을 가지고 있다는 통계가 있습니다. 또한 밝은 햇빛 아래에서 스마트폰을 볼 때, 대비가 낮은 텍스트는 거의 읽히지 않습니다.</p>
+        <p class="mt-2">WCAG(Web Content Accessibility Guidelines)는 텍스트와 배경 사이의 최소 대비 비율을 규정하고 있습니다. 일반 텍스트는 4.5:1 이상, 큰 텍스트(18px 이상 볼드 또는 24px 이상)는 3:1 이상이어야 합니다. 연한 회색 텍스트에 흰색 배경을 쓰는 디자인이 세련돼 보일 수 있지만, 대비 비율을 확인해보면 기준에 못 미치는 경우가 생각보다 많습니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">웹 디자인에서 흔히 하는 색상 실수</h2>
+        <p><strong>1. 너무 많은 색상 사용</strong></p>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">한 페이지에 5가지 이상의 주요 색상을 쓰면 시각적으로 혼란스러워집니다. 보통 주색 1개, 보조색 1~2개, 그리고 중립색(회색 계열)으로 구성하는 것이 좋습니다.</p>
+
+        <p><strong>2. 색상만으로 정보 전달</strong></p>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">빨간색은 오류, 초록색은 성공이라는 관례가 있지만, 색각 이상이 있는 사용자는 이 차이를 인식하지 못할 수 있습니다. 아이콘이나 텍스트로 보완해야 합니다.</p>
+
+        <p><strong>3. 다크 모드를 고려하지 않은 색상 선택</strong></p>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">라이트 모드에서 잘 보이던 색상이 다크 모드에서는 눈이 아프거나 안 보일 수 있습니다. 채도를 낮추고 밝기를 조절한 다크 모드 전용 팔레트를 따로 준비하는 것이 바람직합니다. HSL을 사용하면 밝기(L)와 채도(S) 값만 조절해서 쉽게 변환할 수 있습니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">실전: 색상 팔레트 만드는 과정</h2>
+        <p>제가 프로젝트에서 실제로 사용하는 방법을 공유합니다. 먼저 브랜드나 프로젝트의 성격에 맞는 주색 하나를 정합니다. 그 다음 색상환을 기준으로 보색이나 유사색 중 보조색을 하나 고릅니다. 그리고 HSL 방식으로 밝기를 단계별로 조절해서 같은 색조의 밝은 버전(배경용)과 어두운 버전(텍스트용)을 만듭니다. 마지막으로 색상 대비 검사 도구로 접근성 기준을 충족하는지 확인합니다.</p>
+        <p class="mt-2">이 과정이 번거로워 보일 수 있지만, 처음에 제대로 설정해두면 이후 개발이 훨씬 수월해집니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">정리</h2>
+        <p>색상 이론을 깊이 파고들면 끝이 없지만, 웹 개발자로서 알아야 할 핵심은 이 정도입니다. HEX, RGB, HSL의 차이를 이해하고, 기본적인 배색 원리를 알고, 접근성을 챙기면 충분합니다. 나머지는 경험과 도구가 채워줄 것입니다.</p>
+      </div>
+
+      <!-- 관련 도구 -->
+      <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
+        <h3 class="font-bold text-gray-900 dark:text-white mb-3">관련 도구</h3>
+        <div class="flex flex-wrap gap-4">
+          <a href="/tools/dev/color-converter" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            색상 변환기
+          </a>
+          <a href="/tools/dev/color-palette" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            색상 팔레트 추출
+          </a>
+          <a href="/tools/dev/color-contrast" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            색상 대비 검사기
+          </a>
+        </div>
+      </div>
+
+      <!-- 다른 글 -->
+      <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="font-bold text-gray-900 dark:text-white mb-4">다른 글 읽기</h3>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <a href="/blog/hash-guide" class="block p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+            <p class="font-medium text-gray-900 dark:text-white">해시 함수 완벽 가이드</p>
+            <p class="text-sm text-gray-500 mt-1">MD5부터 SHA-512까지 한눈에</p>
+          </a>
+          <a href="/blog/regex-tutorial" class="block p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+            <p class="font-medium text-gray-900 dark:text-white">정규표현식 입문 가이드</p>
+            <p class="text-sm text-gray-500 mt-1">패턴 매칭의 기초부터</p>
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <div id="footer">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+  <div class="container-main">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+      <p>&copy; 2026 Toolneat. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div></body>
+</html>

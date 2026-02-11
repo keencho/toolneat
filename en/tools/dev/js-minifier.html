@@ -584,15 +584,23 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">JavaScript Minifier Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">What is JavaScript Minification?</h3>
+          <h3 class="text-lg font-bold mt-8 mb-2">About JavaScript Minification</h3>
           <p>JavaScript minification is the process of shrinking your JS files without changing how the code behaves. It strips out whitespace, line breaks, comments, and other characters that browsers do not need to execute the code. Running minification before deploying to production is a standard practice that can noticeably speed up page load times and reduce bandwidth consumption.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Paste your JavaScript code into the input area, or click "Sample" to load example code.</li>
+            <li>Check or uncheck the options for removing comments, removing whitespace, and optimizing semicolons.</li>
+            <li>Click "Minify" to process the code. The compressed output and size statistics appear below.</li>
+            <li>Use "Copy" to copy the result to your clipboard, or "Download" to save it as script.min.js.</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Removes single-line comments (//) and block comments (/* */)</li>
             <li>Strips unnecessary whitespace, tabs, and newlines</li>
             <li>Optional semicolon optimization before closing braces</li>
@@ -601,16 +609,8 @@
             <li>Auto-minify on input with debounce for a smooth workflow</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Paste your JavaScript code into the input area, or click "Sample" to load example code.</li>
-            <li>Check or uncheck the options for removing comments, removing whitespace, and optimizing semicolons.</li>
-            <li>Click "Minify" to process the code. The compressed output and size statistics appear below.</li>
-            <li>Use "Copy" to copy the result to your clipboard, or "Download" to save it as script.min.js.</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Optimizing JS files before deploying a website to improve load speed</li>
             <li>Reducing file size before uploading to a CDN to save on transfer costs</li>
             <li>Cleaning up inline scripts before embedding them in HTML pages</li>
@@ -618,8 +618,44 @@
             <li>Comparing original and minified output during code review</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is minification the same as obfuscation?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. Minification removes whitespace and comments to reduce file size. Obfuscation renames variables and restructures code to make it difficult to understand. This tool only performs minification.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How much smaller does the code get after minification?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">It depends on coding style, but code with plenty of comments and formatting typically sees a 30-60% reduction. Minifying already-compressed code will have little to no effect.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: My minified code is not working correctly. What happened?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Comment-like patterns inside regular expressions or special characters inside string literals can sometimes be unintentionally modified during minification. Always test your minified code in the browser before deploying.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What does the semicolon optimization option do?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">It removes semicolons that appear right before a closing brace (}). JavaScript engines handle this through ASI in most cases, but certain edge-case patterns may behave differently, so use this option with care.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How is Gzip compression different from JS minification?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">JS minification transforms the source code itself to reduce size, while Gzip compresses the file at the server level during transfer. Using both together provides the best results: minify your JS first, then serve it with Gzip enabled.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I minify TypeScript or JSX with this tool?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">This tool supports plain JavaScript only. TypeScript (.ts) and JSX (.jsx) files must be transpiled to JavaScript first. Bundlers like Webpack or Vite handle this automatically as part of their build process.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is my code sent to a server?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. All processing happens locally in your browser. Your code never leaves your device, so you can safely use this tool with sensitive or proprietary code.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I minify multiple files at once?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Currently, this tool processes one block of code at a time. If you need to handle multiple files, paste them sequentially or use a build tool like Webpack, Rollup, or esbuild for batch processing.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Always keep a copy of the original source code. Minified code is extremely hard for humans to read.</li>
             <li>If you need to debug in production, generate Source Maps (.map files) alongside minified output.</li>
             <li>The semicolon optimization option relies on Automatic Semicolon Insertion (ASI), which can occasionally change behavior in edge cases.</li>
@@ -627,42 +663,6 @@
             <li>For large-scale projects, consider using Terser or UglifyJS as part of your build pipeline for more advanced optimizations.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: Is minification the same as obfuscation?</h4>
-              <p>No. Minification removes whitespace and comments to reduce file size. Obfuscation renames variables and restructures code to make it difficult to understand. This tool only performs minification.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How much smaller does the code get after minification?</h4>
-              <p>It depends on coding style, but code with plenty of comments and formatting typically sees a 30-60% reduction. Minifying already-compressed code will have little to no effect.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: My minified code is not working correctly. What happened?</h4>
-              <p>Comment-like patterns inside regular expressions or special characters inside string literals can sometimes be unintentionally modified during minification. Always test your minified code in the browser before deploying.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What does the semicolon optimization option do?</h4>
-              <p>It removes semicolons that appear right before a closing brace (}). JavaScript engines handle this through ASI in most cases, but certain edge-case patterns may behave differently, so use this option with care.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How is Gzip compression different from JS minification?</h4>
-              <p>JS minification transforms the source code itself to reduce size, while Gzip compresses the file at the server level during transfer. Using both together provides the best results: minify your JS first, then serve it with Gzip enabled.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I minify TypeScript or JSX with this tool?</h4>
-              <p>This tool supports plain JavaScript only. TypeScript (.ts) and JSX (.jsx) files must be transpiled to JavaScript first. Bundlers like Webpack or Vite handle this automatically as part of their build process.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is my code sent to a server?</h4>
-              <p>No. All processing happens locally in your browser. Your code never leaves your device, so you can safely use this tool with sensitive or proprietary code.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I minify multiple files at once?</h4>
-              <p>Currently, this tool processes one block of code at a time. If you need to handle multiple files, paste them sequentially or use a build tool like Webpack, Rollup, or esbuild for batch processing.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

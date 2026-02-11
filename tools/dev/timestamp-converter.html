@@ -806,13 +806,23 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Unix Timestamp 변환기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>Unix Timestamp 변환기는 컴퓨터에서 사용하는 시간 표현 방식인 Unix 타임스탬프(Epoch 시간)와 사람이 읽을 수 있는 날짜/시간 형식을 상호 변환하는 도구입니다. Unix 타임스탬프는 1970년 1월 1일 00:00:00 UTC부터 경과한 초(또는 밀리초)를 숫자로 표현한 것으로, 시간대에 독립적이고 계산이 간편하여 프로그래밍, 데이터베이스, API 통신에서 널리 사용됩니다. 서버 로그 분석, API 디버깅, 데이터 마이그레이션 등 개발 과정에서 시간 데이터를 다룰 때 필수적인 도구입니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">이용 가이드</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>상단의 현재 시간 섹션에서 실시간 타임스탬프를 확인합니다.</li>
+            <li>타임스탬프를 날짜로 변환하려면 숫자를 입력하고 변환 버튼을 클릭합니다.</li>
+            <li>단위 선택기(자동, 초, 밀리초)로 형식을 지정하거나 자동 감지를 사용합니다.</li>
+            <li>날짜를 타임스탬프로 변환하려면 년/월/일/시/분/초를 입력하고 변환합니다.</li>
+            <li>시간대를 로컬 또는 UTC로 선택할 수 있습니다.</li>
+            <li>각 결과 옆의 복사 버튼으로 필요한 형식의 값을 복사합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">핵심 기능</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>타임스탬프를 날짜로, 날짜를 타임스탬프로 양방향 변환</li>
             <li>초 단위(10자리)와 밀리초 단위(13자리) 자동 감지</li>
             <li>현재 시간의 실시간 타임스탬프 표시</li>
@@ -822,18 +832,8 @@
             <li>변환 결과를 한 번의 클릭으로 복사</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>상단의 현재 시간 섹션에서 실시간 타임스탬프를 확인합니다.</li>
-            <li>타임스탬프를 날짜로 변환하려면 숫자를 입력하고 변환 버튼을 클릭합니다.</li>
-            <li>단위 선택기(자동, 초, 밀리초)로 형식을 지정하거나 자동 감지를 사용합니다.</li>
-            <li>날짜를 타임스탬프로 변환하려면 년/월/일/시/분/초를 입력하고 변환합니다.</li>
-            <li>시간대를 로컬 또는 UTC로 선택할 수 있습니다.</li>
-            <li>각 결과 옆의 복사 버튼으로 필요한 형식의 값을 복사합니다.</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">이런 상황에서 유용해요</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>서버 로그에 기록된 타임스탬프를 실제 날짜와 시간으로 확인할 때</li>
             <li>REST API 응답의 created_at, updated_at 필드를 읽을 수 있는 형식으로 변환할 때</li>
             <li>데이터베이스에 저장할 날짜를 타임스탬프로 변환할 때</li>
@@ -842,8 +842,52 @@
             <li>크론잡이나 스케줄러의 실행 시간을 검증할 때</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">궁금한 점 모음</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Unix 타임스탬프는 왜 1970년부터 시작하나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Unix 운영체제가 1970년대 초에 개발되면서 편의상 1970년 1월 1일 자정(UTC)을 기준점으로 정했습니다. 이 시점을 Unix Epoch라고 부르며, 이후 거의 모든 운영체제와 프로그래밍 언어가 이 표준을 따르게 되었습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 초 단위와 밀리초 단위는 어떻게 구분하나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">일반적으로 10자리 숫자는 초 단위, 13자리 숫자는 밀리초 단위입니다. 자동 감지 모드에서는 이 규칙을 따릅니다. Unix/Linux, PHP, Python은 보통 초 단위를, JavaScript(Date.now()), Java(System.currentTimeMillis())는 밀리초 단위를 사용합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 음수 타임스탬프는 무엇을 의미하나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">음수 값은 1970년 1월 1일 이전의 시간을 나타냅니다. 예를 들어 -86400은 1969년 12월 31일 00:00:00 UTC입니다. 역사적 날짜를 데이터베이스에 저장하거나 계산할 때 사용되지만, 일부 시스템에서는 음수 타임스탬프를 지원하지 않을 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 2038년 문제(Y2K38)란 무엇인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">32비트 signed 정수로 타임스탬프를 저장하는 시스템에서 2038년 1월 19일 03:14:07 UTC에 최대값(2,147,483,647)에 도달하여 오버플로가 발생하는 문제입니다. 대부분의 최신 시스템은 64비트 정수를 사용하여 이 문제를 해결했으며, 수십억 년까지 표현할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 시간대가 타임스탬프 변환에 어떤 영향을 미치나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Unix 타임스탬프 자체는 항상 UTC 기준입니다. 하지만 날짜를 타임스탬프로 변환할 때는 입력한 날짜의 시간대를 알아야 정확한 값을 얻을 수 있습니다. 서울(UTC+9)에서 오후 3시는 UTC로 오전 6시이며, 이 차이가 타임스탬프 값에 반영됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: ISO 8601 형식은 무엇인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">ISO 8601은 국제 표준 날짜/시간 표기법으로, "2024-01-15T09:30:00Z" 같은 형식입니다. T는 날짜와 시간의 구분자이고, Z는 UTC를 의미합니다. API 응답이나 로그에서 자주 사용되며, 파싱이 쉽고 시간대 정보를 포함할 수 있어 국제적 데이터 교환에 적합합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 프로그래밍 언어별 타임스탬프 생성 방법은?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">JavaScript에서는 Date.now()(밀리초) 또는 Math.floor(Date.now()/1000)(초), Python에서는 import time; time.time()(소수점 포함 초), PHP에서는 time()(초), Java에서는 System.currentTimeMillis()(밀리초)를 사용합니다. 각 언어의 단위 차이에 주의하세요.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 타임스탬프 0은 어떤 시간인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">타임스탬프 0은 Unix Epoch, 즉 1970년 1월 1일 00:00:00 UTC입니다. 데이터베이스에서 날짜 필드가 0이면 대부분 값이 설정되지 않았음을 의미합니다. 이 도구의 빠른 변환 버튼에서 "0"을 클릭하면 바로 확인할 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 윤초(Leap Second)는 타임스탬프에 반영되나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Unix 타임스탬프는 윤초를 무시합니다. 즉, 하루를 항상 정확히 86,400초로 계산합니다. 실제로 윤초가 삽입되면 같은 타임스탬프가 2초 동안 유지되거나 건너뛸 수 있습니다. 일반적인 웹 개발에서는 이 차이가 문제되지 않지만, 정밀 시간 동기화가 필요한 경우 NTP를 활용하세요.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 이 도구는 무료인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">네, 완전히 무료이며 사용 횟수 제한이 없습니다. 모든 변환은 브라우저에서 처리되므로 데이터가 외부로 전송되지 않습니다.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">알아두면 좋은 점</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>JavaScript의 Date.now()는 밀리초를, Python의 time.time()은 소수점 포함 초를 반환합니다. 단위를 혼동하면 1000배 차이가 납니다.</li>
             <li>Unix 타임스탬프는 항상 UTC 기준입니다. 로컬 시간으로 변환할 때 시간대 오프셋을 잊지 마세요.</li>
             <li>32비트 시스템의 2038년 문제를 주의하세요. signed int32의 최대값이 2038년 1월 19일에 도달합니다.</li>
@@ -851,50 +895,6 @@
             <li>일광 절약 시간(DST)이 적용되는 지역에서는 특정 시간이 존재하지 않거나 두 번 나타날 수 있습니다.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: Unix 타임스탬프는 왜 1970년부터 시작하나요?</h4>
-              <p>Unix 운영체제가 1970년대 초에 개발되면서 편의상 1970년 1월 1일 자정(UTC)을 기준점으로 정했습니다. 이 시점을 Unix Epoch라고 부르며, 이후 거의 모든 운영체제와 프로그래밍 언어가 이 표준을 따르게 되었습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 초 단위와 밀리초 단위는 어떻게 구분하나요?</h4>
-              <p>일반적으로 10자리 숫자는 초 단위, 13자리 숫자는 밀리초 단위입니다. 자동 감지 모드에서는 이 규칙을 따릅니다. Unix/Linux, PHP, Python은 보통 초 단위를, JavaScript(Date.now()), Java(System.currentTimeMillis())는 밀리초 단위를 사용합니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 음수 타임스탬프는 무엇을 의미하나요?</h4>
-              <p>음수 값은 1970년 1월 1일 이전의 시간을 나타냅니다. 예를 들어 -86400은 1969년 12월 31일 00:00:00 UTC입니다. 역사적 날짜를 데이터베이스에 저장하거나 계산할 때 사용되지만, 일부 시스템에서는 음수 타임스탬프를 지원하지 않을 수 있습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 2038년 문제(Y2K38)란 무엇인가요?</h4>
-              <p>32비트 signed 정수로 타임스탬프를 저장하는 시스템에서 2038년 1월 19일 03:14:07 UTC에 최대값(2,147,483,647)에 도달하여 오버플로가 발생하는 문제입니다. 대부분의 최신 시스템은 64비트 정수를 사용하여 이 문제를 해결했으며, 수십억 년까지 표현할 수 있습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 시간대가 타임스탬프 변환에 어떤 영향을 미치나요?</h4>
-              <p>Unix 타임스탬프 자체는 항상 UTC 기준입니다. 하지만 날짜를 타임스탬프로 변환할 때는 입력한 날짜의 시간대를 알아야 정확한 값을 얻을 수 있습니다. 서울(UTC+9)에서 오후 3시는 UTC로 오전 6시이며, 이 차이가 타임스탬프 값에 반영됩니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: ISO 8601 형식은 무엇인가요?</h4>
-              <p>ISO 8601은 국제 표준 날짜/시간 표기법으로, "2024-01-15T09:30:00Z" 같은 형식입니다. T는 날짜와 시간의 구분자이고, Z는 UTC를 의미합니다. API 응답이나 로그에서 자주 사용되며, 파싱이 쉽고 시간대 정보를 포함할 수 있어 국제적 데이터 교환에 적합합니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 프로그래밍 언어별 타임스탬프 생성 방법은?</h4>
-              <p>JavaScript에서는 Date.now()(밀리초) 또는 Math.floor(Date.now()/1000)(초), Python에서는 import time; time.time()(소수점 포함 초), PHP에서는 time()(초), Java에서는 System.currentTimeMillis()(밀리초)를 사용합니다. 각 언어의 단위 차이에 주의하세요.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 타임스탬프 0은 어떤 시간인가요?</h4>
-              <p>타임스탬프 0은 Unix Epoch, 즉 1970년 1월 1일 00:00:00 UTC입니다. 데이터베이스에서 날짜 필드가 0이면 대부분 값이 설정되지 않았음을 의미합니다. 이 도구의 빠른 변환 버튼에서 "0"을 클릭하면 바로 확인할 수 있습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 윤초(Leap Second)는 타임스탬프에 반영되나요?</h4>
-              <p>Unix 타임스탬프는 윤초를 무시합니다. 즉, 하루를 항상 정확히 86,400초로 계산합니다. 실제로 윤초가 삽입되면 같은 타임스탬프가 2초 동안 유지되거나 건너뛸 수 있습니다. 일반적인 웹 개발에서는 이 차이가 문제되지 않지만, 정밀 시간 동기화가 필요한 경우 NTP를 활용하세요.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 이 도구는 무료인가요?</h4>
-              <p>네, 완전히 무료이며 사용 횟수 제한이 없습니다. 모든 변환은 브라우저에서 처리되므로 데이터가 외부로 전송되지 않습니다.</p>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- Ad Container (Bottom) -->

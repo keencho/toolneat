@@ -605,14 +605,23 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Countdown Timer?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>A countdown timer is an online tool that counts down from a set time to zero. Whether you need to time cooking, exercise routines, study sessions, or presentations, you can use it directly in your browser without installing any app.</p>
           <p class="mt-3">The circular progress bar gives you a visual representation of the remaining time, and an alarm sound plays when the timer finishes so you never miss a deadline even while multitasking.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
+          <ol class="list-decimal ml-5 space-y-2">
+            <li>Enter your desired time in the hours, minutes, and seconds fields, or click a preset button</li>
+            <li>Press the Start button to begin the countdown</li>
+            <li>Monitor the remaining time through the circular progress bar and numeric display</li>
+            <li>Use the Pause button to temporarily stop the timer if needed</li>
+            <li>An alarm sound will play when the countdown reaches zero</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Feature Overview</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li><strong>Hours/Minutes/Seconds:</strong> Freely combine any time units to set your desired duration</li>
             <li><strong>Preset Buttons:</strong> Quickly set common durations like 1, 3, 5, 10, or 30 minutes</li>
             <li><strong>Circular Progress:</strong> Visually track remaining time with an intuitive ring display</li>
@@ -621,26 +630,8 @@
             <li><strong>Reset:</strong> Return the timer to its initial state for a fresh start</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Enter your desired time in the hours, minutes, and seconds fields, or click a preset button</li>
-            <li>Press the Start button to begin the countdown</li>
-            <li>Monitor the remaining time through the circular progress bar and numeric display</li>
-            <li>Use the Pause button to temporarily stop the timer if needed</li>
-            <li>An alarm sound will play when the countdown reaches zero</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>Cooking:</strong> Time pasta, baking, noodles, and other recipes precisely</li>
-            <li><strong>Exercise:</strong> Track plank holds, rest periods between sets, or HIIT intervals</li>
-            <li><strong>Studying:</strong> Apply the Pomodoro Technique with 25-minute focus and 5-minute break cycles</li>
-            <li><strong>Meetings/Presentations:</strong> Keep presentations within time limits and manage meeting durations</li>
-            <li><strong>Gaming:</strong> Set turn time limits for board games or track cooldown periods</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Important Notes</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Keep the browser tab open while the timer is running; closing it will reset the timer</li>
             <li>Make sure your browser's sound permissions are enabled for the alarm to work</li>
             <li>For consecutive timing sessions, reset the timer and set a new duration</li>
@@ -648,47 +639,56 @@
             <li>Works on mobile browsers as well, though keep the screen active for accuracy</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Usage Tips</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><strong>Cooking:</strong> Time pasta, baking, noodles, and other recipes precisely</li>
+            <li><strong>Exercise:</strong> Track plank holds, rest periods between sets, or HIIT intervals</li>
+            <li><strong>Studying:</strong> Apply the Pomodoro Technique with 25-minute focus and 5-minute break cycles</li>
+            <li><strong>Meetings/Presentations:</strong> Keep presentations within time limits and manage meeting durations</li>
+            <li><strong>Gaming:</strong> Set turn time limits for board games or track cooldown periods</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">FAQ</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: Does the timer keep running if I close the tab?</h4>
-              <p>No, closing the tab will reset the timer. Keep the tab open while the countdown is active. However, switching to another tab in the background is fine.</p>
+              <h4 class="font-semibold text-sm">Q: Does the timer keep running if I close the tab?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">No, closing the tab will reset the timer. Keep the tab open while the countdown is active. However, switching to another tab in the background is fine.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the maximum time I can set?</h4>
-              <p>You can combine hours, minutes, and seconds with virtually no limit. However, for very long durations, you need to keep the browser open, so we recommend setting practical time ranges.</p>
+              <h4 class="font-semibold text-sm">Q: What is the maximum time I can set?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">You can combine hours, minutes, and seconds with virtually no limit. However, for very long durations, you need to keep the browser open, so we recommend setting practical time ranges.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: The alarm sound is not playing. What should I do?</h4>
-              <p>Check your browser's sound settings and system volume. Some browsers block audio playback without user interaction, so try clicking on the page before starting the timer.</p>
+              <h4 class="font-semibold text-sm">Q: The alarm sound is not playing. What should I do?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Check your browser's sound settings and system volume. Some browsers block audio playback without user interaction, so try clicking on the page before starting the timer.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Does it work on mobile devices?</h4>
-              <p>Yes, the countdown timer works on mobile browsers. However, if the screen locks, the timer may slow down. Disable auto-lock or keep the screen on for accurate timing.</p>
+              <h4 class="font-semibold text-sm">Q: Does it work on mobile devices?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes, the countdown timer works on mobile browsers. However, if the screen locks, the timer may slow down. Disable auto-lock or keep the screen on for accurate timing.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I set custom times beyond the presets?</h4>
-              <p>Absolutely. The preset buttons are for convenience, but you can type any value directly into the hours, minutes, and seconds fields. For example, you can set 7 minutes and 30 seconds precisely.</p>
+              <h4 class="font-semibold text-sm">Q: Can I set custom times beyond the presets?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Absolutely. The preset buttons are for convenience, but you can type any value directly into the hours, minutes, and seconds fields. For example, you can set 7 minutes and 30 seconds precisely.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I run multiple timers at the same time?</h4>
-              <p>This tool runs a single timer per page. If you need multiple timers, open several browser tabs and set different durations in each one.</p>
+              <h4 class="font-semibold text-sm">Q: Can I run multiple timers at the same time?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">This tool runs a single timer per page. If you need multiple timers, open several browser tabs and set different durations in each one.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I change the alarm sound?</h4>
-              <p>Currently, only the default alarm sound is available. The sound stops automatically after playing, and if you miss it, a visual completion message is displayed on screen.</p>
+              <h4 class="font-semibold text-sm">Q: Can I change the alarm sound?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Currently, only the default alarm sound is available. The sound stops automatically after playing, and if you miss it, a visual completion message is displayed on screen.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is the remaining time accurate after pausing?</h4>
-              <p>Yes, the exact remaining time is preserved when you pause. When you resume, the countdown continues precisely from where it was paused.</p>
+              <h4 class="font-semibold text-sm">Q: Is the remaining time accurate after pausing?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes, the exact remaining time is preserved when you pause. When you resume, the countdown continues precisely from where it was paused.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What happens if my computer enters sleep mode?</h4>
-              <p>In sleep mode, the browser's JavaScript may be suspended, which can cause the timer to become inaccurate. Disable sleep mode if you need precise timing.</p>
+              <h4 class="font-semibold text-sm">Q: What happens if my computer enters sleep mode?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">In sleep mode, the browser's JavaScript may be suspended, which can cause the timer to become inaccurate. Disable sleep mode if you need precise timing.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is any data sent to a server?</h4>
-              <p>No, the countdown timer runs entirely in your browser. No data is transmitted to any server. All processing happens locally on your device.</p>
+              <h4 class="font-semibold text-sm">Q: Is any data sent to a server?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">No, the countdown timer runs entirely in your browser. No data is transmitted to any server. All processing happens locally on your device.</p>
             </div>
           </div>
         </div>

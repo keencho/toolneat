@@ -788,23 +788,13 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Regex Tester?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>Regex Tester is an online tool for creating, testing, and debugging regular expressions in real time. Regular expressions are powerful pattern-matching strings used throughout programming for text search, data validation, and string manipulation. This tool highlights matches instantly as you type, displays capture groups, and includes built-in pattern templates for common formats like email addresses, phone numbers, and URLs.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>Real-time matching:</strong> Matches are highlighted in the test string the moment you type a pattern.</li>
-            <li><strong>Flag selection:</strong> Apply g (global), i (case-insensitive), m (multiline), s (dotall), and u (unicode) flags individually.</li>
-            <li><strong>Capture group display:</strong> View the content captured by parenthesized groups in a separate results panel.</li>
-            <li><strong>Replace mode:</strong> Test string replacements using captured group references ($1, $2, etc.).</li>
-            <li><strong>Pattern templates:</strong> Apply commonly used patterns for email, URL, IP address, and more with one click.</li>
-            <li><strong>Syntax cheat sheet:</strong> Quickly reference regex syntax and special character meanings right on the page.</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
             <li>Enter your regular expression in the Pattern field (without surrounding slashes).</li>
             <li>Select the flags you need: g (global search), i (case-insensitive), m (multiline), and others.</li>
             <li>Type or paste the text you want to test in the Test String area.</li>
@@ -813,8 +803,18 @@
             <li>Click any pattern from the template list to apply it instantly.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Real-time matching:</strong> Matches are highlighted in the test string the moment you type a pattern.</li>
+            <li><strong>Flag selection:</strong> Apply g (global), i (case-insensitive), m (multiline), s (dotall), and u (unicode) flags individually.</li>
+            <li><strong>Capture group display:</strong> View the content captured by parenthesized groups in a separate results panel.</li>
+            <li><strong>Replace mode:</strong> Test string replacements using captured group references ($1, $2, etc.).</li>
+            <li><strong>Pattern templates:</strong> Apply commonly used patterns for email, URL, IP address, and more with one click.</li>
+            <li><strong>Syntax cheat sheet:</strong> Quickly reference regex syntax and special character meanings right on the page.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li><strong>Form validation:</strong> Test patterns that validate email addresses, phone numbers, postal codes, and other user inputs.</li>
             <li><strong>Log analysis:</strong> Extract error messages, IP addresses, and timestamps from server log files using patterns.</li>
             <li><strong>Data cleaning:</strong> Remove unwanted characters or standardize formats in CSV or text datasets.</li>
@@ -822,8 +822,44 @@
             <li><strong>Web scraping:</strong> Extract specific data from HTML or JSON responses using pattern matching.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What happens without the g flag?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Without the g (global) flag, only the first match is found and the search stops. Enable the g flag to find all matches in the entire test string.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How do I use capture groups ($1, $2)?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Parentheses () create capture groups. In replacement strings, use $1 for the first group, $2 for the second, and so on. For example, in the pattern (\w+)@(\w+), $1 refers to the part before @ and $2 to the part after.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How do I search for special characters literally?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Characters with special meaning in regex (. * + ? ^ $ [ ] { } ( ) | \) must be preceded by a backslash to be treated as literals. For example, use \. to search for an actual period.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the difference between greedy and lazy matching?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Greedy matching (.*) captures as much text as possible, while lazy matching (.*?) captures as little as possible. Use lazy matching when you need the shortest match, such as extracting content between HTML tags.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: When should I use non-capturing groups (?:...)?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Use them when you need grouping for alternation or repetition but do not need to capture the matched text. For example, (?:http|https):// groups the protocol without affecting the numbering of $1, $2, etc.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Why does my regex run very slowly?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Nested repetition patterns like (a+)+b can cause catastrophic backtracking, where the engine tries exponentially many paths. Simplify the pattern or use atomic groups and possessive quantifiers where supported.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Do regular expressions differ between programming languages?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">The core syntax is largely the same, but advanced features like lookbehind, lookahead, and Unicode handling vary between languages. This tool uses the JavaScript regex engine, which covers most common use cases.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is my data sent to an external server?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. All regex testing is performed locally in your browser. Neither your patterns nor your test strings are transmitted anywhere, so you can safely test with sensitive data.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Build complex patterns incrementally, starting with small parts and expanding. This makes debugging much easier.</li>
             <li>If a greedy match (.*) captures more than expected, try a lazy match (.*?) to get the shortest possible match.</li>
             <li>Special characters (. * + ? ^ $ [ ] { } ( ) | \) must be escaped with a backslash when searching for them literally.</li>
@@ -831,42 +867,6 @@
             <li>All testing runs locally in your browser. Your patterns and test data are never sent to any external server.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: What happens without the g flag?</h4>
-              <p>Without the g (global) flag, only the first match is found and the search stops. Enable the g flag to find all matches in the entire test string.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How do I use capture groups ($1, $2)?</h4>
-              <p>Parentheses () create capture groups. In replacement strings, use $1 for the first group, $2 for the second, and so on. For example, in the pattern (\w+)@(\w+), $1 refers to the part before @ and $2 to the part after.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How do I search for special characters literally?</h4>
-              <p>Characters with special meaning in regex (. * + ? ^ $ [ ] { } ( ) | \) must be preceded by a backslash to be treated as literals. For example, use \. to search for an actual period.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What is the difference between greedy and lazy matching?</h4>
-              <p>Greedy matching (.*) captures as much text as possible, while lazy matching (.*?) captures as little as possible. Use lazy matching when you need the shortest match, such as extracting content between HTML tags.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: When should I use non-capturing groups (?:...)?</h4>
-              <p>Use them when you need grouping for alternation or repetition but do not need to capture the matched text. For example, (?:http|https):// groups the protocol without affecting the numbering of $1, $2, etc.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Why does my regex run very slowly?</h4>
-              <p>Nested repetition patterns like (a+)+b can cause catastrophic backtracking, where the engine tries exponentially many paths. Simplify the pattern or use atomic groups and possessive quantifiers where supported.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Do regular expressions differ between programming languages?</h4>
-              <p>The core syntax is largely the same, but advanced features like lookbehind, lookahead, and Unicode handling vary between languages. This tool uses the JavaScript regex engine, which covers most common use cases.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is my data sent to an external server?</h4>
-              <p>No. All regex testing is performed locally in your browser. Neither your patterns nor your test strings are transmitted anywhere, so you can safely test with sensitive data.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

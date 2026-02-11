@@ -630,24 +630,14 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">CSS Box Shadow Generator Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <h3 class="text-lg font-semibold mt-6 mb-3">What is CSS Box Shadow?</h3>
+          <h3 class="text-lg font-bold mt-8 mb-2">About CSS Box Shadow</h3>
           <p>box-shadow is a CSS property that creates shadow effects around HTML elements. It is used throughout web design to add depth and dimension to card UIs, button hover effects, modal popups, and more. You can layer multiple shadows on a single element by separating them with commas, and combine outer shadows with inner (inset) shadows to create rich visual effects. This generator lets you visually design your desired shadow using simple sliders, then copy the finished CSS code directly into your project.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>Real-time Preview</strong> - See shadow changes instantly as you move the sliders.</li>
-            <li><strong>6 Built-in Presets</strong> - Apply commonly used styles like Subtle, Medium, Large, Sharp, Dreamy, and Inset with one click.</li>
-            <li><strong>Full Color Control</strong> - Customize shadow color, box color, and background color freely.</li>
-            <li><strong>Opacity Adjustment</strong> - Fine-tune shadow opacity from 0% to 100%.</li>
-            <li><strong>Inset Mode</strong> - Toggle between outer and inner shadow with a single checkbox.</li>
-            <li><strong>CSS Code Copy</strong> - Copy the generated box-shadow code to your clipboard instantly.</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
             <li>Click one of the preset buttons to start with a base style.</li>
             <li>Adjust the horizontal and vertical offset sliders to position the shadow.</li>
             <li>Increase the blur radius for a soft, diffused shadow, or set it to 0 for a sharp edge.</li>
@@ -657,16 +647,62 @@
             <li>Copy the CSS code at the bottom and paste it into your project.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Real-time Preview</strong> - See shadow changes instantly as you move the sliders.</li>
+            <li><strong>6 Built-in Presets</strong> - Apply commonly used styles like Subtle, Medium, Large, Sharp, Dreamy, and Inset with one click.</li>
+            <li><strong>Full Color Control</strong> - Customize shadow color, box color, and background color freely.</li>
+            <li><strong>Opacity Adjustment</strong> - Fine-tune shadow opacity from 0% to 100%.</li>
+            <li><strong>Inset Mode</strong> - Toggle between outer and inner shadow with a single checkbox.</li>
+            <li><strong>CSS Code Copy</strong> - Copy the generated box-shadow code to your clipboard instantly.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li><strong>Card Components</strong> - A subtle shadow gives cards a floating appearance. Around 4px offset-y with 6px blur works well.</li>
             <li><strong>Button Hover Effects</strong> - Increase the shadow on hover to create an interactive lifting effect.</li>
             <li><strong>Modals and Popups</strong> - Use a large blur and high offset to clearly separate layers from the background.</li>
             <li><strong>Input Field Focus</strong> - Combine inset shadow with a colored glow to indicate focus state.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the box-shadow syntax?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">The syntax is: box-shadow: offset-x offset-y blur spread color [inset]; Each value uses px units, and inset is optional.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What do offset-x and offset-y mean?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">offset-x controls the horizontal position (positive = right, negative = left), while offset-y controls the vertical position (positive = down, negative = up).</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the difference between blur and spread?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Blur controls how soft the shadow appears - larger values create a more diffused effect. Spread expands (positive) or shrinks (negative) the shadow size. Combining both values gives you a wide range of styles.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: When should I use inset shadows?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Inset creates shadows inside the element. It is commonly used for pressed button effects, recessed panel looks, and input field styling.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I apply multiple shadows at once?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes. Separate multiple shadow values with commas. For example, combining a close shadow with a distant one creates a more three-dimensional effect.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is box-shadow supported in all browsers?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">It is supported in all modern browsers. It even works in IE9 and above, so no vendor prefixes are needed.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How do I add transparency to the shadow color?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">In this tool, select a shadow color and adjust the opacity slider - it automatically converts to rgba() format. In CSS, you can also write rgba(0,0,0,0.1) directly.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does box-shadow affect performance?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Normal usage has negligible impact, but applying shadows with very large blur values to many elements can slow down rendering. Consider using the will-change property when animating shadows.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Keep opacity low for natural-looking shadows. 10-25% works well for most UI elements.</li>
             <li>Use a dark tint matching your background instead of pure black (#000000) for more natural shadows.</li>
             <li>box-shadow does not affect layout, so shadows may overlap other elements.</li>
@@ -674,42 +710,6 @@
             <li>On mobile devices, very large blur values (50px+) can cause performance issues.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: What is the box-shadow syntax?</h4>
-              <p>The syntax is: box-shadow: offset-x offset-y blur spread color [inset]; Each value uses px units, and inset is optional.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What do offset-x and offset-y mean?</h4>
-              <p>offset-x controls the horizontal position (positive = right, negative = left), while offset-y controls the vertical position (positive = down, negative = up).</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What is the difference between blur and spread?</h4>
-              <p>Blur controls how soft the shadow appears - larger values create a more diffused effect. Spread expands (positive) or shrinks (negative) the shadow size. Combining both values gives you a wide range of styles.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: When should I use inset shadows?</h4>
-              <p>Inset creates shadows inside the element. It is commonly used for pressed button effects, recessed panel looks, and input field styling.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I apply multiple shadows at once?</h4>
-              <p>Yes. Separate multiple shadow values with commas. For example, combining a close shadow with a distant one creates a more three-dimensional effect.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is box-shadow supported in all browsers?</h4>
-              <p>It is supported in all modern browsers. It even works in IE9 and above, so no vendor prefixes are needed.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How do I add transparency to the shadow color?</h4>
-              <p>In this tool, select a shadow color and adjust the opacity slider - it automatically converts to rgba() format. In CSS, you can also write rgba(0,0,0,0.1) directly.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Does box-shadow affect performance?</h4>
-              <p>Normal usage has negligible impact, but applying shadows with very large blur values to many elements can slow down rendering. Consider using the will-change property when animating shadows.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

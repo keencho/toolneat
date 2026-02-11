@@ -606,22 +606,13 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Image Crop?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">Image cropping is the process of selecting and cutting out a specific area from a photo or graphic. It is one of the most common image editing tasks, whether you need to remove distracting backgrounds, focus on a particular subject, or resize an image to fit social media dimensions. This tool runs entirely in your browser, so you can crop images instantly without installing any software.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Free-form and fixed aspect ratio cropping (1:1, 4:3, 16:9, 9:16)</li>
-            <li>Drag to position and resize the crop area with precision</li>
-            <li>Real-time preview of the cropped result</li>
-            <li>Downloads in PNG format while preserving original resolution</li>
-            <li>Fully browser-based processing for complete privacy</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
+          <ol class="list-decimal ml-5 space-y-2">
             <li>Drag and drop or click to upload your image</li>
             <li>Choose your desired aspect ratio from the options (Free, 1:1, 16:9, etc.)</li>
             <li>Drag the crop area to position it over the region you want to keep</li>
@@ -629,8 +620,26 @@
             <li>Click "Crop & Download" to save the cropped image</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Feature Overview</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>Free-form and fixed aspect ratio cropping (1:1, 4:3, 16:9, 9:16)</li>
+            <li>Drag to position and resize the crop area with precision</li>
+            <li>Real-time preview of the cropped result</li>
+            <li>Downloads in PNG format while preserving original resolution</li>
+            <li>Fully browser-based processing for complete privacy</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Important Notes</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>Selecting a fixed aspect ratio locks the crop area proportions for consistent results</li>
+            <li>You cannot crop beyond the original image boundaries, so start with a sufficiently high-resolution source</li>
+            <li>The original file is never modified; a new file is downloaded after cropping</li>
+            <li>Works on mobile devices too, with touch support for adjusting the crop area</li>
+            <li>No data is sent to any server, making it safe for sensitive or private images</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Usage Tips</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Creating square profile pictures for Instagram or Facebook</li>
             <li>Preparing 16:9 thumbnails for YouTube videos</li>
             <li>Making 9:16 vertical images for Instagram/TikTok Stories</li>
@@ -639,27 +648,18 @@
             <li>Cropping passport or ID photos to standard dimensions</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Selecting a fixed aspect ratio locks the crop area proportions for consistent results</li>
-            <li>You cannot crop beyond the original image boundaries, so start with a sufficiently high-resolution source</li>
-            <li>The original file is never modified; a new file is downloaded after cropping</li>
-            <li>Works on mobile devices too, with touch support for adjusting the crop area</li>
-            <li>No data is sent to any server, making it safe for sensitive or private images</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div><h4 class="font-medium">Q: What image formats are supported?</h4><p>Most common formats including JPG, PNG, GIF, and WebP are supported. The cropped result is saved as PNG.</p></div>
-            <div><h4 class="font-medium">Q: Can I enter a custom aspect ratio?</h4><p>Currently you can choose from free-form and preset ratios (1:1, 4:3, 16:9, 9:16). In free-form mode, you can manually adjust the crop area to any proportion you need.</p></div>
-            <div><h4 class="font-medium">Q: Is there a file size limit?</h4><p>Since processing happens in your browser, there is no server-side limit. However, very large images (over 50MB) may slow down depending on your device performance.</p></div>
-            <div><h4 class="font-medium">Q: What resolution will the cropped image be?</h4><p>The original pixel data of the selected area is preserved. For example, selecting a 2000x2000 area from a 4000x3000 image produces a 2000x2000 output.</p></div>
-            <div><h4 class="font-medium">Q: Does it work on mobile devices?</h4><p>Yes, it works fully on mobile browsers. You can use touch gestures to move and resize the crop area.</p></div>
-            <div><h4 class="font-medium">Q: Is my image uploaded to a server?</h4><p>No. All processing takes place entirely in your browser. Your images are never transmitted to any external server.</p></div>
-            <div><h4 class="font-medium">Q: Can I crop multiple images at once?</h4><p>Images are processed one at a time. After cropping, click "New Image" to immediately start editing the next one.</p></div>
-            <div><h4 class="font-medium">Q: Can I undo the crop and go back to the original?</h4><p>Yes, click the "Reset" button to restore the original image. The source file remains unchanged until you download.</p></div>
-            <div><h4 class="font-medium">Q: Are transparent PNG backgrounds preserved?</h4><p>Yes, PNG transparency is fully maintained after cropping.</p></div>
-            <div><h4 class="font-medium">Q: What will the downloaded file be named?</h4><p>The file is automatically named with the original filename plus a "_cropped" suffix.</p></div>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">FAQ</h3>
+          <div class="space-y-5">
+            <div><h4 class="font-semibold text-sm">Q: What image formats are supported?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Most common formats including JPG, PNG, GIF, and WebP are supported. The cropped result is saved as PNG.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Can I enter a custom aspect ratio?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Currently you can choose from free-form and preset ratios (1:1, 4:3, 16:9, 9:16). In free-form mode, you can manually adjust the crop area to any proportion you need.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Is there a file size limit?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Since processing happens in your browser, there is no server-side limit. However, very large images (over 50MB) may slow down depending on your device performance.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: What resolution will the cropped image be?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The original pixel data of the selected area is preserved. For example, selecting a 2000x2000 area from a 4000x3000 image produces a 2000x2000 output.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Does it work on mobile devices?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes, it works fully on mobile browsers. You can use touch gestures to move and resize the crop area.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Is my image uploaded to a server?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">No. All processing takes place entirely in your browser. Your images are never transmitted to any external server.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Can I crop multiple images at once?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Images are processed one at a time. After cropping, click "New Image" to immediately start editing the next one.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Can I undo the crop and go back to the original?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes, click the "Reset" button to restore the original image. The source file remains unchanged until you download.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Are transparent PNG backgrounds preserved?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes, PNG transparency is fully maintained after cropping.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: What will the downloaded file be named?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The file is automatically named with the original filename plus a "_cropped" suffix.</p></div>
           </div>
         </div>
       </section>

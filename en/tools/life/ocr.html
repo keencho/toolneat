@@ -548,13 +548,22 @@
           <div class="result-box"><textarea id="result-text" class="text-gray-900 dark:text-white" placeholder="Extracted text will appear here"></textarea></div>
         </div>
       </div>
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is an OCR Text Extractor?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">OCR (Optical Character Recognition) is a technology that converts text within images into machine-readable digital text. It can automatically extract text from scanned documents, photos, screenshots, and other image formats, making it editable, searchable, and copyable. This tool is powered by the Tesseract.js engine and supports over 100 languages including English, Korean, Japanese, and Chinese.</p>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
+          <ol class="list-decimal ml-5 space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Select the target language from the dropdown (multiple selections supported)</li>
+            <li>Drag an image onto the upload area or click to browse files</li>
+            <li>Wait for language data to load, then recognition starts automatically</li>
+            <li>Monitor the progress bar for processing status</li>
+            <li>Review the extracted text and copy it to your clipboard</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700 pb-2 border-b border-gray-100 dark:border-gray-700">Feature Overview</h3>
+          <ul class="list-disc ml-5 space-y-2 text-gray-600 dark:text-gray-400">
             <li>Supports over 100 languages (English, Korean, Japanese, Chinese, and more)</li>
             <li>Multi-language simultaneous recognition (e.g., English+Korean)</li>
             <li>Simple drag-and-drop or click-to-upload interface</li>
@@ -563,26 +572,8 @@
             <li>All processing done locally in the browser for complete privacy</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400">
-            <li>Select the target language from the dropdown (multiple selections supported)</li>
-            <li>Drag an image onto the upload area or click to browse files</li>
-            <li>Wait for language data to load, then recognition starts automatically</li>
-            <li>Monitor the progress bar for processing status</li>
-            <li>Review the extracted text and copy it to your clipboard</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
-            <li>Converting paper documents into editable digital text</li>
-            <li>Copying text from screenshots or images that cannot be selected</li>
-            <li>Extracting foreign language text from signs or menus for translation</li>
-            <li>Pulling text from image-based PDFs or contracts</li>
-            <li>Digitizing lecture notes, slides, or presentation materials</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700 pb-2 border-b border-gray-100 dark:border-gray-700">Important Notes</h3>
+          <ul class="list-disc ml-5 space-y-2 text-gray-600 dark:text-gray-400">
             <li>Higher resolution and sharper images produce better recognition results</li>
             <li>Rotate tilted images before uploading for improved accuracy</li>
             <li>Greater contrast between text and background leads to better results</li>
@@ -590,43 +581,52 @@
             <li>For documents with mixed languages, select all relevant languages</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700 pb-2 border-b border-gray-100 dark:border-gray-700">Usage Tips</h3>
+          <ul class="list-disc ml-5 space-y-2 text-gray-600 dark:text-gray-400">
+            <li>Converting paper documents into editable digital text</li>
+            <li>Copying text from screenshots or images that cannot be selected</li>
+            <li>Extracting foreign language text from signs or menus for translation</li>
+            <li>Pulling text from image-based PDFs or contracts</li>
+            <li>Digitizing lecture notes, slides, or presentation materials</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700 pb-2 border-b border-gray-100 dark:border-gray-700">FAQ</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: How can I improve OCR accuracy?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Use sharp, high-contrast images with horizontally aligned text. A clean background and a resolution of 300 DPI or higher will give the best results.</p>
+              <h4 class="font-semibold text-sm">Q: How can I improve OCR accuracy?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Use sharp, high-contrast images with horizontally aligned text. A clean background and a resolution of 300 DPI or higher will give the best results.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can it recognize handwriting?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Neat, printed-style handwriting can be recognized to some degree, but accuracy is significantly lower than with printed text. Cursive or connected handwriting is generally not recognized well.</p>
+              <h4 class="font-semibold text-sm">Q: Can it recognize handwriting?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Neat, printed-style handwriting can be recognized to some degree, but accuracy is significantly lower than with printed text. Cursive or connected handwriting is generally not recognized well.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Why does the first recognition take so long?</h4>
-              <p class="text-gray-600 dark:text-gray-400">On first use, the tool downloads the trained language data (10-30MB per language). This data is cached in your browser, so subsequent recognitions are much faster.</p>
+              <h4 class="font-semibold text-sm">Q: Why does the first recognition take so long?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">On first use, the tool downloads the trained language data (10-30MB per language). This data is cached in your browser, so subsequent recognitions are much faster.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: How do I handle images with multiple languages?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Select multiple languages from the dropdown, such as "English+Korean." The engine will attempt to recognize text in all selected languages. Note that adding more languages increases processing time.</p>
+              <h4 class="font-semibold text-sm">Q: How do I handle images with multiple languages?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Select multiple languages from the dropdown, such as "English+Korean." The engine will attempt to recognize text in all selected languages. Note that adding more languages increases processing time.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Is my image data sent to any server?</h4>
-              <p class="text-gray-600 dark:text-gray-400">No. All OCR processing runs locally in your browser using the Tesseract.js engine. Your images never leave your device, ensuring complete privacy and data security.</p>
+              <h4 class="font-semibold text-sm">Q: Is my image data sent to any server?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">No. All OCR processing runs locally in your browser using the Tesseract.js engine. Your images never leave your device, ensuring complete privacy and data security.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: What image formats are supported?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Most common formats including JPG, PNG, BMP, GIF, and WebP are supported. PDF files need to be converted to images first before uploading.</p>
+              <h4 class="font-semibold text-sm">Q: What image formats are supported?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Most common formats including JPG, PNG, BMP, GIF, and WebP are supported. PDF files need to be converted to images first before uploading.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Can it recognize text inside tables or charts?</h4>
-              <p class="text-gray-600 dark:text-gray-400">The text content within tables can be recognized, but the table structure (row and column layout) is not preserved. You may need to manually organize the extracted text.</p>
+              <h4 class="font-semibold text-sm">Q: Can it recognize text inside tables or charts?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The text content within tables can be recognized, but the table structure (row and column layout) is not preserved. You may need to manually organize the extracted text.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: Does it work on mobile devices?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Yes, the tool works in all modern mobile browsers. You can upload photos taken with your smartphone camera and extract text directly on your phone.</p>
+              <h4 class="font-semibold text-sm">Q: Does it work on mobile devices?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes, the tool works in all modern mobile browsers. You can upload photos taken with your smartphone camera and extract text directly on your phone.</p>
             </div>
             <div>
-              <h4 class="font-medium text-gray-900 dark:text-white">Q: What should I do if the results are not accurate?</h4>
-              <p class="text-gray-600 dark:text-gray-400">Try using a clearer image with better lighting and contrast. Crop out unnecessary parts of the image and ensure the text is straight. Noisy backgrounds and complex layouts can reduce recognition accuracy.</p>
+              <h4 class="font-semibold text-sm">Q: What should I do if the results are not accurate?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Try using a clearer image with better lighting and contrast. Crop out unnecessary parts of the image and ensure the text is straight. Noisy backgrounds and complex layouts can reduce recognition accuracy.</p>
             </div>
           </div>
           <p class="text-gray-600 dark:text-gray-400 mt-4">All processing is done in your browser. No image data is uploaded to any server.</p>

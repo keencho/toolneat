@@ -665,23 +665,13 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is SQL Formatter?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>SQL Formatter is an online tool that transforms complex or hard-to-read SQL queries into a consistent, well-structured format. It automatically adds proper indentation and line breaks to make query structure easy to understand at a glance. It also includes a Minify feature to compress formatted SQL into a single line. Whether you are developing databases, debugging queries, reviewing code, or writing documentation, this tool helps you work more efficiently with SQL.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>8 SQL dialects supported: Standard SQL, MySQL, PostgreSQL, MariaDB, SQLite, SQL Server, Oracle PL/SQL, BigQuery</li>
-            <li>Flexible indentation: choose between 2 spaces, 4 spaces, or Tab</li>
-            <li>Keyword uppercasing: automatically capitalize SQL keywords like SELECT, FROM, WHERE</li>
-            <li>SQL Minify: strip all whitespace and line breaks to produce a single-line query</li>
-            <li>Sample SQL: load example queries instantly for testing</li>
-            <li>Ctrl+Enter keyboard shortcut for quick formatting</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
+          <ol class="list-decimal ml-5 space-y-2">
             <li>Paste or type your SQL query in the input area on the left.</li>
             <li>Select the SQL dialect matching your database from the dropdown.</li>
             <li>Choose your indentation preference (2 spaces, 4 spaces, or Tab).</li>
@@ -691,24 +681,25 @@
             <li>Click the "Copy" button to copy the result to your clipboard.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Making single-line queries extracted from ORMs or application logs human-readable</li>
-            <li>Presenting clear SQL structure during code reviews with team members</li>
-            <li>Adding well-formatted SQL examples to technical documentation or wikis</li>
-            <li>Compressing queries before embedding them as strings in application code</li>
-            <li>Visually analyzing the structure of complex JOINs and subqueries</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Feature Overview</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>8 SQL dialects supported: Standard SQL, MySQL, PostgreSQL, MariaDB, SQLite, SQL Server, Oracle PL/SQL, BigQuery</li>
+            <li>Flexible indentation: choose between 2 spaces, 4 spaces, or Tab</li>
+            <li>Keyword uppercasing: automatically capitalize SQL keywords like SELECT, FROM, WHERE</li>
+            <li>SQL Minify: strip all whitespace and line breaks to produce a single-line query</li>
+            <li>Sample SQL: load example queries instantly for testing</li>
+            <li>Ctrl+Enter keyboard shortcut for quick formatting</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Important Notes</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Selecting the correct dialect can affect how certain syntax is formatted, so match it to your database.</li>
             <li>Comments are preserved during formatting but removed in Minify mode.</li>
             <li>Changing any option automatically re-formats the current input.</li>
             <li>Even very long queries (thousands of lines) are processed in the browser without performance issues.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Supported SQL Statements</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Supported SQL Statements</h3>
           <ul class="list-disc list-inside space-y-1">
             <li>SELECT, INSERT, UPDATE, DELETE basic statements</li>
             <li>JOIN (INNER, LEFT, RIGHT, FULL, CROSS)</li>
@@ -720,39 +711,48 @@
             <li>WITH (CTE - Common Table Expression)</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Usage Tips</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>Making single-line queries extracted from ORMs or application logs human-readable</li>
+            <li>Presenting clear SQL structure during code reviews with team members</li>
+            <li>Adding well-formatted SQL examples to technical documentation or wikis</li>
+            <li>Compressing queries before embedding them as strings in application code</li>
+            <li>Visually analyzing the structure of complex JOINs and subqueries</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">FAQ</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: Which SQL dialect should I choose?</h4>
-              <p>Select the dialect that matches your database. Choose MySQL for MySQL, PostgreSQL for PostgreSQL, and so on. If you are working with generic SQL or are unsure, "Standard SQL" works well for most queries.</p>
+              <h4 class="font-semibold text-sm">Q: Which SQL dialect should I choose?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Select the dialect that matches your database. Choose MySQL for MySQL, PostgreSQL for PostgreSQL, and so on. If you are working with generic SQL or are unsure, "Standard SQL" works well for most queries.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Will the formatted SQL work correctly?</h4>
-              <p>Yes. This tool only adjusts whitespace and line breaks without changing the SQL syntax. The formatted SQL produces exactly the same results as the original.</p>
+              <h4 class="font-semibold text-sm">Q: Will the formatted SQL work correctly?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes. This tool only adjusts whitespace and line breaks without changing the SQL syntax. The formatted SQL produces exactly the same results as the original.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
-              <p>No. All formatting is processed locally in your browser. Your SQL is never transmitted to any server, so you can safely use it with proprietary or sensitive queries.</p>
+              <h4 class="font-semibold text-sm">Q: Is my data sent to a server?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">No. All formatting is processed locally in your browser. Your SQL is never transmitted to any server, so you can safely use it with proprietary or sensitive queries.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can it format stored procedures and functions?</h4>
-              <p>Basic CREATE PROCEDURE and CREATE FUNCTION statements are supported. For complex control flow (IF, WHILE, CURSOR), selecting the correct dialect (e.g., Oracle PL/SQL or SQL Server) will give the best results.</p>
+              <h4 class="font-semibold text-sm">Q: Can it format stored procedures and functions?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Basic CREATE PROCEDURE and CREATE FUNCTION statements are supported. For complex control flow (IF, WHILE, CURSOR), selecting the correct dialect (e.g., Oracle PL/SQL or SQL Server) will give the best results.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I customize the formatting style?</h4>
-              <p>You can control indentation size and keyword capitalization. Detailed formatting decisions like placing each column on a separate line are handled automatically based on standard formatting conventions.</p>
+              <h4 class="font-semibold text-sm">Q: Can I customize the formatting style?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">You can control indentation size and keyword capitalization. Detailed formatting decisions like placing each column on a separate line are handled automatically based on standard formatting conventions.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I format multiple SQL statements at once?</h4>
-              <p>Yes. Enter multiple SQL statements separated by semicolons, and each one will be formatted correctly. Try the Sample SQL button to see this in action.</p>
+              <h4 class="font-semibold text-sm">Q: Can I format multiple SQL statements at once?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes. Enter multiple SQL statements separated by semicolons, and each one will be formatted correctly. Try the Sample SQL button to see this in action.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the Minify feature used for?</h4>
-              <p>Minify is useful when you need single-line SQL for embedding as strings in code, logging, or sending through APIs. It removes all whitespace, line breaks, and comments.</p>
+              <h4 class="font-semibold text-sm">Q: What is the Minify feature used for?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Minify is useful when you need single-line SQL for embedding as strings in code, logging, or sending through APIs. It removes all whitespace, line breaks, and comments.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Are there keyboard shortcuts?</h4>
-              <p>Press Ctrl+Enter (Cmd+Enter on Mac) in the input area to format instantly. This allows rapid formatting without reaching for the mouse.</p>
+              <h4 class="font-semibold text-sm">Q: Are there keyboard shortcuts?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Press Ctrl+Enter (Cmd+Enter on Mac) in the input area to format instantly. This allows rapid formatting without reaching for the mouse.</p>
             </div>
           </div>
         </div>

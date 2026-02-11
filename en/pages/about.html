@@ -528,37 +528,96 @@
 
         <section>
           <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">What is Toolneat?</h2>
-          <p>Toolneat is a free collection of online tools for developers and everyday users. We help you simplify complex tasks and speed up your daily workflow.</p>
+          <p>Toolneat is a free collection of online tools designed for developers and everyday users alike. We help you simplify complex tasks and speed up your daily workflow. Currently offering over 107 tools, we continuously add new ones to cover more use cases.</p>
+          <p class="mt-2">Whether you are a web developer formatting code or encoding data, a student converting units or using calculators, or an office worker editing PDFs or processing images, Toolneat provides the right tool for every moment. No software installation required — just open your browser and get started.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Our Philosophy</h2>
+          <p>Toolneat is built on three core values:</p>
+          <ul class="list-disc list-inside space-y-2 mt-3">
+            <li><strong>Accessibility</strong> — Everyone should be able to use our tools for free, without creating an account. We sustain operations through advertising while keeping the user experience clean and unobtrusive.</li>
+            <li><strong>Privacy</strong> — Your data belongs to you. Text you type, images you upload, and files you convert are all processed within your browser and never sent to our servers.</li>
+            <li><strong>Quality</strong> — Rather than just increasing the number of tools, we focus on making each tool genuinely useful and accurate, with continuous improvements based on user feedback.</li>
+          </ul>
         </section>
 
         <section>
           <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Features</h2>
           <ul class="list-disc list-inside space-y-2">
-            <li>Completely Free - All tools are free to use</li>
-            <li>No Sign-up Required - Start using immediately</li>
-            <li>Privacy First - All processing happens in your browser</li>
-            <li>Fast - Instant results without server transfers</li>
-            <li>Offline Support - Works offline after first visit</li>
+            <li>Completely Free — Use all tools without limits. No hidden paid features or usage caps.</li>
+            <li>No Sign-up Required — Start using tools instantly. No email verification or account creation needed.</li>
+            <li>Privacy First — All data processing happens in your browser, so sensitive information never passes through external servers.</li>
+            <li>Fast — Get instant results with client-side processing, no server round-trips required.</li>
+            <li>Multilingual — Available in Korean and English, with easy language switching at any time.</li>
+            <li>Responsive Design — Optimized for desktop, tablet, and mobile devices.</li>
+            <li>Dark Mode — Comfortable viewing in both bright and dark environments.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Tech Stack</h2>
+          <p>Toolneat uses modern web technologies to deliver a fast and reliable experience.</p>
+          <ul class="list-disc list-inside space-y-2 mt-3">
+            <li><strong>Frontend</strong> — Built with vanilla HTML, CSS, and JavaScript for a lightweight experience with zero framework overhead.</li>
+            <li><strong>Styling</strong> — Tailwind CSS v4 provides a consistent design system across all pages.</li>
+            <li><strong>Hosting</strong> — Deployed on Cloudflare Pages for fast global access from anywhere in the world.</li>
+            <li><strong>Image/PDF Processing</strong> — Leverages Web APIs (Canvas, File API, etc.) and trusted open-source libraries.</li>
+            <li><strong>Search</strong> — Fuse.js powers fuzzy search so you can quickly find the tool you need.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Security and Privacy Principles</h2>
+          <p>Toolneat prioritizes user security and privacy at every level.</p>
+          <ul class="list-disc list-inside space-y-2 mt-3">
+            <li>When you upload files, all processing occurs in browser memory and is released immediately after completion.</li>
+            <li>The site is served over HTTPS, and all external resources are loaded securely.</li>
+            <li>We do not use fingerprinting or personal identification techniques for tracking users.</li>
+            <li>Security-related tools like the password generator and hash generator use the browser's Web Crypto API for cryptographically secure results.</li>
           </ul>
         </section>
 
         <section>
           <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Available Tools</h2>
+          <p>Toolneat offers over 107 tools across 4 categories.</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
             <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <h3 class="font-medium text-gray-900 dark:text-white mb-2">Developer Tools</h3>
-              <p class="text-sm">JSON Formatter, Base64 Encoder, URL Encoder, Regex Tester, Unix Timestamp Converter, JWT Generator, and more</p>
+              <h3 class="font-medium text-gray-900 dark:text-white mb-2">Developer Tools (35)</h3>
+              <p class="text-sm">JSON Formatter, Base64 Encoder, URL Encoder, Regex Tester, Unix Timestamp Converter, JWT Generator/Decoder, Hash Generator, CSS/JS/HTML Minifiers, SQL Formatter, Color Converter, and more essential tools for web development.</p>
             </div>
             <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <h3 class="font-medium text-gray-900 dark:text-white mb-2">Life Tools</h3>
-              <p class="text-sm">QR Code Generator, Unit Converter, Loan Calculator, and more</p>
+              <h3 class="font-medium text-gray-900 dark:text-white mb-2">Life Tools (58)</h3>
+              <p class="text-sm">Image editing (resize, compress, convert, watermark, background removal), QR code generation/scanning, various calculators (BMI, loan, salary, compound interest), timers, unit converter, OCR, screen recorder, and more everyday utilities.</p>
+            </div>
+            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <h3 class="font-medium text-gray-900 dark:text-white mb-2">PDF Tools (9)</h3>
+              <p class="text-sm">Merge, split, compress, rotate, watermark, delete/reorder pages, and image conversion for PDF documents. All processing happens in your browser to keep your documents secure.</p>
+            </div>
+            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <h3 class="font-medium text-gray-900 dark:text-white mb-2">Games (5)</h3>
+              <p class="text-sm">Classic games including 2048, Minesweeper, Snake, Memory Game, and Tetris — playable directly in your browser with no installation needed.</p>
             </div>
           </div>
         </section>
 
         <section>
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Update History</h2>
+          <ul class="space-y-3 mt-3">
+            <li class="flex gap-3">
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">Jan 2025</span>
+              <span>Official site launch with 107+ tools across developer, life, PDF, and game categories.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">Feb 2025</span>
+              <span>Blog section added with tool usage guides and technical articles.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
           <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Contact Us</h2>
-          <p>For bug reports, feature suggestions, or any inquiries, please feel free to contact us.</p>
+          <p>We welcome all feedback — bug reports, new tool requests, feature improvement suggestions, and more. If you encounter any issues or have ideas for tools you would like to see, please let us know.</p>
           <div class="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
             <p>
               <span class="font-medium">Email</span>:

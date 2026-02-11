@@ -577,25 +577,15 @@
         </div>
       </div>
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">CSS Gradient Generator Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">What is a CSS Gradient?</h3>
+          <h3 class="text-lg font-bold mt-8 mb-2">About a CSS Gradient</h3>
           <p>A CSS gradient is a smooth color transition rendered entirely by the browser, requiring no image files at all. Because it is generated on the fly, a gradient has zero impact on page load time while still adding visual depth and polish to any design. There are two main types -- Linear gradients transition colors along a straight axis, while Radial gradients radiate outward from a center point. By adjusting angle, direction, and color stops, you can produce an almost infinite variety of patterns. This tool lets you design gradients visually and automatically generates the corresponding CSS code so you can copy it straight into your project.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>Linear / Radial toggle:</strong> Switch freely between straight-line and circular gradient types.</li>
-            <li><strong>Multiple color stops:</strong> Add as many color stops as you like and drag them to fine-tune positions.</li>
-            <li><strong>Angle and direction control:</strong> Set any angle from 0 to 360 degrees or pick a preset direction.</li>
-            <li><strong>Live preview:</strong> Every change is reflected instantly in the preview area.</li>
-            <li><strong>Auto-generated CSS:</strong> The matching CSS code updates in real time as you tweak the design.</li>
-            <li><strong>One-click copy:</strong> Copy the CSS to your clipboard and paste it directly into your stylesheet.</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
             <li>Select Linear or Radial gradient type at the top of the tool.</li>
             <li>Use the color pickers to set your starting and ending colors.</li>
             <li>Add more color stops if you want intermediate colors in the transition.</li>
@@ -604,16 +594,66 @@
             <li>When you are satisfied, click Copy to save the CSS code to your clipboard and paste it into your project.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Linear / Radial toggle:</strong> Switch freely between straight-line and circular gradient types.</li>
+            <li><strong>Multiple color stops:</strong> Add as many color stops as you like and drag them to fine-tune positions.</li>
+            <li><strong>Angle and direction control:</strong> Set any angle from 0 to 360 degrees or pick a preset direction.</li>
+            <li><strong>Live preview:</strong> Every change is reflected instantly in the preview area.</li>
+            <li><strong>Auto-generated CSS:</strong> The matching CSS code updates in real time as you tweak the design.</li>
+            <li><strong>One-click copy:</strong> Copy the CSS to your clipboard and paste it directly into your stylesheet.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li><strong>Hero sections:</strong> Apply a bold gradient background to a landing page header for immediate visual impact.</li>
             <li><strong>Button design:</strong> Replace flat-color buttons with gradient buttons to add depth and a modern feel.</li>
             <li><strong>Card overlays:</strong> Layer a semi-transparent gradient over card backgrounds or images for a polished look.</li>
             <li><strong>Text highlights:</strong> Combine a gradient with <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">background-clip: text</code> to create eye-catching gradient text effects.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does it work in all browsers?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes -- all modern browsers including Chrome, Firefox, Safari, and Edge fully support CSS gradients. Internet Explorer does not render them correctly, but IE reached end-of-life in 2022 and is no longer a practical concern.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How many colors can I add?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">The CSS specification imposes no limit on the number of color stops. That said, 2-4 colors generally produce the cleanest, most visually appealing gradients.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How do I choose between Linear and Radial?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Choose Linear when you want colors to flow in a single direction. Choose Radial when you want them to emanate from a center point outward. Experimenting with both is the best way to decide which fits your design.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I apply a gradient to text?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes. Set the gradient as a background, then add <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">background-clip: text</code> and <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">-webkit-text-fill-color: transparent</code> to make the gradient show through the letterforms.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I animate a gradient?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">You can simulate animation by setting a <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">background-size</code> larger than the element and shifting <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">background-position</code> with a CSS animation. This creates a flowing, moving gradient effect.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I overlay a gradient on top of an image?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Absolutely. List the gradient and the image URL together in the <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">background</code> shorthand, separated by a comma. The gradient renders on top of the image, creating an overlay effect.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Do gradients affect page performance?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">CSS gradients are rendered natively by the browser, so they are actually lighter than loading image files. For typical usage, there is virtually no performance penalty.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I edit the generated code manually?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Of course. The output is standard CSS, so you are free to adjust color values, angles, and stop positions directly in your stylesheet after copying.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is my data sent to any server?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. Everything runs locally in your browser. Your color choices and settings are never transmitted or stored externally.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Stick to 2-4 colors for the smoothest results. Too many color stops can make the gradient look noisy.</li>
             <li>Colors with similar saturation and brightness produce softer, more natural transitions.</li>
             <li>When placing text over a gradient background, always verify that the contrast ratio meets accessibility guidelines.</li>
@@ -621,46 +661,6 @@
             <li>If your site supports dark mode, consider preparing separate gradient palettes for light and dark themes.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: Does it work in all browsers?</h4>
-              <p>Yes -- all modern browsers including Chrome, Firefox, Safari, and Edge fully support CSS gradients. Internet Explorer does not render them correctly, but IE reached end-of-life in 2022 and is no longer a practical concern.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How many colors can I add?</h4>
-              <p>The CSS specification imposes no limit on the number of color stops. That said, 2-4 colors generally produce the cleanest, most visually appealing gradients.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How do I choose between Linear and Radial?</h4>
-              <p>Choose Linear when you want colors to flow in a single direction. Choose Radial when you want them to emanate from a center point outward. Experimenting with both is the best way to decide which fits your design.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I apply a gradient to text?</h4>
-              <p>Yes. Set the gradient as a background, then add <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">background-clip: text</code> and <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">-webkit-text-fill-color: transparent</code> to make the gradient show through the letterforms.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I animate a gradient?</h4>
-              <p>You can simulate animation by setting a <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">background-size</code> larger than the element and shifting <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">background-position</code> with a CSS animation. This creates a flowing, moving gradient effect.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I overlay a gradient on top of an image?</h4>
-              <p>Absolutely. List the gradient and the image URL together in the <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">background</code> shorthand, separated by a comma. The gradient renders on top of the image, creating an overlay effect.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Do gradients affect page performance?</h4>
-              <p>CSS gradients are rendered natively by the browser, so they are actually lighter than loading image files. For typical usage, there is virtually no performance penalty.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I edit the generated code manually?</h4>
-              <p>Of course. The output is standard CSS, so you are free to adjust color values, angles, and stop positions directly in your stylesheet after copying.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is my data sent to any server?</h4>
-              <p>No. Everything runs locally in your browser. Your color choices and settings are never transmitted or stored externally.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

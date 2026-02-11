@@ -640,25 +640,15 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">CSS 압축/정리 도구 가이드</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">CSS 압축(Minify)이란?</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">CSS 압축(Minify)에 대해서</h3>
           <p>CSS 압축은 스타일시트에서 불필요한 공백, 줄바꿈, 주석, 중복 세미콜론 등을 제거하여 파일 크기를 줄이는 최적화 과정입니다. 브라우저는 공백이나 주석 없이도 CSS를 완벽하게 해석하기 때문에, 압축된 CSS는 기능적으로 동일하면서도 전송 용량이 크게 줄어듭니다. 반대로 CSS 정리(Beautify)는 한 줄로 뭉쳐진 코드를 적절한 들여쓰기와 줄바꿈으로 펼쳐서 사람이 읽기 편한 형태로 되돌리는 작업입니다. 개발 중에는 정리된 CSS로 작업하고, 배포할 때는 압축된 CSS를 사용하는 것이 웹 성능 최적화의 기본입니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>CSS 압축(Minify):</strong> 공백, 줄바꿈, 주석을 모두 제거하여 최소 크기의 CSS를 생성합니다.</li>
-            <li><strong>CSS 정리(Beautify):</strong> 압축된 코드를 읽기 쉬운 형태로 포맷팅합니다.</li>
-            <li><strong>들여쓰기 설정:</strong> 정리 시 2칸 또는 4칸 들여쓰기를 선택할 수 있습니다.</li>
-            <li><strong>실시간 미리보기:</strong> 입력과 동시에 결과를 바로 확인할 수 있습니다.</li>
-            <li><strong>용량 비교:</strong> 원본과 압축 결과의 크기 차이를 확인하여 절감률을 파악합니다.</li>
-            <li><strong>클립보드 복사:</strong> 변환된 CSS를 한 번에 복사하여 바로 사용할 수 있습니다.</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">시작하기</h3>
+          <ol class="list-decimal ml-5 space-y-2">
             <li>입력창에 CSS 코드를 직접 입력하거나 붙여넣기 합니다.</li>
             <li>'압축(Minify)' 버튼을 클릭하면 공백과 주석이 제거된 최소화 CSS가 생성됩니다.</li>
             <li>'정리(Beautify)' 버튼을 클릭하면 들여쓰기와 줄바꿈이 추가된 깔끔한 CSS로 변환됩니다.</li>
@@ -667,16 +657,18 @@
             <li>필요에 따라 결과를 프로젝트의 CSS 파일에 바로 붙여넣어 사용합니다.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>프로덕션 배포:</strong> 개발 완료된 CSS를 압축해서 웹서버에 올리면 페이지 로딩 시간이 단축됩니다.</li>
-            <li><strong>타사 CSS 분석:</strong> 외부 라이브러리나 프레임워크의 압축된 CSS를 정리해서 코드 구조를 파악할 수 있습니다.</li>
-            <li><strong>이메일 템플릿:</strong> 인라인 CSS를 사용하는 이메일 템플릿에서 불필요한 공백을 제거하여 용량을 줄입니다.</li>
-            <li><strong>빌드 파이프라인 검증:</strong> 빌드 도구가 제대로 압축했는지 수동으로 비교 확인할 때 활용합니다.</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">기능 소개</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><strong>CSS 압축(Minify):</strong> 공백, 줄바꿈, 주석을 모두 제거하여 최소 크기의 CSS를 생성합니다.</li>
+            <li><strong>CSS 정리(Beautify):</strong> 압축된 코드를 읽기 쉬운 형태로 포맷팅합니다.</li>
+            <li><strong>들여쓰기 설정:</strong> 정리 시 2칸 또는 4칸 들여쓰기를 선택할 수 있습니다.</li>
+            <li><strong>실시간 미리보기:</strong> 입력과 동시에 결과를 바로 확인할 수 있습니다.</li>
+            <li><strong>용량 비교:</strong> 원본과 압축 결과의 크기 차이를 확인하여 절감률을 파악합니다.</li>
+            <li><strong>클립보드 복사:</strong> 변환된 CSS를 한 번에 복사하여 바로 사용할 수 있습니다.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">주의할 점</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>소스맵(source map)을 함께 관리하면 압축된 CSS에서도 원본 위치를 추적하여 디버깅할 수 있습니다.</li>
             <li>압축은 공백과 주석만 제거합니다. 사용하지 않는 CSS 규칙을 제거하려면 PurgeCSS 같은 별도 도구를 사용하세요.</li>
             <li>Webpack, Vite 등 빌드 도구에 내장된 CSS 압축 플러그인을 사용하면 배포 과정에서 자동으로 처리됩니다.</li>
@@ -684,39 +676,47 @@
             <li>정리(Beautify) 기능은 디버깅이나 코드 리뷰에 매우 유용합니다.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">활용 팁</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><strong>프로덕션 배포:</strong> 개발 완료된 CSS를 압축해서 웹서버에 올리면 페이지 로딩 시간이 단축됩니다.</li>
+            <li><strong>타사 CSS 분석:</strong> 외부 라이브러리나 프레임워크의 압축된 CSS를 정리해서 코드 구조를 파악할 수 있습니다.</li>
+            <li><strong>이메일 템플릿:</strong> 인라인 CSS를 사용하는 이메일 템플릿에서 불필요한 공백을 제거하여 용량을 줄입니다.</li>
+            <li><strong>빌드 파이프라인 검증:</strong> 빌드 도구가 제대로 압축했는지 수동으로 비교 확인할 때 활용합니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 하는 질문</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: CSS 압축으로 파일 크기가 얼마나 줄어드나요?</h4>
-              <p>일반적으로 주석과 들여쓰기가 많은 CSS는 30~60% 정도 크기가 줄어듭니다. 주석이 거의 없는 간단한 CSS는 10~20% 정도의 절감 효과를 기대할 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: CSS 압축으로 파일 크기가 얼마나 줄어드나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">일반적으로 주석과 들여쓰기가 많은 CSS는 30~60% 정도 크기가 줄어듭니다. 주석이 거의 없는 간단한 CSS는 10~20% 정도의 절감 효과를 기대할 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 압축하면 CSS가 깨지지 않나요?</h4>
-              <p>정상적인 CSS라면 압축 후에도 동일하게 작동합니다. 압축은 공백과 주석만 제거하며 선택자, 속성, 값은 건드리지 않습니다. 다만, 원본에 문법 오류가 있으면 예상치 못한 결과가 나올 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 압축하면 CSS가 깨지지 않나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">정상적인 CSS라면 압축 후에도 동일하게 작동합니다. 압축은 공백과 주석만 제거하며 선택자, 속성, 값은 건드리지 않습니다. 다만, 원본에 문법 오류가 있으면 예상치 못한 결과가 나올 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 압축된 CSS를 다시 원래대로 복원할 수 있나요?</h4>
-              <p>정리(Beautify) 기능으로 들여쓰기와 줄바꿈을 추가할 수 있습니다. 다만 원본의 주석은 이미 제거된 상태이므로 완전히 동일하게 복원되지는 않습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 압축된 CSS를 다시 원래대로 복원할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">정리(Beautify) 기능으로 들여쓰기와 줄바꿈을 추가할 수 있습니다. 다만 원본의 주석은 이미 제거된 상태이므로 완전히 동일하게 복원되지는 않습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: SCSS나 LESS도 압축할 수 있나요?</h4>
-              <p>이 도구는 순수 CSS만 지원합니다. SCSS나 LESS 파일은 먼저 CSS로 컴파일한 뒤 압축하는 것이 올바른 순서입니다.</p>
+              <h4 class="font-semibold text-sm">Q: SCSS나 LESS도 압축할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">이 도구는 순수 CSS만 지원합니다. SCSS나 LESS 파일은 먼저 CSS로 컴파일한 뒤 압축하는 것이 올바른 순서입니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 압축과 Gzip 압축의 차이는 무엇인가요?</h4>
-              <p>CSS 압축(minify)은 불필요한 문자를 제거하는 것이고, Gzip은 서버에서 전송 시 파일을 바이너리로 압축하는 것입니다. 두 가지를 함께 사용하면 가장 높은 절감 효과를 얻을 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 압축과 Gzip 압축의 차이는 무엇인가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">CSS 압축(minify)은 불필요한 문자를 제거하는 것이고, Gzip은 서버에서 전송 시 파일을 바이너리로 압축하는 것입니다. 두 가지를 함께 사용하면 가장 높은 절감 효과를 얻을 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 개발 중에도 압축된 CSS를 써야 하나요?</h4>
-              <p>아닙니다. 개발 중에는 정리된(beautified) CSS로 작업하는 것이 디버깅에 편리합니다. 압축은 프로덕션 배포 직전에 하거나, 빌드 도구를 통해 자동으로 처리하는 것이 일반적입니다.</p>
+              <h4 class="font-semibold text-sm">Q: 개발 중에도 압축된 CSS를 써야 하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">아닙니다. 개발 중에는 정리된(beautified) CSS로 작업하는 것이 디버깅에 편리합니다. 압축은 프로덕션 배포 직전에 하거나, 빌드 도구를 통해 자동으로 처리하는 것이 일반적입니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: CSS 변수(Custom Properties)가 포함되어 있어도 괜찮나요?</h4>
-              <p>네, CSS 변수(<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">--my-color: #333</code> 같은 형태)도 정상적으로 압축됩니다. 변수 이름이나 값은 변경되지 않습니다.</p>
+              <h4 class="font-semibold text-sm">Q: CSS 변수(Custom Properties)가 포함되어 있어도 괜찮나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">네, CSS 변수(<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">--my-color: #333</code> 같은 형태)도 정상적으로 압축됩니다. 변수 이름이나 값은 변경되지 않습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 입력한 CSS 데이터는 안전한가요?</h4>
-              <p>모든 처리는 브라우저에서 로컬로 수행됩니다. 입력한 CSS 코드가 서버로 전송되거나 외부에 저장되는 일은 전혀 없으므로, 회사 내부 코드나 민감한 스타일시트도 안심하고 사용할 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 입력한 CSS 데이터는 안전한가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">모든 처리는 브라우저에서 로컬로 수행됩니다. 입력한 CSS 코드가 서버로 전송되거나 외부에 저장되는 일은 전혀 없으므로, 회사 내부 코드나 민감한 스타일시트도 안심하고 사용할 수 있습니다.</p>
             </div>
           </div>
         </div>

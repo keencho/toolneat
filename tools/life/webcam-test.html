@@ -561,14 +561,23 @@
           </div>
         </div>
       </div>
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">웹캠 테스트 도구 안내</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <h3 class="text-lg font-semibold mt-6 mb-3">웹캠 테스트란?</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">웹캠 테스트란?</h3>
           <p>웹캠 테스트는 컴퓨터에 연결된 카메라가 정상적으로 작동하는지 브라우저에서 바로 확인할 수 있는 도구입니다. 별도의 프로그램 설치 없이 웹 브라우저만으로 카메라 상태, 해상도, 프레임레이트 등의 정보를 실시간으로 확인할 수 있습니다. 화상회의, 온라인 면접, 원격 수업 등 카메라가 필요한 상황 전에 미리 점검해 두면 갑작스러운 문제를 예방할 수 있습니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">시작하기</h3>
+          <ol class="list-decimal ml-5 space-y-2">
+            <li>페이지에 접속한 뒤 "웹캠 시작" 버튼을 클릭합니다.</li>
+            <li>브라우저에서 카메라 접근 권한을 요청하면 "허용"을 선택합니다.</li>
+            <li>카메라가 활성화되면 실시간 영상과 함께 해상도, 프레임레이트, 카메라 이름이 표시됩니다.</li>
+            <li>외장 카메라 등 다른 장치로 전환하려면 드롭다운에서 원하는 카메라를 선택하세요.</li>
+            <li>테스트가 끝나면 "웹캠 중지" 버튼으로 카메라를 종료합니다.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">기능 소개</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>웹캠 실시간 미리보기 화면 제공</li>
             <li>카메라 해상도(너비 x 높이) 자동 감지 및 표시</li>
             <li>초당 프레임 수(fps) 실시간 측정</li>
@@ -577,26 +586,8 @@
             <li>시작/중지 버튼으로 카메라 제어</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>페이지에 접속한 뒤 "웹캠 시작" 버튼을 클릭합니다.</li>
-            <li>브라우저에서 카메라 접근 권한을 요청하면 "허용"을 선택합니다.</li>
-            <li>카메라가 활성화되면 실시간 영상과 함께 해상도, 프레임레이트, 카메라 이름이 표시됩니다.</li>
-            <li>외장 카메라 등 다른 장치로 전환하려면 드롭다운에서 원하는 카메라를 선택하세요.</li>
-            <li>테스트가 끝나면 "웹캠 중지" 버튼으로 카메라를 종료합니다.</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Zoom, Google Meet, Microsoft Teams 등 화상회의 전 카메라 점검</li>
-            <li>온라인 채용 면접이나 시험 전 웹캠 정상 작동 확인</li>
-            <li>새로 구입한 외장 웹캠의 해상도와 프레임 성능 테스트</li>
-            <li>원격 수업이나 온라인 강의 시작 전 장비 체크</li>
-            <li>라이브 스트리밍 전 카메라 화질 및 프레임 확인</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">주의할 점</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Chrome, Edge, Firefox 등 최신 브라우저에서 가장 잘 작동합니다.</li>
             <li>브라우저의 카메라 권한이 차단되어 있으면 주소창 왼쪽 자물쇠 아이콘에서 권한을 재설정할 수 있습니다.</li>
             <li>다른 앱(Zoom, Skype 등)이 카메라를 점유 중이면 이 도구에서 접근이 안 될 수 있습니다. 해당 앱을 먼저 종료하세요.</li>
@@ -605,47 +596,56 @@
             <li>노트북 내장 카메라와 외장 카메라를 동시에 사용할 때는 드롭다운에서 정확한 장치를 선택했는지 확인하세요.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">활용 팁</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>Zoom, Google Meet, Microsoft Teams 등 화상회의 전 카메라 점검</li>
+            <li>온라인 채용 면접이나 시험 전 웹캠 정상 작동 확인</li>
+            <li>새로 구입한 외장 웹캠의 해상도와 프레임 성능 테스트</li>
+            <li>원격 수업이나 온라인 강의 시작 전 장비 체크</li>
+            <li>라이브 스트리밍 전 카메라 화질 및 프레임 확인</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 하는 질문</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: 웹캠이 작동하지 않아요. 어떻게 해야 하나요?</h4>
-              <p>브라우저에서 카메라 권한을 허용했는지 확인하세요. 주소창 왼쪽의 자물쇠 아이콘을 클릭해 카메라 권한을 "허용"으로 변경한 뒤 페이지를 새로고침하면 됩니다.</p>
+              <h4 class="font-semibold text-sm">Q: 웹캠이 작동하지 않아요. 어떻게 해야 하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">브라우저에서 카메라 권한을 허용했는지 확인하세요. 주소창 왼쪽의 자물쇠 아이콘을 클릭해 카메라 권한을 "허용"으로 변경한 뒤 페이지를 새로고침하면 됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: "카메라를 사용 중인 다른 앱이 있습니다" 오류가 나와요.</h4>
-              <p>Zoom, Skype, Discord 등 다른 화상회의 앱이 카메라를 사용 중일 수 있습니다. 해당 앱을 완전히 종료한 뒤 다시 시도해 보세요.</p>
+              <h4 class="font-semibold text-sm">Q: "카메라를 사용 중인 다른 앱이 있습니다" 오류가 나와요.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Zoom, Skype, Discord 등 다른 화상회의 앱이 카메라를 사용 중일 수 있습니다. 해당 앱을 완전히 종료한 뒤 다시 시도해 보세요.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 영상이 좌우 반전(거울 모드)으로 보여요.</h4>
-              <p>웹 브라우저에서는 기본적으로 미러링 없이 원본 영상을 보여줍니다. 화상회의 앱에서는 자동으로 미러링 보정이 적용되니 걱정하지 않으셔도 됩니다.</p>
+              <h4 class="font-semibold text-sm">Q: 영상이 좌우 반전(거울 모드)으로 보여요.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">웹 브라우저에서는 기본적으로 미러링 없이 원본 영상을 보여줍니다. 화상회의 앱에서는 자동으로 미러링 보정이 적용되니 걱정하지 않으셔도 됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 화질이 흐릿하거나 어두워요.</h4>
-              <p>조명을 밝게 하면 화질이 크게 개선됩니다. 또한 카메라 렌즈에 먼지가 묻어 있지 않은지 확인하고, 가능하다면 카메라 드라이버를 최신 버전으로 업데이트해 보세요.</p>
+              <h4 class="font-semibold text-sm">Q: 화질이 흐릿하거나 어두워요.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">조명을 밝게 하면 화질이 크게 개선됩니다. 또한 카메라 렌즈에 먼지가 묻어 있지 않은지 확인하고, 가능하다면 카메라 드라이버를 최신 버전으로 업데이트해 보세요.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 프레임레이트(fps)가 낮게 나와요.</h4>
-              <p>CPU나 GPU 사용률이 높으면 프레임이 떨어질 수 있습니다. 불필요한 프로그램을 닫고, 브라우저 탭 수를 줄여 보세요. USB 2.0 포트 대신 3.0 포트에 카메라를 연결하는 것도 도움이 됩니다.</p>
+              <h4 class="font-semibold text-sm">Q: 프레임레이트(fps)가 낮게 나와요.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">CPU나 GPU 사용률이 높으면 프레임이 떨어질 수 있습니다. 불필요한 프로그램을 닫고, 브라우저 탭 수를 줄여 보세요. USB 2.0 포트 대신 3.0 포트에 카메라를 연결하는 것도 도움이 됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 외장 웹캠이 목록에 나타나지 않아요.</h4>
-              <p>USB 케이블을 분리했다가 다시 연결해 보세요. 그래도 안 되면 운영체제의 장치 관리자에서 카메라가 정상 인식되고 있는지 확인하세요.</p>
+              <h4 class="font-semibold text-sm">Q: 외장 웹캠이 목록에 나타나지 않아요.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">USB 케이블을 분리했다가 다시 연결해 보세요. 그래도 안 되면 운영체제의 장치 관리자에서 카메라가 정상 인식되고 있는지 확인하세요.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 모바일에서도 사용할 수 있나요?</h4>
-              <p>네, 모바일 브라우저(Chrome, Safari 등)에서도 카메라 권한을 허용하면 사용할 수 있습니다. 전면/후면 카메라 전환도 드롭다운에서 가능합니다.</p>
+              <h4 class="font-semibold text-sm">Q: 모바일에서도 사용할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">네, 모바일 브라우저(Chrome, Safari 등)에서도 카메라 권한을 허용하면 사용할 수 있습니다. 전면/후면 카메라 전환도 드롭다운에서 가능합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 내 영상이 서버에 저장되나요?</h4>
-              <p>아닙니다. 모든 영상 처리는 사용자의 브라우저에서만 이루어지며, 어떤 데이터도 외부 서버로 전송되지 않습니다. 안심하고 사용하세요.</p>
+              <h4 class="font-semibold text-sm">Q: 내 영상이 서버에 저장되나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">아닙니다. 모든 영상 처리는 사용자의 브라우저에서만 이루어지며, 어떤 데이터도 외부 서버로 전송되지 않습니다. 안심하고 사용하세요.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 해상도가 실제 카메라 사양보다 낮게 나와요.</h4>
-              <p>브라우저가 기본적으로 요청하는 해상도에 따라 다를 수 있습니다. 일부 브라우저는 성능 최적화를 위해 최대 해상도가 아닌 기본 해상도로 카메라를 열기도 합니다.</p>
+              <h4 class="font-semibold text-sm">Q: 해상도가 실제 카메라 사양보다 낮게 나와요.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">브라우저가 기본적으로 요청하는 해상도에 따라 다를 수 있습니다. 일부 브라우저는 성능 최적화를 위해 최대 해상도가 아닌 기본 해상도로 카메라를 열기도 합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Safari에서 카메라가 안 되는데 Chrome에서는 돼요.</h4>
-              <p>브라우저마다 카메라 API 지원 수준이 다릅니다. 최신 버전의 Chrome이나 Edge를 사용하면 가장 안정적인 결과를 얻을 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: Safari에서 카메라가 안 되는데 Chrome에서는 돼요.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">브라우저마다 카메라 API 지원 수준이 다릅니다. 최신 버전의 Chrome이나 Edge를 사용하면 가장 안정적인 결과를 얻을 수 있습니다.</p>
             </div>
           </div>
         </div>

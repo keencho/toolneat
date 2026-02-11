@@ -808,13 +808,22 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a QR Code Generator?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>A QR code generator converts URLs, text, phone numbers, email addresses, and WiFi credentials into scannable QR code images. The generated codes can be used on business cards, posters, product packaging, storefronts, and much more. You can download them in PNG or SVG format, and customize size, colors, module shape, and error correction level to create QR codes that are perfectly suited to your needs.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
+          <ol class="list-decimal ml-5 space-y-2">
+            <li>Select the QR code type from the tabs (URL, text, phone, email, WiFi)</li>
+            <li>Enter the relevant information in the input fields</li>
+            <li>Configure size, module shape, colors, and error correction in the options area</li>
+            <li>Click "Generate QR Code" to see the preview</li>
+            <li>Click PNG or SVG to download in your preferred format</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Feature Overview</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>5 data types supported: URL, text, phone number, email, and WiFi</li>
             <li>Download in both PNG and SVG formats</li>
             <li>Customizable QR code size, foreground, and background colors</li>
@@ -823,26 +832,8 @@
             <li>Real-time preview for instant visual feedback</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Select the QR code type from the tabs (URL, text, phone, email, WiFi)</li>
-            <li>Enter the relevant information in the input fields</li>
-            <li>Configure size, module shape, colors, and error correction in the options area</li>
-            <li>Click "Generate QR Code" to see the preview</li>
-            <li>Click PNG or SVG to download in your preferred format</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Printing website URLs or contact info on business cards</li>
-            <li>Sharing WiFi passwords as a scannable code in cafes and restaurants</li>
-            <li>Adding event page links to posters and flyers</li>
-            <li>Including product manuals or support links on packaging</li>
-            <li>Sharing social media profiles or payment page links</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Important Notes</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Use SVG format for print materials to ensure sharpness at any size</li>
             <li>Maintain strong contrast between foreground and background colors</li>
             <li>Always test your QR code on multiple devices before printing</li>
@@ -850,43 +841,52 @@
             <li>More data makes the QR code denser, which can reduce readability at small sizes</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Usage Tips</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>Printing website URLs or contact info on business cards</li>
+            <li>Sharing WiFi passwords as a scannable code in cafes and restaurants</li>
+            <li>Adding event page links to posters and flyers</li>
+            <li>Including product manuals or support links on packaging</li>
+            <li>Sharing social media profiles or payment page links</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">FAQ</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: What is error correction level?</h4>
-              <p>Error correction allows a QR code to remain scannable even when partially damaged or obscured. The four levels are L (7%), M (15%), Q (25%), and H (30%). Higher levels provide more redundancy but make the QR code denser. Use M for general purposes and H if you plan to add a logo.</p>
+              <h4 class="font-semibold text-sm">Q: What is error correction level?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Error correction allows a QR code to remain scannable even when partially damaged or obscured. The four levels are L (7%), M (15%), Q (25%), and H (30%). Higher levels provide more redundancy but make the QR code denser. Use M for general purposes and H if you plan to add a logo.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Should I use PNG or SVG format?</h4>
-              <p>For web use and messaging, PNG is widely compatible. For print materials like business cards or posters, SVG is the better choice because it scales to any size without losing clarity.</p>
+              <h4 class="font-semibold text-sm">Q: Should I use PNG or SVG format?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">For web use and messaging, PNG is widely compatible. For print materials like business cards or posters, SVG is the better choice because it scales to any size without losing clarity.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Which module shape should I choose?</h4>
-              <p>The default square shape offers the highest compatibility across all readers. Rounded or dot styles look more modern but may not scan well on older QR readers. For important use cases, stick with square modules.</p>
+              <h4 class="font-semibold text-sm">Q: Which module shape should I choose?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The default square shape offers the highest compatibility across all readers. Rounded or dot styles look more modern but may not scan well on older QR readers. For important use cases, stick with square modules.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How does a WiFi QR code work?</h4>
-              <p>When scanned with a smartphone camera, a WiFi QR code automatically presents the network name and password, allowing the user to connect with a single tap. This eliminates the need to manually share complex passwords, making it ideal for cafes, hotels, and offices.</p>
+              <h4 class="font-semibold text-sm">Q: How does a WiFi QR code work?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">When scanned with a smartphone camera, a WiFi QR code automatically presents the network name and password, allowing the user to connect with a single tap. This eliminates the need to manually share complex passwords, making it ideal for cafes, hotels, and offices.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the minimum size for a printed QR code?</h4>
-              <p>Size depends on the expected scanning distance. For close-range scanning (within 10cm) like business cards, 2cm x 2cm works. For posters viewed at 1-2 meters, use at least 10cm x 10cm. A general rule: scanning distance divided by 10 equals the minimum QR code size.</p>
+              <h4 class="font-semibold text-sm">Q: What is the minimum size for a printed QR code?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Size depends on the expected scanning distance. For close-range scanning (within 10cm) like business cards, 2cm x 2cm works. For posters viewed at 1-2 meters, use at least 10cm x 10cm. A general rule: scanning distance divided by 10 equals the minimum QR code size.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I freely change the QR code colors?</h4>
-              <p>Yes, but the foreground must be significantly darker than the background. Inverted colors (light foreground on dark background) or low-contrast combinations drastically reduce scan reliability. Black on white remains the most dependable choice.</p>
+              <h4 class="font-semibold text-sm">Q: Can I freely change the QR code colors?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes, but the foreground must be significantly darker than the background. Inverted colors (light foreground on dark background) or low-contrast combinations drastically reduce scan reliability. Black on white remains the most dependable choice.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How much data can a QR code hold?</h4>
-              <p>Up to approximately 3KB, or about 4,296 alphanumeric characters. However, more data means a more complex pattern, making the code harder to scan at small sizes. Using a URL shortener can help keep the data minimal.</p>
+              <h4 class="font-semibold text-sm">Q: How much data can a QR code hold?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Up to approximately 3KB, or about 4,296 alphanumeric characters. However, more data means a more complex pattern, making the code harder to scan at small sizes. Using a URL shortener can help keep the data minimal.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Do QR codes expire?</h4>
-              <p>The QR code itself has no expiration. However, if the URL it links to is changed or deleted, scanning the code will lead to an error. Verify that your linked URL is permanent before generating and distributing QR codes.</p>
+              <h4 class="font-semibold text-sm">Q: Do QR codes expire?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The QR code itself has no expiration. However, if the URL it links to is changed or deleted, scanning the code will lead to an error. Verify that your linked URL is permanent before generating and distributing QR codes.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I use the generated QR code commercially?</h4>
-              <p>Yes, QR codes generated with this tool are free to use for any purpose, including commercial applications like business cards, advertisements, and product packaging.</p>
+              <h4 class="font-semibold text-sm">Q: Can I use the generated QR code commercially?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes, QR codes generated with this tool are free to use for any purpose, including commercial applications like business cards, advertisements, and product packaging.</p>
             </div>
           </div>
         </div>

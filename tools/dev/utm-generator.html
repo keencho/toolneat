@@ -670,22 +670,13 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">UTM 파라미터란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>UTM(Urchin Tracking Module) 파라미터는 웹사이트 URL 뒤에 붙이는 추적용 태그입니다. 마케팅 캠페인별로 어디서 방문자가 유입되었는지 Google Analytics 등 분석 도구에서 정확히 파악할 수 있게 해줍니다. 예를 들어 같은 랜딩 페이지라도 페이스북 광고, 이메일 뉴스레터, 네이버 검색광고 등 각각 다른 UTM 링크를 사용하면 채널별 성과를 한눈에 비교할 수 있습니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>필수 파라미터 3종:</strong> utm_source(트래픽 출처), utm_medium(마케팅 매체), utm_campaign(캠페인 이름)을 입력하면 바로 UTM 링크가 생성됩니다.</li>
-            <li><strong>선택 파라미터:</strong> utm_term(유료 검색 키워드)과 utm_content(A/B 테스트 구분)도 필요시 추가할 수 있습니다.</li>
-            <li><strong>실시간 미리보기:</strong> 입력과 동시에 생성될 URL과 각 파라미터 값을 확인할 수 있습니다.</li>
-            <li><strong>자동 완성 제안:</strong> source와 medium 필드에 자주 쓰이는 값(google, facebook, cpc, email 등)이 제안됩니다.</li>
-            <li><strong>최근 기록 저장:</strong> 생성한 링크가 로컬에 저장되어 나중에 다시 확인하거나 복사할 수 있습니다.</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">시작하기</h3>
+          <ol class="list-decimal ml-5 space-y-2">
             <li>추적할 웹사이트 URL을 입력합니다 (https:// 포함).</li>
             <li>캠페인 소스(utm_source)를 입력합니다. 예: google, facebook, newsletter</li>
             <li>캠페인 매체(utm_medium)를 입력합니다. 예: cpc, banner, email</li>
@@ -694,16 +685,17 @@
             <li>생성된 링크를 복사 버튼으로 클립보드에 복사하여 사용합니다.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>SNS 마케팅:</strong> 페이스북, 인스타그램, 트위터 등 각 채널별 광고 링크에 서로 다른 UTM을 붙여 성과를 비교합니다.</li>
-            <li><strong>이메일 캠페인:</strong> 뉴스레터에 포함된 링크에 UTM을 추가하여 이메일 마케팅의 전환율을 측정합니다.</li>
-            <li><strong>A/B 테스트:</strong> utm_content를 활용해 같은 캠페인 내 서로 다른 배너나 문구의 클릭률을 비교합니다.</li>
-            <li><strong>오프라인 연동:</strong> QR코드에 UTM 링크를 담아 오프라인 광고(전단지, 포스터)의 온라인 전환을 추적합니다.</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">기능 소개</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><strong>필수 파라미터 3종:</strong> utm_source(트래픽 출처), utm_medium(마케팅 매체), utm_campaign(캠페인 이름)을 입력하면 바로 UTM 링크가 생성됩니다.</li>
+            <li><strong>선택 파라미터:</strong> utm_term(유료 검색 키워드)과 utm_content(A/B 테스트 구분)도 필요시 추가할 수 있습니다.</li>
+            <li><strong>실시간 미리보기:</strong> 입력과 동시에 생성될 URL과 각 파라미터 값을 확인할 수 있습니다.</li>
+            <li><strong>자동 완성 제안:</strong> source와 medium 필드에 자주 쓰이는 값(google, facebook, cpc, email 등)이 제안됩니다.</li>
+            <li><strong>최근 기록 저장:</strong> 생성한 링크가 로컬에 저장되어 나중에 다시 확인하거나 복사할 수 있습니다.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">주의할 점</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>모든 파라미터 값은 소문자로 통일하세요. Google Analytics는 대소문자를 구분하므로 Google과 google이 별도로 집계됩니다.</li>
             <li>공백 대신 언더스코어(_) 또는 하이픈(-)을 사용하세요.</li>
             <li>팀 내에서 일관된 명명 규칙을 정하세요. facebook과 fb를 혼용하면 데이터가 분산됩니다.</li>
@@ -711,47 +703,55 @@
             <li>내부 링크(같은 사이트 내 이동)에는 UTM을 사용하지 마세요. 기존 유입 경로 정보가 덮어씌워질 수 있습니다.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">활용 팁</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><strong>SNS 마케팅:</strong> 페이스북, 인스타그램, 트위터 등 각 채널별 광고 링크에 서로 다른 UTM을 붙여 성과를 비교합니다.</li>
+            <li><strong>이메일 캠페인:</strong> 뉴스레터에 포함된 링크에 UTM을 추가하여 이메일 마케팅의 전환율을 측정합니다.</li>
+            <li><strong>A/B 테스트:</strong> utm_content를 활용해 같은 캠페인 내 서로 다른 배너나 문구의 클릭률을 비교합니다.</li>
+            <li><strong>오프라인 연동:</strong> QR코드에 UTM 링크를 담아 오프라인 광고(전단지, 포스터)의 온라인 전환을 추적합니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 하는 질문</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: UTM 파라미터는 SEO에 영향을 주나요?</h4>
-              <p>아닙니다. Google은 UTM 파라미터가 붙은 URL을 별도 페이지로 인식하지 않습니다. 다만 canonical 태그가 올바르게 설정되어 있는지 확인하는 것이 좋습니다.</p>
+              <h4 class="font-semibold text-sm">Q: UTM 파라미터는 SEO에 영향을 주나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">아닙니다. Google은 UTM 파라미터가 붙은 URL을 별도 페이지로 인식하지 않습니다. 다만 canonical 태그가 올바르게 설정되어 있는지 확인하는 것이 좋습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: utm_source, utm_medium, utm_campaign 중 하나만 써도 되나요?</h4>
-              <p>기술적으로는 가능하지만, 세 가지 필수 파라미터를 모두 입력해야 Google Analytics에서 정확한 캠페인 보고서를 볼 수 있습니다. 하나라도 빠지면 (not set)으로 표시될 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: utm_source, utm_medium, utm_campaign 중 하나만 써도 되나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">기술적으로는 가능하지만, 세 가지 필수 파라미터를 모두 입력해야 Google Analytics에서 정확한 캠페인 보고서를 볼 수 있습니다. 하나라도 빠지면 (not set)으로 표시될 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: utm_source와 utm_medium에 어떤 값을 넣어야 하나요?</h4>
-              <p>utm_source는 트래픽의 실제 출처(google, facebook, naver 등), utm_medium은 마케팅 채널 유형(cpc, email, social, banner 등)을 넣습니다. Google의 공식 가이드라인을 참고하면 일관성 있는 값을 사용할 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: utm_source와 utm_medium에 어떤 값을 넣어야 하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">utm_source는 트래픽의 실제 출처(google, facebook, naver 등), utm_medium은 마케팅 채널 유형(cpc, email, social, banner 등)을 넣습니다. Google의 공식 가이드라인을 참고하면 일관성 있는 값을 사용할 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: UTM 파라미터의 순서가 중요한가요?</h4>
-              <p>순서는 중요하지 않습니다. URL의 쿼리 파라미터는 순서에 관계없이 동일하게 해석됩니다. 다만 가독성을 위해 source, medium, campaign, term, content 순서로 작성하는 것이 관례입니다.</p>
+              <h4 class="font-semibold text-sm">Q: UTM 파라미터의 순서가 중요한가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">순서는 중요하지 않습니다. URL의 쿼리 파라미터는 순서에 관계없이 동일하게 해석됩니다. 다만 가독성을 위해 source, medium, campaign, term, content 순서로 작성하는 것이 관례입니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 한글로 UTM 파라미터 값을 작성해도 되나요?</h4>
-              <p>기술적으로 가능하지만, URL 인코딩되면서 링크가 매우 길어지고 읽기 어려워집니다. 영문 소문자와 숫자, 하이픈, 언더스코어 조합을 권장합니다.</p>
+              <h4 class="font-semibold text-sm">Q: 한글로 UTM 파라미터 값을 작성해도 되나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">기술적으로 가능하지만, URL 인코딩되면서 링크가 매우 길어지고 읽기 어려워집니다. 영문 소문자와 숫자, 하이픈, 언더스코어 조합을 권장합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Google Analytics 말고 다른 분석 도구에서도 UTM을 인식하나요?</h4>
-              <p>네. UTM 파라미터는 업계 표준으로, GA4 외에도 Adobe Analytics, Mixpanel, Amplitude 등 대부분의 마케팅 분석 도구에서 지원합니다.</p>
+              <h4 class="font-semibold text-sm">Q: Google Analytics 말고 다른 분석 도구에서도 UTM을 인식하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">네. UTM 파라미터는 업계 표준으로, GA4 외에도 Adobe Analytics, Mixpanel, Amplitude 등 대부분의 마케팅 분석 도구에서 지원합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 기존 URL에 이미 쿼리 파라미터가 있으면 어떻게 되나요?</h4>
-              <p>이 도구는 기존 URL의 쿼리 파라미터를 유지하면서 UTM 파라미터를 추가합니다. 예를 들어 ?page=1이 있는 URL에 utm_source=google이 자동으로 &utm_source=google 형태로 붙습니다.</p>
+              <h4 class="font-semibold text-sm">Q: 기존 URL에 이미 쿼리 파라미터가 있으면 어떻게 되나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">이 도구는 기존 URL의 쿼리 파라미터를 유지하면서 UTM 파라미터를 추가합니다. 예를 들어 ?page=1이 있는 URL에 utm_source=google이 자동으로 &utm_source=google 형태로 붙습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: UTM 링크 생성 후 수정할 수 있나요?</h4>
-              <p>UTM 링크는 단순히 URL에 파라미터가 추가된 것이므로, 새로운 값으로 다시 생성하면 됩니다. 이미 배포한 링크는 수정할 수 없으니, 새 캠페인에는 새 UTM 링크를 만들어 사용하세요.</p>
+              <h4 class="font-semibold text-sm">Q: UTM 링크 생성 후 수정할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">UTM 링크는 단순히 URL에 파라미터가 추가된 것이므로, 새로운 값으로 다시 생성하면 됩니다. 이미 배포한 링크는 수정할 수 없으니, 새 캠페인에는 새 UTM 링크를 만들어 사용하세요.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: UTM 데이터는 Google Analytics 어디에서 확인하나요?</h4>
-              <p>GA4에서는 보고서 > 획득 > 트래픽 획득에서 확인할 수 있습니다. 소스/매체 차원을 선택하면 utm_source와 utm_medium 값이 표시되고, 캠페인 차원에서 utm_campaign 값을 볼 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: UTM 데이터는 Google Analytics 어디에서 확인하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">GA4에서는 보고서 > 획득 > 트래픽 획득에서 확인할 수 있습니다. 소스/매체 차원을 선택하면 utm_source와 utm_medium 값이 표시되고, 캠페인 차원에서 utm_campaign 값을 볼 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: UTM 파라미터 관리를 위한 팁이 있나요?</h4>
-              <p>스프레드시트로 UTM 명명 규칙 문서를 만들어 팀원들과 공유하세요. 소스, 매체, 캠페인 이름의 작성 규칙을 미리 정해두면 데이터 분석 시 훨씬 깔끔한 보고서를 얻을 수 있습니다.</p>
+              <h4 class="font-semibold text-sm">Q: UTM 파라미터 관리를 위한 팁이 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">스프레드시트로 UTM 명명 규칙 문서를 만들어 팀원들과 공유하세요. 소스, 매체, 캠페인 이름의 작성 규칙을 미리 정해두면 데이터 분석 시 훨씬 깔끔한 보고서를 얻을 수 있습니다.</p>
             </div>
           </div>
         </div>

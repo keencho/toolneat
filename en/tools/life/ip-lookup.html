@@ -601,13 +601,21 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is an IP Address?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">An IP (Internet Protocol) address is a unique identification number assigned to every device connected to the internet. Much like a postal address, it ensures data reaches the right destination. This IP lookup tool automatically detects your current public IP address and displays approximate location, ISP information, timezone, and more at a glance.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
+          <ol class="list-decimal ml-5 space-y-2">
+            <li>Visit the page and your IP address is detected automatically</li>
+            <li>View detailed information including IP, location, ISP, and timezone</li>
+            <li>Check the map for a visual representation of your approximate location</li>
+            <li>Copy any information you need for your reference</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Feature Overview</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Automatic detection and display of your public IP address</li>
             <li>IP-based approximate location lookup (country, region, city)</li>
             <li>ISP (Internet Service Provider) and organization information</li>
@@ -616,16 +624,17 @@
             <li>Visual map showing approximate location</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Visit the page and your IP address is detected automatically</li>
-            <li>View detailed information including IP, location, ISP, and timezone</li>
-            <li>Check the map for a visual representation of your approximate location</li>
-            <li>Copy any information you need for your reference</li>
-          </ol>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Important Notes</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>Location shown is based on IP databases and may differ from your actual position</li>
+            <li>When using a VPN or proxy, the VPN server's IP and location will be displayed</li>
+            <li>Most residential internet uses dynamic IPs that change periodically</li>
+            <li>Mobile data and Wi-Fi connections will show different IP addresses</li>
+            <li>An IP address alone cannot identify a specific individual, so there is no need for undue concern</li>
+          </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Usage Tips</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Verifying that a VPN or proxy is working correctly by checking the displayed IP</li>
             <li>Identifying your public IP address when troubleshooting network issues</li>
             <li>Checking local IP information while traveling or on business trips abroad</li>
@@ -634,27 +643,18 @@
             <li>Confirming new IP details after switching ISPs</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Location shown is based on IP databases and may differ from your actual position</li>
-            <li>When using a VPN or proxy, the VPN server's IP and location will be displayed</li>
-            <li>Most residential internet uses dynamic IPs that change periodically</li>
-            <li>Mobile data and Wi-Fi connections will show different IP addresses</li>
-            <li>An IP address alone cannot identify a specific individual, so there is no need for undue concern</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div><h4 class="font-medium">Q: What is the difference between a public and private IP?</h4><p>A public IP is a unique address accessible on the internet, while a private IP is used only within a local network (home or office). This tool displays your public IP.</p></div>
-            <div><h4 class="font-medium">Q: What is the difference between IPv4 and IPv6?</h4><p>IPv4 uses a 32-bit format (e.g., 192.168.1.1) and IPv6 uses a 128-bit format (e.g., 2001:db8::1). The transition to IPv6 is underway as IPv4 addresses become scarce.</p></div>
-            <div><h4 class="font-medium">Q: Why is the location shown not accurate?</h4><p>IP geolocation is a database-based estimate. It is generally accurate to the city level but cannot pinpoint an exact street address.</p></div>
-            <div><h4 class="font-medium">Q: What IP is shown when I use a VPN?</h4><p>The VPN server's IP address and its location will be displayed. This is useful for verifying that your VPN connection is active.</p></div>
-            <div><h4 class="font-medium">Q: Why does my IP address keep changing?</h4><p>Most home internet uses dynamic IP assignment. Your ISP may assign a new IP periodically or when your router restarts.</p></div>
-            <div><h4 class="font-medium">Q: Can I look up someone else's IP address?</h4><p>This tool automatically detects the public IP of the current visitor. It does not provide a feature to manually look up specific IP addresses.</p></div>
-            <div><h4 class="font-medium">Q: Can someone find my exact home address from my IP?</h4><p>No. An IP address only reveals an approximate region (city level). Only your ISP can map an IP to a specific address, and that requires legal authorization.</p></div>
-            <div><h4 class="font-medium">Q: Why is my mobile IP different from my Wi-Fi IP?</h4><p>Mobile data uses your carrier's network while Wi-Fi uses your home or office internet, each assigned a different public IP by their respective providers.</p></div>
-            <div><h4 class="font-medium">Q: Is my IP information stored by this tool?</h4><p>This tool queries an external API to retrieve IP data, but this website does not separately store or log your IP information.</p></div>
-            <div><h4 class="font-medium">Q: What is the ISP information used for?</h4><p>ISP details are useful for diagnosing network problems, comparing internet speeds, or understanding your connection environment.</p></div>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">FAQ</h3>
+          <div class="space-y-5">
+            <div><h4 class="font-semibold text-sm">Q: What is the difference between a public and private IP?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">A public IP is a unique address accessible on the internet, while a private IP is used only within a local network (home or office). This tool displays your public IP.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: What is the difference between IPv4 and IPv6?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">IPv4 uses a 32-bit format (e.g., 192.168.1.1) and IPv6 uses a 128-bit format (e.g., 2001:db8::1). The transition to IPv6 is underway as IPv4 addresses become scarce.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Why is the location shown not accurate?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">IP geolocation is a database-based estimate. It is generally accurate to the city level but cannot pinpoint an exact street address.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: What IP is shown when I use a VPN?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The VPN server's IP address and its location will be displayed. This is useful for verifying that your VPN connection is active.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Why does my IP address keep changing?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Most home internet uses dynamic IP assignment. Your ISP may assign a new IP periodically or when your router restarts.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Can I look up someone else's IP address?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">This tool automatically detects the public IP of the current visitor. It does not provide a feature to manually look up specific IP addresses.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Can someone find my exact home address from my IP?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">No. An IP address only reveals an approximate region (city level). Only your ISP can map an IP to a specific address, and that requires legal authorization.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Why is my mobile IP different from my Wi-Fi IP?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Mobile data uses your carrier's network while Wi-Fi uses your home or office internet, each assigned a different public IP by their respective providers.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: Is my IP information stored by this tool?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">This tool queries an external API to retrieve IP data, but this website does not separately store or log your IP information.</p></div>
+            <div><h4 class="font-semibold text-sm">Q: What is the ISP information used for?</h4><p class="text-gray-600 dark:text-gray-400 text-sm mt-1">ISP details are useful for diagnosing network problems, comparing internet speeds, or understanding your connection environment.</p></div>
           </div>
         </div>
       </section>

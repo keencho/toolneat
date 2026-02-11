@@ -564,22 +564,13 @@
           </div>
         </div>
       </div>
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is PDF Compression?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">PDF compression reduces the overall file size by adjusting the resolution and quality of images embedded within the document. Text data remains untouched while images are re-encoded as JPEG at the quality level you choose. This is particularly useful when you hit email attachment limits (typically 10-25MB), need faster upload speeds, or want to save storage space.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
-            <li>Fine-grained quality slider from 10% to 100%</li>
-            <li>Real-time display of original size, compressed size, and reduction percentage</li>
-            <li>Supports files up to 50MB</li>
-            <li>Complete privacy with in-browser processing -- no server uploads</li>
-            <li>Instant download after compression completes</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5 text-gray-600 dark:text-gray-400 mb-4">
             <li>Drag and drop a PDF file or click the upload area to select one</li>
             <li>Adjust the quality slider -- lower values mean smaller files, higher values preserve more detail</li>
             <li>Click the "Compress" button and wait while each page is processed</li>
@@ -587,8 +578,17 @@
             <li>Click "Download" to save the compressed PDF to your device</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-600 dark:text-gray-400 mb-4">
+            <li>Fine-grained quality slider from 10% to 100%</li>
+            <li>Real-time display of original size, compressed size, and reduction percentage</li>
+            <li>Supports files up to 50MB</li>
+            <li>Complete privacy with in-browser processing -- no server uploads</li>
+            <li>Instant download after compression completes</li>
+          </ul>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-600 dark:text-gray-400 mb-4">
             <li>Shrinking email attachments to stay under service limits</li>
             <li>Meeting file size requirements for government portals or university submissions</li>
             <li>Speeding up PDF loading on websites and blogs</li>
@@ -596,8 +596,21 @@
             <li>Optimizing large batches of scanned documents for long-term storage</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Will compression damage the text in my PDF?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">No. Text data is preserved exactly as-is. Only the image portions are re-encoded at a lower quality.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How much can I reduce the file size?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Image-heavy PDFs can shrink by up to 80%. The actual reduction depends on the type and quality of images in the original file.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I compress password-protected PDFs?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Encrypted PDFs cannot be processed directly. You need to remove the password protection first, then compress the file.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I compress multiple PDFs at once?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Currently the tool handles one file at a time. After finishing, click "New File" to compress the next document.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Could the file actually get larger after compression?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Rarely, if the original is already highly optimized or mostly text, the output may be slightly larger. In that case, try a lower quality setting or use the original as-is.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does this work on mobile devices?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Yes, it works in mobile browsers. However, larger files may take longer to process on mobile devices.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is my file uploaded to a server?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">No. All processing happens entirely in your browser. Your file never leaves your device.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What does the quality percentage mean?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">It represents the JPEG encoding quality. 100% means maximum quality with minimal compression, while 10% means maximum compression with lower image quality. Around 70% is a good balance for most uses.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What if I'm not happy with the result?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">Simply adjust the quality slider to a different value and compress again. The original file is never modified, so you can try as many times as you like.</p></div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-600 dark:text-gray-400 mb-4">
             <li>For general document sharing, 60-70% quality works well</li>
             <li>For print-quality output, keep the slider at 80% or above</li>
             <li>Text-heavy PDFs with few images will show minimal size reduction</li>
@@ -605,19 +618,6 @@
             <li>Always keep a backup of the original file before compressing</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div><h4 class="font-medium">Q: Will compression damage the text in my PDF?</h4><p class="text-gray-600 dark:text-gray-400">No. Text data is preserved exactly as-is. Only the image portions are re-encoded at a lower quality.</p></div>
-            <div><h4 class="font-medium">Q: How much can I reduce the file size?</h4><p class="text-gray-600 dark:text-gray-400">Image-heavy PDFs can shrink by up to 80%. The actual reduction depends on the type and quality of images in the original file.</p></div>
-            <div><h4 class="font-medium">Q: Can I compress password-protected PDFs?</h4><p class="text-gray-600 dark:text-gray-400">Encrypted PDFs cannot be processed directly. You need to remove the password protection first, then compress the file.</p></div>
-            <div><h4 class="font-medium">Q: Can I compress multiple PDFs at once?</h4><p class="text-gray-600 dark:text-gray-400">Currently the tool handles one file at a time. After finishing, click "New File" to compress the next document.</p></div>
-            <div><h4 class="font-medium">Q: Could the file actually get larger after compression?</h4><p class="text-gray-600 dark:text-gray-400">Rarely, if the original is already highly optimized or mostly text, the output may be slightly larger. In that case, try a lower quality setting or use the original as-is.</p></div>
-            <div><h4 class="font-medium">Q: Does this work on mobile devices?</h4><p class="text-gray-600 dark:text-gray-400">Yes, it works in mobile browsers. However, larger files may take longer to process on mobile devices.</p></div>
-            <div><h4 class="font-medium">Q: Is my file uploaded to a server?</h4><p class="text-gray-600 dark:text-gray-400">No. All processing happens entirely in your browser. Your file never leaves your device.</p></div>
-            <div><h4 class="font-medium">Q: What does the quality percentage mean?</h4><p class="text-gray-600 dark:text-gray-400">It represents the JPEG encoding quality. 100% means maximum quality with minimal compression, while 10% means maximum compression with lower image quality. Around 70% is a good balance for most uses.</p></div>
-            <div><h4 class="font-medium">Q: What if I'm not happy with the result?</h4><p class="text-gray-600 dark:text-gray-400">Simply adjust the quality slider to a different value and compress again. The original file is never modified, so you can try as many times as you like.</p></div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

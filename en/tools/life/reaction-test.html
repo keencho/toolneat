@@ -868,14 +868,23 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Reaction Time Test Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <h3 class="text-lg font-semibold mt-6 mb-3">What is a Reaction Time Test?</h3>
+          <h3 class="text-lg font-bold mt-8 mb-2">About a Reaction Time Test</h3>
           <p>A reaction time test measures how quickly you respond to a visual stimulus, recorded in milliseconds (ms). The process involves your eyes detecting the color change, your brain processing the signal, and your motor neurons sending a command to your finger muscles. This entire chain typically takes between 200 and 300ms for most adults. Factors like age, fatigue, focus, and even the time of day can influence your results. Gamers, athletes, drivers, and anyone curious about their reflexes use this test to benchmark and track their performance over time.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Click the blue area to start a test round</li>
+            <li>The screen turns red. Wait patiently without clicking</li>
+            <li>After a random 2-5 second delay the screen turns green. Click instantly</li>
+            <li>Your reaction time for that round is displayed in milliseconds</li>
+            <li>Complete all 5 rounds to see your average score and grade</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Precise millisecond measurement of visual reaction time</li>
             <li>5-round test with automatic average and grade calculation</li>
             <li>Per-round individual records with best and worst times</li>
@@ -884,17 +893,8 @@
             <li>Works on both desktop and mobile devices</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Click the blue area to start a test round</li>
-            <li>The screen turns red. Wait patiently without clicking</li>
-            <li>After a random 2-5 second delay the screen turns green. Click instantly</li>
-            <li>Your reaction time for that round is displayed in milliseconds</li>
-            <li>Complete all 5 rounds to see your average score and grade</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Gamers warming up before competitive matches</li>
             <li>Pre-screening your reflexes before a driving aptitude test</li>
             <li>Athletes checking daily condition and readiness</li>
@@ -903,8 +903,52 @@
             <li>Measuring the effect of caffeine intake on alertness</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the average human reaction time?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">For visual stimuli, the average reaction time is roughly 200-300ms. Young adults in their twenties typically score around 250ms. Reaction time gradually increases with age, and auditory reactions are generally 20-40ms faster than visual ones.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I improve my reaction time?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes. Consistent practice, adequate sleep, moderate caffeine, and regular physical exercise all help. Professional gamers achieve 150-180ms through dedicated training. However, there is a biological limit, and sub-100ms times are virtually impossible for genuine reactions.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Why does the test have 5 rounds?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">A single measurement can be skewed by a momentary lapse in focus or an unusually lucky click. Averaging 5 rounds smooths out these random variations and gives a much more reliable picture of your true reaction speed.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What do the rating grades mean?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Under 200ms is "Amazing" (top 1%), 200-300ms is "Good" (above average), 300-400ms is "Average" (typical), and over 400ms is "Slow." Most people fall somewhere in the 200-350ms range.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Why are my mobile and desktop results different?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Touch input and mouse input have different latency profiles. Screen refresh rates and processing delays also vary by device. In general, a high-refresh-rate monitor with a wired mouse on desktop produces slightly faster recorded times.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does fatigue affect reaction time?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Significantly. Going without sleep for 24 hours can slow your reaction time by 50% or more, comparable to legal alcohol impairment levels. Even mild fatigue from a busy day can add 20-50ms to your average.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does age affect reaction time?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Reaction speed peaks in your twenties and gradually declines. However, people who train consistently can greatly reduce age-related slowing. Experience and anticipation also compensate for raw speed loss in many real-world tasks.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: I got under 100ms. Is that real?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Given human nerve conduction speeds, a sub-100ms result almost certainly means you anticipated the green signal rather than reacting to it. This is a predictive click, not a genuine reaction, so the measurement is not accurate. Try again and wait for the actual color change.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does caffeine actually speed up reactions?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">A moderate amount of caffeine can boost alertness and improve reaction time by roughly 5-10%. Too much caffeine, however, can cause hand tremors and anxiety, which may slow you down or increase premature clicks.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How important is reaction time for gaming?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Reaction speed matters in FPS and fighting games, but overall skill depends on game sense, strategy, and muscle memory. If your average is 250-300ms you can comfortably compete in most games. Training decision-making often yields bigger improvements than raw reaction speed alone.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Clicking before the green signal appears registers as "Too early!" and voids that round</li>
             <li>Touchscreens may add slight latency compared to a mouse. Keep device differences in mind</li>
             <li>Test in a quiet environment where you can fully concentrate for the most accurate results</li>
@@ -912,50 +956,6 @@
             <li>Testing at the same time each day allows consistent day-to-day comparisons</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: What is the average human reaction time?</h4>
-              <p>For visual stimuli, the average reaction time is roughly 200-300ms. Young adults in their twenties typically score around 250ms. Reaction time gradually increases with age, and auditory reactions are generally 20-40ms faster than visual ones.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I improve my reaction time?</h4>
-              <p>Yes. Consistent practice, adequate sleep, moderate caffeine, and regular physical exercise all help. Professional gamers achieve 150-180ms through dedicated training. However, there is a biological limit, and sub-100ms times are virtually impossible for genuine reactions.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Why does the test have 5 rounds?</h4>
-              <p>A single measurement can be skewed by a momentary lapse in focus or an unusually lucky click. Averaging 5 rounds smooths out these random variations and gives a much more reliable picture of your true reaction speed.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What do the rating grades mean?</h4>
-              <p>Under 200ms is "Amazing" (top 1%), 200-300ms is "Good" (above average), 300-400ms is "Average" (typical), and over 400ms is "Slow." Most people fall somewhere in the 200-350ms range.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Why are my mobile and desktop results different?</h4>
-              <p>Touch input and mouse input have different latency profiles. Screen refresh rates and processing delays also vary by device. In general, a high-refresh-rate monitor with a wired mouse on desktop produces slightly faster recorded times.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Does fatigue affect reaction time?</h4>
-              <p>Significantly. Going without sleep for 24 hours can slow your reaction time by 50% or more, comparable to legal alcohol impairment levels. Even mild fatigue from a busy day can add 20-50ms to your average.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Does age affect reaction time?</h4>
-              <p>Reaction speed peaks in your twenties and gradually declines. However, people who train consistently can greatly reduce age-related slowing. Experience and anticipation also compensate for raw speed loss in many real-world tasks.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: I got under 100ms. Is that real?</h4>
-              <p>Given human nerve conduction speeds, a sub-100ms result almost certainly means you anticipated the green signal rather than reacting to it. This is a predictive click, not a genuine reaction, so the measurement is not accurate. Try again and wait for the actual color change.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Does caffeine actually speed up reactions?</h4>
-              <p>A moderate amount of caffeine can boost alertness and improve reaction time by roughly 5-10%. Too much caffeine, however, can cause hand tremors and anxiety, which may slow you down or increase premature clicks.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How important is reaction time for gaming?</h4>
-              <p>Reaction speed matters in FPS and fighting games, but overall skill depends on game sense, strategy, and muscle memory. If your average is 250-300ms you can comfortably compete in most games. Training decision-making often yields bigger improvements than raw reaction speed alone.</p>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- Ad Container (Bottom) -->

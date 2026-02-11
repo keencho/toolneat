@@ -659,12 +659,12 @@ hobbies:
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is YAML ↔ JSON Converter?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>YAML and JSON are the most commonly used data serialization formats in modern software development. YAML's indentation-based syntax makes it popular for DevOps configuration files like Kubernetes manifests, Docker Compose, and GitHub Actions workflows, while JSON's lightweight and fast-to-parse structure has made it the standard for REST APIs and web applications. This tool lets you convert between the two formats right in your browser, with no libraries to install or code to write.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">What Can You Do?</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Bidirectional conversion between YAML and JSON</li>
             <li>Configurable indentation size (2 or 4 spaces)</li>
@@ -676,7 +676,7 @@ hobbies:
             <li>One-click result copying</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Getting Started Guide</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>Enter data in either the YAML area (left) or JSON area (right).</li>
             <li>Click the "YAML → JSON" or "JSON → YAML" button to convert.</li>
@@ -685,7 +685,7 @@ hobbies:
             <li>Use the Copy button to copy results directly to your clipboard.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Recommended Uses</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Converting Kubernetes manifests (YAML) to JSON for API calls</li>
             <li>Transforming Docker Compose files into JSON for programmatic processing</li>
@@ -695,7 +695,7 @@ hobbies:
             <li>Reformatting REST API responses (JSON) into human-readable YAML</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Things to Keep in Mind</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Tab characters are not allowed in YAML. Always use spaces for indentation.</li>
             <li>Numeric-looking string values in YAML (e.g., "0123") should be quoted to remain strings.</li>
@@ -704,47 +704,47 @@ hobbies:
             <li>YAML anchors (&) and aliases (*) are dereferenced (values are copied) in JSON output.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Q&A</h3>
+          <div class="divide-y divide-gray-100 dark:divide-gray-700">
             <div>
-              <h4 class="font-medium">Q: What is the key difference between YAML and JSON?</h4>
-              <p>YAML uses indentation to represent structure and supports comments (#). JSON uses braces and brackets for structure and does not support comments. YAML is easier for humans to read and write, while JSON is faster for machines to parse.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What is the key difference between YAML and JSON?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">YAML uses indentation to represent structure and supports comments (#). JSON uses braces and brackets for structure and does not support comments. YAML is easier for humans to read and write, while JSON is faster for machines to parse.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How are multiline strings handled?</h4>
-              <p>YAML literal blocks (|) preserve line breaks, and folded blocks (>) replace line breaks with spaces. In JSON, these become escaped strings with \n. Reverse conversion handles them properly as well.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How are multiline strings handled?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">YAML literal blocks (|) preserve line breaks, and folded blocks (>) replace line breaks with spaces. In JSON, these become escaped strings with \n. Reverse conversion handles them properly as well.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What happens to YAML comments after conversion?</h4>
-              <p>YAML comments (#) are removed when converting to JSON, since the JSON standard has no comment support. Comments are not automatically restored when converting JSON back to YAML.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What happens to YAML comments after conversion?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">YAML comments (#) are removed when converting to JSON, since the JSON standard has no comment support. Comments are not automatically restored when converting JSON back to YAML.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How are YAML's special types (dates, booleans) handled?</h4>
-              <p>YAML automatically interprets yes/no and on/off as booleans and date patterns as Date objects. When converted to JSON, booleans become true/false and dates become strings. To prevent unwanted type conversion, wrap values in quotes.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How are YAML's special types (dates, booleans) handled?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">YAML automatically interprets yes/no and on/off as booleans and date patterns as Date objects. When converted to JSON, booleans become true/false and dates become strings. To prevent unwanted type conversion, wrap values in quotes.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How does indentation size affect the output?</h4>
-              <p>The indentation setting (2 or 4 spaces) only affects readability of the output. The actual data content remains unchanged. Choose whichever matches your team or project coding conventions.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How does indentation size affect the output?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">The indentation setting (2 or 4 spaces) only affects readability of the output. The actual data content remains unchanged. Choose whichever matches your team or project coding conventions.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How does the auto-detect feature work?</h4>
-              <p>It analyzes the first characters and patterns of the input. Data starting with curly braces or square brackets is recognized as JSON, while data with colon-space patterns and indentation is detected as YAML.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How does the auto-detect feature work?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">It analyzes the first characters and patterns of the input. Data starting with curly braces or square brackets is recognized as JSON, while data with colon-space patterns and indentation is detected as YAML.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can data be lost during conversion?</h4>
-              <p>YAML comments are lost when converting to JSON, and YAML anchors/aliases are resolved into actual values. Other standard data structures are converted without any loss.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Can data be lost during conversion?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">YAML comments are lost when converting to JSON, and YAML anchors/aliases are resolved into actual values. Other standard data structures are converted without any loss.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What happens with syntax errors?</h4>
-              <p>If invalid YAML or JSON is entered, an error message is displayed showing the location and nature of the problem. Fix the issue and try converting again.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What happens with syntax errors?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">If invalid YAML or JSON is entered, an error message is displayed showing the location and nature of the problem. Fix the issue and try converting again.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is my data sent to a server?</h4>
-              <p>No. All conversion processing happens locally in your browser. Your input data is never transmitted to or stored on any external server.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Is my data sent to a server?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">No. All conversion processing happens locally in your browser. Your input data is never transmitted to or stored on any external server.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Are there keyboard shortcuts?</h4>
-              <p>Yes. Press Ctrl+Enter in the YAML input area to convert YAML to JSON, or press Ctrl+Enter in the JSON input area to convert JSON to YAML instantly.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Are there keyboard shortcuts?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Yes. Press Ctrl+Enter in the YAML input area to convert YAML to JSON, or press Ctrl+Enter in the JSON input area to convert JSON to YAML instantly.</p>
             </div>
           </div>
         </div>

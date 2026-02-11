@@ -659,14 +659,24 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">About PDF Watermark</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <h3 class="text-lg font-semibold mt-6 mb-3">What is a PDF Watermark?</h3>
+          <h3 class="text-lg font-bold mt-8 mb-2">About a PDF Watermark</h3>
           <p class="text-gray-600 dark:text-gray-400 mb-4">A PDF watermark is a semi-transparent text overlay placed on every page of a document. It is commonly used to indicate ownership, mark documents as drafts or confidential, or discourage unauthorized copying. This tool lets you add customizable text watermarks directly in your browser without installing any software. You can adjust the position, size, rotation angle, opacity, and color to match your exact needs.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Drag and drop a PDF file or click the upload area to select one</li>
+            <li>Enter the text you want as a watermark</li>
+            <li>Click a position on the 9-point grid to place the watermark</li>
+            <li>Use the sliders to adjust font size, rotation, and opacity</li>
+            <li>Pick a color from the presets or use the custom color picker</li>
+            <li>Check the live preview, then click "Download" to save</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Free-form text input for any watermark message</li>
             <li>9-position grid (top/middle/bottom combined with left/center/right)</li>
             <li>Font size adjustable from 12pt to 120pt</li>
@@ -677,18 +687,8 @@
             <li>Watermark applied uniformly across all pages</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Drag and drop a PDF file or click the upload area to select one</li>
-            <li>Enter the text you want as a watermark</li>
-            <li>Click a position on the 9-point grid to place the watermark</li>
-            <li>Use the sliders to adjust font size, rotation, and opacity</li>
-            <li>Pick a color from the presets or use the custom color picker</li>
-            <li>Check the live preview, then click "Download" to save</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Marking sensitive documents with "CONFIDENTIAL" or "INTERNAL USE ONLY"</li>
             <li>Labeling draft versions with "DRAFT" or "FOR REVIEW"</li>
             <li>Adding company name or author name for copyright protection</li>
@@ -697,8 +697,52 @@
             <li>Indicating document status such as "APPROVED" or "PENDING"</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does adding a watermark modify the original file?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. The original file stays untouched. A new PDF with the watermark is created separately for download.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can the watermark be removed later?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Watermarks added by this tool are drawn directly onto the PDF content, so they cannot be easily removed with standard tools. Keep a copy of the original file.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is the same watermark applied to every page?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, the current version applies identical watermark settings to all pages in the document.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I add an image watermark?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Currently only text watermarks are supported. For logo or image watermarks, use a dedicated tool.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What opacity level works best?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Typically 20% to 40% provides a good balance. Too low and the content beneath becomes hard to read. Too high and the watermark may be barely visible.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Are files uploaded to a server?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">No. All processing happens in your browser. Files are never transmitted to any external server, making it safe for confidential documents.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I position the watermark freely?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">You can choose from 9 positions (combinations of top/middle/bottom and left/center/right). Precise coordinate input is not available.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Is there a file size limit?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Since there is no server upload, there is no strict limit. Very large files may process more slowly depending on your browser memory.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I use non-English text?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">The built-in font is Helvetica, which supports standard Latin characters. Non-Latin text may display differently across PDF viewers.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does it work on mobile devices?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes, it works in mobile browsers. All controls including sliders and position selection are fully functional on touch screens.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>The watermark is drawn on top of the PDF content. Setting opacity too low may obscure the original text.</li>
             <li>For a classic diagonal watermark, set the rotation to -45 degrees.</li>
             <li>Light colors may not print well on paper. Test with a sample page first.</li>
@@ -706,50 +750,6 @@
             <li>The original file is never modified. A new file with the watermark is generated for download.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: Does adding a watermark modify the original file?</h4>
-              <p>No. The original file stays untouched. A new PDF with the watermark is created separately for download.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can the watermark be removed later?</h4>
-              <p>Watermarks added by this tool are drawn directly onto the PDF content, so they cannot be easily removed with standard tools. Keep a copy of the original file.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is the same watermark applied to every page?</h4>
-              <p>Yes, the current version applies identical watermark settings to all pages in the document.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I add an image watermark?</h4>
-              <p>Currently only text watermarks are supported. For logo or image watermarks, use a dedicated tool.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: What opacity level works best?</h4>
-              <p>Typically 20% to 40% provides a good balance. Too low and the content beneath becomes hard to read. Too high and the watermark may be barely visible.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Are files uploaded to a server?</h4>
-              <p>No. All processing happens in your browser. Files are never transmitted to any external server, making it safe for confidential documents.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I position the watermark freely?</h4>
-              <p>You can choose from 9 positions (combinations of top/middle/bottom and left/center/right). Precise coordinate input is not available.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Is there a file size limit?</h4>
-              <p>Since there is no server upload, there is no strict limit. Very large files may process more slowly depending on your browser memory.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I use non-English text?</h4>
-              <p>The built-in font is Helvetica, which supports standard Latin characters. Non-Latin text may display differently across PDF viewers.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Does it work on mobile devices?</h4>
-              <p>Yes, it works in mobile browsers. All controls including sliders and position selection are fully functional on touch screens.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

@@ -624,13 +624,22 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is OG Preview?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>OG (Open Graph) Preview is a tool that lets you check how a web page URL will appear when shared on social media platforms. The Open Graph protocol, developed by Facebook, defines a page's title, description, and representative image. Platforms like Facebook, LinkedIn, Slack, and others all support this standard. By previewing before sharing, you can verify that the information displays exactly as intended.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
+          <ol class="list-decimal ml-5 space-y-2">
+            <li>Enter the URL of the web page you want to inspect.</li>
+            <li>Click the "Analyze" button to fetch the page's OG tags.</li>
+            <li>Review how the page will appear on each social platform in the preview area.</li>
+            <li>Edit any missing or incorrect tags directly in the tool.</li>
+            <li>Copy the corrected OG tag code and apply it to your web page.</li>
+          </ol>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Feature Overview</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li><strong>URL analysis:</strong> Enter a web page URL to automatically read and analyze its OG tags.</li>
             <li><strong>Platform previews:</strong> See how the link will look on Facebook, Twitter, LinkedIn, and other platforms.</li>
             <li><strong>Tag validation:</strong> Check whether required OG tags are missing or contain incorrect values.</li>
@@ -639,26 +648,8 @@
             <li><strong>Code output:</strong> Generate correct OG tag code ready to copy and use.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Enter the URL of the web page you want to inspect.</li>
-            <li>Click the "Analyze" button to fetch the page's OG tags.</li>
-            <li>Review how the page will appear on each social platform in the preview area.</li>
-            <li>Edit any missing or incorrect tags directly in the tool.</li>
-            <li>Copy the corrected OG tag code and apply it to your web page.</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>Marketing campaigns:</strong> Verify link previews before distributing social ads or promotional posts.</li>
-            <li><strong>Blog publishing:</strong> Confirm that titles and images display correctly before sharing new articles on social media.</li>
-            <li><strong>E-commerce products:</strong> Ensure product name, price, and image appear properly when customers share product pages.</li>
-            <li><strong>Website redesigns:</strong> Perform bulk checks on all OG tags after a site overhaul to catch any issues.</li>
-            <li><strong>Competitor analysis:</strong> Review how other sites configure their OG tags to find optimization ideas for your own pages.</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Important Notes</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>The most reliable OG image size is 1200x630px (1.91:1 ratio) in JPG or PNG format.</li>
             <li>Keep og:title under 60 characters and og:description under 155 characters to avoid truncation on most platforms.</li>
             <li>Always use the canonical URL for og:url to prevent duplicate content issues.</li>
@@ -666,39 +657,48 @@
             <li>All analysis runs locally in your browser. The URLs and data you enter are never sent to an external server.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Usage Tips</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><strong>Marketing campaigns:</strong> Verify link previews before distributing social ads or promotional posts.</li>
+            <li><strong>Blog publishing:</strong> Confirm that titles and images display correctly before sharing new articles on social media.</li>
+            <li><strong>E-commerce products:</strong> Ensure product name, price, and image appear properly when customers share product pages.</li>
+            <li><strong>Website redesigns:</strong> Perform bulk checks on all OG tags after a site overhaul to catch any issues.</li>
+            <li><strong>Competitor analysis:</strong> Review how other sites configure their OG tags to find optimization ideas for your own pages.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">FAQ</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: What happens if a page has no Open Graph tags?</h4>
-              <p>Without OG tags, social platforms will attempt to extract a title and image from the page automatically. This often results in unintended titles, descriptions, or images being displayed in the link preview.</p>
+              <h4 class="font-semibold text-sm">Q: What happens if a page has no Open Graph tags?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Without OG tags, social platforms will attempt to extract a title and image from the page automatically. This often results in unintended titles, descriptions, or images being displayed in the link preview.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the minimum size for og:image?</h4>
-              <p>Facebook requires a minimum of 200x200px, but 1200x630px (1.91:1 ratio) is strongly recommended. Smaller images may not display at all or appear blurry in previews.</p>
+              <h4 class="font-semibold text-sm">Q: What is the minimum size for og:image?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Facebook requires a minimum of 200x200px, but 1200x630px (1.91:1 ratio) is strongly recommended. Smaller images may not display at all or appear blurry in previews.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Does Twitter use Open Graph tags?</h4>
-              <p>Twitter prioritizes its own twitter:card tags but falls back to OG tags when they are absent. For the most accurate display, it is best to include both OG and Twitter Card tags on your pages.</p>
+              <h4 class="font-semibold text-sm">Q: Does Twitter use Open Graph tags?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Twitter prioritizes its own twitter:card tags but falls back to OG tags when they are absent. For the most accurate display, it is best to include both OG and Twitter Card tags on your pages.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: I updated my OG tags but the social preview has not changed.</h4>
-              <p>Social platforms cache link previews. Visit Facebook's Sharing Debugger (developers.facebook.com/tools/debug), enter your URL, and click "Scrape Again" to force a refresh with your latest tags.</p>
+              <h4 class="font-semibold text-sm">Q: I updated my OG tags but the social preview has not changed.</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Social platforms cache link previews. Visit Facebook's Sharing Debugger (developers.facebook.com/tools/debug), enter your URL, and click "Scrape Again" to force a refresh with your latest tags.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What value should I use for og:type?</h4>
-              <p>Use "website" for general pages, "article" for blog posts, and "product" for product pages. In most cases, "website" is the safe default.</p>
+              <h4 class="font-semibold text-sm">Q: What value should I use for og:type?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Use "website" for general pages, "article" for blog posts, and "product" for product pages. In most cases, "website" is the safe default.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I register multiple images with Open Graph?</h4>
-              <p>Yes. You can include multiple og:image tags on a page. The first image is used as the default preview, and some platforms let users choose from the available images.</p>
+              <h4 class="font-semibold text-sm">Q: Can I register multiple images with Open Graph?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes. You can include multiple og:image tags on a page. The first image is used as the default preview, and some platforms let users choose from the available images.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I analyze localhost URLs?</h4>
-              <p>This tool accesses URLs directly from your browser, so you can analyze OG tags on a local development server (localhost) as long as the server is running.</p>
+              <h4 class="font-semibold text-sm">Q: Can I analyze localhost URLs?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">This tool accesses URLs directly from your browser, so you can analyze OG tags on a local development server (localhost) as long as the server is running.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the difference between og:description and meta description?</h4>
-              <p>The meta description appears in search engine results, while og:description appears in social media link previews. They are configured separately and can contain different text tailored to each context.</p>
+              <h4 class="font-semibold text-sm">Q: What is the difference between og:description and meta description?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The meta description appears in search engine results, while og:description appears in social media link previews. They are configured separately and can contain different text tailored to each context.</p>
             </div>
           </div>
         </div>

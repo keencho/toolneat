@@ -2145,6 +2145,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/blog/color-theory-guide</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/color-theory-guide"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/color-theory-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/color-theory-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/blog/color-theory-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/color-theory-guide"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/color-theory-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/color-theory-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/blog/hash-guide</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/hash-guide"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/hash-guide"/>
@@ -2217,6 +2235,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/blog/online-privacy-guide</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/online-privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/online-privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/online-privacy-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/blog/online-privacy-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/online-privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/online-privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/online-privacy-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/blog/password-guide</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/password-guide"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/password-guide"/>
@@ -2230,6 +2266,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/password-guide"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/password-guide"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/password-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/blog/pdf-management-tips</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/pdf-management-tips"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/pdf-management-tips"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/pdf-management-tips"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/blog/pdf-management-tips</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/pdf-management-tips"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/pdf-management-tips"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/pdf-management-tips"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2320,6 +2374,42 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/typing-test-guide"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/typing-test-guide"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/typing-test-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/blog/unit-conversion-guide</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/unit-conversion-guide"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/unit-conversion-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/unit-conversion-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/blog/unit-conversion-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/unit-conversion-guide"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/unit-conversion-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/unit-conversion-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/blog/url-encoding-guide</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/url-encoding-guide"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/url-encoding-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/url-encoding-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/blog/url-encoding-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/url-encoding-guide"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/url-encoding-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/url-encoding-guide"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

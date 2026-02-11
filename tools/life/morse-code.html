@@ -606,28 +606,19 @@
         </div>
       </div>
 
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">모스 부호 차트</h2>
         <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-9 gap-2 text-sm" id="morse-chart"></div>
       </section>
 
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">모스 부호 변환기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>모스 부호 변환기는 일반 텍스트를 모스 부호(Morse Code)로, 또는 모스 부호를 일반 텍스트로 쌍방향 변환해주는 온라인 도구입니다. 모스 부호는 1830년대 새뮤얼 모스가 개발한 통신 시스템으로, 점(·)과 선(-)의 조합으로 알파벳, 숫자, 특수 문자를 표현합니다.</p>
           <p class="mt-3">교육, 취미, 비상 통신 학습 등 다양한 목적으로 활용할 수 있으며, 입력하는 즉시 변환 결과가 표시되어 빠르고 편리합니다. 소리 재생 기능을 통해 실제 모스 부호 신호음도 들어볼 수 있습니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>텍스트를 모스 부호로, 모스 부호를 텍스트로 양방향 변환</li>
-            <li>영문 알파벳, 숫자, 주요 특수 문자 지원</li>
-            <li>실시간 변환 결과 표시</li>
-            <li>모스 부호 소리 재생 기능</li>
-            <li>전체 모스 부호 차트 제공</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">이용 가이드</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
             <li>변환 방향을 선택합니다 (텍스트 → 모스 부호 또는 모스 부호 → 텍스트)</li>
             <li>입력란에 텍스트 또는 모스 부호를 입력합니다</li>
             <li>변환 결과가 아래에 즉시 표시됩니다</li>
@@ -635,8 +626,17 @@
             <li>복사 버튼으로 결과를 클립보드에 저장합니다</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">핵심 기능</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>텍스트를 모스 부호로, 모스 부호를 텍스트로 양방향 변환</li>
+            <li>영문 알파벳, 숫자, 주요 특수 문자 지원</li>
+            <li>실시간 변환 결과 표시</li>
+            <li>모스 부호 소리 재생 기능</li>
+            <li>전체 모스 부호 차트 제공</li>
+          </ul>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">이런 상황에서 유용해요</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>모스 부호 학습 및 연습용 교육 도구</li>
             <li>아마추어 무선(HAM) 통신 입문자의 부호 확인</li>
             <li>비상 상황 대비 SOS 등 기본 신호 익히기</li>
@@ -644,8 +644,52 @@
             <li>영화, 드라마, 게임에 나오는 모스 부호 해독</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">궁금한 점 모음</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 모스 부호는 어떤 원리로 작동하나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">각 문자에 고유한 점(·)과 선(-)의 조합이 배정되어 있습니다. 예를 들어 A는 ·-, B는 -···, S는 ···, O는 ---입니다. 이 신호를 빛, 소리, 전기 신호 등으로 전달합니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 한글도 모스 부호로 변환할 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">국제 모스 부호는 라틴 알파벳과 숫자를 기준으로 합니다. 한글을 변환하려면 먼저 로마자 표기(예: 안녕 → annyeong)로 바꾼 후 입력하세요.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: SOS 신호는 왜 ··· --- ···인가요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">SOS는 특정 단어의 약자가 아니라, 보내기 쉽고 알아보기 쉬운 패턴으로 채택된 국제 조난 신호입니다. 점 3개, 선 3개, 점 3개로 이루어져 구별하기 매우 쉽습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 모스 부호를 입력할 때 띄어쓰기는 어떻게 하나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">문자 사이는 공백 하나, 단어 사이는 슬래시(/) 또는 공백 여러 개로 구분합니다. 이 도구에서는 자동으로 적절한 간격을 처리해줍니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 소리 재생 기능은 어떻게 사용하나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">변환 결과가 표시된 후 재생 버튼을 클릭하면 실제 모스 부호 신호음(비프음)이 재생됩니다. 점은 짧은 소리, 선은 긴 소리로 구분됩니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 모스 부호는 지금도 사용되나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">공식적인 해상 통신에서는 1999년에 폐지되었지만, 아마추어 무선(HAM) 통신, 항공 내비게이션, 비상 통신 등에서 여전히 활용되고 있습니다. 교육 및 취미 목적으로도 인기가 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 특수 문자도 변환되나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">마침표, 쉼표, 물음표, 느낌표 등 주요 구두점은 지원됩니다. 지원되지 않는 특수 문자는 변환 시 무시될 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 모스 부호를 빨리 익히는 방법이 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">가장 흔한 문자(E, T, A, I, N)부터 시작하고, 소리를 반복해서 듣는 것이 효과적입니다. 이 도구의 소리 재생 기능을 활용하여 눈과 귀로 동시에 학습해보세요.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 변환 결과를 복사할 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">네, 복사 버튼을 클릭하면 변환된 모스 부호 또는 텍스트가 클립보드에 복사됩니다. 메시지, 메모, 문서 등에 바로 붙여넣을 수 있습니다.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 모바일에서도 사용할 수 있나요?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">네, 스마트폰이나 태블릿의 브라우저에서도 동일하게 사용할 수 있습니다. 화면 크기에 맞게 인터페이스가 자동 조절됩니다.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">알아두면 좋은 점</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>모스 부호에서 점(·)은 짧은 신호(dit), 선(-)은 점의 3배 길이인 긴 신호(dah)입니다</li>
             <li>문자 사이에는 점 3개 길이의 간격, 단어 사이에는 점 7개 길이의 간격을 둡니다</li>
             <li>SOS 신호(··· --- ···)는 국제적으로 통용되는 조난 신호입니다</li>
@@ -653,50 +697,6 @@
             <li>한글은 직접 변환되지 않으므로 영문이나 로마자 표기를 사용하세요</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: 모스 부호는 어떤 원리로 작동하나요?</h4>
-              <p>각 문자에 고유한 점(·)과 선(-)의 조합이 배정되어 있습니다. 예를 들어 A는 ·-, B는 -···, S는 ···, O는 ---입니다. 이 신호를 빛, 소리, 전기 신호 등으로 전달합니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 한글도 모스 부호로 변환할 수 있나요?</h4>
-              <p>국제 모스 부호는 라틴 알파벳과 숫자를 기준으로 합니다. 한글을 변환하려면 먼저 로마자 표기(예: 안녕 → annyeong)로 바꾼 후 입력하세요.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: SOS 신호는 왜 ··· --- ···인가요?</h4>
-              <p>SOS는 특정 단어의 약자가 아니라, 보내기 쉽고 알아보기 쉬운 패턴으로 채택된 국제 조난 신호입니다. 점 3개, 선 3개, 점 3개로 이루어져 구별하기 매우 쉽습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 모스 부호를 입력할 때 띄어쓰기는 어떻게 하나요?</h4>
-              <p>문자 사이는 공백 하나, 단어 사이는 슬래시(/) 또는 공백 여러 개로 구분합니다. 이 도구에서는 자동으로 적절한 간격을 처리해줍니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 소리 재생 기능은 어떻게 사용하나요?</h4>
-              <p>변환 결과가 표시된 후 재생 버튼을 클릭하면 실제 모스 부호 신호음(비프음)이 재생됩니다. 점은 짧은 소리, 선은 긴 소리로 구분됩니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 모스 부호는 지금도 사용되나요?</h4>
-              <p>공식적인 해상 통신에서는 1999년에 폐지되었지만, 아마추어 무선(HAM) 통신, 항공 내비게이션, 비상 통신 등에서 여전히 활용되고 있습니다. 교육 및 취미 목적으로도 인기가 있습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 특수 문자도 변환되나요?</h4>
-              <p>마침표, 쉼표, 물음표, 느낌표 등 주요 구두점은 지원됩니다. 지원되지 않는 특수 문자는 변환 시 무시될 수 있습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 모스 부호를 빨리 익히는 방법이 있나요?</h4>
-              <p>가장 흔한 문자(E, T, A, I, N)부터 시작하고, 소리를 반복해서 듣는 것이 효과적입니다. 이 도구의 소리 재생 기능을 활용하여 눈과 귀로 동시에 학습해보세요.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 변환 결과를 복사할 수 있나요?</h4>
-              <p>네, 복사 버튼을 클릭하면 변환된 모스 부호 또는 텍스트가 클립보드에 복사됩니다. 메시지, 메모, 문서 등에 바로 붙여넣을 수 있습니다.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: 모바일에서도 사용할 수 있나요?</h4>
-              <p>네, 스마트폰이나 태블릿의 브라우저에서도 동일하게 사용할 수 있습니다. 화면 크기에 맞게 인터페이스가 자동 조절됩니다.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

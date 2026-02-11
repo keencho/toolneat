@@ -622,13 +622,22 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">이미지 회전/뒤집기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">이미지 회전/뒤집기는 사진의 방향을 바꾸거나 좌우/상하를 반전시키는 편집 작업입니다. 스마트폰으로 촬영한 사진이 옆으로 누워 있거나, 거울처럼 반전된 셀카를 원래대로 되돌리거나, 디자인 작업에서 대칭 이미지를 만들 때 자주 사용합니다. 별도 프로그램 없이 브라우저에서 클릭 한 번으로 간편하게 처리할 수 있습니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">이용 가이드</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>이미지를 드래그하거나 클릭하여 업로드합니다</li>
+            <li>원하는 회전 버튼(왼쪽 90°, 오른쪽 90°, 180°)을 클릭합니다</li>
+            <li>필요하면 좌우 또는 상하 뒤집기 버튼을 추가로 클릭합니다</li>
+            <li>여러 변환을 순서대로 적용하여 원하는 방향을 만듭니다</li>
+            <li>'다운로드' 버튼을 클릭하여 결과 이미지를 저장합니다</li>
+          </ol>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">핵심 기능</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>왼쪽 90도, 오른쪽 90도, 180도 회전 지원</li>
             <li>좌우 뒤집기(수평 반전)와 상하 뒤집기(수직 반전)</li>
             <li>여러 변환을 순서대로 조합하여 적용 가능</li>
@@ -637,17 +646,8 @@
             <li>브라우저 내 처리로 이미지 외부 전송 없음</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>이미지를 드래그하거나 클릭하여 업로드합니다</li>
-            <li>원하는 회전 버튼(왼쪽 90°, 오른쪽 90°, 180°)을 클릭합니다</li>
-            <li>필요하면 좌우 또는 상하 뒤집기 버튼을 추가로 클릭합니다</li>
-            <li>여러 변환을 순서대로 적용하여 원하는 방향을 만듭니다</li>
-            <li>'다운로드' 버튼을 클릭하여 결과 이미지를 저장합니다</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">이런 상황에서 유용해요</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>스마트폰에서 가로/세로가 잘못 저장된 사진 바로잡기</li>
             <li>셀카의 좌우 반전을 원래대로 되돌리기</li>
             <li>스캔한 문서가 거꾸로 되어 있을 때 180도 회전</li>
@@ -656,8 +656,22 @@
             <li>인쇄용 이미지의 방향을 프린터 설정에 맞추기</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">궁금한 점 모음</h3>
+          <div class="space-y-3">
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 어떤 이미지 형식을 지원하나요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">JPG, PNG, GIF, WebP 등 대부분의 이미지 형식을 지원합니다.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 회전하면 화질이 떨어지나요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">아닙니다. 원본 픽셀을 그대로 재배치하는 방식이므로 화질 손실 없이 회전됩니다.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 임의의 각도(예: 45도)로 회전할 수 있나요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">현재는 90도 단위 회전과 뒤집기만 지원합니다. 임의 각도 회전이 필요하면 전문 편집 도구를 사용해 주세요.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 여러 변환을 한꺼번에 적용할 수 있나요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">네, 회전과 뒤집기를 원하는 만큼 순서대로 적용할 수 있습니다. 각 변환은 즉시 반영됩니다.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 모바일에서도 사용 가능한가요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">네, 모바일 브라우저에서도 동일하게 작동합니다. 촬영한 사진을 바로 회전할 수 있습니다.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 이미지가 서버에 업로드되나요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">아닙니다. 모든 처리는 브라우저에서 이루어지며 이미지가 외부로 전송되지 않습니다.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 투명 배경 PNG도 회전 가능한가요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">네, PNG의 투명 영역은 회전/뒤집기 후에도 그대로 유지됩니다.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 변환을 취소하고 원본으로 돌아갈 수 있나요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">네, '초기화' 버튼을 클릭하면 모든 변환이 취소되고 원본 상태로 돌아갑니다.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 다운로드 파일 형식은 무엇인가요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">PNG 형식으로 다운로드됩니다. 원본 해상도가 유지됩니다.</p></div>
+            <div><h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: 여러 이미지를 한꺼번에 처리할 수 있나요?</h4><p class="text-gray-500 dark:text-gray-400 mt-1">현재는 한 장씩 처리됩니다. 완료 후 '새 이미지' 버튼으로 다음 이미지를 바로 편집할 수 있습니다.</p></div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">알아두면 좋은 점</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>회전과 뒤집기를 조합하면 어떤 방향이든 만들 수 있습니다</li>
             <li>초기화 버튼으로 원본 상태로 되돌릴 수 있으니 부담 없이 시도해 보세요</li>
             <li>90도 회전 시 가로/세로 비율이 바뀌므로 결과 크기를 확인하세요</li>
@@ -665,20 +679,6 @@
             <li>원본 파일은 변경되지 않으며 새 파일로 다운로드됩니다</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
-            <div><h4 class="font-medium">Q: 어떤 이미지 형식을 지원하나요?</h4><p>JPG, PNG, GIF, WebP 등 대부분의 이미지 형식을 지원합니다.</p></div>
-            <div><h4 class="font-medium">Q: 회전하면 화질이 떨어지나요?</h4><p>아닙니다. 원본 픽셀을 그대로 재배치하는 방식이므로 화질 손실 없이 회전됩니다.</p></div>
-            <div><h4 class="font-medium">Q: 임의의 각도(예: 45도)로 회전할 수 있나요?</h4><p>현재는 90도 단위 회전과 뒤집기만 지원합니다. 임의 각도 회전이 필요하면 전문 편집 도구를 사용해 주세요.</p></div>
-            <div><h4 class="font-medium">Q: 여러 변환을 한꺼번에 적용할 수 있나요?</h4><p>네, 회전과 뒤집기를 원하는 만큼 순서대로 적용할 수 있습니다. 각 변환은 즉시 반영됩니다.</p></div>
-            <div><h4 class="font-medium">Q: 모바일에서도 사용 가능한가요?</h4><p>네, 모바일 브라우저에서도 동일하게 작동합니다. 촬영한 사진을 바로 회전할 수 있습니다.</p></div>
-            <div><h4 class="font-medium">Q: 이미지가 서버에 업로드되나요?</h4><p>아닙니다. 모든 처리는 브라우저에서 이루어지며 이미지가 외부로 전송되지 않습니다.</p></div>
-            <div><h4 class="font-medium">Q: 투명 배경 PNG도 회전 가능한가요?</h4><p>네, PNG의 투명 영역은 회전/뒤집기 후에도 그대로 유지됩니다.</p></div>
-            <div><h4 class="font-medium">Q: 변환을 취소하고 원본으로 돌아갈 수 있나요?</h4><p>네, '초기화' 버튼을 클릭하면 모든 변환이 취소되고 원본 상태로 돌아갑니다.</p></div>
-            <div><h4 class="font-medium">Q: 다운로드 파일 형식은 무엇인가요?</h4><p>PNG 형식으로 다운로드됩니다. 원본 해상도가 유지됩니다.</p></div>
-            <div><h4 class="font-medium">Q: 여러 이미지를 한꺼번에 처리할 수 있나요?</h4><p>현재는 한 장씩 처리됩니다. 완료 후 '새 이미지' 버튼으로 다음 이미지를 바로 편집할 수 있습니다.</p></div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

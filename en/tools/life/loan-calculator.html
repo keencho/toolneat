@@ -800,23 +800,14 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is a Loan Calculator?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>A loan calculator is an essential financial planning tool that estimates your monthly payments, total repayment amount, and total interest based on the loan principal, annual interest rate, and repayment period. Whether you are considering a mortgage, auto loan, personal loan, or student loan, running the numbers before signing helps you understand the true cost of borrowing and plan your budget accordingly.</p>
           <p class="mt-3">This calculator supports three repayment methods: equal payment (amortization), equal principal, and bullet (interest-only). You can compare each method side by side to find the strategy that best fits your income pattern and financial goals.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Three repayment methods: equal payment, equal principal, and bullet repayment</li>
-            <li>Detailed monthly amortization schedule showing principal, interest, and remaining balance</li>
-            <li>Total repayment and total interest displayed for instant comparison</li>
-            <li>Visual breakdown of principal versus interest ratio</li>
-            <li>Flexible input supporting any loan amount and custom interest rates</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
             <li>Enter the total loan amount (principal) you wish to borrow</li>
             <li>Input the annual interest rate with decimal precision (e.g., 4.5%)</li>
             <li>Set the repayment period in months or years</li>
@@ -824,8 +815,17 @@
             <li>Click Calculate to view your monthly payments and full amortization schedule</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Core Features</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Three repayment methods: equal payment, equal principal, and bullet repayment</li>
+            <li>Detailed monthly amortization schedule showing principal, interest, and remaining balance</li>
+            <li>Total repayment and total interest displayed for instant comparison</li>
+            <li>Visual breakdown of principal versus interest ratio</li>
+            <li>Flexible input supporting any loan amount and custom interest rates</li>
+          </ul>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">When This Comes in Handy</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>Simulating mortgage payments and comparing offers from different banks</li>
             <li>Estimating monthly costs before taking out an auto loan</li>
             <li>Planning repayment strategy for personal or student loans</li>
@@ -833,8 +833,52 @@
             <li>Budgeting for monthly debt obligations alongside other expenses</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-bold mt-8 mb-2">Common Questions</h3>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: What is the difference between equal payment and equal principal?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Equal payment (amortization) keeps your monthly payment the same throughout the loan term, making budgeting straightforward. Equal principal means you repay the same portion of principal each month plus decreasing interest, so payments start higher but drop over time, and you pay less total interest overall.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: When is bullet repayment a good choice?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Bullet repayment means you pay only interest during the loan term and repay the entire principal at maturity. It works well for short-term loans or situations where you expect a lump sum (like selling a property). Monthly payments are the lowest, but total interest is the highest among the three methods.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How much difference does 1% in interest rate make?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">On a $200,000 loan over 30 years, a 1% rate difference can result in over $40,000 more in total interest. The longer the loan term and the larger the principal, the greater the impact. Even a fraction of a percent matters, so it pays to shop around for the best rate.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Should I choose a fixed or variable interest rate?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Fixed rates provide payment certainty, which is ideal if rates are expected to rise. Variable rates start lower but carry the risk of increasing over time. If you are unsure, a hybrid option (fixed for an initial period, then variable) offers a middle ground. Use this calculator to model different rate scenarios.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How much can I save by making extra payments?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Extra payments reduce your outstanding principal, which in turn reduces the interest charged in subsequent months. Making extra payments early in the loan term has the biggest effect. Even small additional monthly payments can shorten the loan by years and save significant interest.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How do I know how much I can afford to borrow?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">A common guideline is to keep total monthly debt payments below 36% of your gross monthly income. Use this calculator to find the monthly payment for different loan amounts, then compare it with your income and existing obligations to determine a comfortable borrowing level.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Why might the bank's numbers differ from this calculator?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Minor differences can arise due to different day-count conventions, rounding methods, or additional fees like origination charges and insurance. This tool provides a close estimate for comparison purposes. Always confirm the exact figures with your lender before signing.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: How do I evaluate refinancing?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Enter the remaining balance and remaining term of your current loan, then compare it with the new loan's terms. If the total interest savings on the new loan exceed the prepayment penalty plus refinancing costs, switching is likely worthwhile.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Can I use this for interest-only periods (grace periods)?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">During a grace period, you only pay interest each month, calculated as (principal x annual rate) / 12. Enter the repayment period excluding the grace period to see what payments look like once principal repayment begins.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 dark:text-gray-200">Q: Does this calculator work for any currency?</h4>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Yes. The calculator works purely with numbers, so it applies to any currency. Simply enter your loan amount in the currency you need and the results will be in that same currency.</p>
+            </div>
+          </div>
+        </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
             <li>A difference of just 0.5% in interest rate can save or cost you thousands over a long-term loan</li>
             <li>Equal principal repayment costs less in total interest, but equal payment offers consistent monthly budgeting</li>
             <li>Actual loans may include origination fees, insurance, and other closing costs not reflected here</li>
@@ -842,50 +886,6 @@
             <li>Making extra payments early in the loan term has the greatest impact on total interest savings</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div>
-              <h4 class="font-medium">Q: What is the difference between equal payment and equal principal?</h4>
-              <p>Equal payment (amortization) keeps your monthly payment the same throughout the loan term, making budgeting straightforward. Equal principal means you repay the same portion of principal each month plus decreasing interest, so payments start higher but drop over time, and you pay less total interest overall.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: When is bullet repayment a good choice?</h4>
-              <p>Bullet repayment means you pay only interest during the loan term and repay the entire principal at maturity. It works well for short-term loans or situations where you expect a lump sum (like selling a property). Monthly payments are the lowest, but total interest is the highest among the three methods.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How much difference does 1% in interest rate make?</h4>
-              <p>On a $200,000 loan over 30 years, a 1% rate difference can result in over $40,000 more in total interest. The longer the loan term and the larger the principal, the greater the impact. Even a fraction of a percent matters, so it pays to shop around for the best rate.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Should I choose a fixed or variable interest rate?</h4>
-              <p>Fixed rates provide payment certainty, which is ideal if rates are expected to rise. Variable rates start lower but carry the risk of increasing over time. If you are unsure, a hybrid option (fixed for an initial period, then variable) offers a middle ground. Use this calculator to model different rate scenarios.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How much can I save by making extra payments?</h4>
-              <p>Extra payments reduce your outstanding principal, which in turn reduces the interest charged in subsequent months. Making extra payments early in the loan term has the biggest effect. Even small additional monthly payments can shorten the loan by years and save significant interest.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How do I know how much I can afford to borrow?</h4>
-              <p>A common guideline is to keep total monthly debt payments below 36% of your gross monthly income. Use this calculator to find the monthly payment for different loan amounts, then compare it with your income and existing obligations to determine a comfortable borrowing level.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Why might the bank's numbers differ from this calculator?</h4>
-              <p>Minor differences can arise due to different day-count conventions, rounding methods, or additional fees like origination charges and insurance. This tool provides a close estimate for comparison purposes. Always confirm the exact figures with your lender before signing.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: How do I evaluate refinancing?</h4>
-              <p>Enter the remaining balance and remaining term of your current loan, then compare it with the new loan's terms. If the total interest savings on the new loan exceed the prepayment penalty plus refinancing costs, switching is likely worthwhile.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Can I use this for interest-only periods (grace periods)?</h4>
-              <p>During a grace period, you only pay interest each month, calculated as (principal x annual rate) / 12. Enter the repayment period excluding the grace period to see what payments look like once principal repayment begins.</p>
-            </div>
-            <div>
-              <h4 class="font-medium">Q: Does this calculator work for any currency?</h4>
-              <p>Yes. The calculator works purely with numbers, so it applies to any currency. Simply enter your loan amount in the currency you need and the results will be in that same currency.</p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

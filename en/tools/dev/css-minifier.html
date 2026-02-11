@@ -644,25 +644,15 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">CSS Minifier / Beautifier Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">What is CSS Minification?</h3>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">All About CSS Minification</h3>
           <p>CSS minification is the process of stripping unnecessary characters from a stylesheet -- whitespace, line breaks, comments, and redundant semicolons -- to shrink the file size without changing how the browser interprets it. Because browsers ignore formatting entirely, a minified file renders exactly the same as its uncompressed source while requiring significantly less bandwidth to transfer. CSS beautification (or prettification) is the reverse operation: it takes a single-line, compressed block and reformats it with proper indentation and line breaks so that humans can read and edit it comfortably. The standard workflow is to develop with beautified CSS and deploy with minified CSS, giving you the best of both worlds.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>Minify:</strong> Removes all whitespace, line breaks, and comments to produce the smallest possible CSS output.</li>
-            <li><strong>Beautify:</strong> Reformats compressed CSS with clean indentation and line breaks for easy reading.</li>
-            <li><strong>Indent Options:</strong> Choose between 2-space or 4-space indentation when beautifying.</li>
-            <li><strong>Live Preview:</strong> See the output update in real time as you type or paste code.</li>
-            <li><strong>Size Comparison:</strong> View original versus minified file sizes to understand exact savings.</li>
-            <li><strong>Clipboard Copy:</strong> Copy the processed CSS with one click, ready to paste into your project.</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
+          <ol class="list-decimal ml-5 space-y-2">
             <li>Paste or type your CSS code into the input area.</li>
             <li>Click the "Minify" button to strip whitespace and comments, producing compact CSS.</li>
             <li>Click the "Beautify" button to reformat compressed CSS with clean indentation and line breaks.</li>
@@ -671,16 +661,18 @@
             <li>Paste the result directly into your project files, build pipeline, or email template.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>Production deployment:</strong> Minify your finished CSS before uploading it to the web server to shave seconds off page load times.</li>
-            <li><strong>Third-party CSS analysis:</strong> Beautify minified CSS from an external library or framework to understand how it is structured.</li>
-            <li><strong>Email templates:</strong> Inline CSS in HTML emails often contains unnecessary whitespace. Minifying it keeps the email within size limits imposed by some providers.</li>
-            <li><strong>Build pipeline sanity checks:</strong> Compare manually minified output against your build tool's result to verify that your pipeline is configured correctly.</li>
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Feature Overview</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><strong>Minify:</strong> Removes all whitespace, line breaks, and comments to produce the smallest possible CSS output.</li>
+            <li><strong>Beautify:</strong> Reformats compressed CSS with clean indentation and line breaks for easy reading.</li>
+            <li><strong>Indent Options:</strong> Choose between 2-space or 4-space indentation when beautifying.</li>
+            <li><strong>Live Preview:</strong> See the output update in real time as you type or paste code.</li>
+            <li><strong>Size Comparison:</strong> View original versus minified file sizes to understand exact savings.</li>
+            <li><strong>Clipboard Copy:</strong> Copy the processed CSS with one click, ready to paste into your project.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Important Notes</h3>
+          <ul class="list-disc ml-5 space-y-2">
             <li>Pair minification with source maps so you can trace minified CSS back to original line numbers during debugging.</li>
             <li>Minification only removes formatting. To eliminate unused CSS rules, use a tree-shaking tool like PurgeCSS alongside minification.</li>
             <li>Build tools like Webpack, Vite, and Parcel include CSS minification plugins that automate the process during every build.</li>
@@ -688,39 +680,47 @@
             <li>Beautification is especially helpful during code reviews, where readable formatting makes differences easier to spot.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Usage Tips</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><strong>Production deployment:</strong> Minify your finished CSS before uploading it to the web server to shave seconds off page load times.</li>
+            <li><strong>Third-party CSS analysis:</strong> Beautify minified CSS from an external library or framework to understand how it is structured.</li>
+            <li><strong>Email templates:</strong> Inline CSS in HTML emails often contains unnecessary whitespace. Minifying it keeps the email within size limits imposed by some providers.</li>
+            <li><strong>Build pipeline sanity checks:</strong> Compare manually minified output against your build tool's result to verify that your pipeline is configured correctly.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">FAQ</h3>
+          <div class="space-y-5">
             <div>
-              <h4 class="font-medium">Q: How much smaller does CSS get after minification?</h4>
-              <p>It depends on how much whitespace and how many comments the original file contains. Heavily commented stylesheets with generous indentation can shrink by 30-60%. Lean files with few comments typically see a 10-20% reduction.</p>
+              <h4 class="font-semibold text-sm">Q: How much smaller does CSS get after minification?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">It depends on how much whitespace and how many comments the original file contains. Heavily commented stylesheets with generous indentation can shrink by 30-60%. Lean files with few comments typically see a 10-20% reduction.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Will minification break my CSS?</h4>
-              <p>Not if the original CSS is syntactically valid. Minification only removes whitespace and comments; it does not alter selectors, properties, or values. Existing syntax errors in the source, however, may surface after formatting is stripped away.</p>
+              <h4 class="font-semibold text-sm">Q: Will minification break my CSS?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Not if the original CSS is syntactically valid. Minification only removes whitespace and comments; it does not alter selectors, properties, or values. Existing syntax errors in the source, however, may surface after formatting is stripped away.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I restore minified CSS back to its original form?</h4>
-              <p>The Beautify function will add indentation and line breaks, making the CSS readable again. However, comments removed during minification cannot be recovered, so the output will not be identical to the original source.</p>
+              <h4 class="font-semibold text-sm">Q: Can I restore minified CSS back to its original form?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The Beautify function will add indentation and line breaks, making the CSS readable again. However, comments removed during minification cannot be recovered, so the output will not be identical to the original source.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Does this tool support SCSS or LESS?</h4>
-              <p>This tool processes plain CSS only. SCSS, LESS, and other preprocessor files should be compiled to CSS first, then minified.</p>
+              <h4 class="font-semibold text-sm">Q: Does this tool support SCSS or LESS?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">This tool processes plain CSS only. SCSS, LESS, and other preprocessor files should be compiled to CSS first, then minified.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What is the difference between CSS minification and Gzip compression?</h4>
-              <p>Minification removes unnecessary characters at the source level. Gzip compresses the file into a binary format during HTTP transfer. Using both together yields the greatest overall size reduction.</p>
+              <h4 class="font-semibold text-sm">Q: What is the difference between CSS minification and Gzip compression?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Minification removes unnecessary characters at the source level. Gzip compresses the file into a binary format during HTTP transfer. Using both together yields the greatest overall size reduction.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Should I use minified CSS during development?</h4>
-              <p>Generally, no. Beautified CSS is much easier to read and debug. Minification is best applied right before production deployment, or handled automatically by a build tool so you never have to think about it.</p>
+              <h4 class="font-semibold text-sm">Q: Should I use minified CSS during development?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Generally, no. Beautified CSS is much easier to read and debug. Minification is best applied right before production deployment, or handled automatically by a build tool so you never have to think about it.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Does minification handle CSS custom properties (variables)?</h4>
-              <p>Yes. Custom properties like <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">--my-color: #333</code> are preserved exactly as-is. Minification does not rename or modify variable names or their values.</p>
+              <h4 class="font-semibold text-sm">Q: Does minification handle CSS custom properties (variables)?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes. Custom properties like <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">--my-color: #333</code> are preserved exactly as-is. Minification does not rename or modify variable names or their values.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is my data secure?</h4>
-              <p>All processing happens locally in your browser. Your CSS code is never sent to any server or stored externally, so you can safely paste proprietary or internal stylesheets without any privacy concerns.</p>
+              <h4 class="font-semibold text-sm">Q: Is my data secure?</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">All processing happens locally in your browser. Your CSS code is never sent to any server or stored externally, so you can safely paste proprietary or internal stylesheets without any privacy concerns.</p>
             </div>
           </div>
         </div>

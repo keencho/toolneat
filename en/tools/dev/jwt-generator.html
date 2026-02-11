@@ -714,14 +714,14 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">JWT Generator Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">What is JWT Generation?</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Understanding JWT Generation</h3>
           <p>JWT (JSON Web Token) generation is the process of creating a signed token for user authentication or data exchange. By combining a Header (algorithm, type), Payload (claims data), and Secret Key, you produce a valid JWT. Generated tokens are used across API authentication, session management, Single Sign-On (SSO), and microservice-to-microservice communication.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">What Can You Do?</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>HMAC algorithm selection: HS256, HS384, and HS512 supported</li>
             <li>Standard claim form inputs: sub (subject), iss (issuer), aud (audience)</li>
@@ -732,7 +732,7 @@
             <li>One-click copy and real-time token preview</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Getting Started Guide</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>Select the signing algorithm from the Header section. HS256 is the most common choice.</li>
             <li>Fill in the Payload fields with the claims you need: sub, iss, aud, and so on.</li>
@@ -742,7 +742,7 @@
             <li>Click "Generate JWT" to produce the signed token, then copy it with the Copy button.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Recommended Uses</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Creating test authentication tokens during API development</li>
             <li>Generating Bearer tokens for Postman or cURL requests</li>
@@ -751,7 +751,7 @@
             <li>Demonstrating or sharing specific claim structures with team members</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Things to Keep in Mind</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Tokens generated with this tool are intended for testing and development. In production, always generate tokens on the server side.</li>
             <li>Use a secret key at least as long as the hash output of your algorithm (32 bytes for HS256).</li>
@@ -760,39 +760,39 @@
             <li>All token generation happens in your browser. No secret keys or tokens are sent to any server.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Q&A</h3>
+          <div class="divide-y divide-gray-100 dark:divide-gray-700">
             <div>
-              <h4 class="font-medium">Q: How do I create a secure secret key?</h4>
-              <p>Click "Generate Random" to produce a 256-bit (64-character hex) cryptographically secure random key. In production, store this key in environment variables or a secret manager and never hard-code it in your source code.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How do I create a secure secret key?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Click "Generate Random" to produce a 256-bit (64-character hex) cryptographically secure random key. In production, store this key in environment variables or a secret manager and never hard-code it in your source code.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: How long should I set the token expiration time?</h4>
-              <p>It depends on the use case. Access tokens typically expire in 15 minutes to 1 hour, while refresh tokens last 7 to 30 days. Services with strict security requirements (finance, healthcare) should use shorter durations.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: How long should I set the token expiration time?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">It depends on the use case. Access tokens typically expire in 15 minutes to 1 hour, while refresh tokens last 7 to 30 days. Services with strict security requirements (finance, healthcare) should use shorter durations.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: When should I use JSON mode?</h4>
-              <p>JSON mode is useful when you need nested objects, arrays, or complex data structures in your claims. Form mode only supports simple key-value pairs, while JSON mode gives you full flexibility over the payload structure.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: When should I use JSON mode?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">JSON mode is useful when you need nested objects, arrays, or complex data structures in your claims. Form mode only supports simple key-value pairs, while JSON mode gives you full flexibility over the payload structure.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Which HMAC algorithm should I choose -- HS256, HS384, or HS512?</h4>
-              <p>HS256 is sufficient for the vast majority of web applications. HS384 and HS512 produce longer hashes for slightly stronger security but are marginally slower. Unless you have specific security requirements, HS256 is the recommended default.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Which HMAC algorithm should I choose -- HS256, HS384, or HS512?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">HS256 is sufficient for the vast majority of web applications. HS384 and HS512 produce longer hashes for slightly stronger security but are marginally slower. Unless you have specific security requirements, HS256 is the recommended default.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Can I use generated tokens directly in production?</h4>
-              <p>Technically yes, but it is not recommended. Production environments should generate tokens through server-side code for proper security. Use this tool for development, testing, and learning.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Can I use generated tokens directly in production?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">Technically yes, but it is not recommended. Production environments should generate tokens through server-side code for proper security. Use this tool for development, testing, and learning.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What kind of data can I put in custom claims?</h4>
-              <p>You can include user roles, permissions, names, or any application-specific data. However, since JWT payloads are not encrypted, never include sensitive information like passwords or credit card numbers.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What kind of data can I put in custom claims?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">You can include user roles, permissions, names, or any application-specific data. However, since JWT payloads are not encrypted, never include sensitive information like passwords or credit card numbers.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: What happens if I lose my secret key?</h4>
-              <p>You will no longer be able to verify the signature of any tokens signed with that key. You will need to generate a new key, invalidate existing tokens, and re-issue tokens with the new key.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: What happens if I lose my secret key?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">You will no longer be able to verify the signature of any tokens signed with that key. You will need to generate a new key, invalidate existing tokens, and re-issue tokens with the new key.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: Is my secret key or generated token sent to a server?</h4>
-              <p>No. All operations happen entirely in your browser. Neither the secret key nor the generated token is transmitted to any external server.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: Is my secret key or generated token sent to a server?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">No. All operations happen entirely in your browser. Neither the secret key nor the generated token is transmitted to any external server.</p>
             </div>
           </div>
         </div>

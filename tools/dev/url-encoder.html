@@ -622,12 +622,12 @@
       </div>
 
       <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">URL 인코딩이란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>URL 인코딩(퍼센트 인코딩)은 URL에서 사용할 수 없는 문자를 안전하게 전송하기 위해 %XX 형태의 16진수 코드로 변환하는 방식입니다. URL은 ASCII 문자의 제한된 집합만 허용하기 때문에, 공백, 한글, 특수문자 등은 인코딩이 필요합니다. 예를 들어 공백은 %20, 앰퍼샌드(&)는 %26, 한글 '가'는 %EA%B0%80으로 변환됩니다. 쿼리 파라미터에 데이터를 전달하거나, 폼을 제출하거나, REST API를 호출할 때 URL 인코딩은 웹 개발의 필수 기술입니다.</p>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">무엇을 할 수 있나요?</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>인코딩/디코딩 양방향 변환</li>
             <li>세 가지 인코딩 모드: Component(파라미터용), URI(전체 URL용), 전체(모든 문자)</li>
@@ -638,7 +638,7 @@
             <li>모든 처리가 브라우저에서 이루어져 데이터 보안 보장</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">사용 가이드</h3>
           <ol class="list-decimal list-inside space-y-2">
             <li>상단에서 '인코딩' 또는 '디코딩' 모드를 선택합니다.</li>
             <li>인코딩 방식을 선택합니다: Component(쿼리 파라미터 값), URI(전체 URL), 전체(모든 특수문자).</li>
@@ -647,7 +647,7 @@
             <li>'복사' 버튼으로 결과를 클립보드에 복사하거나, 스왑 버튼으로 입출력을 교체할 수 있습니다.</li>
           </ol>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">활용 사례</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">추천 활용법</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>검색 API에 한글이나 특수문자가 포함된 쿼리를 전달할 때</li>
             <li>SNS 공유 링크에 제목이나 설명을 쿼리 파라미터로 포함할 때</li>
@@ -657,7 +657,7 @@
             <li>OAuth 콜백 URL이나 쿠키 값에 포함된 인코딩 데이터를 해석할 때</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">팁과 주의사항</h3>
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">참고사항</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>쿼리 파라미터 값에는 Component 모드를 사용하세요. URI 모드는 &, =, ? 같은 구분 문자를 유지하므로 파라미터 값이 깨질 수 있습니다.</li>
             <li>이중 인코딩에 주의하세요. 이미 인코딩된 URL을 다시 인코딩하면 %가 %25로 변환되어 복원이 어려워집니다.</li>
@@ -666,47 +666,47 @@
             <li>UTF-8이 표준이지만, 일부 레거시 시스템은 EUC-KR 등 다른 인코딩을 사용합니다. 인코딩 불일치 시 글자가 깨질 수 있습니다.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">자주 묻는 질문</h3>
-          <div class="space-y-4">
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Q&A</h3>
+          <div class="divide-y divide-gray-100 dark:divide-gray-700">
             <div>
-              <h4 class="font-medium">Q: encodeURIComponent와 encodeURI의 차이점은 무엇인가요?</h4>
-              <p>encodeURIComponent는 /, ?, #, &, = 등 모든 특수문자를 인코딩하므로 쿼리 파라미터 값을 전달할 때 사용합니다. encodeURI는 이런 URL 구조 문자를 유지하므로 전체 URL을 인코딩할 때 적합합니다. 파라미터 값에 encodeURI를 사용하면 &나 =가 인코딩되지 않아 URL 구조가 깨질 수 있습니다.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: encodeURIComponent와 encodeURI의 차이점은 무엇인가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">encodeURIComponent는 /, ?, #, &, = 등 모든 특수문자를 인코딩하므로 쿼리 파라미터 값을 전달할 때 사용합니다. encodeURI는 이런 URL 구조 문자를 유지하므로 전체 URL을 인코딩할 때 적합합니다. 파라미터 값에 encodeURI를 사용하면 &나 =가 인코딩되지 않아 URL 구조가 깨질 수 있습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: URL 인코딩이 왜 필요한가요?</h4>
-              <p>URL 표준(RFC 3986)은 ASCII 문자의 제한된 집합만 허용합니다. &는 파라미터 구분자, =는 키-값 구분자, ?는 쿼리 시작 등 특별한 의미를 가진 문자가 있습니다. 데이터에 이런 문자가 포함되면 URL 파서가 잘못 해석하므로, 인코딩으로 데이터와 구조를 구분해야 합니다.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: URL 인코딩이 왜 필요한가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">URL 표준(RFC 3986)은 ASCII 문자의 제한된 집합만 허용합니다. &는 파라미터 구분자, =는 키-값 구분자, ?는 쿼리 시작 등 특별한 의미를 가진 문자가 있습니다. 데이터에 이런 문자가 포함되면 URL 파서가 잘못 해석하므로, 인코딩으로 데이터와 구조를 구분해야 합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: %20과 +는 둘 다 공백인가요?</h4>
-              <p>네, 둘 다 공백을 나타내지만 사용 맥락이 다릅니다. %20은 URL 경로와 쿼리 모두에서 사용되는 표준 형식이고, +는 HTML 폼의 application/x-www-form-urlencoded에서만 공백을 나타냅니다. 대부분의 서버는 둘 다 인식하지만, REST API에서는 %20을 사용하는 것이 안전합니다.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: %20과 +는 둘 다 공백인가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">네, 둘 다 공백을 나타내지만 사용 맥락이 다릅니다. %20은 URL 경로와 쿼리 모두에서 사용되는 표준 형식이고, +는 HTML 폼의 application/x-www-form-urlencoded에서만 공백을 나타냅니다. 대부분의 서버는 둘 다 인식하지만, REST API에서는 %20을 사용하는 것이 안전합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 이중 인코딩이란 무엇이고 어떻게 방지하나요?</h4>
-              <p>이미 인코딩된 문자열을 다시 인코딩하면 %가 %25로 변환되어 %20이 %2520이 됩니다. 디코딩해도 원본이 아닌 %20이 나옵니다. 방지하려면 인코딩 전에 입력이 이미 인코딩되었는지 확인하고, 인코딩은 최종 URL 조합 단계에서 한 번만 적용하세요.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: 이중 인코딩이란 무엇이고 어떻게 방지하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">이미 인코딩된 문자열을 다시 인코딩하면 %가 %25로 변환되어 %20이 %2520이 됩니다. 디코딩해도 원본이 아닌 %20이 나옵니다. 방지하려면 인코딩 전에 입력이 이미 인코딩되었는지 확인하고, 인코딩은 최종 URL 조합 단계에서 한 번만 적용하세요.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 한글은 왜 인코딩하면 그렇게 길어지나요?</h4>
-              <p>한글은 UTF-8에서 한 글자당 3바이트를 차지합니다. 각 바이트가 %XX로 표현되므로 한 글자가 %EA%B0%80처럼 9자로 변환됩니다. 이는 UTF-8 인코딩의 특성으로, 중국어나 일본어도 비슷한 길이로 변환됩니다.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: 한글은 왜 인코딩하면 그렇게 길어지나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">한글은 UTF-8에서 한 글자당 3바이트를 차지합니다. 각 바이트가 %XX로 표현되므로 한 글자가 %EA%B0%80처럼 9자로 변환됩니다. 이는 UTF-8 인코딩의 특성으로, 중국어나 일본어도 비슷한 길이로 변환됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: URL에 이모지를 사용할 수 있나요?</h4>
-              <p>이모지도 URL 인코딩을 통해 사용할 수 있습니다. 이모지는 UTF-8에서 4바이트를 차지하므로 %F0%9F%98%80처럼 12자로 인코딩됩니다. 일부 브라우저는 주소창에 이모지를 그대로 표시하지만, 실제 HTTP 요청에서는 인코딩된 형태로 전송됩니다.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: URL에 이모지를 사용할 수 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">이모지도 URL 인코딩을 통해 사용할 수 있습니다. 이모지는 UTF-8에서 4바이트를 차지하므로 %F0%9F%98%80처럼 12자로 인코딩됩니다. 일부 브라우저는 주소창에 이모지를 그대로 표시하지만, 실제 HTTP 요청에서는 인코딩된 형태로 전송됩니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 전체 인코딩 모드는 언제 사용하나요?</h4>
-              <p>전체 인코딩은 알파벳, 숫자, 일부 안전 문자(-, _, ., ~)를 제외한 모든 문자를 인코딩합니다. Base64 문자열이나 바이너리 데이터를 URL에 포함할 때, 또는 어떤 문자가 예약 문자인지 확신이 없을 때 가장 안전한 선택입니다.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: 전체 인코딩 모드는 언제 사용하나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">전체 인코딩은 알파벳, 숫자, 일부 안전 문자(-, _, ., ~)를 제외한 모든 문자를 인코딩합니다. Base64 문자열이나 바이너리 데이터를 URL에 포함할 때, 또는 어떤 문자가 예약 문자인지 확신이 없을 때 가장 안전한 선택입니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 브라우저 주소창의 한글 URL은 인코딩된 건가요?</h4>
-              <p>브라우저는 편의를 위해 주소창에 디코딩된 한글을 표시하지만, 실제 HTTP 요청은 인코딩된 형태로 전송됩니다. 주소창에서 URL을 복사하면 브라우저에 따라 인코딩된 형태 또는 원본 한글이 복사될 수 있습니다. 이 도구로 실제 인코딩 결과를 확인하면 확실합니다.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: 브라우저 주소창의 한글 URL은 인코딩된 건가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">브라우저는 편의를 위해 주소창에 디코딩된 한글을 표시하지만, 실제 HTTP 요청은 인코딩된 형태로 전송됩니다. 주소창에서 URL을 복사하면 브라우저에 따라 인코딩된 형태 또는 원본 한글이 복사될 수 있습니다. 이 도구로 실제 인코딩 결과를 확인하면 확실합니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 이 도구에서 처리할 수 있는 텍스트 길이에 제한이 있나요?</h4>
-              <p>특별한 길이 제한은 없지만, 매우 긴 URL은 서버나 브라우저의 URL 길이 제한(보통 2,048~8,192자)에 걸릴 수 있습니다. 대용량 데이터는 URL 파라미터 대신 POST 요청의 본문으로 전달하는 것이 좋습니다.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: 이 도구에서 처리할 수 있는 텍스트 길이에 제한이 있나요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">특별한 길이 제한은 없지만, 매우 긴 URL은 서버나 브라우저의 URL 길이 제한(보통 2,048~8,192자)에 걸릴 수 있습니다. 대용량 데이터는 URL 파라미터 대신 POST 요청의 본문으로 전달하는 것이 좋습니다.</p>
             </div>
             <div>
-              <h4 class="font-medium">Q: 이 도구는 무료인가요?</h4>
-              <p>네, 완전히 무료이며 사용 횟수 제한이 없습니다. 모든 변환은 브라우저에서 처리되므로 입력한 데이터가 서버로 전송되지 않습니다.</p>
+              <h4 class="font-medium pt-3 first:pt-0">Q: 이 도구는 무료인가요?</h4>
+              <p class="text-gray-600 dark:text-gray-400 pb-1">네, 완전히 무료이며 사용 횟수 제한이 없습니다. 모든 변환은 브라우저에서 처리되므로 입력한 데이터가 서버로 전송되지 않습니다.</p>
             </div>
           </div>
         </div>
