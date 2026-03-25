@@ -64,7 +64,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -530,7 +530,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Add PDF Watermark</h1>
@@ -750,6 +750,46 @@
             <li>The original file is never modified. A new file with the watermark is generated for download.</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">About This Tool</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Watermarking is one of the simplest ways to protect documents or mark them as drafts. Here are the answers to what people ask most often.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What opacity level works best for a professional look?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Around 15 to 25 percent opacity strikes the right balance. The watermark is clearly visible when someone looks for it, but it does not interfere with reading the document content. For "CONFIDENTIAL" or "DRAFT" stamps that need to stand out more, 30 to 40 percent works well without obscuring text.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can someone easily remove the watermark I add?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Text watermarks embedded in a PDF can be removed with the right tools, so they are best used as a deterrent rather than bulletproof protection. For stronger security, consider diagonal placement across the entire page and combining the watermark with password protection on the PDF itself.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does the watermark appear on every page?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes, the watermark is applied to all pages in the document. This ensures consistent branding or protection throughout, even if individual pages are extracted or printed separately.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the best position for a watermark?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Center with a diagonal angle is the most common choice because it covers the most area and is hardest to crop out. For subtle branding, a small watermark in the bottom corner works nicely. If the goal is to prevent unauthorized use of the document, center diagonal at a larger font size is your best bet.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Will the original PDF be modified?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Never. A brand new PDF file is generated with the watermark applied. Your original file stays completely untouched on your device. This also means you can experiment with different watermark styles and positions without any risk.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I use special characters or non-English text?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The watermark supports standard Latin characters, numbers, and common symbols. For best results, stick to simple text like your company name, "DRAFT," "CONFIDENTIAL," or a date. Very long watermark text may need a smaller font size to fit cleanly on the page.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

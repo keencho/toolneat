@@ -111,7 +111,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -577,7 +577,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -749,6 +749,41 @@
             <li>All processing happens locally in your browser; no screen data or colors are ever sent to a server</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Good to Know</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Picking colors from your screen is surprisingly useful for design work, brand analysis, or simply figuring out the exact shade used on a website you admire.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why does the eyedropper not work in my browser?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The EyeDropper API is currently only supported in Chromium-based browsers (Chrome 95+, Edge 95+). Firefox and Safari have not implemented it yet. On unsupported browsers, you can still use the color wheel and manual input.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the difference between HEX, RGB, and HSL?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">HEX is a compact hexadecimal notation (like #3B82F6) popular in CSS. RGB defines color as red, green, and blue channels from 0-255. HSL uses hue (0-360 degrees), saturation, and lightness, which many designers find more intuitive for color adjustments.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">The picked color looks slightly different from what I see on screen. Why?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Display color profiles can cause small discrepancies. If your monitor uses a wide-gamut profile like DCI-P3, the extracted sRGB value may not be an exact visual match. For most web work, the difference is negligible.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I pick colors from outside the browser window?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes, that is one of the best features of the EyeDropper API. Once activated, you can click anywhere on your screen, including other applications, desktop wallpaper, or images open in other programs.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is any data sent to a server?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">No. Color picking and conversion all happen locally in your browser. No screen data or color values leave your device.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Ad Container (Bottom) -->

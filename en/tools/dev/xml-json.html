@@ -65,7 +65,7 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -531,7 +531,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -573,7 +573,7 @@
         <div id="error-message" class="hidden mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400 text-sm"></div>
 
         <!-- Two Column Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <!-- Input Section -->
           <div class="flex flex-col">
             <div class="flex items-center justify-between mb-2">
@@ -682,6 +682,46 @@
             <li>For very large files (several MB), consider splitting data to avoid browser performance issues.</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">About This Tool</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">XML and JSON are the two most common data interchange formats on the web. Converting between them comes up constantly when working with APIs, configuration files, or legacy systems.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How are XML attributes handled in JSON?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Attributes are prefixed with @ in the JSON output (for example, @id or @category). This is a widely adopted convention that keeps attributes visually distinct from child elements.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What happens to text content when an element has both attributes and text?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The text goes into a special #text key. So an element like &lt;item type="book"&gt;Dune&lt;/item&gt; becomes {"@type": "book", "#text": "Dune"} in JSON.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can the conversion be reversed without losing data?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">In most cases yes, but some nuances like processing instructions, CDATA sections, and XML comments do not have direct JSON equivalents. Simple data structures round-trip cleanly.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How are repeated elements converted to JSON?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Multiple sibling elements with the same tag name are automatically grouped into a JSON array. A single element stays as an object, which is something to watch for if your code expects arrays.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is there a file size limit?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Since processing happens in your browser, there is no hard limit. However, files larger than a few megabytes may cause the browser tab to slow down. For very large datasets, a server-side tool or CLI would be more practical.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does this handle XML namespaces?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Namespace prefixes are preserved in the JSON keys as-is. Complex namespace mappings may need manual cleanup after conversion, especially when multiple namespaces are declared in the same document.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

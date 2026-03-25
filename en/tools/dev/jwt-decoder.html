@@ -156,7 +156,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -622,7 +622,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -718,7 +718,7 @@
       <!-- Standard Claims Card -->
       <div class="card mt-6">
         <h3 class="font-medium text-gray-900 dark:text-white mb-4">Standard Claims (Registered Claims)</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm">
           <div>
             <code class="text-blue-600 dark:text-blue-400">iss</code>
             <span class="text-gray-600 dark:text-gray-400"> - </span>
@@ -756,6 +756,46 @@
           </div>
         </div>
       </div>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Good to Know</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">JSON Web Tokens are everywhere in modern authentication. Understanding what is inside a JWT helps you debug auth issues faster and verify that tokens contain what you expect.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is it safe to paste my JWT here?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes. Decoding happens entirely in your browser. The token is never sent to any server. That said, avoid sharing decoded token contents publicly since they may contain user IDs, emails, or permissions.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does decoding a JWT verify the signature?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">No. Decoding simply base64-decodes the header and payload sections. Anyone can read a JWT without the secret key. Signature verification requires the signing key and is a separate step that servers perform.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What do the three parts of a JWT represent?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The header specifies the algorithm (like HS256 or RS256). The payload contains claims such as user info and expiration time. The signature ensures the token has not been tampered with. They are separated by dots.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What are the standard claim fields?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The most common ones are "sub" (subject/user ID), "exp" (expiration timestamp), "iat" (issued at), "iss" (issuer), and "aud" (audience). These are all optional but widely used by convention.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">My token says "exp" is a big number. What does it mean?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">That is a Unix timestamp representing seconds since January 1, 1970. For example, 1700000000 corresponds to November 14, 2023. This tool automatically converts it to a human-readable date for you.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why should I never store sensitive data in a JWT?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Because the payload is only base64-encoded, not encrypted. Anyone who intercepts the token can read its contents. Use JWTs for claims and identity, but keep passwords and secrets out of them.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-8">

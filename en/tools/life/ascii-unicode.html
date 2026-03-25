@@ -70,7 +70,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -536,7 +536,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">ASCII/Unicode Converter</h1>
@@ -738,6 +738,41 @@
             <li>The \u escape format is mainly used for characters in the Basic Multilingual Plane (BMP)</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Quick Tips</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Working with character codes and Unicode values comes up more often than you might expect, from debugging encoding issues to inserting special symbols in code.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the difference between ASCII and Unicode?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">ASCII covers only 128 characters, mostly English letters, digits, and basic symbols. Unicode extends this to over 149,000 characters, covering virtually every writing system in the world plus emojis. ASCII is actually a subset of Unicode.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">When would I need to look up a character code?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Common scenarios include inserting special characters in HTML (like &amp;#169; for the copyright symbol), debugging text encoding issues, or working with low-level data protocols that require specific byte values.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What does the \u escape format mean?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The \u prefix followed by four hex digits is the JavaScript and JSON Unicode escape sequence. For example, \u0041 represents the letter A. Characters outside the Basic Multilingual Plane use surrogate pairs like \uD83D\uDE00.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I convert emojis here?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes. Paste any emoji and you will see its Unicode code point, decimal value, and hex representation. Keep in mind that many emojis are actually sequences of multiple code points joined together.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why do some characters show as boxes or question marks?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">That means your browser or operating system does not have a font installed that includes that particular character. The code point is still correct even if it cannot be visually rendered.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

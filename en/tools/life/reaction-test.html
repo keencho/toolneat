@@ -297,7 +297,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -763,7 +763,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -817,7 +817,7 @@
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">Final Results</h3>
 
             <!-- Stats Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-6">
               <div class="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm slide-up" style="animation-delay: 0.1s">
                 <div id="result-average" class="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
                 <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">Average</div>
@@ -956,6 +956,46 @@
             <li>Testing at the same time each day allows consistent day-to-day comparisons</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Common Questions</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Reaction time is one of the most measurable aspects of human performance. Whether you are a gamer, an athlete, or just curious, here is what you should know.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is a good reaction time?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The average human visual reaction time falls between 200 and 250 milliseconds. Competitive gamers often score between 150 and 180ms consistently. Anything under 150ms is exceptional, and results below 100ms are likely due to anticipation rather than genuine reaction.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why do my results vary so much between attempts?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Reaction time fluctuates based on alertness, fatigue, caffeine intake, and even time of day. Your brain processes visual stimuli slightly differently each time. Taking 5 or more attempts and looking at your average gives a much more reliable picture than any single try.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does my monitor affect the results?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes, noticeably. A 60Hz monitor adds up to 16.7ms of display lag compared to a 240Hz panel that adds only about 4ms. Input lag from your mouse or trackpad adds another few milliseconds. For the most accurate measurement, use a wired mouse on a high-refresh display.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I actually improve my reaction time?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">To a degree. Regular practice can shave 10 to 20ms off your average over a few weeks. Adequate sleep, physical fitness, and staying hydrated all contribute to faster neural processing. However, there is a biological floor determined by nerve conduction speed that training cannot overcome.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What happens if I click too early?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Clicking before the screen turns green means you anticipated the change rather than reacted to it. The test detects this and marks it as "too soon," resetting that particular round. Patience between the red and green phases is part of the challenge.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is reaction time affected by age?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Reaction time peaks in your mid-20s and gradually slows with age, roughly 1 to 2ms per year after 30. That said, experienced gamers in their 40s often outperform untrained 20-year-olds because familiarity and anticipation compensate for raw speed.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Ad Container (Bottom) -->

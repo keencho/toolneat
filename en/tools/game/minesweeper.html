@@ -156,7 +156,7 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -622,7 +622,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.minesweeper.title">Minesweeper</h1>
@@ -725,6 +725,46 @@
             <div>
               <h4 class="font-medium">Q: How do I right-click on mobile?</h4>
               <p>On mobile devices, press and hold a cell for about 0.5 seconds to toggle the flag.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Minesweeper Tips</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Minesweeper is a logic puzzle disguised as a game. Every numbered cell is a clue, and with the right approach, you can clear boards consistently. Here is what players commonly wonder about.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What do the numbers mean?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Each number tells you exactly how many mines are hiding in the 8 cells surrounding it. A "1" means one of its neighbors is a mine. A "3" means three of them are. When a cell shows "0," all 8 neighbors are safe, which is why large empty areas open up at once.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Where should I click first?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Corners and edges are statistically safer for opening moves since they have fewer neighboring cells. Many experienced players click near the center to try to open a large area at once, but the first click is always safe in most implementations, so it comes down to personal preference and what opens up the most information.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is there ever a point where I have to guess?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Unfortunately, yes. Some board configurations create 50/50 situations where pure logic cannot determine which cell is safe. This happens most often at board edges late in the game. Expert players develop an intuition for which guess is more likely to be correct based on mine density patterns, but sometimes it really is a coin flip.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the 1-2-1 pattern?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">When you see a row of numbers reading 1-2-1 along a boundary of unrevealed cells, the mines are always under the cells adjacent to the 1s, and the cell next to the 2 in between is safe. Learning common number patterns like this lets you solve sections instantly without working through the logic cell by cell.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Should I flag every mine I find?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Speedrunners often skip flagging entirely and only click safe cells, a technique called NF (no-flag) style. Flagging takes time but helps prevent accidental clicks on known mines. For beginners, flagging is highly recommended because it makes the remaining logic much clearer. As you get faster, you can decide whether flagging slows you down.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What are good completion times for each difficulty?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">On Beginner (9x9, 10 mines), under 10 seconds is competitive. Intermediate (16x16, 40 mines) players aim for under 40 seconds. Expert (30x16, 99 mines) in under 100 seconds is impressive, and the world record sits around 30 seconds. For a casual player, simply completing Expert without hitting a mine is an achievement worth celebrating.</p>
             </div>
           </div>
         </div>

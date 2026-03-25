@@ -53,7 +53,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -519,9 +519,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <article class="container-main max-w-3xl">
-      <div class="mb-8">
+      <div class="mb-10">
         <a href="/blog" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">← 블로그</a>
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">Base64 인코딩의 원리와 실전 활용법</h1>
         <p class="text-gray-500 dark:text-gray-400 text-sm">2025년 1월 25일 · 7분 읽기</p>
@@ -639,11 +639,11 @@
       <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
         <h3 class="font-bold text-gray-900 dark:text-white mb-4">다른 글 읽기</h3>
         <div class="grid gap-4 sm:grid-cols-2">
-          <a href="/blog/hash-guide" class="block p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+          <a href="/blog/hash-guide" class="block p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
             <p class="font-medium text-gray-900 dark:text-white">해시 함수 완벽 가이드</p>
             <p class="text-sm text-gray-500 mt-1">MD5부터 SHA-512까지</p>
           </a>
-          <a href="/blog/jwt-explained" class="block p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+          <a href="/blog/jwt-explained" class="block p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
             <p class="font-medium text-gray-900 dark:text-white">JWT 토큰 이해하기</p>
             <p class="text-sm text-gray-500 mt-1">웹 인증의 핵심</p>
           </a>
@@ -653,7 +653,7 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>

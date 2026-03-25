@@ -115,7 +115,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -581,7 +581,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.emojiPicker.title">이모지 검색</h1>
@@ -712,6 +712,41 @@
             <div>
               <h4 class="font-semibold text-sm">Q: 국기 이모지도 검색할 수 있나요?</h4>
               <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">네, 국기 카테고리에서 각 나라의 국기 이모지를 찾을 수 있습니다. 나라 이름(한글 또는 영어)으로 검색하면 더 빠르게 찾을 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">이모지 검색 활용 팁</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">원하는 이모지를 빠르게 찾아서 클릭 한 번으로 복사할 수 있습니다. 카테고리별로 탐색하거나 키워드로 검색해 보세요. 최근 사용한 이모지도 자동 저장됩니다.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">한글로도 이모지를 검색할 수 있나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">네, "하트", "웃음", "강아지" 같은 한글 키워드로 검색하면 관련 이모지가 바로 나옵니다. 영어로 "heart", "smile"처럼 검색해도 됩니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">복사한 이모지를 어디에든 붙여넣기 할 수 있나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">대부분의 앱과 웹사이트에서 사용 가능합니다. 카카오톡, 인스타그램, 슬랙, 노션 등 이모지를 지원하는 곳이면 어디든 Ctrl+V로 붙여넣을 수 있어요.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">이모지가 기기마다 다르게 보이는 이유는 뭔가요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">이모지 코드는 유니코드 표준으로 정해져 있지만, 실제 디자인은 Apple, Google, Samsung 등 각 플랫폼이 자체적으로 만듭니다. 같은 이모지라도 기기에 따라 미묘하게 다르게 보일 수 있어요.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">최근 사용 기록은 얼마나 보관되나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">브라우저의 로컬 저장소에 저장되기 때문에 같은 브라우저에서는 계속 유지됩니다. 브라우저 데이터를 지우면 함께 초기화됩니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">피부색이 다른 이모지는 어떻게 찾나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">사람 관련 이모지 카테고리에서 기본 이모지를 길게 누르거나, "피부" 등으로 검색하면 다양한 피부색 변형을 찾을 수 있습니다.</p>
             </div>
           </div>
         </div>

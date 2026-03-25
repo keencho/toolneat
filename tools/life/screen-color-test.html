@@ -115,7 +115,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -581,7 +581,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -601,7 +601,7 @@
         <!-- Solid Colors -->
         <div class="mb-6">
           <h3 class="font-semibold text-gray-900 dark:text-white mb-3">단색</h3>
-          <div class="grid grid-cols-4 sm:grid-cols-8 gap-3">
+          <div class="grid grid-cols-4 sm:grid-cols-8 gap-4">
             <button onclick="startTest(0)" class="color-btn aspect-square rounded-xl bg-red-500 hover:ring-4 ring-red-300 flex items-center justify-center text-white text-sm font-medium shadow-lg">
               빨강
             </button>
@@ -632,7 +632,7 @@
         <!-- Patterns -->
         <div class="mb-6">
           <h3 class="font-semibold text-gray-900 dark:text-white mb-3">패턴</h3>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <button onclick="startTest(8)" class="color-btn h-20 rounded-xl pattern-gradient-h hover:ring-4 ring-purple-300 flex items-center justify-center text-white text-sm font-medium shadow-lg">
               <span class="bg-black/50 px-2 py-1 rounded">수평 그라디언트</span>
             </button>
@@ -759,6 +759,41 @@
             <li>밴딩은 콘텐츠에 따라 일상 사용에서 거의 눈에 띄지 않을 수 있습니다</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">화면 색상 테스트 한눈에 보기</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">모니터가 색상을 제대로 표현하는지 확인하는 도구입니다. 색상 균일성, 그라데이션 밴딩, 색 정확도를 다양한 테스트 패턴으로 점검할 수 있어요. 모니터 캘리브레이션 전에 한 번 돌려보면 좋습니다.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">불량화소 테스트와 뭐가 다른가요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">불량화소 테스트는 개별 픽셀의 고장을 찾는 것이고, 색상 테스트는 화면 전체의 색 표현 품질을 확인하는 겁니다. 색이 균일하게 나오는지, 그라데이션이 매끄러운지 등을 체크합니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">그라데이션 밴딩이 뭔가요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">색상이 부드럽게 전환되지 않고 줄무늬처럼 끊겨 보이는 현상입니다. 패널 품질이 낮거나 색심도(bit depth)가 부족할 때 나타납니다. 8비트 패널에서 특히 잘 보여요.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">IPS, VA, TN 패널에 따라 결과가 다른가요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">네, 확연히 다릅니다. IPS는 색 정확도와 시야각이 좋고, VA는 명암비가 뛰어나지만 시야각에서 색 변화가 큽니다. TN은 가격이 저렴하지만 색 재현력이 떨어지는 편입니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">테스트 결과가 안 좋으면 모니터 설정으로 개선할 수 있나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">밝기, 대비, 감마 값을 조절하면 어느 정도 개선됩니다. 본격적으로 색을 맞추려면 하드웨어 캘리브레이터(스파이더, i1 Display 등)를 사용하는 것이 정확합니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">디자인 작업용 모니터라면 어떤 수준이어야 하나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">sRGB 99% 이상 커버리지를 가진 IPS 패널이 기본입니다. 인쇄 작업까지 한다면 Adobe RGB나 DCI-P3 커버리지도 확인해 보세요.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <div class="ad-container mt-8"></div>

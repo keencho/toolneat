@@ -95,7 +95,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -561,7 +561,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.splitPdf.title">Split PDF</h1>
@@ -595,7 +595,7 @@
 
         <div id="split-options" class="hidden mb-6">
           <h3 class="font-medium text-gray-900 dark:text-white mb-4" data-i18n="tools.splitPdf.splitMode">Split Mode</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
             <label class="flex items-center gap-3 p-4 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
               <input type="radio" name="split-mode" value="range" checked class="w-4 h-4">
               <div>

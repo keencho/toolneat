@@ -49,7 +49,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -515,7 +515,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">CSS Gradient Generator</h1>
@@ -661,6 +661,46 @@
             <li>If your site supports dark mode, consider preparing separate gradient palettes for light and dark themes.</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">About This Tool</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">CSS gradients can transform a flat design into something that feels alive. This generator lets you experiment with colors and directions visually, then grab the code when you are happy with the result.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">When should I use linear vs radial gradients?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Linear gradients work well for backgrounds, hero sections, and buttons where color flows in one direction. Radial gradients are better for spotlight effects, circular elements, or when you want color to emanate from a focal point.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How many color stops should I use?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Two to four colors is ideal. More than that and the gradient tends to look muddy unless you are going for a specific rainbow or multi-tone effect.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why does my gradient look banded or striped?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Banding happens when two colors are very far apart in hue but close in position. Widening the transition zone or adding an intermediate color stop usually fixes it. Some displays with limited color depth also show more banding than others.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Do CSS gradients affect page performance?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">They are rendered by the GPU and are resolution-independent, so they are actually more performant than image backgrounds. No extra HTTP request, no file size, and they look sharp on any screen.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I animate a CSS gradient?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Not directly with CSS transitions, but you can animate the background-position of an oversized gradient to create a shifting color effect. Another approach is using CSS custom properties with @property to transition individual color stops.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is the generated code compatible with all browsers?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Linear and radial gradients are supported in every modern browser, including Chrome, Firefox, Safari, and Edge. Vendor prefixes have not been needed since around 2015.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

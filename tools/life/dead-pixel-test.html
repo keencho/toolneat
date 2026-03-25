@@ -88,7 +88,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -554,7 +554,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -571,7 +571,7 @@
 
       <!-- Tool Card -->
       <div class="card">
-        <div class="grid grid-cols-5 gap-3 mb-6">
+        <div class="grid grid-cols-5 gap-4 mb-6">
           <button onclick="startTest('#ff0000')" class="aspect-square rounded-xl bg-red-500 hover:ring-4 ring-red-300 transition-all flex items-center justify-center text-white font-medium shadow-lg">
             빨강
           </button>
@@ -696,6 +696,41 @@
             <li>새 제품은 구매 후 가능한 빨리 테스트하여 교환 기간을 놓치지 마세요</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">불량화소 테스트 알아보기</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">새 모니터를 사거나 중고 모니터를 구매할 때 불량 화소가 있는지 꼭 확인해야 합니다. 단색 화면을 전체화면으로 띄워 놓고 눈으로 직접 확인하는 방식이 가장 정확해요.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">데드픽셀, 핫픽셀, 스턱픽셀은 뭐가 다른가요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">데드픽셀은 항상 검은색으로 보이는 화소이고, 핫픽셀은 항상 밝게 빛나는 화소입니다. 스턱픽셀은 특정 색(빨강, 초록, 파랑)에 고정된 상태예요. 스턱픽셀은 픽셀 복구 도구로 해결되는 경우도 있습니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">어떤 색상으로 테스트하는 게 좋나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">최소한 빨강, 초록, 파랑, 흰색, 검정 5가지 색상을 모두 확인하세요. 데드픽셀은 밝은 화면에서, 핫픽셀은 어두운 화면에서 잘 보입니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">모니터 불량 화소는 교환 대상인가요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">제조사마다 기준이 다릅니다. 삼성은 밝은 점 1개 이상이면 교환해 주고, LG는 일정 개수 이상일 때 교환 가능합니다. 구매 후 14일 이내에 테스트하는 것을 권장합니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">전체화면으로 띄워야 하는 이유가 있나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">브라우저 테두리나 작업 표시줄이 보이면 화면 가장자리의 불량 화소를 놓칠 수 있습니다. 전체화면(F11)에서 테스트해야 구석구석 확인할 수 있어요.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">불량 화소를 직접 고칠 수 있나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">스턱픽셀의 경우 빠르게 색상을 전환하는 픽셀 복구 도구를 몇 시간 돌리면 정상으로 돌아오는 경우가 있습니다. 데드픽셀은 하드웨어 결함이라 소프트웨어적으로는 해결이 어렵습니다.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <div class="ad-container mt-8"></div>

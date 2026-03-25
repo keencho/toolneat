@@ -54,7 +54,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -520,7 +520,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">밈 생성기</h1>
@@ -714,6 +714,46 @@
             <div>
               <h4 class="font-semibold text-sm">Q: 텍스트 위치를 직접 조절할 수 있나요?</h4>
               <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">텍스트는 상단과 하단에 자동 배치됩니다. 전통적인 밈 레이아웃을 따르는 방식으로, 추가적인 위치 조절은 지원하지 않습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">밈 만들기, 이런 점이 궁금할 수 있어요</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">이미지에 재미있는 텍스트를 넣어 밈을 만드는 도구입니다. 포토샵 없이도 브라우저에서 바로 만들 수 있고, 완성된 밈은 PNG로 다운로드할 수 있어요.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">한글 텍스트도 잘 들어가나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">네, 한글과 영문 모두 지원합니다. Impact 스타일의 굵은 테두리 텍스트가 기본 적용되어 어떤 배경 위에서도 잘 읽힙니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">텍스트 위치를 자유롭게 옮길 수 있나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">상단과 하단에 자동 배치되는 전통적인 밈 레이아웃을 따릅니다. 클래식 밈 스타일에 최적화되어 있어요.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">글자 크기나 색상을 바꿀 수 있나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">글꼴 크기 슬라이더로 텍스트 크기를 조절할 수 있고, 텍스트 색상과 테두리 색상도 변경 가능합니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">어떤 이미지를 밈 배경으로 쓸 수 있나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">JPG, PNG, WebP 등 일반적인 이미지 형식이면 무엇이든 가능합니다. 직접 찍은 사진이나 스크린샷도 바로 업로드해서 밈으로 만들 수 있어요.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">완성된 밈에 워터마크가 붙나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">워터마크 없이 깨끗하게 다운로드됩니다. 완전 무료입니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">업로드한 이미지는 서버에 저장되나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">모든 작업이 브라우저 안에서 처리되고 서버로 전송되지 않습니다. 민감한 이미지도 안전하게 사용할 수 있어요.</p>
             </div>
           </div>
         </div>

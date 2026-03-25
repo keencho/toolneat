@@ -46,7 +46,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -512,7 +512,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">JavaScript Minifier</h1>
@@ -552,7 +552,7 @@
         <button id="minify-btn" class="btn-primary w-full mb-4">Minify</button>
 
         <!-- Stats -->
-        <div class="grid grid-cols-3 gap-4 mb-4">
+        <div class="grid grid-cols-3 gap-5 mb-4">
           <div class="stat-card">
             <div class="stat-value" id="original-size">0</div>
             <div class="stat-label">Original Size (bytes)</div>
@@ -663,6 +663,46 @@
             <li>For large-scale projects, consider using Terser or UglifyJS as part of your build pipeline for more advanced optimizations.</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Quick Tips</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Minifying JavaScript removes unnecessary characters without changing functionality. It is one of the easiest performance wins you can get for any website.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How much smaller will my file get?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Typical reduction is 20-40% depending on how much whitespace and how many comments the original file contains. Well-commented code with lots of formatting sees the biggest gains.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Will minification break my code?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Basic minification (removing whitespace and comments) is safe. The semicolon optimization option is more aggressive and relies on JavaScript's automatic semicolon insertion, which can occasionally cause issues in edge cases. Always test after minifying.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Should I minify during development or only for production?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Only for production. During development you want readable code with proper formatting and comments. Most build tools like Webpack and Vite handle minification automatically as part of the production build step.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What about source maps?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Source maps let you debug minified code by mapping it back to the original. This tool focuses on quick minification, so for source map generation you will want to use Terser or a bundler plugin.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is minification the same as obfuscation?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">No. Minification preserves functionality while reducing size. Obfuscation intentionally makes code hard to understand by renaming variables and restructuring logic. They serve different purposes.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is my code sent to a server?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Everything happens locally in your browser. Your JavaScript never leaves your machine, so it is safe to use with proprietary code.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

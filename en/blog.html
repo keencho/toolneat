@@ -55,7 +55,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -521,14 +521,134 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
-      <div class="mb-8">
+      <div class="mb-10">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Blog</h1>
         <p class="text-gray-600 dark:text-gray-400">In-depth guides on development and tool usage</p>
       </div>
 
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Markdown Guide -->
+        <a href="/en/blog/markdown-guide" class="block">
+          <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer h-full">
+            <div class="p-6">
+              <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full mb-3">Development</span>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Complete Guide to Markdown Syntax: Essential Writing for Developers</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">From headings, lists, links, and code blocks to GitHub Flavored Markdown extensions - learn it all in one guide.</p>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                <span>October 5, 2025</span>
+                <span class="text-blue-600 dark:text-blue-400">Read more →</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <!-- Video to GIF Guide -->
+        <a href="/en/blog/video-gif-guide" class="block">
+          <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer h-full">
+            <div class="p-6">
+              <span class="inline-block px-2 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 rounded-full mb-3">Lifestyle</span>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">How to Convert Video to GIF: Complete Guide to Making Animated GIFs</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Convert video files to GIF animations easily! Tips for reducing file size and optimizing quality.</p>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                <span>August 20, 2025</span>
+                <span class="text-blue-600 dark:text-blue-400">Read more →</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <!-- Sleep Science Guide -->
+        <a href="/en/blog/sleep-science-guide" class="block">
+          <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer h-full">
+            <div class="p-6">
+              <span class="inline-block px-2 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 rounded-full mb-3">Lifestyle</span>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Sleep Science: How to Calculate Optimal Sleep Time and Sleep Better</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Learn about sleep cycles and optimal wake-up time! Understand REM vs non-REM sleep and science-backed methods.</p>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                <span>July 8, 2025</span>
+                <span class="text-blue-600 dark:text-blue-400">Read more →</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <!-- OG Tag Guide -->
+        <a href="/en/blog/og-tag-guide" class="block">
+          <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer h-full">
+            <div class="p-6">
+              <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full mb-3">Development</span>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Complete Guide to Open Graph Tags: Optimize Social Media Sharing</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Learn OG tag syntax and social media preview optimization! Display titles and images correctly on Facebook, Twitter, and more.</p>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                <span>June 10, 2025</span>
+                <span class="text-blue-600 dark:text-blue-400">Read more →</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <!-- Loan Interest Guide -->
+        <a href="/en/blog/loan-interest-guide" class="block">
+          <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer h-full">
+            <div class="p-6">
+              <span class="inline-block px-2 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 rounded-full mb-3">Lifestyle</span>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Complete Guide to Loan Interest Calculation: Fixed vs Variable Payments</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Everything about loan interest! Understand amortization methods, fixed vs variable rates, and strategies to save.</p>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                <span>May 2, 2025</span>
+                <span class="text-blue-600 dark:text-blue-400">Read more →</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <!-- CSS Optimization Guide -->
+        <a href="/en/blog/css-optimization-guide" class="block">
+          <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer h-full">
+            <div class="p-6">
+              <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full mb-3">Development</span>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">CSS Optimization and Minification Guide: First Steps to Better Web Performance</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Complete guide to CSS optimization! Remove unused code, minify files, and optimize loading for faster websites.</p>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                <span>April 15, 2025</span>
+                <span class="text-blue-600 dark:text-blue-400">Read more →</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <!-- Image Format Guide -->
+        <a href="/en/blog/image-format-guide" class="block">
+          <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer h-full">
+            <div class="p-6">
+              <span class="inline-block px-2 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 rounded-full mb-3">Lifestyle</span>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Image Format Comparison: JPG vs PNG vs WebP Selection Guide</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Compare JPG, PNG, WebP, and GIF image formats! Learn which format to use for every situation.</p>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                <span>March 28, 2025</span>
+                <span class="text-blue-600 dark:text-blue-400">Read more →</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <!-- Cron Expression Guide -->
+        <a href="/en/blog/cron-expression-guide" class="block">
+          <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer h-full">
+            <div class="p-6">
+              <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full mb-3">Development</span>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Complete Guide to Cron Expressions: Mastering Task Scheduling</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Learn cron expression syntax with practical examples! From Linux crontab basics to commonly used schedule patterns.</p>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                <span>March 12, 2025</span>
+                <span class="text-blue-600 dark:text-blue-400">Read more →</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
         <!-- Hash Guide -->
         <a href="/en/blog/hash-guide" class="block">
           <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer h-full">
@@ -788,7 +908,7 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>

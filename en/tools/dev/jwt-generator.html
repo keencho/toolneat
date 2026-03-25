@@ -96,7 +96,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -562,7 +562,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -584,7 +584,7 @@
         <!-- Header Section -->
         <div class="mb-6">
           <h3 class="font-medium text-gray-900 dark:text-white mb-4">Header</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Algorithm</label>
               <select id="algorithm" class="input">
@@ -617,7 +617,7 @@
           <div id="form-mode-section">
           <!-- Standard Claims -->
           <div class="space-y-3 mb-4">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label class="block text-xs text-gray-500 dark:text-gray-400 mb-1">sub (Subject)</label>
                 <input type="text" id="claim-sub" class="input font-mono text-sm" placeholder="1234567890">
@@ -633,7 +633,7 @@
             </div>
 
             <!-- Time Claims -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs text-gray-500 dark:text-gray-400 mb-1">
                   exp (Expiration)

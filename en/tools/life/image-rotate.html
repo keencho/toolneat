@@ -56,7 +56,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -522,7 +522,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Image Rotate/Flip</h1>
@@ -680,6 +680,41 @@
             <li>Your original file is never changed; a new file is generated on download</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Quick Tips</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Rotating and flipping images is a basic but essential editing operation. This tool handles it right in your browser without needing to install any software.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does rotating change the image dimensions?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">A 90-degree or 270-degree rotation swaps width and height. So a 1920x1080 image becomes 1080x1920. A 180-degree rotation keeps the same dimensions.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Will the image quality be reduced?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Rotation at 90-degree increments is lossless for PNG files. For JPEG output, there may be minimal recompression, but it is virtually imperceptible at high quality settings.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the difference between rotate and flip?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Rotation turns the image around its center point. Flipping mirrors it along an axis, either horizontally (left-right swap) or vertically (top-bottom swap). You can combine both operations to achieve any orientation.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">My photo looks correct but my phone says it is sideways. Why?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Phone cameras store orientation in EXIF metadata rather than actually rotating the pixels. Some apps read this data and display the photo correctly, while others ignore it. Rotating here and saving creates a new file with the pixels in the correct orientation.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is my original file modified?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Never. A brand new file is generated when you download. Your original remains exactly as it was.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

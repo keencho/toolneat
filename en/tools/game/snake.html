@@ -290,7 +290,7 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -756,7 +756,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.snake.title">Snake</h1>
@@ -914,6 +914,46 @@
             <div>
               <h4 class="font-medium">Q: What is the history of the Snake game?</h4>
               <p>It originated from the 1976 arcade game Blockade and became a global phenomenon when Nokia included it on the 6110 phone in 1997.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">How to Get Better</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Snake is pure reflex and planning. The rules take 5 seconds to learn, but high scores require genuine skill. Here is what experienced players know.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What are the controls?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Use the arrow keys or WASD to change direction. On mobile, swipe in the direction you want the snake to move. The snake moves continuously, so you only need to input a direction change, not hold the key down. You cannot reverse direction directly into yourself, so pressing the opposite direction of your current movement is ignored.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does the snake speed up as it gets longer?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes. The speed increases with your score, making the game progressively harder as you succeed. Early on, you have plenty of time to plan your path. By the time your snake fills a quarter of the board, split-second decisions become the norm. This natural difficulty curve is what makes each run feel different.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the best strategy for high scores?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Stay near the edges and move in a consistent pattern, like a zigzag or spiral. Hugging the walls gives you a predictable path and keeps the center open for maneuvering to food. Avoid crossing the middle of the board when your snake is long because you risk cutting off your own escape routes.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why do I keep running into my own tail?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Most self-collisions happen because players chase food directly without thinking about where their tail will be two or three moves later. Before turning toward food, mentally trace where your body segments will end up. If the food is in a tight spot, it is sometimes safer to loop around and approach from a different angle.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is there a maximum score?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The theoretical maximum is when the snake fills every single cell on the board. On a 20x20 grid, that would be 400 segments. In practice, reaching even half that length requires near-perfect play because the margin for error shrinks with every piece of food you eat.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I pause the game?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Press the pause button or the P key to freeze the game at any time. Your score and position are preserved until you resume. Useful when you need a moment to plan your next few moves, especially when the board is getting crowded and the speed is high.</p>
             </div>
           </div>
         </div>

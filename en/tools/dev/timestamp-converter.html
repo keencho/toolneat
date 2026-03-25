@@ -125,7 +125,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -591,7 +591,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -615,7 +615,7 @@
           <span id="timezone-badge" class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-gray-600 dark:text-gray-400"></span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <!-- Seconds -->
           <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
             <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Seconds</div>
@@ -649,7 +649,7 @@
       <!-- Converter Card -->
       <div class="card">
         <!-- Timestamp to Date -->
-        <div class="mb-8">
+        <div class="mb-10">
           <h3 class="font-medium text-gray-900 dark:text-white mb-4">Timestamp to Date</h3>
 
           <div class="flex flex-col sm:flex-row gap-3 mb-4">
@@ -722,7 +722,7 @@
         <div class="border-t border-gray-100 dark:border-gray-700 pt-8">
           <h3 class="font-medium text-gray-900 dark:text-white mb-4">Date to Timestamp</h3>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
             <div>
               <label class="block text-xs text-gray-500 dark:text-gray-400 mb-1">Year</label>
               <input type="number" id="date-year" class="input text-center font-mono" value="2024" min="1970" max="2100">
@@ -760,7 +760,7 @@
 
           <!-- Result -->
           <div id="date-result" class="hidden">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
                 <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Seconds</div>
                 <div class="flex items-center gap-2">
@@ -808,6 +808,41 @@
           <span>On 32-bit systems, Unix timestamps will overflow on January 19, 2038 at 03:14:07 UTC. Most modern systems use 64-bit integers to solve this issue.</span>
         </p>
       </div>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">About This Tool</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Unix timestamps are the universal way computers track time, counting seconds since January 1, 1970 (UTC). Converting between timestamps and human-readable dates is one of the most common tasks in backend development.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why do timestamps start from 1970?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">January 1, 1970 was chosen as the Unix epoch when the system was designed at Bell Labs. There is no deep technical reason for this specific date; it was simply a convenient recent point in time when Unix was being developed.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">My timestamp has 13 digits. Is that normal?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">A 13-digit timestamp is in milliseconds (common in JavaScript and Java). A 10-digit one is in seconds (standard Unix time). This tool handles both formats automatically.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the Year 2038 problem?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">32-bit systems store Unix time as a signed integer, which maxes out at 2,147,483,647, corresponding to January 19, 2038. After that moment, the counter overflows. Most modern systems now use 64-bit integers, which will not overflow for about 292 billion years.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Are Unix timestamps affected by time zones?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">No. A Unix timestamp always represents a specific moment in UTC. Time zone conversion happens when you display it as a local date and time. The number 1700000000 means the same instant everywhere on Earth.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can timestamps be negative?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes. Negative values represent dates before January 1, 1970. For example, -86400 is December 31, 1969. This is useful for historical date calculations.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-8">

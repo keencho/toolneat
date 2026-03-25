@@ -79,7 +79,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -545,7 +545,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -738,6 +738,46 @@
           </button>
         </div>
       </div>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Things to Know</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Unit conversions trip people up more often than you would expect. Here are some practical answers to the questions that come up most frequently.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why does my hard drive show less space than advertised?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Storage manufacturers define 1 GB as 1,000,000,000 bytes (decimal), but your operating system calculates 1 GB as 1,073,741,824 bytes (binary). A drive marketed as 500 GB shows roughly 465 GB in your file explorer. Neither side is lying, they just use different definitions.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How do I quickly estimate Celsius to Fahrenheit in my head?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Double the Celsius value and add 30. It is not perfectly accurate but gets you close enough for weather and cooking. For example, 20C becomes roughly 70F (actual is 68F) and 30C becomes about 90F (actual is 86F). For precision, let the converter handle it.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is pyeong and when would I need it?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Pyeong is a traditional Korean unit of area still widely used in real estate. One pyeong equals approximately 3.306 square meters or about 35.58 square feet. If you are browsing Korean apartment listings, you will see sizes quoted in pyeong almost exclusively, making this conversion essential.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Pounds vs kilograms: which countries use which?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The United States, Liberia, and Myanmar are the only countries that officially use pounds for everyday weight. Everyone else uses kilograms. If you shop on US websites or follow American recipes, the conversion 1 lb = 0.4536 kg will come in handy constantly.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How precise are the conversion results?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Results display up to 10 significant digits and use the internationally accepted conversion factors. For everyday purposes like shopping or cooking, 2 to 3 decimal places is more than enough. The extra precision is there for engineering or scientific work where rounding errors compound.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I convert in both directions?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Absolutely. Use the swap button to reverse the conversion direction instantly. Type a value in either field and the other updates in real time. No need to clear anything or start over when you want to go from meters to feet instead of feet to meters.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-6">

@@ -248,7 +248,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -780,6 +780,41 @@
           </div>
         </div>
       </div>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Things to Know</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Markdown is the go-to format for documentation, README files, and technical writing. This previewer lets you see exactly how your markdown will render before you commit it.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Which Markdown flavor does this support?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">It supports standard CommonMark plus GitHub Flavored Markdown (GFM) extensions like tables, task lists, strikethrough, and fenced code blocks. This covers what most people need for README files and documentation.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I preview code syntax highlighting?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Fenced code blocks with a language identifier (like ```javascript) will be rendered with syntax highlighting in the preview. Most popular programming languages are supported.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why does my markdown look different on GitHub?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">GitHub applies its own CSS styles to rendered markdown, so font sizes, spacing, and colors will differ. The underlying HTML structure is the same though, so the content will be correct.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does the preview update in real time?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes. Every keystroke triggers a re-render so you can see your changes immediately without clicking any buttons.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I use HTML inside my markdown?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Most Markdown parsers allow inline HTML for things that Markdown syntax cannot express, like colored text or complex tables. Keep in mind that some platforms (like GitHub comments) sanitize certain HTML tags for security.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-6">

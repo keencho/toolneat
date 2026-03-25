@@ -134,7 +134,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -600,7 +600,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -707,7 +707,7 @@
       <!-- Cheat Sheet Card -->
       <div class="card mt-6">
         <h3 class="font-medium text-gray-900 dark:text-white mb-4">Regex Cheat Sheet</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-sm">
           <!-- Character Classes -->
           <div>
             <h4 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Character Classes</h4>
@@ -781,6 +781,46 @@
           </div>
         </div>
       </div>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Quick Tips</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Regular expressions are powerful but notoriously tricky to get right. Testing patterns against real data before using them in code saves hours of debugging.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What regex engine does this tool use?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">It uses your browser's built-in JavaScript RegExp engine. If you are writing regex for Python, Java, or another language, be aware of minor syntax differences like lookbehind support and named group syntax.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What do the g, i, and m flags mean?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The "g" flag finds all matches instead of stopping at the first one. The "i" flag makes the pattern case-insensitive. The "m" flag makes ^ and $ match the start and end of each line rather than the entire string.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How do I match a literal dot or bracket?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Escape them with a backslash. So \. matches a literal period, \[ matches a literal bracket, and \\ matches a literal backslash.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why is my pattern matching too much?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Quantifiers like * and + are greedy by default, meaning they match as much text as possible. Add a ? after them (like .*?) to make them lazy and match the shortest possible string.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is a good regex for email validation?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">A simple pattern like ^[^\s@]+@[^\s@]+\.[^\s@]+$ covers most real-world email addresses. The RFC 5322 compliant regex is hundreds of characters long and rarely worth the complexity.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can regex cause performance problems?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes. Patterns with nested quantifiers like (a+)+ can cause catastrophic backtracking, where the engine takes exponentially longer on non-matching input. Avoid nesting quantifiers and test edge cases carefully.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-8">

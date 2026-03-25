@@ -146,7 +146,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -612,7 +612,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -679,6 +679,46 @@
           <p class="text-sm text-yellow-800 dark:text-yellow-200"><strong>Note:</strong> This tool only works on <strong>stuck pixels</strong>. Physically damaged <strong>dead pixels</strong> (completely black spots) cannot be repaired with software.</p>
         </div>
       </div>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Good to Know</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Stuck pixels are surprisingly common on LCD and OLED monitors, but most of them can be recovered. Here are answers to the questions people ask most often about pixel fixing.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What exactly is a stuck pixel?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">A stuck pixel is a single point on your screen that stays locked on one color, usually red, green, or blue. Unlike dead pixels which appear completely black, stuck pixels still receive power but their sub-pixel transistor is frozen in an "on" position. The good news is that stuck pixels often respond well to rapid color cycling.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How long should I run the fixer?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Most stuck pixels respond within 10 to 30 minutes of continuous flashing. If there is no improvement after 30 minutes, try leaving it running for a few hours. Some stubborn pixels have been known to unstick after overnight sessions. If nothing changes after 12 hours, the pixel may be permanently damaged.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can this damage my monitor?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">No. Rapidly cycling through colors is within normal operating parameters for any display. Your screen handles millions of color changes per second during regular use. The flashing box simply exercises the stuck sub-pixel more aggressively than usual content would.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why should I drag the box directly over the stuck pixel?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The flashing only stimulates the pixels it covers. Placing the box precisely over the stuck pixel ensures those specific transistors get the rapid on/off cycling they need to break free. A larger box gives you a bigger target area if you cannot pinpoint the exact pixel.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Will the stuck pixel come back after fixing?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Sometimes. Stuck pixels can recur, especially on older panels. If yours comes back repeatedly, running the fixer once a week as a preventive measure can help. Persistent recurrence might indicate the transistor is nearing end of life.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does this work on phone and tablet screens?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes, as long as you can open this page in a mobile browser. Drag the flashing box over the affected area just like you would on a desktop monitor. OLED phone screens tend to respond faster than traditional LCDs since each pixel is individually powered.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-8"></div>

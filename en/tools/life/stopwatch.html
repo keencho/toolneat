@@ -59,7 +59,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -525,7 +525,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6 text-center">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Stopwatch</h1>
@@ -650,6 +650,46 @@
             <li>You can open multiple browser tabs to run several stopwatches at once</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Quick Tips</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">A simple tool, but there are a few things worth knowing to get the most out of it. Here are the most common questions about using an online stopwatch.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How accurate is a browser-based stopwatch?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Modern browsers use high-resolution timers accurate to roughly 1 millisecond. For everyday timing like cooking, workouts, or study sessions, that is more than precise enough. Professional sports timing requires dedicated hardware, but for personal use, browser accuracy is excellent.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What are lap times used for?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Laps let you record intermediate times without stopping the main clock. Runners use them to track splits per kilometer, swimmers mark each length of the pool, and students can time individual exam questions. The best and worst laps are highlighted so you can spot patterns immediately.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Will the timer keep running if I switch tabs?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes. The stopwatch calculates elapsed time from a fixed start point rather than counting frame by frame. Even if you minimize the browser or switch to another app, the displayed time catches up the moment you return. Background throttling does not affect the final accuracy.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Are there keyboard shortcuts?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Press Space to start or stop the timer, and L to record a lap while the stopwatch is running. Keyboard controls shave off the few milliseconds of delay that come with moving your mouse to a button, which matters when you need precise split times.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I run multiple stopwatches at once?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Open additional browser tabs and each one runs its own independent stopwatch. Handy for timing parallel tasks like comparing two different workout circuits or tracking multiple cooking items simultaneously.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What happens if I accidentally close the page?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Unfortunately, the timer resets since the stopwatch runs entirely in your browser with no server storage. If you are timing something critical, consider taking a screenshot of your lap times periodically or jotting them down as you go.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

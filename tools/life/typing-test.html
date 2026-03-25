@@ -127,7 +127,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -593,7 +593,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -679,7 +679,7 @@
         </div>
 
         <!-- Live Stats -->
-        <div id="live-stats" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div id="live-stats" class="grid grid-cols-2 md:grid-cols-4 gap-5">
           <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
             <div id="stat-wpm" class="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
             <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">WPM</div>
@@ -701,7 +701,7 @@
         <!-- Results Section (Hidden by default) -->
         <div id="results-section" class="hidden mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl border border-blue-200 dark:border-blue-800">
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">테스트 결과</h3>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
             <div class="result-item result-animate bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
               <div id="result-wpm" class="text-3xl font-bold text-blue-600 dark:text-blue-400">0</div>
               <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">WPM</div>

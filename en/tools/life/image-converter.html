@@ -70,7 +70,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -536,7 +536,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Image Format Converter</h1>
@@ -570,7 +570,7 @@
           <!-- Format Selection -->
           <div class="mb-6">
             <h3 class="font-medium text-gray-900 dark:text-white mb-3">Output Format</h3>
-            <div class="grid grid-cols-3 sm:grid-cols-6 gap-3">
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
               <button class="format-btn active" data-format="png"><div class="font-bold">PNG</div><div class="text-xs text-gray-500 mt-1">Lossless</div></button>
               <button class="format-btn" data-format="jpeg"><div class="font-bold">JPG</div><div class="text-xs text-gray-500 mt-1">Lossy</div></button>
               <button class="format-btn" data-format="webp"><div class="font-bold">WEBP</div><div class="text-xs text-gray-500 mt-1">Modern</div></button>

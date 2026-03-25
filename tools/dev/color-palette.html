@@ -47,7 +47,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -513,7 +513,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">색상 팔레트 추출</h1>
@@ -546,7 +546,7 @@
             </div>
             <div>
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">팔레트</p>
-              <div id="palette" class="grid grid-cols-3 gap-3"></div>
+              <div id="palette" class="grid grid-cols-3 gap-4"></div>
             </div>
           </div>
           <div id="empty-state" class="text-center py-12 text-gray-400">
@@ -634,6 +634,46 @@
             <li>고해상도 이미지도 처리 가능하지만, 매우 큰 파일은 분석에 시간이 조금 더 걸릴 수 있습니다.</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">색상 팔레트 추출, 이렇게 활용하세요</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">사진이나 이미지에서 주요 색상을 자동으로 뽑아주는 도구입니다. 웹 디자인 컬러 선정부터 브랜딩 작업까지, 이미지 한 장이면 바로 팔레트를 만들 수 있어요.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">어떤 이미지가 좋은 팔레트를 만들어 주나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">색상이 다양하고 선명한 사진이 좋습니다. 풍경 사진, 일러스트, 포스터 디자인 같은 이미지에서 특히 풍부한 팔레트가 추출됩니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">추출된 색상 코드를 바로 복사할 수 있나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">네, 각 색상 스와치를 클릭하면 HEX 코드가 클립보드에 복사됩니다. CSS, Figma, Sketch 등에 바로 붙여넣기 하면 됩니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">배경색이 너무 크게 차지해서 원하는 색이 안 나와요</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">넓은 면적의 배경색이 우선 추출되는 건 정상입니다. 원하는 부분만 잘라서 업로드하면 해당 영역의 색상을 정확하게 뽑을 수 있어요.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">추출 가능한 색상 개수는 몇 개인가요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">대표 색상 1개와 팔레트 색상 최대 10개까지 추출됩니다.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">업로드한 이미지가 서버에 저장되나요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">아닙니다. 모든 분석이 브라우저에서 로컬로 처리되기 때문에 이미지가 외부로 전송되지 않습니다. 개인 사진도 안심하고 사용하세요.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">디자인 실무에서 어떻게 활용하면 좋을까요?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">클라이언트가 참고 이미지를 보내주면 여기서 팔레트를 뽑고, 그 색상 기반으로 디자인 시스템을 구축하면 효율적입니다. 무드보드 작업에도 유용해요.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

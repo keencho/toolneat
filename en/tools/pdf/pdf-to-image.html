@@ -41,7 +41,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -507,7 +507,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">PDF to Image</h1>
@@ -528,7 +528,7 @@
             </div>
             <button id="change-file" class="text-sm text-blue-600 hover:text-blue-700">Change File</button>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
             <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Output Format</label><select id="format" class="input"><option value="png">PNG (Lossless)</option><option value="jpeg">JPG (Smaller size)</option></select></div>
             <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Quality (Scale)</label><select id="quality" class="input"><option value="1">1x (Fast)</option><option value="2" selected>2x (Recommended)</option><option value="3">3x (High Quality)</option></select></div>
           </div>
@@ -536,7 +536,7 @@
         </div>
         <div id="results-section" class="hidden">
           <div class="flex items-center justify-between mb-4"><h3 class="font-medium text-gray-900 dark:text-white">Results</h3><button id="download-all" class="btn btn-secondary text-sm">Download All</button></div>
-          <div id="images-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+          <div id="images-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5"></div>
         </div>
       </div>
       <!-- Content Section -->
@@ -625,6 +625,46 @@
             <li>Higher scale settings produce larger files, so choose based on your intended use</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Quick Tips</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Converting PDFs to images is useful for presentations, social media, and anywhere you need visual content without a PDF reader. Here is what people commonly ask.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">PNG or JPG: which should I pick?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">PNG preserves sharp text and line art perfectly because it uses lossless compression, but files are larger. JPG produces smaller files ideal for photos and complex graphics, though it introduces slight compression artifacts around text edges. For documents with mostly text, go with PNG. For image-heavy pages, JPG at high quality works great.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What does the scale setting do?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Scale controls the output resolution. At 1x, a standard letter-size page produces roughly a 612 by 792 pixel image. At 2x, that doubles to 1224 by 1584 pixels, great for retina displays and printing. Going above 3x rarely adds visible quality but significantly increases file size and processing time.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I convert just specific pages instead of the whole document?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes. After uploading, you can select individual pages to convert rather than processing the entire PDF. Handy when you only need the cover page for a thumbnail or a single chart from a 50-page report.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does the conversion preserve colors accurately?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The converter renders pages using the same PDF.js engine that Firefox uses to display PDFs. Colors, gradients, and transparency are faithfully reproduced in the output image. If the original PDF looks correct in your browser, the exported image will match.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is there a page limit?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">There is no hard limit, but very large PDFs with hundreds of pages will take longer since each page is rendered individually in your browser. For documents over 50 pages, converting in smaller batches keeps things responsive. Your browser's available memory is the practical constraint.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Are my files sent to any server?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Not at all. The entire conversion runs locally in your browser using JavaScript. Your PDF data never touches a remote server, making it safe for confidential documents, contracts, or any file you would rather keep private.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

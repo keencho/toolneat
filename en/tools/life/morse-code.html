@@ -78,7 +78,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -544,7 +544,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.morseCode.title">Morse Code Converter</h1>
@@ -697,6 +697,46 @@
             <li>Non-Latin characters (like Korean or Chinese) are not directly supported; use romanized text instead</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">About This Tool</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Morse code has been around since the 1830s and is still relevant today in amateur radio, aviation, and emergency signaling. This tool lets you translate between text and Morse code instantly.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is Morse code still used today?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes, primarily by amateur (ham) radio operators and in aviation navigation aids. Some military applications still use it as a backup communication method. The international distress signal SOS (three dots, three dashes, three dots) remains universally recognized.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How does timing work in Morse code?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">A dash is three times the length of a dot. The gap between parts of the same letter equals one dot length, between letters equals three dot lengths, and between words equals seven dot lengths. These ratios are what make Morse code decipherable.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does capitalization matter?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">No. Morse code is case-insensitive, so "Hello" and "HELLO" produce the exact same output.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I encode non-English characters?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Standard international Morse code only covers Latin letters (A-Z), digits (0-9), and some punctuation. Characters from other writing systems like Korean, Chinese, or Arabic would need to be romanized first.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the fastest anyone has transmitted Morse code?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Skilled operators can send and receive at over 40 words per minute. The current world record for high-speed telegraphy reception exceeds 75 WPM, which requires years of practice.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I play the Morse code as audio?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">If the tool includes an audio playback feature, it generates the tones directly in your browser. The standard tone frequency for Morse code practice is around 600-800 Hz.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

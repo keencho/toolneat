@@ -87,7 +87,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -553,7 +553,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.pdfToImage.title">PDF를 이미지로</h1>
@@ -585,7 +585,7 @@
             <button id="change-file" class="text-sm text-blue-600 hover:text-blue-700" data-i18n="tools.pdfToImage.changeFile">파일 변경</button>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
             <div>
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="tools.pdfToImage.format">출력 형식</label>
               <select id="format" class="input">
@@ -612,7 +612,7 @@
             <h3 class="font-medium text-gray-900 dark:text-white" data-i18n="tools.pdfToImage.results">변환 결과</h3>
             <button id="download-all" class="btn btn-secondary text-sm" data-i18n="tools.pdfToImage.downloadAll">전체 다운로드</button>
           </div>
-          <div id="images-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+          <div id="images-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5"></div>
         </div>
       </div>
 

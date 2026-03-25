@@ -60,7 +60,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -526,7 +526,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Hero Section with Search -->
       <section class="text-center mb-12">
@@ -560,10 +560,10 @@
       </section>
 
       <!-- Category Quick Links -->
-      <section class="mb-12">
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-          <a href="./tools/dev" class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+      <section class="mb-16">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-5">
+          <a href="./tools/dev" class="flex items-center gap-3 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
               </svg>
@@ -573,8 +573,8 @@
               <div class="text-xs text-gray-500 dark:text-gray-400">35 <span data-i18n="home.toolCount">도구</span></div>
             </div>
           </a>
-          <a href="./tools/life" class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <a href="./tools/life" class="flex items-center gap-3 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
               </svg>
@@ -584,8 +584,8 @@
               <div class="text-xs text-gray-500 dark:text-gray-400">58 <span data-i18n="home.toolCount">도구</span></div>
             </div>
           </a>
-          <a href="./tools/pdf" class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <a href="./tools/pdf" class="flex items-center gap-3 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
               </svg>
@@ -595,8 +595,8 @@
               <div class="text-xs text-gray-500 dark:text-gray-400">9 <span data-i18n="home.toolCount">도구</span></div>
             </div>
           </a>
-          <a href="./tools/game" class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <a href="./tools/game" class="flex items-center gap-3 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -607,8 +607,8 @@
               <div class="text-xs text-gray-500 dark:text-gray-400">5 <span data-i18n="home.toolCount">도구</span></div>
             </div>
           </a>
-          <a href="./tools" class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-indigo-500 dark:hover:border-indigo-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <a href="./tools" class="flex items-center gap-3 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-indigo-500 dark:hover:border-indigo-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
               </svg>
@@ -625,7 +625,7 @@
       <div class="ad-container mb-8"></div>
 
       <!-- Popular Tools -->
-      <section class="mb-12">
+      <section class="mb-16">
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
@@ -634,45 +634,45 @@
             <span data-i18n="home.popularTools">인기 도구</span>
           </h2>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
           <!-- Merge PDF -->
-          <a href="./tools/pdf/merge-pdf" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+          <a href="./tools/pdf/merge-pdf" class="flex flex-col items-center p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             </div>
             <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-red-600 dark:group-hover:text-red-400" data-i18n="tools.mergePdf.title">PDF 병합</span>
           </a>
           <!-- Background Remover -->
-          <a href="./tools/life/background-remover" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-pink-500 dark:hover:border-pink-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+          <a href="./tools/life/background-remover" class="flex flex-col items-center p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-pink-500 dark:hover:border-pink-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/></svg>
             </div>
             <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-pink-600 dark:group-hover:text-pink-400" data-i18n="tools.backgroundRemover.title">배경 제거</span>
           </a>
           <!-- QR Generator -->
-          <a href="./tools/life/qr-generator" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+          <a href="./tools/life/qr-generator" class="flex flex-col items-center p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h2M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
             </div>
             <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-emerald-600 dark:group-hover:text-emerald-400" data-i18n="tools.qrGenerator.title">QR 생성기</span>
           </a>
           <!-- JSON Formatter -->
-          <a href="./tools/dev/json-formatter" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+          <a href="./tools/dev/json-formatter" class="flex flex-col items-center p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
             </div>
             <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-blue-600 dark:group-hover:text-blue-400" data-i18n="tools.jsonFormatter.title">JSON 포맷터</span>
           </a>
           <!-- Image Compressor -->
-          <a href="./tools/life/image-compressor" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-teal-500 dark:hover:border-teal-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+          <a href="./tools/life/image-compressor" class="flex flex-col items-center p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-teal-500 dark:hover:border-teal-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             </div>
             <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-teal-600 dark:group-hover:text-teal-400" data-i18n="tools.imageCompressor.title">이미지 압축</span>
           </a>
           <!-- Base64 -->
-          <a href="./tools/dev/base64" class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-110 transition-transform">
+          <a href="./tools/dev/base64" class="flex flex-col items-center p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md mb-3 group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
             </div>
             <span class="text-sm font-medium text-gray-900 dark:text-white text-center group-hover:text-purple-600 dark:group-hover:text-purple-400" data-i18n="tools.base64.title">Base64</span>
@@ -681,7 +681,7 @@
       </section>
 
       <!-- New Tools -->
-      <section class="mb-12">
+      <section class="mb-16">
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -690,10 +690,10 @@
             <span data-i18n="home.newTools">새로운 도구</span>
           </h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           <!-- Color Picker -->
-          <a href="./tools/life/color-picker" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+          <a href="./tools/life/color-picker" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
             </div>
             <div class="flex-1 min-w-0">
@@ -705,8 +705,8 @@
             </div>
           </a>
           <!-- Image Watermark -->
-          <a href="./tools/life/image-watermark" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-cyan-500 dark:hover:border-cyan-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+          <a href="./tools/life/image-watermark" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-cyan-500 dark:hover:border-cyan-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
             </div>
             <div class="flex-1 min-w-0">
@@ -718,8 +718,8 @@
             </div>
           </a>
           <!-- Color Palette -->
-          <a href="./tools/dev/color-palette" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-violet-500 dark:hover:border-violet-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+          <a href="./tools/dev/color-palette" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-violet-500 dark:hover:border-violet-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
             </div>
             <div class="flex-1 min-w-0">
@@ -731,8 +731,8 @@
             </div>
           </a>
           <!-- QR Scanner -->
-          <a href="./tools/life/qr-scanner" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+          <a href="./tools/life/qr-scanner" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h2M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
             </div>
             <div class="flex-1 min-w-0">
@@ -744,8 +744,8 @@
             </div>
           </a>
           <!-- PDF Compress -->
-          <a href="./tools/pdf/compress-pdf" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+          <a href="./tools/pdf/compress-pdf" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
             </div>
             <div class="flex-1 min-w-0">
@@ -757,8 +757,8 @@
             </div>
           </a>
           <!-- Gradient Generator -->
-          <a href="./tools/dev/gradient-generator" class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-md transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+          <a href="./tools/dev/gradient-generator" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-md transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:-translate-y-0.5 transition-transform">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
             </div>
             <div class="flex-1 min-w-0">
@@ -773,7 +773,7 @@
       </section>
 
       <!-- Dev Tools Preview -->
-      <section class="mb-12">
+      <section class="mb-16">
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
@@ -788,7 +788,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <a href="./tools/dev/json-formatter" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 hover:shadow-sm transition-all group">
             <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
@@ -817,7 +817,7 @@
       </section>
 
       <!-- Life Tools Preview -->
-      <section class="mb-12">
+      <section class="mb-16">
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
@@ -832,7 +832,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <a href="./tools/life/image-compressor" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-green-500 hover:shadow-sm transition-all group">
             <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -861,7 +861,7 @@
       </section>
 
       <!-- PDF Tools Preview -->
-      <section class="mb-12">
+      <section class="mb-16">
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
@@ -876,7 +876,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
           <a href="./tools/pdf/merge-pdf" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-red-500 hover:shadow-sm transition-all group">
             <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -911,7 +911,7 @@
       </section>
 
       <!-- Game Tools Preview -->
-      <section class="mb-12">
+      <section class="mb-16">
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
@@ -927,7 +927,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
           <a href="./tools/game/2048" class="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-purple-500 hover:shadow-sm transition-all group">
             <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
               <span class="text-white font-bold text-xs">2048</span>
@@ -973,7 +973,7 @@
 
   <!-- Footer -->
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>

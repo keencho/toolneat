@@ -117,7 +117,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -583,7 +583,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -614,7 +614,7 @@
         <!-- Mode 1: What is X% of Y? -->
         <div id="card-basic" class="calc-card active">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">What is X% of Y?</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Base Value (Y)</label>
               <input type="number" id="basic-base" class="input py-3 text-lg" placeholder="e.g., 200">
@@ -635,7 +635,7 @@
         <!-- Mode 2: X is what % of Y? -->
         <div id="card-whatPercent" class="calc-card">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">X is what percentage of Y?</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Part (X)</label>
               <input type="number" id="wp-part" class="input py-3 text-lg" placeholder="e.g., 30">
@@ -656,7 +656,7 @@
         <!-- Mode 3: Percentage change -->
         <div id="card-change" class="calc-card">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Percentage change from X to Y</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Old Value</label>
               <input type="number" id="change-old" class="input py-3 text-lg" placeholder="e.g., 80">
@@ -677,7 +677,7 @@
         <!-- Mode 4: Increase/Decrease by % -->
         <div id="card-adjust" class="calc-card">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Increase or decrease X by Y%</h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Value</label>
               <input type="number" id="adjust-value" class="input py-3 text-lg" placeholder="e.g., 100">
@@ -705,7 +705,7 @@
         <!-- Mode 5: Discount calculator -->
         <div id="card-discount" class="calc-card">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Discount Calculator</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Original Price</label>
               <input type="number" id="discount-original" class="input py-3 text-lg" placeholder="e.g., 100">
@@ -717,7 +717,7 @@
           </div>
           <button id="discount-calc" class="btn btn-primary w-full md:w-auto">Calculate</button>
           <div id="discount-result" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-center">
               <div>
                 <p class="result-label mb-2">You Save</p>
                 <p class="result-value text-red-500 dark:text-red-400" id="discount-amount">0</p>

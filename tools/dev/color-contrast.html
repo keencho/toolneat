@@ -52,7 +52,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -518,7 +518,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">색상 대비 검사기</h1>
@@ -567,7 +567,7 @@
         </div>
 
         <!-- WCAG Results -->
-        <div class="grid sm:grid-cols-2 gap-4">
+        <div class="grid sm:grid-cols-2 gap-5">
           <!-- Normal Text -->
           <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
             <h3 class="font-medium text-gray-900 dark:text-white mb-3">일반 텍스트</h3>
@@ -601,7 +601,7 @@
         <!-- Suggested Colors -->
         <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
           <h3 class="font-medium text-gray-900 dark:text-white mb-3">추천 색상 조합</h3>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="suggestions">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="suggestions">
             <button class="suggestion-btn p-3 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-blue-500 transition-colors" data-fg="#000000" data-bg="#FFFFFF">
               <div class="h-8 rounded flex items-center justify-center text-sm font-medium" style="background:#FFFFFF;color:#000000">Aa</div>
               <p class="text-xs text-gray-500 mt-1">21:1</p>

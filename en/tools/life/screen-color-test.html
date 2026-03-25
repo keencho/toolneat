@@ -115,7 +115,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -581,7 +581,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -601,7 +601,7 @@
         <!-- Solid Colors -->
         <div class="mb-6">
           <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Solid Colors</h3>
-          <div class="grid grid-cols-4 sm:grid-cols-8 gap-3">
+          <div class="grid grid-cols-4 sm:grid-cols-8 gap-4">
             <button onclick="startTest(0)" class="color-btn aspect-square rounded-xl bg-red-500 hover:ring-4 ring-red-300 flex items-center justify-center text-white text-sm font-medium shadow-lg">
               Red
             </button>
@@ -632,7 +632,7 @@
         <!-- Patterns -->
         <div class="mb-6">
           <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Patterns</h3>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <button onclick="startTest(8)" class="color-btn h-20 rounded-xl pattern-gradient-h hover:ring-4 ring-purple-300 flex items-center justify-center text-white text-sm font-medium shadow-lg">
               <span class="bg-black/50 px-2 py-1 rounded">Horizontal Gradient</span>
             </button>

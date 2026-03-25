@@ -66,7 +66,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -532,7 +532,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12"><div class="container-main">
+</div><main class="flex-1 mt-16 py-10 md:py-14"><div class="container-main">
     <!-- Page Title -->
     <div class="mb-6">
       <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -548,7 +548,7 @@
 
     <!-- Tool Card -->
     <div class="card">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <button onclick="startTest('gray50')" class="p-4 rounded-xl bg-gray-500 hover:ring-4 ring-gray-400 transition-all text-white font-medium shadow-lg">50% Gray</button>
         <button onclick="startTest('gray')" class="p-4 rounded-xl bg-gradient-to-r from-black to-white hover:ring-4 ring-gray-400 transition-all text-gray-700 font-medium shadow-lg">Gradient</button>
         <button onclick="startTest('checker')" class="p-4 rounded-xl hover:ring-4 ring-gray-400 transition-all font-medium shadow-lg" style="background:repeating-conic-gradient(#000 0% 25%,#fff 0% 50%) 50%/20px 20px">Checker</button>

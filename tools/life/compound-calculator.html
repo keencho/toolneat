@@ -205,7 +205,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -671,7 +671,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -691,7 +691,7 @@
       <!-- Tool Card -->
       <div class="card">
         <!-- Input Section -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
           <!-- Principal -->
           <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">원금</label>
@@ -747,7 +747,7 @@
         <!-- Results Section -->
         <div id="results-section" class="hidden">
           <!-- Summary Cards -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
             <div class="result-card bg-blue-50 dark:bg-blue-900/30">
               <span class="result-label">최종 금액</span>
               <span id="final-amount" class="result-value text-blue-600 dark:text-blue-400">-</span>

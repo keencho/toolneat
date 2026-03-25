@@ -159,7 +159,7 @@
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -625,7 +625,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -645,7 +645,7 @@
       <!-- Tool Card -->
       <div class="card">
         <!-- Input Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
           <!-- Principal -->
           <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Loan Amount</label>
@@ -680,7 +680,7 @@
         <!-- Payment Type -->
         <div class="mb-6">
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Payment Type</label>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <button class="payment-type-btn active" data-type="equal-payment">
               <div class="font-medium text-gray-900 dark:text-white">Amortized</div>
               <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Equal monthly payments</div>
@@ -702,7 +702,7 @@
         <!-- Results Section -->
         <div id="results-section" class="hidden">
           <!-- Summary Cards -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-6">
             <div class="result-card bg-blue-50 dark:bg-blue-900/30">
               <span class="result-label">Monthly Payment</span>
               <span id="monthly-payment" class="result-value text-blue-600 dark:text-blue-400">-</span>
@@ -793,6 +793,46 @@
           </div>
         </div>
       </div>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Common Questions</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Understanding how loan payments work can save you thousands over the life of a loan. Here are the questions most people have when comparing their options.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the difference between amortized and equal principal payments?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">With amortized payments (the most common type), your monthly payment stays the same but the ratio of interest to principal shifts over time. With equal principal payments, you pay the same principal amount each month plus decreasing interest, so early payments are higher but total interest is lower.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How much does a 1% rate difference actually matter?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">On a $300,000 mortgage over 30 years, the difference between 6% and 7% is roughly $200 per month and over $70,000 in total interest. Even small rate differences compound significantly over long loan terms.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Should I choose a shorter loan term?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">A shorter term means higher monthly payments but dramatically less total interest. A 15-year mortgage typically saves you more than 50% in total interest compared to a 30-year term, and often comes with a lower rate too.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is an interest-only loan?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">You pay only interest during the loan period and repay the entire principal at the end. Monthly payments are the lowest of any option, but you build no equity and pay the most total interest. These are sometimes used for business or investment purposes.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does this calculator account for taxes and insurance?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">This calculates principal and interest only. Your actual monthly housing payment may also include property taxes, homeowner's insurance, and PMI if your down payment is under 20%.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How accurate are these calculations?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">The math is precise for standard fixed-rate loans. Real-world payments may vary slightly due to rounding rules your lender uses, fees, or adjustable rate changes. Use these numbers as a solid baseline for comparison.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Ad Container (Bottom) -->
       <div class="ad-container mt-8">

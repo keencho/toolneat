@@ -55,7 +55,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -63,7 +63,7 @@
         Toolneat
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Nav - 오버레이 트리거 버튼들 -->
       <nav class="hidden md:flex items-center gap-2">
         <button class="tools-overlay-trigger nav-dropdown-btn" data-category="dev">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -187,7 +187,7 @@
               <a href="/en/tools/dev/base64" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.base64.title">Base64 Encode/Decode</a>
               <a href="/en/tools/dev/url-encoder" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.urlEncoder.title">URL Encode/Decode</a>
               <a href="/en/tools/dev/html-entity" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400" data-i18n="tools.htmlEntity.title">HTML Entity Encoder</a>
-              <a href="/en/tools/dev/text-escape" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400">Text Escape</a>
+              <a href="/en/tools/dev/text-escape" class="nav-link block py-1.5 text-sm text-gray-600 dark:text-gray-400">텍스트 이스케이프</a>
             </div>
           </div>
           <!-- Generators -->
@@ -469,7 +469,7 @@
   </div>
 </header>
 
-<!-- Tools Dropdown (PC Only) -->
+<!-- Tools Dropdown (PC Only - 헤더 바로 아래 붙는 방식) -->
 <div id="tools-dropdown" class="hidden fixed left-0 right-0 top-16 z-[60] bg-white dark:bg-gray-900 shadow-2xl border-b border-gray-200 dark:border-gray-700">
   <div class="container-main py-4">
     <!-- Header: Tabs + Search + Close -->
@@ -499,7 +499,7 @@
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
-          <input type="text" id="tools-dropdown-search" class="w-64 pl-9 pr-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Search tools..." data-i18n-placeholder="nav.searchPlaceholder">
+          <input type="text" id="tools-dropdown-search" class="w-64 pl-9 pr-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="도구 검색..." data-i18n-placeholder="nav.searchPlaceholder">
         </div>
         <button id="tools-dropdown-close" class="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -509,7 +509,7 @@
       </div>
     </div>
 
-    <!-- Tools Grid -->
+    <!-- Tools Grid (고정 높이 + 스크롤) -->
     <div class="max-h-[420px] overflow-y-auto">
       <div id="tools-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2">
         <!-- Tools will be populated by JS -->
@@ -518,12 +518,12 @@
   </div>
 </div>
 
-<!-- Dropdown Backdrop -->
+<!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <article class="container-main max-w-3xl">
-      <div class="mb-8">
+      <div class="mb-10">
         <a href="/en/blog" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">&larr; Blog</a>
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">Color Theory Guide for Web Design</h1>
         <p class="text-gray-500 dark:text-gray-400 text-sm">February 10, 2025 &middot; 8 min read</p>
@@ -651,11 +651,11 @@
       <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
         <h3 class="font-bold text-gray-900 dark:text-white mb-4">Read More</h3>
         <div class="grid gap-4 sm:grid-cols-2">
-          <a href="/en/blog/hash-guide" class="block p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+          <a href="/en/blog/hash-guide" class="block p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
             <p class="font-medium text-gray-900 dark:text-white">Hash Functions Guide</p>
             <p class="text-sm text-gray-500 mt-1">From MD5 to SHA-512 explained</p>
           </a>
-          <a href="/en/blog/regex-tutorial" class="block p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+          <a href="/en/blog/regex-tutorial" class="block p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
             <p class="font-medium text-gray-900 dark:text-white">Regular Expressions Guide</p>
             <p class="text-sm text-gray-500 mt-1">Patterns that match text like magic</p>
           </a>
@@ -665,7 +665,7 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>

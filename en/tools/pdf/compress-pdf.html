@@ -48,7 +48,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -514,7 +514,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Compress PDF</h1>
@@ -618,6 +618,46 @@
             <li>Always keep a backup of the original file before compressing</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">About PDF Compression</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Large PDFs are the bane of email attachments and slow uploads. Here is what you should know about shrinking them down without ruining the content.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How much can I realistically reduce the file size?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">It depends heavily on the original content. PDFs packed with high-resolution photos can shrink by 60 to 80 percent. Text-heavy documents with few images might only drop by 10 to 20 percent since the text itself is already compact. Scanned documents tend to compress the most dramatically.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Will the text become blurry after compression?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">No. Compression targets embedded images, not the text layer. Vector text and fonts remain crisp at any quality setting. Only photographs and raster graphics within the PDF are affected by the quality slider. At 70 percent quality, most people cannot tell the difference from the original.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is my file uploaded to a server?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">No, everything happens right in your browser. The PDF never leaves your device, which means your sensitive documents stay private. You can verify this by disconnecting from the internet after loading the page and the compression will still work perfectly.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What quality setting should I use for email attachments?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">For most email providers that cap attachments at 25 MB, a quality setting around 60 to 70 percent strikes a good balance. Documents will look clean on screen and in standard prints. If the recipient needs to print at high resolution, bump it up to 80 percent and consider a file-sharing link instead if the size is still too large.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I compress a password-protected PDF?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Encrypted PDFs need to be unlocked before the browser can read their contents. If the file requires a password to open, you will need to enter it or remove the protection first using a separate tool. PDFs with only print restrictions (no open password) usually work fine.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Should I keep the original file?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Always. Compression is a one-way operation on image quality. Once you reduce resolution, you cannot restore it from the compressed file. Keep the original as your master copy and use compressed versions for sharing, uploading, and archiving where file size matters more than pixel-perfect fidelity.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

@@ -52,7 +52,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -518,7 +518,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">CSS Box Shadow Generator</h1>
@@ -710,6 +710,46 @@
             <li>On mobile devices, very large blur values (50px+) can cause performance issues.</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Good to Know</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Box shadows are one of the most effective ways to add depth and dimension to your UI. Getting them right by hand can be tedious, so a visual generator makes the process much faster.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What does the spread value actually do?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Spread expands or contracts the shadow. A positive value makes the shadow larger than the element, while a negative value shrinks it. Setting spread equal to blur with zero offset creates a glow effect around the entire element.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I use multiple shadows on one element?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Yes, and it is actually encouraged. Layering two or three shadows with different blur and offset values creates much more realistic depth than a single heavy shadow.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the difference between box-shadow and drop-shadow?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">box-shadow always renders a rectangular shadow matching the element's box model. The CSS filter drop-shadow() follows the actual shape of the content, including transparent areas in PNGs. For standard cards and buttons, box-shadow is the better choice.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does the inset option work in all browsers?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Inset shadows have been supported in all major browsers since IE9. They are completely safe to use in production today.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why do my shadows look different on macOS vs Windows?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">macOS uses sub-pixel anti-aliasing and different gamma curves, which can make shadows appear slightly softer. The CSS values are identical, but the rendering engine handles them differently at the pixel level.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How much blur is too much?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">For most UI cards, 10px to 30px blur feels natural. Going beyond 60px starts looking unrealistic and can slow down rendering on lower-end devices, especially when many shadowed elements are visible at once.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

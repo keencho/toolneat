@@ -55,7 +55,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -521,7 +521,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Number Base Converter</h1>
@@ -682,6 +682,41 @@
             <li>Do not include prefixes like 0x, 0b, or 0o when entering values</li>
           </ul>
 
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Good to Know</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Number base conversion is fundamental in programming and computer science. Whether you are reading memory addresses in hex or working with file permissions in octal, understanding bases helps you think closer to how computers actually work.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why do programmers use hexadecimal so much?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Each hex digit maps exactly to 4 binary bits, making it a compact way to represent binary data. The color #FF0000 is much easier to read than 111111110000000000000000.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">When is octal (base 8) actually used?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Mostly in Unix file permissions. When you type chmod 755, those are octal digits where 7 means read+write+execute (111 in binary) and 5 means read+execute (101 in binary).</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Should I include prefixes like 0x or 0b?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">No, enter the raw digits only. The tool already knows which base you are converting from based on your selection.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What happens with very large numbers?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">JavaScript can safely handle integers up to 2^53 - 1 (about 9 quadrillion). Beyond that, precision may be lost. For cryptographic or arbitrary-precision work, a dedicated library is recommended.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I convert decimal fractions?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Only whole integers are supported here. Fractional base conversion involves repeating patterns and is rarely needed in day-to-day programming tasks.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>

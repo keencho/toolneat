@@ -186,7 +186,7 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -652,7 +652,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.game2048.title">2048</h1>
@@ -779,6 +779,46 @@
             <div>
               <h4 class="font-medium">Q: How is the score calculated?</h4>
               <p>Each time two tiles merge, the value of the resulting tile is added to your score. For example, merging 16+16=32 adds 32 points.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">Winning Strategies</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">2048 looks deceptively simple, but reaching the 2048 tile takes real strategy. Most players never get there on their first few dozen attempts. Here are the insights that separate casual players from consistent winners.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the corner strategy?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Pick one corner and keep your highest tile there at all times. Most experienced players use the bottom-left or bottom-right corner. Build a descending chain along one edge so your largest values flow naturally into each other. This single habit dramatically increases your chances of reaching 2048.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Should I avoid swiping in a certain direction?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">If your highest tile is in a corner, avoid swiping in the direction that would pull it away from that corner. For example, if your big tile is in the bottom-right, try to never swipe up or left unless absolutely forced. Limiting yourself to two or three directions keeps the board organized.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is the highest possible tile?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Theoretically, the maximum tile is 131072 on a 4x4 board, but achieving anything beyond 8192 requires extraordinary patience and a bit of luck with tile spawns. The 2048 tile itself is a solid achievement, and reaching 4096 puts you in rarefied territory.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why does a random 4 tile appear sometimes?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Each new tile has a 90 percent chance of being a 2 and a 10 percent chance of being a 4. The random 4s add unpredictability and prevent purely mechanical play. They can actually help when they appear in useful positions, saving you a merge step.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">How do I recover from a bad board state?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Focus on clearing space rather than chasing merges. When the board gets crowded, work on combining the smallest tiles first to free up room. Sometimes sacrificing your ideal tile arrangement temporarily is necessary to survive. If your corner tile gets displaced, patiently maneuver it back before making big merges.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Can I play on mobile?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Swipe in any direction on the game board to move tiles. The touch controls feel natural and many players actually prefer mobile since swiping is faster than pressing arrow keys. The game adapts to your screen size automatically.</p>
             </div>
           </div>
         </div>

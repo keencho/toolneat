@@ -3,13 +3,53 @@
 /* Tailwind v4 Dark Mode - class 기반 */
 @variant dark (&:where(.dark, .dark *));
 
-/* Tailwind v4 Theme */
+/* Toss-inspired Theme */
 @theme {
   --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --breakpoint-content: 800px;
+
+  /* Gray scale - based on Toss's actual palette, micro-adjusted */
+  --color-gray-50: #F2F4F6;
+  --color-gray-100: #E5E8EB;
+  --color-gray-200: #D1D6DB;
+  --color-gray-300: #B0B8C1;
+  --color-gray-400: #8B95A1;
+  --color-gray-500: #6B7684;
+  --color-gray-600: #4E5968;
+  --color-gray-700: #333D4B;
+  --color-gray-800: #191F28;
+  --color-gray-900: #121518;
+  --color-gray-950: #0B0D0F;
+
+  /* Blue scale - based on Toss UI blue, micro-adjusted */
+  --color-blue-50: #E8F3FF;
+  --color-blue-100: #C9E2FF;
+  --color-blue-200: #90C2FF;
+  --color-blue-300: #64A8FF;
+  --color-blue-400: #4593FC;
+  --color-blue-500: #3182F6;
+  --color-blue-600: #1B64DA;
+  --color-blue-700: #1957C2;
+  --color-blue-800: #194AA6;
+  --color-blue-900: #163B82;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.03);
+  --shadow-xl: 0 16px 50px rgba(0, 0, 0, 0.10), 0 8px 16px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 24px 60px rgba(0, 0, 0, 0.14);
+
+  /* Border radius - matches Toss component scale */
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
 }
 
-/* Pretendard Font - CDN (동적 서브셋) */
+/* Pretendard Font - CDN */
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 
 /* Base Styles */
@@ -17,45 +57,50 @@ html {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  word-break: keep-all;
 }
 
-/* Button cursor fix - Tailwind preflight sets cursor:default */
 button {
   cursor: pointer;
 }
 
 body {
-  @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+  @apply bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100;
   @apply transition-colors duration-200;
 }
 
-/* Components */
+/* ===== Components ===== */
+
 .btn {
-  @apply px-4 py-2 rounded-xl font-medium cursor-pointer;
+  @apply px-6 py-3 rounded-xl font-semibold cursor-pointer;
   @apply transition-all duration-200;
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  @apply text-[15px];
 }
 
 .btn-primary {
-  @apply bg-blue-600 text-white;
-  @apply hover:bg-blue-700 hover:scale-[1.02];
+  @apply bg-blue-500 text-white;
+  @apply hover:bg-blue-600 active:scale-[0.98];
   @apply focus:ring-blue-500;
-  @apply dark:bg-blue-500 dark:hover:bg-blue-600;
+  @apply dark:bg-blue-500 dark:hover:bg-blue-400;
 }
 
 .btn-secondary {
   @apply bg-gray-100 text-gray-700;
-  @apply hover:bg-gray-200 hover:scale-[1.02];
-  @apply focus:ring-gray-400;
+  @apply hover:bg-gray-200 active:scale-[0.98];
+  @apply focus:ring-gray-300;
   @apply dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600;
 }
 
 .input {
-  @apply w-full px-4 py-3 rounded-xl;
-  @apply bg-gray-50 border border-gray-200;
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  @apply w-full px-4 py-3.5 rounded-xl;
+  @apply bg-white border border-gray-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500;
   @apply transition-all duration-200;
   @apply dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100;
+  @apply placeholder:text-gray-400 dark:placeholder:text-gray-500;
 }
 
 /* Date/time input icon fix for dark mode */
@@ -79,48 +124,53 @@ input[type="time"]::-webkit-calendar-picker-indicator:hover {
 
 .textarea {
   @apply w-full px-4 py-3 rounded-xl resize-none;
-  @apply bg-gray-50 border border-gray-200;
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  @apply bg-white border border-gray-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500;
   @apply transition-all duration-200;
   @apply dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100;
+  @apply placeholder:text-gray-400 dark:placeholder:text-gray-500;
 }
 
 .card {
-  @apply bg-white rounded-xl shadow-sm p-6;
+  @apply bg-white rounded-2xl p-6 md:p-8;
   @apply border border-gray-100;
   @apply transition-all duration-200;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   @apply hover:shadow-md;
-  @apply dark:bg-gray-800 dark:border-gray-700;
+  @apply dark:bg-gray-800 dark:border-gray-700/60;
 }
 
 .tool-card {
-  @apply bg-white rounded-xl shadow-sm p-6 cursor-pointer;
+  @apply bg-white rounded-2xl p-5 md:p-6 cursor-pointer;
   @apply border border-gray-100;
   @apply transition-all duration-200;
-  @apply hover:shadow-md hover:scale-[1.01];
-  @apply dark:bg-gray-800 dark:border-gray-700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  @apply hover:shadow-md hover:-translate-y-0.5;
+  @apply dark:bg-gray-800 dark:border-gray-700/60;
 }
 
 .container-main {
   @apply max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8;
 }
 
-/* Dropdown Navigation */
+/* ===== Navigation ===== */
+
 .nav-dropdown {
   @apply relative;
 }
 
 .nav-dropdown-btn {
-  @apply flex items-center gap-1 px-3 py-2 rounded-lg cursor-pointer;
+  @apply flex items-center gap-1.5 px-3 py-2 rounded-xl cursor-pointer;
   @apply text-gray-600 dark:text-gray-400;
   @apply hover:text-gray-900 dark:hover:text-white;
   @apply hover:bg-gray-100 dark:hover:bg-gray-800;
   @apply transition-all duration-200;
+  @apply text-[15px] font-medium;
 }
 
 .nav-dropdown-menu {
   @apply absolute top-full left-0 mt-1 py-2 w-64;
-  @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg;
+  @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg;
   @apply border border-gray-100 dark:border-gray-700;
   @apply opacity-0 invisible translate-y-2;
   @apply transition-all duration-200;
@@ -152,7 +202,7 @@ input[type="time"]::-webkit-calendar-picker-indicator:hover {
 .nav-mega-menu {
   @apply hidden md:block absolute top-full left-1/2 -translate-x-1/2 mt-1;
   @apply md:grid grid-cols-4 gap-6 min-w-[720px] p-6;
-  @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg;
+  @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg;
   @apply border border-gray-100 dark:border-gray-700;
   @apply opacity-0 invisible translate-y-2;
   @apply transition-all duration-200;
@@ -174,7 +224,7 @@ input[type="time"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .mega-link {
-  @apply block px-2 py-1.5 rounded-md text-sm;
+  @apply block px-2 py-1.5 rounded-lg text-sm;
   @apply text-gray-600 dark:text-gray-400;
   @apply hover:bg-gray-50 dark:hover:bg-gray-700;
   @apply hover:text-gray-900 dark:hover:text-white;
@@ -203,29 +253,33 @@ input[type="time"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .mobile-sub-content a:hover {
-  @apply text-blue-600 dark:text-blue-400;
+  @apply text-blue-500 dark:text-blue-400;
 }
+
+/* ===== Ad Container ===== */
 
 .ad-container {
   @apply w-full flex justify-center;
 }
 
-/* 광고 코드가 있을 때만 스타일 적용 (ins 태그는 AdSense가 생성) */
 .ad-container:has(ins), .ad-container:has(.ad-placeholder) {
   @apply py-4;
   @apply bg-gray-50 dark:bg-gray-800/50;
   @apply border-y border-gray-100 dark:border-gray-800;
 }
 
+/* ===== Icon Button ===== */
+
 .icon-btn {
-  @apply p-2 rounded-lg cursor-pointer;
-  @apply text-gray-600 dark:text-gray-400;
+  @apply p-2 rounded-xl cursor-pointer;
+  @apply text-gray-500 dark:text-gray-400;
   @apply hover:bg-gray-100 dark:hover:bg-gray-800;
   @apply transition-all duration-200;
-  @apply focus:outline-none focus:ring-2 focus:ring-gray-400;
+  @apply focus:outline-none focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600;
 }
 
-/* Utilities */
+/* ===== Scrollbar ===== */
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -234,26 +288,25 @@ input[type="time"]::-webkit-calendar-picker-indicator:hover {
   display: none;
 }
 
-/* Global Scrollbar Styling - Light Mode */
 html, body, * {
   scrollbar-width: thin;
-  scrollbar-color: #94a3b8 transparent;
+  scrollbar-color: #D1D6DB transparent;
 }
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
-  border-radius: 5px;
+  background: #D1D6DB;
+  border-radius: 4px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #B0B8C1;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
@@ -261,21 +314,21 @@ html, body, * {
   background: transparent;
 }
 
-/* Dark mode select dropdown fix */
+/* Dark mode select */
 .dark select,
 .dark select option {
-  background-color: #1f2937;
-  color: #f3f4f6;
+  background-color: #191F28;
+  color: #E8EBED;
 }
 
 .dark select option:checked,
 .dark select option:hover {
-  background-color: #374151;
+  background-color: #333D4B;
 }
 
-/* Dark mode scrollbar - Light gray for visibility */
+/* Dark mode scrollbar */
 html.dark, html.dark body, .dark, .dark * {
-  scrollbar-color: #64748b transparent;
+  scrollbar-color: #4E5968 transparent;
 }
 html.dark ::-webkit-scrollbar-track,
 .dark ::-webkit-scrollbar-track {
@@ -283,14 +336,42 @@ html.dark ::-webkit-scrollbar-track,
 }
 html.dark ::-webkit-scrollbar-thumb,
 .dark ::-webkit-scrollbar-thumb {
-  background: #64748b;
-  border-radius: 5px;
+  background: #4E5968;
+  border-radius: 4px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 html.dark ::-webkit-scrollbar-thumb:hover,
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #6B7684;
   border: 2px solid transparent;
   background-clip: padding-box;
+}
+
+/* ===== Toss-style Prose (for blog) ===== */
+
+.prose h2 {
+  @apply text-gray-900 dark:text-white;
+  letter-spacing: -0.02em;
+}
+
+.prose p {
+  @apply text-gray-600 dark:text-gray-400;
+  line-height: 1.8;
+}
+
+.prose strong {
+  @apply text-gray-800 dark:text-gray-200;
+}
+
+/* ===== Selection ===== */
+
+::selection {
+  background: rgba(52, 133, 247, 0.15);
+  color: inherit;
+}
+
+.dark ::selection {
+  background: rgba(52, 133, 247, 0.30);
+  color: inherit;
 }

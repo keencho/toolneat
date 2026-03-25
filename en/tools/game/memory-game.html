@@ -171,7 +171,7 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col">
   <div id="header">
-<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -637,7 +637,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-8 md:py-12">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.memoryGame.title">Memory Game</h1>
@@ -756,6 +756,46 @@
             <div>
               <h4 class="font-medium">Q: Can I play offline?</h4>
               <p>Once the page is loaded, you can play without an internet connection.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guide Section -->
+      <section class="mt-10 mb-2">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 p-6 md:p-8">
+          <h2 class="text-[20px] font-bold text-gray-900 dark:text-white mb-4">About Memory Games</h2>
+          <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed mb-6">Matching pairs is one of the oldest brain training exercises out there. Simple to understand, surprisingly hard to master. Here is what players often want to know.</p>
+
+          <div class="space-y-5">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Does playing memory games actually improve memory?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Research suggests that regular practice with spatial memory tasks can strengthen short-term recall and visual working memory. You probably will not memorize phone books, but consistent play does sharpen your ability to remember locations and patterns. Even a few minutes a day shows measurable improvement over weeks.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">What is a good strategy for matching pairs efficiently?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Start by flipping cards systematically rather than randomly. Work through one row at a time to build a mental map. When you reveal a card, try to remember not just what it is but where it is on the grid. Experienced players create mental stories or spatial associations, linking each emoji to its position like landmarks on a map.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Which difficulty should I start with?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">If you are new, start with the 4x4 grid which has 8 pairs to find. It is manageable enough to build confidence without being trivially easy. Once you can consistently clear 4x4 in under 30 seconds, move up to 6x6 for a real challenge with 18 pairs.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Why does the game track both time and number of moves?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">They measure different skills. Fewer moves means better memory since you are not re-flipping cards you have already seen. Faster time reflects quicker visual processing and decision-making. The best players optimize both, but reducing moves is generally more important than speed since each unnecessary flip wastes time anyway.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Is it better to match cards I have seen before or explore new ones?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">When you flip a card and recognize it from a previous turn, always try to match it immediately. Exploring new cards is only worthwhile when you have no known matches to make. The worst mistake is seeing a match opportunity and ignoring it to flip unknown cards instead.</p>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700/60">
+            <div>
+              <h3 class="text-[15px] font-semibold text-gray-800 dark:text-gray-200 mb-1.5">Are kids better at this than adults?</h3>
+              <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Surprisingly, yes, in many cases. Children around ages 6 to 12 often outperform adults at concentration-style games because their visual-spatial working memory is highly active during development. Adults tend to overthink and rely on verbal encoding, while kids naturally use visual memory which is better suited to this type of task.</p>
             </div>
           </div>
         </div>
