@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/generate-sitemap.js:*)",
+      "Bash(node:*)",
+      "WebSearch",
+      "Bash(dir:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)",
+      "WebFetch(domain:toolneat.com)",
+      "Bash(ls:*)",
+      "Bash(npx http-server -p 3000 -c-1)",
+      "Bash(npm run css:*)",
+      "Bash(npm run:*)",
+      "Bash(npx @tailwindcss/cli:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(curl:*)",
+      "Bash(npx serve:*)",
+      "Bash(timeout /t 3)",
+      "Bash(npm install:*)",
+      "Bash(python3:*)",
+      "Bash(python:*)",
+      "Bash(timeout:*)",
+      "Bash(while read f)",
+      "Bash(do if ! grep -q 'font-medium pt-3' \"$f\")",
+      "Bash(then echo \"$f\")",
+      "Bash(fi)",
+      "Bash(done)",
+      "WebFetch(domain:toss.tech)",
+      "WebFetch(domain:brand.toss.im)",
+      "WebFetch(domain:toss.im)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
