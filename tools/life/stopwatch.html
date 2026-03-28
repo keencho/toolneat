@@ -525,7 +525,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6 text-center">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">스톱워치</h1>
@@ -654,219 +656,19 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    (function(){'use strict';
-    const timeDisplay = document.getElementById('time-display');
-    const msDisplay = document.getElementById('ms-display');
-    const startStopBtn = document.getElementById('start-stop-btn');
-    const lapResetBtn = document.getElementById('lap-reset-btn');
-    const lapText = document.getElementById('lap-text');
-    const lapContainer = document.getElementById('lap-container');
-    const lapList = document.getElementById('lap-list');
-    const lapCount = document.getElementById('lap-count');
-
-    let startTime = 0;
-    let elapsedTime = 0;
-    let timerInterval = null;
-    let isRunning = false;
-    let laps = [];
-    let lastLapTime = 0;
-
-    function formatTime(ms, includeMs = false) {
-      const totalSeconds = Math.floor(ms / 1000);
-      const hours = Math.floor(totalSeconds / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
-      const milliseconds = Math.floor((ms % 1000) / 10);
-
-      let timeStr = '';
-      if (hours > 0) {
-        timeStr = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      } else {
-        timeStr = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      }
-
-      if (includeMs) {
-        timeStr += `.${milliseconds.toString().padStart(2, '0')}`;
-      }
-
-      return timeStr;
-    }
-
-    function updateDisplay() {
-      const current = Date.now();
-      elapsedTime = current - startTime;
-
-      const totalSeconds = Math.floor(elapsedTime / 1000);
-      const hours = Math.floor(totalSeconds / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
-      const milliseconds = Math.floor((elapsedTime % 1000) / 10);
-
-      if (hours > 0) {
-        timeDisplay.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      } else {
-        timeDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      }
-      msDisplay.textContent = `.${milliseconds.toString().padStart(2, '0')}`;
-
-      document.title = `${timeDisplay.textContent}${msDisplay.textContent} - 스톱워치`;
-    }
-
-    function start() {
-      if (!isRunning) {
-        startTime = Date.now() - elapsedTime;
-        timerInterval = setInterval(updateDisplay, 10);
-        isRunning = true;
-        startStopBtn.innerHTML = '<span>정지</span>';
-        startStopBtn.classList.add('running');
-        lapText.textContent = '랩';
-        lapResetBtn.disabled = false;
-      }
-    }
-
-    function stop() {
-      if (isRunning) {
-        clearInterval(timerInterval);
-        isRunning = false;
-        startStopBtn.innerHTML = '<span>시작</span>';
-        startStopBtn.classList.remove('running');
-        lapText.textContent = '리셋';
-      }
-    }
-
-    function reset() {
-      clearInterval(timerInterval);
-      isRunning = false;
-      elapsedTime = 0;
-      lastLapTime = 0;
-      laps = [];
-      timeDisplay.textContent = '00:00:00';
-      msDisplay.textContent = '.00';
-      startStopBtn.innerHTML = '<span>시작</span>';
-      startStopBtn.classList.remove('running');
-      lapText.textContent = '랩';
-      lapContainer.classList.add('hidden');
-      lapList.innerHTML = '';
-      lapCount.textContent = '0개';
-      document.title = '스톱워치 - Toolneat';
-    }
-
-    function recordLap() {
-      if (!isRunning) return;
-
-      const lapTime = elapsedTime - lastLapTime;
-      const totalTime = elapsedTime;
-      lastLapTime = elapsedTime;
-
-      laps.push({ lapTime, totalTime, number: laps.length + 1 });
-      lapCount.textContent = `${laps.length}개`;
-
-      renderLaps();
-      lapContainer.classList.remove('hidden');
-    }
-
-    function renderLaps() {
-      if (laps.length === 0) return;
-
-      // Find best and worst lap times (only if more than 1 lap)
-      let bestIdx = -1, worstIdx = -1;
-      if (laps.length > 1) {
-        let minTime = Infinity, maxTime = 0;
-        laps.forEach((lap, idx) => {
-          if (lap.lapTime < minTime) { minTime = lap.lapTime; bestIdx = idx; }
-          if (lap.lapTime > maxTime) { maxTime = lap.lapTime; worstIdx = idx; }
-        });
-      }
-
-      lapList.innerHTML = laps.slice().reverse().map((lap, reverseIdx) => {
-        const idx = laps.length - 1 - reverseIdx;
-        let className = 'lap-item';
-        if (idx === bestIdx) className += ' best';
-        if (idx === worstIdx) className += ' worst';
-
-        return `
-          <div class="${className}">
-            <span class="lap-number">랩 ${lap.number}</span>
-            <div class="text-right">
-              <div class="lap-time">${formatTime(lap.lapTime, true)}</div>
-              <div class="lap-diff">${formatTime(lap.totalTime, true)}</div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // Event listeners
-    startStopBtn.addEventListener('click', () => {
-      if (isRunning) {
-        stop();
-      } else {
-        start();
-      }
-    });
-
-    lapResetBtn.addEventListener('click', () => {
-      if (isRunning) {
-        recordLap();
-      } else if (elapsedTime > 0) {
-        reset();
-      }
-    });
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-      if (e.code === 'Space') {
-        e.preventDefault();
-        if (isRunning) stop(); else start();
-      } else if (e.code === 'KeyL' && isRunning) {
-        e.preventDefault();
-        recordLap();
-      } else if (e.code === 'KeyR' && !isRunning && elapsedTime > 0) {
-        e.preventDefault();
-        reset();
-      }
-    });
-
-    // Initialize
-    document.title = '스톱워치 - Toolneat';
-    })();
-  </script>
 </body>
 </html>

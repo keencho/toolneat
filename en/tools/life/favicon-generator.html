@@ -559,7 +559,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Favicon Generator</h1>
@@ -708,7 +710,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -720,142 +722,7 @@
     </div>
   </div>
 </footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
 </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script>
-    (function() {
-      'use strict';
-      const sizes = [16, 32, 48, 64, 128, 180, 192, 512];
-      const dropZone = document.getElementById('drop-zone');
-      const fileInput = document.getElementById('file-input');
-      const uploadSection = document.getElementById('upload-section');
-      const resultSection = document.getElementById('result-section');
-      const sourcePreview = document.getElementById('source-preview');
-      const sourceInfo = document.getElementById('source-info');
-      const faviconGrid = document.getElementById('favicon-grid');
-      const resetBtn = document.getElementById('reset-btn');
-      const downloadAllBtn = document.getElementById('download-all');
-      const downloadIcoBtn = document.getElementById('download-ico');
-
-      let sourceImage = null;
-      const generatedImages = {};
-
-      dropZone.addEventListener('click', () => fileInput.click());
-      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
-      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-      dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-        if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-      });
-      fileInput.addEventListener('change', (e) => { if (e.target.files.length) handleFile(e.target.files[0]); });
-
-      function handleFile(file) {
-        if (!file.type.startsWith('image/')) {
-          toast.error('Only image files are supported.');
-          return;
-        }
-        const img = new Image();
-        img.onload = () => {
-          sourceImage = img;
-          sourcePreview.src = img.src;
-          sourceInfo.textContent = `${img.width} x ${img.height}px`;
-          uploadSection.classList.add('hidden');
-          resultSection.classList.remove('hidden');
-          generateFavicons();
-        };
-        img.src = URL.createObjectURL(file);
-      }
-
-      function generateFavicons() {
-        faviconGrid.innerHTML = '';
-        sizes.forEach(size => {
-          const canvas = document.createElement('canvas');
-          canvas.width = size;
-          canvas.height = size;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(sourceImage, 0, 0, size, size);
-          const dataUrl = canvas.toDataURL('image/png');
-          generatedImages[size] = dataUrl;
-
-          const card = document.createElement('div');
-          card.className = 'size-card';
-          card.innerHTML = `
-            <div class="favicon-preview mx-auto mb-2" style="width:${Math.min(size, 64) + 16}px;height:${Math.min(size, 64) + 16}px;padding:8px;">
-              <img src="${dataUrl}" class="w-full h-full object-contain" style="image-rendering: pixelated;">
-            </div>
-            <p class="text-sm font-medium text-gray-900 dark:text-white">${size}x${size}</p>
-            <button class="text-xs text-blue-600 dark:text-blue-400 hover:underline mt-1" onclick="downloadSingle(${size})">Download</button>
-          `;
-          faviconGrid.appendChild(card);
-        });
-      }
-
-      window.downloadSingle = function(size) {
-        const a = document.createElement('a');
-        a.href = generatedImages[size];
-        a.download = `favicon-${size}x${size}.png`;
-        a.click();
-      };
-
-      downloadAllBtn.addEventListener('click', async () => {
-        const zip = new JSZip();
-        sizes.forEach(size => {
-          const base64 = generatedImages[size].split(',')[1];
-          zip.file(`favicon-${size}x${size}.png`, base64, { base64: true });
-        });
-        const blob = await zip.generateAsync({ type: 'blob' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'favicons.zip';
-        a.click();
-      });
-
-      downloadIcoBtn.addEventListener('click', () => {
-        // Generate simple ICO (using 16x16 and 32x32)
-        const canvas = document.createElement('canvas');
-        canvas.width = 32;
-        canvas.height = 32;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(sourceImage, 0, 0, 32, 32);
-        canvas.toBlob((blob) => {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = 'favicon.ico';
-          a.click();
-        }, 'image/png');
-        toast.info('Note: Due to browser limitations, saved as PNG format. For true ICO, use a dedicated converter.');
-      });
-
-      resetBtn.addEventListener('click', () => {
-        sourceImage = null;
-        fileInput.value = '';
-        uploadSection.classList.remove('hidden');
-        resultSection.classList.add('hidden');
-      });
-    })();
-  </script>
 </body>
 </html>

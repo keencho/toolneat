@@ -515,7 +515,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">CSS 그라데이션 생성기</h1>
@@ -665,144 +667,19 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    let type='linear',direction='to right',angle=90,shape='circle',colors=['#667eea','#764ba2'];
-    const preview=document.getElementById('preview'),cssCode=document.getElementById('css-code'),colorStops=document.getElementById('color-stops');
-
-    function updateGradient(){
-      let gradient;
-      if(type==='linear'){
-        gradient=`linear-gradient(${angle}deg, ${colors.join(', ')})`;
-      }else{
-        gradient=`radial-gradient(${shape}, ${colors.join(', ')})`;
-      }
-      preview.style.background=gradient;
-      cssCode.textContent=`background: ${gradient};`;
-    }
-
-    function renderColorStops(){
-      colorStops.innerHTML='';
-      colors.forEach((color,i)=>{
-        const div=document.createElement('div');
-        div.className='color-stop';
-        div.innerHTML=`
-          <input type="color" value="${color}" class="w-10 h-8 rounded cursor-pointer" data-index="${i}">
-          <input type="text" value="${color}" class="input flex-1 text-sm" data-index="${i}">
-          ${colors.length>2?`<button class="text-red-500 hover:text-red-600" data-remove="${i}">×</button>`:''}
-        `;
-        colorStops.appendChild(div);
-      });
-      colorStops.querySelectorAll('input[type="color"]').forEach(el=>{
-        el.addEventListener('input',e=>{colors[e.target.dataset.index]=e.target.value;updateGradient();renderColorStops()});
-      });
-      colorStops.querySelectorAll('input[type="text"]').forEach(el=>{
-        el.addEventListener('input',e=>{if(/^#[0-9A-Fa-f]{6}$/.test(e.target.value)){colors[e.target.dataset.index]=e.target.value;updateGradient()}});
-      });
-      colorStops.querySelectorAll('[data-remove]').forEach(el=>{
-        el.addEventListener('click',e=>{colors.splice(e.target.dataset.remove,1);updateGradient();renderColorStops()});
-      });
-    }
-
-    document.getElementById('tab-linear').addEventListener('click',()=>{
-      type='linear';
-      document.getElementById('tab-linear').classList.add('active');
-      document.getElementById('tab-radial').classList.remove('active');
-      document.getElementById('linear-options').classList.remove('hidden');
-      document.getElementById('radial-options').classList.add('hidden');
-      updateGradient();
-    });
-    document.getElementById('tab-radial').addEventListener('click',()=>{
-      type='radial';
-      document.getElementById('tab-radial').classList.add('active');
-      document.getElementById('tab-linear').classList.remove('active');
-      document.getElementById('radial-options').classList.remove('hidden');
-      document.getElementById('linear-options').classList.add('hidden');
-      updateGradient();
-    });
-
-    document.querySelectorAll('[data-dir]').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        document.querySelectorAll('[data-dir]').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        direction=btn.dataset.dir;
-        const angles={'to top':0,'to top right':45,'to right':90,'to bottom right':135,'to bottom':180,'to bottom left':225,'to left':270,'to top left':315};
-        angle=angles[direction];
-        document.getElementById('angle').value=angle;
-        document.getElementById('angle-value').textContent=angle;
-        updateGradient();
-      });
-    });
-
-    document.getElementById('angle').addEventListener('input',e=>{
-      angle=parseInt(e.target.value);
-      document.getElementById('angle-value').textContent=angle;
-      updateGradient();
-    });
-
-    document.querySelectorAll('[data-shape]').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        document.querySelectorAll('[data-shape]').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        shape=btn.dataset.shape;
-        updateGradient();
-      });
-    });
-
-    document.getElementById('add-color').addEventListener('click',()=>{
-      colors.push('#ffffff');
-      renderColorStops();
-      updateGradient();
-    });
-
-    document.querySelectorAll('.preset').forEach(el=>{
-      el.addEventListener('click',()=>{
-        colors=el.dataset.colors.split(',');
-        renderColorStops();
-        updateGradient();
-      });
-    });
-
-    document.getElementById('copy-btn').addEventListener('click',()=>{
-      navigator.clipboard.writeText(cssCode.textContent);
-      toast.success('CSS가 복사되었습니다!');
-    });
-
-    renderColorStops();
-    updateGradient();
-  </script>
 </body>
 </html>

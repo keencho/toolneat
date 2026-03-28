@@ -512,7 +512,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">JavaScript 압축기</h1>
@@ -667,228 +669,19 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    (function(){'use strict';
-    const inputArea = document.getElementById('input-area');
-    const outputArea = document.getElementById('output-area');
-    const minifyBtn = document.getElementById('minify-btn');
-    const copyBtn = document.getElementById('copy-btn');
-    const downloadBtn = document.getElementById('download-btn');
-    const sampleBtn = document.getElementById('sample-btn');
-    const clearBtn = document.getElementById('clear-btn');
-    const optComments = document.getElementById('opt-comments');
-    const optWhitespace = document.getElementById('opt-whitespace');
-    const optSemicolons = document.getElementById('opt-semicolons');
-    const originalSize = document.getElementById('original-size');
-    const minifiedSize = document.getElementById('minified-size');
-    const reduction = document.getElementById('reduction');
-    const errorMsg = document.getElementById('error-msg');
-
-    const sampleCode = `// Sample JavaScript code
-function calculateSum(numbers) {
-  // Initialize sum variable
-  let sum = 0;
-
-  /* Loop through all numbers
-     and add them to sum */
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
-
-  return sum;
-}
-
-// Example usage
-const myNumbers = [1, 2, 3, 4, 5];
-const result = calculateSum(myNumbers);
-console.log("Sum:", result);`;
-
-    function showError(msg) {
-      errorMsg.textContent = msg;
-      errorMsg.classList.remove('hidden');
-    }
-
-    function hideError() {
-      errorMsg.classList.add('hidden');
-    }
-
-    function minifyJS(code, removeComments, removeWhitespace, optimizeSemicolons) {
-      let result = code;
-
-      // Remove single-line comments
-      if (removeComments) {
-        // Be careful not to remove URLs (http://, https://)
-        result = result.replace(/(?<!:)\/\/[^\n]*/g, '');
-      }
-
-      // Remove multi-line comments
-      if (removeComments) {
-        result = result.replace(/\/\*[\s\S]*?\*\//g, '');
-      }
-
-      if (removeWhitespace) {
-        // Remove leading/trailing whitespace on each line
-        result = result.replace(/^\s+/gm, '');
-        result = result.replace(/\s+$/gm, '');
-
-        // Replace multiple spaces with single space
-        result = result.replace(/[ \t]+/g, ' ');
-
-        // Remove spaces around operators (but preserve string contents)
-        const tokens = [];
-        let inString = false;
-        let stringChar = '';
-        let current = '';
-
-        for (let i = 0; i < result.length; i++) {
-          const char = result[i];
-
-          if (!inString && (char === '"' || char === "'" || char === '`')) {
-            inString = true;
-            stringChar = char;
-            current += char;
-          } else if (inString && char === stringChar && result[i-1] !== '\\') {
-            inString = false;
-            current += char;
-          } else {
-            current += char;
-          }
-        }
-        result = current;
-
-        // Remove newlines
-        result = result.replace(/\n+/g, '');
-
-        // Remove spaces around common operators
-        result = result.replace(/ ?([{}\[\]();:,=+\-*/<>!&|?]) ?/g, '$1');
-
-        // Restore necessary spaces
-        result = result.replace(/\b(var|let|const|function|return|if|else|for|while|do|switch|case|break|continue|new|typeof|instanceof|in|of)\b/g, ' $1 ');
-        result = result.replace(/  +/g, ' ');
-        result = result.trim();
-      }
-
-      // Optimize semicolons (remove before closing braces)
-      if (optimizeSemicolons) {
-        result = result.replace(/;}/g, '}');
-      }
-
-      return result;
-    }
-
-    function updateStats(original, minified) {
-      const origBytes = new Blob([original]).size;
-      const minBytes = new Blob([minified]).size;
-      const reductionPercent = origBytes > 0 ? Math.round((1 - minBytes / origBytes) * 100) : 0;
-
-      originalSize.textContent = origBytes.toLocaleString();
-      minifiedSize.textContent = minBytes.toLocaleString();
-      reduction.textContent = reductionPercent + '%';
-    }
-
-    function minify() {
-      hideError();
-      const input = inputArea.value;
-
-      if (!input.trim()) {
-        showError('입력 코드가 없습니다.');
-        return;
-      }
-
-      try {
-        const result = minifyJS(
-          input,
-          optComments.checked,
-          optWhitespace.checked,
-          optSemicolons.checked
-        );
-        outputArea.value = result;
-        updateStats(input, result);
-      } catch (e) {
-        showError('압축 오류: ' + e.message);
-      }
-    }
-
-    minifyBtn.addEventListener('click', minify);
-
-    sampleBtn.addEventListener('click', () => {
-      inputArea.value = sampleCode;
-      hideError();
-    });
-
-    clearBtn.addEventListener('click', () => {
-      inputArea.value = '';
-      outputArea.value = '';
-      originalSize.textContent = '0';
-      minifiedSize.textContent = '0';
-      reduction.textContent = '0%';
-      hideError();
-    });
-
-    copyBtn.addEventListener('click', () => {
-      if (outputArea.value) {
-        navigator.clipboard.writeText(outputArea.value);
-        copyBtn.textContent = '복사됨!';
-        setTimeout(() => copyBtn.textContent = '복사', 1500);
-      }
-    });
-
-    downloadBtn.addEventListener('click', () => {
-      if (!outputArea.value) return;
-      const blob = new Blob([outputArea.value], { type: 'application/javascript;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'script.min.js';
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-
-    // Auto minify on input change (debounced)
-    let debounceTimer;
-    inputArea.addEventListener('input', () => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
-        if (inputArea.value.trim()) {
-          minify();
-        }
-      }, 500);
-    });
-    })();
-  </script>
 </body>
 </html>

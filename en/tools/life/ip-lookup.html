@@ -514,7 +514,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">What Is My IP Address</h1>
@@ -661,7 +663,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -673,109 +675,7 @@
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    (function(){'use strict';
-    const myIp = document.getElementById('my-ip');
-    const copyIpBtn = document.getElementById('copy-ip-btn');
-    const loading = document.getElementById('loading');
-    const infoGrid = document.getElementById('info-grid');
-    const errorMsg = document.getElementById('error-msg');
-    const refreshBtn = document.getElementById('refresh-btn');
-
-    const infoLocation = document.getElementById('info-location');
-    const infoCountry = document.getElementById('info-country');
-    const infoIsp = document.getElementById('info-isp');
-    const infoTimezone = document.getElementById('info-timezone');
-    const infoCoords = document.getElementById('info-coords');
-    const infoAs = document.getElementById('info-as');
-
-    let currentIp = '';
-
-    async function fetchIPInfo() {
-      loading.classList.remove('hidden');
-      infoGrid.classList.add('hidden');
-      errorMsg.classList.add('hidden');
-      myIp.textContent = 'Loading...';
-
-      try {
-        let data;
-        try {
-          const res = await fetch('https://ipapi.co/json/');
-          data = await res.json();
-          if (data.error) throw new Error(data.reason);
-        } catch {
-          const res = await fetch('https://ipinfo.io/json');
-          data = await res.json();
-          if (data.bogon) throw new Error('Private IP detected');
-          data = {
-            ip: data.ip,
-            city: data.city,
-            region: data.region,
-            country_name: data.country,
-            country_code: data.country,
-            org: data.org,
-            timezone: data.timezone,
-            latitude: data.loc ? data.loc.split(',')[0] : null,
-            longitude: data.loc ? data.loc.split(',')[1] : null,
-            asn: data.org ? data.org.split(' ')[0] : null
-          };
-        }
-
-        currentIp = data.ip;
-        myIp.textContent = data.ip;
-
-        infoLocation.textContent = [data.city, data.region].filter(Boolean).join(', ') || '-';
-        infoCountry.textContent = data.country_name ? `${data.country_name} (${data.country_code})` : '-';
-        infoIsp.textContent = data.org || '-';
-        infoTimezone.textContent = data.timezone || '-';
-        infoCoords.textContent = data.latitude && data.longitude ? `${data.latitude}, ${data.longitude}` : '-';
-        infoAs.textContent = data.asn || '-';
-
-        loading.classList.add('hidden');
-        infoGrid.classList.remove('hidden');
-
-      } catch (e) {
-        loading.classList.add('hidden');
-        errorMsg.textContent = 'Failed to fetch IP info: ' + e.message;
-        errorMsg.classList.remove('hidden');
-        myIp.textContent = 'Error';
-      }
-    }
-
-    copyIpBtn.addEventListener('click', () => {
-      if (currentIp) {
-        navigator.clipboard.writeText(currentIp);
-        copyIpBtn.textContent = 'Copied!';
-        setTimeout(() => copyIpBtn.textContent = 'Copy IP', 1500);
-      }
-    });
-
-    refreshBtn.addEventListener('click', fetchIPInfo);
-
-    fetchIPInfo();
-    })();
-  </script>
 </body>
 </html>

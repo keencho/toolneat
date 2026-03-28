@@ -503,7 +503,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">UTM 링크 생성기</h1>
@@ -759,151 +761,19 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    (function(){'use strict';
-    const websiteUrl = document.getElementById('website-url');
-    const utmSource = document.getElementById('utm-source');
-    const utmMedium = document.getElementById('utm-medium');
-    const utmCampaign = document.getElementById('utm-campaign');
-    const utmTerm = document.getElementById('utm-term');
-    const utmContent = document.getElementById('utm-content');
-    const generatedUrl = document.getElementById('generated-url');
-    const copyBtn = document.getElementById('copy-btn');
-    const shortenInfo = document.getElementById('shorten-info');
-    const clearHistory = document.getElementById('clear-history');
-    const historyList = document.getElementById('history-list');
-    const previewSource = document.getElementById('preview-source');
-    const previewMedium = document.getElementById('preview-medium');
-    const previewCampaign = document.getElementById('preview-campaign');
-    const previewTerm = document.getElementById('preview-term');
-    const previewContent = document.getElementById('preview-content');
-
-    let history = JSON.parse(localStorage.getItem('utm-history') || '[]');
-
-    function generate() {
-      const url = websiteUrl.value.trim();
-      const source = utmSource.value.trim();
-      const medium = utmMedium.value.trim();
-      const campaign = utmCampaign.value.trim();
-      const term = utmTerm.value.trim();
-      const content = utmContent.value.trim();
-
-      // Update preview
-      previewSource.textContent = source || '-';
-      previewMedium.textContent = medium || '-';
-      previewCampaign.textContent = campaign || '-';
-      previewTerm.textContent = term || '-';
-      previewContent.textContent = content || '-';
-
-      if (!url) {
-        generatedUrl.textContent = 'URL을 입력하면 UTM 링크가 생성됩니다';
-        copyBtn.disabled = true;
-        return;
-      }
-
-      try {
-        const urlObj = new URL(url);
-        if (source) urlObj.searchParams.set('utm_source', source);
-        if (medium) urlObj.searchParams.set('utm_medium', medium);
-        if (campaign) urlObj.searchParams.set('utm_campaign', campaign);
-        if (term) urlObj.searchParams.set('utm_term', term);
-        if (content) urlObj.searchParams.set('utm_content', content);
-
-        generatedUrl.textContent = urlObj.toString();
-        copyBtn.disabled = false;
-      } catch (e) {
-        generatedUrl.textContent = '올바른 URL을 입력해주세요';
-        copyBtn.disabled = true;
-      }
-    }
-
-    function saveToHistory(url) {
-      if (!url || url.includes('올바른') || url.includes('입력')) return;
-      history = history.filter(h => h.url !== url);
-      history.unshift({ url, date: new Date().toLocaleString() });
-      history = history.slice(0, 10);
-      localStorage.setItem('utm-history', JSON.stringify(history));
-      renderHistory();
-    }
-
-    function renderHistory() {
-      if (history.length === 0) {
-        historyList.innerHTML = '<p class="text-sm text-gray-400">아직 생성된 링크가 없습니다</p>';
-        return;
-      }
-
-      historyList.innerHTML = history.map(h => `
-        <div class="bg-gray-50 dark:bg-gray-700 p-2 rounded-lg">
-          <p class="text-xs text-gray-900 dark:text-white truncate cursor-pointer hover:text-blue-500" onclick="navigator.clipboard.writeText('${h.url}').then(()=>toast.success('복사됨'))">${h.url}</p>
-          <p class="text-xs text-gray-400 mt-1">${h.date}</p>
-        </div>
-      `).join('');
-    }
-
-    // Event listeners
-    [websiteUrl, utmSource, utmMedium, utmCampaign, utmTerm, utmContent].forEach(el => {
-      el.addEventListener('input', generate);
-    });
-
-    copyBtn.addEventListener('click', () => {
-      const url = generatedUrl.textContent;
-      navigator.clipboard.writeText(url).then(() => {
-        toast.success('클립보드에 복사되었습니다');
-        saveToHistory(url);
-      }).catch(() => {
-        toast.error('복사에 실패했습니다');
-      });
-    });
-
-    shortenInfo.addEventListener('click', () => {
-      toast.info('bit.ly, tinyurl.com 등 단축 URL 서비스를 이용하세요');
-    });
-
-    clearHistory.addEventListener('click', () => {
-      history = [];
-      localStorage.removeItem('utm-history');
-      renderHistory();
-      toast.success('기록이 삭제되었습니다');
-    });
-
-    // Initialize
-    generate();
-    renderHistory();
-    })();
-  </script>
 </body>
 </html>

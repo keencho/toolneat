@@ -541,7 +541,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.aiDetector.title">AI Text Detector</h1>
@@ -692,7 +694,7 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -704,178 +706,7 @@
     </div>
   </div>
 </footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
 </div>
 
-  <script>
-    (function() {
-      'use strict';
-
-      const inputText = document.getElementById('input-text');
-      const charCount = document.getElementById('char-count');
-      const analyzeBtn = document.getElementById('analyze-btn');
-      const result = document.getElementById('result');
-
-      inputText.addEventListener('input', () => {
-        charCount.textContent = inputText.value.length + ' characters';
-      });
-
-      analyzeBtn.addEventListener('click', () => {
-        const text = inputText.value.trim();
-        if (text.length < 50) {
-          toast.show('Please enter at least 50 characters.', 'warning');
-          return;
-        }
-        analyzeText(text);
-      });
-
-      function analyzeText(text) {
-        const indicators = [];
-        let aiScore = 0;
-
-        // 1. Sentence length consistency (AI uses similar length sentences)
-        const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-        if (sentences.length >= 3) {
-          const lengths = sentences.map(s => s.trim().length);
-          const avg = lengths.reduce((a, b) => a + b, 0) / lengths.length;
-          const variance = lengths.reduce((sum, len) => sum + Math.pow(len - avg, 2), 0) / lengths.length;
-          const stdDev = Math.sqrt(variance);
-          const cv = stdDev / avg;
-
-          if (cv < 0.3) {
-            aiScore += 20;
-            indicators.push('Very consistent sentence lengths (AI characteristic)');
-          } else if (cv < 0.5) {
-            aiScore += 10;
-            indicators.push('Moderately consistent sentence lengths');
-          } else {
-            indicators.push('Natural variation in sentence lengths (human characteristic)');
-          }
-        }
-
-        // 2. AI-specific phrase patterns
-        const aiPhrases = ['moreover', 'therefore', 'furthermore', 'however', 'additionally', 'consequently', 'specifically', 'importantly', 'in conclusion', 'to summarize', 'various', 'effective', 'important', 'essential', 'significant'];
-        let phraseCount = 0;
-        aiPhrases.forEach(phrase => {
-          const regex = new RegExp(phrase, 'gi');
-          const matches = text.match(regex);
-          if (matches) phraseCount += matches.length;
-        });
-
-        const phraseRatio = phraseCount / (text.length / 100);
-        if (phraseRatio > 2) {
-          aiScore += 25;
-          indicators.push('Frequent use of AI-typical transition words/adjectives');
-        } else if (phraseRatio > 1) {
-          aiScore += 15;
-          indicators.push('Moderate use of transition words/adjectives');
-        } else {
-          indicators.push('Natural use of transition words');
-        }
-
-        // 3. Check for repeated expressions
-        const words = text.match(/\b\w+\b/g) || [];
-        const wordFreq = {};
-        words.forEach(w => {
-          const lower = w.toLowerCase();
-          wordFreq[lower] = (wordFreq[lower] || 0) + 1;
-        });
-        const repeatedWords = Object.values(wordFreq).filter(c => c >= 3).length;
-        const repeatRatio = repeatedWords / Object.keys(wordFreq).length;
-
-        if (repeatRatio > 0.15) {
-          aiScore += 15;
-          indicators.push('Word repetition pattern detected');
-        }
-
-        // 4. Perfect sentence structure
-        const incompleteSentences = sentences.filter(s => s.trim().length < 10 || !s.trim().match(/[a-zA-Z]$/));
-        if (incompleteSentences.length === 0 && sentences.length > 2) {
-          aiScore += 15;
-          indicators.push('All sentences perfectly structured (AI characteristic)');
-        }
-
-        // 5. Paragraph structure
-        const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0);
-        if (paragraphs.length >= 2) {
-          const parLengths = paragraphs.map(p => p.length);
-          const parAvg = parLengths.reduce((a, b) => a + b, 0) / parLengths.length;
-          const parVariance = parLengths.reduce((sum, len) => sum + Math.pow(len - parAvg, 2), 0) / parLengths.length;
-          if (Math.sqrt(parVariance) / parAvg < 0.4) {
-            aiScore += 10;
-            indicators.push('Uniform paragraph lengths');
-          }
-        }
-
-        // 6. Adjust for text length
-        if (text.length < 200) {
-          aiScore = Math.min(aiScore, 60);
-          indicators.push('Short text limits accuracy');
-        }
-
-        // Show results
-        aiScore = Math.min(Math.max(aiScore, 5), 95);
-        const humanScore = 100 - aiScore;
-
-        document.getElementById('ai-percent').textContent = aiScore + '%';
-        document.getElementById('ai-score').textContent = aiScore + '%';
-        document.getElementById('human-score').textContent = humanScore + '%';
-
-        const aiBar = document.getElementById('ai-bar');
-        aiBar.style.width = aiScore + '%';
-
-        if (aiScore >= 70) {
-          aiBar.className = 'h-4 rounded-full transition-all duration-500 bg-red-500';
-        } else if (aiScore >= 40) {
-          aiBar.className = 'h-4 rounded-full transition-all duration-500 bg-yellow-500';
-        } else {
-          aiBar.className = 'h-4 rounded-full transition-all duration-500 bg-green-500';
-        }
-
-        const verdict = document.getElementById('verdict');
-        const verdictText = document.getElementById('verdict-text');
-
-        if (aiScore >= 70) {
-          verdict.className = 'text-center p-4 rounded-lg mb-4 bg-red-100 dark:bg-red-900/30';
-          verdictText.textContent = 'Likely written by AI';
-          verdictText.className = 'font-semibold text-red-700 dark:text-red-400';
-        } else if (aiScore >= 40) {
-          verdict.className = 'text-center p-4 rounded-lg mb-4 bg-yellow-100 dark:bg-yellow-900/30';
-          verdictText.textContent = 'Uncertain whether AI or human written';
-          verdictText.className = 'font-semibold text-yellow-700 dark:text-yellow-400';
-        } else {
-          verdict.className = 'text-center p-4 rounded-lg mb-4 bg-green-100 dark:bg-green-900/30';
-          verdictText.textContent = 'Likely written by a human';
-          verdictText.className = 'font-semibold text-green-700 dark:text-green-400';
-        }
-
-        const indicatorsList = document.getElementById('indicators');
-        indicatorsList.innerHTML = indicators.map(i => `<li>${i}</li>`).join('');
-
-        result.classList.remove('hidden');
-        result.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    })();
-  </script>
 </body>
 </html>

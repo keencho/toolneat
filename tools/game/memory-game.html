@@ -665,7 +665,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.memoryGame.title">기억력 테스트</h1>
@@ -787,185 +789,19 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
 </div>
 
-  <script>
-    const emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🐔',
-                   '🦄', '🐝', '🦋', '🐌', '🐞', '🦀', '🐙', '🐠', '🐬', '🦈', '🐳', '🦜', '🦚', '🦩', '🦔', '🐿️'];
-
-    let gridSize = 6;
-    let cards = [];
-    let flippedCards = [];
-    let matchedPairs = 0;
-    let moves = 0;
-    let timer = 0;
-    let timerInterval = null;
-    let gameStarted = false;
-    let canFlip = true;
-
-    const boardEl = document.getElementById('board');
-    const movesEl = document.getElementById('moves');
-    const timerEl = document.getElementById('timer');
-    const matchedEl = document.getElementById('matched');
-    const totalEl = document.getElementById('total');
-    const completeMsgEl = document.getElementById('completeMsg');
-
-    function setDifficulty(size) {
-      gridSize = size;
-      document.querySelectorAll('.difficulty-btns button').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(`btn-${size}`).classList.add('active');
-      newGame();
-    }
-
-    function newGame() {
-      const pairCount = (gridSize * gridSize) / 2;
-      const selectedEmojis = emojis.slice(0, pairCount);
-      cards = [...selectedEmojis, ...selectedEmojis];
-      shuffle(cards);
-
-      flippedCards = [];
-      matchedPairs = 0;
-      moves = 0;
-      timer = 0;
-      gameStarted = false;
-      canFlip = true;
-
-      clearInterval(timerInterval);
-      timerInterval = null;
-
-      movesEl.textContent = '0';
-      timerEl.textContent = '0:00';
-      matchedEl.textContent = '0';
-      totalEl.textContent = pairCount;
-      completeMsgEl.classList.add('hidden');
-
-      render();
-    }
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
-
-    function render() {
-      boardEl.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-      boardEl.innerHTML = '';
-
-      cards.forEach((emoji, index) => {
-        const card = document.createElement('div');
-        card.className = 'memory-card';
-        card.dataset.index = index;
-        card.innerHTML = `
-          <div class="memory-card-inner">
-            <div class="memory-card-front">?</div>
-            <div class="memory-card-back">${emoji}</div>
-          </div>
-        `;
-        card.addEventListener('click', () => flipCard(index));
-        boardEl.appendChild(card);
-      });
-    }
-
-    function flipCard(index) {
-      if (!canFlip) return;
-
-      const cardEl = boardEl.children[index];
-      if (cardEl.classList.contains('flipped') || cardEl.classList.contains('matched')) return;
-      if (flippedCards.length >= 2) return;
-
-      if (!gameStarted) {
-        gameStarted = true;
-        timerInterval = setInterval(() => {
-          timer++;
-          const mins = Math.floor(timer / 60);
-          const secs = timer % 60;
-          timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
-        }, 1000);
-      }
-
-      cardEl.classList.add('flipped');
-      flippedCards.push(index);
-
-      if (flippedCards.length === 2) {
-        moves++;
-        movesEl.textContent = moves;
-        checkMatch();
-      }
-    }
-
-    function checkMatch() {
-      const [idx1, idx2] = flippedCards;
-      const card1 = boardEl.children[idx1];
-      const card2 = boardEl.children[idx2];
-
-      if (cards[idx1] === cards[idx2]) {
-        card1.classList.add('matched');
-        card2.classList.add('matched');
-        matchedPairs++;
-        matchedEl.textContent = matchedPairs;
-        flippedCards = [];
-
-        if (matchedPairs === cards.length / 2) {
-          gameComplete();
-        }
-      } else {
-        canFlip = false;
-        setTimeout(() => {
-          card1.classList.remove('flipped');
-          card2.classList.remove('flipped');
-          flippedCards = [];
-          canFlip = true;
-        }, 800);
-      }
-    }
-
-    function gameComplete() {
-      clearInterval(timerInterval);
-      const mins = Math.floor(timer / 60);
-      const secs = timer % 60;
-      document.getElementById('finalMoves').textContent = moves;
-      document.getElementById('finalTime').textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
-      completeMsgEl.classList.remove('hidden');
-    }
-
-    newGame();
-  </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5765109785591518" crossorigin="anonymous"></script>
 </body>
 </html>

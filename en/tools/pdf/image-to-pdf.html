@@ -521,7 +521,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Image to PDF</h1>
@@ -629,7 +631,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -641,63 +643,7 @@
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <div id="loading-overlay" class="loading-overlay"><div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center"><div class="spinner mx-auto mb-4"></div><p class="text-gray-600 dark:text-gray-400">Creating PDF...</p></div></div>
-  <script>
-    (function(){'use strict';
-    const dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),imagesList=document.getElementById('images-list'),imagesContainer=document.getElementById('images-container'),imageCount=document.getElementById('image-count'),options=document.getElementById('options'),convertBtn=document.getElementById('convert-btn'),addMoreBtn=document.getElementById('add-more'),loadingOverlay=document.getElementById('loading-overlay'),loadingText=document.getElementById('loading-text'),resultSection=document.getElementById('result-section'),resultPages=document.getElementById('result-pages'),resultSize=document.getElementById('result-size');
-    let images=[],libReady=false,pdfBlob=null;
-
-    function checkLibrary(){if(typeof PDFLib!=='undefined'){libReady=true;fileInput.disabled=false;addMoreBtn.disabled=false;loadingText.classList.add('hidden');toast.success('PDF tool ready!')}else{setTimeout(checkLibrary,100)}}checkLibrary();
-
-    dropZone.addEventListener('click',()=>{if(libReady)fileInput.click()});dropZone.addEventListener('dragover',e=>{e.preventDefault();if(libReady)dropZone.classList.add('drag-over')});dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
-    dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(!libReady)return;const files=Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/'));addImages(files)});
-    fileInput.addEventListener('change',e=>{addImages(Array.from(e.target.files));fileInput.value=''});addMoreBtn.addEventListener('click',()=>{if(libReady)fileInput.click()});
-
-    function addImages(files){if(files.length===0){toast.warning('Please select image files only.');return}files.forEach(file=>{const reader=new FileReader();reader.onload=e=>{images.push({file,dataUrl:e.target.result,name:file.name});renderImages()};reader.readAsDataURL(file)})}
-
-    function renderImages(){if(images.length===0){imagesList.classList.add('hidden');options.classList.add('hidden');convertBtn.classList.add('hidden');return}imagesList.classList.remove('hidden');options.classList.remove('hidden');convertBtn.classList.remove('hidden');convertBtn.disabled=false;imageCount.textContent=`(${images.length})`;
-    imagesContainer.innerHTML=images.map((img,i)=>`<div class="image-item" draggable="true" data-index="${i}"><svg class="w-5 h-5 text-gray-400 cursor-grab flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg><img src="${img.dataUrl}" class="image-thumb" alt=""><div class="flex-1 min-w-0"><p class="text-sm font-medium text-gray-900 dark:text-white truncate">${img.name}</p></div><button class="remove-btn p-1 text-gray-400 hover:text-red-500" data-index="${i}"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button></div>`).join('');
-    setupDragAndDrop();imagesContainer.querySelectorAll('.remove-btn').forEach(btn=>{btn.addEventListener('click',e=>{images.splice(parseInt(e.currentTarget.dataset.index),1);renderImages()})})}
-
-    function setupDragAndDrop(){const items=imagesContainer.querySelectorAll('.image-item');let draggedItem=null;items.forEach(item=>{item.addEventListener('dragstart',()=>{draggedItem=item;item.classList.add('dragging')});item.addEventListener('dragend',()=>{item.classList.remove('dragging');items.forEach(i=>i.classList.remove('drag-over'))});item.addEventListener('dragover',e=>{e.preventDefault();if(item!==draggedItem)item.classList.add('drag-over')});item.addEventListener('dragleave',()=>item.classList.remove('drag-over'));item.addEventListener('drop',e=>{e.preventDefault();item.classList.remove('drag-over');if(item!==draggedItem){const from=parseInt(draggedItem.dataset.index),to=parseInt(item.dataset.index),[moved]=images.splice(from,1);images.splice(to,0,moved);renderImages()}})})}
-
-    function formatSize(bytes){if(bytes<1024)return bytes+' B';if(bytes<1024*1024)return(bytes/1024).toFixed(1)+' KB';return(bytes/(1024*1024)).toFixed(1)+' MB'}
-
-    convertBtn.addEventListener('click',async()=>{if(images.length===0||!libReady)return;loadingOverlay.classList.add('show');try{const{PDFDocument}=PDFLib,pdfDoc=await PDFDocument.create(),pageSize=document.getElementById('page-size').value;
-    for(const img of images){const imgBytes=await fetch(img.dataUrl).then(r=>r.arrayBuffer());let pdfImage;if(img.file.type==='image/png')pdfImage=await pdfDoc.embedPng(imgBytes);else pdfImage=await pdfDoc.embedJpg(imgBytes);
-    let width=pdfImage.width,height=pdfImage.height;if(pageSize==='a4'){width=595;height=842}else if(pageSize==='letter'){width=612;height=792}
-    const page=pdfDoc.addPage([width,height]);const scale=Math.min(width/pdfImage.width,height/pdfImage.height);const scaledW=pdfImage.width*scale,scaledH=pdfImage.height*scale;page.drawImage(pdfImage,{x:(width-scaledW)/2,y:(height-scaledH)/2,width:scaledW,height:scaledH})}
-    const pdfBytes=await pdfDoc.save();pdfBlob=new Blob([pdfBytes],{type:'application/pdf'});
-    resultPages.textContent=pdfDoc.getPageCount();resultSize.textContent=formatSize(pdfBlob.size);
-    dropZone.classList.add('hidden');imagesList.classList.add('hidden');options.classList.add('hidden');convertBtn.classList.add('hidden');resultSection.classList.remove('hidden');
-    toast.success('PDF created!')}catch(error){console.error(error);toast.error('Error creating PDF.')}finally{loadingOverlay.classList.remove('show')}});
-
-    document.getElementById('download-btn').addEventListener('click',()=>{if(!pdfBlob)return;const url=URL.createObjectURL(pdfBlob);const a=document.createElement('a');a.href=url;a.download='images.pdf';a.click();URL.revokeObjectURL(url)});
-
-    document.getElementById('new-btn').addEventListener('click',()=>{images=[];pdfBlob=null;dropZone.classList.remove('hidden');imagesList.classList.add('hidden');options.classList.add('hidden');convertBtn.classList.add('hidden');resultSection.classList.add('hidden');fileInput.value=''});
-    })();
-  </script>
 </body>
 </html>

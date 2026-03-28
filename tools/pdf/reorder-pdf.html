@@ -526,7 +526,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">PDF 페이지 재정렬</h1>
@@ -691,218 +693,19 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
 </div>
 
-  <!-- Loading Overlay -->
-  <div id="loading-overlay" class="loading-overlay">
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl text-center">
-      <div class="spinner mx-auto mb-4"></div>
-      <p class="text-gray-600 dark:text-gray-400">처리 중...</p>
-    </div>
-  </div>
-
-  <script>
-    (function(){'use strict';
-    const { PDFDocument } = PDFLib;
-
-    const dropZone = document.getElementById('drop-zone');
-    const fileInput = document.getElementById('file-input');
-    const editSection = document.getElementById('edit-section');
-    const fileNameEl = document.getElementById('file-name');
-    const pageCountEl = document.getElementById('page-count');
-    const pageGrid = document.getElementById('page-grid');
-    const loadingOverlay = document.getElementById('loading-overlay');
-
-    let pdfBytes = null;
-    let fileName = '';
-    let pageOrder = [];
-    let draggedItem = null;
-
-    dropZone.addEventListener('click', () => fileInput.click());
-    dropZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      dropZone.classList.add('drag-over');
-    });
-    dropZone.addEventListener('dragleave', () => {
-      dropZone.classList.remove('drag-over');
-    });
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.classList.remove('drag-over');
-      const file = e.dataTransfer.files[0];
-      if (file && file.type === 'application/pdf') loadPDF(file);
-      else toast.error('PDF 파일만 지원됩니다');
-    });
-    fileInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) loadPDF(file);
-    });
-
-    async function loadPDF(file) {
-      try {
-        loadingOverlay.classList.add('show');
-        fileName = file.name;
-        pdfBytes = await file.arrayBuffer();
-        const pdfDoc = await PDFDocument.load(pdfBytes);
-        const pageCount = pdfDoc.getPageCount();
-        pageOrder = Array.from({length: pageCount}, (_, i) => i);
-
-        fileNameEl.textContent = fileName;
-        pageCountEl.textContent = `${pageCount}페이지`;
-
-        renderPageGrid();
-        dropZone.classList.add('hidden');
-        editSection.classList.remove('hidden');
-      } catch (err) {
-        toast.error('PDF 파일을 읽을 수 없습니다');
-        console.error(err);
-      } finally {
-        loadingOverlay.classList.remove('show');
-      }
-    }
-
-    function renderPageGrid() {
-      pageGrid.innerHTML = '';
-      pageOrder.forEach((origIdx, newIdx) => {
-        const pageItem = document.createElement('div');
-        pageItem.className = 'page-item relative';
-        pageItem.draggable = true;
-        pageItem.dataset.index = newIdx;
-        pageItem.innerHTML = `
-          <span class="order-badge">${newIdx + 1}</span>
-          <div class="page-preview">${origIdx + 1}</div>
-          <p class="text-xs text-gray-500">원본 ${origIdx + 1}페이지</p>
-        `;
-
-        pageItem.addEventListener('dragstart', handleDragStart);
-        pageItem.addEventListener('dragend', handleDragEnd);
-        pageItem.addEventListener('dragover', handleDragOver);
-        pageItem.addEventListener('dragleave', handleDragLeave);
-        pageItem.addEventListener('drop', handleDrop);
-
-        pageGrid.appendChild(pageItem);
-      });
-    }
-
-    function handleDragStart(e) {
-      draggedItem = this;
-      this.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    }
-
-    function handleDragEnd() {
-      this.classList.remove('dragging');
-      document.querySelectorAll('.page-item').forEach(item => {
-        item.classList.remove('drag-over');
-      });
-      draggedItem = null;
-    }
-
-    function handleDragOver(e) {
-      e.preventDefault();
-      if (this !== draggedItem) {
-        this.classList.add('drag-over');
-      }
-    }
-
-    function handleDragLeave() {
-      this.classList.remove('drag-over');
-    }
-
-    function handleDrop(e) {
-      e.preventDefault();
-      if (this !== draggedItem) {
-        const fromIndex = parseInt(draggedItem.dataset.index);
-        const toIndex = parseInt(this.dataset.index);
-        const [moved] = pageOrder.splice(fromIndex, 1);
-        pageOrder.splice(toIndex, 0, moved);
-        renderPageGrid();
-      }
-    }
-
-    document.getElementById('reverse-btn').addEventListener('click', () => {
-      pageOrder.reverse();
-      renderPageGrid();
-    });
-
-    document.getElementById('reset-btn').addEventListener('click', () => {
-      pageOrder = Array.from({length: pageOrder.length}, (_, i) => i);
-      renderPageGrid();
-    });
-
-    document.getElementById('change-file').addEventListener('click', () => {
-      dropZone.classList.remove('hidden');
-      editSection.classList.add('hidden');
-      fileInput.value = '';
-      pdfBytes = null;
-    });
-
-    document.getElementById('download-btn').addEventListener('click', async () => {
-      if (!pdfBytes) return;
-
-      try {
-        loadingOverlay.classList.add('show');
-        const srcDoc = await PDFDocument.load(pdfBytes);
-        const newDoc = await PDFDocument.create();
-
-        for (const origIdx of pageOrder) {
-          const [copiedPage] = await newDoc.copyPages(srcDoc, [origIdx]);
-          newDoc.addPage(copiedPage);
-        }
-
-        const newPdfBytes = await newDoc.save();
-        const blob = new Blob([newPdfBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement('a');
-        const baseName = fileName.replace(/\.pdf$/i, '');
-        a.href = url;
-        a.download = `${baseName}_reordered.pdf`;
-        a.click();
-        URL.revokeObjectURL(url);
-
-        toast.success('PDF가 다운로드되었습니다');
-      } catch (err) {
-        toast.error('PDF 처리 중 오류가 발생했습니다');
-        console.error(err);
-      } finally {
-        loadingOverlay.classList.remove('show');
-      }
-    });
-    })();
-  </script>
 </body>
 </html>

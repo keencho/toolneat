@@ -511,7 +511,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Robots.txt Generator</h1>
@@ -687,7 +689,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -699,187 +701,7 @@
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    (function(){'use strict';
-    const presetSelect = document.getElementById('preset');
-    const userAgentInput = document.getElementById('user-agent');
-    const ruleTypeSelect = document.getElementById('rule-type');
-    const rulePathInput = document.getElementById('rule-path');
-    const addRuleBtn = document.getElementById('add-rule-btn');
-    const rulesList = document.getElementById('rules-list');
-    const sitemapInput = document.getElementById('sitemap');
-    const crawlDelayInput = document.getElementById('crawl-delay');
-    const hostInput = document.getElementById('host');
-    const generateBtn = document.getElementById('generate-btn');
-    const outputArea = document.getElementById('output-area');
-    const copyBtn = document.getElementById('copy-btn');
-    const downloadBtn = document.getElementById('download-btn');
-
-    let rules = [];
-
-    document.querySelectorAll('[data-bot]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        userAgentInput.value = btn.dataset.bot;
-      });
-    });
-
-    addRuleBtn.addEventListener('click', () => {
-      const type = ruleTypeSelect.value;
-      const path = rulePathInput.value.trim();
-      if (!path) return;
-
-      const agent = userAgentInput.value.trim() || '*';
-      rules.push({ agent, type, path });
-      renderRules();
-      rulePathInput.value = '';
-      generate();
-    });
-
-    rulePathInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') addRuleBtn.click();
-    });
-
-    function renderRules() {
-      rulesList.innerHTML = rules.map((r, i) => `
-        <div class="rule-item">
-          <span class="bot-tag">${r.agent}</span>
-          <span class="text-sm text-gray-700 dark:text-gray-300">${r.type}: ${r.path}</span>
-          <button class="ml-auto text-red-500 hover:text-red-700 text-sm" onclick="removeRule(${i})">Delete</button>
-        </div>
-      `).join('');
-    }
-
-    window.removeRule = function(index) {
-      rules.splice(index, 1);
-      renderRules();
-      generate();
-    };
-
-    presetSelect.addEventListener('change', () => {
-      const preset = presetSelect.value;
-      rules = [];
-
-      switch (preset) {
-        case 'allow-all':
-          rules = [{ agent: '*', type: 'Allow', path: '/' }];
-          break;
-        case 'block-all':
-          rules = [{ agent: '*', type: 'Disallow', path: '/' }];
-          break;
-        case 'block-ai':
-          rules = [
-            { agent: 'GPTBot', type: 'Disallow', path: '/' },
-            { agent: 'ChatGPT-User', type: 'Disallow', path: '/' },
-            { agent: 'Claude-Web', type: 'Disallow', path: '/' },
-            { agent: 'Bytespider', type: 'Disallow', path: '/' },
-            { agent: 'CCBot', type: 'Disallow', path: '/' },
-            { agent: 'anthropic-ai', type: 'Disallow', path: '/' },
-            { agent: 'Google-Extended', type: 'Disallow', path: '/' }
-          ];
-          break;
-        case 'standard':
-          rules = [
-            { agent: '*', type: 'Allow', path: '/' },
-            { agent: '*', type: 'Disallow', path: '/admin/' },
-            { agent: '*', type: 'Disallow', path: '/private/' },
-            { agent: '*', type: 'Disallow', path: '/*.json$' },
-            { agent: '*', type: 'Disallow', path: '/api/' }
-          ];
-          break;
-      }
-
-      renderRules();
-      generate();
-    });
-
-    function generate() {
-      const sitemap = sitemapInput.value.trim();
-      const crawlDelay = crawlDelayInput.value.trim();
-      const host = hostInput.value.trim();
-
-      const grouped = {};
-      rules.forEach(r => {
-        if (!grouped[r.agent]) grouped[r.agent] = [];
-        grouped[r.agent].push(r);
-      });
-
-      let output = '';
-
-      Object.keys(grouped).forEach(agent => {
-        output += `User-agent: ${agent}\n`;
-        grouped[agent].forEach(r => {
-          output += `${r.type}: ${r.path}\n`;
-        });
-        if (crawlDelay) {
-          output += `Crawl-delay: ${crawlDelay}\n`;
-        }
-        output += '\n';
-      });
-
-      if (rules.length === 0) {
-        output = 'User-agent: *\nAllow: /\n\n';
-      }
-
-      if (sitemap) {
-        output += `Sitemap: ${sitemap}\n`;
-      }
-
-      if (host) {
-        output += `Host: ${host}\n`;
-      }
-
-      outputArea.value = output.trim();
-    }
-
-    generateBtn.addEventListener('click', generate);
-
-    [sitemapInput, crawlDelayInput, hostInput].forEach(el => {
-      el.addEventListener('input', generate);
-    });
-
-    copyBtn.addEventListener('click', () => {
-      if (outputArea.value) {
-        navigator.clipboard.writeText(outputArea.value);
-        copyBtn.textContent = 'Copied!';
-        setTimeout(() => copyBtn.textContent = 'Copy', 1500);
-      }
-    });
-
-    downloadBtn.addEventListener('click', () => {
-      if (!outputArea.value) return;
-      const blob = new Blob([outputArea.value], { type: 'text/plain;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'robots.txt';
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-
-    generate();
-    })();
-  </script>
 </body>
 </html>

@@ -622,7 +622,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.minesweeper.title">Minesweeper</h1>
@@ -773,7 +775,7 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -785,234 +787,7 @@
     </div>
   </div>
 </footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
 </div>
 
-  <script>
-    const difficulties = {
-      easy: { rows: 9, cols: 9, mines: 10 },
-      medium: { rows: 16, cols: 16, mines: 40 },
-      hard: { rows: 16, cols: 30, mines: 99 }
-    };
-
-    let currentDifficulty = 'easy';
-    let board = [];
-    let revealed = [];
-    let flagged = [];
-    let gameOver = false;
-    let gameWon = false;
-    let firstClick = true;
-    let timer = 0;
-    let timerInterval = null;
-
-    const boardEl = document.getElementById('board');
-    const mineCounterEl = document.getElementById('mineCounter');
-    const timerEl = document.getElementById('timer');
-    const faceBtn = document.getElementById('faceBtn');
-
-    function setDifficulty(diff) {
-      currentDifficulty = diff;
-      document.querySelectorAll('.difficulty-btns button').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(`btn-${diff}`).classList.add('active');
-      newGame();
-    }
-
-    function newGame() {
-      const { rows, cols, mines } = difficulties[currentDifficulty];
-      board = Array(rows).fill(null).map(() => Array(cols).fill(0));
-      revealed = Array(rows).fill(null).map(() => Array(cols).fill(false));
-      flagged = Array(rows).fill(null).map(() => Array(cols).fill(false));
-      gameOver = false;
-      gameWon = false;
-      firstClick = true;
-      timer = 0;
-      clearInterval(timerInterval);
-      timerInterval = null;
-
-      faceBtn.textContent = '😊';
-      updateMineCounter();
-      timerEl.textContent = '000';
-      render();
-    }
-
-    function placeMines(excludeR, excludeC) {
-      const { rows, cols, mines } = difficulties[currentDifficulty];
-      let placed = 0;
-      while (placed < mines) {
-        const r = Math.floor(Math.random() * rows);
-        const c = Math.floor(Math.random() * cols);
-        if (Math.abs(r - excludeR) <= 1 && Math.abs(c - excludeC) <= 1) continue;
-        if (board[r][c] !== -1) {
-          board[r][c] = -1;
-          placed++;
-        }
-      }
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          if (board[r][c] === -1) continue;
-          let count = 0;
-          for (let dr = -1; dr <= 1; dr++) {
-            for (let dc = -1; dc <= 1; dc++) {
-              const nr = r + dr, nc = c + dc;
-              if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && board[nr][nc] === -1) {
-                count++;
-              }
-            }
-          }
-          board[r][c] = count;
-        }
-      }
-    }
-
-    function render() {
-      const { rows, cols } = difficulties[currentDifficulty];
-      boardEl.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-      boardEl.innerHTML = '';
-
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const cell = document.createElement('div');
-          cell.className = 'cell';
-          cell.dataset.r = r;
-          cell.dataset.c = c;
-
-          if (revealed[r][c]) {
-            cell.classList.add('revealed');
-            if (board[r][c] === -1) {
-              cell.textContent = '💣';
-              cell.classList.add('mine');
-            } else if (board[r][c] > 0) {
-              cell.textContent = board[r][c];
-              cell.dataset.count = board[r][c];
-            }
-          } else if (flagged[r][c]) {
-            cell.classList.add('flagged');
-          }
-
-          cell.addEventListener('click', () => handleClick(r, c));
-          cell.addEventListener('contextmenu', (e) => { e.preventDefault(); toggleFlag(r, c); });
-
-          let pressTimer;
-          cell.addEventListener('touchstart', (e) => {
-            pressTimer = setTimeout(() => { e.preventDefault(); toggleFlag(r, c); }, 500);
-          });
-          cell.addEventListener('touchend', () => clearTimeout(pressTimer));
-          cell.addEventListener('touchmove', () => clearTimeout(pressTimer));
-
-          boardEl.appendChild(cell);
-        }
-      }
-    }
-
-    function handleClick(r, c) {
-      if (gameOver || gameWon || flagged[r][c] || revealed[r][c]) return;
-
-      if (firstClick) {
-        firstClick = false;
-        placeMines(r, c);
-        timerInterval = setInterval(() => {
-          timer++;
-          timerEl.textContent = String(Math.min(timer, 999)).padStart(3, '0');
-        }, 1000);
-      }
-
-      reveal(r, c);
-      render();
-      checkWin();
-    }
-
-    function reveal(r, c) {
-      const { rows, cols } = difficulties[currentDifficulty];
-      if (r < 0 || r >= rows || c < 0 || c >= cols) return;
-      if (revealed[r][c] || flagged[r][c]) return;
-
-      revealed[r][c] = true;
-
-      if (board[r][c] === -1) {
-        gameOver = true;
-        faceBtn.textContent = '😵';
-        clearInterval(timerInterval);
-        revealAll();
-        return;
-      }
-
-      if (board[r][c] === 0) {
-        for (let dr = -1; dr <= 1; dr++) {
-          for (let dc = -1; dc <= 1; dc++) {
-            reveal(r + dr, c + dc);
-          }
-        }
-      }
-    }
-
-    function revealAll() {
-      const { rows, cols } = difficulties[currentDifficulty];
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          if (board[r][c] === -1) revealed[r][c] = true;
-        }
-      }
-      render();
-    }
-
-    function toggleFlag(r, c) {
-      if (gameOver || gameWon || revealed[r][c]) return;
-      flagged[r][c] = !flagged[r][c];
-      updateMineCounter();
-      render();
-    }
-
-    function updateMineCounter() {
-      const { mines, rows, cols } = difficulties[currentDifficulty];
-      let flagCount = 0;
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          if (flagged[r][c]) flagCount++;
-        }
-      }
-      const remaining = mines - flagCount;
-      mineCounterEl.textContent = String(Math.max(0, remaining)).padStart(3, '0');
-    }
-
-    function checkWin() {
-      if (gameOver) return;
-      const { rows, cols, mines } = difficulties[currentDifficulty];
-      let revealedCount = 0;
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          if (revealed[r][c]) revealedCount++;
-        }
-      }
-      if (revealedCount === rows * cols - mines) {
-        gameWon = true;
-        faceBtn.textContent = '😎';
-        clearInterval(timerInterval);
-      }
-    }
-
-    newGame();
-  </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5765109785591518" crossorigin="anonymous"></script>
 </body>
 </html>

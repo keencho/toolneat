@@ -123,20 +123,19 @@ function injectComponents(filePath) {
   }
 
   // Use marker-based replacement for footer
-  // Match from <div id="footer"> to </div> before </body>
+  // Find <div id="footer"> and replace everything until next <!-- Tool Script -->, <style>, or </body>
   const footerStartMarker = /<div\s+id=["']footer["']\s*>/i;
-  const footerEndPattern = /<\/div>\s*(?=<\/body>)/;
 
   if (footerStartMarker.test(content)) {
     const startMatch = content.match(footerStartMarker);
     const startIndex = startMatch.index;
     const afterStart = content.substring(startIndex + startMatch[0].length);
 
-    const endMatch = afterStart.match(footerEndPattern);
-    if (endMatch) {
-      const endIndex = startIndex + startMatch[0].length + endMatch.index + endMatch[0].length;
+    const boundaryMatch = afterStart.match(/\n\s*(?=<!-- Tool Script -->|<style>|<\/body>)/);
+    if (boundaryMatch) {
+      const endIndex = startIndex + startMatch[0].length + boundaryMatch.index;
       const oldContent = content.substring(startIndex, endIndex);
-      const newFooter = `<div id="footer">\n${footer}\n</div>`;
+      const newFooter = `<div id="footer">\n${footer}\n</div>\n`;
 
       if (oldContent !== newFooter) {
         content = content.substring(0, startIndex) + newFooter + content.substring(endIndex);

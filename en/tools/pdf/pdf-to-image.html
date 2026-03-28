@@ -507,7 +507,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">PDF to Image</h1>
@@ -669,7 +671,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -681,31 +683,7 @@
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <div id="loading-overlay" class="loading-overlay"><div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center"><div class="spinner mx-auto mb-4"></div><p id="progress-text" class="text-gray-600 dark:text-gray-400">Converting...</p></div></div>
-  <script>
-    (function(){'use strict';pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';const dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),optionsSection=document.getElementById('options-section'),resultsSection=document.getElementById('results-section'),imagesGrid=document.getElementById('images-grid'),loadingOverlay=document.getElementById('loading-overlay'),progressText=document.getElementById('progress-text'),loadingText=document.getElementById('loading-text');let pdfDoc=null,imageBlobs=[],libReady=false;function checkLibrary(){if(typeof pdfjsLib!=='undefined'){libReady=true;fileInput.disabled=false;loadingText.classList.add('hidden');toast.success('PDF tool ready!')}else{setTimeout(checkLibrary,100)}}checkLibrary();dropZone.addEventListener('click',()=>{if(libReady)fileInput.click()});dropZone.addEventListener('dragover',e=>{e.preventDefault();if(libReady)dropZone.classList.add('drag-over')});dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(!libReady)return;const file=e.dataTransfer.files[0];if(file&&file.type==='application/pdf')loadPdf(file);else toast.warning('Please select a PDF file.')});fileInput.addEventListener('change',e=>{if(e.target.files[0])loadPdf(e.target.files[0])});document.getElementById('change-file').addEventListener('click',()=>fileInput.click());async function loadPdf(file){try{const arrayBuffer=await file.arrayBuffer();pdfDoc=await pdfjsLib.getDocument({data:arrayBuffer}).promise;document.getElementById('file-name').textContent=file.name;document.getElementById('page-count').textContent=`${pdfDoc.numPages} pages`;dropZone.classList.add('hidden');optionsSection.classList.remove('hidden');resultsSection.classList.add('hidden');imageBlobs=[]}catch(error){console.error(error);toast.error('Could not load PDF.')}}document.getElementById('convert-btn').addEventListener('click',async()=>{if(!pdfDoc||!libReady)return;const format=document.getElementById('format').value,scale=parseFloat(document.getElementById('quality').value);loadingOverlay.classList.add('show');imageBlobs=[];imagesGrid.innerHTML='';try{for(let i=1;i<=pdfDoc.numPages;i++){progressText.textContent=`Converting... ${i}/${pdfDoc.numPages}`;const page=await pdfDoc.getPage(i),viewport=page.getViewport({scale}),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');canvas.width=viewport.width;canvas.height=viewport.height;await page.render({canvasContext:ctx,viewport}).promise;const blob=await new Promise(resolve=>{canvas.toBlob(resolve,format==='jpeg'?'image/jpeg':'image/png',0.92)});imageBlobs.push({blob,name:`page_${i}.${format==='jpeg'?'jpg':'png'}`});const url=URL.createObjectURL(blob);imagesGrid.innerHTML+=`<div class="image-preview"><img src="${url}" alt="Page ${i}"><div class="p-3"><p class="text-sm text-gray-900 dark:text-white mb-2">Page ${i}</p><button class="download-btn btn btn-secondary btn-sm w-full" data-index="${i-1}">Download</button></div></div>`}resultsSection.classList.remove('hidden');toast.success(`${pdfDoc.numPages} images converted!`);imagesGrid.querySelectorAll('.download-btn').forEach(btn=>{btn.addEventListener('click',e=>{const idx=parseInt(e.target.dataset.index);downloadBlob(imageBlobs[idx].blob,imageBlobs[idx].name)})})}catch(error){console.error(error);toast.error('Error during conversion.')}finally{loadingOverlay.classList.remove('show')}});document.getElementById('download-all').addEventListener('click',()=>{imageBlobs.forEach(({blob,name})=>downloadBlob(blob,name))});function downloadBlob(blob,filename){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url)}})();
-  </script>
 </body>
 </html>

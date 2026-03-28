@@ -515,7 +515,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">JSON CSV 변환기</h1>
@@ -673,269 +675,19 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    (function(){'use strict';
-    const modeJson = document.getElementById('mode-json');
-    const modeCsv = document.getElementById('mode-csv');
-    const inputArea = document.getElementById('input-area');
-    const outputArea = document.getElementById('output-area');
-    const inputLabel = document.getElementById('input-label');
-    const outputLabel = document.getElementById('output-label');
-    const optHeader = document.getElementById('opt-header');
-    const optHeaderLabel = document.getElementById('opt-header-label');
-    const optDelimiter = document.getElementById('opt-delimiter');
-    const convertBtn = document.getElementById('convert-btn');
-    const copyBtn = document.getElementById('copy-btn');
-    const downloadBtn = document.getElementById('download-btn');
-    const sampleBtn = document.getElementById('sample-btn');
-    const dropZone = document.getElementById('drop-zone');
-    const fileInput = document.getElementById('file-input');
-    const errorMsg = document.getElementById('error-msg');
-
-    let mode = 'json2csv';
-
-    const sampleJson = `[
-  {"name": "홍길동", "age": 30, "city": "서울"},
-  {"name": "김철수", "age": 25, "city": "부산"},
-  {"name": "이영희", "age": 28, "city": "대구"}
-]`;
-
-    const sampleCsv = `name,age,city
-홍길동,30,서울
-김철수,25,부산
-이영희,28,대구`;
-
-    function setMode(newMode) {
-      mode = newMode;
-      if (mode === 'json2csv') {
-        modeJson.classList.add('active');
-        modeCsv.classList.remove('active');
-        inputLabel.textContent = 'JSON 입력';
-        outputLabel.textContent = 'CSV 결과';
-        inputArea.placeholder = 'JSON 배열을 입력하세요...';
-        optHeaderLabel.textContent = '헤더 포함';
-      } else {
-        modeCsv.classList.add('active');
-        modeJson.classList.remove('active');
-        inputLabel.textContent = 'CSV 입력';
-        outputLabel.textContent = 'JSON 결과';
-        inputArea.placeholder = 'CSV 데이터를 입력하세요...';
-        optHeaderLabel.textContent = '첫 행을 헤더로';
-      }
-      inputArea.value = '';
-      outputArea.value = '';
-      hideError();
-    }
-
-    function showError(msg) {
-      errorMsg.textContent = msg;
-      errorMsg.classList.remove('hidden');
-    }
-
-    function hideError() {
-      errorMsg.classList.add('hidden');
-    }
-
-    function jsonToCsv(jsonStr, delimiter, includeHeader) {
-      const data = JSON.parse(jsonStr);
-      if (!Array.isArray(data) || data.length === 0) {
-        throw new Error('JSON 배열이 비어있거나 올바르지 않습니다.');
-      }
-
-      const headers = Object.keys(data[0]);
-      const rows = [];
-
-      if (includeHeader) {
-        rows.push(headers.join(delimiter));
-      }
-
-      data.forEach(obj => {
-        const row = headers.map(h => {
-          let val = obj[h] ?? '';
-          val = String(val);
-          if (val.includes(delimiter) || val.includes('"') || val.includes('\n')) {
-            val = '"' + val.replace(/"/g, '""') + '"';
-          }
-          return val;
-        });
-        rows.push(row.join(delimiter));
-      });
-
-      return rows.join('\n');
-    }
-
-    function csvToJson(csvStr, delimiter, hasHeader) {
-      const lines = csvStr.trim().split('\n').map(l => l.trim()).filter(l => l);
-      if (lines.length === 0) throw new Error('CSV 데이터가 비어있습니다.');
-
-      function parseLine(line) {
-        const result = [];
-        let current = '';
-        let inQuotes = false;
-        for (let i = 0; i < line.length; i++) {
-          const char = line[i];
-          if (inQuotes) {
-            if (char === '"' && line[i + 1] === '"') {
-              current += '"';
-              i++;
-            } else if (char === '"') {
-              inQuotes = false;
-            } else {
-              current += char;
-            }
-          } else {
-            if (char === '"') {
-              inQuotes = true;
-            } else if (char === delimiter) {
-              result.push(current);
-              current = '';
-            } else {
-              current += char;
-            }
-          }
-        }
-        result.push(current);
-        return result;
-      }
-
-      let headers;
-      let startIdx;
-      if (hasHeader) {
-        headers = parseLine(lines[0]);
-        startIdx = 1;
-      } else {
-        const firstRow = parseLine(lines[0]);
-        headers = firstRow.map((_, i) => `col${i + 1}`);
-        startIdx = 0;
-      }
-
-      const result = [];
-      for (let i = startIdx; i < lines.length; i++) {
-        const values = parseLine(lines[i]);
-        const obj = {};
-        headers.forEach((h, idx) => {
-          let val = values[idx] ?? '';
-          if (!isNaN(val) && val !== '') val = Number(val);
-          obj[h] = val;
-        });
-        result.push(obj);
-      }
-
-      return JSON.stringify(result, null, 2);
-    }
-
-    function convert() {
-      hideError();
-      const input = inputArea.value.trim();
-      if (!input) {
-        showError('입력 데이터가 없습니다.');
-        return;
-      }
-
-      try {
-        if (mode === 'json2csv') {
-          outputArea.value = jsonToCsv(input, optDelimiter.value, optHeader.checked);
-        } else {
-          outputArea.value = csvToJson(input, optDelimiter.value, optHeader.checked);
-        }
-      } catch (e) {
-        showError('변환 오류: ' + e.message);
-      }
-    }
-
-    modeJson.addEventListener('click', () => setMode('json2csv'));
-    modeCsv.addEventListener('click', () => setMode('csv2json'));
-    convertBtn.addEventListener('click', convert);
-
-    sampleBtn.addEventListener('click', () => {
-      inputArea.value = mode === 'json2csv' ? sampleJson : sampleCsv;
-      hideError();
-    });
-
-    copyBtn.addEventListener('click', () => {
-      if (outputArea.value) {
-        navigator.clipboard.writeText(outputArea.value);
-        copyBtn.textContent = '복사됨!';
-        setTimeout(() => copyBtn.textContent = '복사', 1500);
-      }
-    });
-
-    downloadBtn.addEventListener('click', () => {
-      if (!outputArea.value) return;
-      const ext = mode === 'json2csv' ? 'csv' : 'json';
-      const type = mode === 'json2csv' ? 'text/csv' : 'application/json';
-      const blob = new Blob([outputArea.value], { type: type + ';charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'converted.' + ext;
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-
-    // Drag and drop
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
-      dropZone.addEventListener(evt, e => { e.preventDefault(); e.stopPropagation(); });
-    });
-    dropZone.addEventListener('dragenter', () => dropZone.classList.add('dragover'));
-    dropZone.addEventListener('dragover', () => dropZone.classList.add('dragover'));
-    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-    dropZone.addEventListener('drop', e => {
-      dropZone.classList.remove('dragover');
-      const file = e.dataTransfer.files[0];
-      if (file) readFile(file);
-    });
-
-    fileInput.addEventListener('change', e => {
-      if (e.target.files[0]) readFile(e.target.files[0]);
-    });
-
-    function readFile(file) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        inputArea.value = e.target.result;
-        hideError();
-        // Auto detect mode
-        if (file.name.endsWith('.json')) setMode('json2csv');
-        else if (file.name.endsWith('.csv')) setMode('csv2json');
-      };
-      reader.readAsText(file);
-    }
-    })();
-  </script>
 </body>
 </html>

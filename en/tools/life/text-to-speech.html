@@ -514,7 +514,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Text to Speech</h1>
@@ -707,7 +709,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -719,188 +721,7 @@
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    (function(){'use strict';
-    const synth = window.speechSynthesis;
-    const browserWarning = document.getElementById('browser-warning');
-    const textInput = document.getElementById('text-input');
-    const charCount = document.getElementById('char-count');
-    const voiceSelect = document.getElementById('voice-select');
-    const langFilter = document.getElementById('lang-filter');
-    const rateSlider = document.getElementById('rate-slider');
-    const rateValue = document.getElementById('rate-value');
-    const pitchSlider = document.getElementById('pitch-slider');
-    const pitchValue = document.getElementById('pitch-value');
-    const playBtn = document.getElementById('play-btn');
-    const playIcon = document.getElementById('play-icon');
-    const pauseBtn = document.getElementById('pause-btn');
-    const stopBtn = document.getElementById('stop-btn');
-    const status = document.getElementById('status');
-
-    let voices = [];
-    let isSpeaking = false;
-    let isPaused = false;
-
-    // Check browser support
-    if (!synth) {
-      browserWarning.classList.remove('hidden');
-      playBtn.disabled = true;
-      return;
-    }
-
-    // Load voices
-    function loadVoices() {
-      voices = synth.getVoices();
-      updateVoiceList();
-    }
-
-    function updateVoiceList() {
-      const filter = langFilter.value;
-      const filteredVoices = filter ? voices.filter(v => v.lang.startsWith(filter)) : voices;
-
-      voiceSelect.innerHTML = '';
-      if (filteredVoices.length === 0) {
-        voiceSelect.innerHTML = '<option value="">No voices found</option>';
-        return;
-      }
-
-      filteredVoices.forEach((voice, i) => {
-        const option = document.createElement('option');
-        option.value = voices.indexOf(voice);
-        option.textContent = `${voice.name} (${voice.lang})${voice.default ? ' - Default' : ''}`;
-        voiceSelect.appendChild(option);
-      });
-
-      // Try to select English voice by default
-      const englishVoice = filteredVoices.find(v => v.lang.startsWith('en'));
-      if (englishVoice && filter === 'en') {
-        voiceSelect.value = voices.indexOf(englishVoice);
-      }
-    }
-
-    // Voice loading events
-    if (synth.onvoiceschanged !== undefined) {
-      synth.onvoiceschanged = loadVoices;
-    }
-    loadVoices();
-
-    // Event listeners
-    textInput.addEventListener('input', () => {
-      charCount.textContent = textInput.value.length;
-    });
-
-    langFilter.addEventListener('change', updateVoiceList);
-
-    rateSlider.addEventListener('input', () => {
-      rateValue.textContent = rateSlider.value;
-    });
-
-    pitchSlider.addEventListener('input', () => {
-      pitchValue.textContent = pitchSlider.value;
-    });
-
-    playBtn.addEventListener('click', () => {
-      if (isPaused) {
-        synth.resume();
-        isPaused = false;
-        status.textContent = 'Playing...';
-        pauseBtn.innerHTML = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg> Pause';
-        return;
-      }
-
-      const text = textInput.value.trim();
-      if (!text) {
-        toast.error('Please enter some text to read');
-        return;
-      }
-
-      synth.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-
-      const selectedVoice = voices[voiceSelect.value];
-      if (selectedVoice) utterance.voice = selectedVoice;
-
-      utterance.rate = parseFloat(rateSlider.value);
-      utterance.pitch = parseFloat(pitchSlider.value);
-
-      utterance.onstart = () => {
-        isSpeaking = true;
-        playBtn.classList.add('speaking');
-        pauseBtn.disabled = false;
-        stopBtn.disabled = false;
-        status.textContent = 'Playing...';
-      };
-
-      utterance.onend = () => {
-        resetState();
-        status.textContent = 'Finished';
-      };
-
-      utterance.onerror = (e) => {
-        console.error('TTS Error:', e);
-        resetState();
-        if (e.error !== 'canceled') {
-          toast.error('An error occurred during playback');
-        }
-      };
-
-      synth.speak(utterance);
-    });
-
-    pauseBtn.addEventListener('click', () => {
-      if (synth.paused) {
-        synth.resume();
-        isPaused = false;
-        status.textContent = 'Playing...';
-        pauseBtn.innerHTML = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg> Pause';
-      } else {
-        synth.pause();
-        isPaused = true;
-        status.textContent = 'Paused';
-        pauseBtn.innerHTML = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Resume';
-      }
-    });
-
-    stopBtn.addEventListener('click', () => {
-      synth.cancel();
-      resetState();
-      status.textContent = 'Stopped';
-    });
-
-    function resetState() {
-      isSpeaking = false;
-      isPaused = false;
-      playBtn.classList.remove('speaking');
-      pauseBtn.disabled = true;
-      stopBtn.disabled = true;
-      pauseBtn.innerHTML = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg> Pause';
-    }
-
-    // Cancel on page unload
-    window.addEventListener('beforeunload', () => synth.cancel());
-    })();
-  </script>
 </body>
 </html>

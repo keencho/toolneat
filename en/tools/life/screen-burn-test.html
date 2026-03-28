@@ -532,7 +532,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14"><div class="container-main">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14"><div class="container-main">
     <!-- Page Title -->
     <div class="mb-6">
       <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -660,7 +662,7 @@
       </section>
   </div></main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -672,40 +674,7 @@
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <div id="fullscreen-overlay"><div id="sliding-bar" style="display:none"></div><div id="fullscreen-hint">Click or ← → to change | ESC to exit</div></div>
-  <script>
-    const patterns=['gray50','gray','checker','sliding'];let ci=0,aid=null;
-    const ov=document.getElementById('fullscreen-overlay'),sb=document.getElementById('sliding-bar');
-    function ap(p){ov.className='active';sb.style.display='none';if(aid){cancelAnimationFrame(aid);aid=null}ov.classList.add('pattern-'+p);if(p==='sliding'){sb.style.display='block';anim()}}
-    function anim(){let pos=0;const w=window.innerWidth;function s(){pos=(pos+2)%(w+100);sb.style.left=(pos-100)+'px';aid=requestAnimationFrame(s)}s()}
-    function startTest(p){ci=patterns.indexOf(p);if(ci===-1)ci=0;ap(patterns[ci]);if(ov.requestFullscreen)ov.requestFullscreen();else if(ov.webkitRequestFullscreen)ov.webkitRequestFullscreen()}
-    function next(){ci=(ci+1)%patterns.length;ap(patterns[ci])}function prev(){ci=(ci-1+patterns.length)%patterns.length;ap(patterns[ci])}
-    function exit(){ov.classList.remove('active');if(aid){cancelAnimationFrame(aid);aid=null}if(document.fullscreenElement)document.exitFullscreen()}
-    ov.addEventListener('click',e=>{if(e.target!==sb)next()});
-    document.addEventListener('keydown',e=>{if(!ov.classList.contains('active'))return;if(e.key==='ArrowRight'||e.key===' ')next();else if(e.key==='ArrowLeft')prev();else if(e.key==='Escape')exit()});
-    document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)exit()});
-  </script>
 </body>
 </html>

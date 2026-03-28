@@ -572,7 +572,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.mergePdf.title">PDF 병합</h1>
@@ -709,270 +711,19 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
 </div>
 
-  <!-- Loading Overlay -->
-  <div id="loading-overlay" class="loading-overlay">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center">
-      <div class="spinner mx-auto mb-4"></div>
-      <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.mergePdf.merging">PDF 병합 중...</p>
-    </div>
-  </div>
-
-  <script>
-    (function() {
-      'use strict';
-
-      const dropZone = document.getElementById('drop-zone');
-      const fileInput = document.getElementById('file-input');
-      const fileList = document.getElementById('file-list');
-      const filesContainer = document.getElementById('files-container');
-      const mergeBtn = document.getElementById('merge-btn');
-      const addMoreBtn = document.getElementById('add-more');
-      const loadingOverlay = document.getElementById('loading-overlay');
-      const loadingText = document.getElementById('loading-text');
-      const resultSection = document.getElementById('result-section');
-      const resultPages = document.getElementById('result-pages');
-      const resultSize = document.getElementById('result-size');
-
-      let pdfFiles = [];
-      let libReady = false;
-      let mergedBlob = null;
-
-      // Check if pdf-lib is loaded
-      function checkLibrary() {
-        if (typeof PDFLib !== 'undefined') {
-          libReady = true;
-          fileInput.disabled = false;
-          addMoreBtn.disabled = false;
-          loadingText.classList.add('hidden');
-          toast.success('PDF 도구 준비 완료!');
-        } else {
-          setTimeout(checkLibrary, 100);
-        }
-      }
-      checkLibrary();
-
-      // Drop zone events
-      dropZone.addEventListener('click', () => {
-        if (libReady) fileInput.click();
-      });
-
-      dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        if (libReady) dropZone.classList.add('drag-over');
-      });
-
-      dropZone.addEventListener('dragleave', () => {
-        dropZone.classList.remove('drag-over');
-      });
-
-      dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('drag-over');
-        if (!libReady) return;
-        const files = Array.from(e.dataTransfer.files).filter(f => f.type === 'application/pdf');
-        addFiles(files);
-      });
-
-      fileInput.addEventListener('change', (e) => {
-        addFiles(Array.from(e.target.files));
-        fileInput.value = '';
-      });
-
-      addMoreBtn.addEventListener('click', () => {
-        if (libReady) fileInput.click();
-      });
-
-      function addFiles(files) {
-        if (files.length === 0) {
-          toast.warning('PDF 파일만 선택할 수 있습니다.');
-          return;
-        }
-        pdfFiles = [...pdfFiles, ...files];
-        renderFileList();
-      }
-
-      function renderFileList() {
-        if (pdfFiles.length === 0) {
-          fileList.classList.add('hidden');
-          mergeBtn.disabled = true;
-          return;
-        }
-
-        fileList.classList.remove('hidden');
-        mergeBtn.disabled = pdfFiles.length < 2;
-
-        filesContainer.innerHTML = pdfFiles.map((file, index) => `
-          <div class="file-item" draggable="true" data-index="${index}">
-            <svg class="w-5 h-5 text-gray-400 cursor-grab" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
-            </svg>
-            <svg class="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-3 9h4v1h-4v-1zm0 2h4v1h-4v-1zm-2-2h1v4H8v-4z"/>
-            </svg>
-            <div class="flex-1 min-w-0">
-              <p class="text-sm font-medium text-gray-900 dark:text-white truncate">${file.name}</p>
-              <p class="text-xs text-gray-500">${formatSize(file.size)}</p>
-            </div>
-            <button class="remove-btn p-1 text-gray-400 hover:text-red-500" data-index="${index}">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-        `).join('');
-
-        // Add drag events
-        setupDragAndDrop();
-
-        // Add remove events
-        filesContainer.querySelectorAll('.remove-btn').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const index = parseInt(e.currentTarget.dataset.index);
-            pdfFiles.splice(index, 1);
-            renderFileList();
-          });
-        });
-      }
-
-      function setupDragAndDrop() {
-        const items = filesContainer.querySelectorAll('.file-item');
-        let draggedItem = null;
-
-        items.forEach(item => {
-          item.addEventListener('dragstart', (e) => {
-            draggedItem = item;
-            item.classList.add('dragging');
-          });
-
-          item.addEventListener('dragend', () => {
-            item.classList.remove('dragging');
-            items.forEach(i => i.classList.remove('drag-over'));
-          });
-
-          item.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            if (item !== draggedItem) {
-              item.classList.add('drag-over');
-            }
-          });
-
-          item.addEventListener('dragleave', () => {
-            item.classList.remove('drag-over');
-          });
-
-          item.addEventListener('drop', (e) => {
-            e.preventDefault();
-            item.classList.remove('drag-over');
-            if (item !== draggedItem) {
-              const fromIndex = parseInt(draggedItem.dataset.index);
-              const toIndex = parseInt(item.dataset.index);
-              const [moved] = pdfFiles.splice(fromIndex, 1);
-              pdfFiles.splice(toIndex, 0, moved);
-              renderFileList();
-            }
-          });
-        });
-      }
-
-      function formatSize(bytes) {
-        if (bytes < 1024) return bytes + ' B';
-        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
-      }
-
-      // Merge PDFs
-      mergeBtn.addEventListener('click', async () => {
-        if (pdfFiles.length < 2 || !libReady) return;
-
-        loadingOverlay.classList.add('show');
-
-        try {
-          const { PDFDocument } = PDFLib;
-          const mergedPdf = await PDFDocument.create();
-
-          for (const file of pdfFiles) {
-            const arrayBuffer = await file.arrayBuffer();
-            const pdf = await PDFDocument.load(arrayBuffer);
-            const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-            pages.forEach(page => mergedPdf.addPage(page));
-          }
-
-          const mergedBytes = await mergedPdf.save();
-          mergedBlob = new Blob([mergedBytes], { type: 'application/pdf' });
-
-          // Show result
-          resultPages.textContent = mergedPdf.getPageCount();
-          resultSize.textContent = formatSize(mergedBlob.size);
-          dropZone.classList.add('hidden');
-          fileList.classList.add('hidden');
-          mergeBtn.classList.add('hidden');
-          resultSection.classList.remove('hidden');
-          toast.success('PDF 병합 완료!');
-        } catch (error) {
-          console.error(error);
-          toast.error('PDF 병합 중 오류가 발생했습니다.');
-        } finally {
-          loadingOverlay.classList.remove('show');
-        }
-      });
-
-      // Download button
-      document.getElementById('download-btn').addEventListener('click', () => {
-        if (!mergedBlob) return;
-        const url = URL.createObjectURL(mergedBlob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'merged.pdf';
-        a.click();
-        URL.revokeObjectURL(url);
-      });
-
-      // New merge button
-      document.getElementById('new-btn').addEventListener('click', () => {
-        pdfFiles = [];
-        mergedBlob = null;
-        dropZone.classList.remove('hidden');
-        fileList.classList.add('hidden');
-        mergeBtn.classList.remove('hidden');
-        mergeBtn.disabled = true;
-        resultSection.classList.add('hidden');
-      });
-    })();
-  </script>
 </body>
 </html>

@@ -508,7 +508,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.youtubeThumbnail.title">YouTube Thumbnail Downloader</h1>
@@ -648,7 +650,7 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -660,104 +662,7 @@
     </div>
   </div>
 </footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
 </div>
 
-  <script>
-    (function() {
-      'use strict';
-
-      const youtubeUrl = document.getElementById('youtube-url');
-      const fetchBtn = document.getElementById('fetch-btn');
-      const result = document.getElementById('result');
-      const previewImg = document.getElementById('preview-img');
-      const thumbnailsDiv = document.getElementById('thumbnails');
-
-      const thumbnailTypes = [
-        { name: 'Max Resolution (1280×720)', key: 'maxresdefault', size: '1280×720' },
-        { name: 'SD (640×480)', key: 'sddefault', size: '640×480' },
-        { name: 'HQ (480×360)', key: 'hqdefault', size: '480×360' },
-        { name: 'MQ (320×180)', key: 'mqdefault', size: '320×180' },
-        { name: 'Default (120×90)', key: 'default', size: '120×90' }
-      ];
-
-      function extractVideoId(url) {
-        const patterns = [
-          /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([^&\n?#]+)/,
-          /^([a-zA-Z0-9_-]{11})$/
-        ];
-
-        for (const pattern of patterns) {
-          const match = url.match(pattern);
-          if (match) return match[1];
-        }
-        return null;
-      }
-
-      function getThumbnailUrl(videoId, type) {
-        return `https://img.youtube.com/vi/${videoId}/${type}.jpg`;
-      }
-
-      fetchBtn.addEventListener('click', fetchThumbnails);
-      youtubeUrl.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') fetchThumbnails();
-      });
-
-      function fetchThumbnails() {
-        const url = youtubeUrl.value.trim();
-        const videoId = extractVideoId(url);
-
-        if (!videoId) {
-          toast.show('Please enter a valid YouTube URL.', 'error');
-          return;
-        }
-
-        previewImg.src = getThumbnailUrl(videoId, 'maxresdefault');
-        previewImg.onerror = () => {
-          previewImg.src = getThumbnailUrl(videoId, 'hqdefault');
-        };
-
-        thumbnailsDiv.innerHTML = thumbnailTypes.map(type => `
-          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-            <img src="${getThumbnailUrl(videoId, type.key)}"
-                 alt="${type.name}"
-                 class="w-full rounded-lg mb-3"
-                 onerror="this.parentElement.style.display='none'">
-            <div class="text-sm font-medium text-gray-900 dark:text-white mb-1">${type.name}</div>
-            <div class="text-xs text-gray-500 mb-3">${type.size}</div>
-            <a href="${getThumbnailUrl(videoId, type.key)}"
-               download="youtube-thumbnail-${videoId}-${type.key}.jpg"
-               target="_blank"
-               class="btn btn-secondary w-full text-sm">
-              Download
-            </a>
-          </div>
-        `).join('');
-
-        result.classList.remove('hidden');
-        result.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    })();
-  </script>
 </body>
 </html>

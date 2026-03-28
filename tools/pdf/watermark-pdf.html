@@ -530,7 +530,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">PDF 워터마크 추가</h1>
@@ -754,256 +756,19 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
 </div>
 
-  <!-- Loading Overlay -->
-  <div id="loading-overlay" class="loading-overlay">
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl text-center">
-      <div class="spinner mx-auto mb-4"></div>
-      <p class="text-gray-600 dark:text-gray-400">처리 중...</p>
-    </div>
-  </div>
-
-  <script>
-    (function(){'use strict';
-    const { PDFDocument, rgb, degrees, StandardFonts } = PDFLib;
-
-    const dropZone = document.getElementById('drop-zone');
-    const fileInput = document.getElementById('file-input');
-    const editSection = document.getElementById('edit-section');
-    const fileNameEl = document.getElementById('file-name');
-    const pageCountEl = document.getElementById('page-count');
-    const loadingOverlay = document.getElementById('loading-overlay');
-    const watermarkTextInput = document.getElementById('watermark-text');
-    const fontSizeSlider = document.getElementById('font-size');
-    const rotationSlider = document.getElementById('rotation');
-    const opacitySlider = document.getElementById('opacity');
-    const watermarkPreview = document.getElementById('watermark-preview');
-
-    let pdfBytes = null;
-    let fileName = '';
-    let position = 'middle-center';
-    let watermarkColor = { r: 0.5, g: 0.5, b: 0.5 };
-
-    // Drag & drop
-    dropZone.addEventListener('click', () => fileInput.click());
-    dropZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      dropZone.classList.add('drag-over');
-    });
-    dropZone.addEventListener('dragleave', () => {
-      dropZone.classList.remove('drag-over');
-    });
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.classList.remove('drag-over');
-      const file = e.dataTransfer.files[0];
-      if (file && file.type === 'application/pdf') loadPDF(file);
-      else toast.error('PDF 파일만 지원됩니다');
-    });
-    fileInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) loadPDF(file);
-    });
-
-    async function loadPDF(file) {
-      try {
-        loadingOverlay.classList.add('show');
-        fileName = file.name;
-        pdfBytes = await file.arrayBuffer();
-        const pdfDoc = await PDFDocument.load(pdfBytes);
-
-        fileNameEl.textContent = fileName;
-        pageCountEl.textContent = `${pdfDoc.getPageCount()}페이지`;
-
-        dropZone.classList.add('hidden');
-        editSection.classList.remove('hidden');
-        updatePreview();
-      } catch (err) {
-        toast.error('PDF 파일을 읽을 수 없습니다');
-        console.error(err);
-      } finally {
-        loadingOverlay.classList.remove('show');
-      }
-    }
-
-    function updatePreview() {
-      const text = watermarkTextInput.value || 'WATERMARK';
-      const fontSize = parseInt(fontSizeSlider.value);
-      const rotation = parseInt(rotationSlider.value);
-      const opacity = parseInt(opacitySlider.value) / 100;
-
-      watermarkPreview.textContent = text;
-      watermarkPreview.style.fontSize = `${fontSize * 0.4}px`;
-      watermarkPreview.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
-      watermarkPreview.style.opacity = opacity;
-      watermarkPreview.style.color = `rgb(${watermarkColor.r * 255}, ${watermarkColor.g * 255}, ${watermarkColor.b * 255})`;
-
-      // Update position values
-      document.getElementById('font-size-value').textContent = fontSize;
-      document.getElementById('rotation-value').textContent = rotation;
-      document.getElementById('opacity-value').textContent = opacitySlider.value;
-
-      // Position
-      const previewBox = document.getElementById('preview-box');
-      const pos = position.split('-');
-      let top = '50%', left = '50%';
-
-      if (pos[0] === 'top') top = '20%';
-      else if (pos[0] === 'bottom') top = '80%';
-
-      if (pos[1] === 'left') left = '20%';
-      else if (pos[1] === 'right') left = '80%';
-
-      watermarkPreview.style.top = top;
-      watermarkPreview.style.left = left;
-    }
-
-    // Event listeners for settings
-    watermarkTextInput.addEventListener('input', updatePreview);
-    fontSizeSlider.addEventListener('input', updatePreview);
-    rotationSlider.addEventListener('input', updatePreview);
-    opacitySlider.addEventListener('input', updatePreview);
-
-    // Position buttons
-    document.querySelectorAll('.position-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.position-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        position = btn.dataset.pos;
-        updatePreview();
-      });
-    });
-
-    // Color buttons
-    document.querySelectorAll('[data-color]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-color]').forEach(b => b.classList.remove('border-blue-500'));
-        btn.classList.add('border-blue-500');
-        const hex = btn.dataset.color;
-        watermarkColor = hexToRgb(hex);
-        updatePreview();
-      });
-    });
-
-    document.getElementById('custom-color').addEventListener('input', (e) => {
-      document.querySelectorAll('[data-color]').forEach(b => b.classList.remove('border-blue-500'));
-      watermarkColor = hexToRgb(e.target.value);
-      updatePreview();
-    });
-
-    function hexToRgb(hex) {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result ? {
-        r: parseInt(result[1], 16) / 255,
-        g: parseInt(result[2], 16) / 255,
-        b: parseInt(result[3], 16) / 255
-      } : { r: 0.5, g: 0.5, b: 0.5 };
-    }
-
-    // Change file
-    document.getElementById('change-file').addEventListener('click', () => {
-      dropZone.classList.remove('hidden');
-      editSection.classList.add('hidden');
-      fileInput.value = '';
-      pdfBytes = null;
-    });
-
-    // Download
-    document.getElementById('download-btn').addEventListener('click', async () => {
-      if (!pdfBytes) return;
-
-      try {
-        loadingOverlay.classList.add('show');
-
-        const pdfDoc = await PDFDocument.load(pdfBytes);
-        const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-        const pages = pdfDoc.getPages();
-
-        const text = watermarkTextInput.value || 'WATERMARK';
-        const fontSize = parseInt(fontSizeSlider.value);
-        const rotation = parseInt(rotationSlider.value);
-        const opacity = parseInt(opacitySlider.value) / 100;
-
-        pages.forEach(page => {
-          const { width, height } = page.getSize();
-          const textWidth = font.widthOfTextAtSize(text, fontSize);
-
-          // Calculate position
-          const pos = position.split('-');
-          let x = width / 2 - textWidth / 2;
-          let y = height / 2;
-
-          if (pos[0] === 'top') y = height * 0.85;
-          else if (pos[0] === 'bottom') y = height * 0.15;
-
-          if (pos[1] === 'left') x = width * 0.1;
-          else if (pos[1] === 'right') x = width * 0.9 - textWidth;
-
-          page.drawText(text, {
-            x,
-            y,
-            size: fontSize,
-            font,
-            color: rgb(watermarkColor.r, watermarkColor.g, watermarkColor.b),
-            opacity,
-            rotate: degrees(rotation)
-          });
-        });
-
-        const watermarkedPdfBytes = await pdfDoc.save();
-        const blob = new Blob([watermarkedPdfBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement('a');
-        const baseName = fileName.replace(/\.pdf$/i, '');
-        a.href = url;
-        a.download = `${baseName}_watermarked.pdf`;
-        a.click();
-        URL.revokeObjectURL(url);
-
-        toast.success('PDF가 다운로드되었습니다');
-      } catch (err) {
-        toast.error('PDF 처리 중 오류가 발생했습니다');
-        console.error(err);
-      } finally {
-        loadingOverlay.classList.remove('show');
-      }
-    });
-    })();
-  </script>
 </body>
 </html>

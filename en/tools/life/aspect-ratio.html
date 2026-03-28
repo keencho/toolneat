@@ -520,7 +520,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Aspect Ratio Calculator</h1>
@@ -676,7 +678,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -688,172 +690,7 @@
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    (function(){'use strict';
-    const widthInput = document.getElementById('width');
-    const heightInput = document.getElementById('height');
-    const lockRatio = document.getElementById('lock-ratio');
-    const lockDimension = document.getElementById('lock-dimension');
-    const resultRatio = document.getElementById('result-ratio');
-    const resultDecimal = document.getElementById('result-decimal');
-    const ratioBox = document.getElementById('ratio-box');
-    const resolutionList = document.getElementById('resolution-list');
-    const presetBtns = document.querySelectorAll('.preset-btn');
-
-    const commonResolutions = [
-      { name: '4K UHD', width: 3840, height: 2160 },
-      { name: '1440p QHD', width: 2560, height: 1440 },
-      { name: '1080p FHD', width: 1920, height: 1080 },
-      { name: '720p HD', width: 1280, height: 720 },
-      { name: '480p SD', width: 854, height: 480 },
-      { name: 'Instagram', width: 1080, height: 1080 },
-      { name: 'TikTok', width: 1080, height: 1920 },
-      { name: 'Twitter', width: 1200, height: 675 },
-    ];
-
-    let currentRatio = { w: 16, h: 9 };
-
-    function gcd(a, b) {
-      a = Math.abs(Math.round(a));
-      b = Math.abs(Math.round(b));
-      while (b) {
-        const t = b;
-        b = a % b;
-        a = t;
-      }
-      return a;
-    }
-
-    function calculateRatio(w, h) {
-      const divisor = gcd(w, h);
-      return { w: w / divisor, h: h / divisor };
-    }
-
-    function updatePreview() {
-      const w = parseFloat(widthInput.value) || 1;
-      const h = parseFloat(heightInput.value) || 1;
-      const ratio = w / h;
-
-      const simplified = calculateRatio(w, h);
-      resultRatio.textContent = `${simplified.w}:${simplified.h}`;
-      resultDecimal.textContent = `${ratio.toFixed(3)} (decimal)`;
-      currentRatio = simplified;
-
-      const maxSize = 200;
-      let boxW, boxH;
-      if (ratio > 1) {
-        boxW = maxSize;
-        boxH = maxSize / ratio;
-      } else {
-        boxH = maxSize;
-        boxW = maxSize * ratio;
-      }
-      ratioBox.style.width = boxW + 'px';
-      ratioBox.style.height = boxH + 'px';
-
-      presetBtns.forEach(btn => {
-        const [pw, ph] = btn.dataset.ratio.split(':').map(Number);
-        btn.classList.toggle('active', simplified.w === pw && simplified.h === ph);
-      });
-
-      updateResolutionList();
-    }
-
-    function updateResolutionList() {
-      const ratio = currentRatio.w / currentRatio.h;
-
-      const matching = commonResolutions.filter(res => {
-        const resRatio = res.width / res.height;
-        return Math.abs(resRatio - ratio) < 0.01;
-      });
-
-      const displayList = matching.length > 0 ? matching : commonResolutions;
-
-      resolutionList.innerHTML = displayList.map(res => `
-        <div class="resolution-item" data-width="${res.width}" data-height="${res.height}">
-          <div class="font-semibold text-gray-900 dark:text-white">${res.name}</div>
-          <div class="text-xs text-gray-500">${res.width} x ${res.height}</div>
-        </div>
-      `).join('');
-
-      resolutionList.querySelectorAll('.resolution-item').forEach(item => {
-        item.addEventListener('click', () => {
-          widthInput.value = item.dataset.width;
-          heightInput.value = item.dataset.height;
-          updatePreview();
-        });
-      });
-    }
-
-    function setRatioFromPreset(ratioStr) {
-      const [w, h] = ratioStr.split(':').map(Number);
-      currentRatio = { w, h };
-
-      if (lockDimension.value === 'width') {
-        const currentWidth = parseFloat(widthInput.value) || 1920;
-        heightInput.value = Math.round(currentWidth * h / w);
-      } else {
-        const currentHeight = parseFloat(heightInput.value) || 1080;
-        widthInput.value = Math.round(currentHeight * w / h);
-      }
-      updatePreview();
-    }
-
-    widthInput.addEventListener('input', () => {
-      if (lockRatio.checked) {
-        const w = parseFloat(widthInput.value) || 1;
-        heightInput.value = Math.round(w * currentRatio.h / currentRatio.w);
-      }
-      updatePreview();
-    });
-
-    heightInput.addEventListener('input', () => {
-      if (lockRatio.checked) {
-        const h = parseFloat(heightInput.value) || 1;
-        widthInput.value = Math.round(h * currentRatio.w / currentRatio.h);
-      }
-      updatePreview();
-    });
-
-    lockRatio.addEventListener('change', () => {
-      if (lockRatio.checked) {
-        currentRatio = calculateRatio(
-          parseFloat(widthInput.value) || 1,
-          parseFloat(heightInput.value) || 1
-        );
-      }
-    });
-
-    presetBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        setRatioFromPreset(btn.dataset.ratio);
-      });
-    });
-
-    updatePreview();
-    })();
-  </script>
 </body>
 </html>

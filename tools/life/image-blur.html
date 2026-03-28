@@ -522,7 +522,9 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div><main class="flex-1 mt-16 py-10 md:py-14">
+</div>
+
+<main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.imageBlur.title">이미지 모자이크</h1>
@@ -659,141 +661,19 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
+<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
       </div>
     </div>
   </div>
 </footer>
-
 </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-  <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    let originalImage = null;
-    let isDrawing = false;
-    const dropZone = document.getElementById('uploadArea');
-    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
-    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-    dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('dragover'); if (e.dataTransfer.files[0]) loadImageFile(e.dataTransfer.files[0]); });
-    function loadImage(e) { if (e.target.files[0]) loadImageFile(e.target.files[0]); }
-    function loadImageFile(file) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        const img = new Image();
-        img.onload = () => {
-          canvas.width = img.width;
-          canvas.height = img.height;
-          ctx.drawImage(img, 0, 0);
-          originalImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          document.getElementById('uploadCard').classList.add('hidden');
-          document.getElementById('editorArea').classList.remove('hidden');
-        };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-    canvas.addEventListener('mousedown', () => isDrawing = true);
-    canvas.addEventListener('mouseup', () => isDrawing = false);
-    canvas.addEventListener('mouseleave', () => isDrawing = false);
-    canvas.addEventListener('mousemove', e => { if (isDrawing) applyEffect(e); });
-    canvas.addEventListener('touchstart', e => { isDrawing = true; applyEffect(e.touches[0]); });
-    canvas.addEventListener('touchend', () => isDrawing = false);
-    canvas.addEventListener('touchmove', e => { e.preventDefault(); if (isDrawing) applyEffect(e.touches[0]); });
-    function applyEffect(e) {
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
-      const x = (e.clientX - rect.left) * scaleX;
-      const y = (e.clientY - rect.top) * scaleY;
-      const brushSize = parseInt(document.getElementById('brushSize').value);
-      const intensity = parseInt(document.getElementById('intensity').value);
-      const effect = document.getElementById('effectType').value;
-      if (effect === 'blur') applyBlur(x, y, brushSize, intensity);
-      else applyPixelate(x, y, brushSize, intensity);
-    }
-    function applyBlur(cx, cy, size, intensity) {
-      const imgData = ctx.getImageData(Math.max(0, cx - size), Math.max(0, cy - size), size * 2, size * 2);
-      const blurred = stackBlur(imgData, intensity);
-      ctx.putImageData(blurred, Math.max(0, cx - size), Math.max(0, cy - size));
-    }
-    function applyPixelate(cx, cy, size, pixelSize) {
-      const startX = Math.max(0, Math.floor(cx - size));
-      const startY = Math.max(0, Math.floor(cy - size));
-      const endX = Math.min(canvas.width, Math.ceil(cx + size));
-      const endY = Math.min(canvas.height, Math.ceil(cy + size));
-      const blockX = Math.floor(startX / pixelSize) * pixelSize;
-      const blockY = Math.floor(startY / pixelSize) * pixelSize;
-      for (let py = blockY; py < endY; py += pixelSize) {
-        for (let px = blockX; px < endX; px += pixelSize) {
-          const sampleX = Math.min(px + Math.floor(pixelSize / 2), canvas.width - 1);
-          const sampleY = Math.min(py + Math.floor(pixelSize / 2), canvas.height - 1);
-          const imgData = ctx.getImageData(sampleX, sampleY, 1, 1);
-          ctx.fillStyle = `rgb(${imgData.data[0]},${imgData.data[1]},${imgData.data[2]})`;
-          const rectW = Math.min(pixelSize, canvas.width - px);
-          const rectH = Math.min(pixelSize, canvas.height - py);
-          ctx.fillRect(px, py, rectW, rectH);
-        }
-      }
-    }
-    function stackBlur(imgData, radius) {
-      const w = imgData.width, h = imgData.height, d = imgData.data;
-      for (let i = 0; i < d.length; i += 4) {
-        let r = 0, g = 0, b = 0, count = 0;
-        const x = (i / 4) % w, y = Math.floor((i / 4) / w);
-        for (let dy = -radius; dy <= radius; dy++) {
-          for (let dx = -radius; dx <= radius; dx++) {
-            const nx = x + dx, ny = y + dy;
-            if (nx >= 0 && nx < w && ny >= 0 && ny < h) {
-              const ni = (ny * w + nx) * 4;
-              r += d[ni]; g += d[ni + 1]; b += d[ni + 2]; count++;
-            }
-          }
-        }
-        d[i] = r / count; d[i + 1] = g / count; d[i + 2] = b / count;
-      }
-      return imgData;
-    }
-    function resetImage() { if (originalImage) ctx.putImageData(originalImage, 0, 0); }
-    function newImage() {
-      document.getElementById('editorArea').classList.add('hidden');
-      document.getElementById('uploadCard').classList.remove('hidden');
-      document.getElementById('imageInput').value = '';
-      originalImage = null;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-    function downloadImage() {
-      const link = document.createElement('a');
-      link.download = 'blurred-image.png';
-      link.href = canvas.toDataURL();
-      link.click();
-    }
-  </script>
 </body>
 </html>
