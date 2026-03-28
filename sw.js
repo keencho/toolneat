@@ -1,7 +1,7 @@
 // Toolneat Service Worker
 // Version 1.0.0
 
-const CACHE_NAME = 'toolneat-v1';
+const CACHE_NAME = 'toolneat-v2';
 const OFFLINE_URL = '/offline.html';
 
 // Assets to cache on install
