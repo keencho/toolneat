@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npx @tailwindcss/cli -i ./src/input.css -o ./assets/css/output.css --watch\" \"npx serve .\"",
-    "build": "node scripts/auto/inject-components.js && node scripts/auto/generate-sitemap.js && npx @tailwindcss/cli -i ./src/input.css -o ./assets/css/output.css --minify && rm -rf docs src scripts",
+    "dev": "concurrently \"npx @tailwindcss/cli -i ./src/input.css -o ./assets/css/style.css --watch\" \"npx serve .\"",
+    "build": "node scripts/auto/inject-components.js && node scripts/auto/generate-sitemap.js && npx @tailwindcss/cli -i ./src/input.css -o ./assets/css/style.css --minify && rm -rf docs src scripts",
     "serve": "npx serve .",
     "start": "npx serve .",
     "sitemap": "node scripts/auto/generate-sitemap.js"

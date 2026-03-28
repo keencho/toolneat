@@ -9,7 +9,7 @@ const PRECACHE_ASSETS = [
   '/',
   '/index.html',
   '/offline.html',
-  '/assets/css/output.css',
+  '/assets/css/style.css',
   '/assets/js/common.js',
   '/assets/js/i18n.js',
   '/assets/js/components.js',
