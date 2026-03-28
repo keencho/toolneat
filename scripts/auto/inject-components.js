@@ -123,7 +123,8 @@ function injectComponents(filePath) {
   }
 
   // Use marker-based replacement for footer
-  // Find <div id="footer"> and replace everything until next <!-- Tool Script -->, <style>, or </body>
+  // Safe approach: only replace <div id="footer">..first </footer>..</div>
+  // Never touches anything after (scripts, styles, duplicate garbage)
   const footerStartMarker = /<div\s+id=["']footer["']\s*>/i;
 
   if (footerStartMarker.test(content)) {
@@ -131,15 +132,21 @@ function injectComponents(filePath) {
     const startIndex = startMatch.index;
     const afterStart = content.substring(startIndex + startMatch[0].length);
 
-    const boundaryMatch = afterStart.match(/\n\s*(?=<!-- Tool Script -->|<style>|<\/body>)/);
-    if (boundaryMatch) {
-      const endIndex = startIndex + startMatch[0].length + boundaryMatch.index;
-      const oldContent = content.substring(startIndex, endIndex);
-      const newFooter = `<div id="footer">\n${footer}\n</div>\n`;
+    // Find first </footer> after <div id="footer">
+    const footerCloseIdx = afterStart.indexOf('</footer>');
+    if (footerCloseIdx !== -1) {
+      // Find the </div> right after </footer> (closes <div id="footer">)
+      const afterFooterClose = afterStart.substring(footerCloseIdx + '</footer>'.length);
+      const divCloseMatch = afterFooterClose.match(/\s*<\/div>/);
+      if (divCloseMatch) {
+        const endIndex = startIndex + startMatch[0].length + footerCloseIdx + '</footer>'.length + divCloseMatch.index + divCloseMatch[0].length;
+        const oldContent = content.substring(startIndex, endIndex);
+        const newFooter = `<div id="footer">\n${footer}\n</div>`;
 
-      if (oldContent !== newFooter) {
-        content = content.substring(0, startIndex) + newFooter + content.substring(endIndex);
-        modified = true;
+        if (oldContent !== newFooter) {
+          content = content.substring(0, startIndex) + newFooter + content.substring(endIndex);
+          modified = true;
+        }
       }
     }
   }
