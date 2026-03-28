@@ -526,9 +526,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.micTest.title">마이크 테스트</h1>
@@ -659,19 +657,147 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    let stream = null;
+    let audioContext = null;
+    let analyser = null;
+    let animationId = null;
+    async function getMics() {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const mics = devices.filter(d => d.kind === 'audioinput');
+      const select = document.getElementById('micSelect');
+      select.innerHTML = '<option value="">마이크 선택...</option>' + mics.map(m => `<option value="${m.deviceId}">${m.label || '마이크 ' + (mics.indexOf(m) + 1)}</option>`).join('');
+    }
+    async function startMic(deviceId) {
+      try {
+        if (stream) stopMic();
+        const constraints = { audio: deviceId ? { deviceId: { exact: deviceId } } : true };
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioContext.createMediaStreamSource(stream);
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 256;
+        source.connect(analyser);
+        const track = stream.getAudioTracks()[0];
+        document.getElementById('micName').textContent = track.label || '알 수 없음';
+        document.getElementById('status').innerHTML = '<span class="status-badge success">작동 중</span>';
+        document.getElementById('startBtn').disabled = true;
+        document.getElementById('stopBtn').disabled = false;
+        document.getElementById('recordBtn').disabled = false;
+        getMics();
+        updateVolume();
+      } catch (err) {
+        document.getElementById('status').innerHTML = '<span class="status-badge error">오류: ' + err.message + '</span>';
+      }
+    }
+    function stopMic() {
+      if (isRecording) stopRecording();
+      if (animationId) cancelAnimationFrame(animationId);
+      if (stream) stream.getTracks().forEach(t => t.stop());
+      if (audioContext) audioContext.close();
+      stream = null;
+      audioContext = null;
+      analyser = null;
+      document.getElementById('volumeFill').style.height = '0%';
+      document.getElementById('volumeValue').textContent = '0';
+      document.getElementById('status').innerHTML = '<span class="status-badge waiting">중지됨</span>';
+      document.getElementById('startBtn').disabled = false;
+      document.getElementById('stopBtn').disabled = true;
+      document.getElementById('recordBtn').disabled = true;
+      document.getElementById('micName').textContent = '-';
+    }
+    function switchMic() {
+      const deviceId = document.getElementById('micSelect').value;
+      if (deviceId) startMic(deviceId);
+    }
+    function updateVolume() {
+      if (!analyser) return;
+      const data = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(data);
+      const avg = data.reduce((a, b) => a + b, 0) / data.length;
+      const volume = Math.min(100, Math.round(avg * 1.5));
+      document.getElementById('volumeFill').style.height = volume + '%';
+      document.getElementById('volumeValue').textContent = volume;
+      animationId = requestAnimationFrame(updateVolume);
+    }
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let isRecording = false;
+    let recordedAudioUrl = null;
+    function startRecording() {
+      if (!stream) return;
+      if (isRecording) {
+        stopRecording();
+        return;
+      }
+      recordedChunks = [];
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+        if (recordedAudioUrl) URL.revokeObjectURL(recordedAudioUrl);
+        recordedAudioUrl = URL.createObjectURL(blob);
+        document.getElementById('audioPlayback').src = recordedAudioUrl;
+        document.getElementById('playBtn').disabled = false;
+        document.getElementById('recordStatus').textContent = '녹음 완료! "녹음 듣기" 버튼을 눌러 확인하세요.';
+      };
+      mediaRecorder.start();
+      isRecording = true;
+      document.getElementById('recordBtn').textContent = '⏹️ 녹음 중지';
+      document.getElementById('recordBtn').classList.add('bg-red-500');
+      document.getElementById('recordStatus').textContent = '🔴 녹음 중...';
+    }
+    function stopRecording() {
+      if (mediaRecorder && isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+        document.getElementById('recordBtn').textContent = '🔴 녹음 시작';
+        document.getElementById('recordBtn').classList.remove('bg-red-500');
+      }
+    }
+    function playRecording() {
+      const audio = document.getElementById('audioPlayback');
+      if (audio.src) {
+        audio.play();
+        document.getElementById('recordStatus').textContent = '▶️ 재생 중...';
+        audio.onended = () => { document.getElementById('recordStatus').textContent = '재생 완료'; };
+      }
+    }
+    getMics();
+  </script>
 </body>
 </html>

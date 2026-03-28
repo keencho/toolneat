@@ -773,9 +773,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.tetris.title">Tetris</h1>
@@ -961,7 +959,7 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -973,7 +971,902 @@
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const nextCanvas = document.getElementById('nextCanvas');
+    const nextCtx = nextCanvas.getContext('2d');
+    const holdCanvas = document.getElementById('holdCanvas');
+    const holdCtx = holdCanvas.getContext('2d');
+
+    const COLS = 10;
+    const ROWS = 20;
+    const BLOCK_SIZE = 24;
+
+    const COLORS = ['#00f0f0', '#0000f0', '#f0a000', '#f0f000', '#00f000', '#a000f0', '#f00000'];
+
+    const SHAPES = [
+      [[1,1,1,1]],
+      [[1,0,0],[1,1,1]],
+      [[0,0,1],[1,1,1]],
+      [[1,1],[1,1]],
+      [[0,1,1],[1,1,0]],
+      [[0,1,0],[1,1,1]],
+      [[1,1,0],[0,1,1]]
+    ];
+
+    let board = [];
+    let currentPiece = null;
+    let nextPiece = null;
+    let holdPieceData = null;
+    let canHold = true;
+    let score = 0;
+    let level = 1;
+    let lines = 0;
+    let gameRunning = false;
+    let gamePaused = false;
+    let gameLoop = null;
+    let dropInterval = 1000;
+    let clearingLines = [];
+    let clearAnimationFrame = 0;
+    let isClearing = false;
+    let lineClearColors = [];
+
+    // Smooth animation variables
+    let animationId = null;
+    let lastDropTime = 0;
+    let visualOffsetY = 0;
+
+    const scoreEl = document.getElementById('score');
+    const levelEl = document.getElementById('level');
+    const linesEl = document.getElementById('lines');
+    const overlayEl = document.getElementById('gameOverlay');
+    const overlayMsgEl = document.getElementById('overlayMessage');
+    const optGhostEl = document.getElementById('optGhost');
+    const optLevelEl = document.getElementById('optLevel');
+
+    // Timer elements
+    const playTimeEl = document.getElementById('playTime');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const pauseText = document.getElementById('pauseText');
+
+    // Timer variables
+    let gameStartTime = 0;
+    let pausedTime = 0;
+    let timerInterval = null;
+    let pauseStartTime = 0;
+
+    // DAS (Delayed Auto Shift) for responsive keyboard
+    const DAS_DELAY = 170;
+    const ARR_RATE = 50;
+    let keyState = {};
+    let dasTimers = {};
+
+    function createPiece(shapeIdx = null) {
+      if (shapeIdx === null) {
+        shapeIdx = Math.floor(Math.random() * SHAPES.length);
+      }
+      return {
+        shapeIdx: shapeIdx,
+        shape: SHAPES[shapeIdx].map(row => [...row]),
+        color: COLORS[shapeIdx],
+        x: Math.floor(COLS / 2) - Math.ceil(SHAPES[shapeIdx][0].length / 2),
+        y: 0
+      };
+    }
+
+    function startGame() {
+      const startLevel = parseInt(optLevelEl.value) || 1;
+
+      board = Array(ROWS).fill(null).map(() => Array(COLS).fill(0));
+      score = 0;
+      level = startLevel;
+      lines = 0;
+      dropInterval = Math.max(50, Math.floor(1000 * Math.pow(0.75, level - 1)));
+      holdPieceData = null;
+      canHold = true;
+      gamePaused = false;
+      isClearing = false;
+      visualOffsetY = 0;
+      lastDropTime = performance.now();
+      updateStats();
+
+      currentPiece = createPiece();
+      nextPiece = createPiece();
+
+      overlayEl.style.display = 'none';
+      gameRunning = true;
+
+      // Start timer
+      gameStartTime = Date.now();
+      pausedTime = 0;
+      playTimeEl.textContent = '00:00';
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(updateTimer, 1000);
+
+      // Enable pause button
+      pauseBtn.disabled = false;
+      pauseIcon.textContent = '⏸';
+      pauseText.textContent = 'Pause';
+
+      // Use requestAnimationFrame for smooth animation
+      if (animationId) cancelAnimationFrame(animationId);
+      gameLoop = null;
+      animationLoop();
+      drawNext();
+      drawHold();
+    }
+
+    function updateTimer() {
+      if (!gameRunning || gamePaused) return;
+      const elapsed = Math.floor((Date.now() - gameStartTime - pausedTime) / 1000);
+      const minutes = Math.floor(elapsed / 60);
+      const seconds = elapsed % 60;
+      playTimeEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function togglePause() {
+      if (!gameRunning || isClearing) return;
+
+      gamePaused = !gamePaused;
+
+      if (gamePaused) {
+        // Track pause start time
+        pauseStartTime = Date.now();
+
+        // Update button
+        pauseIcon.textContent = '▶';
+        pauseText.textContent = 'Resume';
+
+        // Draw pause overlay
+        draw();
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('PAUSED', canvas.width / 2, canvas.height / 2);
+        ctx.font = '14px sans-serif';
+        ctx.fillText('Press P or ESC to continue', canvas.width / 2, canvas.height / 2 + 25);
+      } else {
+        // Track paused duration
+        pausedTime += Date.now() - pauseStartTime;
+
+        // Update button
+        pauseIcon.textContent = '⏸';
+        pauseText.textContent = 'Pause';
+
+        lastDropTime = performance.now();
+      }
+    }
+
+    // Main animation loop (replaces setInterval for smooth animation)
+    function animationLoop(currentTime = performance.now()) {
+      if (!gameRunning) return;
+      animationId = requestAnimationFrame(animationLoop);
+
+      if (gamePaused || isClearing) return;
+
+      const elapsed = currentTime - lastDropTime;
+
+      // Calculate smooth visual offset (0 to 1 representing progress to next drop)
+      visualOffsetY = Math.min(elapsed / dropInterval, 1);
+
+      // Check if it's time to drop
+      if (elapsed >= dropInterval) {
+        lastDropTime = currentTime;
+        visualOffsetY = 0;
+        dropPiece();
+      }
+
+      drawSmooth();
+    }
+
+    function dropPiece() {
+      if (!collision(currentPiece, 0, 1)) {
+        currentPiece.y++;
+      } else {
+        merge();
+        clearLines();
+
+        if (isClearing) return;
+
+        spawnNewPiece();
+      }
+    }
+
+    function updateStats() {
+      scoreEl.textContent = score;
+      levelEl.textContent = level;
+      linesEl.textContent = lines;
+    }
+
+    function getGhostY() {
+      let ghostY = currentPiece.y;
+      while (!collisionAt(currentPiece.shape, currentPiece.x, ghostY + 1)) {
+        ghostY++;
+      }
+      return ghostY;
+    }
+
+    function collisionAt(shape, x, y) {
+      for (let dy = 0; dy < shape.length; dy++) {
+        for (let dx = 0; dx < shape[dy].length; dx++) {
+          if (shape[dy][dx]) {
+            const newX = x + dx;
+            const newY = y + dy;
+            if (newX < 0 || newX >= COLS || newY >= ROWS) return true;
+            if (newY >= 0 && board[newY][newX]) return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    function draw() {
+      // Clear with gradient background
+      const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      bgGradient.addColorStop(0, '#0a0f1a');
+      bgGradient.addColorStop(1, '#0f172a');
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Grid with subtle lines
+      ctx.strokeStyle = 'rgba(30, 41, 59, 0.5)';
+      ctx.lineWidth = 1;
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          ctx.strokeRect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        }
+      }
+
+      // Board
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          if (board[r][c]) {
+            drawBlock(ctx, c, r, board[r][c]);
+          }
+        }
+      }
+
+      // Ghost piece
+      if (currentPiece && optGhostEl.checked) {
+        const ghostY = getGhostY();
+        if (ghostY !== currentPiece.y) {
+          currentPiece.shape.forEach((row, dy) => {
+            row.forEach((val, dx) => {
+              if (val) {
+                drawGhostBlock(ctx, currentPiece.x + dx, ghostY + dy, currentPiece.color);
+              }
+            });
+          });
+        }
+      }
+
+      // Current piece
+      if (currentPiece) {
+        currentPiece.shape.forEach((row, dy) => {
+          row.forEach((val, dx) => {
+            if (val) {
+              drawBlock(ctx, currentPiece.x + dx, currentPiece.y + dy, currentPiece.color);
+            }
+          });
+        });
+      }
+    }
+
+    // Smooth drawing with interpolation for falling piece
+    function drawSmooth() {
+      // Clear with gradient background
+      const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      bgGradient.addColorStop(0, '#0a0f1a');
+      bgGradient.addColorStop(1, '#0f172a');
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Grid with subtle lines
+      ctx.strokeStyle = 'rgba(30, 41, 59, 0.5)';
+      ctx.lineWidth = 1;
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          ctx.strokeRect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        }
+      }
+
+      // Board (static blocks)
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          if (board[r][c]) {
+            drawBlock(ctx, c, r, board[r][c]);
+          }
+        }
+      }
+
+      if (!currentPiece) return;
+
+      // Ghost piece (drawn at final position)
+      if (optGhostEl.checked) {
+        const ghostY = getGhostY();
+        if (ghostY > currentPiece.y) {
+          currentPiece.shape.forEach((row, dy) => {
+            row.forEach((val, dx) => {
+              if (val) {
+                drawGhostBlock(ctx, currentPiece.x + dx, ghostY + dy, currentPiece.color);
+              }
+            });
+          });
+        }
+      }
+
+      // Current piece with smooth interpolation
+      // Only interpolate if piece can fall (not blocked)
+      const canFall = !collision(currentPiece, 0, 1);
+      const smoothOffset = canFall ? visualOffsetY * BLOCK_SIZE : 0;
+
+      currentPiece.shape.forEach((row, dy) => {
+        row.forEach((val, dx) => {
+          if (val) {
+            const px = (currentPiece.x + dx) * BLOCK_SIZE;
+            const py = (currentPiece.y + dy) * BLOCK_SIZE + smoothOffset;
+            drawBlockAt(ctx, px, py, currentPiece.color, BLOCK_SIZE);
+          }
+        });
+      });
+    }
+
+    // Draw block at specific pixel coordinates (for smooth animation)
+    function drawBlockAt(context, px, py, color, blockSize = BLOCK_SIZE) {
+      const padding = 1;
+      const size = blockSize - padding * 2;
+      const bx = px + padding;
+      const by = py + padding;
+
+      // Main block with gradient
+      const gradient = context.createLinearGradient(bx, by, bx + size, by + size);
+      gradient.addColorStop(0, lightenColor(color, 30));
+      gradient.addColorStop(0.5, color);
+      gradient.addColorStop(1, darkenColor(color, 30));
+      context.fillStyle = gradient;
+      context.fillRect(bx, by, size, size);
+
+      // Top-left highlight
+      context.fillStyle = 'rgba(255,255,255,0.4)';
+      context.fillRect(bx, by, size, 3);
+      context.fillRect(bx, by, 3, size);
+
+      // Bottom-right shadow
+      context.fillStyle = 'rgba(0,0,0,0.3)';
+      context.fillRect(bx, by + size - 3, size, 3);
+      context.fillRect(bx + size - 3, by, 3, size);
+
+      // Inner glow
+      context.fillStyle = 'rgba(255,255,255,0.15)';
+      context.fillRect(bx + 4, by + 4, size - 8, size - 8);
+    }
+
+    function drawBlock(context, x, y, color, blockSize = BLOCK_SIZE) {
+      const padding = 1;
+      const size = blockSize - padding * 2;
+      const bx = x * blockSize + padding;
+      const by = y * blockSize + padding;
+
+      // Main block with gradient
+      const gradient = context.createLinearGradient(bx, by, bx + size, by + size);
+      gradient.addColorStop(0, lightenColor(color, 30));
+      gradient.addColorStop(0.5, color);
+      gradient.addColorStop(1, darkenColor(color, 30));
+      context.fillStyle = gradient;
+      context.fillRect(bx, by, size, size);
+
+      // Top-left highlight
+      context.fillStyle = 'rgba(255,255,255,0.4)';
+      context.fillRect(bx, by, size, 3);
+      context.fillRect(bx, by, 3, size);
+
+      // Bottom-right shadow
+      context.fillStyle = 'rgba(0,0,0,0.3)';
+      context.fillRect(bx, by + size - 3, size, 3);
+      context.fillRect(bx + size - 3, by, 3, size);
+
+      // Inner glow
+      context.fillStyle = 'rgba(255,255,255,0.15)';
+      context.fillRect(bx + 4, by + 4, size - 8, size - 8);
+    }
+
+    function lightenColor(color, percent) {
+      const num = parseInt(color.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.min(255, (num >> 16) + amt);
+      const G = Math.min(255, ((num >> 8) & 0x00FF) + amt);
+      const B = Math.min(255, (num & 0x0000FF) + amt);
+      return '#' + (0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1);
+    }
+
+    function darkenColor(color, percent) {
+      const num = parseInt(color.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.max(0, (num >> 16) - amt);
+      const G = Math.max(0, ((num >> 8) & 0x00FF) - amt);
+      const B = Math.max(0, (num & 0x0000FF) - amt);
+      return '#' + (0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1);
+    }
+
+    function drawGhostBlock(context, x, y, color) {
+      const padding = 2;
+      const size = BLOCK_SIZE - padding * 2;
+      const bx = x * BLOCK_SIZE + padding;
+      const by = y * BLOCK_SIZE + padding;
+
+      // Ghost outline with glow effect
+      context.globalAlpha = 0.3;
+      context.fillStyle = color;
+      context.fillRect(bx, by, size, size);
+
+      context.globalAlpha = 0.6;
+      context.strokeStyle = color;
+      context.lineWidth = 2;
+      context.strokeRect(bx, by, size, size);
+      context.globalAlpha = 1;
+    }
+
+    function drawPreviewBlock(context, x, y, color, size = 18) {
+      const padding = 1;
+      const s = size - padding * 2;
+      const bx = x + padding;
+      const by = y + padding;
+
+      // Main block with gradient
+      const gradient = context.createLinearGradient(bx, by, bx + s, by + s);
+      gradient.addColorStop(0, lightenColor(color, 30));
+      gradient.addColorStop(0.5, color);
+      gradient.addColorStop(1, darkenColor(color, 30));
+      context.fillStyle = gradient;
+      context.fillRect(bx, by, s, s);
+
+      // Top-left highlight
+      context.fillStyle = 'rgba(255,255,255,0.4)';
+      context.fillRect(bx, by, s, 2);
+      context.fillRect(bx, by, 2, s);
+
+      // Bottom-right shadow
+      context.fillStyle = 'rgba(0,0,0,0.3)';
+      context.fillRect(bx, by + s - 2, s, 2);
+      context.fillRect(bx + s - 2, by, 2, s);
+    }
+
+    function drawNext() {
+      nextCtx.fillStyle = '#0a0f1a';
+      nextCtx.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
+
+      if (nextPiece) {
+        const blockSize = 18;
+        const offsetX = (80 - nextPiece.shape[0].length * blockSize) / 2;
+        const offsetY = (80 - nextPiece.shape.length * blockSize) / 2;
+
+        nextPiece.shape.forEach((row, dy) => {
+          row.forEach((val, dx) => {
+            if (val) {
+              drawPreviewBlock(nextCtx, offsetX + dx * blockSize, offsetY + dy * blockSize, nextPiece.color, blockSize);
+            }
+          });
+        });
+      }
+    }
+
+    function drawHold() {
+      holdCtx.fillStyle = '#0a0f1a';
+      holdCtx.fillRect(0, 0, holdCanvas.width, holdCanvas.height);
+
+      if (holdPieceData !== null) {
+        const shape = SHAPES[holdPieceData];
+        const color = COLORS[holdPieceData];
+        const blockSize = 18;
+        const offsetX = (80 - shape[0].length * blockSize) / 2;
+        const offsetY = (80 - shape.length * blockSize) / 2;
+
+        // Set opacity based on canHold
+        holdCtx.globalAlpha = canHold ? 1 : 0.4;
+
+        shape.forEach((row, dy) => {
+          row.forEach((val, dx) => {
+            if (val) {
+              drawPreviewBlock(holdCtx, offsetX + dx * blockSize, offsetY + dy * blockSize, color, blockSize);
+            }
+          });
+        });
+
+        holdCtx.globalAlpha = 1;
+      }
+    }
+
+    function collision(piece, offsetX = 0, offsetY = 0) {
+      return collisionAt(piece.shape, piece.x + offsetX, piece.y + offsetY);
+    }
+
+    function merge() {
+      currentPiece.shape.forEach((row, dy) => {
+        row.forEach((val, dx) => {
+          if (val) {
+            const y = currentPiece.y + dy;
+            const x = currentPiece.x + dx;
+            if (y >= 0) board[y][x] = currentPiece.color;
+          }
+        });
+      });
+    }
+
+    function clearLines() {
+      // Find ALL complete lines (from bottom to top for accurate detection)
+      clearingLines = [];
+      for (let r = ROWS - 1; r >= 0; r--) {
+        if (board[r].every(cell => cell !== 0)) {
+          clearingLines.push(r);
+        }
+      }
+
+      if (clearingLines.length > 0) {
+        // Sort from top to bottom for correct animation display
+        clearingLines.sort((a, b) => a - b);
+        isClearing = true;
+        clearAnimationFrame = 0;
+        animateClear();
+      }
+    }
+
+    function animateClear() {
+      const animationDuration = 15;
+      clearAnimationFrame++;
+
+      drawClearAnimation();
+
+      if (clearAnimationFrame < animationDuration) {
+        requestAnimationFrame(animateClear);
+      } else {
+        finishClear();
+      }
+    }
+
+    function drawClearAnimation() {
+      // Redraw board first (preserves original colors)
+      draw();
+
+      // Simple flash overlay (doesn't change underlying block colors)
+      const progress = clearAnimationFrame / 15;
+
+      clearingLines.forEach(row => {
+        const y = row * BLOCK_SIZE;
+
+        // Flash white effect
+        const alpha = clearAnimationFrame % 3 === 0 ? 0.8 * (1 - progress) : 0.3 * (1 - progress);
+        ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+        ctx.fillRect(0, y, canvas.width, BLOCK_SIZE);
+      });
+    }
+
+    function finishClear() {
+      const cleared = clearingLines.length;
+
+      // Remove lines from bottom to top (sort descending)
+      // IMPORTANT: Do all splices first, THEN add empty lines
+      // Otherwise indices shift incorrectly
+      clearingLines.sort((a, b) => b - a);
+      for (const row of clearingLines) {
+        board.splice(row, 1);
+      }
+      // Add new empty lines at top (all at once)
+      for (let i = 0; i < cleared; i++) {
+        board.unshift(Array(COLS).fill(0));
+      }
+
+      // Update score
+      const points = [0, 100, 300, 500, 800];
+      score += points[Math.min(cleared, 4)] * level;
+      lines += cleared;
+
+      const newLevel = Math.floor(lines / 10) + 1;
+      if (newLevel > level) {
+        level = newLevel;
+        dropInterval = Math.max(50, Math.floor(1000 * Math.pow(0.75, level - 1)));
+      }
+      updateStats();
+
+      // Reset state
+      clearingLines = [];
+      isClearing = false;
+
+      // Spawn new piece
+      spawnNewPiece();
+
+      // Resume animation loop
+      if (gameRunning && !gamePaused) {
+        lastDropTime = performance.now();
+        visualOffsetY = 0;
+        drawSmooth();
+      }
+    }
+
+    function drop() {
+      if (isClearing || gamePaused) return;
+
+      if (!collision(currentPiece, 0, 1)) {
+        currentPiece.y++;
+        visualOffsetY = 0;
+        lastDropTime = performance.now();
+      } else {
+        merge();
+        clearLines();
+
+        if (isClearing) return;
+
+        spawnNewPiece();
+      }
+      drawSmooth();
+    }
+
+    function spawnNewPiece() {
+      currentPiece = nextPiece;
+      nextPiece = createPiece();
+      canHold = true;
+      drawNext();
+      drawHold();
+
+      if (collision(currentPiece)) {
+        gameOver();
+      }
+    }
+
+    function moveLeft() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      if (!collision(currentPiece, -1, 0)) {
+        currentPiece.x--;
+        drawSmooth();
+      }
+    }
+
+    function moveRight() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      if (!collision(currentPiece, 1, 0)) {
+        currentPiece.x++;
+        drawSmooth();
+      }
+    }
+
+    function moveDown() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      if (!collision(currentPiece, 0, 1)) {
+        currentPiece.y++;
+        visualOffsetY = 0;
+        lastDropTime = performance.now();
+        score += 1; // Soft drop bonus
+        updateStats();
+        drawSmooth();
+      }
+    }
+
+    function hardDrop() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      let dropDistance = 0;
+      while (!collision(currentPiece, 0, 1)) {
+        currentPiece.y++;
+        dropDistance++;
+      }
+      visualOffsetY = 0;
+      score += dropDistance * 2; // Hard drop bonus
+      updateStats();
+      drop();
+    }
+
+    function rotate() {
+      if (!gameRunning || isClearing || gamePaused) return;
+      const rotated = currentPiece.shape[0].map((_, i) =>
+        currentPiece.shape.map(row => row[i]).reverse()
+      );
+      const original = currentPiece.shape;
+      currentPiece.shape = rotated;
+
+      // Wall kick
+      if (collision(currentPiece)) {
+        if (!collision(currentPiece, -1, 0)) currentPiece.x--;
+        else if (!collision(currentPiece, 1, 0)) currentPiece.x++;
+        else if (!collision(currentPiece, -2, 0)) currentPiece.x -= 2;
+        else if (!collision(currentPiece, 2, 0)) currentPiece.x += 2;
+        else currentPiece.shape = original;
+      }
+      drawSmooth();
+    }
+
+    function holdPiece() {
+      if (!gameRunning || !canHold || isClearing || gamePaused) return;
+
+      const currentIdx = currentPiece.shapeIdx;
+
+      if (holdPieceData === null) {
+        holdPieceData = currentIdx;
+        currentPiece = nextPiece;
+        nextPiece = createPiece();
+        drawNext();
+      } else {
+        const temp = holdPieceData;
+        holdPieceData = currentIdx;
+        currentPiece = createPiece(temp);
+      }
+
+      visualOffsetY = 0;
+      lastDropTime = performance.now();
+      canHold = false;
+      drawHold();
+      drawSmooth();
+    }
+
+    function gameOver() {
+      gameRunning = false;
+      if (animationId) cancelAnimationFrame(animationId);
+
+      // Cleanup timer
+      if (timerInterval) clearInterval(timerInterval);
+
+      // Cleanup DAS timers
+      Object.keys(dasTimers).forEach(key => stopDAS(key));
+
+      // Disable pause button
+      pauseBtn.disabled = true;
+
+      overlayMsgEl.textContent = `Game Over! Score: ${score}`;
+      overlayEl.style.display = 'flex';
+    }
+
+    // DAS helper functions
+    function getKeyAction(key) {
+      const keyMap = {
+        'ArrowLeft': 'left', 'a': 'left', 'A': 'left',
+        'ArrowRight': 'right', 'd': 'right', 'D': 'right',
+        'ArrowDown': 'down', 's': 'down', 'S': 'down'
+      };
+      return keyMap[key] || null;
+    }
+
+    function executeAction(action) {
+      if (!gameRunning || gamePaused || isClearing) return;
+      if (action === 'left') moveLeft();
+      else if (action === 'right') moveRight();
+      else if (action === 'down') moveDown();
+    }
+
+    function startDAS(key, action) {
+      if (dasTimers[key]) return;
+      executeAction(action);
+      dasTimers[key] = {
+        timeout: setTimeout(() => {
+          dasTimers[key].interval = setInterval(() => {
+            executeAction(action);
+          }, ARR_RATE);
+        }, DAS_DELAY),
+        interval: null
+      };
+    }
+
+    function stopDAS(key) {
+      if (dasTimers[key]) {
+        clearTimeout(dasTimers[key].timeout);
+        if (dasTimers[key].interval) clearInterval(dasTimers[key].interval);
+        delete dasTimers[key];
+      }
+      delete keyState[key];
+    }
+
+    // Keyboard with DAS
+    document.addEventListener('keydown', (e) => {
+      // Start game with Enter or Space when not running
+      if (!gameRunning && (e.key === 'Enter' || e.code === 'Space')) {
+        e.preventDefault();
+        startGame();
+        return;
+      }
+
+      if (!gameRunning) return;
+
+      // Check for DAS keys (movement)
+      const action = getKeyAction(e.key);
+      if (action) {
+        e.preventDefault();
+        if (!keyState[e.key]) {
+          keyState[e.key] = true;
+          startDAS(e.key, action);
+        }
+        return;
+      }
+
+      // Non-DAS keys
+      switch(e.key) {
+        case 'ArrowUp':
+        case 'w':
+        case 'W':
+          e.preventDefault();
+          rotate();
+          break;
+        case ' ':
+          e.preventDefault();
+          hardDrop();
+          break;
+        case 'Shift':
+        case 'c':
+        case 'C':
+          e.preventDefault();
+          holdPiece();
+          break;
+        case 'p':
+        case 'P':
+        case 'Escape':
+          e.preventDefault();
+          togglePause();
+          break;
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      const action = getKeyAction(e.key);
+      if (action) {
+        stopDAS(e.key);
+      }
+    });
+
+    // Touch swipe
+    let touchStartX, touchStartY;
+    canvas.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    canvas.addEventListener('touchend', (e) => {
+      if (!touchStartX || !touchStartY) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+
+      if (Math.max(absDx, absDy) > 30) {
+        if (absDx > absDy) {
+          if (dx > 0) moveRight(); else moveLeft();
+        } else {
+          if (dy > 0) hardDrop(); else rotate();
+        }
+      } else {
+        rotate();
+      }
+      touchStartX = touchStartY = null;
+    }, { passive: true });
+
+    // Initial draw
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    holdCtx.fillStyle = '#0f172a';
+    holdCtx.fillRect(0, 0, holdCanvas.width, holdCanvas.height);
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5765109785591518" crossorigin="anonymous"></script>
 </body>
 </html>

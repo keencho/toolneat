@@ -512,9 +512,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">음성을 텍스트로</h1>
@@ -680,19 +678,172 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const browserWarning = document.getElementById('browser-warning');
+    const micBtn = document.getElementById('mic-btn');
+    const status = document.getElementById('status');
+    const transcript = document.getElementById('transcript');
+    const languageSelect = document.getElementById('language-select');
+    const copyBtn = document.getElementById('copy-btn');
+    const clearBtn = document.getElementById('clear-btn');
+
+    let recognition = null;
+    let isListening = false;
+    let finalTranscript = '';
+
+    // Check browser support
+    if (!SpeechRecognition) {
+      browserWarning.classList.remove('hidden');
+      micBtn.disabled = true;
+      status.textContent = '이 브라우저는 음성 인식을 지원하지 않습니다';
+      return;
+    }
+
+    // Initialize recognition
+    function initRecognition() {
+      recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = languageSelect.value;
+
+      recognition.onstart = () => {
+        isListening = true;
+        micBtn.classList.add('listening');
+        status.textContent = '듣는 중... 다시 클릭하면 중지';
+      };
+
+      recognition.onend = () => {
+        if (isListening) {
+          // Auto restart if still listening
+          try {
+            recognition.start();
+          } catch (e) {
+            stopListening();
+          }
+        }
+      };
+
+      recognition.onresult = (event) => {
+        let interimTranscript = '';
+
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const result = event.results[i];
+          if (result.isFinal) {
+            finalTranscript += result[0].transcript + ' ';
+          } else {
+            interimTranscript += result[0].transcript;
+          }
+        }
+
+        transcript.innerHTML = finalTranscript + '<span class="interim">' + interimTranscript + '</span>';
+        transcript.scrollTop = transcript.scrollHeight;
+      };
+
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        if (event.error === 'not-allowed') {
+          status.textContent = '마이크 권한이 필요합니다';
+          toast.error('마이크 권한을 허용해주세요');
+        } else if (event.error === 'no-speech') {
+          // Ignore no-speech errors
+        } else {
+          status.textContent = '오류가 발생했습니다: ' + event.error;
+        }
+        stopListening();
+      };
+    }
+
+    function startListening() {
+      finalTranscript = transcript.innerText.replace(/\s+$/, '') + (transcript.innerText ? ' ' : '');
+      initRecognition();
+      try {
+        recognition.start();
+      } catch (e) {
+        console.error('Failed to start recognition:', e);
+      }
+    }
+
+    function stopListening() {
+      isListening = false;
+      micBtn.classList.remove('listening');
+      status.textContent = '마이크 버튼을 눌러 시작하세요';
+      if (recognition) {
+        recognition.stop();
+      }
+    }
+
+    micBtn.addEventListener('click', () => {
+      if (isListening) {
+        stopListening();
+      } else {
+        startListening();
+      }
+    });
+
+    languageSelect.addEventListener('change', () => {
+      if (isListening) {
+        stopListening();
+        setTimeout(startListening, 100);
+      }
+    });
+
+    copyBtn.addEventListener('click', () => {
+      const text = transcript.innerText.trim();
+      if (!text) {
+        toast.error('복사할 텍스트가 없습니다');
+        return;
+      }
+      navigator.clipboard.writeText(text).then(() => {
+        toast.success('클립보드에 복사되었습니다');
+      }).catch(() => {
+        toast.error('복사에 실패했습니다');
+      });
+    });
+
+    clearBtn.addEventListener('click', () => {
+      transcript.innerHTML = '';
+      finalTranscript = '';
+      if (isListening) {
+        stopListening();
+      }
+    });
+    })();
+  </script>
 </body>
 </html>

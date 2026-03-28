@@ -530,9 +530,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Rotate PDF Pages</h1>
@@ -700,7 +698,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -712,7 +710,209 @@
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl text-center">
+      <div class="spinner mx-auto mb-4"></div>
+      <p class="text-gray-600 dark:text-gray-400">Processing...</p>
+    </div>
+  </div>
+
+  <script>
+    (function(){'use strict';
+    const { PDFDocument, degrees } = PDFLib;
+
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const editSection = document.getElementById('edit-section');
+    const fileNameEl = document.getElementById('file-name');
+    const pageCountEl = document.getElementById('page-count');
+    const pageGrid = document.getElementById('page-grid');
+    const loadingOverlay = document.getElementById('loading-overlay');
+
+    let pdfDoc = null;
+    let pdfBytes = null;
+    let fileName = '';
+    let pageRotations = []; // Array of rotation values (0, 90, 180, 270)
+
+    // Drag & drop
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('drag-over');
+    });
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('drag-over');
+    });
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('drag-over');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type === 'application/pdf') loadPDF(file);
+      else toast.error('Only PDF files are supported');
+    });
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) loadPDF(file);
+    });
+
+    async function loadPDF(file) {
+      try {
+        loadingOverlay.classList.add('show');
+        fileName = file.name;
+        pdfBytes = await file.arrayBuffer();
+        pdfDoc = await PDFDocument.load(pdfBytes);
+
+        const pageCount = pdfDoc.getPageCount();
+        pageRotations = new Array(pageCount).fill(0);
+
+        fileNameEl.textContent = fileName;
+        pageCountEl.textContent = `${pageCount} pages`;
+
+        renderPageGrid();
+
+        dropZone.classList.add('hidden');
+        editSection.classList.remove('hidden');
+      } catch (err) {
+        toast.error('Cannot read PDF file');
+        console.error(err);
+      } finally {
+        loadingOverlay.classList.remove('show');
+      }
+    }
+
+    function renderPageGrid() {
+      pageGrid.innerHTML = '';
+      const pageCount = pdfDoc.getPageCount();
+
+      for (let i = 0; i < pageCount; i++) {
+        const rotation = pageRotations[i];
+        const pageItem = document.createElement('div');
+        pageItem.className = 'page-item';
+        pageItem.innerHTML = `
+          <div class="page-preview" style="transform: rotate(${rotation}deg)">
+            ${i + 1}
+            ${rotation !== 0 ? `<span class="rotation-badge">${rotation}°</span>` : ''}
+          </div>
+          <div class="flex justify-center gap-2 mt-2">
+            <button class="rotate-btn" data-page="${i}" data-dir="left" title="Left 90°">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>
+            </button>
+            <button class="rotate-btn" data-page="${i}" data-dir="right" title="Right 90°">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10h-10a8 8 0 00-8 8v2M21 10l-6 6m6-6l-6-6"/></svg>
+            </button>
+          </div>
+          <p class="text-xs text-gray-500 mt-1">Page ${i + 1}</p>
+        `;
+        pageGrid.appendChild(pageItem);
+      }
+
+      // Add event listeners for rotate buttons
+      pageGrid.querySelectorAll('.rotate-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const pageIdx = parseInt(btn.dataset.page);
+          const dir = btn.dataset.dir;
+          rotatePageBy(pageIdx, dir === 'left' ? -90 : 90);
+        });
+      });
+    }
+
+    function rotatePageBy(pageIdx, delta) {
+      pageRotations[pageIdx] = (pageRotations[pageIdx] + delta + 360) % 360;
+      renderPageGrid();
+    }
+
+    // Bulk actions
+    document.getElementById('rotate-all-left').addEventListener('click', () => {
+      pageRotations = pageRotations.map(r => (r - 90 + 360) % 360);
+      renderPageGrid();
+    });
+
+    document.getElementById('rotate-all-right').addEventListener('click', () => {
+      pageRotations = pageRotations.map(r => (r + 90) % 360);
+      renderPageGrid();
+    });
+
+    document.getElementById('rotate-all-180').addEventListener('click', () => {
+      pageRotations = pageRotations.map(r => (r + 180) % 360);
+      renderPageGrid();
+    });
+
+    document.getElementById('reset-all').addEventListener('click', () => {
+      pageRotations = pageRotations.map(() => 0);
+      renderPageGrid();
+    });
+
+    // Change file
+    document.getElementById('change-file').addEventListener('click', () => {
+      dropZone.classList.remove('hidden');
+      editSection.classList.add('hidden');
+      fileInput.value = '';
+      pdfDoc = null;
+      pdfBytes = null;
+    });
+
+    // Download
+    document.getElementById('download-btn').addEventListener('click', async () => {
+      if (!pdfDoc) return;
+
+      try {
+        loadingOverlay.classList.add('show');
+
+        // Reload fresh copy to apply rotations
+        const newPdfDoc = await PDFDocument.load(pdfBytes);
+        const pages = newPdfDoc.getPages();
+
+        pages.forEach((page, i) => {
+          if (pageRotations[i] !== 0) {
+            const currentRotation = page.getRotation().angle;
+            page.setRotation(degrees(currentRotation + pageRotations[i]));
+          }
+        });
+
+        const rotatedPdfBytes = await newPdfDoc.save();
+        const blob = new Blob([rotatedPdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        const baseName = fileName.replace(/\.pdf$/i, '');
+        a.href = url;
+        a.download = `${baseName}_rotated.pdf`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        toast.success('PDF downloaded');
+      } catch (err) {
+        toast.error('Error processing PDF');
+        console.error(err);
+      } finally {
+        loadingOverlay.classList.remove('show');
+      }
+    });
+    })();
+  </script>
 </body>
 </html>

@@ -520,9 +520,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">EXIF Metadata Remover</h1>
@@ -683,7 +681,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -695,7 +693,228 @@
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('file-input');
+    const uploadSection = document.getElementById('upload-section');
+    const resultSection = document.getElementById('result-section');
+    const previewImage = document.getElementById('preview-image');
+    const fileNameEl = document.getElementById('file-name');
+    const fileSizeEl = document.getElementById('file-size');
+    const imageDimensionsEl = document.getElementById('image-dimensions');
+    const exifStatusEl = document.getElementById('exif-status');
+    const exifDataSection = document.getElementById('exif-data-section');
+    const exifTableBody = document.querySelector('#exif-table tbody');
+
+    let currentFile = null;
+    let currentDataUrl = null;
+    let hasExif = false;
+
+    // Drag & drop
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+    });
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+    });
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+      const file = e.dataTransfer.files[0];
+      if (file && (file.type === 'image/jpeg' || file.name.toLowerCase().endsWith('.jpg') || file.name.toLowerCase().endsWith('.jpeg'))) {
+        loadImage(file);
+      } else {
+        toast.error('Only JPG/JPEG files are supported');
+      }
+    });
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) loadImage(file);
+    });
+
+    function loadImage(file) {
+      currentFile = file;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        currentDataUrl = e.target.result;
+
+        const img = new Image();
+        img.onload = () => {
+          previewImage.src = currentDataUrl;
+          fileNameEl.textContent = file.name;
+          fileSizeEl.textContent = formatFileSize(file.size);
+          imageDimensionsEl.textContent = `${img.width} x ${img.height}`;
+
+          // Read EXIF data
+          try {
+            const exifData = piexif.load(currentDataUrl);
+            displayExifData(exifData);
+          } catch (err) {
+            hasExif = false;
+            exifStatusEl.innerHTML = '<span class="status-badge no-exif"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>No EXIF data</span>';
+            exifDataSection.classList.add('hidden');
+          }
+
+          uploadSection.classList.add('hidden');
+          resultSection.classList.remove('hidden');
+        };
+        img.src = currentDataUrl;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function displayExifData(exifData) {
+      const entries = [];
+
+      // GPS data
+      if (exifData.GPS && Object.keys(exifData.GPS).length > 0) {
+        const gps = exifData.GPS;
+        if (gps[piexif.GPSIFD.GPSLatitude] && gps[piexif.GPSIFD.GPSLongitude]) {
+          const lat = convertDMSToDD(gps[piexif.GPSIFD.GPSLatitude], gps[piexif.GPSIFD.GPSLatitudeRef]);
+          const lng = convertDMSToDD(gps[piexif.GPSIFD.GPSLongitude], gps[piexif.GPSIFD.GPSLongitudeRef]);
+          entries.push(['GPS Location', `${lat.toFixed(6)}, ${lng.toFixed(6)}`]);
+        }
+        if (gps[piexif.GPSIFD.GPSAltitude]) {
+          entries.push(['GPS Altitude', `${(gps[piexif.GPSIFD.GPSAltitude][0] / gps[piexif.GPSIFD.GPSAltitude][1]).toFixed(1)}m`]);
+        }
+      }
+
+      // 0th IFD (basic info)
+      const ifd0 = exifData['0th'];
+      if (ifd0) {
+        if (ifd0[piexif.ImageIFD.Make]) entries.push(['Manufacturer', ifd0[piexif.ImageIFD.Make]]);
+        if (ifd0[piexif.ImageIFD.Model]) entries.push(['Model', ifd0[piexif.ImageIFD.Model]]);
+        if (ifd0[piexif.ImageIFD.Software]) entries.push(['Software', ifd0[piexif.ImageIFD.Software]]);
+        if (ifd0[piexif.ImageIFD.DateTime]) entries.push(['Modified', ifd0[piexif.ImageIFD.DateTime]]);
+      }
+
+      // Exif IFD
+      const exif = exifData.Exif;
+      if (exif) {
+        if (exif[piexif.ExifIFD.DateTimeOriginal]) entries.push(['Date Taken', exif[piexif.ExifIFD.DateTimeOriginal]]);
+        if (exif[piexif.ExifIFD.ExposureTime]) {
+          const exp = exif[piexif.ExifIFD.ExposureTime];
+          entries.push(['Shutter Speed', `1/${Math.round(exp[1]/exp[0])}s`]);
+        }
+        if (exif[piexif.ExifIFD.FNumber]) {
+          const f = exif[piexif.ExifIFD.FNumber];
+          entries.push(['Aperture', `f/${(f[0]/f[1]).toFixed(1)}`]);
+        }
+        if (exif[piexif.ExifIFD.ISOSpeedRatings]) entries.push(['ISO', exif[piexif.ExifIFD.ISOSpeedRatings]]);
+        if (exif[piexif.ExifIFD.FocalLength]) {
+          const fl = exif[piexif.ExifIFD.FocalLength];
+          entries.push(['Focal Length', `${(fl[0]/fl[1]).toFixed(1)}mm`]);
+        }
+        if (exif[piexif.ExifIFD.LensMake]) entries.push(['Lens Make', exif[piexif.ExifIFD.LensMake]]);
+        if (exif[piexif.ExifIFD.LensModel]) entries.push(['Lens Model', exif[piexif.ExifIFD.LensModel]]);
+      }
+
+      // Check thumbnail
+      if (exifData.thumbnail && exifData.thumbnail.length > 0) {
+        entries.push(['Thumbnail', 'Included']);
+      }
+
+      if (entries.length > 0) {
+        hasExif = true;
+        exifStatusEl.innerHTML = '<span class="status-badge has-exif"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>EXIF data detected</span>';
+        exifDataSection.classList.remove('hidden');
+
+        exifTableBody.innerHTML = entries.map(([key, value]) => `
+          <tr>
+            <th>${key}</th>
+            <td>${value}</td>
+          </tr>
+        `).join('');
+      } else {
+        hasExif = false;
+        exifStatusEl.innerHTML = '<span class="status-badge no-exif"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>No EXIF data</span>';
+        exifDataSection.classList.add('hidden');
+      }
+    }
+
+    function convertDMSToDD(dms, ref) {
+      const d = dms[0][0] / dms[0][1];
+      const m = dms[1][0] / dms[1][1];
+      const s = dms[2][0] / dms[2][1];
+      let dd = d + m/60 + s/3600;
+      if (ref === 'S' || ref === 'W') dd = -dd;
+      return dd;
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+    }
+
+    // Download button
+    document.getElementById('download-btn').addEventListener('click', () => {
+      if (!currentDataUrl) return;
+
+      try {
+        // Remove EXIF
+        const cleanedDataUrl = piexif.remove(currentDataUrl);
+
+        // Convert to blob
+        const byteString = atob(cleanedDataUrl.split(',')[1]);
+        const mimeType = 'image/jpeg';
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([ab], { type: mimeType });
+
+        // Download
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const baseName = currentFile.name.replace(/\.[^/.]+$/, '');
+        a.href = url;
+        a.download = `${baseName}_no_exif.jpg`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        toast.success('Image downloaded with EXIF removed');
+      } catch (err) {
+        toast.error('Error removing EXIF');
+      }
+    });
+
+    // Change image button
+    document.getElementById('change-btn').addEventListener('click', () => {
+      uploadSection.classList.remove('hidden');
+      resultSection.classList.add('hidden');
+      fileInput.value = '';
+      currentFile = null;
+      currentDataUrl = null;
+    });
+    })();
+  </script>
 </body>
 </html>

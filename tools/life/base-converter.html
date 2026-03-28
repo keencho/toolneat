@@ -521,9 +521,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.baseConverter.title">진법 변환기</h1>
@@ -688,19 +686,84 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <script>
+    (function() {
+      'use strict';
+      const binary = document.getElementById('binary');
+      const octal = document.getElementById('octal');
+      const decimal = document.getElementById('decimal');
+      const hex = document.getElementById('hex');
+      const clearBtn = document.getElementById('clear-btn');
+
+      let updating = false;
+
+      function convert(source, value) {
+        if (updating) return;
+        updating = true;
+        let num;
+        try {
+          switch (source) {
+            case 'binary': num = parseInt(value, 2); break;
+            case 'octal': num = parseInt(value, 8); break;
+            case 'decimal': num = parseInt(value, 10); break;
+            case 'hex': num = parseInt(value, 16); break;
+          }
+          if (isNaN(num) || value === '') {
+            binary.value = octal.value = decimal.value = hex.value = '';
+          } else {
+            if (source !== 'binary') binary.value = num.toString(2);
+            if (source !== 'octal') octal.value = num.toString(8);
+            if (source !== 'decimal') decimal.value = num.toString(10);
+            if (source !== 'hex') hex.value = num.toString(16).toUpperCase();
+          }
+        } catch (e) {}
+        updating = false;
+      }
+
+      binary.addEventListener('input', () => convert('binary', binary.value.replace(/[^01]/g, '')));
+      octal.addEventListener('input', () => convert('octal', octal.value.replace(/[^0-7]/g, '')));
+      decimal.addEventListener('input', () => convert('decimal', decimal.value.replace(/[^0-9]/g, '')));
+      hex.addEventListener('input', () => convert('hex', hex.value.replace(/[^0-9a-fA-F]/g, '')));
+
+      clearBtn.addEventListener('click', () => {
+        binary.value = octal.value = decimal.value = hex.value = '';
+      });
+    })();
+  </script>
 </body>
 </html>

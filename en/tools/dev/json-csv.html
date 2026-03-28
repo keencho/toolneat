@@ -515,9 +515,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">JSON CSV Converter</h1>
@@ -675,7 +673,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -687,7 +685,256 @@
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const modeJson = document.getElementById('mode-json');
+    const modeCsv = document.getElementById('mode-csv');
+    const inputArea = document.getElementById('input-area');
+    const outputArea = document.getElementById('output-area');
+    const inputLabel = document.getElementById('input-label');
+    const outputLabel = document.getElementById('output-label');
+    const optHeader = document.getElementById('opt-header');
+    const optHeaderLabel = document.getElementById('opt-header-label');
+    const optDelimiter = document.getElementById('opt-delimiter');
+    const convertBtn = document.getElementById('convert-btn');
+    const copyBtn = document.getElementById('copy-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const sampleBtn = document.getElementById('sample-btn');
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const errorMsg = document.getElementById('error-msg');
+
+    let mode = 'json2csv';
+
+    const sampleJson = `[
+  {"name": "John Doe", "age": 30, "city": "New York"},
+  {"name": "Jane Smith", "age": 25, "city": "Los Angeles"},
+  {"name": "Bob Wilson", "age": 28, "city": "Chicago"}
+]`;
+
+    const sampleCsv = `name,age,city
+John Doe,30,New York
+Jane Smith,25,Los Angeles
+Bob Wilson,28,Chicago`;
+
+    function setMode(newMode) {
+      mode = newMode;
+      if (mode === 'json2csv') {
+        modeJson.classList.add('active');
+        modeCsv.classList.remove('active');
+        inputLabel.textContent = 'JSON Input';
+        outputLabel.textContent = 'CSV Output';
+        inputArea.placeholder = 'Enter JSON array...';
+        optHeaderLabel.textContent = 'Include Header';
+      } else {
+        modeCsv.classList.add('active');
+        modeJson.classList.remove('active');
+        inputLabel.textContent = 'CSV Input';
+        outputLabel.textContent = 'JSON Output';
+        inputArea.placeholder = 'Enter CSV data...';
+        optHeaderLabel.textContent = 'First Row as Header';
+      }
+      inputArea.value = '';
+      outputArea.value = '';
+      hideError();
+    }
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.remove('hidden');
+    }
+
+    function hideError() {
+      errorMsg.classList.add('hidden');
+    }
+
+    function jsonToCsv(jsonStr, delimiter, includeHeader) {
+      const data = JSON.parse(jsonStr);
+      if (!Array.isArray(data) || data.length === 0) {
+        throw new Error('JSON array is empty or invalid.');
+      }
+
+      const headers = Object.keys(data[0]);
+      const rows = [];
+
+      if (includeHeader) {
+        rows.push(headers.join(delimiter));
+      }
+
+      data.forEach(obj => {
+        const row = headers.map(h => {
+          let val = obj[h] ?? '';
+          val = String(val);
+          if (val.includes(delimiter) || val.includes('"') || val.includes('\n')) {
+            val = '"' + val.replace(/"/g, '""') + '"';
+          }
+          return val;
+        });
+        rows.push(row.join(delimiter));
+      });
+
+      return rows.join('\n');
+    }
+
+    function csvToJson(csvStr, delimiter, hasHeader) {
+      const lines = csvStr.trim().split('\n').map(l => l.trim()).filter(l => l);
+      if (lines.length === 0) throw new Error('CSV data is empty.');
+
+      function parseLine(line) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (inQuotes) {
+            if (char === '"' && line[i + 1] === '"') {
+              current += '"';
+              i++;
+            } else if (char === '"') {
+              inQuotes = false;
+            } else {
+              current += char;
+            }
+          } else {
+            if (char === '"') {
+              inQuotes = true;
+            } else if (char === delimiter) {
+              result.push(current);
+              current = '';
+            } else {
+              current += char;
+            }
+          }
+        }
+        result.push(current);
+        return result;
+      }
+
+      let headers;
+      let startIdx;
+      if (hasHeader) {
+        headers = parseLine(lines[0]);
+        startIdx = 1;
+      } else {
+        const firstRow = parseLine(lines[0]);
+        headers = firstRow.map((_, i) => `col${i + 1}`);
+        startIdx = 0;
+      }
+
+      const result = [];
+      for (let i = startIdx; i < lines.length; i++) {
+        const values = parseLine(lines[i]);
+        const obj = {};
+        headers.forEach((h, idx) => {
+          let val = values[idx] ?? '';
+          if (!isNaN(val) && val !== '') val = Number(val);
+          obj[h] = val;
+        });
+        result.push(obj);
+      }
+
+      return JSON.stringify(result, null, 2);
+    }
+
+    function convert() {
+      hideError();
+      const input = inputArea.value.trim();
+      if (!input) {
+        showError('No input data provided.');
+        return;
+      }
+
+      try {
+        if (mode === 'json2csv') {
+          outputArea.value = jsonToCsv(input, optDelimiter.value, optHeader.checked);
+        } else {
+          outputArea.value = csvToJson(input, optDelimiter.value, optHeader.checked);
+        }
+      } catch (e) {
+        showError('Conversion error: ' + e.message);
+      }
+    }
+
+    modeJson.addEventListener('click', () => setMode('json2csv'));
+    modeCsv.addEventListener('click', () => setMode('csv2json'));
+    convertBtn.addEventListener('click', convert);
+
+    sampleBtn.addEventListener('click', () => {
+      inputArea.value = mode === 'json2csv' ? sampleJson : sampleCsv;
+      hideError();
+    });
+
+    copyBtn.addEventListener('click', () => {
+      if (outputArea.value) {
+        navigator.clipboard.writeText(outputArea.value);
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent = 'Copy', 1500);
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!outputArea.value) return;
+      const ext = mode === 'json2csv' ? 'csv' : 'json';
+      const type = mode === 'json2csv' ? 'text/csv' : 'application/json';
+      const blob = new Blob([outputArea.value], { type: type + ';charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'converted.' + ext;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Drag and drop
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
+      dropZone.addEventListener(evt, e => { e.preventDefault(); e.stopPropagation(); });
+    });
+    dropZone.addEventListener('dragenter', () => dropZone.classList.add('dragover'));
+    dropZone.addEventListener('dragover', () => dropZone.classList.add('dragover'));
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', e => {
+      dropZone.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) readFile(file);
+    });
+
+    fileInput.addEventListener('change', e => {
+      if (e.target.files[0]) readFile(e.target.files[0]);
+    });
+
+    function readFile(file) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        inputArea.value = e.target.result;
+        hideError();
+        if (file.name.endsWith('.json')) setMode('json2csv');
+        else if (file.name.endsWith('.csv')) setMode('csv2json');
+      };
+      reader.readAsText(file);
+    }
+    })();
+  </script>
 </body>
 </html>

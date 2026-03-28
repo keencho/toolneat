@@ -542,9 +542,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.jsonValidator.title">JSON Validator</h1>
@@ -692,7 +690,7 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -704,7 +702,195 @@
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <script>
+    (function() {
+      'use strict';
+
+      const jsonInput = document.getElementById('json-input');
+      const validateBtn = document.getElementById('validate-btn');
+      const sampleBtn = document.getElementById('sample-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const result = document.getElementById('result');
+      const resultContent = document.getElementById('result-content');
+      const stats = document.getElementById('stats');
+      const lineCol = document.getElementById('line-col');
+      const charCount = document.getElementById('char-count');
+
+      const sampleJson = `{
+  "name": "Toolneat",
+  "version": "1.0.0",
+  "features": [
+    "JSON Validation",
+    "Error Location",
+    "Statistics"
+  ],
+  "config": {
+    "theme": "dark",
+    "language": "en"
+  },
+  "isActive": true,
+  "count": 42
+}`;
+
+      jsonInput.addEventListener('input', updateCounts);
+      jsonInput.addEventListener('click', updateCounts);
+      jsonInput.addEventListener('keyup', updateCounts);
+
+      function updateCounts() {
+        const text = jsonInput.value;
+        charCount.textContent = text.length + ' characters';
+
+        const lines = text.substr(0, jsonInput.selectionStart).split('\n');
+        const line = lines.length;
+        const col = lines[lines.length - 1].length + 1;
+        lineCol.textContent = `Line ${line}, Col ${col}`;
+      }
+
+      sampleBtn.addEventListener('click', () => {
+        jsonInput.value = sampleJson;
+        updateCounts();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        jsonInput.value = '';
+        result.classList.add('hidden');
+        stats.classList.add('hidden');
+        updateCounts();
+      });
+
+      validateBtn.addEventListener('click', validate);
+
+      function validate() {
+        const text = jsonInput.value.trim();
+
+        if (!text) {
+          toast.show('Please enter JSON.', 'warning');
+          return;
+        }
+
+        try {
+          const parsed = JSON.parse(text);
+          showSuccess(parsed);
+        } catch (error) {
+          showError(error);
+        }
+      }
+
+      function showSuccess(parsed) {
+        const jsonStats = analyzeJson(parsed);
+
+        resultContent.innerHTML = `
+          <div class="bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-4">
+            <div class="flex items-center gap-3">
+              <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <div>
+                <div class="font-semibold text-green-800 dark:text-green-200">Valid JSON!</div>
+                <div class="text-sm text-green-700 dark:text-green-300">No syntax errors found.</div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('stat-keys').textContent = jsonStats.keys;
+        document.getElementById('stat-depth').textContent = jsonStats.depth;
+        document.getElementById('stat-arrays').textContent = jsonStats.arrays;
+        document.getElementById('stat-objects').textContent = jsonStats.objects;
+
+        result.classList.remove('hidden');
+        stats.classList.remove('hidden');
+      }
+
+      function showError(error) {
+        const message = error.message;
+        let position = '';
+
+        const posMatch = message.match(/position (\d+)/);
+        if (posMatch) {
+          const pos = parseInt(posMatch[1]);
+          const text = jsonInput.value;
+          const lines = text.substr(0, pos).split('\n');
+          const line = lines.length;
+          const col = lines[lines.length - 1].length + 1;
+          position = `Line ${line}, Col ${col}`;
+        }
+
+        resultContent.innerHTML = `
+          <div class="bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4">
+            <div class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-red-600 dark:text-red-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <div class="flex-1">
+                <div class="font-semibold text-red-800 dark:text-red-200">Invalid JSON</div>
+                <div class="text-sm text-red-700 dark:text-red-300 mt-1 font-mono">${escapeHtml(message)}</div>
+                ${position ? `<div class="text-sm text-red-600 dark:text-red-400 mt-2">Position: ${position}</div>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+
+        result.classList.remove('hidden');
+        stats.classList.add('hidden');
+      }
+
+      function analyzeJson(obj, depth = 0) {
+        let stats = { keys: 0, depth: depth, arrays: 0, objects: 0 };
+
+        if (Array.isArray(obj)) {
+          stats.arrays = 1;
+          obj.forEach(item => {
+            const childStats = analyzeJson(item, depth + 1);
+            stats.keys += childStats.keys;
+            stats.depth = Math.max(stats.depth, childStats.depth);
+            stats.arrays += childStats.arrays;
+            stats.objects += childStats.objects;
+          });
+        } else if (obj && typeof obj === 'object') {
+          stats.objects = 1;
+          stats.keys = Object.keys(obj).length;
+          Object.values(obj).forEach(value => {
+            const childStats = analyzeJson(value, depth + 1);
+            stats.keys += childStats.keys;
+            stats.depth = Math.max(stats.depth, childStats.depth);
+            stats.arrays += childStats.arrays;
+            stats.objects += childStats.objects;
+          });
+        }
+
+        return stats;
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      updateCounts();
+    })();
+  </script>
 </body>
 </html>

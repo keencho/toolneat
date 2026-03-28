@@ -521,9 +521,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.koreanNameGenerator.title">한국 이름 생성기</h1>
@@ -648,19 +646,84 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    const surnames = ['김', '이', '박', '최', '정', '강', '조', '윤', '장', '임', '한', '오', '서', '신', '권', '황', '안', '송', '류', '홍'];
+    const maleNames = ['민준', '서준', '도윤', '예준', '시우', '하준', '주원', '지호', '지후', '준서', '준우', '현우', '도현', '건우', '우진', '선우', '서진', '민재', '현준', '연우', '유준', '정우', '승현', '승우', '지훈', '진우', '유찬', '시윤', '준혁', '은우'];
+    const femaleNames = ['서연', '서윤', '지우', '서현', '민서', '하은', '하윤', '윤서', '지유', '채원', '수아', '지아', '지윤', '다은', '은서', '예은', '수빈', '소율', '예린', '아린', '소윤', '시은', '채은', '유나', '지원', '예원', '민지', '유진', '다인', '소연'];
+    const neutralNames = ['지민', '서연', '유진', '수민', '지현', '민지', '예진', '은지', '수진', '현지', '다현', '소연', '지영', '수영', '윤아', '지수', '예나', '민서', '서희', '유나'];
+    const hanjaMap = { '민': '敏', '준': '俊', '서': '瑞', '윤': '允', '도': '道', '예': '叡', '시': '時', '우': '宇', '하': '夏', '주': '柱', '원': '元', '지': '智', '호': '浩', '후': '厚', '현': '賢', '건': '健', '진': '眞', '선': '善', '재': '宰', '연': '延', '유': '維', '정': '正', '승': '承', '훈': '勳', '찬': '燦', '혁': '赫', '은': '恩', '채': '采', '수': '秀', '아': '雅', '다': '多', '율': '律', '린': '璘', '빈': '彬', '소': '昭', '영': '英', '나': '娜', '희': '熙', '김': '金', '이': '李', '박': '朴', '최': '崔', '강': '姜', '조': '趙', '장': '張', '임': '林', '한': '韓', '오': '吳', '신': '申', '권': '權', '황': '黃', '안': '安', '송': '宋', '류': '柳', '홍': '洪' };
+    let gender = 'neutral';
+    function setGender(g) {
+      gender = g;
+      document.getElementById('maleBtn').className = 'btn ' + (g === 'male' ? 'btn-primary' : 'btn-secondary') + ' flex-1';
+      document.getElementById('femaleBtn').className = 'btn ' + (g === 'female' ? 'btn-primary' : 'btn-secondary') + ' flex-1';
+      document.getElementById('neutralBtn').className = 'btn ' + (g === 'neutral' ? 'btn-primary' : 'btn-secondary') + ' flex-1';
+    }
+    function getHanja(name) {
+      return [...name].map(c => hanjaMap[c] || c).join('');
+    }
+    function generateName() {
+      const selectedSurname = document.getElementById('surnameSelect').value;
+      const surname = selectedSurname || surnames[Math.floor(Math.random() * surnames.length)];
+      let names;
+      if (gender === 'male') names = maleNames;
+      else if (gender === 'female') names = femaleNames;
+      else names = neutralNames;
+      const givenName = names[Math.floor(Math.random() * names.length)];
+      return { full: surname + givenName, hanja: getHanja(surname + givenName) };
+    }
+    function generateNames() {
+      const count = parseInt(document.getElementById('count').value);
+      const names = [];
+      for (let i = 0; i < count; i++) names.push(generateName());
+      document.getElementById('mainName').innerHTML = `<div class="name-display">${names[0].full}</div><div class="name-hanja">${names[0].hanja}</div>`;
+      document.getElementById('nameList').innerHTML = names.slice(1).map(n => `
+        <div class="name-item">
+          <span class="font-semibold">${n.full}</span>
+          <span class="text-gray-500 dark:text-gray-400">${n.hanja}</span>
+          <button onclick="copyName('${n.full}')" class="text-blue-600 hover:text-blue-800 text-sm">복사</button>
+        </div>
+      `).join('');
+    }
+    function copyName(name) {
+      navigator.clipboard.writeText(name);
+      alert('복사되었습니다: ' + name);
+    }
+    generateNames();
+  </script>
 </body>
 </html>

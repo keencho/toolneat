@@ -533,9 +533,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">PDF 페이지 삭제</h1>
@@ -672,19 +670,285 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl text-center">
+      <div class="spinner mx-auto mb-4"></div>
+      <p id="loading-text" class="text-gray-600 dark:text-gray-400">처리 중...</p>
+    </div>
+  </div>
+
+  <script>
+    (function(){'use strict';
+    const { PDFDocument } = PDFLib;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const editSection = document.getElementById('edit-section');
+    const fileNameEl = document.getElementById('file-name');
+    const pageCountEl = document.getElementById('page-count');
+    const pageGrid = document.getElementById('page-grid');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const loadingText = document.getElementById('loading-text');
+    const selectedInfo = document.getElementById('selected-info');
+    const selectedCount = document.getElementById('selected-count');
+    const downloadBtn = document.getElementById('download-btn');
+
+    let pdfBytes = null;
+    let fileName = '';
+    let totalPages = 0;
+    let selectedPages = new Set();
+
+    // Drag & drop
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('drag-over');
+    });
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('drag-over');
+    });
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('drag-over');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type === 'application/pdf') loadPDF(file);
+      else toast.error('PDF 파일만 지원됩니다');
+    });
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) loadPDF(file);
+    });
+
+    async function loadPDF(file) {
+      try {
+        loadingOverlay.classList.add('show');
+        loadingText.textContent = 'PDF 로딩 중...';
+
+        fileName = file.name;
+        pdfBytes = await file.arrayBuffer();
+
+        const pdfDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
+        totalPages = pdfDoc.numPages;
+
+        fileNameEl.textContent = fileName;
+        pageCountEl.textContent = `${totalPages}페이지`;
+
+        // Clear previous state
+        selectedPages.clear();
+        pageGrid.innerHTML = '';
+
+        // Render page thumbnails
+        loadingText.textContent = '썸네일 생성 중...';
+        for (let i = 1; i <= totalPages; i++) {
+          const page = await pdfDoc.getPage(i);
+          const viewport = page.getViewport({ scale: 0.3 });
+
+          const canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          const ctx = canvas.getContext('2d');
+
+          await page.render({ canvasContext: ctx, viewport }).promise;
+
+          const pageItem = document.createElement('div');
+          pageItem.className = 'page-item';
+          pageItem.dataset.page = i;
+          pageItem.innerHTML = `
+            <div class="page-thumb"></div>
+            <div class="page-number">${i} / ${totalPages}</div>
+            <div class="delete-badge">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </div>
+          `;
+          pageItem.querySelector('.page-thumb').appendChild(canvas);
+          pageItem.addEventListener('click', () => togglePage(i));
+          pageGrid.appendChild(pageItem);
+        }
+
+        dropZone.classList.add('hidden');
+        editSection.classList.remove('hidden');
+        updateSelectedInfo();
+      } catch (err) {
+        toast.error('PDF 파일을 읽을 수 없습니다');
+        console.error(err);
+      } finally {
+        loadingOverlay.classList.remove('show');
+      }
+    }
+
+    function togglePage(pageNum) {
+      if (selectedPages.has(pageNum)) {
+        selectedPages.delete(pageNum);
+      } else {
+        selectedPages.add(pageNum);
+      }
+      updatePageUI(pageNum);
+      updateSelectedInfo();
+    }
+
+    function updatePageUI(pageNum) {
+      const pageItem = pageGrid.querySelector(`[data-page="${pageNum}"]`);
+      if (pageItem) {
+        if (selectedPages.has(pageNum)) {
+          pageItem.classList.add('selected');
+        } else {
+          pageItem.classList.remove('selected');
+        }
+      }
+    }
+
+    function updateSelectedInfo() {
+      const count = selectedPages.size;
+      selectedCount.textContent = count;
+
+      if (count > 0) {
+        selectedInfo.classList.remove('hidden');
+        downloadBtn.disabled = false;
+      } else {
+        selectedInfo.classList.add('hidden');
+        downloadBtn.disabled = true;
+      }
+
+      // Validate: can't delete all pages
+      if (count >= totalPages) {
+        downloadBtn.disabled = true;
+        selectedInfo.innerHTML = '<span class="text-red-700 dark:text-red-300">모든 페이지를 삭제할 수 없습니다. 최소 1페이지는 남겨야 합니다.</span>';
+      } else {
+        selectedInfo.innerHTML = `<span id="selected-count">${count}</span>개 페이지가 삭제 대상으로 선택됨`;
+      }
+    }
+
+    // Quick select buttons
+    document.getElementById('select-all').addEventListener('click', () => {
+      for (let i = 1; i <= totalPages; i++) {
+        selectedPages.add(i);
+        updatePageUI(i);
+      }
+      updateSelectedInfo();
+    });
+
+    document.getElementById('select-none').addEventListener('click', () => {
+      selectedPages.clear();
+      for (let i = 1; i <= totalPages; i++) {
+        updatePageUI(i);
+      }
+      updateSelectedInfo();
+    });
+
+    document.getElementById('select-odd').addEventListener('click', () => {
+      for (let i = 1; i <= totalPages; i++) {
+        if (i % 2 === 1) {
+          selectedPages.add(i);
+        } else {
+          selectedPages.delete(i);
+        }
+        updatePageUI(i);
+      }
+      updateSelectedInfo();
+    });
+
+    document.getElementById('select-even').addEventListener('click', () => {
+      for (let i = 1; i <= totalPages; i++) {
+        if (i % 2 === 0) {
+          selectedPages.add(i);
+        } else {
+          selectedPages.delete(i);
+        }
+        updatePageUI(i);
+      }
+      updateSelectedInfo();
+    });
+
+    // Change file
+    document.getElementById('change-file').addEventListener('click', () => {
+      dropZone.classList.remove('hidden');
+      editSection.classList.add('hidden');
+      fileInput.value = '';
+      pdfBytes = null;
+      selectedPages.clear();
+      pageGrid.innerHTML = '';
+    });
+
+    // Download
+    downloadBtn.addEventListener('click', async () => {
+      if (!pdfBytes || selectedPages.size === 0) return;
+      if (selectedPages.size >= totalPages) {
+        toast.error('모든 페이지를 삭제할 수 없습니다');
+        return;
+      }
+
+      try {
+        loadingOverlay.classList.add('show');
+        loadingText.textContent = 'PDF 처리 중...';
+
+        const pdfDoc = await PDFDocument.load(pdfBytes);
+        const pages = pdfDoc.getPages();
+
+        // Delete pages in reverse order to maintain correct indices
+        const pagesToDelete = Array.from(selectedPages).sort((a, b) => b - a);
+        for (const pageNum of pagesToDelete) {
+          pdfDoc.removePage(pageNum - 1); // pdf-lib uses 0-based index
+        }
+
+        const newPdfBytes = await pdfDoc.save();
+        const blob = new Blob([newPdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        const baseName = fileName.replace(/\.pdf$/i, '');
+        a.href = url;
+        a.download = `${baseName}_edited.pdf`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        toast.success(`${selectedPages.size}개 페이지가 삭제된 PDF가 다운로드되었습니다`);
+      } catch (err) {
+        toast.error('PDF 처리 중 오류가 발생했습니다');
+        console.error(err);
+      } finally {
+        loadingOverlay.classList.remove('show');
+      }
+    });
+    })();
+  </script>
 </body>
 </html>

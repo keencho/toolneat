@@ -518,9 +518,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">배경 제거 (AI)</h1>
@@ -679,19 +677,251 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center min-w-[320px]">
+      <div class="relative w-16 h-16 mx-auto mb-4">
+        <svg class="w-16 h-16 transform -rotate-90">
+          <circle cx="32" cy="32" r="28" stroke="#e5e7eb" stroke-width="4" fill="none"/>
+          <circle id="progress-circle" cx="32" cy="32" r="28" stroke="#3b82f6" stroke-width="4" fill="none"
+            stroke-dasharray="175.93" stroke-dashoffset="175.93" stroke-linecap="round"/>
+        </svg>
+        <span id="progress-percent" class="absolute inset-0 flex items-center justify-center text-sm font-bold text-gray-700 dark:text-gray-300">0%</span>
+      </div>
+      <p id="progress-text" class="text-gray-600 dark:text-gray-400 mb-2">배경 제거 중...</p>
+      <p id="progress-stage" class="text-xs text-gray-400">준비 중</p>
+    </div>
+  </div>
+  <script type="module">
+    const dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),resultSection=document.getElementById('result-section'),originalImg=document.getElementById('original-img'),resultImg=document.getElementById('result-img'),loadingOverlay=document.getElementById('loading-overlay'),progressText=document.getElementById('progress-text'),progressStage=document.getElementById('progress-stage'),progressCircle=document.getElementById('progress-circle'),progressPercent=document.getElementById('progress-percent'),loadingText=document.getElementById('loading-text'),resultPreviewBox=document.getElementById('result-preview-box'),qualitySlider=document.getElementById('quality'),qualityValue=document.getElementById('quality-value');
+
+    let libReady=false,resultBlob=null,originalResultBlob=null,selectedBg='transparent';
+
+    // Progress 업데이트
+    function updateProgress(pct,text,stage){
+      const offset=175.93-(175.93*pct/100);
+      progressCircle.style.strokeDashoffset=offset;
+      progressPercent.textContent=Math.round(pct)+'%';
+      if(text)progressText.textContent=text;
+      if(stage)progressStage.textContent=stage;
+    }
+
+    function checkLibrary(){if(typeof window.imglyRemoveBackground!=='undefined'){libReady=true;fileInput.disabled=false;loadingText.classList.add('hidden');toast.success('AI 배경 제거 준비 완료!')}else{setTimeout(checkLibrary,200)}}
+    checkLibrary();
+
+    dropZone.addEventListener('click',()=>{if(libReady)fileInput.click()});
+    dropZone.addEventListener('dragover',e=>{e.preventDefault();if(libReady)dropZone.classList.add('drag-over')});
+    dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(!libReady)return;const file=e.dataTransfer.files[0];if(file&&file.type.startsWith('image/'))processImage(file);else toast.warning('이미지 파일만 선택할 수 있습니다.')});
+    fileInput.addEventListener('change',e=>{if(e.target.files[0])processImage(e.target.files[0])});
+
+    // 품질 슬라이더
+    qualitySlider.addEventListener('input',()=>{qualityValue.textContent=qualitySlider.value+'%'});
+
+    // 배경색 버튼
+    document.querySelectorAll('.bg-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.bg-btn').forEach(b=>b.classList.remove('border-blue-500','border-2'));
+        btn.classList.add('border-blue-500','border-2');
+        selectedBg=btn.dataset.bg;
+        updatePreviewBackground();
+      });
+    });
+    document.getElementById('custom-color').addEventListener('input',e=>{
+      selectedBg='custom';
+      document.querySelectorAll('.bg-btn').forEach(b=>b.classList.remove('border-blue-500','border-2'));
+      e.target.closest('.bg-btn').classList.add('border-blue-500','border-2');
+      updatePreviewBackground();
+    });
+
+    function updatePreviewBackground(){
+      if(selectedBg==='transparent'){
+        resultPreviewBox.classList.add('checkerboard');
+        resultPreviewBox.style.backgroundColor='';
+      }else{
+        resultPreviewBox.classList.remove('checkerboard');
+        if(selectedBg==='white')resultPreviewBox.style.backgroundColor='#ffffff';
+        else if(selectedBg==='black')resultPreviewBox.style.backgroundColor='#000000';
+        else if(selectedBg==='custom')resultPreviewBox.style.backgroundColor=document.getElementById('custom-color').value;
+      }
+    }
+
+    async function processImage(file){
+      loadingOverlay.classList.add('show');
+      updateProgress(0,'AI 모델 초기화 중...','준비 중');
+
+      try{
+        const reader=new FileReader();
+        reader.onload=e=>{originalImg.src=e.target.result};
+        reader.readAsDataURL(file);
+
+        updateProgress(5,'이미지 로드 완료','이미지 분석 시작');
+
+        // 진행률 추적 - fetch 단계 합산용
+        let fetchProgress={current:0,total:0};
+        let inferenceStarted=false;
+        let inferenceTimer=null;
+        let lastPct=5;
+
+        const blob=await window.imglyRemoveBackground(file,{
+          progress:(key,current,total)=>{
+            let pct=lastPct;
+            let stageName='처리 중';
+
+            // fetch 단계: 모델/WASM 다운로드 (5% ~ 50%)
+            if(key.startsWith('fetch')){
+              fetchProgress.current+=current;
+              fetchProgress.total+=total;
+              // fetch는 전체의 45% 차지 (5~50%)
+              const fetchPct=(fetchProgress.current/Math.max(fetchProgress.total,1))*45;
+              pct=5+fetchPct;
+              stageName='모델 다운로드';
+            }
+            // inference 단계: AI 처리 (50% ~ 95%)
+            else if(key.includes('inference')){
+              if(!inferenceStarted){
+                inferenceStarted=true;
+                pct=50;
+                stageName='AI 분석 중';
+                // inference는 세부 진행을 안 주므로 타이머로 시뮬레이션
+                let simPct=50;
+                inferenceTimer=setInterval(()=>{
+                  simPct+=2;
+                  if(simPct<90){
+                    updateProgress(simPct,'배경 제거 중...','AI 분석 중');
+                  }
+                },200);
+              }else{
+                // inference 완료 (current=1, total=1)
+                if(inferenceTimer){clearInterval(inferenceTimer);inferenceTimer=null}
+                pct=95;
+                stageName='마무리 중';
+              }
+            }
+
+            if(pct>lastPct){
+              lastPct=Math.min(pct,95);
+              updateProgress(lastPct,'배경 제거 중...',stageName);
+            }
+          }
+        });
+
+        if(inferenceTimer){clearInterval(inferenceTimer)}
+        updateProgress(100,'완료!','배경 제거 완료');
+
+        originalResultBlob=blob;
+        resultBlob=blob;
+        resultImg.src=URL.createObjectURL(blob);
+
+        dropZone.classList.add('hidden');
+        resultSection.classList.remove('hidden');
+        updatePreviewBackground();
+        toast.success('배경 제거 완료!');
+
+      }catch(error){
+        console.error(error);
+        toast.error('배경 제거 중 오류가 발생했습니다.');
+      }finally{
+        setTimeout(()=>loadingOverlay.classList.remove('show'),500);
+      }
+    }
+
+    // 다운로드
+    document.getElementById('download-btn').addEventListener('click',async()=>{
+      if(!originalResultBlob)return;
+
+      const format=document.getElementById('output-format').value;
+      const quality=parseInt(qualitySlider.value)/100;
+      const resize=document.getElementById('resize').value;
+
+      // Canvas로 처리
+      const img=new Image();
+      img.onload=async()=>{
+        let w=img.width,h=img.height;
+
+        // 리사이즈
+        if(resize!=='original'){
+          const max=parseInt(resize);
+          if(w>max||h>max){
+            if(w>h){h=Math.round(h*max/w);w=max}
+            else{w=Math.round(w*max/h);h=max}
+          }
+        }
+
+        const canvas=document.createElement('canvas');
+        canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext('2d');
+
+        // 배경 그리기
+        if(selectedBg!=='transparent'){
+          if(selectedBg==='white')ctx.fillStyle='#ffffff';
+          else if(selectedBg==='black')ctx.fillStyle='#000000';
+          else if(selectedBg==='custom')ctx.fillStyle=document.getElementById('custom-color').value;
+          ctx.fillRect(0,0,w,h);
+        }
+
+        ctx.drawImage(img,0,0,w,h);
+
+        // 형식별 처리
+        let mimeType='image/png',ext='png';
+        if(format==='jpeg'){mimeType='image/jpeg';ext='jpg'}
+        else if(format==='webp'){mimeType='image/webp';ext='webp'}
+
+        canvas.toBlob(blob=>{
+          const url=URL.createObjectURL(blob);
+          const a=document.createElement('a');
+          a.href=url;
+          a.download=`background-removed.${ext}`;
+          a.click();
+          URL.revokeObjectURL(url);
+        },mimeType,format==='png'?undefined:quality);
+      };
+      img.src=URL.createObjectURL(originalResultBlob);
+    });
+
+    document.getElementById('new-btn').addEventListener('click',()=>{
+      dropZone.classList.remove('hidden');
+      resultSection.classList.add('hidden');
+      fileInput.value='';
+      selectedBg='transparent';
+      document.querySelectorAll('.bg-btn').forEach(b=>b.classList.remove('border-blue-500','border-2'));
+      document.querySelector('.bg-btn[data-bg="transparent"]').classList.add('border-blue-500','border-2');
+      resultPreviewBox.classList.add('checkerboard');
+      resultPreviewBox.style.backgroundColor='';
+    });
+  </script>
 </body>
 </html>

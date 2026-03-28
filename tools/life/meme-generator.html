@@ -520,9 +520,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">밈 생성기</h1>
@@ -763,19 +761,225 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const previewSection = document.getElementById('preview-section');
+    const changeImageBtn = document.getElementById('change-image');
+    const canvas = document.getElementById('meme-canvas');
+    const ctx = canvas.getContext('2d');
+    const topTextInput = document.getElementById('top-text');
+    const bottomTextInput = document.getElementById('bottom-text');
+    const fontSizeSlider = document.getElementById('font-size');
+    const fontSizeValue = document.getElementById('font-size-value');
+    const strokeWidthSlider = document.getElementById('stroke-width');
+    const strokeWidthValue = document.getElementById('stroke-width-value');
+    const colorBtns = document.querySelectorAll('.color-btn:not(.stroke-btn)');
+    const strokeBtns = document.querySelectorAll('.stroke-btn');
+    const downloadBtn = document.getElementById('download-btn');
+
+    let image = null;
+    let textColor = '#ffffff';
+    let strokeColor = '#000000';
+
+    // Drop zone events
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('drag-over');
+    });
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('drag-over');
+    });
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('drag-over');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) loadImage(file);
+    });
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) loadImage(file);
+    });
+
+    // Change image button
+    changeImageBtn.addEventListener('click', () => fileInput.click());
+
+    function loadImage(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          image = img;
+          dropZone.classList.add('hidden');
+          previewSection.classList.remove('hidden');
+          downloadBtn.disabled = false;
+          render();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function render() {
+      if (!image) return;
+
+      // Set canvas size
+      const maxWidth = 800;
+      const maxHeight = 800;
+      let width = image.width;
+      let height = image.height;
+
+      if (width > maxWidth) {
+        height = (height * maxWidth) / width;
+        width = maxWidth;
+      }
+      if (height > maxHeight) {
+        width = (width * maxHeight) / height;
+        height = maxHeight;
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
+      // Draw image
+      ctx.drawImage(image, 0, 0, width, height);
+
+      // Text settings
+      const fontSize = parseInt(fontSizeSlider.value);
+      const strokeWidth = parseInt(strokeWidthSlider.value);
+      const padding = fontSize * 0.3;
+
+      ctx.font = `bold ${fontSize}px Impact, Arial Black, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.fillStyle = textColor;
+      ctx.strokeStyle = strokeColor;
+      ctx.lineWidth = strokeWidth;
+      ctx.lineJoin = 'round';
+      ctx.miterLimit = 2;
+
+      // Draw top text
+      const topText = topTextInput.value.toUpperCase();
+      if (topText) {
+        drawText(topText, width / 2, fontSize + padding, width - padding * 2);
+      }
+
+      // Draw bottom text
+      const bottomText = bottomTextInput.value.toUpperCase();
+      if (bottomText) {
+        drawText(bottomText, width / 2, height - padding, width - padding * 2);
+      }
+    }
+
+    function drawText(text, x, y, maxWidth) {
+      const words = text.split(' ');
+      const lines = [];
+      let currentLine = '';
+
+      words.forEach(word => {
+        const testLine = currentLine ? currentLine + ' ' + word : word;
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && currentLine) {
+          lines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = testLine;
+        }
+      });
+      lines.push(currentLine);
+
+      const lineHeight = parseInt(fontSizeSlider.value) * 1.1;
+      const startY = y < canvas.height / 2 ? y : y - (lines.length - 1) * lineHeight;
+
+      lines.forEach((line, i) => {
+        const lineY = startY + i * lineHeight;
+        if (strokeColor !== 'none') {
+          ctx.strokeText(line, x, lineY);
+        }
+        ctx.fillText(line, x, lineY);
+      });
+    }
+
+    // Event listeners
+    topTextInput.addEventListener('input', render);
+    bottomTextInput.addEventListener('input', render);
+
+    fontSizeSlider.addEventListener('input', () => {
+      fontSizeValue.textContent = fontSizeSlider.value;
+      render();
+    });
+
+    strokeWidthSlider.addEventListener('input', () => {
+      strokeWidthValue.textContent = strokeWidthSlider.value;
+      render();
+    });
+
+    colorBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        colorBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        textColor = btn.dataset.color;
+        render();
+      });
+    });
+
+    strokeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        strokeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        strokeColor = btn.dataset.color;
+        render();
+      });
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!image) return;
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'meme.png';
+        a.click();
+        URL.revokeObjectURL(url);
+        toast.success('밈이 다운로드되었습니다');
+      }, 'image/png');
+    });
+    })();
+  </script>
 </body>
 </html>

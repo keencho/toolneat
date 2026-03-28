@@ -541,9 +541,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.aiDetector.title">AI 글 감지기</h1>
@@ -694,19 +692,190 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <script>
+    (function() {
+      'use strict';
+
+      const inputText = document.getElementById('input-text');
+      const charCount = document.getElementById('char-count');
+      const analyzeBtn = document.getElementById('analyze-btn');
+      const result = document.getElementById('result');
+
+      inputText.addEventListener('input', () => {
+        charCount.textContent = inputText.value.length + '자';
+      });
+
+      analyzeBtn.addEventListener('click', () => {
+        const text = inputText.value.trim();
+        if (text.length < 50) {
+          toast.show('최소 50자 이상 입력해주세요.', 'warning');
+          return;
+        }
+        analyzeText(text);
+      });
+
+      function analyzeText(text) {
+        const indicators = [];
+        let aiScore = 0;
+
+        // 1. 문장 길이 일관성 (AI는 비슷한 길이 문장 사용)
+        const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+        if (sentences.length >= 3) {
+          const lengths = sentences.map(s => s.trim().length);
+          const avg = lengths.reduce((a, b) => a + b, 0) / lengths.length;
+          const variance = lengths.reduce((sum, len) => sum + Math.pow(len - avg, 2), 0) / lengths.length;
+          const stdDev = Math.sqrt(variance);
+          const cv = stdDev / avg;
+
+          if (cv < 0.3) {
+            aiScore += 20;
+            indicators.push('문장 길이가 매우 일관적 (AI 특성)');
+          } else if (cv < 0.5) {
+            aiScore += 10;
+            indicators.push('문장 길이가 적당히 일관적');
+          } else {
+            indicators.push('문장 길이 변화가 자연스러움 (인간 특성)');
+          }
+        }
+
+        // 2. AI 특유 표현 패턴
+        const aiPhrases = ['또한', '따라서', '그러므로', '한편', '더불어', '아울러', '특히', '무엇보다', '결론적으로', '요약하자면', '다양한', '효과적인', '중요한', '필수적인'];
+        let phraseCount = 0;
+        aiPhrases.forEach(phrase => {
+          const regex = new RegExp(phrase, 'g');
+          const matches = text.match(regex);
+          if (matches) phraseCount += matches.length;
+        });
+
+        const phraseRatio = phraseCount / (text.length / 100);
+        if (phraseRatio > 2) {
+          aiScore += 25;
+          indicators.push('AI 특유의 접속사/형용사 빈번 사용');
+        } else if (phraseRatio > 1) {
+          aiScore += 15;
+          indicators.push('접속사/형용사 사용 빈도 중간');
+        } else {
+          indicators.push('자연스러운 접속사 사용');
+        }
+
+        // 3. 반복 표현 체크
+        const words = text.match(/[\w가-힣]+/g) || [];
+        const wordFreq = {};
+        words.forEach(w => {
+          const lower = w.toLowerCase();
+          wordFreq[lower] = (wordFreq[lower] || 0) + 1;
+        });
+        const repeatedWords = Object.values(wordFreq).filter(c => c >= 3).length;
+        const repeatRatio = repeatedWords / Object.keys(wordFreq).length;
+
+        if (repeatRatio > 0.15) {
+          aiScore += 15;
+          indicators.push('특정 단어 반복 사용 패턴 감지');
+        }
+
+        // 4. 완벽한 문장 구조
+        const incompleteSentences = sentences.filter(s => s.trim().length < 10 || !s.trim().match(/[가-힣a-zA-Z]$/));
+        if (incompleteSentences.length === 0 && sentences.length > 2) {
+          aiScore += 15;
+          indicators.push('모든 문장이 완벽하게 구성됨 (AI 특성)');
+        }
+
+        // 5. 문단 구조
+        const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0);
+        if (paragraphs.length >= 2) {
+          const parLengths = paragraphs.map(p => p.length);
+          const parAvg = parLengths.reduce((a, b) => a + b, 0) / parLengths.length;
+          const parVariance = parLengths.reduce((sum, len) => sum + Math.pow(len - parAvg, 2), 0) / parLengths.length;
+          if (Math.sqrt(parVariance) / parAvg < 0.4) {
+            aiScore += 10;
+            indicators.push('문단 길이가 균일함');
+          }
+        }
+
+        // 6. 텍스트 길이에 따른 보정
+        if (text.length < 200) {
+          aiScore = Math.min(aiScore, 60);
+          indicators.push('텍스트가 짧아 정확도 제한적');
+        }
+
+        // 결과 표시
+        aiScore = Math.min(Math.max(aiScore, 5), 95);
+        const humanScore = 100 - aiScore;
+
+        document.getElementById('ai-percent').textContent = aiScore + '%';
+        document.getElementById('ai-score').textContent = aiScore + '%';
+        document.getElementById('human-score').textContent = humanScore + '%';
+
+        const aiBar = document.getElementById('ai-bar');
+        aiBar.style.width = aiScore + '%';
+
+        if (aiScore >= 70) {
+          aiBar.className = 'h-4 rounded-full transition-all duration-500 bg-red-500';
+        } else if (aiScore >= 40) {
+          aiBar.className = 'h-4 rounded-full transition-all duration-500 bg-yellow-500';
+        } else {
+          aiBar.className = 'h-4 rounded-full transition-all duration-500 bg-green-500';
+        }
+
+        const verdict = document.getElementById('verdict');
+        const verdictText = document.getElementById('verdict-text');
+
+        if (aiScore >= 70) {
+          verdict.className = 'text-center p-4 rounded-lg mb-4 bg-red-100 dark:bg-red-900/30';
+          verdictText.textContent = 'AI가 작성했을 가능성이 높습니다';
+          verdictText.className = 'font-semibold text-red-700 dark:text-red-400';
+        } else if (aiScore >= 40) {
+          verdict.className = 'text-center p-4 rounded-lg mb-4 bg-yellow-100 dark:bg-yellow-900/30';
+          verdictText.textContent = 'AI 작성 여부가 불확실합니다';
+          verdictText.className = 'font-semibold text-yellow-700 dark:text-yellow-400';
+        } else {
+          verdict.className = 'text-center p-4 rounded-lg mb-4 bg-green-100 dark:bg-green-900/30';
+          verdictText.textContent = '인간이 작성했을 가능성이 높습니다';
+          verdictText.className = 'font-semibold text-green-700 dark:text-green-400';
+        }
+
+        const indicatorsList = document.getElementById('indicators');
+        indicatorsList.innerHTML = indicators.map(i => `<li>${i}</li>`).join('');
+
+        result.classList.remove('hidden');
+        result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    })();
+  </script>
 </body>
 </html>

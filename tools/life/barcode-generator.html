@@ -535,9 +535,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.barcodeGenerator.title">바코드 생성기</h1>
@@ -715,19 +713,106 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <script>
+    (function() {
+      'use strict';
+      const format = document.getElementById('format');
+      const dataInput = document.getElementById('data-input');
+      const barWidth = document.getElementById('bar-width');
+      const barHeight = document.getElementById('bar-height');
+      const showText = document.getElementById('show-text');
+      const generateBtn = document.getElementById('generate-btn');
+      const barcodeSvg = document.getElementById('barcode');
+
+      function generate() {
+        const data = dataInput.value.trim();
+        if (!data) { toast.warning('데이터를 입력하세요'); return; }
+        try {
+          JsBarcode('#barcode', data, {
+            format: format.value,
+            width: parseInt(barWidth.value),
+            height: parseInt(barHeight.value),
+            displayValue: showText.checked,
+            background: '#ffffff',
+            lineColor: '#000000',
+            margin: 10,
+            fontSize: 16
+          });
+        } catch (e) {
+          toast.error('유효하지 않은 데이터입니다. 형식에 맞는 데이터를 입력하세요.');
+        }
+      }
+
+      generateBtn.addEventListener('click', generate);
+      dataInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') generate(); });
+      [format, barWidth, barHeight, showText].forEach(el => el.addEventListener('change', generate));
+
+      document.getElementById('download-png').addEventListener('click', () => {
+        const svg = barcodeSvg;
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const data = new XMLSerializer().serializeToString(svg);
+        const img = new Image();
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.fillStyle = 'white';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          const a = document.createElement('a');
+          a.href = canvas.toDataURL('image/png');
+          a.download = 'barcode.png';
+          a.click();
+        };
+        img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(data)));
+      });
+
+      document.getElementById('download-svg').addEventListener('click', () => {
+        const data = new XMLSerializer().serializeToString(barcodeSvg);
+        const blob = new Blob([data], { type: 'image/svg+xml' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'barcode.svg';
+        a.click();
+      });
+
+      setTimeout(generate, 100);
+    })();
+  </script>
 </body>
 </html>

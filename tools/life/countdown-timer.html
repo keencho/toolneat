@@ -526,9 +526,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6 text-center">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">카운트다운 타이머</h1>
@@ -698,19 +696,212 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const timerDisplay = document.getElementById('timer-display');
+    const timerContainer = document.getElementById('timer-container');
+    const inputSection = document.getElementById('input-section');
+    const hoursInput = document.getElementById('hours');
+    const minutesInput = document.getElementById('minutes');
+    const secondsInput = document.getElementById('seconds');
+    const startBtn = document.getElementById('start-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const playIcon = document.getElementById('play-icon');
+    const pauseIcon = document.getElementById('pause-icon');
+    const progressRing = document.getElementById('progress-ring');
+    const soundToggle = document.getElementById('sound-toggle');
+    const presetBtns = document.querySelectorAll('.preset-btn');
+
+    let totalSeconds = 0;
+    let remainingSeconds = 0;
+    let timerInterval = null;
+    let isRunning = false;
+
+    const circumference = 2 * Math.PI * 108;
+    progressRing.style.strokeDasharray = circumference;
+
+    // Create audio context for alarm
+    let audioCtx = null;
+    function playAlarm() {
+      if (!soundToggle.checked) return;
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+      const playBeep = (freq, start, duration) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.frequency.value = freq;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime + start);
+        gain.gain.exponentialDecayTo && gain.gain.exponentialDecayTo(0.01, audioCtx.currentTime + start + duration);
+        osc.start(audioCtx.currentTime + start);
+        osc.stop(audioCtx.currentTime + start + duration);
+      };
+
+      // Play 3 beeps
+      playBeep(880, 0, 0.2);
+      playBeep(880, 0.3, 0.2);
+      playBeep(1100, 0.6, 0.4);
+    }
+
+    function formatTime(secs) {
+      const h = Math.floor(secs / 3600);
+      const m = Math.floor((secs % 3600) / 60);
+      const s = secs % 60;
+      return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function updateDisplay() {
+      timerDisplay.textContent = formatTime(remainingSeconds);
+
+      // Update progress ring
+      const progress = totalSeconds > 0 ? (totalSeconds - remainingSeconds) / totalSeconds : 0;
+      const offset = circumference * (1 - progress);
+      progressRing.style.strokeDashoffset = offset;
+
+      // Update page title
+      if (isRunning || remainingSeconds > 0) {
+        document.title = formatTime(remainingSeconds) + ' - 카운트다운 타이머';
+      } else {
+        document.title = '카운트다운 타이머 - Toolneat';
+      }
+    }
+
+    function start() {
+      if (remainingSeconds <= 0) {
+        // Get time from inputs
+        const h = parseInt(hoursInput.value) || 0;
+        const m = parseInt(minutesInput.value) || 0;
+        const s = parseInt(secondsInput.value) || 0;
+        totalSeconds = h * 3600 + m * 60 + s;
+        remainingSeconds = totalSeconds;
+
+        if (totalSeconds <= 0) return;
+      }
+
+      isRunning = true;
+      inputSection.style.display = 'none';
+      startBtn.classList.add('running');
+      playIcon.classList.add('hidden');
+      pauseIcon.classList.remove('hidden');
+
+      timerInterval = setInterval(() => {
+        remainingSeconds--;
+        updateDisplay();
+
+        if (remainingSeconds <= 0) {
+          finish();
+        }
+      }, 1000);
+    }
+
+    function pause() {
+      isRunning = false;
+      clearInterval(timerInterval);
+      startBtn.classList.remove('running');
+      playIcon.classList.remove('hidden');
+      pauseIcon.classList.add('hidden');
+    }
+
+    function reset() {
+      pause();
+      totalSeconds = 0;
+      remainingSeconds = 0;
+      inputSection.style.display = 'block';
+      timerContainer.classList.remove('finished');
+      updateDisplay();
+      progressRing.style.strokeDashoffset = 0;
+      document.title = '카운트다운 타이머 - Toolneat';
+    }
+
+    function finish() {
+      pause();
+      timerContainer.classList.add('finished');
+      playAlarm();
+
+      // Show notification if permitted
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification('타이머 완료!', { body: '설정한 시간이 완료되었습니다.' });
+      }
+    }
+
+    startBtn.addEventListener('click', () => {
+      if (isRunning) {
+        pause();
+      } else {
+        start();
+      }
+    });
+
+    resetBtn.addEventListener('click', reset);
+
+    // Presets
+    presetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const time = parseInt(btn.dataset.time);
+        const h = Math.floor(time / 3600);
+        const m = Math.floor((time % 3600) / 60);
+        const s = time % 60;
+        hoursInput.value = h;
+        minutesInput.value = m;
+        secondsInput.value = s;
+      });
+    });
+
+    // Input validation
+    [hoursInput, minutesInput, secondsInput].forEach(input => {
+      input.addEventListener('change', () => {
+        let val = parseInt(input.value) || 0;
+        const max = parseInt(input.max);
+        const min = parseInt(input.min);
+        if (val > max) val = max;
+        if (val < min) val = min;
+        input.value = val;
+      });
+    });
+
+    // Request notification permission
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+
+    updateDisplay();
+    })();
+  </script>
 </body>
 </html>

@@ -558,9 +558,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Image Compressor</h1>
@@ -724,7 +722,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -736,7 +734,133 @@
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <script>
+    (function() {
+      'use strict';
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('file-input');
+      const uploadSection = document.getElementById('upload-section');
+      const resultSection = document.getElementById('result-section');
+      const originalPreview = document.getElementById('original-preview');
+      const compressedPreview = document.getElementById('compressed-preview');
+      const originalName = document.getElementById('original-name');
+      const originalSize = document.getElementById('original-size');
+      const compressedSize = document.getElementById('compressed-size');
+      const reduction = document.getElementById('reduction');
+      const qualitySlider = document.getElementById('quality-slider');
+      const qualityValue = document.getElementById('quality-value');
+      const compressBtn = document.getElementById('compress-btn');
+      const downloadBtn = document.getElementById('download-btn');
+      const resetBtn = document.getElementById('reset-btn');
+
+      let originalFile = null;
+      let compressedBlob = null;
+
+      function formatSize(bytes) {
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+      }
+
+      dropZone.addEventListener('click', () => fileInput.click());
+      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+      });
+      fileInput.addEventListener('change', (e) => { if (e.target.files.length) handleFile(e.target.files[0]); });
+
+      function handleFile(file) {
+        if (!file.type.match(/^image\/(png|jpeg|webp)$/)) {
+          toast.error('Only PNG, JPG, WEBP are supported.');
+          return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+          toast.error('File must be under 10MB.');
+          return;
+        }
+        originalFile = file;
+        originalName.textContent = file.name;
+        originalSize.textContent = formatSize(file.size);
+        const url = URL.createObjectURL(file);
+        originalPreview.src = url;
+        uploadSection.classList.add('hidden');
+        resultSection.classList.remove('hidden');
+        compress();
+      }
+
+      qualitySlider.addEventListener('input', () => {
+        qualityValue.textContent = qualitySlider.value + '%';
+      });
+
+      compressBtn.addEventListener('click', compress);
+
+      function compress() {
+        if (!originalFile) return;
+        const quality = parseInt(qualitySlider.value) / 100;
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          const mimeType = originalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+          canvas.toBlob((blob) => {
+            compressedBlob = blob;
+            compressedPreview.src = URL.createObjectURL(blob);
+            compressedSize.textContent = formatSize(blob.size);
+            const saved = ((1 - blob.size / originalFile.size) * 100).toFixed(1);
+            reduction.textContent = saved > 0 ? `-${saved}% reduced` : `+${Math.abs(saved)}% increased`;
+            reduction.className = saved > 0 ? 'text-sm text-green-600 dark:text-green-400 font-medium' : 'text-sm text-red-600 dark:text-red-400 font-medium';
+          }, mimeType, quality);
+        };
+        img.src = URL.createObjectURL(originalFile);
+      }
+
+      downloadBtn.addEventListener('click', () => {
+        if (!compressedBlob) return;
+        const ext = originalFile.type === 'image/png' ? '.png' : '.jpg';
+        const name = originalFile.name.replace(/\.[^.]+$/, '') + '_compressed' + ext;
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(compressedBlob);
+        a.download = name;
+        a.click();
+      });
+
+      resetBtn.addEventListener('click', () => {
+        originalFile = null;
+        compressedBlob = null;
+        fileInput.value = '';
+        uploadSection.classList.remove('hidden');
+        resultSection.classList.add('hidden');
+      });
+    })();
+  </script>
 </body>
 </html>

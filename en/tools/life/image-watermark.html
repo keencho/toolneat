@@ -516,9 +516,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Image Watermark</h1>
@@ -647,7 +645,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -659,7 +657,216 @@
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    const canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d'),placeholder=document.getElementById('placeholder'),fileInput=document.getElementById('file-input'),textInput=document.getElementById('watermark-text'),fontSizeSlider=document.getElementById('font-size'),opacitySlider=document.getElementById('opacity'),textColorInput=document.getElementById('text-color'),presetColor=document.getElementById('preset-color'),downloadBtn=document.getElementById('download-btn'),dropZone=document.getElementById('drop-zone');
+    let img=null,position='bottom-center',customX=null,customY=null,isDragging=false,isHovering=false,dragOffsetX=0,dragOffsetY=0;
+
+    document.getElementById('select-btn').addEventListener('click',()=>fileInput.click());
+    dropZone.addEventListener('click',e=>{if(e.target===dropZone||e.target===placeholder||e.target.closest('#placeholder'))fileInput.click()});
+    fileInput.addEventListener('change',e=>{if(e.target.files[0])loadImage(e.target.files[0])});
+
+    dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('drag-over')});
+    dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(e.dataTransfer.files[0])loadImage(e.dataTransfer.files[0])});
+
+    function loadImage(file){
+      const reader=new FileReader();
+      reader.onload=e=>{
+        img=new Image();
+        img.onload=()=>{
+          canvas.width=img.width;
+          canvas.height=img.height;
+          canvas.classList.remove('hidden');
+          placeholder.classList.add('hidden');
+          downloadBtn.disabled=false;
+          customX=null;customY=null;
+          drawCanvas();
+        };
+        img.src=e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    document.querySelectorAll('.position-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.position-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        position=btn.dataset.pos;
+        customX=null;customY=null;
+        drawCanvas();
+      });
+    });
+
+    [textInput,fontSizeSlider,opacitySlider,textColorInput].forEach(el=>{
+      el.addEventListener('input',drawCanvas);
+    });
+    fontSizeSlider.addEventListener('input',e=>document.getElementById('size-value').textContent=e.target.value);
+    opacitySlider.addEventListener('input',e=>document.getElementById('opacity-value').textContent=e.target.value);
+    presetColor.addEventListener('change',e=>{textColorInput.value=e.target.value;drawCanvas()});
+
+    // Canvas coordinate conversion
+    function getCanvasCoords(e){
+      const rect=canvas.getBoundingClientRect();
+      const scaleX=canvas.width/rect.width;
+      const scaleY=canvas.height/rect.height;
+      return{x:(e.clientX-rect.left)*scaleX,y:(e.clientY-rect.top)*scaleY};
+    }
+
+    // Get watermark position
+    function getWatermarkPos(){
+      const text=textInput.value;
+      const fontSize=parseInt(fontSizeSlider.value);
+      ctx.font=`${fontSize}px Arial, sans-serif`;
+      const metrics=ctx.measureText(text);
+      const padding=20;
+      let x,y;
+
+      if(customX!==null&&customY!==null){
+        return{x:customX,y:customY,width:metrics.width,height:fontSize};
+      }
+
+      const [vPos,hPos]=position.split('-');
+      if(hPos==='left')x=padding;
+      else if(hPos==='center')x=(canvas.width-metrics.width)/2;
+      else x=canvas.width-metrics.width-padding;
+
+      if(vPos==='top')y=fontSize+padding;
+      else if(vPos==='middle')y=canvas.height/2;
+      else y=canvas.height-padding;
+
+      return{x,y,width:metrics.width,height:fontSize};
+    }
+
+    // Drag events
+    canvas.addEventListener('mousedown',e=>{
+      if(!img)return;
+      const coords=getCanvasCoords(e);
+      const pos=getWatermarkPos();
+      const hitPadding=10;
+      if(coords.x>=pos.x-hitPadding&&coords.x<=pos.x+pos.width+hitPadding&&coords.y>=pos.y-pos.height-hitPadding&&coords.y<=pos.y+hitPadding){
+        isDragging=true;
+        dragOffsetX=coords.x-pos.x;
+        dragOffsetY=coords.y-pos.y;
+        canvas.style.cursor='grabbing';
+      }
+    });
+
+    canvas.addEventListener('mousemove',e=>{
+      if(!img)return;
+      const coords=getCanvasCoords(e);
+      const pos=getWatermarkPos();
+      const hitPadding=10;
+
+      if(isDragging){
+        customX=Math.max(0,Math.min(canvas.width-pos.width,coords.x-dragOffsetX));
+        customY=Math.max(pos.height,Math.min(canvas.height,coords.y-dragOffsetY));
+        document.querySelectorAll('.position-btn').forEach(b=>b.classList.remove('active'));
+        drawCanvas();
+      }else{
+        const wasHovering=isHovering;
+        if(coords.x>=pos.x-hitPadding&&coords.x<=pos.x+pos.width+hitPadding&&coords.y>=pos.y-pos.height-hitPadding&&coords.y<=pos.y+hitPadding){
+          canvas.style.cursor='grab';
+          isHovering=true;
+        }else{
+          canvas.style.cursor='default';
+          isHovering=false;
+        }
+        if(wasHovering!==isHovering)drawCanvas();
+      }
+    });
+
+    canvas.addEventListener('mouseup',()=>{isDragging=false;canvas.style.cursor='default';drawCanvas()});
+    canvas.addEventListener('mouseleave',()=>{isDragging=false;isHovering=false;canvas.style.cursor='default';drawCanvas()});
+
+    // Touch events
+    canvas.addEventListener('touchstart',e=>{
+      if(!img)return;
+      const touch=e.touches[0];
+      const coords=getCanvasCoords(touch);
+      const pos=getWatermarkPos();
+      const hitPadding=20;
+      if(coords.x>=pos.x-hitPadding&&coords.x<=pos.x+pos.width+hitPadding&&coords.y>=pos.y-pos.height-hitPadding&&coords.y<=pos.y+hitPadding){
+        isDragging=true;
+        dragOffsetX=coords.x-pos.x;
+        dragOffsetY=coords.y-pos.y;
+        e.preventDefault();
+      }
+    },{passive:false});
+
+    canvas.addEventListener('touchmove',e=>{
+      if(!isDragging||!img)return;
+      const touch=e.touches[0];
+      const coords=getCanvasCoords(touch);
+      const pos=getWatermarkPos();
+      customX=Math.max(0,Math.min(canvas.width-pos.width,coords.x-dragOffsetX));
+      customY=Math.max(pos.height,Math.min(canvas.height,coords.y-dragOffsetY));
+      document.querySelectorAll('.position-btn').forEach(b=>b.classList.remove('active'));
+      drawCanvas();
+      e.preventDefault();
+    },{passive:false});
+
+    canvas.addEventListener('touchend',()=>{isDragging=false});
+
+    function drawCanvas(){
+      if(!img)return;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(img,0,0);
+
+      const text=textInput.value;
+      const fontSize=parseInt(fontSizeSlider.value);
+      const opacity=parseInt(opacitySlider.value)/100;
+      const color=textColorInput.value;
+
+      ctx.font=`${fontSize}px Arial, sans-serif`;
+      ctx.fillStyle=color;
+      ctx.globalAlpha=opacity;
+      ctx.textBaseline='middle';
+
+      const pos=getWatermarkPos();
+      ctx.fillText(text,pos.x,pos.y);
+
+      // Show dashed border on hover/drag
+      if(isHovering||isDragging){
+        ctx.globalAlpha=1;
+        ctx.strokeStyle='#3b82f6';
+        ctx.lineWidth=2;
+        ctx.setLineDash([6,4]);
+        const pad=8;
+        ctx.strokeRect(pos.x-pad,pos.y-pos.height/2-pad,pos.width+pad*2,pos.height+pad*2);
+        ctx.setLineDash([]);
+      }
+      ctx.globalAlpha=1;
+    }
+
+    downloadBtn.addEventListener('click',()=>{
+      const a=document.createElement('a');
+      a.href=canvas.toDataURL('image/png');
+      a.download='watermarked.png';
+      a.click();
+      toast.success('Download complete!');
+    });
+  </script>
 </body>
 </html>

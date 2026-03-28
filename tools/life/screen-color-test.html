@@ -581,9 +581,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -803,19 +801,122 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <!-- Fullscreen Overlay -->
+  <div id="fullscreen-overlay">
+    <div id="fullscreen-hint">클릭 또는 ← → 키로 패턴 변경 | ESC로 종료</div>
+  </div>
+
+  <script>
+    const patterns = [
+      { type: 'solid', color: '#ff0000', name: '빨강' },
+      { type: 'solid', color: '#00ff00', name: '초록' },
+      { type: 'solid', color: '#0000ff', name: '파랑' },
+      { type: 'solid', color: '#00ffff', name: '시안' },
+      { type: 'solid', color: '#ff00ff', name: '마젠타' },
+      { type: 'solid', color: '#ffff00', name: '노랑' },
+      { type: 'solid', color: '#ffffff', name: '흰색' },
+      { type: 'solid', color: '#000000', name: '검정' },
+      { type: 'gradient', style: 'linear-gradient(to right, red, yellow, lime, cyan, blue, magenta, red)', name: '수평 그라디언트' },
+      { type: 'gradient', style: 'linear-gradient(to bottom, red, yellow, lime, cyan, blue, magenta, red)', name: '수직 그라디언트' },
+      { type: 'gradient', style: 'linear-gradient(to right, black, white)', name: '그레이스케일' },
+      { type: 'gradient', style: 'linear-gradient(to right, white 0%, white 12.5%, yellow 12.5%, yellow 25%, cyan 25%, cyan 37.5%, lime 37.5%, lime 50%, magenta 50%, magenta 62.5%, red 62.5%, red 75%, blue 75%, blue 87.5%, black 87.5%, black 100%)', name: '컬러바' }
+    ];
+
+    let currentIndex = 0;
+    const overlay = document.getElementById('fullscreen-overlay');
+
+    function applyPattern(index) {
+      const pattern = patterns[index];
+      if (pattern.type === 'solid') {
+        overlay.style.background = pattern.color;
+      } else {
+        overlay.style.background = pattern.style;
+      }
+    }
+
+    function startTest(index) {
+      currentIndex = index;
+      applyPattern(currentIndex);
+      overlay.classList.add('active');
+
+      if (overlay.requestFullscreen) {
+        overlay.requestFullscreen();
+      } else if (overlay.webkitRequestFullscreen) {
+        overlay.webkitRequestFullscreen();
+      }
+    }
+
+    function nextPattern() {
+      currentIndex = (currentIndex + 1) % patterns.length;
+      applyPattern(currentIndex);
+    }
+
+    function prevPattern() {
+      currentIndex = (currentIndex - 1 + patterns.length) % patterns.length;
+      applyPattern(currentIndex);
+    }
+
+    function exitTest() {
+      overlay.classList.remove('active');
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+    }
+
+    overlay.addEventListener('click', nextPattern);
+
+    document.addEventListener('keydown', (e) => {
+      if (!overlay.classList.contains('active')) return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextPattern();
+      } else if (e.key === 'ArrowLeft') {
+        prevPattern();
+      } else if (e.key === 'Escape') {
+        exitTest();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        overlay.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>

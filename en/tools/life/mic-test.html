@@ -526,9 +526,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.micTest.title">Microphone Test</h1>
@@ -659,7 +657,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -671,7 +669,135 @@
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    let stream = null;
+    let audioContext = null;
+    let analyser = null;
+    let animationId = null;
+    async function getMics() {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const mics = devices.filter(d => d.kind === 'audioinput');
+      const select = document.getElementById('micSelect');
+      select.innerHTML = '<option value="">Select microphone...</option>' + mics.map(m => `<option value="${m.deviceId}">${m.label || 'Microphone ' + (mics.indexOf(m) + 1)}</option>`).join('');
+    }
+    async function startMic(deviceId) {
+      try {
+        if (stream) stopMic();
+        const constraints = { audio: deviceId ? { deviceId: { exact: deviceId } } : true };
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioContext.createMediaStreamSource(stream);
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 256;
+        source.connect(analyser);
+        const track = stream.getAudioTracks()[0];
+        document.getElementById('micName').textContent = track.label || 'Unknown';
+        document.getElementById('status').innerHTML = '<span class="status-badge success">Working</span>';
+        document.getElementById('startBtn').disabled = true;
+        document.getElementById('stopBtn').disabled = false;
+        document.getElementById('recordBtn').disabled = false;
+        getMics();
+        updateVolume();
+      } catch (err) {
+        document.getElementById('status').innerHTML = '<span class="status-badge error">Error: ' + err.message + '</span>';
+      }
+    }
+    function stopMic() {
+      if (isRecording) stopRecording();
+      if (animationId) cancelAnimationFrame(animationId);
+      if (stream) stream.getTracks().forEach(t => t.stop());
+      if (audioContext) audioContext.close();
+      stream = null;
+      audioContext = null;
+      analyser = null;
+      document.getElementById('volumeFill').style.height = '0%';
+      document.getElementById('volumeValue').textContent = '0';
+      document.getElementById('status').innerHTML = '<span class="status-badge waiting">Stopped</span>';
+      document.getElementById('startBtn').disabled = false;
+      document.getElementById('stopBtn').disabled = true;
+      document.getElementById('recordBtn').disabled = true;
+      document.getElementById('micName').textContent = '-';
+    }
+    function switchMic() {
+      const deviceId = document.getElementById('micSelect').value;
+      if (deviceId) startMic(deviceId);
+    }
+    function updateVolume() {
+      if (!analyser) return;
+      const data = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(data);
+      const avg = data.reduce((a, b) => a + b, 0) / data.length;
+      const volume = Math.min(100, Math.round(avg * 1.5));
+      document.getElementById('volumeFill').style.height = volume + '%';
+      document.getElementById('volumeValue').textContent = volume;
+      animationId = requestAnimationFrame(updateVolume);
+    }
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let isRecording = false;
+    let recordedAudioUrl = null;
+    function startRecording() {
+      if (!stream) return;
+      if (isRecording) {
+        stopRecording();
+        return;
+      }
+      recordedChunks = [];
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+        if (recordedAudioUrl) URL.revokeObjectURL(recordedAudioUrl);
+        recordedAudioUrl = URL.createObjectURL(blob);
+        document.getElementById('audioPlayback').src = recordedAudioUrl;
+        document.getElementById('playBtn').disabled = false;
+        document.getElementById('recordStatus').textContent = 'Recording complete! Click "Play Recording" to listen.';
+      };
+      mediaRecorder.start();
+      isRecording = true;
+      document.getElementById('recordBtn').textContent = '⏹️ Stop Recording';
+      document.getElementById('recordBtn').classList.add('bg-red-500');
+      document.getElementById('recordStatus').textContent = '🔴 Recording...';
+    }
+    function stopRecording() {
+      if (mediaRecorder && isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+        document.getElementById('recordBtn').textContent = '🔴 Start Recording';
+        document.getElementById('recordBtn').classList.remove('bg-red-500');
+      }
+    }
+    function playRecording() {
+      const audio = document.getElementById('audioPlayback');
+      if (audio.src) {
+        audio.play();
+        document.getElementById('recordStatus').textContent = '▶️ Playing...';
+        audio.onended = () => { document.getElementById('recordStatus').textContent = 'Playback complete'; };
+      }
+    }
+    getMics();
+  </script>
 </body>
 </html>

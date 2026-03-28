@@ -514,9 +514,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">QR Code Scanner</h1>
@@ -643,7 +641,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -655,7 +653,83 @@
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    const tabCamera=document.getElementById('tab-camera'),tabImage=document.getElementById('tab-image'),cameraSection=document.getElementById('camera-section'),imageSection=document.getElementById('image-section'),resultSection=document.getElementById('result-section'),resultText=document.getElementById('result-text'),openBtn=document.getElementById('open-btn'),dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),cameraPlaceholder=document.getElementById('camera-placeholder');
+    let html5QrCode=null,scanResult='';
+
+    tabCamera.addEventListener('click',()=>{
+      tabCamera.classList.add('active');tabImage.classList.remove('active');
+      cameraSection.classList.remove('hidden');imageSection.classList.add('hidden');
+    });
+    tabImage.addEventListener('click',()=>{
+      tabImage.classList.add('active');tabCamera.classList.remove('active');
+      imageSection.classList.remove('hidden');cameraSection.classList.add('hidden');
+      if(html5QrCode&&html5QrCode.isScanning)html5QrCode.stop();
+    });
+
+    document.getElementById('start-camera').addEventListener('click',async()=>{
+      cameraPlaceholder.classList.add('hidden');
+      html5QrCode=new Html5Qrcode('reader');
+      try{
+        await html5QrCode.start({facingMode:'environment'},{fps:10,qrbox:{width:250,height:250}},onScanSuccess,()=>{});
+      }catch(e){
+        toast.error('Could not start camera.');
+        cameraPlaceholder.classList.remove('hidden');
+      }
+    });
+
+    function onScanSuccess(decodedText){
+      scanResult=decodedText;
+      resultText.textContent=decodedText;
+      resultSection.classList.remove('hidden');
+      if(decodedText.startsWith('http')){openBtn.classList.remove('hidden')}else{openBtn.classList.add('hidden')}
+      toast.success('QR code scanned!');
+      if(html5QrCode&&html5QrCode.isScanning)html5QrCode.stop();
+    }
+
+    dropZone.addEventListener('click',()=>fileInput.click());
+    dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('border-blue-500')});
+    dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('border-blue-500'));
+    dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('border-blue-500');if(e.dataTransfer.files[0])scanImage(e.dataTransfer.files[0])});
+    fileInput.addEventListener('change',e=>{if(e.target.files[0])scanImage(e.target.files[0])});
+
+    async function scanImage(file){
+      const scanner=new Html5Qrcode('reader');
+      try{
+        const result=await scanner.scanFile(file,true);
+        onScanSuccess(result);
+      }catch(e){
+        toast.error('No QR code found in image.');
+      }
+    }
+
+    document.getElementById('copy-btn').addEventListener('click',()=>{
+      navigator.clipboard.writeText(scanResult);
+      toast.success('Copied!');
+    });
+    openBtn.addEventListener('click',()=>window.open(scanResult,'_blank'));
+  </script>
 </body>
 </html>

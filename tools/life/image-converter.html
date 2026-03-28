@@ -539,9 +539,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.imageConverter.title">이미지 형식 변환</h1>
@@ -711,19 +709,175 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <script>
+    (function() {
+      'use strict';
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('file-input');
+      const uploadSection = document.getElementById('upload-section');
+      const editorSection = document.getElementById('editor-section');
+      const filesList = document.getElementById('files-list');
+      const formatBtns = document.querySelectorAll('.format-btn');
+      const qualitySection = document.getElementById('quality-section');
+      const qualitySlider = document.getElementById('quality-slider');
+      const qualityValue = document.getElementById('quality-value');
+      const convertBtn = document.getElementById('convert-btn');
+      const downloadAllBtn = document.getElementById('download-all-btn');
+      const resetBtn = document.getElementById('reset-btn');
+      const addMoreBtn = document.getElementById('add-more-btn');
+      const resultsSection = document.getElementById('results-section');
+      const resultsList = document.getElementById('results-list');
+
+      let files = [];
+      let convertedBlobs = [];
+      let selectedFormat = 'png';
+
+      dropZone.addEventListener('click', () => fileInput.click());
+      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+      dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+      fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+      addMoreBtn.addEventListener('click', () => fileInput.click());
+
+      function handleFiles(newFiles) {
+        const arr = Array.from(newFiles).filter(f => f.type.startsWith('image/')).slice(0, 20 - files.length);
+        if (arr.length === 0) return;
+        files = files.concat(arr);
+        renderFilesList();
+        uploadSection.classList.add('hidden');
+        editorSection.classList.remove('hidden');
+      }
+
+      function renderFilesList() {
+        filesList.innerHTML = files.map((f, i) => `
+          <div class="file-item">
+            <img class="file-thumb" src="${URL.createObjectURL(f)}" alt="">
+            <div class="flex-1 min-w-0">
+              <div class="text-sm font-medium text-gray-900 dark:text-white truncate">${f.name}</div>
+              <div class="text-xs text-gray-500">${(f.size/1024).toFixed(1)} KB</div>
+            </div>
+            <button class="text-gray-400 hover:text-red-500" onclick="removeFile(${i})">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        `).join('');
+      }
+
+      window.removeFile = (i) => { files.splice(i, 1); if (files.length === 0) resetBtn.click(); else renderFilesList(); };
+
+      formatBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          formatBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedFormat = btn.dataset.format;
+          qualitySection.classList.toggle('hidden', !['jpeg', 'webp'].includes(selectedFormat));
+        });
+      });
+
+      qualitySlider.addEventListener('input', () => { qualityValue.textContent = qualitySlider.value + '%'; });
+
+      convertBtn.addEventListener('click', async () => {
+        if (files.length === 0) return;
+        convertBtn.disabled = true;
+        convertBtn.textContent = window.t ? window.t('common.loading') : '변환 중...';
+        convertedBlobs = [];
+        resultsList.innerHTML = '';
+
+        const quality = parseInt(qualitySlider.value) / 100;
+        const mimeType = selectedFormat === 'jpeg' ? 'image/jpeg' : selectedFormat === 'ico' ? 'image/png' : `image/${selectedFormat}`;
+
+        for (const file of files) {
+          try {
+            const blob = await convertImage(file, mimeType, quality);
+            convertedBlobs.push({ name: file.name.replace(/\.[^.]+$/, '') + '.' + (selectedFormat === 'jpeg' ? 'jpg' : selectedFormat), blob });
+          } catch (e) { console.error(e); }
+        }
+
+        renderResults();
+        resultsSection.classList.remove('hidden');
+        downloadAllBtn.classList.remove('hidden');
+        convertBtn.disabled = false;
+        convertBtn.textContent = window.t ? window.t('tools.imageConverter.convert') : '변환하기';
+        toast.success((window.t ? window.t('tools.imageConverter.converted') : '변환 완료!').replace('{n}', convertedBlobs.length));
+      });
+
+      function convertImage(file, mimeType, quality) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            if (mimeType === 'image/jpeg') { ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+            ctx.drawImage(img, 0, 0);
+            canvas.toBlob(blob => blob ? resolve(blob) : reject('Failed'), mimeType, quality);
+          };
+          img.onerror = reject;
+          img.src = URL.createObjectURL(file);
+        });
+      }
+
+      function renderResults() {
+        resultsList.innerHTML = convertedBlobs.map((item, i) => `
+          <div class="file-item">
+            <img class="file-thumb" src="${URL.createObjectURL(item.blob)}" alt="">
+            <div class="flex-1 min-w-0">
+              <div class="text-sm font-medium text-gray-900 dark:text-white truncate">${item.name}</div>
+              <div class="text-xs text-gray-500">${(item.blob.size/1024).toFixed(1)} KB</div>
+            </div>
+            <button class="btn btn-secondary text-sm py-1 px-3" onclick="downloadSingle(${i})" data-i18n="common.download">다운로드</button>
+          </div>
+        `).join('');
+      }
+
+      window.downloadSingle = (i) => { const a = document.createElement('a'); a.href = URL.createObjectURL(convertedBlobs[i].blob); a.download = convertedBlobs[i].name; a.click(); };
+
+      downloadAllBtn.addEventListener('click', () => { convertedBlobs.forEach((_, i) => window.downloadSingle(i)); });
+
+      resetBtn.addEventListener('click', () => {
+        files = []; convertedBlobs = []; fileInput.value = '';
+        uploadSection.classList.remove('hidden');
+        editorSection.classList.add('hidden');
+        resultsSection.classList.add('hidden');
+        downloadAllBtn.classList.add('hidden');
+      });
+    })();
+  </script>
 </body>
 </html>

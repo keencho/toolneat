@@ -521,9 +521,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">이미지 회전/뒤집기</h1>
@@ -725,19 +723,222 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('file-input');
+    const uploadSection = document.getElementById('upload-section');
+    const editSection = document.getElementById('edit-section');
+    const previewImage = document.getElementById('preview-image');
+    const originalSizeEl = document.getElementById('original-size');
+    const resultSizeEl = document.getElementById('result-size');
+
+    let imageData = null;
+    let currentRotation = 0; // 0, 90, 180, 270
+    let flipH = false;
+    let flipV = false;
+
+    // Drag & drop
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+    });
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+    });
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) loadImage(file);
+    });
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) loadImage(file);
+    });
+
+    function loadImage(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          imageData = {
+            src: e.target.result,
+            width: img.width,
+            height: img.height,
+            name: file.name,
+            type: file.type
+          };
+          originalSizeEl.textContent = `${img.width} x ${img.height}`;
+          previewImage.src = e.target.result;
+
+          // Reset transformations
+          currentRotation = 0;
+          flipH = false;
+          flipV = false;
+          updatePreview();
+          updateResultSize();
+
+          uploadSection.classList.add('hidden');
+          editSection.classList.remove('hidden');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updatePreview() {
+      let transform = '';
+      if (currentRotation !== 0) {
+        transform += `rotate(${currentRotation}deg) `;
+      }
+      if (flipH) {
+        transform += 'scaleX(-1) ';
+      }
+      if (flipV) {
+        transform += 'scaleY(-1) ';
+      }
+      previewImage.style.transform = transform.trim() || 'none';
+    }
+
+    function updateResultSize() {
+      if (!imageData) return;
+      const isRotated90 = currentRotation === 90 || currentRotation === 270;
+      const w = isRotated90 ? imageData.height : imageData.width;
+      const h = isRotated90 ? imageData.width : imageData.height;
+      resultSizeEl.textContent = `${w} x ${h}`;
+    }
+
+    // Rotate buttons
+    document.getElementById('rotate-left').addEventListener('click', () => {
+      currentRotation = (currentRotation - 90 + 360) % 360;
+      updatePreview();
+      updateResultSize();
+    });
+
+    document.getElementById('rotate-right').addEventListener('click', () => {
+      currentRotation = (currentRotation + 90) % 360;
+      updatePreview();
+      updateResultSize();
+    });
+
+    document.getElementById('rotate-180').addEventListener('click', () => {
+      currentRotation = (currentRotation + 180) % 360;
+      updatePreview();
+      updateResultSize();
+    });
+
+    // Flip buttons
+    document.getElementById('flip-h').addEventListener('click', () => {
+      flipH = !flipH;
+      updatePreview();
+    });
+
+    document.getElementById('flip-v').addEventListener('click', () => {
+      flipV = !flipV;
+      updatePreview();
+    });
+
+    // Reset button
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      currentRotation = 0;
+      flipH = false;
+      flipV = false;
+      updatePreview();
+      updateResultSize();
+    });
+
+    // Change image button
+    document.getElementById('change-btn').addEventListener('click', () => {
+      uploadSection.classList.remove('hidden');
+      editSection.classList.add('hidden');
+      fileInput.value = '';
+      imageData = null;
+    });
+
+    // Download button
+    document.getElementById('download-btn').addEventListener('click', () => {
+      if (!imageData) return;
+
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      const isRotated90 = currentRotation === 90 || currentRotation === 270;
+      const w = isRotated90 ? imageData.height : imageData.width;
+      const h = isRotated90 ? imageData.width : imageData.height;
+
+      canvas.width = w;
+      canvas.height = h;
+
+      const img = new Image();
+      img.onload = () => {
+        ctx.save();
+
+        // Move to center
+        ctx.translate(w / 2, h / 2);
+
+        // Apply rotation
+        ctx.rotate((currentRotation * Math.PI) / 180);
+
+        // Apply flips
+        ctx.scale(flipH ? -1 : 1, flipV ? -1 : 1);
+
+        // Draw image centered
+        ctx.drawImage(img, -imageData.width / 2, -imageData.height / 2);
+
+        ctx.restore();
+
+        // Download
+        canvas.toBlob((blob) => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          const ext = imageData.name.split('.').pop() || 'png';
+          const baseName = imageData.name.replace(/\.[^/.]+$/, '');
+          a.href = url;
+          a.download = `${baseName}_edited.${ext === 'gif' ? 'png' : ext}`;
+          a.click();
+          URL.revokeObjectURL(url);
+          toast.success('이미지가 다운로드되었습니다');
+        }, imageData.type.includes('png') ? 'image/png' : 'image/jpeg', 0.95);
+      };
+      img.src = imageData.src;
+    });
+    })();
+  </script>
 </body>
 </html>

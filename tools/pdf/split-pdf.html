@@ -561,9 +561,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.splitPdf.title">PDF 분할</h1>
@@ -743,19 +741,301 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center">
+      <div class="spinner mx-auto mb-4"></div>
+      <p class="text-gray-600 dark:text-gray-400" data-i18n="tools.splitPdf.splitting">PDF 분할 중...</p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('file-input');
+      const fileInfo = document.getElementById('file-info');
+      const fileName = document.getElementById('file-name');
+      const pageCount = document.getElementById('page-count');
+      const changeFileBtn = document.getElementById('change-file');
+      const splitOptions = document.getElementById('split-options');
+      const pageSelection = document.getElementById('page-selection');
+      const pagesGrid = document.getElementById('pages-grid');
+      const splitBtn = document.getElementById('split-btn');
+      const loadingOverlay = document.getElementById('loading-overlay');
+      const loadingText = document.getElementById('loading-text');
+      const resultSection = document.getElementById('result-section');
+      const resultInfo = document.getElementById('result-info');
+      const resultFiles = document.getElementById('result-files');
+
+      let pdfFile = null;
+      let pdfDoc = null;
+      let totalPages = 0;
+      let selectedPages = new Set();
+      let libReady = false;
+      let generatedFiles = [];
+
+      // Check library
+      function checkLibrary() {
+        if (typeof PDFLib !== 'undefined') {
+          libReady = true;
+          fileInput.disabled = false;
+          loadingText.classList.add('hidden');
+          toast.success('PDF 도구 준비 완료!');
+        } else {
+          setTimeout(checkLibrary, 100);
+        }
+      }
+      checkLibrary();
+
+      // Drop zone events
+      dropZone.addEventListener('click', () => { if (libReady) fileInput.click(); });
+      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); if (libReady) dropZone.classList.add('drag-over'); });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (!libReady) return;
+        const file = e.dataTransfer.files[0];
+        if (file && file.type === 'application/pdf') loadPdf(file);
+        else toast.warning('PDF 파일만 선택할 수 있습니다.');
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) loadPdf(e.target.files[0]);
+      });
+
+      changeFileBtn.addEventListener('click', () => fileInput.click());
+
+      async function loadPdf(file) {
+        pdfFile = file;
+        try {
+          const arrayBuffer = await file.arrayBuffer();
+          pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+          totalPages = pdfDoc.getPageCount();
+
+          fileName.textContent = file.name;
+          pageCount.textContent = `${totalPages}페이지`;
+
+          dropZone.classList.add('hidden');
+          fileInfo.classList.remove('hidden');
+          splitOptions.classList.remove('hidden');
+          splitBtn.classList.remove('hidden');
+
+          renderPages();
+          updateSplitButton();
+        } catch (error) {
+          console.error(error);
+          toast.error('PDF를 불러올 수 없습니다.');
+        }
+      }
+
+      function renderPages() {
+        selectedPages = new Set([...Array(totalPages).keys()].map(i => i + 1));
+        pagesGrid.innerHTML = Array.from({ length: totalPages }, (_, i) => {
+          const pageNum = i + 1;
+          return `
+            <label class="page-preview selected cursor-pointer" data-page="${pageNum}">
+              ${pageNum}
+              <input type="checkbox" checked class="w-4 h-4 rounded" data-page="${pageNum}">
+            </label>
+          `;
+        }).join('');
+
+        pagesGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.addEventListener('change', (e) => {
+            const page = parseInt(e.target.dataset.page);
+            const preview = e.target.closest('.page-preview');
+            if (e.target.checked) {
+              selectedPages.add(page);
+              preview.classList.add('selected');
+            } else {
+              selectedPages.delete(page);
+              preview.classList.remove('selected');
+            }
+            updateSplitButton();
+          });
+        });
+      }
+
+      document.getElementById('select-all').addEventListener('click', () => {
+        pagesGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.checked = true;
+          cb.closest('.page-preview').classList.add('selected');
+          selectedPages.add(parseInt(cb.dataset.page));
+        });
+        updateSplitButton();
+      });
+
+      document.getElementById('select-none').addEventListener('click', () => {
+        pagesGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.checked = false;
+          cb.closest('.page-preview').classList.remove('selected');
+        });
+        selectedPages.clear();
+        updateSplitButton();
+      });
+
+      document.querySelectorAll('input[name="split-mode"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          pageSelection.style.display = e.target.value === 'range' ? 'block' : 'none';
+          updateSplitButton();
+        });
+      });
+
+      function updateSplitButton() {
+        const mode = document.querySelector('input[name="split-mode"]:checked').value;
+        if (mode === 'range') {
+          splitBtn.disabled = selectedPages.size === 0;
+        } else {
+          splitBtn.disabled = false;
+        }
+      }
+
+      splitBtn.addEventListener('click', async () => {
+        if (!pdfDoc || !libReady) return;
+        loadingOverlay.classList.add('show');
+        generatedFiles = [];
+
+        const mode = document.querySelector('input[name="split-mode"]:checked').value;
+
+        try {
+          if (mode === 'each') {
+            // Split each page into separate PDF
+            for (let i = 0; i < totalPages; i++) {
+              const newPdf = await PDFLib.PDFDocument.create();
+              const [page] = await newPdf.copyPages(pdfDoc, [i]);
+              newPdf.addPage(page);
+              const bytes = await newPdf.save();
+              const blob = new Blob([bytes], { type: 'application/pdf' });
+              generatedFiles.push({ name: `page_${i + 1}.pdf`, blob, pages: 1 });
+            }
+            resultInfo.textContent = `${totalPages}개 PDF 파일 생성됨`;
+          } else {
+            // Extract selected pages
+            const pages = Array.from(selectedPages).sort((a, b) => a - b);
+            const newPdf = await PDFLib.PDFDocument.create();
+            const copiedPages = await newPdf.copyPages(pdfDoc, pages.map(p => p - 1));
+            copiedPages.forEach(page => newPdf.addPage(page));
+            const bytes = await newPdf.save();
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            generatedFiles.push({ name: 'split.pdf', blob, pages: pages.length });
+            resultInfo.textContent = `${pages.length}페이지 추출됨`;
+          }
+
+          // Show result section
+          showResult();
+          toast.success('PDF 분할 완료!');
+        } catch (error) {
+          console.error(error);
+          toast.error('PDF 분할 중 오류가 발생했습니다.');
+        } finally {
+          loadingOverlay.classList.remove('show');
+        }
+      });
+
+      function showResult() {
+        fileInfo.classList.add('hidden');
+        splitOptions.classList.add('hidden');
+        splitBtn.classList.add('hidden');
+        resultSection.classList.remove('hidden');
+
+        // Render file list
+        resultFiles.innerHTML = generatedFiles.map((file, i) => `
+          <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div class="flex items-center gap-3">
+              <svg class="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-3 9h4v1h-4v-1zm0 2h4v1h-4v-1zm-2-2h1v4H8v-4z"/>
+              </svg>
+              <div>
+                <p class="text-sm font-medium text-gray-900 dark:text-white">${file.name}</p>
+                <p class="text-xs text-gray-500">${file.pages}페이지, ${formatSize(file.blob.size)}</p>
+              </div>
+            </div>
+            <button class="download-single-btn text-blue-600 hover:text-blue-700 text-sm" data-index="${i}">다운로드</button>
+          </div>
+        `).join('');
+
+        // Add click handlers
+        resultFiles.querySelectorAll('.download-single-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const index = parseInt(e.currentTarget.dataset.index);
+            downloadFile(generatedFiles[index]);
+          });
+        });
+      }
+
+      function downloadFile(file) {
+        const url = URL.createObjectURL(file.blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file.name;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function formatSize(bytes) {
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+      }
+
+      // Download all button
+      document.getElementById('download-all-btn').addEventListener('click', () => {
+        generatedFiles.forEach(file => downloadFile(file));
+      });
+
+      // New split button
+      document.getElementById('new-btn').addEventListener('click', () => {
+        pdfFile = null;
+        pdfDoc = null;
+        totalPages = 0;
+        selectedPages.clear();
+        generatedFiles = [];
+        dropZone.classList.remove('hidden');
+        fileInfo.classList.add('hidden');
+        splitOptions.classList.add('hidden');
+        splitBtn.classList.add('hidden');
+        resultSection.classList.add('hidden');
+        fileInput.value = '';
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -514,9 +514,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Screen Recorder</h1>
@@ -645,7 +643,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -657,7 +655,94 @@
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const preview=document.getElementById('preview'),previewPlaceholder=document.getElementById('preview-placeholder'),recordBtn=document.getElementById('record-btn'),timer=document.getElementById('timer'),status=document.getElementById('status'),controls=document.getElementById('controls'),resultSection=document.getElementById('result-section'),resultVideo=document.getElementById('result-video'),includeAudio=document.getElementById('include-audio');
+    let mediaRecorder,recordedChunks=[],stream,timerInterval,seconds=0,recordingBlob=null;
+
+    recordBtn.addEventListener('click',async()=>{
+      if(mediaRecorder&&mediaRecorder.state==='recording'){mediaRecorder.stop();return}
+      try{
+        const displayStream=await navigator.mediaDevices.getDisplayMedia({video:{cursor:'always'},audio:true});
+        let audioStream=null;
+        if(includeAudio.checked){try{audioStream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){console.log('No mic access')}}
+        const tracks=[...displayStream.getTracks()];
+        if(audioStream){tracks.push(...audioStream.getTracks())}
+        stream=new MediaStream(tracks);
+        preview.srcObject=stream;
+        preview.classList.remove('hidden');
+        previewPlaceholder.classList.add('hidden');
+        mediaRecorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp9'});
+        recordedChunks=[];
+        mediaRecorder.ondataavailable=e=>{if(e.data.size>0)recordedChunks.push(e.data)};
+        mediaRecorder.onstop=()=>{
+          stream.getTracks().forEach(t=>t.stop());
+          recordingBlob=new Blob(recordedChunks,{type:'video/webm'});
+          resultVideo.src=URL.createObjectURL(recordingBlob);
+          controls.classList.add('hidden');
+          resultSection.classList.remove('hidden');
+          clearInterval(timerInterval);
+          timer.classList.add('hidden');
+          recordBtn.classList.remove('recording');
+          toast.success('Recording complete!');
+        };
+        mediaRecorder.start();
+        recordBtn.classList.add('recording');
+        status.textContent='Recording... Click again to stop';
+        timer.classList.remove('hidden');
+        seconds=0;
+        updateTimer();
+        timerInterval=setInterval(()=>{seconds++;updateTimer()},1000);
+        displayStream.getVideoTracks()[0].onended=()=>{if(mediaRecorder.state==='recording')mediaRecorder.stop()};
+      }catch(error){console.error(error);toast.error('Screen sharing cancelled.')}
+    });
+
+    function updateTimer(){
+      const m=Math.floor(seconds/60).toString().padStart(2,'0');
+      const s=(seconds%60).toString().padStart(2,'0');
+      timer.textContent=`${m}:${s}`;
+    }
+
+    document.getElementById('download-btn').addEventListener('click',()=>{
+      if(!recordingBlob)return;
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(recordingBlob);
+      a.download='recording.webm';
+      a.click();
+    });
+
+    document.getElementById('new-btn').addEventListener('click',()=>{
+      controls.classList.remove('hidden');
+      resultSection.classList.add('hidden');
+      recordBtn.classList.remove('recording');
+      status.textContent='Click the button to start recording';
+      preview.srcObject=null;
+      preview.classList.add('hidden');
+      previewPlaceholder.classList.remove('hidden');
+    });
+    })();
+  </script>
 </body>
 </html>

@@ -511,9 +511,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">OCR Image Text Extractor</h1>
@@ -637,7 +635,7 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -649,7 +647,39 @@
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <div id="loading-overlay" class="loading-overlay"><div class="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center min-w-[300px]"><div class="spinner mx-auto mb-4"></div><p id="progress-text" class="text-gray-600 dark:text-gray-400 mb-3">Recognizing text...</p><div class="progress-bar"><div id="progress-fill" class="progress-bar-fill" style="width:0%"></div></div></div></div>
+  <script>
+    (function(){'use strict';const dropZone=document.getElementById('drop-zone'),fileInput=document.getElementById('file-input'),optionsSection=document.getElementById('options-section'),resultSection=document.getElementById('result-section'),previewImg=document.getElementById('preview-img'),resultText=document.getElementById('result-text'),loadingOverlay=document.getElementById('loading-overlay'),progressText=document.getElementById('progress-text'),progressFill=document.getElementById('progress-fill'),loadingText=document.getElementById('loading-text');let libReady=false,imageFile=null;
+    function checkLibrary(){if(typeof Tesseract!=='undefined'){libReady=true;fileInput.disabled=false;loadingText.classList.add('hidden');toast.success('OCR tool ready!')}else{setTimeout(checkLibrary,100)}}checkLibrary();
+    dropZone.addEventListener('click',()=>{if(libReady)fileInput.click()});dropZone.addEventListener('dragover',e=>{e.preventDefault();if(libReady)dropZone.classList.add('drag-over')});dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(!libReady)return;const file=e.dataTransfer.files[0];if(file&&file.type.startsWith('image/'))loadImage(file);else toast.warning('Please select an image file.')});
+    fileInput.addEventListener('change',e=>{if(e.target.files[0])loadImage(e.target.files[0])});
+    function loadImage(file){imageFile=file;const reader=new FileReader();reader.onload=e=>{previewImg.src=e.target.result;dropZone.classList.add('hidden');optionsSection.classList.remove('hidden');resultSection.classList.add('hidden')};reader.readAsDataURL(file)}
+    document.getElementById('change-file').addEventListener('click',()=>{fileInput.click()});
+    document.getElementById('recognize-btn').addEventListener('click',async()=>{if(!imageFile||!libReady)return;const lang=document.getElementById('language').value;loadingOverlay.classList.add('show');progressFill.style.width='0%';progressText.textContent='Loading language data...';
+      try{const result=await Tesseract.recognize(imageFile,lang,{logger:m=>{if(m.status==='recognizing text'){const pct=Math.round(m.progress*100);progressFill.style.width=pct+'%';progressText.textContent=`Recognizing... ${pct}%`}else if(m.status==='loading language traineddata'){progressText.textContent='Downloading language data...'}}});resultText.value=result.data.text;resultSection.classList.remove('hidden');toast.success('Text extracted!')}catch(error){console.error(error);toast.error('Error during text recognition.')}finally{loadingOverlay.classList.remove('show')}});
+    document.getElementById('copy-btn').addEventListener('click',()=>{resultText.select();navigator.clipboard.writeText(resultText.value);toast.success('Copied!')});})();
+  </script>
 </body>
 </html>

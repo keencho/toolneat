@@ -508,9 +508,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="tools.noiseGenerator.title">Noise Generator</h1>
@@ -668,7 +666,7 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
@@ -680,7 +678,261 @@
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <script>
+    (function() {
+      'use strict';
+
+      let audioContext = null;
+      let noiseNode = null;
+      let gainNode = null;
+      let isPlaying = false;
+      let currentNoise = null;
+      let timerInterval = null;
+      let remainingTime = 0;
+
+      const player = document.getElementById('player');
+      const playPauseBtn = document.getElementById('play-pause-btn');
+      const playIcon = document.getElementById('play-icon');
+      const pauseIcon = document.getElementById('pause-icon');
+      const stopBtn = document.getElementById('stop-btn');
+      const volumeSlider = document.getElementById('volume');
+      const volumeValue = document.getElementById('volume-value');
+      const timerDisplay = document.getElementById('timer-display');
+      const currentNoiseDisplay = document.getElementById('current-noise');
+
+      const noiseNames = {
+        white: 'White Noise',
+        pink: 'Pink Noise',
+        brown: 'Brown Noise'
+      };
+
+      document.getElementById('white-btn').addEventListener('click', () => selectNoise('white'));
+      document.getElementById('pink-btn').addEventListener('click', () => selectNoise('pink'));
+      document.getElementById('brown-btn').addEventListener('click', () => selectNoise('brown'));
+
+      function selectNoise(type) {
+        document.querySelectorAll('.noise-btn').forEach(btn => {
+          btn.classList.remove('border-blue-500', 'border-pink-500', 'border-amber-500');
+        });
+
+        const btnId = type + '-btn';
+        const colors = { white: 'blue', pink: 'pink', brown: 'amber' };
+        document.getElementById(btnId).classList.add(`border-${colors[type]}-500`);
+
+        currentNoise = type;
+        currentNoiseDisplay.textContent = `Playing: ${noiseNames[type]}`;
+        player.classList.remove('hidden');
+
+        if (isPlaying) {
+          stopNoise();
+        }
+        playNoise();
+      }
+
+      playPauseBtn.addEventListener('click', () => {
+        if (isPlaying) {
+          pauseNoise();
+        } else {
+          playNoise();
+        }
+      });
+
+      stopBtn.addEventListener('click', () => {
+        stopNoise();
+        player.classList.add('hidden');
+        document.querySelectorAll('.noise-btn').forEach(btn => {
+          btn.classList.remove('border-blue-500', 'border-pink-500', 'border-amber-500');
+        });
+        clearTimer();
+      });
+
+      volumeSlider.addEventListener('input', () => {
+        volumeValue.textContent = volumeSlider.value;
+        if (gainNode) {
+          gainNode.gain.value = volumeSlider.value / 100;
+        }
+      });
+
+      document.querySelectorAll('.timer-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.timer-btn').forEach(b => b.classList.remove('btn-primary'));
+          btn.classList.add('btn-primary');
+          btn.classList.remove('btn-secondary');
+
+          const time = parseInt(btn.dataset.time);
+          if (time === 0) {
+            clearTimer();
+          } else {
+            startTimer(time * 60);
+          }
+        });
+      });
+
+      function createWhiteNoise() {
+        const bufferSize = 2 * audioContext.sampleRate;
+        const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+        const source = audioContext.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        return source;
+      }
+
+      function createPinkNoise() {
+        const bufferSize = 2 * audioContext.sampleRate;
+        const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+        const data = buffer.getChannelData(0);
+        let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          b0 = 0.99886 * b0 + white * 0.0555179;
+          b1 = 0.99332 * b1 + white * 0.0750759;
+          b2 = 0.96900 * b2 + white * 0.1538520;
+          b3 = 0.86650 * b3 + white * 0.3104856;
+          b4 = 0.55000 * b4 + white * 0.5329522;
+          b5 = -0.7616 * b5 - white * 0.0168980;
+          data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
+          b6 = white * 0.115926;
+        }
+        const source = audioContext.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        return source;
+      }
+
+      function createBrownNoise() {
+        const bufferSize = 2 * audioContext.sampleRate;
+        const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+        const data = buffer.getChannelData(0);
+        let lastOut = 0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          data[i] = (lastOut + (0.02 * white)) / 1.02;
+          lastOut = data[i];
+          data[i] *= 3.5;
+        }
+        const source = audioContext.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        return source;
+      }
+
+      function playNoise() {
+        if (!currentNoise) return;
+
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        if (audioContext.state === 'suspended') {
+          audioContext.resume();
+        }
+
+        gainNode = audioContext.createGain();
+        gainNode.gain.value = volumeSlider.value / 100;
+        gainNode.connect(audioContext.destination);
+
+        switch (currentNoise) {
+          case 'white':
+            noiseNode = createWhiteNoise();
+            break;
+          case 'pink':
+            noiseNode = createPinkNoise();
+            break;
+          case 'brown':
+            noiseNode = createBrownNoise();
+            break;
+        }
+
+        noiseNode.connect(gainNode);
+        noiseNode.start();
+        isPlaying = true;
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+      }
+
+      function pauseNoise() {
+        if (noiseNode) {
+          noiseNode.stop();
+          noiseNode = null;
+        }
+        isPlaying = false;
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+      }
+
+      function stopNoise() {
+        pauseNoise();
+        currentNoise = null;
+      }
+
+      function startTimer(seconds) {
+        clearTimer();
+        remainingTime = seconds;
+        timerDisplay.classList.remove('hidden');
+        updateTimerDisplay();
+
+        timerInterval = setInterval(() => {
+          remainingTime--;
+          updateTimerDisplay();
+
+          if (remainingTime <= 0) {
+            clearTimer();
+            stopNoise();
+            player.classList.add('hidden');
+            document.querySelectorAll('.noise-btn').forEach(btn => {
+              btn.classList.remove('border-blue-500', 'border-pink-500', 'border-amber-500');
+            });
+            toast.show('Timer ended. Noise stopped.', 'info');
+          }
+        }, 1000);
+      }
+
+      function clearTimer() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        remainingTime = 0;
+        timerDisplay.classList.add('hidden');
+        document.querySelectorAll('.timer-btn').forEach(btn => {
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-secondary');
+        });
+      }
+
+      function updateTimerDisplay() {
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
+        timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }
+    })();
+  </script>
 </body>
 </html>

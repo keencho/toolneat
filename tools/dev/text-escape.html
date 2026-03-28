@@ -534,9 +534,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <!-- Page Title -->
       <div class="mb-6">
@@ -708,19 +706,209 @@
   </main>
 
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
 </div>
 
+  <script>
+    (function() {
+      'use strict';
+
+      const input = document.getElementById('input-text');
+      const output = document.getElementById('output-text');
+      const escapeTab = document.getElementById('escape-tab');
+      const unescapeTab = document.getElementById('unescape-tab');
+      const formatSelect = document.getElementById('format-select');
+      const convertBtn = document.getElementById('convert-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const swapBtn = document.getElementById('swap-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const liveConvert = document.getElementById('live-convert');
+      const inputLabel = document.getElementById('input-label');
+      const outputLabel = document.getElementById('output-label');
+      const inputSize = document.getElementById('input-size');
+      const outputSize = document.getElementById('output-size');
+
+      let isEscapeMode = true;
+
+      // Escape functions
+      const escapers = {
+        json: (str) => JSON.stringify(str).slice(1, -1),
+        javascript: (str) => str
+          .replace(/\\/g, '\\\\')
+          .replace(/'/g, "\\'")
+          .replace(/"/g, '\\"')
+          .replace(/\n/g, '\\n')
+          .replace(/\r/g, '\\r')
+          .replace(/\t/g, '\\t'),
+        html: (str) => str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;'),
+        url: (str) => encodeURIComponent(str)
+      };
+
+      // Unescape functions
+      const unescapers = {
+        json: (str) => {
+          try {
+            return JSON.parse('"' + str + '"');
+          } catch {
+            return str;
+          }
+        },
+        javascript: (str) => str
+          .replace(/\\n/g, '\n')
+          .replace(/\\r/g, '\r')
+          .replace(/\\t/g, '\t')
+          .replace(/\\"/g, '"')
+          .replace(/\\'/g, "'")
+          .replace(/\\\\/g, '\\'),
+        html: (str) => {
+          const doc = new DOMParser().parseFromString(str, 'text/html');
+          return doc.documentElement.textContent;
+        },
+        url: (str) => {
+          try {
+            return decodeURIComponent(str);
+          } catch {
+            return str;
+          }
+        }
+      };
+
+      function updateLabels() {
+        if (isEscapeMode) {
+          inputLabel.textContent = '원본 텍스트';
+          outputLabel.textContent = '이스케이프된 텍스트';
+        } else {
+          inputLabel.textContent = '이스케이프된 텍스트';
+          outputLabel.textContent = '원본 텍스트';
+        }
+      }
+
+      function setMode(escape) {
+        isEscapeMode = escape;
+        if (escape) {
+          escapeTab.classList.add('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          escapeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          unescapeTab.classList.remove('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          unescapeTab.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+        } else {
+          unescapeTab.classList.add('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          unescapeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          escapeTab.classList.remove('bg-blue-50', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          escapeTab.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+        }
+        updateLabels();
+        if (liveConvert.checked) convert();
+      }
+
+      escapeTab.addEventListener('click', () => setMode(true));
+      unescapeTab.addEventListener('click', () => setMode(false));
+
+      function convert() {
+        const text = input.value;
+        if (!text) {
+          output.value = '';
+          outputSize.textContent = '';
+          return;
+        }
+
+        const format = formatSelect.value;
+        try {
+          const result = isEscapeMode ? escapers[format](text) : unescapers[format](text);
+          output.value = result;
+          outputSize.textContent = formatBytes(new Blob([result]).size);
+        } catch (e) {
+          output.value = '변환 오류: ' + e.message;
+        }
+      }
+
+      convertBtn.addEventListener('click', convert);
+
+      input.addEventListener('input', () => {
+        inputSize.textContent = formatBytes(new Blob([input.value]).size);
+        if (liveConvert.checked) convert();
+      });
+
+      formatSelect.addEventListener('change', () => {
+        if (liveConvert.checked) convert();
+      });
+
+      liveConvert.addEventListener('change', () => {
+        if (liveConvert.checked) convert();
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) {
+          toast.warning('복사할 내용이 없습니다');
+          return;
+        }
+        await copyToClipboard(output.value);
+        toast.success('복사되었습니다');
+      });
+
+      swapBtn.addEventListener('click', () => {
+        const temp = output.value;
+        if (!temp) return;
+        input.value = temp;
+        output.value = '';
+        setMode(!isEscapeMode);
+        inputSize.textContent = formatBytes(new Blob([input.value]).size);
+        outputSize.textContent = '';
+        if (liveConvert.checked) convert();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        inputSize.textContent = '';
+        outputSize.textContent = '';
+        input.focus();
+      });
+
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+    })();
+  </script>
 </body>
 </html>

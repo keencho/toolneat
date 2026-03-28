@@ -502,9 +502,7 @@
 <!-- Dropdown Backdrop (헤더 아래부터 시작) -->
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
-</div>
-
-<main class="flex-1 mt-16 py-10 md:py-14">
+</div><main class="flex-1 mt-16 py-10 md:py-14">
     <div class="container-main">
       <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">메타 태그 생성기</h1>
@@ -723,19 +721,147 @@
     </div>
   </main>
   <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
+<footer class="mt-auto py-8 border-t border-gray-100 dark:border-gray-800">
   <div class="container-main">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
       <p>&copy; 2026 Toolneat. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
+        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
+        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </div>
 </footer>
-</div>
 
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+  <script>
+    (function(){'use strict';
+    const pageTitle = document.getElementById('page-title');
+    const pageDescription = document.getElementById('page-description');
+    const pageUrl = document.getElementById('page-url');
+    const imageUrl = document.getElementById('image-url');
+    const siteName = document.getElementById('site-name');
+    const twitterHandle = document.getElementById('twitter-handle');
+    const ogType = document.getElementById('og-type');
+    const locale = document.getElementById('locale');
+    const robots = document.getElementById('robots');
+    const keywords = document.getElementById('keywords');
+    const author = document.getElementById('author');
+    const includeOg = document.getElementById('include-og');
+    const includeTwitter = document.getElementById('include-twitter');
+    const output = document.getElementById('output');
+    const copyBtn = document.getElementById('copy-btn');
+    const titleCount = document.getElementById('title-count');
+    const descCount = document.getElementById('desc-count');
+    const previewTitle = document.getElementById('preview-title');
+    const previewUrl = document.getElementById('preview-url');
+    const previewDesc = document.getElementById('preview-desc');
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function generate() {
+      const title = pageTitle.value.trim();
+      const description = pageDescription.value.trim();
+      const url = pageUrl.value.trim();
+      const image = imageUrl.value.trim();
+      const site = siteName.value.trim();
+      const twitter = twitterHandle.value.trim();
+      const type = ogType.value;
+      const lang = locale.value;
+      const robot = robots.value;
+      const kw = keywords.value.trim();
+      const auth = author.value.trim();
+
+      // Update counts
+      titleCount.textContent = title.length;
+      descCount.textContent = description.length;
+
+      // Update preview
+      previewTitle.textContent = title || '페이지 제목';
+      previewUrl.textContent = url || 'https://example.com';
+      previewDesc.textContent = description || '페이지 설명이 여기에 표시됩니다...';
+
+      if (!title && !description) {
+        output.textContent = '<!-- 페이지 정보를 입력하면 메타 태그가 생성됩니다 -->';
+        return;
+      }
+
+      let html = '<!-- Basic Meta Tags -->\n';
+      if (title) html += `<title>${escapeHtml(title)}</title>\n`;
+      if (description) html += `<meta name="description" content="${escapeHtml(description)}">\n`;
+      if (kw) html += `<meta name="keywords" content="${escapeHtml(kw)}">\n`;
+      if (auth) html += `<meta name="author" content="${escapeHtml(auth)}">\n`;
+      html += `<meta name="robots" content="${robot}">\n`;
+      if (url) html += `<link rel="canonical" href="${escapeHtml(url)}">\n`;
+
+      if (includeOg.checked) {
+        html += '\n<!-- Open Graph / Facebook -->\n';
+        html += `<meta property="og:type" content="${type}">\n`;
+        if (title) html += `<meta property="og:title" content="${escapeHtml(title)}">\n`;
+        if (description) html += `<meta property="og:description" content="${escapeHtml(description)}">\n`;
+        if (url) html += `<meta property="og:url" content="${escapeHtml(url)}">\n`;
+        if (image) html += `<meta property="og:image" content="${escapeHtml(image)}">\n`;
+        if (site) html += `<meta property="og:site_name" content="${escapeHtml(site)}">\n`;
+        html += `<meta property="og:locale" content="${lang}">\n`;
+      }
+
+      if (includeTwitter.checked) {
+        html += '\n<!-- Twitter Card -->\n';
+        html += `<meta name="twitter:card" content="${image ? 'summary_large_image' : 'summary'}">\n`;
+        if (title) html += `<meta name="twitter:title" content="${escapeHtml(title)}">\n`;
+        if (description) html += `<meta name="twitter:description" content="${escapeHtml(description)}">\n`;
+        if (image) html += `<meta name="twitter:image" content="${escapeHtml(image)}">\n`;
+        if (twitter) html += `<meta name="twitter:site" content="${escapeHtml(twitter)}">\n`;
+      }
+
+      output.textContent = html;
+    }
+
+    // Event listeners
+    [pageTitle, pageDescription, pageUrl, imageUrl, siteName, twitterHandle, ogType, locale, robots, keywords, author].forEach(el => {
+      el.addEventListener('input', generate);
+    });
+
+    [includeOg, includeTwitter].forEach(el => {
+      el.addEventListener('change', generate);
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(output.textContent).then(() => {
+        toast.success('클립보드에 복사되었습니다');
+      }).catch(() => {
+        toast.error('복사에 실패했습니다');
+      });
+    });
+
+    // Initial generate
+    generate();
+    })();
+  </script>
 </body>
 </html>
