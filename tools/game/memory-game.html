@@ -720,6 +720,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>기억력 테스트(Memory Game)는 뒤집힌 카드 중 같은 짝을 찾는 고전 카드 매칭 게임입니다. 집중 게임(Concentration) 또는 페어스(Pairs)라고도 불리며, 19세기부터 어린이와 성인 모두에게 사랑받아 왔습니다. 작업 기억력, 집중력, 패턴 인식 능력을 기르는 데 탁월하며, 인지 기능 향상에 도움이 된다는 연구 결과도 있습니다. Toolneat에서 3가지 난이도로 즐기며 두뇌를 단련해 보세요.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>메모리 게임은 뒤집힌 카드들 중 같은 그림의 짝을 찾는 게임입니다. 카드 배열은 Fisher-Yates 셔플 알고리즘으로 무작위 배치됩니다. 한 번에 두 장을 뒤집어 같은 그림이면 열린 상태로 유지하고, 다르면 다시 뒤집힙니다. 시도 횟수와 시간을 기록하여 기억력과 집중력을 측정합니다. 모든 짝을 찾으면 게임이 완료됩니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">게임 조작법</h3>
           <ul class="list-disc list-inside space-y-2">
             <li><strong>카드 뒤집기:</strong> 카드를 클릭(또는 터치)하면 뒤집혀 이모지가 나타납니다.</li>
@@ -781,6 +784,22 @@
               <p>페이지를 한 번 로드한 후에는 인터넷 연결 없이도 플레이할 수 있습니다.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          
+          <h3 class="text-lg font-semibold mt-6 mb-3">기억력 향상을 위한 플레이 전략</h3>
+          <p>메모리 게임에서 좋은 성적을 내려면 체계적인 기억 전략이 필요합니다. 처음 몇 번의 뒤집기는 카드 위치를 파악하는 데 집중하세요. 무작위로 뒤집기보다 한 줄씩 순서대로 확인하면 위치를 기억하기 쉽습니다. 이미 본 카드의 위치를 머릿속에서 격자 좌표로 기억하면 효과적입니다.</p><p>짝을 못 찾았을 때도 정보를 얻는 과정입니다. 두 장을 뒤집어 일치하지 않더라도 각 카드의 위치를 기억해 두면, 나중에 같은 그림이 나왔을 때 바로 짝을 맞출 수 있습니다. 연속으로 짝을 맞추면 자신감이 올라가지만, 서두르면 실수하기 쉽습니다. 차분하게 한 쌍씩 확실하게 맞추는 것이 전체 시도 횟수를 줄이는 핵심입니다. 정기적으로 메모리 게임을 하면 단기 기억력과 집중력 향상에 도움이 됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/game/minesweeper" class="text-blue-600 dark:text-blue-400 hover:underline">지뢰찾기</a> - 논리 추론 게임.</li>
+            <li><a href="/tools/game/2048" class="text-blue-600 dark:text-blue-400 hover:underline">2048</a> - 숫자 퍼즐 게임.</li>
+            <li><a href="/tools/game/snake" class="text-blue-600 dark:text-blue-400 hover:underline">스네이크</a> - 아케이드 게임.</li>
+          </ul>
         </div>
       </section>
     </div>

@@ -645,7 +645,136 @@
           <li>API authentication</li>
         </ul>
         <p class="mt-4">For simple websites, sessions might be simpler. Choose the right tool for the job.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">JWT Claims in Detail</h2>
+        <p class="text-gray-700 dark:text-gray-300">The payload section of a JWT contains claims, which are statements about the user and metadata about the token. The JWT specification (RFC 7519) defines a set of registered claims that are not mandatory but strongly recommended.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>iss (Issuer):</strong> Who created and signed the token. Typically a URL identifying your auth server, like <code>"https://auth.example.com"</code>.</li>
+          <li><strong>sub (Subject):</strong> The user or entity the token represents. Usually a user ID like <code>"user-12345"</code>.</li>
+          <li><strong>aud (Audience):</strong> The intended recipient of the token. An API server can reject tokens where the audience claim does not match its own identifier.</li>
+          <li><strong>exp (Expiration Time):</strong> A Unix timestamp after which the token is no longer valid. The server must reject expired tokens.</li>
+          <li><strong>iat (Issued At):</strong> When the token was created. Useful for determining token age.</li>
+          <li><strong>nbf (Not Before):</strong> The token should not be accepted before this timestamp. Rarely used but available for scheduled access.</li>
+          <li><strong>jti (JWT ID):</strong> A unique identifier for the token, useful for preventing replay attacks by tracking which tokens have been used.</li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">Beyond registered claims, you can add custom claims for your application. Common examples include user roles, permissions, or tenant IDs in multi-tenant systems. Keep the payload lean, though. Every byte in the JWT is sent with every request, and large tokens waste bandwidth and slow down parsing.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Signing Algorithms: HS256 vs RS256</h2>
+        <p class="text-gray-700 dark:text-gray-300">The signing algorithm determines how the signature is created and verified. The two most common choices are HS256 and RS256, and they work quite differently.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">HS256 (HMAC + SHA-256)</h3>
+        <p class="text-gray-700 dark:text-gray-300">This is a symmetric algorithm. The same secret key is used to both sign and verify the token. It is simple to implement and fast to compute. The drawback is that every service that needs to verify tokens must have access to the secret key. If you have a single backend server, this works well. If you have multiple services, you need to distribute the secret securely, which introduces risk.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>// HS256: same key signs and verifies
+const token = jwt.sign(payload, "my-shared-secret", { algorithm: "HS256" });
+const decoded = jwt.verify(token, "my-shared-secret");</pre>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">RS256 (RSA + SHA-256)</h3>
+        <p class="text-gray-700 dark:text-gray-300">This is an asymmetric algorithm using a public/private key pair. The auth server signs tokens with its private key. Any service can verify tokens using the public key, which can be distributed freely without security risk. This is the standard choice for microservices architectures and third-party integrations. OIDC (OpenID Connect) providers like Google and Auth0 use RS256 by default.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>// RS256: private key signs, public key verifies
+const token = jwt.sign(payload, privateKey, { algorithm: "RS256" });
+const decoded = jwt.verify(token, publicKey);</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">Other algorithms exist too. ES256 uses elliptic curve cryptography and produces shorter signatures than RS256. PS256 uses RSA-PSS padding. The <code>none</code> algorithm means no signature at all, and accepting it is a well-known security vulnerability that has led to real-world breaches. Always validate the algorithm in the header and reject <code>none</code>.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">The Complete Authentication Flow</h2>
+        <p class="text-gray-700 dark:text-gray-300">Let's walk through a complete JWT authentication cycle, step by step, to see how all the pieces fit together.</p>
+        <ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>Login:</strong> The user sends their username and password to the auth endpoint (<code>POST /auth/login</code>).</li>
+          <li><strong>Validation:</strong> The server checks the credentials against the database. If they match, it creates a JWT containing the user's ID, role, and an expiration time.</li>
+          <li><strong>Token delivery:</strong> The server returns the JWT (and optionally a refresh token) to the client. The client stores it, typically in an httpOnly cookie or memory.</li>
+          <li><strong>Authenticated requests:</strong> On every subsequent API call, the client includes the token in the <code>Authorization: Bearer &lt;token&gt;</code> header.</li>
+          <li><strong>Verification:</strong> The server extracts the token, verifies the signature using its secret or public key, checks the expiration, and reads the claims. No database lookup is needed for basic auth checks.</li>
+          <li><strong>Token refresh:</strong> When the access token expires, the client sends the refresh token to a dedicated endpoint (<code>POST /auth/refresh</code>). The server issues a new access token without requiring the user to log in again.</li>
+        </ol>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Access Tokens vs Refresh Tokens</h2>
+        <p class="text-gray-700 dark:text-gray-300">A common pattern splits authentication into two tokens with different lifetimes and purposes.</p>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left"></th>
+                <th class="px-4 py-2 text-left">Access Token</th>
+                <th class="px-4 py-2 text-left">Refresh Token</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <td class="px-4 py-2 font-medium">Lifetime</td>
+                <td class="px-4 py-2">Short (15 min - 1 hour)</td>
+                <td class="px-4 py-2">Long (7 - 30 days)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">Purpose</td>
+                <td class="px-4 py-2">Authorize API requests</td>
+                <td class="px-4 py-2">Obtain new access tokens</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">Storage</td>
+                <td class="px-4 py-2">Memory or httpOnly cookie</td>
+                <td class="px-4 py-2">httpOnly cookie (secure)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">Sent to</td>
+                <td class="px-4 py-2">API servers</td>
+                <td class="px-4 py-2">Auth server only</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">If stolen</td>
+                <td class="px-4 py-2">Limited damage (short-lived)</td>
+                <td class="px-4 py-2">Attacker can get new access tokens</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">Refresh token rotation adds another layer of safety. Each time a refresh token is used, the server issues a new refresh token and invalidates the old one. If an attacker steals and uses a refresh token that the legitimate user has already rotated, the server detects the reuse and revokes the entire token family, forcing a fresh login.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Security Best Practices</h2>
+        <p class="text-gray-700 dark:text-gray-300">JWT security is not just about the token itself. It is about how you handle it throughout its lifecycle.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>Always validate the signature.</strong> Never decode a JWT and trust the payload without verifying the signature first. Libraries like <code>jsonwebtoken</code> (Node.js) do this automatically when you use <code>verify()</code> instead of <code>decode()</code>.</li>
+          <li><strong>Check the algorithm.</strong> Pin the expected algorithm on the server side. Do not let the token's header dictate which algorithm to use. An attacker could set the algorithm to <code>none</code> and strip the signature.</li>
+          <li><strong>Validate all relevant claims.</strong> Check <code>exp</code> (expiration), <code>iss</code> (issuer), and <code>aud</code> (audience) on every request. A token intended for Service A should not be accepted by Service B.</li>
+          <li><strong>Keep the payload small.</strong> Do not store entire user profiles in the token. Include only what is needed for authorization decisions: user ID, roles, and permissions.</li>
+          <li><strong>Use HTTPS everywhere.</strong> JWTs transmitted over HTTP can be intercepted by anyone on the network. There is no workaround for this except TLS.</li>
+          <li><strong>Implement token revocation.</strong> Despite JWT being stateless, you need a way to invalidate tokens in emergencies (compromised accounts, password changes). A short-lived access token combined with a server-side refresh token blacklist is the most practical approach.</li>
+          <li><strong>Rotate signing keys.</strong> Periodically change your signing keys. Use the JWKS (JSON Web Key Set) endpoint to publish current and recent public keys, allowing a graceful transition.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">JWT vs Session-Based Auth: A Deeper Look</h2>
+        <p class="text-gray-700 dark:text-gray-300">The choice between JWT and sessions is not simply "new vs old" or "better vs worse." Each approach has fundamental trade-offs that make it better suited to different architectures.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">Sessions shine when you need instant revocation. Deleting a session from the server immediately locks out the user. With JWT, the token remains valid until it expires, unless you implement a blacklist, which reintroduces server-side state and partially defeats the purpose of JWT.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">JWT shines in distributed systems. When you have 20 microservices behind a load balancer, sharing session state across all of them requires a centralized session store (like Redis). JWT tokens carry their own proof of identity, so any service can verify them independently using just the public key.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">A hybrid approach is also common: use JWT for service-to-service communication within your infrastructure, and sessions for user-facing web applications where you need fine-grained control over user state. Many production systems use both, choosing the right tool for each specific boundary.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Is JWT encrypted?</h3>
+            <p class="text-gray-700 dark:text-gray-300">JWT is signed but not encrypted by default. Since it uses Base64URL encoding, anyone can read the contents. JWE (JSON Web Encryption) can encrypt the payload, but standard JWT only includes a signature.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">How should I set JWT expiration time?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Set the exp (expiration) claim with a Unix timestamp. Access tokens typically expire in 15 minutes to 1 hour, refresh tokens in 7-30 days. Too long risks security, too short hurts usability.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">JWT vs session-based auth - which is better?</h3>
+            <p class="text-gray-700 dark:text-gray-300">JWT is stateless and scalable, ideal for microservices. Sessions are server-managed and can be immediately invalidated. Sessions suit single-server apps, while JWT works better for distributed systems.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Where should I store JWT tokens?</h3>
+            <p class="text-gray-700 dark:text-gray-300">httpOnly cookies are the safest option. localStorage is vulnerable to XSS, and regular cookies to CSRF. Use cookies with httpOnly + Secure + SameSite flags.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What if a JWT token is stolen?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Use short expiration times, implement token blacklists, or use refresh token rotation. You can also include user IP or device info in the token for additional verification.</p>
+          </div>
+        </div>
 
       <!-- Related Tools -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

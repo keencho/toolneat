@@ -638,6 +638,26 @@
           <p class="text-gray-600 dark:text-gray-400 mt-4">모든 처리는 브라우저에서 이루어지며 카메라 영상이나 이미지 데이터가 서버로 전송되지 않습니다.</p>
         </div>
       </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>QR코드 스캐너는 카메라 스트림에서 실시간으로 QR코드를 감지하고 디코딩합니다. getUserMedia()로 카메라에 접근하고, 각 프레임을 Canvas에 그려 이미지 데이터를 추출합니다. jsQR 같은 디코딩 라이브러리가 파인더 패턴을 탐지하고, 원근 변환을 적용한 후 데이터를 읽어냅니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/qr-generator" class="text-blue-600 dark:text-blue-400 hover:underline">QR코드 생성기</a> - </li>
+            <li><a href="/tools/life/barcode-generator" class="text-blue-600 dark:text-blue-400 hover:underline">바코드 생성기</a> - </li>
+            <li><a href="/tools/life/ocr" class="text-blue-600 dark:text-blue-400 hover:underline">OCR 텍스트 인식</a> - </li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 블로그 글</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/blog/qr-code-guide" class="text-blue-600 dark:text-blue-400 hover:underline">무료 QR코드 만들기 가이드</a></li>
+          </ul>
+        </div>
+      </section>
     </div>
   </main>
   <div id="footer">

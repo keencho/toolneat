@@ -575,6 +575,9 @@
             이미지 블러/모자이크 도구는 사진이나 이미지의 특정 영역을 흐리게 처리하거나 픽셀화하여 개인정보를 보호하는 도구입니다. 얼굴, 차량 번호판, 개인 정보가 담긴 부분을 간편하게 가릴 수 있으며, 마우스 드래그만으로 원하는 영역에 블러나 모자이크 효과를 적용할 수 있습니다. 모든 처리는 브라우저에서 이루어져 안전합니다.
           </p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>이미지 블러는 Canvas API의 filter 속성 또는 컨볼루션 필터를 사용합니다. 가우시안 블러는 각 픽셀의 값을 주변 픽셀들의 가중 평균으로 대체하며, 가우시안 분포에 따라 가까운 픽셀에 더 높은 가중치를 부여합니다. 블러 반경이 클수록 더 넓은 영역을 평균화하여 더 흐릿한 결과를 만듭니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
           <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
             <li>블러(가우시안) 효과와 모자이크(픽셀화) 효과 선택 가능</li>
@@ -654,6 +657,27 @@
               <p class="text-gray-600 dark:text-gray-400">네, 원하는 만큼 여러 영역에 반복적으로 블러나 모자이크를 적용할 수 있습니다. 각 영역을 드래그하여 처리하세요.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          
+          <h3 class="text-lg font-semibold mt-6 mb-3">이미지 블러 활용 가이드</h3>
+          <p>이미지 블러는 개인정보 보호, 배경 흐림 효과, 디자인 작업에서 널리 사용됩니다. 스크린샷에서 개인 정보(이름, 전화번호, 이메일)를 가리거나, 사진 배경을 흐리게 하여 인물을 강조하는 데 효과적입니다.</p><p>블러 강도에 따라 효과가 크게 달라집니다. 약한 블러(반경 3~5px)는 부드러운 분위기를 연출하고, 강한 블러(반경 15~30px)는 내용을 완전히 가립니다. 개인정보 보호 목적이라면 충분히 강한 블러를 적용하여 원본 내용을 복원할 수 없도록 하세요. 전체 블러와 부분 블러 중 상황에 맞는 옵션을 선택하세요. 블로그 대표 이미지나 배너의 배경으로 흐린 사진을 사용하면 텍스트 가독성이 높아집니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/image-compressor" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 압축</a> - </li>
+            <li><a href="/tools/life/image-watermark" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 워터마크</a> - </li>
+            <li><a href="/tools/life/image-crop" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 자르기</a> - </li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 블로그 글</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/blog/image-compress-guide" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 용량 줄이기 가이드</a></li>
+          </ul>
         </div>
       </section>
     </div>

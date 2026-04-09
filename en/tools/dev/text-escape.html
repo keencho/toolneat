@@ -617,6 +617,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>Text escaping is the process of converting special characters into a safe format so they can be used within specific contexts without causing errors. In programming, characters like quotes, backslashes, and angle brackets have special meaning. If these characters appear in string data without proper escaping, they can break code parsing, corrupt data structures, or even create security vulnerabilities. Whether you are building JSON APIs, rendering HTML content, writing JavaScript strings, or constructing URL parameters, text escaping is an essential technique for reliable data handling.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>The text escape tool applies different escaping rules depending on the target context. For HTML, it converts <, >, &, " to entities. For JSON, it converts ", \, and control characters to backslash sequences. For URLs, it converts reserved characters to %XX percent-encoding. It works by iterating through each character and matching against the escape table for the selected context.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Supports four escaping formats: JSON, JavaScript, HTML, and URL</li>
@@ -698,6 +701,13 @@
               <p>Yes, each language has its own conventions. Python supports escaping in both single and double quotes and offers raw strings (r"..."). Java processes Unicode escapes at compile time. The JSON and JavaScript escaping in this tool is broadly compatible across most languages, but always consult your language's documentation for edge cases.</p>
             </div>
           </div>
+        
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/dev/html-entity" class="text-blue-600 dark:text-blue-400 hover:underline">HTML Entity Converter</a> - Convert special characters to HTML entities.</li>
+            <li><a href="/en/tools/dev/url-encoder" class="text-blue-600 dark:text-blue-400 hover:underline">URL Encoder</a> - Encode/decode URLs.</li>
+            <li><a href="/en/tools/dev/base64" class="text-blue-600 dark:text-blue-400 hover:underline">Base64 Encoder</a> - Encode data as Base64.</li>
+          </ul>
         </div>
       </section>
 

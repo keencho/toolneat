@@ -623,7 +623,163 @@
           <li>Quick checksums → MD5 (non-security only)</li>
         </ul>
         <p class="mt-4">Hashing is a simple concept, but understanding it properly can prevent a lot of problems.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Understanding Hash Collisions in Detail</h2>
+        <p class="text-gray-700 dark:text-gray-300">A hash function maps an infinite set of possible inputs to a finite set of outputs. By the pigeonhole principle, collisions must exist. The question is not whether collisions exist, but whether an attacker can find them on purpose.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">There are two types of collision attacks. A <strong>preimage attack</strong> means finding any input that produces a specific hash output. A <strong>collision attack</strong> means finding any two different inputs that share the same hash. The collision attack is easier because the attacker has more freedom (they just need any pair, not a match to a specific target).</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">For MD5, researchers can generate colliding documents in seconds on a laptop. For SHA-1, Google's SHAttered attack in 2017 required roughly 6,500 years of single-CPU time (done with massive parallelism). For SHA-256, no practical collision has ever been found, and none is expected in our lifetime.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Algorithm Comparison at a Glance</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left">Algorithm</th>
+                <th class="px-4 py-2 text-left">Output Length</th>
+                <th class="px-4 py-2 text-left">Speed</th>
+                <th class="px-4 py-2 text-left">Security Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <td class="px-4 py-2 font-mono">MD5</td>
+                <td class="px-4 py-2">128 bits (32 hex chars)</td>
+                <td class="px-4 py-2">Very fast</td>
+                <td class="px-4 py-2">Broken (collisions trivial)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">SHA-1</td>
+                <td class="px-4 py-2">160 bits (40 hex chars)</td>
+                <td class="px-4 py-2">Fast</td>
+                <td class="px-4 py-2">Broken (practical collisions)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">SHA-256</td>
+                <td class="px-4 py-2">256 bits (64 hex chars)</td>
+                <td class="px-4 py-2">Moderate</td>
+                <td class="px-4 py-2">Secure</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">SHA-512</td>
+                <td class="px-4 py-2">512 bits (128 hex chars)</td>
+                <td class="px-4 py-2">Fast on 64-bit CPUs</td>
+                <td class="px-4 py-2">Secure</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">bcrypt</td>
+                <td class="px-4 py-2">184 bits (60 char string)</td>
+                <td class="px-4 py-2">Intentionally slow</td>
+                <td class="px-4 py-2">Secure (password-specific)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">Argon2</td>
+                <td class="px-4 py-2">Configurable</td>
+                <td class="px-4 py-2">Intentionally slow + memory-hard</td>
+                <td class="px-4 py-2">Secure (password-specific)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Password Hashing: bcrypt and Argon2</h2>
+        <p class="text-gray-700 dark:text-gray-300">General-purpose hash functions like SHA-256 are designed to be fast. That is exactly the wrong property for password hashing. An attacker with a modern GPU can compute billions of SHA-256 hashes per second, making brute-force attacks practical against weak passwords.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4"><strong>bcrypt</strong> was introduced in 1999 and includes a configurable "cost factor" that controls how many rounds of computation are performed. Increasing the cost factor by one doubles the time required. A typical cost factor of 12 takes around 250 milliseconds on a modern CPU, which is imperceptible to a user logging in but devastating to an attacker trying millions of guesses.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4"><strong>Argon2</strong> won the Password Hashing Competition in 2015. It improves on bcrypt by being both CPU-hard and memory-hard. The memory requirement makes it resistant to attacks using GPUs and ASICs, which have lots of computing power but limited memory per core. Argon2 comes in three variants: Argon2d (data-dependent, maximum GPU resistance), Argon2i (data-independent, side-channel resistant), and Argon2id (a hybrid, recommended for most uses).</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Salt and Pepper: Adding Randomness</h2>
+        <p class="text-gray-700 dark:text-gray-300">A <strong>salt</strong> is a random string generated for each password and stored alongside the hash. Even if two users have the same password, their hashes will be different because their salts are different. This defeats rainbow table attacks, which rely on precomputed hash-to-password mappings.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>// Without salt
+hash("password123") = "ef92b778..."  (same for every user)
+
+// With salt
+hash("a9f2k3" + "password123") = "7c4a2e91..."  (user A)
+hash("b8d1m7" + "password123") = "3f19c8d2..."  (user B)</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">A <strong>pepper</strong> is similar to a salt but is a single secret value shared across all passwords and stored separately from the database (often in an environment variable or hardware security module). If an attacker steals only the database, the pepper remains unknown, making the hashes much harder to crack. Unlike salts, peppers are not stored per-user.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Real-World Use Cases Beyond Passwords</h2>
+        <p class="text-gray-700 dark:text-gray-300">Hashing shows up everywhere in software, not just in password storage.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>File integrity verification:</strong> Download a file and compare its SHA-256 hash to the one published by the author. If they match, the file has not been tampered with. Package managers like npm and pip do this automatically.</li>
+          <li><strong>Digital signatures:</strong> When you sign a document or a software release, the signing algorithm first hashes the content, then encrypts the hash with your private key. The recipient decrypts with your public key and compares hashes to verify authenticity.</li>
+          <li><strong>Blockchain:</strong> Bitcoin's proof-of-work requires miners to find a nonce that, combined with block data, produces a SHA-256 hash below a target threshold. This is computationally expensive by design, securing the network.</li>
+          <li><strong>Hash tables:</strong> Every programming language uses hash functions internally for dictionaries and sets. These are non-cryptographic hash functions optimized for speed and uniform distribution, not collision resistance.</li>
+          <li><strong>Content addressing:</strong> Git identifies every commit, tree, and blob by its SHA-1 hash. Docker identifies image layers by their SHA-256 digest. IPFS uses multihash to address content on a distributed network.</li>
+          <li><strong>Deduplication:</strong> Cloud storage providers hash uploaded files to detect duplicates. If two users upload the same file, only one copy is stored.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Code Examples</h2>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">JavaScript (Node.js)</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>const crypto = require('crypto');
+
+// SHA-256
+const hash = crypto.createHash('sha256')
+  .update('hello world')
+  .digest('hex');
+console.log(hash);
+// "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9"
+
+// HMAC (keyed hash)
+const hmac = crypto.createHmac('sha256', 'my-secret-key')
+  .update('hello world')
+  .digest('hex');
+console.log(hmac);</pre>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Python</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>import hashlib
+
+# SHA-256
+result = hashlib.sha256(b'hello world').hexdigest()
+print(result)
+# "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9"
+
+# bcrypt (requires pip install bcrypt)
+import bcrypt
+password = b"my_password"
+salt = bcrypt.gensalt(rounds=12)
+hashed = bcrypt.hashpw(password, salt)
+print(hashed)
+
+# Verify
+if bcrypt.checkpw(password, hashed):
+    print("Password matches")</pre>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Choosing the Right Algorithm: A Decision Tree</h2>
+        <p class="text-gray-700 dark:text-gray-300">Start with the question: "Does this involve user passwords?" If yes, the answer is always bcrypt or Argon2. Full stop. Do not use SHA-256 for passwords, no matter how clever your salting scheme is.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">If you need a general-purpose cryptographic hash for file integrity, data signing, or content addressing, SHA-256 is the safe default. SHA-512 is worth considering if you are working on a 64-bit platform and need the extra hash length for long-term archival security.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">For non-security uses like hash tables, cache keys, or quick checksums where collision resistance is not a concern, faster algorithms like MD5, CRC32, or xxHash are perfectly acceptable. The key is understanding the threat model for your specific use case.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What is the difference between hashing and encryption?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Hashing is a one-way function that cannot recover original data. Encryption uses keys to transform data and can be reversed with the correct key. Hashing is used for data integrity verification and password storage, while encryption protects data confidentiality.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Why is MD5 considered insecure?</h3>
+            <p class="text-gray-700 dark:text-gray-300">MD5 is vulnerable to collision attacks. In 2004, researchers discovered methods to quickly find different inputs producing the same hash. MD5 should only be used for non-security purposes like file checksums. For security applications, SHA-256 or higher is recommended.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What is a salt in password hashing?</h3>
+            <p class="text-gray-700 dark:text-gray-300">A salt is a random string added before hashing a password. Even identical passwords produce different hashes with different salts, preventing rainbow table attacks. Modern hashing algorithms like bcrypt and Argon2 manage salts automatically.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Should I use SHA-256 or SHA-512?</h3>
+            <p class="text-gray-700 dark:text-gray-300">SHA-256 provides sufficient security for most purposes. SHA-512 may be faster on 64-bit systems and offers a longer hash output. Bitcoin uses SHA-256, while some Linux distributions use SHA-512 for passwords.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What is a hash collision?</h3>
+            <p class="text-gray-700 dark:text-gray-300">A hash collision occurs when two different inputs produce the same hash value. By the pigeonhole principle, collisions theoretically always exist, but well-designed hash functions make intentional collisions extremely difficult. SHA-256 requires approximately 2^128 operations, making it practically impossible with current technology.</p>
+          </div>
+        </div>
 
       <!-- Related Tool -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

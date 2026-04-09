@@ -616,6 +616,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>텍스트 이스케이프는 프로그래밍에서 특수문자를 안전하게 표현하기 위해 특정 형식으로 변환하는 과정입니다. 문자열 안에 따옴표, 백슬래시, 꺾쇠괄호 같은 문자가 포함되면 코드 해석에 문제가 생길 수 있습니다. 이스케이프 처리는 이런 충돌을 방지하고 데이터를 의도한 대로 전달하기 위한 필수 기법입니다. JSON API 응답, HTML 렌더링, JavaScript 문자열, URL 파라미터 등 거의 모든 웹 개발 영역에서 이스케이프가 사용됩니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>텍스트 이스케이프 도구는 대상 컨텍스트에 따라 다른 이스케이프 규칙을 적용합니다. HTML에서는 <, >, &, " 등을 엔티티로 변환하고, JSON에서는 ", \, 제어문자를 백슬래시 시퀀스로 변환합니다. URL에서는 예약 문자를 %XX 형태의 퍼센트 인코딩으로 변환합니다. 각 문자를 순회하며 해당 컨텍스트의 이스케이프 테이블과 대조하여 치환하는 방식으로 동작합니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>JSON, JavaScript, HTML, URL 네 가지 이스케이프 형식 지원</li>
@@ -697,6 +700,13 @@
               <p>네, 언어마다 차이가 있습니다. Python은 작은따옴표와 큰따옴표 모두에 이스케이프를 지원하고 raw string(r"...")도 있습니다. Java는 유니코드 이스케이프를 컴파일 단계에서 처리합니다. 이 도구의 JavaScript/JSON 이스케이프는 대부분의 언어에서 호환되지만, 특정 언어의 규칙은 해당 문서를 참고하세요.</p>
             </div>
           </div>
+        
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/dev/html-entity" class="text-blue-600 dark:text-blue-400 hover:underline">HTML 엔티티 변환기</a> - HTML 특수문자를 엔티티로 변환합니다.</li>
+            <li><a href="/tools/dev/url-encoder" class="text-blue-600 dark:text-blue-400 hover:underline">URL 인코더</a> - URL을 인코딩/디코딩합니다.</li>
+            <li><a href="/tools/dev/base64" class="text-blue-600 dark:text-blue-400 hover:underline">Base64 인코더</a> - 데이터를 Base64로 인코딩합니다.</li>
+          </ul>
         </div>
       </section>
 

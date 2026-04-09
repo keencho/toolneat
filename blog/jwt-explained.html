@@ -645,7 +645,224 @@
           <li>API 인증</li>
         </ul>
         <p class="mt-4">단순한 웹사이트라면 세션이 더 간단할 수 있습니다. 적재적소에 사용하세요.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">클레임(Claim) 종류 상세</h2>
+        <p class="text-gray-700 dark:text-gray-300">JWT 페이로드에 담기는 정보를 클레임이라고 합니다. 클레임은 세 가지로 나뉩니다.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">등록된 클레임 (Registered Claims)</h3>
+        <p class="text-gray-700 dark:text-gray-300">JWT 표준(RFC 7519)에서 미리 정의한 클레임입니다. 필수는 아니지만 사용이 권장됩니다.</p>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left">클레임</th>
+                <th class="px-4 py-2 text-left">이름</th>
+                <th class="px-4 py-2 text-left">설명</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <td class="px-4 py-2 font-mono">iss</td>
+                <td class="px-4 py-2">Issuer</td>
+                <td class="px-4 py-2">토큰 발급자</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">sub</td>
+                <td class="px-4 py-2">Subject</td>
+                <td class="px-4 py-2">토큰 주체 (보통 사용자 ID)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">aud</td>
+                <td class="px-4 py-2">Audience</td>
+                <td class="px-4 py-2">토큰 대상자 (이 토큰을 사용할 서비스)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">exp</td>
+                <td class="px-4 py-2">Expiration</td>
+                <td class="px-4 py-2">만료 시간 (Unix 타임스탬프)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">iat</td>
+                <td class="px-4 py-2">Issued At</td>
+                <td class="px-4 py-2">발급 시간</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">nbf</td>
+                <td class="px-4 py-2">Not Before</td>
+                <td class="px-4 py-2">이 시간 이전에는 사용 불가</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">jti</td>
+                <td class="px-4 py-2">JWT ID</td>
+                <td class="px-4 py-2">토큰 고유 식별자 (재사용 방지)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">공개 클레임과 비공개 클레임</h3>
+        <p class="text-gray-700 dark:text-gray-300">공개 클레임(Public Claims)은 IANA에 등록하거나 URI 형태로 정의해서 충돌을 방지하는 클레임입니다. 비공개 클레임(Private Claims)은 서버와 클라이언트 간 합의된 커스텀 클레임입니다. 실무에서는 비공개 클레임을 주로 사용합니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>{
+  "sub": "user123",           // 등록된 클레임
+  "exp": 1706234567,          // 등록된 클레임
+  "role": "admin",            // 비공개 클레임
+  "permissions": ["read", "write"]  // 비공개 클레임
+}</pre>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">서명 알고리즘: HS256 vs RS256</h2>
+        <p class="text-gray-700 dark:text-gray-300">JWT에서 가장 많이 사용되는 서명 알고리즘은 HS256과 RS256입니다. 둘의 차이를 이해하는 것이 중요합니다.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">HS256 (HMAC + SHA-256)</h3>
+        <p class="text-gray-700 dark:text-gray-300">대칭키 방식입니다. 토큰을 생성하는 쪽과 검증하는 쪽이 같은 비밀키를 공유합니다. 구현이 간단하고 빠릅니다. 단일 서버나 신뢰할 수 있는 서버 간에 적합합니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>// HS256 서명 생성
+HMACSHA256(
+  base64UrlEncode(header) + "." + base64UrlEncode(payload),
+  "my-secret-key"   // 양쪽 모두 이 키를 알아야 함
+)</pre>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">RS256 (RSA + SHA-256)</h3>
+        <p class="text-gray-700 dark:text-gray-300">비대칭키 방식입니다. 개인키(private key)로 서명하고, 공개키(public key)로 검증합니다. 토큰을 검증하는 쪽이 비밀키를 알 필요가 없으므로, 여러 마이크로서비스가 토큰을 검증해야 하는 환경에 적합합니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>// RS256 흐름
+인증 서버: 개인키로 서명 → JWT 발급
+API 서버 A: 공개키로 검증 (개인키 모름)
+API 서버 B: 공개키로 검증 (개인키 모름)
+// 공개키가 유출돼도 위조할 수 없음</pre>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left"></th>
+                <th class="px-4 py-2 text-left">HS256</th>
+                <th class="px-4 py-2 text-left">RS256</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <td class="px-4 py-2 font-medium">방식</td>
+                <td class="px-4 py-2">대칭키</td>
+                <td class="px-4 py-2">비대칭키</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">키 관리</td>
+                <td class="px-4 py-2">하나의 비밀키 공유</td>
+                <td class="px-4 py-2">개인키/공개키 분리</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">속도</td>
+                <td class="px-4 py-2">빠름</td>
+                <td class="px-4 py-2">상대적으로 느림</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">적합한 환경</td>
+                <td class="px-4 py-2">단일 서버</td>
+                <td class="px-4 py-2">마이크로서비스</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Access Token과 Refresh Token</h2>
+        <p class="text-gray-700 dark:text-gray-300">실제 서비스에서는 JWT를 하나만 사용하지 않고, 두 종류의 토큰을 조합합니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>Access Token</strong>은 실제 API 요청에 사용하는 토큰으로, 만료 시간을 짧게 설정합니다(보통 15분~1시간). 탈취되더라도 빨리 만료되므로 피해를 줄일 수 있습니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>Refresh Token</strong>은 Access Token이 만료되었을 때 새 Access Token을 발급받기 위한 토큰입니다. 만료 시간이 길고(7일~30일), 보통 데이터베이스에 저장합니다. Refresh Token은 서버에서 즉시 무효화할 수 있어서, "강제 로그아웃" 기능을 구현할 수 있습니다.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">토큰 갱신 플로우</h3>
+        <ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li>클라이언트가 Access Token으로 API 요청</li>
+          <li>서버가 "토큰 만료" 응답 (401 Unauthorized)</li>
+          <li>클라이언트가 Refresh Token으로 새 Access Token 요청</li>
+          <li>서버가 Refresh Token 검증 후 새 Access Token 발급</li>
+          <li>클라이언트가 새 Access Token으로 원래 요청 재시도</li>
+        </ol>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">이 과정은 보통 HTTP 인터셉터(interceptor)로 자동화합니다. 사용자는 토큰이 갱신되는 것을 의식하지 못합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">JWT 보안 모범 사례</h2>
+        <p class="text-gray-700 dark:text-gray-300">JWT를 안전하게 사용하기 위한 체크리스트를 정리했습니다.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>페이로드에 민감한 정보 넣지 않기</strong>: 비밀번호, 주민번호 같은 정보는 절대 넣지 마세요. JWT는 서명될 뿐, 암호화되지 않습니다.</li>
+          <li><strong>충분히 긴 비밀키 사용</strong>: HS256에서는 최소 256비트(32자) 이상의 랜덤 문자열을 비밀키로 사용하세요.</li>
+          <li><strong>알고리즘을 명시적으로 지정</strong>: 토큰 검증 시 허용할 알고리즘을 서버에서 명시적으로 지정하세요. 토큰의 alg 헤더를 그대로 신뢰하면 "none" 알고리즘 공격에 취약합니다.</li>
+          <li><strong>토큰 크기 제한</strong>: JWT에 너무 많은 정보를 넣으면 토큰이 커지고, 매 요청마다 전송됩니다. 꼭 필요한 정보만 포함하세요.</li>
+          <li><strong>Refresh Token 로테이션</strong>: Refresh Token을 사용할 때마다 새 Refresh Token을 발급하고, 이전 것은 무효화합니다. 토큰 탈취 시 빠르게 감지할 수 있습니다.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">"none" 알고리즘 공격</h2>
+        <p class="text-gray-700 dark:text-gray-300">JWT 표준에는 서명이 없는 "none" 알고리즘이 정의되어 있습니다. 초기 JWT 라이브러리들에는 심각한 취약점이 있었습니다. 공격자가 토큰의 알고리즘을 "none"으로 변경하고 서명을 제거하면, 서버가 서명 검증 없이 토큰을 수용하는 문제였습니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>// 공격 시나리오
+원본 헤더: {"alg": "HS256", "typ": "JWT"}
+변조 헤더: {"alg": "none", "typ": "JWT"}
+
+// 페이로드를 원하는 대로 수정하고
+// 서명 부분을 비워둠
+변조된 토큰: eyJ...변조헤더.eyJ...변조페이로드.</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">현재 대부분의 JWT 라이브러리는 이 공격을 방어하지만, 토큰 검증 시 허용할 알고리즘을 명시적으로 지정하는 것이 여전히 중요합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">실전: Node.js에서 JWT 사용하기</h2>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>const jwt = require('jsonwebtoken');
+const SECRET = process.env.JWT_SECRET;
+
+// 토큰 생성
+function createToken(user) {
+  return jwt.sign(
+    { sub: user.id, role: user.role },
+    SECRET,
+    { expiresIn: '1h' }
+  );
+}
+
+// 토큰 검증
+function verifyToken(token) {
+  try {
+    return jwt.verify(token, SECRET, {
+      algorithms: ['HS256']  // 알고리즘 명시!
+    });
+  } catch (err) {
+    return null;  // 만료되었거나 변조된 토큰
+  }
+}</pre>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">세션 vs JWT: 언제 무엇을 선택할까</h2>
+        <p class="text-gray-700 dark:text-gray-300">세션과 JWT 중 무엇이 "더 좋다"고 단정할 수는 없습니다. 상황에 따라 선택이 달라집니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>세션이 적합한 경우:</strong> 단일 서버 환경, 즉시 로그아웃이 중요한 서비스(은행, 결제), 서버 측 렌더링(SSR) 위주의 전통적인 웹 애플리케이션. 세션은 서버에서 완전히 제어할 수 있으므로, 사용자를 즉시 강제 로그아웃시킬 수 있습니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>JWT가 적합한 경우:</strong> 마이크로서비스 아키텍처, 여러 도메인 간 인증 공유(SSO), 모바일 앱 백엔드, 서버리스(Serverless) 환경. JWT는 서버 상태 없이 인증이 가능하므로 수평 확장이 쉽습니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">실제로는 둘을 조합하는 경우도 많습니다. Refresh Token을 서버 데이터베이스에 저장하면 사실상 세션과 JWT의 장점을 모두 취할 수 있습니다. Access Token의 짧은 수명으로 매 요청의 DB 조회를 줄이면서, Refresh Token 관리를 통해 즉시 무효화 기능도 제공하는 방식입니다.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">자주 묻는 질문</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">JWT는 암호화된 것인가요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">JWT는 기본적으로 서명되어 있지만 암호화되지는 않습니다. Base64URL로 인코딩된 것이므로 누구나 내용을 읽을 수 있습니다. JWE(JSON Web Encryption)를 사용하면 페이로드를 암호화할 수 있지만, 일반적인 JWT는 서명만 포함합니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">JWT의 만료 시간은 어떻게 설정하나요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">exp(expiration) 클레임에 Unix 타임스탬프를 설정합니다. 일반적으로 액세스 토큰은 15분~1시간, 리프레시 토큰은 7일~30일로 설정합니다. 너무 길면 보안 위험이, 너무 짧으면 사용성이 저하됩니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">JWT vs 세션 기반 인증, 어떤 것이 좋나요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">JWT는 서버 상태가 없어 확장성이 좋고 마이크로서비스에 적합합니다. 세션은 서버에서 관리하므로 즉시 무효화가 가능합니다. 단일 서버 애플리케이션에는 세션이, 분산 시스템에는 JWT가 더 적합한 경우가 많습니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">JWT를 어디에 저장해야 하나요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">httpOnly 쿠키가 가장 안전합니다. localStorage는 XSS 공격에 취약하고, 일반 쿠키는 CSRF에 취약합니다. httpOnly + Secure + SameSite 플래그를 설정한 쿠키가 권장됩니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">JWT 토큰이 탈취되면 어떻게 하나요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">짧은 만료 시간을 설정하고, 토큰 블랙리스트를 구현하거나, 리프레시 토큰 로테이션을 사용합니다. 토큰에 사용자의 IP나 디바이스 정보를 포함시켜 검증하는 방법도 있습니다.</p>
+          </div>
+        </div>
 
       <!-- 관련 도구 -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

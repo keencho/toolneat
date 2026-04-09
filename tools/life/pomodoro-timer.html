@@ -710,6 +710,21 @@
           </div>
         </div>
       </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>뽀모도로 타이머는 프란체스코 시릴로가 개발한 시간 관리 기법을 구현합니다. 25분 작업(뽀모도로) + 5분 휴식을 1세트로 반복하며, 4세트 완료 후 15~30분의 긴 휴식을 취합니다. setInterval로 매 초 타이머를 업데이트하고, Notification API로 세션 종료를 알립니다. localStorage에 진행 상황을 저장합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/countdown-timer" class="text-blue-600 dark:text-blue-400 hover:underline">카운트다운 타이머</a> - </li>
+            <li><a href="/tools/life/stopwatch" class="text-blue-600 dark:text-blue-400 hover:underline">스톱워치</a> - </li>
+            <li><a href="/tools/life/noise-generator" class="text-blue-600 dark:text-blue-400 hover:underline">소음 생성기</a> - </li>
+          </ul>
+        </div>
+      </section>
     </div>
   </main>
   <div id="footer">

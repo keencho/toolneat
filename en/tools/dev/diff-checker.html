@@ -800,7 +800,10 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-lg font-semibold mt-6 mb-3">What is a Diff Checker?</h3>
-          <p>A Diff Checker is a utility that places two pieces of text side by side and highlights every difference between them on a line-by-line basis. In software development it is indispensable for reviewing code changes before merging branches, and in everyday work it is equally useful for comparing contract revisions, verifying manuscript edits, or auditing configuration files between environments. Added lines appear in green, deleted lines in red, and modified lines in yellow, so even in documents hundreds of lines long you can instantly see what changed and where.</p>
+          <p>A Diff Checker is a utility that places two pieces of text side by side and highlights every difference between them on a line-by-line basis. In software development it is indispensable for reviewing code changes before merging branches, and in everyday work it is equally useful for comparing contract revisions, verifying manuscript edits, or auditing configuration files between environments. Added lines appear in green, deleted lines in red, and modified lines in yellow, so even in documents hundreds of lines long you can instantly see what changed and where. The concept of automated text comparison dates back to the 1970s Unix diff utility. The Hunt-McIlroy algorithm and later Eugene Myers' O(ND) difference algorithm form the foundation of virtually every modern diff tool. Version control systems like Git and SVN, as well as GitHub's pull request review interface, all rely on variations of these algorithms. This online tool brings the same capability to your browser with zero setup, making it ideal for quick comparisons when a full development environment is not available.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>Under the hood, this diff checker uses the Longest Common Subsequence (LCS) algorithm. It first splits both texts into individual lines, then compares them to classify each line as identical, added, or deleted. For example, if the original is "A, B, C" and the modified version is "A, D, C", the algorithm recognizes A and C as common and determines that B was removed while D was inserted. Lines that exist on both sides but differ in content undergo an additional character-level comparison to pinpoint exactly which parts changed, highlighted in yellow. When the Ignore Whitespace option is enabled, leading and trailing whitespace is stripped and consecutive spaces are normalized before comparison, ensuring that only meaningful content differences are reported.</p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
@@ -882,6 +885,13 @@
               <p>The primary mode is line-level comparison. Within a modified line, the yellow highlight gives a general indication of where the change occurred. For fine-grained, word-by-word analysis, specialized diff libraries would be needed.</p>
             </div>
           </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/dev/json-formatter" class="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</a> - Format JSON data into a clean structure that is easy to compare.</li>
+            <li><a href="/en/tools/dev/text-escape" class="text-blue-600 dark:text-blue-400 hover:underline">Text Escape</a> - Escape special characters in text or unescape them back to their original form.</li>
+            <li><a href="/en/tools/dev/line-ending" class="text-blue-600 dark:text-blue-400 hover:underline">Line Ending Converter</a> - Convert between LF and CRLF line endings to resolve cross-platform compatibility issues.</li>
+          </ul>
         </div>
       </section>
 

@@ -627,6 +627,70 @@
         </div>
         <p class="mt-4">For most uses, PNG is fine. Choose SVG for banners, signage, or anything that needs to be printed large.</p>
 
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">The History of QR Codes</h2>
+        <p>The origin of QR codes lies in an unlikely place: a Japanese car parts factory. In 1994, engineer Masahiro Hara at Denso Wave created the QR code to solve a specific problem at Toyota's production facilities. Barcodes could only hold about 20 characters, forcing workers to attach multiple barcodes to a single part. Hara realized that encoding data in two dimensions instead of one could drastically increase capacity.</p>
+        <p class="mt-2">The name "Quick Response" reflects the core design priority: fast scanning speed. Denso Wave holds the patent for QR codes but made a pivotal decision to let anyone use them royalty-free. That single choice is arguably the biggest reason QR codes became a global standard rather than a proprietary niche technology.</p>
+        <p class="mt-2">Japan adopted QR codes early, with flip phones scanning them by the early 2000s. Global adoption came much later, accelerating in the mid-2010s as smartphone cameras improved. The COVID-19 pandemic supercharged QR code usage worldwide. Contactless menus, health passes, check-in systems, and vaccine certificates all relied on QR codes. What was once seen as a niche tech curiosity became an everyday tool used by billions.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Understanding QR Code Structure</h2>
+        <p>A QR code might look like a random arrangement of black squares, but every element is precisely engineered.</p>
+        <p class="mt-2"><strong>Finder Patterns:</strong> The three large squares at three corners of the QR code. Scanners detect these to determine the code's position, size, and rotation angle. There are only three (not four) so the scanner can determine orientation.</p>
+        <p class="mt-2"><strong>Alignment Patterns:</strong> Smaller squares that appear in larger QR codes. They correct for distortion when the code is printed on curved surfaces or photographed at an angle. Present in version 2 and above.</p>
+        <p class="mt-2"><strong>Timing Patterns:</strong> Alternating black-and-white lines connecting the finder patterns. They help the scanner determine the exact coordinates of each module (cell).</p>
+        <p class="mt-2"><strong>Data Area:</strong> The remaining space contains the actual encoded data, along with error correction codes, format information, and version information.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Versions and Data Capacity</h2>
+        <p>QR codes come in 40 versions. Version 1 is 21x21 modules (the smallest square unit), and each subsequent version adds 4 modules per side. Version 40 is 177x177 modules.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
+          <p class="text-gray-600 dark:text-gray-400">Version 1 (21x21): up to <span class="text-blue-600 font-semibold">41 numeric characters</span></p>
+          <p class="text-gray-600 dark:text-gray-400">Version 10 (57x57): up to <span class="text-blue-600 font-semibold">652 numeric characters</span></p>
+          <p class="text-gray-600 dark:text-gray-400">Version 25 (117x117): up to <span class="text-blue-600 font-semibold">3,057 numeric characters</span></p>
+          <p class="text-gray-600 dark:text-gray-400">Version 40 (177x177): up to <span class="text-blue-600 font-semibold">7,089 numeric characters</span></p>
+        </div>
+        <p>More data means a higher version and a more complex QR code. A highly complex code that is printed too small may fail to scan. Whenever possible, shorten your data (using a URL shortener, for example) to keep the QR code simple and scannable.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Error Correction Levels Explained</h2>
+        <p>One of the most impressive features of QR codes is built-in error correction. Even if part of the code is damaged or obscured, the data can still be recovered. QR codes use the Reed-Solomon error correction algorithm, with four levels:</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
+          <p class="text-gray-600 dark:text-gray-400">Level L (Low): recovers about <span class="text-blue-600 font-semibold">7%</span> - smallest QR code size</p>
+          <p class="text-gray-600 dark:text-gray-400">Level M (Medium): recovers about <span class="text-blue-600 font-semibold">15%</span> - recommended for general use</p>
+          <p class="text-gray-600 dark:text-gray-400">Level Q (Quartile): recovers about <span class="text-blue-600 font-semibold">25%</span></p>
+          <p class="text-gray-600 dark:text-gray-400">Level H (High): recovers about <span class="text-blue-600 font-semibold">30%</span> - recommended when embedding logos</p>
+        </div>
+        <p>Higher error correction means a larger QR code for the same data, because more space is devoted to redundancy. If you want to embed a logo in the center, use Level H for safety. For a standard URL link, Level M is sufficient.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Static vs. Dynamic QR Codes</h2>
+        <p>This distinction matters significantly for business use cases.</p>
+        <p class="mt-2"><strong>Static QR codes</strong> encode data directly into the code itself. Once created, they cannot be changed. They work without an internet connection, depend on no external service, and last forever. There is no third-party trust required.</p>
+        <p class="mt-2"><strong>Dynamic QR codes</strong> encode a short redirect URL. The actual destination is managed on a server. You can change where the code points even after printing, and you can collect analytics like scan count and location. The downside is that if the service provider shuts down, the QR code stops working.</p>
+        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl my-4">
+          <p class="text-gray-700 dark:text-gray-300"><strong>How to choose:</strong> For long-lived items like business cards or product packaging, static QR codes are safer. For marketing campaigns where you need flexibility and tracking, dynamic QR codes are the better fit.</p>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Business Use Cases</h2>
+        <p><strong>Mobile Payments:</strong> Apple Pay, Google Pay, WeChat Pay, Alipay, and countless other platforms use QR codes for transactions. Small businesses can accept payments with nothing more than a printed QR code, eliminating the need for expensive card terminals.</p>
+        <p class="mt-2"><strong>Restaurant Menus:</strong> Since the pandemic, many restaurants have replaced paper menus with QR codes linking to digital menus. Changes are reflected instantly, printing costs are eliminated, and multilingual menus become trivially easy to offer.</p>
+        <p class="mt-2"><strong>Digital Business Cards:</strong> Print a QR code on your paper business card and contacts can save your information instantly. Using the vCard format, a single scan saves name, phone, email, company, and website.</p>
+        <p class="mt-2"><strong>Marketing and Advertising:</strong> QR codes bridge offline and online (O2O marketing). Posters, flyers, and packaging can link to promotion pages, coupons, or app download pages. Dynamic QR codes let marketers track which physical materials drive the most engagement.</p>
+        <p class="mt-2"><strong>Product Authentication and Tracking:</strong> Manufacturers attach unique QR codes to products for authenticity verification, production history tracking, and recall management. Consumers can scan to verify origin, manufacturing date, and distribution path.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Design Customization Tips</h2>
+        <p>QR codes do not have to be plain black-and-white squares. Customizing them to match your brand identity can increase visual appeal and scan rates.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>Color changes:</strong> Replace black with your brand color. Ensure it is clearly darker than the background and maintain a contrast ratio of at least 4:1.</li>
+          <li><strong>Logo embedding:</strong> Placing a brand logo in the center increases recognition. Use error correction Level H and keep the logo under 10-15% of the total QR code area.</li>
+          <li><strong>Module shape:</strong> You can use rounded modules or dot styles instead of squares. The more you deviate from standard shapes, the higher the risk of scan failure, so always test.</li>
+          <li><strong>Background:</strong> Transparent backgrounds or gradient backgrounds work, but never cover or modify the finder patterns (the large corner squares).</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">QR Code Security Considerations</h2>
+        <p>The convenience of QR codes comes with security risks. QR phishing ("QRishing") is on the rise, so staying aware is important.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li>Attackers can stick a malicious QR code sticker over a legitimate one in public places. Before scanning, check whether the QR code is directly printed on the surface or appears to be a sticker placed on top.</li>
+          <li>Do not immediately enter personal information after scanning. Always verify that the URL leads to a legitimate domain first.</li>
+          <li>Avoid scanning QR codes from unknown emails or text messages. Treat them with the same caution you would give suspicious links.</li>
+        </ul>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
         <div class="space-y-4">
           <div>

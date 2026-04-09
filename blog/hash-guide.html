@@ -623,7 +623,184 @@
           <li>빠른 체크섬 → MD5 (보안 무관시)</li>
         </ul>
         <p class="mt-4">해시는 간단한 개념이지만, 제대로 이해하고 쓰면 많은 문제를 예방할 수 있습니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">해시 충돌이란?</h2>
+        <p class="text-gray-700 dark:text-gray-300">해시 충돌(collision)은 서로 다른 두 입력이 동일한 해시값을 생성하는 현상입니다. 해시 함수의 출력 길이는 고정되어 있지만 입력은 무한할 수 있으므로, 수학적으로 충돌은 반드시 존재합니다. 이것을 비둘기집 원리(Pigeonhole Principle)라고 합니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">중요한 것은 충돌을 "의도적으로" 만들어낼 수 있느냐입니다. MD5의 경우 2004년에 연구자들이 같은 해시를 가진 두 개의 서로 다른 파일을 만드는 데 성공했습니다. 일반 PC로도 몇 초 안에 충돌을 만들 수 있게 되면서, MD5는 보안 용도에서 퇴출되었습니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">SHA-1도 2017년 Google과 CWI Amsterdam의 공동 연구(SHAttered 프로젝트)에서 충돌이 시연되었습니다. 서로 다른 내용의 PDF 파일 두 개가 동일한 SHA-1 해시를 가지도록 만든 것인데, 약 6,500 GPU-년의 연산이 필요했다고 합니다. SHA-256에서는 아직 충돌이 발견되지 않았고, 현재 기술로는 사실상 불가능합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">비밀번호 해싱: bcrypt와 Argon2</h2>
+        <p class="text-gray-700 dark:text-gray-300">SHA-256이 현재 표준이라고 했는데, 왜 비밀번호에는 쓰면 안 될까요? 이유는 간단합니다. SHA-256은 너무 빠릅니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">최신 GPU는 초당 수십억 개의 SHA-256 해시를 계산할 수 있습니다. 공격자가 가능한 모든 비밀번호 조합을 시도하는 무차별 대입 공격(brute force)에서 이 속도는 치명적입니다. 8자리 영숫자 비밀번호는 몇 시간이면 뚫립니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">그래서 비밀번호 전용 해시 함수가 필요합니다. 이들은 의도적으로 느리게 설계되었습니다.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">bcrypt</h3>
+        <p class="text-gray-700 dark:text-gray-300">1999년에 발표된 bcrypt는 Blowfish 암호를 기반으로 합니다. 가장 큰 특징은 "cost factor"를 조절할 수 있다는 점입니다. cost가 1 증가하면 연산 시간이 2배가 되므로, 하드웨어 성능이 향상되면 cost를 높여서 같은 수준의 보안을 유지할 수 있습니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>// bcrypt 해시 결과 예시
+$2b$12$LJ3m4ys3GEzMU/SNpCOKtOjBd8sPfR0rKTl6W0dE1h.O8UlN9oAHi
+
+$2b  → 알고리즘 버전
+$12  → cost factor (2^12 = 4,096 라운드)
+나머지 → salt(22자) + 해시(31자)</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">bcrypt는 자동으로 salt를 생성해서 해시에 포함시킵니다. 별도로 salt를 관리할 필요가 없어서 편리합니다. 현재 cost 10~12 정도가 권장됩니다.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Argon2</h3>
+        <p class="text-gray-700 dark:text-gray-300">2015년 Password Hashing Competition에서 우승한 알고리즘입니다. bcrypt보다 최신이고, CPU 시간뿐 아니라 메모리 사용량도 조절할 수 있습니다. GPU를 이용한 병렬 공격에 더 강하게 설계되었습니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">Argon2에는 세 가지 변형이 있습니다: Argon2d(GPU 공격에 강함), Argon2i(사이드채널 공격에 강함), Argon2id(둘의 장점 결합). 새 프로젝트에서는 Argon2id를 사용하는 것이 권장됩니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">솔트(Salt)와 페퍼(Pepper)</h2>
+        <p class="text-gray-700 dark:text-gray-300">솔트는 해시 함수에 추가하는 무작위 값입니다. 같은 비밀번호라도 솔트가 다르면 해시값이 달라지므로, 레인보우 테이블 공격을 무력화합니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>// 솔트 없이
+hash("password123") → abc123...  (항상 동일)
+
+// 솔트 추가
+hash("password123" + "x9kL2m") → def456...
+hash("password123" + "p3Qr8n") → ghi789...
+// 같은 비밀번호인데 해시가 다름!</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">솔트는 사용자마다 다르게 생성하고, 해시값과 함께 데이터베이스에 저장합니다. 비밀이 아니어도 됩니다. 솔트의 목적은 미리 계산된 해시 테이블을 무효화하는 것이지, 값을 숨기는 것이 아니니까요.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">페퍼(Pepper)는 솔트와 비슷하지만, 데이터베이스가 아닌 별도의 안전한 장소(환경 변수, HSM 등)에 보관하는 비밀 값입니다. 데이터베이스가 유출되더라도 페퍼를 모르면 해시를 공격하기 어렵습니다. 모든 사용자에게 같은 페퍼를 사용하는 것이 일반적입니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">실전: 주요 활용 사례</h2>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">파일 무결성 검증</h3>
+        <p class="text-gray-700 dark:text-gray-300">소프트웨어를 다운로드할 때 공식 사이트에서 SHA-256 체크섬을 제공하는 것을 본 적이 있을 겁니다. 다운로드한 파일의 해시를 계산해서 공식 해시와 비교하면, 파일이 전송 중에 손상되었거나 변조되었는지 확인할 수 있습니다.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">디지털 서명</h3>
+        <p class="text-gray-700 dark:text-gray-300">문서나 코드에 디지털 서명을 할 때, 전체 데이터를 암호화하면 느리고 비효율적입니다. 대신 데이터의 해시를 계산하고, 그 해시를 개인키로 암호화합니다. 검증하는 쪽에서는 공개키로 서명을 복호화하고, 직접 계산한 해시와 비교합니다. Git 커밋 서명도 이 방식을 사용합니다.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">블록체인과 해시</h3>
+        <p class="text-gray-700 dark:text-gray-300">비트코인의 채굴(mining)은 본질적으로 특정 조건을 만족하는 해시값을 찾는 작업입니다. 블록 데이터에 임의의 숫자(nonce)를 추가해서 SHA-256 해시를 계산하고, 해시값이 특정 수의 0으로 시작하면 성공입니다. 이 과정을 작업 증명(Proof of Work)이라고 합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">프로그래밍 언어별 해시 사용법</h2>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">JavaScript (Node.js)</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>const crypto = require('crypto');
+
+// SHA-256 해시
+const hash = crypto.createHash('sha256')
+  .update('hello')
+  .digest('hex');
+console.log(hash);
+// 2cf24dba5fb0a30e26e83b2ac5b9e29e...</pre>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Python</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>import hashlib
+
+# SHA-256 해시
+hash_value = hashlib.sha256(b'hello').hexdigest()
+print(hash_value)
+# 2cf24dba5fb0a30e26e83b2ac5b9e29e...</pre>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Java</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>import java.security.MessageDigest;
+
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+byte[] hash = md.digest("hello".getBytes());
+// 바이트 배열을 16진수 문자열로 변환 필요</pre>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">알고리즘별 출력 길이 비교</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left">알고리즘</th>
+                <th class="px-4 py-2 text-left">출력 비트</th>
+                <th class="px-4 py-2 text-left">16진수 길이</th>
+                <th class="px-4 py-2 text-left">보안성</th>
+                <th class="px-4 py-2 text-left">속도</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <td class="px-4 py-2">MD5</td>
+                <td class="px-4 py-2">128</td>
+                <td class="px-4 py-2">32자</td>
+                <td class="px-4 py-2">취약</td>
+                <td class="px-4 py-2">매우 빠름</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">SHA-1</td>
+                <td class="px-4 py-2">160</td>
+                <td class="px-4 py-2">40자</td>
+                <td class="px-4 py-2">취약</td>
+                <td class="px-4 py-2">빠름</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">SHA-256</td>
+                <td class="px-4 py-2">256</td>
+                <td class="px-4 py-2">64자</td>
+                <td class="px-4 py-2">안전</td>
+                <td class="px-4 py-2">보통</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">SHA-512</td>
+                <td class="px-4 py-2">512</td>
+                <td class="px-4 py-2">128자</td>
+                <td class="px-4 py-2">매우 안전</td>
+                <td class="px-4 py-2">보통 (64비트 CPU에서 빠름)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">bcrypt</td>
+                <td class="px-4 py-2">184</td>
+                <td class="px-4 py-2">60자 (인코딩 포함)</td>
+                <td class="px-4 py-2">비밀번호용</td>
+                <td class="px-4 py-2">의도적으로 느림</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">Argon2</td>
+                <td class="px-4 py-2">가변</td>
+                <td class="px-4 py-2">가변</td>
+                <td class="px-4 py-2">비밀번호용 최신</td>
+                <td class="px-4 py-2">의도적으로 느림</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">HMAC: 해시 기반 메시지 인증</h2>
+        <p class="text-gray-700 dark:text-gray-300">HMAC(Hash-based Message Authentication Code)는 해시 함수와 비밀키를 조합해서 메시지의 무결성과 인증을 동시에 보장하는 기법입니다. 단순 해시와 달리 비밀키를 알아야만 같은 HMAC 값을 생성할 수 있으므로, 메시지가 변조되지 않았는지와 발신자가 정당한지를 함께 검증할 수 있습니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">웹훅(Webhook)에서 많이 사용됩니다. GitHub, Stripe 같은 서비스가 이벤트를 보낼 때 HMAC-SHA256 서명을 함께 보내고, 수신 서버에서 같은 비밀키로 계산한 HMAC과 비교해서 요청이 진짜인지 확인합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">해시에 대한 흔한 오해</h2>
+        <p class="text-gray-700 dark:text-gray-300"><strong>"해시는 암호화다"</strong> - 아닙니다. 암호화(encryption)는 복호화가 가능하지만, 해시는 단방향이라 원본을 복원할 수 없습니다. 해시는 "지문"이지, "자물쇠"가 아닙니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>"긴 해시가 항상 더 안전하다"</strong> - 반드시 그렇지는 않습니다. MD5(128비트)가 취약한 것은 길이가 짧아서가 아니라 알고리즘 자체에 결함이 있기 때문입니다. 물론 같은 계열에서는 출력 길이가 길수록 충돌 확률이 낮아지는 것은 사실입니다.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>"해시를 두 번 하면 더 안전하다"</strong> - hash(hash(data))를 하면 더 안전할 것 같지만, 실제로는 보안이 향상되지 않거나 오히려 약해질 수도 있습니다. 비밀번호 보안을 강화하고 싶다면 이중 해시 대신 bcrypt나 Argon2를 사용하세요.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">자주 묻는 질문</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">해시 함수와 암호화의 차이는 무엇인가요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">해시 함수는 단방향 함수로, 원본 데이터를 복원할 수 없습니다. 암호화는 키를 사용하여 데이터를 변환하고, 올바른 키가 있으면 원본을 복원할 수 있습니다. 해시는 데이터 무결성 검증과 비밀번호 저장에, 암호화는 데이터 보호에 사용됩니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">MD5는 왜 안전하지 않나요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">MD5는 충돌 공격에 취약합니다. 2004년 왕샤오윈 교수팀이 같은 해시값을 가진 서로 다른 입력을 빠르게 찾는 방법을 발견했습니다. 현재 MD5는 파일 체크섬 등 보안이 중요하지 않은 용도로만 사용하고, 보안 용도에는 SHA-256 이상을 권장합니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">솔트(Salt)란 무엇인가요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">솔트는 비밀번호 해싱 시 추가하는 무작위 문자열입니다. 같은 비밀번호라도 솔트가 다르면 해시값이 달라져 레인보우 테이블 공격을 방지합니다. 각 사용자마다 고유한 솔트를 사용하는 것이 중요합니다. bcrypt, Argon2 같은 현대적 해싱 알고리즘은 솔트를 자동으로 관리합니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">SHA-256과 SHA-512 중 어떤 것을 사용해야 하나요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">SHA-256은 대부분의 용도에 충분한 보안성을 제공합니다. SHA-512는 64비트 시스템에서 더 빠를 수 있고, 더 긴 해시값이 필요한 경우 유용합니다. 비트코인은 SHA-256을, 일부 리눅스 배포판은 비밀번호에 SHA-512를 사용합니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">해시 충돌이란 무엇인가요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">서로 다른 두 입력이 같은 해시값을 생성하는 현상입니다. 비둘기집 원리에 의해 이론적으로 항상 존재하지만, 좋은 해시 함수는 의도적으로 충돌을 만들기 극도로 어렵게 설계됩니다. SHA-256의 경우 2^128번의 연산이 필요하여 현재 기술로는 사실상 불가능합니다.</p>
+          </div>
+        </div>
 
       <!-- 관련 도구 -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

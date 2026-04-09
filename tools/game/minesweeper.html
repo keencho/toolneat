@@ -666,6 +666,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>지뢰찾기(Minesweeper)는 1989년 마이크로소프트 윈도우에 기본 탑재되면서 전 세계적으로 유명해진 클래식 논리 퍼즐 게임입니다. 격자판에 숨겨진 지뢰를 피해 안전한 칸을 모두 여는 것이 목표입니다. 숫자 단서를 활용한 추론이 핵심이며, 논리적 사고력과 패턴 인식 능력을 키우는 데 훌륭한 게임입니다. Toolneat의 지뢰찾기는 브라우저에서 바로 플레이 가능하며, 클래식 윈도우 디자인을 충실히 재현했습니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>지뢰찾기는 숨겨진 지뢰의 위치를 논리적으로 추론하는 퍼즐 게임입니다. 격자의 각 칸을 클릭하면 주변 8칸에 있는 지뢰의 수가 표시됩니다. 숫자가 0이면 주변에 지뢰가 없으므로 인접 칸이 자동으로 열립니다. 숫자 단서를 조합하여 지뢰 위치를 확정하고 깃발을 꽂습니다. 지뢰가 아닌 모든 칸을 열면 승리합니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">게임 조작법</h3>
           <ul class="list-disc list-inside space-y-2">
             <li><strong>왼쪽 클릭:</strong> 칸을 열어 안전한지 확인합니다.</li>
@@ -727,6 +730,22 @@
               <p>모바일 기기에서는 칸을 약 0.5초 길게 누르면 깃발이 토글됩니다.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          
+          <h3 class="text-lg font-semibold mt-6 mb-3">지뢰찾기 논리적 풀이법</h3>
+          <p>지뢰찾기는 순수한 논리 게임입니다. 숫자 1이 표시된 칸 주변에 닫힌 칸이 하나만 남았다면 그곳이 반드시 지뢰입니다. 반대로 숫자 주변에 이미 해당 숫자만큼 깃발이 꽂혀 있다면, 나머지 닫힌 칸은 모두 안전합니다. 이 두 가지 기본 패턴만으로도 많은 칸을 열 수 있습니다.</p><p>고급 기법으로는 두 숫자 사이의 차이를 이용한 패턴 분석이 있습니다. 예를 들어 연속된 1-2 패턴에서 2 쪽의 닫힌 칸에 지뢰가 있다고 추론할 수 있습니다. 게임 초반에는 모서리나 가장자리를 먼저 클릭하면 넓은 영역이 한 번에 열릴 확률이 높습니다. 확실하지 않은 칸은 절대 클릭하지 말고, 다른 영역에서 정보를 더 모은 후 돌아오세요.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/game/2048" class="text-blue-600 dark:text-blue-400 hover:underline">2048</a> - 숫자 합치기 퍼즐 게임.</li>
+            <li><a href="/tools/game/memory-game" class="text-blue-600 dark:text-blue-400 hover:underline">메모리 게임</a> - 기억력 훈련 게임.</li>
+            <li><a href="/tools/game/tetris" class="text-blue-600 dark:text-blue-400 hover:underline">테트리스</a> - 블록 퍼즐 게임.</li>
+          </ul>
         </div>
       </section>
     </div>

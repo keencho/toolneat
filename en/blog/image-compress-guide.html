@@ -553,9 +553,111 @@
         <p><strong>Social media:</strong> Platforms auto-compress, so original quality is fine</p>
         <p><strong>Printing:</strong> Don't compress. You need original quality at 300dpi or higher.</p>
 
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">How Image Compression Works</h2>
+        <p>Image compression falls into two fundamental categories. Understanding each helps you choose the right approach for your situation.</p>
+        <p class="mt-2"><strong>Lossy Compression:</strong> This removes data that the human eye can barely perceive. JPEG is the classic example. Consider a photo of a blue sky: by simplifying subtle variations in the blue tones, the file size drops dramatically while the image looks virtually identical. The tradeoff is permanent: once data is removed, it cannot be recovered, so always keep the original.</p>
+        <p class="mt-2"><strong>Lossless Compression:</strong> This reduces file size without discarding any data. PNG is the primary example. It works by finding and efficiently encoding repeating patterns. Instead of storing "blue pixel" 100 times, it stores "blue pixel x100." The original image can be perfectly reconstructed, but compression ratios are lower than lossy methods.</p>
+        <p class="mt-2"><strong>DCT (Discrete Cosine Transform):</strong> The core algorithm behind JPEG. It divides the image into 8x8 pixel blocks and converts the color changes in each block into frequency components. Reducing high-frequency components (sharp color transitions) shrinks the file, but this is also what causes the characteristic blockiness in heavily compressed JPEGs.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Next-Generation Format: AVIF</h2>
+        <p>Beyond WebP, the AVIF format deserves attention. Derived from the AV1 video codec, AVIF can produce files 50% smaller than JPEG and 20% smaller than WebP at equivalent visual quality.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
+          <p class="text-gray-600 dark:text-gray-400">JPEG 100KB = WebP <span class="text-blue-600 font-semibold">~70KB</span> = AVIF <span class="text-blue-600 font-semibold">~50KB</span> (same visual quality)</p>
+        </div>
+        <p>As of 2024, all major browsers (Chrome, Firefox, Safari, Edge) support AVIF. The main drawback is encoding speed, which is significantly slower than JPEG or WebP. This makes AVIF better suited for pre-processing pipelines rather than real-time conversion.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Impact on Web Performance</h2>
+        <p>Images typically account for 50-70% of a web page's total weight. Image optimization is one of the most effective ways to improve web performance.</p>
+        <p class="mt-2"><strong>Core Web Vitals:</strong> Google's search ranking factors include LCP (Largest Contentful Paint), which measures how quickly the largest visible content element renders. In most cases, that element is an image. Reducing image file size directly improves LCP scores and can positively impact search rankings.</p>
+        <p class="mt-2"><strong>Bandwidth savings:</strong> For mobile users, this translates directly to data costs. Compressing a 3MB image to 300KB means the user downloads one-tenth the data. This is especially significant for users in developing countries or on slow networks.</p>
+        <p class="mt-2"><strong>Bounce rates:</strong> Google research shows that 53% of users abandon a page if it takes more than 3 seconds to load. Image optimization alone can often shave 1-2 seconds off load times.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Responsive Image Strategy</h2>
+        <p>Serving the same large image to every device is wasteful. HTML's <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">srcset</code> and <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">sizes</code> attributes let you deliver the right image for each screen.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-gray-600 dark:text-gray-400">&lt;img</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;srcset="image-400.jpg 400w,</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-800.jpg 800w,</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-1200.jpg 1200w"</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;sizes="(max-width: 600px) 400px,</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(max-width: 1000px) 800px,</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1200px"</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;alt="description" /&gt;</p>
+        </div>
+        <p>With this markup, smartphones load the 400px image, tablets load 800px, and desktops load 1200px. Compared to serving a single large image, mobile users save 70-80% or more in data transfer.</p>
+        <p class="mt-2">The <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">&lt;picture&gt;</code> element allows format-based branching too. Serve AVIF to browsers that support it, fall back to WebP, and then to JPEG for maximum compatibility.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Optimal Quality Settings Guide</h2>
+        <p>The "optimal" quality level depends entirely on the use case. Higher is not always better, and lower is not always the answer.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
+          <p class="text-gray-600 dark:text-gray-400">JPEG quality <span class="text-blue-600 font-semibold">95-100%</span>: Print, portfolio (near-original)</p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG quality <span class="text-blue-600 font-semibold">80-90%</span>: Blogs, news sites (optimal balance)</p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG quality <span class="text-blue-600 font-semibold">60-75%</span>: Thumbnails, previews (size priority)</p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG quality <span class="text-blue-600 font-semibold">below 50%</span>: Rarely used (visible degradation)</p>
+        </div>
+        <p>In practice, the visual difference between JPEG 85% and 100% is nearly imperceptible, but file size can differ by 2-3x. For most websites, 80-85% quality hits the ideal balance between visual fidelity and file size.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Automation with Build Tools</h2>
+        <p>Manually compressing images one by one is impractical for web projects. Integrating image optimization into your build pipeline automates the entire process.</p>
+        <p class="mt-2"><strong>sharp (Node.js):</strong> One of the fastest image processing libraries available. It handles resizing, format conversion, and quality adjustment.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-gray-600 dark:text-gray-400">const sharp = require('sharp');</p>
+          <p class="text-gray-600 dark:text-gray-400">sharp('input.jpg')</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;.resize(1200)</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;.jpeg({ quality: 80 })</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;.toFile('output.jpg');</p>
+        </div>
+        <p class="mt-2"><strong>imagemin:</strong> A plugin-based image optimization tool that integrates with bundlers like Webpack and Vite. It optimizes images automatically on every build.</p>
+        <p class="mt-2"><strong>CDN auto-optimization:</strong> Services like Cloudflare Images, Imgix, and Cloudinary let you specify size, quality, and format via URL parameters. Upload one original image and the service automatically delivers the optimized version for each user's device and browser.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Lazy Loading for Initial Load Optimization</h2>
+        <p>Combined with compression, lazy loading maximizes performance gains. It defers loading images that are not visible on screen. In HTML, just add the <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">loading="lazy"</code> attribute.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-gray-600 dark:text-gray-400">&lt;img src="photo.jpg" loading="lazy" alt="description" /&gt;</p>
+        </div>
+        <p>This single attribute skips loading off-screen images until the user scrolls to them. On image-heavy pages, this can reduce initial page load time by 40-60% or more.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Real-World Compression Comparison</h2>
+        <p>Comparing the same photo saved in different formats and quality levels makes the tradeoffs immediately clear.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
+          <p class="text-gray-600 dark:text-gray-400">Original (JPEG 100%): <span class="text-blue-600 font-semibold">2.4 MB</span></p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG 85%: <span class="text-blue-600 font-semibold">890 KB</span> (63% reduction, virtually no visible difference)</p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG 70%: <span class="text-blue-600 font-semibold">520 KB</span> (78% reduction, subtle difference when zoomed in)</p>
+          <p class="text-gray-600 dark:text-gray-400">WebP 80%: <span class="text-blue-600 font-semibold">380 KB</span> (84% reduction, equivalent quality to JPEG 85%)</p>
+          <p class="text-gray-600 dark:text-gray-400">AVIF 60%: <span class="text-blue-600 font-semibold">260 KB</span> (89% reduction, equivalent quality to JPEG 85%)</p>
+        </div>
+        <p>These numbers are based on a typical landscape photograph. Results vary by content: illustrations with flat colors compress better, while images with complex textures compress less.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Common Mistakes to Avoid</h2>
+        <p><strong>1. Re-compressing already compressed images:</strong> Opening a JPEG and saving it as JPEG again degrades quality each time. This is called "generation loss." Always start from the original when editing is needed.</p>
+        <p class="mt-2"><strong>2. Using PNG for photographs:</strong> PNG is lossless, so photos saved as PNG are 3-5x larger than JPEG. Unless you need transparency, use JPEG or WebP for photographs.</p>
+        <p class="mt-2"><strong>3. Reducing resolution but not quality:</strong> Resizing a 2000px image to 1000px shrinks it, but if quality stays at 100%, the file is still unnecessarily large. Adjust both resolution and quality for optimal results.</p>
+        <p class="mt-2"><strong>4. Ignoring metadata:</strong> EXIF data can contain GPS coordinates, which poses a privacy risk. Always strip metadata before sharing photos on social media or public websites.</p>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Important Warnings</h2>
         <p>Compressing an already compressed image causes rapid quality degradation. Always keep your original files and compress only once, right before final use. Make it a habit to backup important photos before any compression.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">How much quality is lost during compression?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Lossy compression (JPEG) at 80% quality reduces file size by 50-70% with barely visible differences. Lossless compression (PNG optimization) reduces size by 10-30% without any quality loss.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What image format is best for websites?</h3>
+            <p class="text-gray-700 dark:text-gray-300">JPEG or WebP for photos, PNG or WebP for graphics needing transparency, SVG for icons and logos. WebP provides 25-35% smaller files than JPEG.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Is browser-based image compression safe?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Yes, browser-based compression processes images locally without sending them to a server. Your photos never leave your device.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Can I compress many images at once?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Browser-based tools have memory limitations for batch processing. Process 10-20 images at a time. For hundreds of images, use desktop tools or build tools like imagemin.</p>
+          </div>
+        </div>
 
       <!-- 관련 도구 -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

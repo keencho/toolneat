@@ -582,7 +582,10 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-lg font-bold mt-8 mb-2">CSS 그라데이션 소개</h3>
-          <p>CSS 그라데이션(gradient)은 두 개 이상의 색상이 부드럽게 전환되는 배경 효과를 CSS만으로 구현하는 기술입니다. 이미지 파일 없이도 세련된 배경을 만들 수 있어서 페이지 로딩 속도에 영향을 주지 않으면서 디자인 품질을 높일 수 있습니다. 크게 Linear(직선형)과 Radial(원형) 두 가지 타입이 있으며, 각도, 방향, 색상 정지점(color stop)을 조절하여 무한에 가까운 다양한 패턴을 만들어낼 수 있습니다. 이 도구는 코드를 직접 작성하지 않아도 시각적으로 그라데이션을 디자인하고, 바로 사용 가능한 CSS 코드를 자동으로 생성해줍니다.</p>
+          <p>CSS 그라데이션(gradient)은 두 개 이상의 색상이 부드럽게 전환되는 배경 효과를 CSS만으로 구현하는 기술입니다. 이미지 파일 없이도 세련된 배경을 만들 수 있어서 페이지 로딩 속도에 영향을 주지 않으면서 디자인 품질을 높일 수 있습니다. 크게 Linear(직선형)과 Radial(원형) 두 가지 타입이 있으며, 각도, 방향, 색상 정지점(color stop)을 조절하여 무한에 가까운 다양한 패턴을 만들어낼 수 있습니다. 이 도구는 코드를 직접 작성하지 않아도 시각적으로 그라데이션을 디자인하고, 바로 사용 가능한 CSS 코드를 자동으로 생성해줍니다. CSS 그라데이션은 CSS3 표준의 일부로 도입되었으며, 과거에는 비슷한 효과를 위해 Photoshop에서 이미지를 만들어 배경으로 사용해야 했습니다. 현재는 linear-gradient, radial-gradient 외에도 conic-gradient(원뿔형)과 repeating-gradient(반복형) 같은 확장 문법도 지원됩니다. Tailwind CSS, Bootstrap 같은 프레임워크도 그라데이션 유틸리티 클래스를 제공할 만큼, 현대 웹 디자인에서 그라데이션은 가장 자주 활용되는 시각 효과 중 하나입니다.</p>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">작동 원리</h3>
+          <p>CSS 그라데이션은 브라우저의 렌더링 엔진이 수학적 보간법(interpolation)을 사용하여 실시간으로 생성하는 이미지입니다. Linear 그라데이션의 경우, 지정된 각도에 따라 가상의 직선(gradient line)을 설정하고, 이 직선 위에 배치된 색상 정지점들 사이를 부드럽게 색상 전환합니다. 예를 들어 <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">linear-gradient(90deg, #ff0000 0%, #0000ff 100%)</code>는 왼쪽에서 오른쪽으로 빨간색에서 파란색으로 전환됩니다. Radial 그라데이션은 중심점에서 타원이나 원 형태로 바깥쪽으로 색상이 퍼져나갑니다. 각 색상 정지점의 위치(%)를 조절하면 전환이 시작되는 지점과 끝나는 지점을 세밀하게 제어할 수 있고, 같은 위치에 두 색상을 놓으면 경계가 뚜렷한 스트라이프 효과도 만들 수 있습니다.</p>
 
           <h3 class="text-lg font-bold mt-8 mb-2">이용 가이드</h3>
           <ol class="list-decimal pl-5 space-y-1.5">
@@ -651,7 +654,7 @@
               <p class="text-gray-500 dark:text-gray-400 mt-1">아닙니다. 모든 처리는 브라우저에서 로컬로 이루어지며, 선택한 색상이나 설정이 외부로 전송되는 일은 없습니다.</p>
             </div>
           </div>
-        </div>
+
           <h3 class="text-lg font-bold mt-8 mb-2">알아두면 좋은 점</h3>
           <ul class="list-disc pl-5 space-y-1.5">
             <li>색상은 2~4개가 가장 자연스럽습니다. 너무 많은 색상을 사용하면 산만해질 수 있습니다.</li>
@@ -661,6 +664,13 @@
             <li>다크 모드를 지원한다면 밝은 테마와 어두운 테마 각각에 맞는 그라데이션을 준비하는 것이 좋습니다.</li>
           </ul>
 
+          <h3 class="text-lg font-bold mt-8 mb-2">관련 도구</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><a href="/tools/dev/color-palette" class="text-blue-600 dark:text-blue-400 hover:underline">색상 팔레트 생성기</a> - 조화로운 색상 조합을 생성하여 그라데이션에 활용할 수 있습니다.</li>
+            <li><a href="/tools/dev/color-converter" class="text-blue-600 dark:text-blue-400 hover:underline">색상 변환기</a> - HEX, RGB, HSL 등 다양한 색상 형식 간 변환을 지원합니다.</li>
+            <li><a href="/tools/dev/box-shadow" class="text-blue-600 dark:text-blue-400 hover:underline">Box Shadow 생성기</a> - 그라데이션과 함께 사용하면 더욱 입체감 있는 UI를 만들 수 있습니다.</li>
+          </ul>
+        </div>
       </section>
     </div>
   </main>

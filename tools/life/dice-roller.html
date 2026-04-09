@@ -1160,6 +1160,16 @@
               <p class="text-gray-600 dark:text-gray-400 pb-1">아니요, 주사위 굴리기는 브라우저에서만 작동하며 어떤 데이터도 서버로 전송되지 않습니다. 굴림 기록도 로컬에만 저장됩니다.</p>
             </div>
           </div>
+        
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>주사위 굴리기는 crypto.getRandomValues()로 암호학적 난수를 생성하여 1~6(또는 사용자 지정 면수)의 균일한 분포를 만듭니다. 모듈로 바이어스를 방지하기 위해 적절한 범위의 난수만 수용합니다. CSS 3D transform으로 주사위 회전 애니메이션을 구현하고, 여러 개의 주사위를 동시에 굴려 합계를 표시합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/coin-flip" class="text-blue-600 dark:text-blue-400 hover:underline">동전 던지기</a> - </li>
+            <li><a href="/tools/life/roulette" class="text-blue-600 dark:text-blue-400 hover:underline">룰렛</a> - </li>
+            <li><a href="/tools/life/lottery-generator" class="text-blue-600 dark:text-blue-400 hover:underline">로또 번호 생성기</a> - </li>
+          </ul>
         </div>
       </section>
 

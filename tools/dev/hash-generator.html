@@ -691,7 +691,10 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">해시(Hash)란?</h3>
-          <p>해시 함수는 임의 길이의 데이터를 입력받아 고정 길이의 고유한 문자열(해시값, 다이제스트)로 변환하는 암호학적 알고리즘입니다. 같은 입력은 언제나 동일한 해시값을 생성하지만, 해시값만으로 원본 데이터를 복원하는 것은 수학적으로 불가능합니다. 이런 단방향 특성 덕분에 파일 무결성 검증, 비밀번호 안전 저장, 디지털 서명, 블록체인 트랜잭션 검증 등 보안이 중요한 거의 모든 분야에서 핵심적으로 활용됩니다. 이 도구는 MD5, SHA-1, SHA-256, SHA-384, SHA-512 다섯 가지 알고리즘으로 텍스트나 파일의 해시값을 한 번에 생성해줍니다.</p>
+          <p>해시 함수는 임의 길이의 데이터를 입력받아 고정 길이의 고유한 문자열(해시값, 다이제스트)로 변환하는 암호학적 알고리즘입니다. 같은 입력은 언제나 동일한 해시값을 생성하지만, 해시값만으로 원본 데이터를 복원하는 것은 수학적으로 불가능합니다. 이런 단방향 특성 덕분에 파일 무결성 검증, 비밀번호 안전 저장, 디지털 서명, 블록체인 트랜잭션 검증 등 보안이 중요한 거의 모든 분야에서 핵심적으로 활용됩니다. 이 도구는 MD5, SHA-1, SHA-256, SHA-384, SHA-512 다섯 가지 알고리즘으로 텍스트나 파일의 해시값을 한 번에 생성해줍니다. 해시 함수의 역사는 1950년대 데이터 검색을 위한 해시 테이블 개념에서 시작되었습니다. 암호학적 해시 함수로서 MD5는 1991년 Ron Rivest가, SHA-1은 1995년 NSA가 발표했으며, 이후 보안 취약점이 발견되면서 SHA-2 계열(SHA-256, SHA-384, SHA-512)이 현재의 표준으로 자리 잡았습니다. 최근에는 SHA-3(Keccak)이라는 완전히 새로운 구조의 해시 함수도 표준화되었습니다.</p>
+
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">작동 원리</h3>
+          <p>해시 함수는 입력 데이터를 고정 크기의 블록으로 나누고, 각 블록에 대해 비트 연산(XOR, AND, OR, 시프트, 로테이션)을 반복 적용하여 최종 해시값을 만들어냅니다. SHA-256을 예로 들면, 입력을 512비트 블록으로 나누고 각 블록에 대해 64라운드의 압축 함수를 수행합니다. 이 과정에서 내부 상태가 복잡하게 뒤섞여서 입력의 아주 작은 변화도 출력을 완전히 다르게 만듭니다. 예를 들어 "hello"의 SHA-256 해시는 <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">2cf24dba...</code>이지만, "Hello"(대문자 H)의 해시는 <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">185f8db3...</code>로 완전히 다릅니다. MD5는 128비트(32자), SHA-1은 160비트(40자), SHA-256은 256비트(64자)의 고정 길이 출력을 생성하며, 출력 길이가 길수록 충돌 확률이 낮아져 보안성이 높아집니다.</p>
 
           <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">무엇을 할 수 있나요?</h3>
           <ul class="list-disc list-inside space-y-2">
@@ -773,6 +776,18 @@
               <p class="text-gray-600 dark:text-gray-400 pb-1">해시는 단방향 함수로, 원본을 복원할 수 없습니다. 암호화는 양방향으로, 올바른 키를 가지고 있으면 원본을 복원할 수 있습니다. 데이터를 보호하면서 나중에 복원해야 한다면 암호화(AES 등)를, 검증만 필요하다면 해시를 사용하세요.</p>
             </div>
           </div>
+
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/dev/password-generator" class="text-blue-600 dark:text-blue-400 hover:underline">비밀번호 생성기</a> - 강력한 무작위 비밀번호를 생성하여 해시와 함께 안전하게 관리합니다.</li>
+            <li><a href="/tools/dev/base64" class="text-blue-600 dark:text-blue-400 hover:underline">Base64 인코더/디코더</a> - 바이너리 데이터를 텍스트로 인코딩하거나 디코딩합니다.</li>
+            <li><a href="/tools/dev/uuid-generator" class="text-blue-600 dark:text-blue-400 hover:underline">UUID 생성기</a> - 고유한 식별자를 생성하여 데이터 관리에 활용합니다.</li>
+          </ul>
+
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">관련 블로그 글</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/blog/hash-guide" class="text-blue-600 dark:text-blue-400 hover:underline">해시 함수 완벽 가이드</a></li>
+          </ul>
         </div>
       </section>
 

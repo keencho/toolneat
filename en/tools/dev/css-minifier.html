@@ -649,7 +649,10 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">All About CSS Minification</h3>
-          <p>CSS minification is the process of stripping unnecessary characters from a stylesheet -- whitespace, line breaks, comments, and redundant semicolons -- to shrink the file size without changing how the browser interprets it. Because browsers ignore formatting entirely, a minified file renders exactly the same as its uncompressed source while requiring significantly less bandwidth to transfer. CSS beautification (or prettification) is the reverse operation: it takes a single-line, compressed block and reformats it with proper indentation and line breaks so that humans can read and edit it comfortably. The standard workflow is to develop with beautified CSS and deploy with minified CSS, giving you the best of both worlds.</p>
+          <p>CSS minification is the process of stripping unnecessary characters from a stylesheet -- whitespace, line breaks, comments, and redundant semicolons -- to shrink the file size without changing how the browser interprets it. Because browsers ignore formatting entirely, a minified file renders exactly the same as its uncompressed source while requiring significantly less bandwidth to transfer. CSS beautification (or prettification) is the reverse operation: it takes a single-line, compressed block and reformats it with proper indentation and line breaks so that humans can read and edit it comfortably. The standard workflow is to develop with beautified CSS and deploy with minified CSS, giving you the best of both worlds. The practice of CSS minification dates back to the mid-2000s, when web performance emerged as a serious concern. Early tools like Yahoo's YUI Compressor and Google's Closure Stylesheets pioneered automated minification, and modern successors such as cssnano, clean-css, and esbuild have since taken over. Today most front-end build systems include CSS minification as a default step, but an online tool like this one remains invaluable when you need to quickly minify CSS without setting up a build environment, or when you want to analyze third-party stylesheets.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">How It Works</h3>
+          <p>A CSS minifier scans the input code character by character, performing several passes of optimization. First, it detects and removes comment blocks delimited by <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">/* ... */</code>. Next, it collapses line breaks, tabs, and consecutive spaces into a single space or removes them entirely. Whitespace that is syntactically unnecessary -- between selectors and braces, around colons and semicolons -- is stripped as well. For example, <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">.header { margin: 0; padding: 0; }</code> becomes <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">.header{margin:0;padding:0}</code>. Additional optimizations can include removing the final semicolon before a closing brace, shortening <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0px</code> to <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">0</code>, and collapsing color values like <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">#ffffff</code> to <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">#fff</code>. The Beautify mode reverses this process: it identifies structural tokens such as braces and semicolons and inserts line breaks and indentation to visually represent the hierarchy of the code.</p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
           <ol class="list-decimal ml-5 space-y-2">
@@ -723,6 +726,18 @@
               <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">All processing happens locally in your browser. Your CSS code is never sent to any server or stored externally, so you can safely paste proprietary or internal stylesheets without any privacy concerns.</p>
             </div>
           </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Related Tools</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><a href="/en/tools/dev/html-minifier" class="text-blue-600 dark:text-blue-400 hover:underline">HTML Minifier</a> - Remove unnecessary whitespace and comments from HTML code to reduce file size.</li>
+            <li><a href="/en/tools/dev/js-minifier" class="text-blue-600 dark:text-blue-400 hover:underline">JavaScript Minifier</a> - Compress JavaScript code to improve web page loading speed.</li>
+            <li><a href="/en/tools/dev/json-formatter" class="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</a> - Format JSON data for readability or compress it into a compact form.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Related Blog Post</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><a href="/en/blog/css-optimization-guide" class="text-blue-600 dark:text-blue-400 hover:underline">CSS Optimization and Minification Guide</a></li>
+          </ul>
         </div>
       </section>
 

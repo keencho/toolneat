@@ -856,6 +856,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>Snake is a classic arcade game that originated from the 1976 game Blockade and gained worldwide popularity when it was included on Nokia mobile phones in 1997. You control a snake that grows longer each time it eats food, while avoiding collisions with walls and its own body. Its simple yet addictive gameplay has kept players entertained for decades. Play instantly on Toolneat -- no installation needed, works on both desktop and mobile browsers.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>Snake is an arcade game where you guide a snake with arrow keys to eat food. Each food item increases the snake's length by one segment and adds to the score. The game loop runs via requestAnimationFrame, updating the head position each tick and having body segments follow. Hitting a wall or the snake's own body ends the game.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">Controls</h3>
           <ul class="list-disc list-inside space-y-2">
             <li><strong>Keyboard:</strong> Use arrow keys or WASD to change the snake's direction.</li>
@@ -956,6 +959,22 @@
               <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">Press the pause button or the P key to freeze the game at any time. Your score and position are preserved until you resume. Useful when you need a moment to plan your next few moves, especially when the board is getting crowded and the speed is high.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          
+          <h3 class="text-lg font-semibold mt-6 mb-3">Pro Tips for High Scores</h3>
+          <p>Achieving high scores in Snake requires systematic strategy. Early on, move along grid edges to secure safe paths. As the snake grows, moving through the center easily leads to being trapped. When food appears, check your escape route before rushing to eat it.</p><p>In mid-to-late game, a spiral pattern works best. Move in large circles following your own tail to maximize open space. Avoid narrow gaps — entering a dead-end with a long snake means game over. Adjust speed to match your reaction time, gradually increasing as you improve. On touch devices, the on-screen buttons are more precise than swipe controls.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/game/tetris" class="text-blue-600 dark:text-blue-400 hover:underline">Tetris</a> - Classic arcade game.</li>
+            <li><a href="/en/tools/game/2048" class="text-blue-600 dark:text-blue-400 hover:underline">2048</a> - Puzzle game.</li>
+            <li><a href="/en/tools/game/memory-game" class="text-blue-600 dark:text-blue-400 hover:underline">Memory Game</a> - Memory game.</li>
+          </ul>
         </div>
       </section>
     </div>

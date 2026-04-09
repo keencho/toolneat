@@ -580,6 +580,9 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">번인 테스트 가이드</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>번인 테스트는 화면의 잔상(burn-in)을 확인하기 위해 균일한 색상 패턴을 전체 화면에 표시합니다. OLED/AMOLED 디스플레이는 정적 이미지를 오래 표시하면 유기 물질이 불균일하게 노화되어 잔상이 남을 수 있습니다. 회색 화면에서 이전 UI 요소의 흔적이 보이면 번인이 발생한 것입니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">번인 테스트란?</h3>
           <p>번인 테스트는 OLED, AMOLED, 플라즈마 등 자체 발광 디스플레이에서 발생할 수 있는 번인(화면 잔상) 현상을 진단하는 도구입니다. 번인은 같은 이미지가 오랜 시간 표시되면서 유기 화합물 픽셀이 불균일하게 열화되어 나타나는 영구적 잔상입니다. 작업표시줄, 뉴스 자막, 게임 HUD, 상태바 같은 고정 UI 요소가 주된 원인이며, 한번 발생하면 복구가 매우 어렵기 때문에 중고 OLED TV나 스마트폰 구매 전, 또는 자신의 디스플레이 상태를 정기적으로 점검할 때 이 테스트를 활용합니다.</p>
 
@@ -667,6 +670,18 @@
       </section>
 
       <div class="ad-container mt-8"></div>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/dead-pixel-test" class="text-blue-600 dark:text-blue-400 hover:underline">데드픽셀 테스트</a> - </li>
+            <li><a href="/tools/life/screen-color-test" class="text-blue-600 dark:text-blue-400 hover:underline">화면 색상 테스트</a> - </li>
+            <li><a href="/tools/life/pixel-fixer" class="text-blue-600 dark:text-blue-400 hover:underline">픽셀 수리</a> - </li>
+          </ul>
+        </div>
+      </section>
     </div>
   </main>
   <div id="footer">

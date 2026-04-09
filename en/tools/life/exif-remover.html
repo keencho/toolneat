@@ -596,6 +596,9 @@
           <p>EXIF (Exchangeable Image File Format) is metadata embedded in digital photos. When you take a picture with a camera or smartphone, information like GPS location, date, and camera settings is automatically saved inside the image file.</p>
           <p class="mt-3">This tool lets you view and safely remove EXIF data from JPG/JPEG images. All processing happens in your browser, so your photos are never uploaded to any external server.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>The EXIF remover strips metadata segments from JPEG files. JPEG files contain metadata segments like APP1 (EXIF) and APP2 (ICC profile) after the SOI marker. This tool draws the image on a Canvas and re-encodes via toBlob(), stripping EXIF data including GPS location, camera info, and capture timestamps.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
             <li><strong>EXIF Viewer:</strong> See GPS location, date/time, camera info, and settings at a glance</li>
@@ -676,6 +679,23 @@
               <p>Yes, you can use it on smartphone or tablet browsers. Tap the upload area to select a photo from your gallery for processing.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/life/image-compressor" class="text-blue-600 dark:text-blue-400 hover:underline">Image Compressor</a> - </li>
+            <li><a href="/en/tools/life/image-converter" class="text-blue-600 dark:text-blue-400 hover:underline">Image Converter</a> - </li>
+            <li><a href="/en/tools/life/background-remover" class="text-blue-600 dark:text-blue-400 hover:underline">Background Remover</a> - </li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Articles</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/blog/image-compress-guide" class="text-blue-600 dark:text-blue-400 hover:underline">Image Compression Guide</a></li>
+          </ul>
         </div>
       </section>
     </div>

@@ -553,7 +553,10 @@
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Case Converter Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <h3 class="text-lg font-semibold mt-6 mb-3">Understanding Case Converter</h3>
-          <p>Case Converter is an online tool that instantly transforms text into various case formats. In programming, you must follow specific naming conventions for variables, functions, classes, and constants depending on the language. This tool supports 10 formats, from programming-specific styles like camelCase, PascalCase, snake_case, and kebab-case to general text formats like UPPERCASE, lowercase, and Title Case. It automatically detects the existing format of your text, so even text already written in snake_case converts cleanly to camelCase.</p>
+          <p>Case Converter is an online tool that instantly transforms text into various case formats. In programming, you must follow specific naming conventions for variables, functions, classes, and constants depending on the language. This tool supports 10 formats, from programming-specific styles like camelCase, PascalCase, snake_case, and kebab-case to general text formats like UPPERCASE, lowercase, and Title Case. It automatically detects the existing format of your text, so even text already written in snake_case converts cleanly to camelCase. Naming conventions have existed since the early days of programming: snake_case became popular through C, while camelCase was popularized by Smalltalk. Today, most languages have official style guides -- JavaScript uses camelCase, Python's PEP 8 prescribes snake_case, and CSS relies on kebab-case. Consistent naming significantly improves code readability and eliminates unnecessary style debates during team collaboration.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>The core of case conversion is accurately splitting the input text into individual words. The tool first analyzes the input string's pattern to detect delimiters: underscores indicate snake_case, hyphens indicate kebab-case, and uppercase transitions indicate camelCase. For example, given the input "getUserName", the tool detects uppercase boundaries and splits it into three words: "get", "User", and "Name". It then reassembles the words according to the target format's rules. Converting to snake_case lowercases each word and joins them with underscores to produce "get_user_name". Converting to PascalCase capitalizes the first letter of each word, resulting in "GetUserName". Common delimiters like spaces and periods are also recognized, allowing natural language text to be converted into programming formats just as easily.</p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">What Can You Do?</h3>
           <ul class="list-disc list-inside space-y-2">
@@ -700,6 +703,13 @@
               <p class="text-gray-600 dark:text-gray-400 pb-1">Characters without uppercase/lowercase distinctions (like CJK characters) remain unchanged. English portions within mixed text are converted normally.</p>
             </div>
           </div>
+
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/dev/text-escape" class="text-blue-600 dark:text-blue-400 hover:underline">Text Escape</a> - Escapes special characters for HTML, JSON, URL, and other contexts.</li>
+            <li><a href="/en/tools/dev/lorem-ipsum" class="text-blue-600 dark:text-blue-400 hover:underline">Lorem Ipsum Generator</a> - Generates dummy text for design mockups and layout testing.</li>
+            <li><a href="/en/tools/dev/html-entity" class="text-blue-600 dark:text-blue-400 hover:underline">HTML Entity Converter</a> - Converts HTML special characters to entity codes or decodes them.</li>
+          </ul>
         </div>
       </section>
 

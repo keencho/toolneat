@@ -595,6 +595,9 @@
           <p>EXIF(Exchangeable Image File Format)는 디지털 사진에 포함된 메타데이터입니다. 카메라나 스마트폰으로 사진을 찍으면 촬영 위치, 날짜, 카메라 정보 등이 자동으로 사진 파일에 저장됩니다.</p>
           <p class="mt-3">이 도구는 JPG/JPEG 이미지에서 EXIF 데이터를 확인하고 안전하게 제거할 수 있습니다. 모든 처리는 브라우저에서 이루어져 사진이 외부 서버로 전송되지 않습니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>EXIF 제거 도구는 JPEG 파일의 메타데이터 세그먼트를 제거합니다. JPEG 파일은 SOI 마커 뒤에 APP1(EXIF), APP2(ICC 프로파일) 등의 메타데이터 세그먼트가 포함됩니다. 이 도구는 이미지를 Canvas에 그린 후 toBlob()으로 다시 인코딩하여 EXIF 데이터(GPS 위치, 카메라 정보, 촬영 시간 등)를 제거합니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
           <ul class="list-disc list-inside space-y-2">
             <li><strong>EXIF 데이터 확인:</strong> 사진에 포함된 GPS 위치, 촬영 일시, 카메라 정보 등을 한눈에 확인</li>
@@ -675,6 +678,23 @@
               <p>네, 스마트폰이나 태블릿의 브라우저에서도 사용할 수 있습니다. 파일 선택 버튼을 탭하여 갤러리에서 사진을 선택하면 됩니다.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/image-compressor" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 압축</a> - </li>
+            <li><a href="/tools/life/image-converter" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 변환기</a> - </li>
+            <li><a href="/tools/life/background-remover" class="text-blue-600 dark:text-blue-400 hover:underline">배경 제거</a> - </li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 블로그 글</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/blog/image-compress-guide" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 용량 줄이기 가이드</a></li>
+          </ul>
         </div>
       </section>
     </div>

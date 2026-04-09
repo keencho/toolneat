@@ -625,6 +625,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">PDF 병합은 여러 개의 PDF 파일을 하나의 문서로 합치는 작업입니다. 업무 환경에서 계약서, 보고서, 영수증, 스캔 문서 등을 하나의 파일로 정리해야 하는 경우가 많은데, 이 도구를 사용하면 별도의 프로그램 설치 없이 브라우저에서 빠르게 병합할 수 있습니다. 모든 처리는 사용자의 브라우저 내에서 이루어지므로 파일이 외부 서버로 전송되는 일이 없어 개인정보와 기밀 문서를 안전하게 다룰 수 있습니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>PDF 병합은 여러 PDF 파일의 페이지 트리를 하나로 결합하는 과정입니다. 각 PDF의 크로스 레퍼런스 테이블을 파싱하여 페이지 객체를 추출하고, 새로운 PDF 문서의 페이지 트리에 순서대로 삽입합니다. 북마크, 주석, 폼 필드 등의 메타데이터도 함께 병합됩니다. 브라우저의 PDF.js 라이브러리를 사용하여 모든 처리가 클라이언트에서 이루어집니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
           <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
             <li>여러 PDF 파일을 한 번에 업로드하여 하나로 합치기</li>
@@ -704,6 +707,23 @@
               <p class="text-gray-600 dark:text-gray-400">파일 크기가 너무 큰 경우 발생할 수 있습니다. 페이지를 새로고침하고, 파일을 나눠서 작업하거나 불필요한 탭을 닫아 메모리를 확보해 보세요.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/pdf/split-pdf" class="text-blue-600 dark:text-blue-400 hover:underline">PDF 분할</a> - PDF를 여러 파일로 나눕니다.</li>
+            <li><a href="/tools/pdf/reorder-pdf" class="text-blue-600 dark:text-blue-400 hover:underline">PDF 페이지 재정렬</a> - 페이지 순서를 변경합니다.</li>
+            <li><a href="/tools/pdf/compress-pdf" class="text-blue-600 dark:text-blue-400 hover:underline">PDF 압축</a> - PDF 파일 크기를 줄입니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 블로그 글</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/blog/pdf-merge-guide" class="text-blue-600 dark:text-blue-400 hover:underline">PDF 합치기 완벽 가이드</a></li>
+          </ul>
         </div>
       </section>
     </div>

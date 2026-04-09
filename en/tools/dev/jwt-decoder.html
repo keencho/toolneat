@@ -808,7 +808,10 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-lg font-bold mt-8 mb-2">About a JWT (JSON Web Token)</h3>
-          <p>JWT is an open standard (RFC 7519) for securely transmitting JSON-formatted data between parties. It is widely used for authentication, authorization, and information exchange in web applications. A JWT consists of three parts separated by dots: Header (algorithm info), Payload (actual data/claims), and Signature (integrity check). The server verifies the signature with a secret key to confirm the token has not been tampered with.</p>
+          <p>JWT is an open standard (RFC 7519) for securely transmitting JSON-formatted data between parties. It is widely used for authentication, authorization, and information exchange in web applications. A JWT consists of three parts separated by dots: Header (algorithm info), Payload (actual data/claims), and Signature (integrity check). The server verifies the signature with a secret key to confirm the token has not been tampered with. During API development and debugging, you frequently need to inspect token contents to diagnose authentication issues. This tool lets you instantly view the Header and Payload without manually performing Base64 decoding. It also automatically checks expiration status, significantly reducing the time spent troubleshooting token-related problems.</p>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">How It Works</h3>
+          <p>The JWT Decoder splits the input token string into three parts using the dot (.) delimiter. The Header and Payload are each Base64URL-encoded, so the tool converts them to standard Base64, decodes them with <code>atob()</code>, and parses the result with <code>JSON.parse()</code>. Base64URL differs from standard Base64 by replacing + with -, / with _, and omitting padding characters (=). The third part, the Signature, is a hash generated using the algorithm specified in the Header and the secret key. During signature verification, the tool uses the Web Crypto API to recompute the signature with HMAC-SHA256/384/512 and compares it byte-by-byte against the original. Time-related claims like exp, iat, and nbf are automatically converted from Unix timestamps to human-readable date formats and compared against the current time to determine the token's validity status.</p>
 
           <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
           <ol class="list-decimal pl-5 space-y-1.5">
@@ -873,6 +876,17 @@
               <p class="text-gray-500 dark:text-gray-400 mt-1">No. All decoding and signature verification happens entirely in your browser. Your tokens and keys are never transmitted to any server, so you can use this tool with confidence.</p>
             </div>
           </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Related Tools</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><a href="/en/tools/dev/jwt-generator" class="text-blue-600 dark:text-blue-400 hover:underline">JWT Generator</a> - Create test JWT tokens with custom claims and expiration.</li>
+            <li><a href="/en/tools/dev/base64" class="text-blue-600 dark:text-blue-400 hover:underline">Base64 Encoder/Decoder</a> - Encode and decode text and files in Base64 format.</li>
+            <li><a href="/en/tools/dev/json-formatter" class="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</a> - Useful for formatting decoded payload data for readability.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">Related Blog Posts</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><a href="/en/blog/jwt-explained" class="text-blue-600 dark:text-blue-400 hover:underline">Understanding JWT Tokens</a> - A detailed guide covering JWT structure, how they work, and security best practices.</li>
+          </ul>
         </div>
           <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
           <ul class="list-disc pl-5 space-y-1.5">

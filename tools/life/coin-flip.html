@@ -1053,6 +1053,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>동전 던지기는 두 가지 선택지 중 하나를 무작위로 결정할 때 사용하는 가장 간단하고 공정한 방법입니다. 이 도구는 실제 동전 없이도 가상 동전을 통해 언제 어디서나 빠른 의사결정을 도와줍니다. 3D 애니메이션으로 실감나는 동전 던지기 경험을 제공하며, 누적 통계를 통해 확률 분포도 확인할 수 있습니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>동전 던지기는 crypto.getRandomValues()를 사용하여 암호학적으로 안전한 난수를 생성합니다. 0 또는 1의 결과를 동전 앞면(Head)과 뒷면(Tail)에 매핑합니다. CSS 애니메이션으로 동전이 회전하는 효과를 구현하며, 누적 통계(앞면/뒷면 비율)를 표시하여 확률의 대수의 법칙을 관찰할 수 있습니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>사실적인 3D 회전 애니메이션으로 동전 던지기 시뮬레이션</li>
@@ -1134,6 +1137,13 @@
               <p>네, 반응형으로 설계되어 스마트폰과 태블릿에서도 동일하게 사용 가능합니다. 화면을 탭하면 동전이 던져지며, 모든 처리는 브라우저에서 이루어집니다.</p>
             </div>
           </div>
+        
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/dice-roller" class="text-blue-600 dark:text-blue-400 hover:underline">주사위 굴리기</a> - </li>
+            <li><a href="/tools/life/roulette" class="text-blue-600 dark:text-blue-400 hover:underline">룰렛</a> - </li>
+            <li><a href="/tools/life/lottery-generator" class="text-blue-600 dark:text-blue-400 hover:underline">로또 번호 생성기</a> - </li>
+          </ul>
         </div>
       </section>
 

@@ -622,7 +622,145 @@
           <p>atob("SGVsbG8=") // "Hello"</p>
         </div>
         <p class="text-sm text-gray-600 dark:text-gray-400">Note: <code>btoa</code>/<code>atob</code> only support ASCII. Unicode (like emojis) requires extra handling.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">A Brief History of Base64</h2>
+        <p class="text-gray-700 dark:text-gray-300">Base64 encoding did not appear out of thin air. It evolved over decades as email systems matured. The earliest formal specification was RFC 989 (1987), which defined Privacy Enhanced Mail (PEM) and included a base64 encoding for binary data within email messages. That spec was revised through RFC 1421, then RFC 2045 (MIME), and finally RFC 4648 (2006), which is the current authoritative reference.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">The reason for this long evolution is that email was originally a 7-bit ASCII system. The Simple Mail Transfer Protocol (SMTP) could only reliably transmit characters in the 0-127 range. Binary attachments, characters from non-English alphabets, and even some control characters would get corrupted in transit. Base64 solved this by mapping arbitrary bytes to a safe 64-character alphabet that every mail relay could handle without modification.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">RFC 4648 formalized not just Base64 but also Base32 and Base16 (hex), giving each a clear specification. It also defined the "URL-safe" Base64 alphabet, which replaced <code>+</code> with <code>-</code> and <code>/</code> with <code>_</code> to avoid conflicts in URLs and filenames.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Base64 vs Other Encodings</h2>
+        <p class="text-gray-700 dark:text-gray-300">Base64 is not the only way to represent binary data as text. Each alternative has trade-offs in size, readability, and compatibility.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Hexadecimal (Base16)</h3>
+        <p class="text-gray-700 dark:text-gray-300">Hex encoding uses 16 characters (0-9, A-F). Each byte becomes two hex characters, meaning the encoded output is exactly twice the size of the input. That is a 100% size increase, compared to Base64's 33%. Hex is common in debugging, hash representations, and low-level programming because it maps directly to nibbles (4-bit groups), making it easy to read binary values.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>"Hello" in hex:    48656c6c6f     (10 characters)
+"Hello" in Base64: SGVsbG8=        (8 characters)
+"Hello" raw:       5 bytes</pre>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">URL Encoding (Percent Encoding)</h3>
+        <p class="text-gray-700 dark:text-gray-300">URL encoding replaces unsafe characters with a percent sign followed by two hex digits. For example, a space becomes <code>%20</code>. Unlike Base64, URL encoding only transforms characters that are unsafe in a URL context. ASCII letters, digits, and a few symbols pass through unchanged. This makes it efficient for text that is mostly ASCII but contains a few special characters, and wildly inefficient for binary data (each byte becomes three characters in the worst case).</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">ASCII85 (Base85)</h3>
+        <p class="text-gray-700 dark:text-gray-300">ASCII85 uses 85 printable ASCII characters to encode data, achieving roughly a 25% size increase (compared to Base64's 33%). It encodes four bytes into five characters. You will find it in Adobe PostScript and PDF files. It is more space-efficient than Base64 but less widely supported in web contexts. Unless you are working with PostScript or a system that specifically requires it, Base64 is the safer choice.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Base32</h3>
+        <p class="text-gray-700 dark:text-gray-300">Base32 uses 32 characters (A-Z and 2-7). It produces output that is 60% larger than the input, less efficient than Base64. But it has a key advantage: the output is case-insensitive. This makes Base32 ideal for situations where case might be lost, such as DNS records, file systems on case-insensitive operating systems, or one-time passwords (TOTP/HOTP apps like Google Authenticator use Base32-encoded secrets).</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Base58</h3>
+        <p class="text-gray-700 dark:text-gray-300">Base58 was invented by Satoshi Nakamoto for Bitcoin addresses. It uses 58 characters, removing visually ambiguous ones: no zero (0), no uppercase O, no lowercase l, and no uppercase I. This reduces human transcription errors when typing or reading addresses. Base58 also avoids <code>+</code> and <code>/</code>, making the output URL-safe without modification. Ripple and IPFS also use Base58-based encodings.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Encoding Comparison Table</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left">Encoding</th>
+                <th class="px-4 py-2 text-left">Characters</th>
+                <th class="px-4 py-2 text-left">Size Overhead</th>
+                <th class="px-4 py-2 text-left">Common Use</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <td class="px-4 py-2 font-mono">Hex (Base16)</td>
+                <td class="px-4 py-2">16</td>
+                <td class="px-4 py-2">+100%</td>
+                <td class="px-4 py-2">Hashes, debugging</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">Base32</td>
+                <td class="px-4 py-2">32</td>
+                <td class="px-4 py-2">+60%</td>
+                <td class="px-4 py-2">TOTP secrets, DNS</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">Base58</td>
+                <td class="px-4 py-2">58</td>
+                <td class="px-4 py-2">+37%</td>
+                <td class="px-4 py-2">Bitcoin, IPFS</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">Base64</td>
+                <td class="px-4 py-2">64</td>
+                <td class="px-4 py-2">+33%</td>
+                <td class="px-4 py-2">Email, Data URLs, JWT</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">ASCII85</td>
+                <td class="px-4 py-2">85</td>
+                <td class="px-4 py-2">+25%</td>
+                <td class="px-4 py-2">PDF, PostScript</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Performance Considerations</h2>
+        <p class="text-gray-700 dark:text-gray-300">Base64 encoding and decoding are fast operations. On modern hardware, a well-optimized implementation can process several gigabytes per second. The bottleneck is rarely the encoding itself but rather the 33% size increase and its downstream effects.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">Consider a 1 MB image. Base64-encoded, it becomes roughly 1.37 MB of text. If you embed that in an HTML page, the browser must download the extra 370 KB, parse it as text, then decode it back to binary before rendering. A separate image file, on the other hand, can be cached independently, served from a CDN, and loaded in parallel with other resources. For images larger than a few kilobytes, separate files almost always win on performance.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">In API contexts, sending large binary payloads as Base64 inside JSON is common but not always ideal. If the payload is large (several megabytes or more), consider multipart form uploads instead. The server avoids the decoding overhead and the network transfers fewer bytes.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Security Misconceptions</h2>
+        <p class="text-gray-700 dark:text-gray-300">This cannot be stated enough: Base64 is not encryption, not obfuscation, not protection. It is a transport encoding. Every Base64 string can be decoded instantly by anyone with access to it. There is no key, no secret, no security whatsoever.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">Yet developers regularly make mistakes here. Storing API keys as Base64 in source code does not hide them. Sending passwords as Base64 in HTTP headers (as in Basic Auth) does not protect them. Using Base64-encoded tokens without HTTPS transmits credentials in plaintext.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">If you need to protect data in transit, use TLS (HTTPS). If you need to protect data at rest, use proper encryption (AES-256-GCM, for example). Base64 is a tool for encoding, not for securing.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Handling Unicode in Base64</h2>
+        <p class="text-gray-700 dark:text-gray-300">The JavaScript functions <code>btoa()</code> and <code>atob()</code> only work with characters in the Latin-1 range (0-255). Passing a string with characters outside that range, such as emoji or CJK characters, throws an error. The standard workaround is to encode the string as UTF-8 first, then Base64-encode the resulting bytes.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>// Encoding Unicode to Base64
+function utoa(str) {
+  return btoa(encodeURIComponent(str).replace(
+    /%([0-9A-F]{2})/g,
+    (_, p1) =&gt; String.fromCharCode('0x' + p1)
+  ));
+}
+
+// Decoding Base64 to Unicode
+function atou(b64) {
+  return decodeURIComponent(
+    atob(b64).split('').map(
+      c =&gt; '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    ).join('')
+  );
+}
+
+utoa("Hello World!") // "SGVsbG8gV29ybGQh"
+atou("SGVsbG8gV29ybGQh") // "Hello World!"</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">In Node.js, the <code>Buffer</code> class handles this more cleanly: <code>Buffer.from(str, 'utf8').toString('base64')</code>. Python's <code>base64</code> module works with bytes objects, so you encode the string to UTF-8 first: <code>base64.b64encode(text.encode('utf-8'))</code>.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Base64 in Modern Web Development</h2>
+        <p class="text-gray-700 dark:text-gray-300">Despite being a decades-old standard, Base64 remains deeply embedded in modern web workflows. CSS background images can be inlined as data URIs for critical above-the-fold icons. Source maps in bundled JavaScript files often contain Base64-encoded original source code. Web fonts can be embedded inline to avoid FOIT (flash of invisible text). And practically every authentication system on the web uses Base64 somewhere in its token chain.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">The key takeaway is knowing when Base64 adds value and when it adds waste. Small assets that block rendering benefit from inlining. Large assets, cacheable resources, and anything that changes independently from the HTML document should be kept as separate files. Understanding the encoding's mechanics and trade-offs lets you make that call with confidence.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Does Base64 encoding improve security?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Base64 has nothing to do with security. It is an encoding scheme, not encryption, and anyone can easily decode it. Use AES or RSA encryption for protecting sensitive data.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">How much does Base64 encoding increase file size?</h3>
+            <p class="text-gray-700 dark:text-gray-300">About 33% larger than the original. Three bytes of original data become four Base64 characters. Line breaks may add slightly more overhead.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What is the difference between Base64 and Base64URL?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Base64 uses +, /, = characters. Base64URL replaces these with -, _ and omits padding (=), making it safe for URLs and filenames. It is used in JWT tokens.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Do all programming languages support Base64?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Yes, most languages provide built-in support. JavaScript has btoa()/atob(), Python has the base64 module, and Java has java.util.Base64.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Should I always convert images to Base64?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Small icons (a few KB) benefit from Data URIs by reducing HTTP requests. Larger images should be served as regular files due to the 33% size increase and inability to cache.</p>
+          </div>
+        </div>
 
       <!-- Related Tool -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

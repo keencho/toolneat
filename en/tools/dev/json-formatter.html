@@ -739,7 +739,10 @@
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">JSON Formatter Tool Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">All About JSON Formatter</h3>
-          <p>A JSON Formatter (also called JSON Beautifier or Pretty Printer) transforms raw or compressed JSON data into a well-structured, readable format with proper indentation and line breaks. JSON (JavaScript Object Notation) is the most widely used data interchange format in web APIs, configuration files, and data storage. During development, you frequently need to inspect and analyze JSON data. This tool provides syntax highlighting, collapsible sections, key sorting, and validation to help you quickly navigate complex JSON structures and spot errors.</p>
+          <p>A JSON Formatter (also called JSON Beautifier or Pretty Printer) transforms raw or compressed JSON data into a well-structured, readable format with proper indentation and line breaks. JSON (JavaScript Object Notation) is the most widely used data interchange format in web APIs, configuration files, and data storage. During development, you frequently need to inspect and analyze JSON data. This tool provides syntax highlighting, collapsible sections, key sorting, and validation to help you quickly navigate complex JSON structures and spot errors. It is especially valuable when debugging REST API responses or reviewing CI/CD pipeline configuration files. Since it runs entirely in your browser, you can format JSON instantly from anywhere without installing any software. Even deeply nested structures spanning thousands of lines become manageable with the collapse/expand feature, allowing you to focus on exactly the section you need.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">How It Works</h3>
+          <p>Internally, the JSON Formatter uses JavaScript's <code>JSON.parse()</code> method to parse the input string. If parsing succeeds, the data is considered valid JSON; if it fails, an error message pinpoints the exact location of the problem. The parsed object is then converted back to a readable string using <code>JSON.stringify()</code> with the selected indentation option. When the "Sort Keys" option is enabled, each object's keys are sorted in Unicode order before serialization, making it easy to compare responses from different APIs that return the same data in different key orders. Syntax highlighting is powered by a regex-based tokenizer that classifies keys, strings, numbers, booleans, and null values, wrapping each token in a color-coded HTML tag. The collapse/expand feature detects curly braces and brackets to generate toggleable DOM elements. For large files exceeding 500KB, syntax highlighting is disabled in favor of plain text to maintain smooth performance.</p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Quick Start</h3>
           <ol class="list-decimal ml-5 space-y-2">
@@ -825,6 +828,18 @@
               <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yes. Click "Copy" to copy the formatted JSON to your clipboard and paste it into any editor or API testing tool. You can also download the result as a file for direct use in your project.</p>
             </div>
           </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Related Tools</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><a href="/en/tools/dev/json-validator" class="text-blue-600 dark:text-blue-400 hover:underline">JSON Validator</a> - Diagnose JSON syntax errors with precise line and column locations.</li>
+            <li><a href="/en/tools/dev/json-csv" class="text-blue-600 dark:text-blue-400 hover:underline">JSON-CSV Converter</a> - Convert JSON array data to CSV format and vice versa.</li>
+            <li><a href="/en/tools/dev/yaml-json" class="text-blue-600 dark:text-blue-400 hover:underline">YAML-JSON Converter</a> - Bidirectional conversion between YAML and JSON formats.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">Related Blog Posts</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li><a href="/en/blog/json-yaml-xml" class="text-blue-600 dark:text-blue-400 hover:underline">JSON vs YAML vs XML Comparison</a> - Compare the characteristics and use cases of three popular data formats.</li>
+          </ul>
         </div>
       </section>
     </div>

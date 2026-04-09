@@ -582,7 +582,10 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-lg font-bold mt-8 mb-2">About a CSS Gradient</h3>
-          <p>A CSS gradient is a smooth color transition rendered entirely by the browser, requiring no image files at all. Because it is generated on the fly, a gradient has zero impact on page load time while still adding visual depth and polish to any design. There are two main types -- Linear gradients transition colors along a straight axis, while Radial gradients radiate outward from a center point. By adjusting angle, direction, and color stops, you can produce an almost infinite variety of patterns. This tool lets you design gradients visually and automatically generates the corresponding CSS code so you can copy it straight into your project.</p>
+          <p>A CSS gradient is a smooth color transition rendered entirely by the browser, requiring no image files at all. Because it is generated on the fly, a gradient has zero impact on page load time while still adding visual depth and polish to any design. There are two main types -- Linear gradients transition colors along a straight axis, while Radial gradients radiate outward from a center point. By adjusting angle, direction, and color stops, you can produce an almost infinite variety of patterns. This tool lets you design gradients visually and automatically generates the corresponding CSS code so you can copy it straight into your project. CSS gradients were introduced as part of the CSS3 specification. Before that, designers had to create gradient images in Photoshop and tile them as backgrounds. Today the specification also includes conic-gradient (cone-shaped) and repeating-gradient (tiling) variants. Frameworks like Tailwind CSS and Bootstrap ship their own gradient utility classes, underscoring how essential gradients have become in modern web design.</p>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">How It Works</h3>
+          <p>CSS gradients are images generated in real time by the browser's rendering engine using mathematical interpolation. For a linear gradient, the engine establishes a virtual gradient line at the specified angle and smoothly transitions between color stops placed along that line. For example, <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">linear-gradient(90deg, #ff0000 0%, #0000ff 100%)</code> transitions from red on the left to blue on the right. A radial gradient works similarly but radiates outward from a center point in an elliptical or circular shape. Adjusting each color stop's position (%) gives you fine control over where transitions begin and end, and placing two colors at the same position creates a hard-edge stripe effect instead of a smooth blend.</p>
 
           <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
           <ol class="list-decimal pl-5 space-y-1.5">
@@ -651,7 +654,7 @@
               <p class="text-gray-500 dark:text-gray-400 mt-1">No. Everything runs locally in your browser. Your color choices and settings are never transmitted or stored externally.</p>
             </div>
           </div>
-        </div>
+
           <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
           <ul class="list-disc pl-5 space-y-1.5">
             <li>Stick to 2-4 colors for the smoothest results. Too many color stops can make the gradient look noisy.</li>
@@ -661,6 +664,13 @@
             <li>If your site supports dark mode, consider preparing separate gradient palettes for light and dark themes.</li>
           </ul>
 
+          <h3 class="text-lg font-bold mt-8 mb-2">Related Tools</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><a href="/en/tools/dev/color-palette" class="text-blue-600 dark:text-blue-400 hover:underline">Color Palette Generator</a> - Create harmonious color combinations to use in your gradients.</li>
+            <li><a href="/en/tools/dev/color-converter" class="text-blue-600 dark:text-blue-400 hover:underline">Color Converter</a> - Convert between HEX, RGB, HSL, and other color formats.</li>
+            <li><a href="/en/tools/dev/box-shadow" class="text-blue-600 dark:text-blue-400 hover:underline">Box Shadow Generator</a> - Combine with gradients to create more dimensional UI elements.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- Guide Section -->

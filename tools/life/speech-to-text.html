@@ -592,6 +592,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>음성 인식(Speech to Text, STT)은 사람의 말을 실시간으로 텍스트로 변환하는 기술입니다. 이 도구는 브라우저에 내장된 Web Speech API를 활용하여 별도의 프로그램 설치 없이 음성을 텍스트로 바꿔줍니다. 회의록 작성, 인터뷰 기록, 받아쓰기, 메모 등 키보드 입력이 불편한 상황에서 특히 유용합니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>음성 인식은 Web Speech API의 SpeechRecognition 인터페이스를 사용합니다. 마이크로 캡처한 오디오를 브라우저의 음성 인식 엔진(또는 클라우드 서비스)이 처리합니다. 오디오 신호를 음소 단위로 분석하고, 언어 모델을 사용하여 가장 가능성 높은 텍스트로 변환합니다. 실시간(continuous) 모드와 단일 발화 모드를 지원합니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
           <ul class="list-disc list-inside space-y-2">
             <li><strong>실시간 변환</strong> - 말하는 즉시 텍스트가 화면에 표시됩니다</li>
@@ -673,6 +676,18 @@
               <p>스마트폰에서도 Chrome, Safari 등 지원 브라우저를 통해 사용 가능합니다. 모바일 기기의 내장 마이크를 사용하므로 별도 장비 없이 바로 이용할 수 있습니다.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/text-to-speech" class="text-blue-600 dark:text-blue-400 hover:underline">텍스트를 음성으로</a> - </li>
+            <li><a href="/tools/life/ocr" class="text-blue-600 dark:text-blue-400 hover:underline">OCR 텍스트 인식</a> - </li>
+            <li><a href="/tools/life/character-counter" class="text-blue-600 dark:text-blue-400 hover:underline">글자수 세기</a> - </li>
+          </ul>
         </div>
       </section>
     </div>

@@ -675,9 +675,174 @@
         <p><strong>3. Missing anchors</strong></p>
         <p class="text-gray-600 dark:text-gray-400"><code>\d{3}</code> finds "3 digits", but matches inside "12345" too. For exactly 3 digits, use anchors: <code>^\d{3}$</code></p>
 
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Quantifiers: Controlling Repetition</h2>
+        <p class="text-gray-700 dark:text-gray-300">Beyond <code>*</code>, <code>+</code>, and <code>?</code>, regex offers precise repetition control with curly braces.</p>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left">Quantifier</th>
+                <th class="px-4 py-2 text-left">Meaning</th>
+                <th class="px-4 py-2 text-left">Example</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <td class="px-4 py-2 font-mono">{3}</td>
+                <td class="px-4 py-2">Exactly 3</td>
+                <td class="px-4 py-2"><code>\d{3}</code> matches "123" but not "12"</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">{2,5}</td>
+                <td class="px-4 py-2">Between 2 and 5</td>
+                <td class="px-4 py-2"><code>a{2,5}</code> matches "aa", "aaa", up to "aaaaa"</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">{3,}</td>
+                <td class="px-4 py-2">3 or more</td>
+                <td class="px-4 py-2"><code>x{3,}</code> matches "xxx", "xxxx", etc.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Greedy vs Lazy Matching</h2>
+        <p class="text-gray-700 dark:text-gray-300">By default, quantifiers are <strong>greedy</strong>: they match as much text as possible. Adding a <code>?</code> after a quantifier makes it <strong>lazy</strong>, matching as little as possible.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">This distinction matters most when your pattern contains wildcards. Consider the text <code>&lt;b&gt;bold&lt;/b&gt; and &lt;i&gt;italic&lt;/i&gt;</code>:</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm space-y-1">
+          <p><span class="text-blue-600">&lt;.*&gt;</span>  (greedy) matches: <span class="bg-yellow-200 dark:bg-yellow-800">&lt;b&gt;bold&lt;/b&gt; and &lt;i&gt;italic&lt;/i&gt;</span></p>
+          <p><span class="text-blue-600">&lt;.*?&gt;</span> (lazy) matches: <span class="bg-yellow-200 dark:bg-yellow-800">&lt;b&gt;</span>, <span class="bg-yellow-200 dark:bg-yellow-800">&lt;/b&gt;</span>, <span class="bg-yellow-200 dark:bg-yellow-800">&lt;i&gt;</span>, <span class="bg-yellow-200 dark:bg-yellow-800">&lt;/i&gt;</span></p>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">The greedy version grabs everything from the first <code>&lt;</code> to the last <code>&gt;</code>. The lazy version stops at the nearest <code>&gt;</code>. In most real-world HTML processing, lazy is what you want.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Capture Groups and Backreferences</h2>
+        <p class="text-gray-700 dark:text-gray-300">Parentheses <code>()</code> do two things in regex: they group expressions, and they capture matched text for later use. The captured text can be referenced by number (<code>\1</code>, <code>\2</code>, etc.) within the same pattern or in replacement strings.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm space-y-1">
+          <p class="text-gray-500">// Find repeated words</p>
+          <p><span class="text-blue-600">\b(\w+)\s+\1\b</span></p>
+          <p>Matches: "the <span class="bg-yellow-200 dark:bg-yellow-800">the the</span> quick fox"</p>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">Here, <code>(\w+)</code> captures a word, <code>\s+</code> matches whitespace, and <code>\1</code> refers back to whatever the first group captured. This pattern finds accidental duplicate words, something many text editors use for spell-checking.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">Named groups make complex patterns more readable. In JavaScript: <code>(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})</code>. You can then access <code>match.groups.year</code> instead of remembering that year is group 1.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">If you need grouping without capturing (to avoid polluting your group numbering), use non-capturing groups: <code>(?:pattern)</code>.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Lookahead and Lookbehind</h2>
+        <p class="text-gray-700 dark:text-gray-300">Lookaround assertions let you match text based on what comes before or after it, without including that context in the match. They are "zero-width" because they do not consume characters.</p>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left">Syntax</th>
+                <th class="px-4 py-2 text-left">Name</th>
+                <th class="px-4 py-2 text-left">Meaning</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <td class="px-4 py-2 font-mono">(?=...)</td>
+                <td class="px-4 py-2">Positive lookahead</td>
+                <td class="px-4 py-2">Followed by ...</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">(?!...)</td>
+                <td class="px-4 py-2">Negative lookahead</td>
+                <td class="px-4 py-2">NOT followed by ...</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">(?&lt;=...)</td>
+                <td class="px-4 py-2">Positive lookbehind</td>
+                <td class="px-4 py-2">Preceded by ...</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-mono">(?&lt;!...)</td>
+                <td class="px-4 py-2">Negative lookbehind</td>
+                <td class="px-4 py-2">NOT preceded by ...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">A practical example: you want to find prices in dollars but extract only the number, not the dollar sign.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p><span class="text-blue-600">(?&lt;=\$)\d+(\.\d{2})?</span></p>
+          <p>Text: "Price: $29.99" matches <span class="bg-yellow-200 dark:bg-yellow-800">29.99</span></p>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">The lookbehind <code>(?&lt;=\$)</code> asserts that a dollar sign precedes the match, but the dollar sign itself is not part of the captured result.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Five Practical Patterns You Will Actually Use</h2>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">1. URL Extraction</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-blue-600">https?://[^\s&lt;&gt;"']+</p>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">Matches both http and https URLs. The character class <code>[^\s&lt;&gt;"']</code> matches everything that is not whitespace or common delimiters, stopping at natural URL boundaries.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">2. IPv4 Address</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-blue-600">\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b</p>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">This is the simple version. It matches the format but does not validate that each octet is 0-255. For strict validation, you need a longer pattern with alternation, but for log file extraction this simple version works well.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">3. Date Format (YYYY-MM-DD)</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-blue-600">\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])</p>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">This validates ISO 8601 date format with some bounds checking. Months are restricted to 01-12 and days to 01-31. It does not catch invalid dates like February 31, but regex is rarely the right tool for full date validation anyway.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">4. Password Strength Check</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-blue-600">^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&amp;])[A-Za-z\d@$!%*?&amp;]{8,}$</p>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">Uses four lookaheads to assert the presence of a lowercase letter, uppercase letter, digit, and special character, all without consuming characters. The final part matches the actual password (8 or more characters). This is a classic use case for lookaheads in validation.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">5. Extract Quoted Strings</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-blue-600">"([^"\\]|\\.)*"</p>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">Matches a double-quoted string, correctly handling escaped quotes inside. The alternation <code>[^"\\]|\\.</code> means "either a normal character or a backslash followed by anything." This handles cases like <code>"He said \"hello\""</code> correctly.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Performance Tips and Catastrophic Backtracking</h2>
+        <p class="text-gray-700 dark:text-gray-300">Most regex performance problems come from a phenomenon called catastrophic backtracking. It occurs when a pattern has nested quantifiers that can match the same characters in multiple ways. The regex engine tries every possible combination before giving up, and the number of combinations grows exponentially with input length.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">The classic example is <code>(a+)+</code> applied to a string of <code>a</code> characters followed by something that does not match. With 25 <code>a</code> characters, the engine may try over 33 million paths. With 30, it takes minutes. With 40, it never finishes.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">To avoid this:</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>Be specific:</strong> Use <code>[a-z]+</code> instead of <code>.+</code> when you know what characters to expect.</li>
+          <li><strong>Use atomic groups or possessive quantifiers</strong> when available. In Java and PCRE, <code>(?>a+)</code> or <code>a++</code> prevents backtracking into the group.</li>
+          <li><strong>Avoid nested quantifiers:</strong> Patterns like <code>(a*)*</code> or <code>(a+)+</code> are almost always a mistake.</li>
+          <li><strong>Test with long inputs:</strong> A pattern that works fine on 20 characters might hang on 100. Always test edge cases.</li>
+          <li><strong>Set timeouts:</strong> In production code, always set a timeout on regex execution. JavaScript's <code>RegExp</code> does not support this natively, but libraries like RE2 (used by Go) guarantee linear-time matching.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">A Brief History</h2>
+        <p class="text-gray-700 dark:text-gray-300">Regular expressions trace back to mathematician Stephen Kleene, who formalized "regular sets" in 1956 as part of his work on nerve net models. Ken Thompson brought them into computing in the 1960s by implementing regex in the QED text editor, then in the Unix tool grep (which stands for "global regular expression print"). Perl popularized extended regex syntax in the 1980s and 1990s, adding features like backreferences and lookaheads that go beyond the mathematical definition of regular languages. Today, nearly every programming language includes a regex engine, though the details of syntax and supported features vary.</p>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Practice Makes Perfect</h2>
-        <p>Regex is learned by doing, not reading. Use the tool below to test patterns in real-time. Seeing matches instantly as you type makes learning much faster.</p>
+        <p class="text-gray-700 dark:text-gray-300">Regex is learned by doing, not reading. Use the tool below to test patterns in real-time. Seeing matches instantly as you type makes learning much faster. Start with simple patterns and gradually add complexity. Before long, those alien-looking strings will start making sense.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What is the best way to learn regex?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Practice with real problems. Start with simple patterns like email validation or phone number extraction. Use online testers to see results in real time. Don't try to memorize all syntax - look it up when needed.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">When can regex be slow?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Nested quantifiers like (a+)+ can cause catastrophic backtracking. Complex patterns on large inputs can also be slow. Use specific patterns and minimize greedy quantifiers like .* where possible.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Are regex the same in JavaScript and Python?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Basic syntax is similar but differences exist. Python uses (?P<name>) for named groups while JavaScript uses (?<name>). Each language has its own extensions and limitations - check language-specific documentation.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Can regex parse HTML?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Simple pattern extraction works, but perfectly parsing HTML's nested structure with regex is impossible. HTML is a context-free grammar that cannot be expressed with regular grammar. Use a DOM parser instead.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What are commonly used regex patterns?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Email: [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}, URL: https?://[\S]+, digits only: ^\d+$, and many more. Build a personal cheatsheet of patterns you use frequently.</p>
+          </div>
+        </div>
 
       <!-- Related Tool -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

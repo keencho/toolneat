@@ -552,10 +552,74 @@
         <p><strong>Check page orientation:</strong> Sometimes scanned documents have rotated pages. Open each PDF to verify orientation before merging. Use the PDF rotate tool first if needed.</p>
         <p><strong>Manage file size:</strong> If the merged PDF is too large for email, use a PDF compression tool. Text-heavy documents compress well, while image-heavy ones compress less.</p>
 
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Understanding PDF File Structure</h2>
+        <p>Knowing a bit about how PDFs are built internally helps explain why merging is more complex than simply concatenating files.</p>
+        <p class="mt-2">PDF (Portable Document Format) was developed by Adobe in 1993. Its core philosophy is "looks identical regardless of the device or operating system." To achieve this, a PDF file bundles everything needed to display the document: text, fonts, images, vector graphics, and metadata.</p>
+        <p class="mt-2">A PDF file consists of four main sections. The <strong>Header</strong> contains the PDF version. The <strong>Body</strong> holds all content objects (text, images, fonts). The <strong>Cross-Reference Table</strong> indexes the byte offset of each object. The <strong>Trailer</strong> points to the cross-reference table and the root object of the document.</p>
+        <p class="mt-2">This is why merging PDFs is not a simple file append operation. Combining two PDFs requires reassigning object numbers, rebuilding the cross-reference table, and unifying the page tree into a single hierarchy. If any of these steps go wrong, the file may be corrupted or pages may be missing.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">5 Real-World Scenarios Where You Need PDF Merging</h2>
+        <p><strong>1. Government and Official Submissions:</strong> Combining ID scans, employment certificates, bank statements, and diplomas into a single file. Loan applications, visa requests, and tender submissions commonly require "all documents in one PDF." This is probably the most frequent real-world need for PDF merging.</p>
+        <p class="mt-2"><strong>2. Team Project Consolidation:</strong> Multiple team members each write a section of a report. Person A does the cover, Person B writes the analysis, Person C prepares the data appendix. Before final submission, all sections must be merged in order.</p>
+        <p class="mt-2"><strong>3. Scanned Document Organization:</strong> When digitizing paper documents, a scanner produces individual PDF files for each page. A 20-page contract scanned one page at a time produces 20 separate files that need to be combined. This is especially common with office copiers whose automatic document feeders have capacity limits, forcing you to scan in batches.</p>
+        <p class="mt-2"><strong>4. Portfolio Creation:</strong> Designers, photographers, and architects compiling their work into a single PDF portfolio. Create individual PDFs for each project, then merge them into one cohesive presentation.</p>
+        <p class="mt-2"><strong>5. eBook Assembly:</strong> Combining chapters written separately into a single digital book. Cover, table of contents, chapter content, and appendices are each created individually and then merged. Consistent page sizes are important here for readability.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Pre-Merge Checklist</h2>
+        <p>Checking a few things before merging prevents common problems.</p>
+        <p class="mt-2"><strong>Page size consistency:</strong> Mixing A4 (210x297mm) and US Letter (216x279mm) pages creates an uneven reading experience. It also causes printing issues. Standardize page sizes before merging when possible.</p>
+        <p class="mt-2"><strong>Encryption check:</strong> Password-protected PDFs cannot be processed by most merge tools. If you have the original password, remove the protection first, then merge. Remember that there are two types of PDF passwords: the user password (required to open the document) and the owner password (restricting editing/printing permissions). They are different and serve different purposes.</p>
+        <p class="mt-2"><strong>Page orientation:</strong> Portrait and landscape pages can coexist in a merged PDF. However, some viewers handle orientation changes awkwardly. If possible, rotate misoriented pages before merging for a smoother result.</p>
+        <p class="mt-2"><strong>Bookmarks and hyperlinks:</strong> Bookmarks (table of contents entries) and internal links from the original PDFs may be lost during merging. If you have important bookmarks, plan to recreate them in the merged document.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Post-Merge Optimization</h2>
+        <p>After merging, the resulting file may be larger than expected. Here are ways to optimize it.</p>
+        <p class="mt-2"><strong>PDF Compression:</strong> If the merged file contains high-resolution images, using a PDF compression tool to slightly reduce image quality can save significant space. Text-heavy documents compress less, but scanned documents or image-heavy files can shrink by 50% or more.</p>
+        <p class="mt-2"><strong>Duplicate resource removal:</strong> If the original PDFs contained the same fonts or images, the merged file will have duplicates. Professional PDF editors can detect and consolidate these duplicate resources.</p>
+        <p class="mt-2"><strong>Metadata cleanup:</strong> The merged PDF may carry metadata (title, author, keywords) from one of the source files. Update the metadata to reflect the combined document's actual content and purpose.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Tips for Large-Scale Document Work</h2>
+        <p>When merging dozens or hundreds of PDFs, these strategies keep the process manageable.</p>
+        <p class="mt-2"><strong>Naming conventions:</strong> If merge order matters, prefix filenames with numbers. "01_cover.pdf", "02_introduction.pdf", "03_analysis.pdf" prevents ordering mistakes. For date-based documents, use "2024-01-15_report.pdf" format for natural sorting.</p>
+        <p class="mt-2"><strong>Folder structure:</strong> Organize files into folders by chapter or category. Merge each folder's contents first, then merge those results together. This staged approach is more manageable than trying to handle everything at once.</p>
+        <p class="mt-2"><strong>Quality verification:</strong> After a large merge, always scroll through the entire result from start to finish. Check for missing pages, wrong order, and orientation issues. Focus especially on the first page, last page, and the boundary points where source files change.</p>
+        <p class="mt-2"><strong>Size limitations:</strong> Browser-based tools have memory constraints. If total file size exceeds 100MB or you have more than 50 files, process them in smaller batches. Attempting too much at once can slow down or crash the browser.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Complementary PDF Operations</h2>
+        <p>PDF merging often goes hand-in-hand with other operations. Building an efficient workflow saves considerable time.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>PDF Rotate:</strong> Fix misoriented pages from scanned documents. Do this before merging.</li>
+          <li><strong>PDF Split:</strong> Extract only the pages you need from a large PDF. Remove unnecessary pages before merging for a cleaner final document.</li>
+          <li><strong>PDF Compress:</strong> Reduce file size after merging. Essential for staying within email attachment limits (typically 25MB).</li>
+          <li><strong>PDF Page Reorder:</strong> Fine-tune page order after merging. Lets you rearrange individual pages rather than entire files.</li>
+          <li><strong>Image to PDF:</strong> Convert photos or scanned images to PDF first, then merge with other PDFs. Useful for combining paper and digital documents into one file.</li>
+        </ul>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Common Mistakes</h2>
         <p>Password-protected PDFs cannot be merged. You'll need to remove the password first. Also, merging low-quality scanned documents makes the entire file hard to read, so scan at least at 200dpi.</p>
         <p>Always keep your original files. If you need to change the order or remove pages later, having the originals makes modifications much easier.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What if the merged PDF is too large?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Use the PDF compression tool after merging. Image-heavy PDFs can be reduced by 50% or more. If exceeding email attachment limits (usually 25MB), consider using cloud links.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Can I change page order when merging?</h3>
+            <p class="text-gray-700 dark:text-gray-300">You can reorder files via drag-and-drop after uploading. For individual page ordering, use the page reorder tool alongside.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Can I merge password-protected PDFs?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Password-protected PDFs must be unlocked first. For security reasons, this tool does not support automatic decryption of encrypted PDFs.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Can I merge PDFs on mobile?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Yes, as a browser-based tool it works on smartphones and tablets. However, large files may be difficult to process due to mobile browser memory limitations.</p>
+          </div>
+        </div>
 
       <!-- 관련 도구 -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

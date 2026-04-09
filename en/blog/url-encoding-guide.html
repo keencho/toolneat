@@ -620,8 +620,91 @@
           <li>Non-ASCII characters are UTF-8 encoded first, then percent-encoded</li>
           <li>When in doubt, encode it</li>
         </ul>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">URL Structure in Detail</h2>
+        <p>To truly understand URL encoding, you need to understand the anatomy of a URL as defined in RFC 3986.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-blue-600 dark:text-blue-400">https://user:pass@example.com:8080/path/to/page?key=value&amp;q=test#section</p>
+          <p class="text-gray-600 dark:text-gray-400 mt-2">scheme: <span class="text-blue-600">https</span></p>
+          <p class="text-gray-600 dark:text-gray-400">authority: <span class="text-blue-600">user:pass@example.com:8080</span></p>
+          <p class="text-gray-600 dark:text-gray-400">path: <span class="text-blue-600">/path/to/page</span></p>
+          <p class="text-gray-600 dark:text-gray-400">query: <span class="text-blue-600">key=value&amp;q=test</span></p>
+          <p class="text-gray-600 dark:text-gray-400">fragment: <span class="text-blue-600">section</span></p>
+        </div>
+        <p><strong>Scheme:</strong> The protocol identifier. Common ones are http, https, ftp, and mailto. It is separated from the rest by a colon and double slashes.</p>
+        <p class="mt-2"><strong>Authority:</strong> Composed of optional user info, the hostname, and an optional port number. Including credentials in the URL is discouraged for security reasons.</p>
+        <p class="mt-2"><strong>Path:</strong> The hierarchical location of the resource on the server, separated by <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">/</code>. Special characters within individual path segments need encoding.</p>
+        <p class="mt-2"><strong>Query:</strong> Key-value pairs after the <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">?</code>, separated by <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">&amp;</code>. This is where encoding is most frequently needed.</p>
+        <p class="mt-2"><strong>Fragment:</strong> The part after <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">#</code>, pointing to a specific section within the page. It is processed only by the browser and never sent to the server.</p>
+        <p class="mt-2">Each component has subtly different encoding rules. For example, <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">/</code> is a valid separator in the path and should not be encoded there, but if it appears inside a query value, it must be encoded as <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%2F</code>. This context-dependence is what makes URL encoding tricky.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Non-ASCII and Unicode in URLs</h2>
+        <p>Handling non-ASCII characters like Chinese, Korean, Japanese, Arabic, or emoji is a common challenge. These characters are not part of the original URL specification and must always be encoded.</p>
+        <p class="mt-2">The process works in two steps: first, the character is converted to its UTF-8 byte sequence, then each byte is percent-encoded individually. A single emoji can produce 12 or more characters in its encoded form.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-gray-600 dark:text-gray-400">"cafe" → <span class="text-blue-600">cafe</span> (ASCII, no encoding needed)</p>
+          <p class="text-gray-600 dark:text-gray-400">"cafe" → <span class="text-blue-600">caf%C3%A9</span> (the accented e is 2 UTF-8 bytes)</p>
+          <p class="text-gray-600 dark:text-gray-400">"&#54620;" → <span class="text-blue-600">%ED%95%9C</span> (Korean character, 3 UTF-8 bytes)</p>
+        </div>
+        <p>Modern browsers display decoded Unicode in the address bar for readability, but the actual HTTP request always contains the encoded form. This is a presentation convenience, not how the data travels over the network.</p>
+        <p class="mt-2"><strong>Internationalized Domain Names (IDN):</strong> Domain names containing non-ASCII characters (like "example.de" with umlauts) use Punycode encoding rather than percent encoding. The path and query, however, use standard percent encoding.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">URL Encoding in Other Languages</h2>
+        <p>Beyond JavaScript, every major programming language offers URL encoding functions. The names and behaviors differ, so knowing the specifics of your language matters.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-gray-600 dark:text-gray-400"># Python</p>
+          <p class="text-gray-600 dark:text-gray-400">from urllib.parse import quote, quote_plus</p>
+          <p class="text-gray-600 dark:text-gray-400">quote("hello world") → <span class="text-blue-600">hello%20world</span></p>
+          <p class="text-gray-600 dark:text-gray-400">quote_plus("hello world") → <span class="text-blue-600">hello+world</span></p>
+          <p class="text-gray-600 dark:text-gray-400 mt-3">// Java</p>
+          <p class="text-gray-600 dark:text-gray-400">URLEncoder.encode("hello world", "UTF-8") → <span class="text-blue-600">hello+world</span></p>
+          <p class="text-gray-600 dark:text-gray-400 mt-3">// PHP</p>
+          <p class="text-gray-600 dark:text-gray-400">urlencode("hello world") → <span class="text-blue-600">hello+world</span></p>
+          <p class="text-gray-600 dark:text-gray-400">rawurlencode("hello world") → <span class="text-blue-600">hello%20world</span></p>
+        </div>
+        <p>A critical distinction: Python's <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">quote()</code> vs. <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">quote_plus()</code>, PHP's <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">urlencode()</code> vs. <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">rawurlencode()</code>, and Java's <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">URLEncoder.encode()</code> all handle spaces differently. The <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">+</code> vs. <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%20</code> difference can cause subtle bugs in API integrations between systems written in different languages.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">The Space Encoding Problem: %20 vs. +</h2>
+        <p>Two competing conventions for encoding spaces create one of the most common sources of confusion.</p>
+        <p class="mt-2"><code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%20</code> is the standard percent encoding defined in RFC 3986. It works everywhere in a URL: path, query, and fragment.</p>
+        <p class="mt-2"><code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">+</code> is specific to the <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">application/x-www-form-urlencoded</code> format used by HTML form submissions. When a browser submits a form, it replaces spaces with <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">+</code> signs.</p>
+        <p class="mt-2">The practical rule: always use <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%20</code> in URL paths. In query strings, both work, but <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%20</code> is universally safer. Only worry about <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">+</code> when you are specifically dealing with HTML form data.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Debugging URL Encoding Issues</h2>
+        <p>When you hit a URL encoding bug, a systematic approach will find the root cause quickly.</p>
+        <p class="mt-2"><strong>Step 1: Check the actual request URL.</strong> Open your browser's developer tools, go to the Network tab, and look at the raw URL being sent. The address bar display may differ from the actual request.</p>
+        <p class="mt-2"><strong>Step 2: Look for double encoding.</strong> If you see <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%25</code> in the URL, double encoding is the likely culprit. <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%2520</code> is a space that has been encoded twice.</p>
+        <p class="mt-2"><strong>Step 3: Trace encoding/decoding points.</strong> Identify every point in your code where encoding or decoding happens. Frameworks and libraries often encode or decode automatically. If you add your own encoding on top, you get double encoding.</p>
+        <p class="mt-2"><strong>Step 4: Verify character set consistency.</strong> Confirm that both client and server use the same character encoding (usually UTF-8). If non-ASCII characters appear garbled, a charset mismatch between UTF-8 and another encoding (like ISO-8859-1 or EUC-KR) is the likely cause.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Security Implications of URL Encoding</h2>
+        <p>URL encoding is closely tied to web security. Incorrect handling can open serious vulnerabilities.</p>
+        <p class="mt-2"><strong>Path Traversal:</strong> Attackers may use <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%2e%2e%2f</code> (the encoded form of ../) to navigate to parent directories on the server. Servers must decode the URL and then validate the resulting path before serving any files.</p>
+        <p class="mt-2"><strong>Cross-Site Scripting (XSS):</strong> Script code can be hidden in URL-encoded parameters. When the server outputs URL parameters into HTML, it must apply HTML escaping separately. URL encoding and HTML escaping serve different purposes; forgetting the HTML escape after URL decoding creates a vulnerability.</p>
+        <p class="mt-2"><strong>Open Redirect:</strong> An attacker can encode an external URL in a <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">redirect_url</code> parameter, sending users to a phishing site. Always validate redirect URLs against a whitelist of allowed domains.</p>
+
         <p class="mt-4">URL encoding is one of those small things that, when done wrong, leads to hours of debugging. Get it right from the start, and you'll save yourself plenty of headaches.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Why is URL encoding necessary?</h3>
+            <p class="text-gray-700 dark:text-gray-300">For detailed information on this topic, please refer to the article above or try our related tools.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What is the difference between encodeURI and encodeURIComponent?</h3>
+            <p class="text-gray-700 dark:text-gray-300">For detailed information on this topic, please refer to the article above or try our related tools.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">How are non-ASCII characters handled?</h3>
+            <p class="text-gray-700 dark:text-gray-300">For detailed information on this topic, please refer to the article above or try our related tools.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Does URL encoding help with security?</h3>
+            <p class="text-gray-700 dark:text-gray-300">For detailed information on this topic, please refer to the article above or try our related tools.</p>
+          </div>
+        </div>
 
       <!-- Related Tools -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

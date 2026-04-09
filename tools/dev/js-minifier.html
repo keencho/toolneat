@@ -589,7 +589,10 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-lg font-bold mt-8 mb-2">JavaScript 압축 소개</h3>
-          <p>JavaScript 압축(Minification)은 코드의 동작을 그대로 유지하면서 파일 크기만 줄이는 작업입니다. 소스 코드 안에 있는 공백, 줄바꿈, 주석처럼 브라우저 실행에 필요 없는 요소를 제거해서 전송해야 할 데이터양을 줄여줍니다. 프로덕션 배포 전 빌드 과정에서 거의 필수적으로 수행하며, 웹사이트 로딩 속도를 눈에 띄게 개선할 수 있습니다.</p>
+          <p>JavaScript 압축(Minification)은 코드의 동작을 그대로 유지하면서 파일 크기만 줄이는 작업입니다. 소스 코드 안에 있는 공백, 줄바꿈, 주석처럼 브라우저 실행에 필요 없는 요소를 제거해서 전송해야 할 데이터양을 줄여줍니다. 프로덕션 배포 전 빌드 과정에서 거의 필수적으로 수행하며, 웹사이트 로딩 속도를 눈에 띄게 개선할 수 있습니다. 현대 웹 개발에서 성능 최적화는 사용자 경험과 검색엔진 순위에 직접적인 영향을 미치며, JavaScript 파일 크기를 줄이는 것은 가장 기본적이면서도 효과적인 최적화 방법 중 하나입니다. 이 도구를 사용하면 복잡한 빌드 도구 설정 없이도 개별 파일을 빠르게 압축할 수 있어, 프로토타입 단계나 소규모 프로젝트에서 특히 유용합니다.</p>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">작동 원리</h3>
+          <p>JavaScript 압축기는 입력된 소스 코드를 문자 단위로 스캔하면서 여러 단계의 변환을 수행합니다. 첫 번째로 주석 제거 단계에서 한 줄 주석(//)과 블록 주석(/* */)을 감지해 제거합니다. 이 과정에서 문자열 리터럴 내부의 주석 패턴은 건드리지 않도록 따옴표 컨텍스트를 추적합니다. 두 번째로 공백 정리 단계에서 연속된 공백, 탭, 줄바꿈을 하나의 공백 또는 완전히 제거합니다. 연산자 주변의 불필요한 공백도 이 단계에서 처리됩니다. 세 번째로 세미콜론 최적화 옵션이 활성화되면 닫는 중괄호 바로 앞의 세미콜론을 제거합니다. JavaScript의 ASI(자동 세미콜론 삽입) 규칙에 따라 대부분의 경우 안전하지만, 일부 엣지 케이스에서는 동작이 달라질 수 있으므로 결과를 반드시 테스트해야 합니다. 압축률은 원본 크기와 결과 크기를 비교해 실시간으로 계산됩니다.</p>
 
           <h3 class="text-lg font-bold mt-8 mb-2">이용 가이드</h3>
           <ol class="list-decimal pl-5 space-y-1.5">
@@ -653,6 +656,12 @@
               <p class="text-gray-500 dark:text-gray-400 mt-1">현재는 한 번에 하나의 코드만 압축할 수 있습니다. 여러 파일을 처리해야 한다면 내용을 순서대로 붙여넣어 압축하거나, 빌드 도구(Webpack, Rollup 등)를 사용하는 것을 권장합니다.</p>
             </div>
           </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">관련 도구</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><a href="/tools/dev/css-minifier" class="text-blue-600 dark:text-blue-400 hover:underline">CSS 압축기</a> - CSS 파일의 공백과 주석을 제거해 파일 크기를 최소화합니다.</li>
+            <li><a href="/tools/dev/html-minifier" class="text-blue-600 dark:text-blue-400 hover:underline">HTML 압축기</a> - HTML 파일에서 불필요한 공백과 주석을 제거합니다.</li>
+            <li><a href="/tools/dev/json-formatter" class="text-blue-600 dark:text-blue-400 hover:underline">JSON 포맷터</a> - JSON 데이터를 보기 좋게 정리하거나 압축합니다.</li>
+          </ul>
         </div>
           <h3 class="text-lg font-bold mt-8 mb-2">알아두면 좋은 점</h3>
           <ul class="list-disc pl-5 space-y-1.5">

@@ -720,6 +720,25 @@
           </div>
         </div>
       </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>이미지 회전은 Canvas의 2D 컨텍스트에서 translate()와 rotate()를 조합하여 구현합니다. 캔버스의 중심점으로 원점을 이동한 후 지정 각도만큼 회전하고 이미지를 그립니다. 90°, 180° 회전은 캔버스의 너비와 높이를 교환해야 합니다. 자유 각도 회전도 가능하며, 빈 영역은 투명 또는 배경색으로 채워집니다.</p>
+
+          
+          <h3 class="text-lg font-semibold mt-6 mb-3">이미지 회전 활용 가이드</h3>
+          <p>이미지 회전은 스캔 문서, 스마트폰 사진, 디지털 카메라 이미지에서 자주 필요합니다. 스캔한 문서가 기울어져 있으면 90° 회전으로 바로잡을 수 있고, 스마트폰 사진이 가로/세로 방향이 잘못 저장된 경우에도 간단히 수정됩니다.</p><p>여러 장의 이미지를 일괄 처리해야 할 때는 한 장씩 회전 후 다운로드하는 것이 효율적입니다. 이미지 형식은 JPEG, PNG, WebP, GIF 모두 지원하며, 회전 후에도 원본 해상도가 유지됩니다. 뒤집기(좌우/상하) 기능은 셀피 사진의 거울 효과를 제거하거나, 인쇄 시 좌우 반전이 필요한 경우에 유용합니다. 모든 처리는 브라우저에서 이루어지므로 개인 사진도 안심하고 사용할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/image-crop" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 자르기</a> - </li>
+            <li><a href="/tools/life/image-resizer" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 리사이즈</a> - </li>
+            <li><a href="/tools/life/image-converter" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 변환기</a> - </li>
+          </ul>
+        </div>
+      </section>
     </div>
   </main>
   <div id="footer">

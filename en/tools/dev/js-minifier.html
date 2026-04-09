@@ -589,7 +589,10 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-lg font-bold mt-8 mb-2">About JavaScript Minification</h3>
-          <p>JavaScript minification is the process of shrinking your JS files without changing how the code behaves. It strips out whitespace, line breaks, comments, and other characters that browsers do not need to execute the code. Running minification before deploying to production is a standard practice that can noticeably speed up page load times and reduce bandwidth consumption.</p>
+          <p>JavaScript minification is the process of shrinking your JS files without changing how the code behaves. It strips out whitespace, line breaks, comments, and other characters that browsers do not need to execute the code. Running minification before deploying to production is a standard practice that can noticeably speed up page load times and reduce bandwidth consumption. In modern web development, performance optimization directly impacts user experience and search engine rankings, and reducing JavaScript file size is one of the most fundamental yet effective optimization techniques available. This tool lets you quickly compress individual files without setting up complex build toolchains, making it especially handy for prototyping or small-scale projects.</p>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">How It Works</h3>
+          <p>The JavaScript minifier scans the input source code character by character and applies several transformation passes. First, the comment removal pass detects single-line comments (//) and block comments (/* */), stripping them out while tracking quote context to avoid touching comment-like patterns inside string literals. Second, the whitespace cleanup pass collapses consecutive spaces, tabs, and newlines into a single space or removes them entirely. Unnecessary spaces around operators are also handled in this phase. Third, if the semicolon optimization option is enabled, semicolons immediately before closing braces are removed. This relies on JavaScript's Automatic Semicolon Insertion (ASI) rules, which work correctly in most cases but may change behavior in certain edge cases, so testing the output is always recommended. The compression ratio is calculated in real time by comparing the original and output sizes.</p>
 
           <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
           <ol class="list-decimal pl-5 space-y-1.5">
@@ -653,6 +656,12 @@
               <p class="text-gray-500 dark:text-gray-400 mt-1">Currently, this tool processes one block of code at a time. If you need to handle multiple files, paste them sequentially or use a build tool like Webpack, Rollup, or esbuild for batch processing.</p>
             </div>
           </div>
+          <h3 class="text-lg font-bold mt-8 mb-2">Related Tools</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><a href="/en/tools/dev/css-minifier" class="text-blue-600 dark:text-blue-400 hover:underline">CSS Minifier</a> - Remove whitespace and comments from CSS files to minimize file size.</li>
+            <li><a href="/en/tools/dev/html-minifier" class="text-blue-600 dark:text-blue-400 hover:underline">HTML Minifier</a> - Strip unnecessary whitespace and comments from HTML files.</li>
+            <li><a href="/en/tools/dev/json-formatter" class="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</a> - Format or minify JSON data for readability or compactness.</li>
+          </ul>
         </div>
           <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
           <ul class="list-disc pl-5 space-y-1.5">

@@ -643,6 +643,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>A UUID (Universally Unique Identifier) is a 128-bit identifier that is globally unique across all systems and time. UUIDs allow distributed systems to generate unique IDs without any central coordination server, making them essential for modern software development. The standard format is a 32-character hexadecimal string in an 8-4-4-4-12 pattern (e.g., 550e8400-e29b-41d4-a716-446655440000). This tool supports three UUID versions -- v7, v4, and v1 -- along with formatting and bulk generation options.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>UUID (Universally Unique Identifier) is a 128-bit value that generates globally unique identifiers without a central server. A v4 UUID uses crypto.getRandomValues() to produce 122 bits of randomness, with 4 bits fixed as the version (0100) and 2 bits as the variant (10). The format is 8-4-4-4-12 hexadecimal characters (e.g., 550e8400-e29b-41d4-a716-446655440000). Collision probability is astronomically low, practically guaranteeing uniqueness.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
             <li><strong>Three UUID versions:</strong> Supports v7 (time-sortable, latest standard), v4 (fully random), and v1 (timestamp + MAC address based).</li>
@@ -723,6 +726,18 @@
               <p>Yes. Each UUID is generated independently using cryptographic random numbers. Even when generating 100 at once, the probability of duplication is effectively zero. For v7 UUIDs, the embedded timestamp adds an additional layer of uniqueness assurance.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/dev/password-generator" class="text-blue-600 dark:text-blue-400 hover:underline">Password Generator</a> - Generate secure passwords.</li>
+            <li><a href="/en/tools/dev/hash-generator" class="text-blue-600 dark:text-blue-400 hover:underline">Hash Generator</a> - Generate hash values from data.</li>
+            <li><a href="/en/tools/dev/timestamp-converter" class="text-blue-600 dark:text-blue-400 hover:underline">Timestamp Converter</a> - Convert Unix timestamps.</li>
+          </ul>
         </div>
       </section>
     </div>

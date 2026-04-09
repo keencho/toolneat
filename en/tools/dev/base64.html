@@ -626,7 +626,10 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Base64 Encoder/Decoder?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>Base64 is a binary-to-text encoding scheme that converts binary data into an ASCII string format using 64 printable characters (A-Z, a-z, 0-9, +, /). It is widely used in email attachments (SMTP/MIME), image data URIs for web development, JWT tokens, HTTP Basic Authentication, and anywhere binary data needs to travel through text-only channels. While the encoded output is roughly 33% larger than the original, Base64 guarantees lossless round-trip conversion and remains one of the most essential encoding tools for developers.</p>
+          <p>Base64 is a binary-to-text encoding scheme that converts binary data into an ASCII string format using 64 printable characters (A-Z, a-z, 0-9, +, /). It is widely used in email attachments (SMTP/MIME), image data URIs for web development, JWT tokens, HTTP Basic Authentication, and anywhere binary data needs to travel through text-only channels. While the encoded output is roughly 33% larger than the original, Base64 guarantees lossless round-trip conversion and remains one of the most essential encoding tools for developers. The name "Base64" comes from the fact that the encoding uses exactly 64 characters. It was first standardized in 1987 as part of PEM (Privacy-Enhanced Mail) in RFC 989, and the most widely referenced specification today is RFC 4648, published in 2006, which defines both standard Base64 and its URL-safe variant. Compared to alternatives like percent-encoding (URL encoding) or hexadecimal encoding, Base64 strikes a good balance between encoding efficiency and readability.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>Base64 encoding processes input data in groups of 3 bytes (24 bits). The 24 bits are divided into four 6-bit groups, and each 6-bit value (0 through 63) is mapped to a character from a predefined 64-character lookup table. For example, the string "Hi" is two bytes in UTF-8: <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">0x48 0x69</code>. In binary, that becomes <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">01001000 01101001</code>. To fill a complete 3-byte group, a zero-padding byte is appended: <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">01001000 01101001 00000000</code>. Splitting into 6-bit chunks gives <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">010010 000110 100100 000000</code>, which maps to the characters S, G, k, and A respectively. Because the last byte was padding, the final character is replaced with "=", producing "SGk=". This 3-bytes-to-4-characters expansion is exactly why Base64 output is approximately 33% larger than the original data.</p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
@@ -706,6 +709,19 @@
               <p>Yes. The formula is 4 x ceil(n / 3), where n is the number of input bytes. For example, 100 bytes of input produces a 136-character Base64 string (rounded up to the next multiple of 4 when padding is included).</p>
             </div>
           </div>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/dev/url-encoder" class="text-blue-600 dark:text-blue-400 hover:underline">URL Encoder/Decoder</a> - Converts special characters into percent-encoded format for safe use in URLs.</li>
+            <li><a href="/en/tools/dev/hash-generator" class="text-blue-600 dark:text-blue-400 hover:underline">Hash Generator</a> - Generates unique data fingerprints using MD5, SHA-256, and other hashing algorithms.</li>
+            <li><a href="/en/tools/dev/jwt-decoder" class="text-blue-600 dark:text-blue-400 hover:underline">JWT Decoder</a> - Parses and inspects Base64url-encoded JWT token headers and payloads.</li>
+            <li><a href="/en/tools/dev/text-escape" class="text-blue-600 dark:text-blue-400 hover:underline">Text Escape</a> - Escapes special characters for HTML, JSON, URL, and other contexts.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Articles</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/blog/base64-encoding" class="text-blue-600 dark:text-blue-400 hover:underline">Understanding Base64 Encoding</a></li>
+          </ul>
         </div>
       </section>
     </div>

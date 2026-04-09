@@ -591,6 +591,9 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">HTML Minifier Tool Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>The HTML minifier performs multiple optimization passes. It removes comments, collapses consecutive whitespace and line breaks into single spaces, strips unnecessary attribute quotes, and omits values from boolean attributes (checked, disabled, etc.). Inline CSS and JavaScript can be minified simultaneously. These transformations typically reduce HTML file size by 20-40%, resulting in faster page load times.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">What is HTML Minification?</h3>
           <p>HTML minification is the process of removing unnecessary characters from HTML code without changing its functionality. Whitespace, line breaks, indentation, and comments make code easier for humans to read, but browsers do not need them to render the page. By stripping out these extra characters, you reduce file size and improve page load times. Typical HTML files see a 10-30% size reduction after minification, with heavily commented or deeply indented files benefiting the most.</p>
 
@@ -674,6 +677,23 @@
               <p>Since processing happens in your browser, files of several megabytes can be handled without issues. For very large files, processing may take a moment. For build pipelines, consider using HTML minification plugins for Webpack, Gulp, or similar tools.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/dev/css-minifier" class="text-blue-600 dark:text-blue-400 hover:underline">CSS Minifier</a> - Minimize CSS code.</li>
+            <li><a href="/en/tools/dev/js-minifier" class="text-blue-600 dark:text-blue-400 hover:underline">JavaScript Minifier</a> - Minimize JS code.</li>
+            <li><a href="/en/tools/dev/html-entity" class="text-blue-600 dark:text-blue-400 hover:underline">HTML Entity Converter</a> - Convert special characters to HTML entities.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Articles</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/blog/css-optimization-guide" class="text-blue-600 dark:text-blue-400 hover:underline">CSS Optimization and Minification Guide</a></li>
+          </ul>
         </div>
       </section>
     </div>

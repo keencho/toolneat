@@ -719,6 +719,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p class="text-gray-600 dark:text-gray-400 mb-4">이미지 리사이즈는 사진이나 그래픽의 가로/세로 크기(해상도)를 변경하는 작업입니다. 웹사이트에 업로드할 이미지를 가볍게 만들거나, SNS 규격에 맞추거나, 아이콘이나 썸네일을 제작할 때 필수적인 과정입니다. 이 도구는 브라우저에서 바로 동작하므로 프로그램 설치 없이 빠르게 이미지 크기를 조정할 수 있습니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>이미지 리사이즈는 Canvas의 drawImage()로 원본 이미지를 지정한 크기의 캔버스에 다시 그리는 방식입니다. 축소 시 브라우저의 바이리니어 또는 바이큐빅 보간법이 적용되어 부드러운 결과를 만듭니다. 비율 유지 옵션에서는 한쪽 치수를 기준으로 다른 쪽을 자동 계산합니다.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">주요 기능</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>픽셀(px) 또는 퍼센트(%) 단위로 크기 지정 가능</li>
@@ -770,6 +773,27 @@
             <div><h4 class="font-medium">Q: 리사이즈 후 파일 용량은 어떻게 되나요?</h4><p>크기를 줄이면 보통 파일 용량도 함께 줄어듭니다. 정확한 용량은 이미지 내용에 따라 다릅니다.</p></div>
             <div><h4 class="font-medium">Q: GIF 애니메이션도 리사이즈되나요?</h4><p>GIF 파일을 업로드할 수 있지만 첫 프레임만 리사이즈됩니다. 애니메이션 GIF 전체 리사이즈는 지원하지 않습니다.</p></div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          
+          <h3 class="text-lg font-semibold mt-6 mb-3">이미지 리사이즈 실전 가이드</h3>
+          <p>이미지 리사이즈는 웹사이트 최적화, SNS 업로드, 이메일 첨부 시 가장 자주 필요한 작업입니다. 웹 배너는 보통 1200×628 픽셀, 인스타그램 정사각형은 1080×1080, 유튜브 썸네일은 1280×720이 표준입니다. 비율 유지 옵션을 켜면 이미지가 찌그러지지 않습니다.</p><p>큰 이미지를 축소하면 파일 크기가 크게 줄어듭니다. 4000×3000 사진을 1920×1440으로 줄이면 용량이 50~70% 감소합니다. 반대로 작은 이미지를 확대하면 화질이 떨어지므로, 원본보다 크게 리사이즈하는 것은 권장하지 않습니다. 여러 장의 이미지를 동일한 크기로 맞추어야 할 때 이 도구가 특히 유용합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/image-compressor" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 압축</a> - </li>
+            <li><a href="/tools/life/image-crop" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 자르기</a> - </li>
+            <li><a href="/tools/life/aspect-ratio" class="text-blue-600 dark:text-blue-400 hover:underline">화면 비율 계산기</a> - </li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 블로그 글</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/blog/image-compress-guide" class="text-blue-600 dark:text-blue-400 hover:underline">이미지 용량 줄이기 가이드</a></li>
+          </ul>
         </div>
       </section>
     </div>

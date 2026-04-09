@@ -553,9 +553,111 @@
         <p><strong>SNS 업로드:</strong> 각 플랫폼이 자동 압축하므로 원본 그대로 올려도 됨</p>
         <p><strong>인쇄용:</strong> 압축하지 마세요. 300dpi 이상의 원본 품질이 필요합니다.</p>
 
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">이미지 압축의 원리</h2>
+        <p>이미지 압축은 크게 두 가지 방식으로 나뉩니다. 각각의 원리를 이해하면 상황에 맞는 최적의 방법을 선택할 수 있습니다.</p>
+        <p class="mt-2"><strong>손실 압축(Lossy Compression):</strong> 인간의 눈이 감지하기 어려운 데이터를 제거하는 방식입니다. JPEG가 대표적입니다. 예를 들어, 하늘 사진에서 파란색의 미세한 차이를 단순화하면 눈으로는 거의 차이를 못 느끼지만 파일 크기는 크게 줄어듭니다. 손실 압축은 한번 제거된 데이터는 복구할 수 없으므로, 원본을 반드시 보관해야 합니다.</p>
+        <p class="mt-2"><strong>무손실 압축(Lossless Compression):</strong> 데이터를 하나도 잃지 않으면서 파일 크기를 줄이는 방식입니다. PNG가 대표적입니다. 반복되는 패턴을 효율적으로 저장하는 원리입니다. 예를 들어 "파란색 100번 반복" 대신 "파란색x100"으로 저장하면 공간이 절약되죠. 원본과 완전히 동일한 이미지를 복원할 수 있지만, 압축률은 손실 압축보다 낮습니다.</p>
+        <p class="mt-2"><strong>DCT(이산 코사인 변환):</strong> JPEG의 핵심 알고리즘입니다. 이미지를 8x8 픽셀 블록으로 나눈 뒤, 각 블록의 색상 변화를 주파수 성분으로 변환합니다. 고주파 성분(급격한 색상 변화)을 줄이면 파일 크기가 줄어드는데, 이것이 JPEG 특유의 블록 노이즈가 생기는 원인이기도 합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">차세대 이미지 포맷: AVIF</h2>
+        <p>WebP보다 더 최신인 AVIF 포맷도 알아둘 가치가 있습니다. AV1 비디오 코덱에서 파생된 이미지 포맷으로, 동일 화질 대비 JPEG보다 50%, WebP보다 20% 이상 작은 파일을 만들 수 있습니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
+          <p class="text-gray-600 dark:text-gray-400">JPEG 100KB = WebP <span class="text-blue-600 font-semibold">~70KB</span> = AVIF <span class="text-blue-600 font-semibold">~50KB</span> (동일 화질 기준)</p>
+        </div>
+        <p>2024년 기준으로 Chrome, Firefox, Safari, Edge 등 주요 브라우저가 모두 AVIF를 지원합니다. 다만 인코딩 속도가 JPEG이나 WebP보다 느리다는 단점이 있어, 실시간 변환보다는 사전 처리에 적합합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">웹 성능에 미치는 영향</h2>
+        <p>이미지는 일반적으로 웹페이지 전체 용량의 50~70%를 차지합니다. 이미지 최적화는 웹 성능 향상의 가장 효과적인 방법 중 하나입니다.</p>
+        <p class="mt-2"><strong>Core Web Vitals와의 관계:</strong> 구글이 검색 순위에 반영하는 핵심 웹 지표 중 LCP(Largest Contentful Paint)는 페이지에서 가장 큰 콘텐츠 요소가 렌더링되는 시간을 측정합니다. 대부분의 경우 이 요소는 이미지입니다. 이미지 파일 크기를 줄이면 LCP가 개선되고, 검색 순위에도 긍정적인 영향을 줍니다.</p>
+        <p class="mt-2"><strong>대역폭 절감:</strong> 모바일 사용자의 경우 데이터 요금과 직결됩니다. 3MB 이미지를 300KB로 줄이면 사용자의 데이터 사용량이 10분의 1로 줄어드는 셈입니다. 개발도상국이나 저속 네트워크 환경의 사용자에게는 특히 중요합니다.</p>
+        <p class="mt-2"><strong>사용자 이탈률:</strong> 구글의 연구에 따르면 페이지 로딩이 3초를 넘으면 사용자의 53%가 이탈합니다. 이미지 최적화만으로도 로딩 시간을 1~2초 줄일 수 있는 경우가 많습니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">반응형 이미지 전략</h2>
+        <p>같은 이미지를 모든 기기에 동일한 크기로 제공하는 것은 낭비입니다. HTML의 <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">srcset</code>과 <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">sizes</code> 속성을 활용하면 기기에 맞는 최적의 이미지를 제공할 수 있습니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-gray-600 dark:text-gray-400">&lt;img</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;srcset="image-400.jpg 400w,</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-800.jpg 800w,</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-1200.jpg 1200w"</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;sizes="(max-width: 600px) 400px,</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(max-width: 1000px) 800px,</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1200px"</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;alt="설명" /&gt;</p>
+        </div>
+        <p>이렇게 하면 스마트폰에서는 400px 이미지를, 태블릿에서는 800px 이미지를, 데스크톱에서는 1200px 이미지를 자동으로 불러옵니다. 하나의 큰 이미지만 사용하는 것보다 모바일에서 70~80% 이상 데이터를 절약할 수 있습니다.</p>
+        <p class="mt-2"><code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">&lt;picture&gt;</code> 요소를 사용하면 포맷별 분기도 가능합니다. AVIF를 지원하는 브라우저에는 AVIF를, 그렇지 않으면 WebP를, 둘 다 안 되면 JPEG를 제공하는 식입니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">최적 품질 설정 가이드</h2>
+        <p>어떤 품질 수준이 "최적"인지는 용도에 따라 다릅니다. 무조건 높은 품질이 좋은 것도 아니고, 무조건 낮추는 것도 답이 아닙니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
+          <p class="text-gray-600 dark:text-gray-400">JPEG 품질 <span class="text-blue-600 font-semibold">95-100%</span>: 인쇄용, 포트폴리오 (거의 원본)</p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG 품질 <span class="text-blue-600 font-semibold">80-90%</span>: 블로그, 뉴스 사이트 (최적의 균형점)</p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG 품질 <span class="text-blue-600 font-semibold">60-75%</span>: 썸네일, 미리보기 (용량 우선)</p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG 품질 <span class="text-blue-600 font-semibold">50% 이하</span>: 거의 사용하지 않음 (눈에 띄는 열화)</p>
+        </div>
+        <p>실제로 테스트해보면 JPEG 85%와 100%의 시각적 차이는 거의 없지만, 파일 크기는 2~3배 차이가 납니다. 대부분의 웹 사이트에서는 80~85%가 품질과 용량의 최적 균형점입니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">자동화 방법: 빌드 도구 활용</h2>
+        <p>웹 프로젝트에서 이미지를 하나하나 수동으로 압축하는 것은 비현실적입니다. 빌드 파이프라인에 이미지 최적화를 포함시키면 자동으로 처리할 수 있습니다.</p>
+        <p class="mt-2"><strong>sharp (Node.js):</strong> 가장 빠른 이미지 처리 라이브러리 중 하나입니다. 리사이즈, 포맷 변환, 품질 조절을 모두 지원합니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-gray-600 dark:text-gray-400">const sharp = require('sharp');</p>
+          <p class="text-gray-600 dark:text-gray-400">sharp('input.jpg')</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;.resize(1200)</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;.jpeg({ quality: 80 })</p>
+          <p class="text-gray-600 dark:text-gray-400">&nbsp;&nbsp;.toFile('output.jpg');</p>
+        </div>
+        <p class="mt-2"><strong>imagemin:</strong> Webpack, Vite 등의 번들러와 통합할 수 있는 플러그인 기반 이미지 최적화 도구입니다. 빌드할 때마다 자동으로 이미지를 최적화합니다.</p>
+        <p class="mt-2"><strong>CDN 자동 최적화:</strong> Cloudflare Images, Imgix, Cloudinary 같은 서비스를 사용하면 URL 파라미터로 크기, 품질, 포맷을 지정할 수 있습니다. 원본 이미지 하나만 올려두면 사용자의 기기와 브라우저에 맞게 자동으로 최적화된 이미지를 제공합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Lazy Loading으로 초기 로딩 최적화</h2>
+        <p>이미지 압축과 함께 사용하면 효과가 극대화되는 기법이 Lazy Loading입니다. 화면에 보이지 않는 이미지는 나중에 불러오는 방식으로, HTML에 <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">loading="lazy"</code> 속성만 추가하면 됩니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+          <p class="text-gray-600 dark:text-gray-400">&lt;img src="photo.jpg" loading="lazy" alt="설명" /&gt;</p>
+        </div>
+        <p>이 한 줄만으로 스크롤하지 않으면 보이지 않는 이미지들의 초기 로딩을 건너뛸 수 있습니다. 이미지가 많은 페이지에서는 초기 페이지 로딩 시간을 40~60% 이상 줄일 수 있습니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">이미지 압축 실전 비교</h2>
+        <p>같은 사진을 다양한 포맷과 품질로 저장했을 때의 차이를 비교해보면, 최적의 설정을 직감적으로 이해할 수 있습니다.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
+          <p class="text-gray-600 dark:text-gray-400">원본 (JPEG 100%): <span class="text-blue-600 font-semibold">2.4 MB</span></p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG 85%: <span class="text-blue-600 font-semibold">890 KB</span> (63% 감소, 시각적 차이 거의 없음)</p>
+          <p class="text-gray-600 dark:text-gray-400">JPEG 70%: <span class="text-blue-600 font-semibold">520 KB</span> (78% 감소, 확대하면 미세한 차이)</p>
+          <p class="text-gray-600 dark:text-gray-400">WebP 80%: <span class="text-blue-600 font-semibold">380 KB</span> (84% 감소, JPEG 85%와 동등한 화질)</p>
+          <p class="text-gray-600 dark:text-gray-400">AVIF 60%: <span class="text-blue-600 font-semibold">260 KB</span> (89% 감소, JPEG 85%와 동등한 화질)</p>
+        </div>
+        <p>이 수치는 일반적인 풍경 사진 기준이며, 이미지 내용에 따라 달라질 수 있습니다. 단색 배경이 많은 일러스트레이션은 압축률이 더 높고, 복잡한 텍스처가 많은 사진은 압축률이 낮습니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">흔히 하는 실수들</h2>
+        <p><strong>1. 이미 압축된 이미지를 재압축:</strong> JPEG를 열어서 다시 JPEG로 저장하면 매번 화질이 떨어집니다. 이를 "세대 손실(generation loss)"이라고 합니다. 편집이 필요하다면 항상 원본에서 시작하세요.</p>
+        <p class="mt-2"><strong>2. PNG를 사진에 사용:</strong> PNG는 무손실 포맷이라 사진에 사용하면 JPEG보다 3~5배 큰 파일이 됩니다. 투명 배경이 필요한 경우가 아니라면 사진에는 JPEG이나 WebP를 사용하세요.</p>
+        <p class="mt-2"><strong>3. 해상도만 줄이고 품질은 안 건드리기:</strong> 2000px 이미지를 1000px로 줄이면 크기가 줄지만, 여전히 품질 100%라면 불필요하게 큽니다. 해상도와 품질을 함께 조절해야 최적의 결과를 얻을 수 있습니다.</p>
+        <p class="mt-2"><strong>4. 메타데이터를 간과하기:</strong> EXIF 데이터에 GPS 좌표가 포함되어 있으면 개인정보 유출 위험이 있습니다. 특히 SNS에 사진을 올리기 전에는 메타데이터를 제거하는 것이 좋습니다.</p>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">주의사항</h2>
         <p>압축된 이미지를 다시 압축하면 화질이 급격히 떨어집니다. 항상 원본 파일을 보관하고, 압축은 최종 사용 직전에 한 번만 하세요. 그리고 중요한 사진은 압축 전에 반드시 백업해두는 습관을 들이면 좋습니다.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">자주 묻는 질문</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">이미지 압축 시 품질이 얼마나 떨어지나요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">손실 압축(JPEG)은 80% 품질 설정에서 육안으로 거의 차이를 느끼지 못하면서 파일 크기를 50-70% 줄일 수 있습니다. 무손실 압축(PNG 최적화)은 품질 저하 없이 10-30% 크기를 줄입니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">웹사이트에 최적인 이미지 형식은?</h3>
+            <p class="text-gray-700 dark:text-gray-300">사진은 JPEG 또는 WebP, 투명 배경이 필요한 그래픽은 PNG 또는 WebP, 아이콘이나 로고는 SVG가 적합합니다. WebP는 JPEG보다 25-35% 더 작은 파일 크기를 제공합니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">브라우저에서 이미지를 압축하면 안전한가요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">네, 브라우저 기반 압축은 이미지가 서버로 전송되지 않으므로 개인 사진도 안심하고 압축할 수 있습니다. Canvas API를 사용하여 로컬에서 처리됩니다.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">대량의 이미지를 한 번에 압축할 수 있나요?</h3>
+            <p class="text-gray-700 dark:text-gray-300">이 도구는 브라우저에서 동작하므로 대량 처리 시 메모리 제한이 있을 수 있습니다. 10-20장 이하로 나눠서 처리하는 것을 권장합니다. 수백 장 이상은 데스크톱 도구나 빌드 도구(imagemin 등)를 사용하세요.</p>
+          </div>
+        </div>
 
       <!-- 관련 도구 -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

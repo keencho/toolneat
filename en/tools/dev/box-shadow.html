@@ -634,7 +634,10 @@
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">CSS Box Shadow Generator Guide</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <h3 class="text-lg font-bold mt-8 mb-2">About CSS Box Shadow</h3>
-          <p>box-shadow is a CSS property that creates shadow effects around HTML elements. It is used throughout web design to add depth and dimension to card UIs, button hover effects, modal popups, and more. You can layer multiple shadows on a single element by separating them with commas, and combine outer shadows with inner (inset) shadows to create rich visual effects. This generator lets you visually design your desired shadow using simple sliders, then copy the finished CSS code directly into your project.</p>
+          <p>box-shadow is a CSS property that creates shadow effects around HTML elements. It is used throughout web design to add depth and dimension to card UIs, button hover effects, modal popups, and more. You can layer multiple shadows on a single element by separating them with commas, and combine outer shadows with inner (inset) shadows to create rich visual effects. This generator lets you visually design your desired shadow using simple sliders, then copy the finished CSS code directly into your project. The box-shadow property was introduced in the CSS3 specification. Before that, achieving similar effects required slicing shadow images or stacking extra div layers manually. Today it is supported in all major browsers without vendor prefixes, and design systems like Material Design and Apple's Human Interface Guidelines recommend elevation through shadows as a core UI pattern.</p>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">How It Works</h3>
+          <p>box-shadow renders a shadow based on the element's border-box. The browser first creates a rectangle matching the element's bounding box, then shifts it by the offset-x and offset-y values. Next, the rectangle is expanded or contracted according to the spread value, and a Gaussian blur algorithm softens the edges by the blur amount. For example, <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">box-shadow: 4px 8px 16px -2px rgba(0,0,0,0.15)</code> moves the shadow 4px right and 8px down, applies a 16px blur, and shrinks it by 2px with negative spread to create a soft shadow slightly smaller than the element. Adding the inset keyword runs the same calculation inside the element, producing a pressed or recessed look. Rendering is GPU-accelerated, so normal usage has no performance cost, but when combining shadows with transitions or animations, declaring <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">will-change: box-shadow</code> helps the browser optimize repaints.</p>
 
           <h3 class="text-lg font-bold mt-8 mb-2">User Guide</h3>
           <ol class="list-decimal pl-5 space-y-1.5">
@@ -700,6 +703,13 @@
               <p class="text-gray-500 dark:text-gray-400 mt-1">Normal usage has negligible impact, but applying shadows with very large blur values to many elements can slow down rendering. Consider using the will-change property when animating shadows.</p>
             </div>
           </div>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">Related Tools</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><a href="/en/tools/dev/gradient-generator" class="text-blue-600 dark:text-blue-400 hover:underline">Gradient Generator</a> - Visually design CSS gradient backgrounds and copy the code.</li>
+            <li><a href="/en/tools/dev/color-palette" class="text-blue-600 dark:text-blue-400 hover:underline">Color Palette Extractor</a> - Automatically extract dominant colors from images for your designs.</li>
+            <li><a href="/en/tools/dev/color-converter" class="text-blue-600 dark:text-blue-400 hover:underline">Color Converter</a> - Convert between HEX, RGB, HSL, and other color formats in real time.</li>
+          </ul>
         </div>
           <h3 class="text-lg font-bold mt-8 mb-2">Good to Know</h3>
           <ul class="list-disc pl-5 space-y-1.5">

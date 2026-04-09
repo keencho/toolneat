@@ -819,6 +819,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>Color Converter is a tool that instantly translates color values between HEX, RGB, HSL, RGBA, HSLA, and HEX8 formats. Whether you need to convert a HEX code from a Figma design into HSL for your CSS theme system, or turn an RGB value from a JavaScript calculation into a HEX string, this tool handles it in real time. Enter one color and see all six format conversions at once, along with complementary colors, brightness variations, and saturation adjustments to help you build complete color palettes.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>The color converter parses your input color value and internally normalizes it to the RGB color space. From RGB, it applies mathematical formulas to convert to other spaces like HSL, HSV, and CMYK. For example, entering HEX #FF6B35 first splits into R=255, G=107, B=53, then the HSL formula yields H=16°, S=100%, L=60%. CMYK conversion normalizes RGB to a 0-1 range and applies K=1-max(R,G,B), C=(1-R-K)/(1-K) to produce print-ready values.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
             <li><strong>Six-Format Simultaneous Conversion</strong> - View and copy HEX, RGB, HSL, RGBA, HSLA, and HEX8 values all at once from a single input.</li>
@@ -891,6 +894,23 @@
               <p>No. All color conversions and calculations run locally in your browser using JavaScript. No color information is transmitted to any external server at any point.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/dev/color-contrast" class="text-blue-600 dark:text-blue-400 hover:underline">Color Contrast Checker</a> - Check text and background color contrast ratios against WCAG standards.</li>
+            <li><a href="/en/tools/dev/color-palette" class="text-blue-600 dark:text-blue-400 hover:underline">Color Palette Generator</a> - Automatically generate harmonious color combinations.</li>
+            <li><a href="/en/tools/dev/gradient-generator" class="text-blue-600 dark:text-blue-400 hover:underline">Gradient Generator</a> - Visually create CSS gradient code.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Articles</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/blog/color-theory-guide" class="text-blue-600 dark:text-blue-400 hover:underline">Color Theory Guide for Web Design</a></li>
+          </ul>
         </div>
       </section>
     </div>

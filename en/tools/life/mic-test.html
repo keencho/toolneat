@@ -573,6 +573,9 @@
           <p>The Microphone Test is a free online tool that lets you quickly check whether your computer or mobile microphone is working properly. Before joining a video call, online class, voice recording session, or game voice chat, you can verify your mic status right from your browser.</p>
           <p class="mt-3">No software installation is required. The real-time volume bar shows your mic input level visually, and the built-in record-and-playback feature lets you hear exactly how your voice sounds through the microphone.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>Mic test requests microphone access via navigator.mediaDevices.getUserMedia() and captures the audio stream. Web Audio API's AnalyserNode analyzes real-time frequency and volume data for visualization. The volume meter displays the average of frequency data obtained from getByteFrequencyData().</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
           <ul class="list-disc list-inside space-y-2">
             <li>Real-time volume bar showing microphone input level instantly</li>
@@ -652,6 +655,18 @@
               <p>Click the lock or info icon to the left of the address bar, change the microphone permission to "Allow," and then refresh the page.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/life/webcam-test" class="text-blue-600 dark:text-blue-400 hover:underline">Webcam Test</a> - </li>
+            <li><a href="/en/tools/life/screen-recorder" class="text-blue-600 dark:text-blue-400 hover:underline">Screen Recorder</a> - </li>
+            <li><a href="/en/tools/life/speech-to-text" class="text-blue-600 dark:text-blue-400 hover:underline">Speech to Text</a> - </li>
+          </ul>
         </div>
       </section>
     </div>

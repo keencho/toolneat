@@ -680,7 +680,243 @@ address:
         </ul>
 
         <p class="mt-6">Bottom line: For new projects, it's usually JSON or YAML. XML only when there's a specific reason.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Deep Dive: JSON Syntax and Features</h2>
+        <p class="text-gray-700 dark:text-gray-300">JSON was born out of Douglas Crockford's observation that JavaScript object literals could serve as a lightweight data interchange format. The specification is remarkably small. There are only six value types: strings, numbers, booleans, null, arrays, and objects. That simplicity is its greatest strength.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">Every key in JSON must be a double-quoted string. Single quotes do not work. Trailing commas are not allowed. These restrictions feel annoying when you are hand-editing a config file, but they make parsing trivially predictable. A JSON parser never needs to guess intent.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">One thing many developers overlook is that JSON numbers have no distinction between integers and floats. The value <code>42</code> and <code>42.0</code> are the same type to a JSON parser. Languages that consume JSON must decide how to interpret these, which occasionally causes bugs when a value like <code>1.0</code> gets truncated to <code>1</code> during a round trip.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">JSON also lacks a native date type. The common convention is ISO 8601 strings (<code>"2025-01-15T08:30:00Z"</code>), but nothing in the spec enforces this. Some APIs use Unix timestamps instead. If you are designing an API, pick one format and document it clearly.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Deep Dive: YAML Syntax and Advanced Features</h2>
+        <p class="text-gray-700 dark:text-gray-300">YAML stands for "YAML Ain't Markup Language" (a recursive acronym). It was designed from the start to be readable by humans, not just machines. Where JSON uses braces and brackets, YAML uses indentation. Where JSON requires quotes around every key, YAML lets you write bare strings.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">Indentation in YAML must use spaces, never tabs. Two spaces per level is the most common convention. Getting this wrong is the single most frequent source of YAML errors, especially for developers who paste content from different editors.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Multiline Strings</h3>
+        <p class="text-gray-700 dark:text-gray-300">YAML supports two block scalar styles for multiline text. The pipe character (<code>|</code>) preserves newlines exactly as written. The greater-than character (<code>&gt;</code>) folds newlines into spaces, producing a single long line.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre># Literal block (preserves newlines)
+description: |
+  This is line one.
+  This is line two.
+
+# Folded block (joins lines)
+description: &gt;
+  This long sentence
+  will become one line.</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">This feature alone makes YAML far more comfortable than JSON for anything involving long text blocks, such as descriptions in Kubernetes manifests or CI pipeline scripts.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Anchors and Aliases</h3>
+        <p class="text-gray-700 dark:text-gray-300">YAML allows you to define a value once with an anchor (<code>&amp;</code>) and reuse it elsewhere with an alias (<code>*</code>). This eliminates duplication in large configuration files.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>defaults: &amp;defaults
+  adapter: postgres
+  host: localhost
+  port: 5432
+
+development:
+  database: myapp_dev
+  &lt;&lt;: *defaults
+
+production:
+  database: myapp_prod
+  &lt;&lt;: *defaults
+  host: db.example.com</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">The merge key (<code>&lt;&lt;</code>) combined with an alias pulls in all the default values, and you can override individual fields. This is powerful but can make debugging harder when overused, since the actual resolved values are not visible at a glance.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Deep Dive: XML Syntax and Namespaces</h2>
+        <p class="text-gray-700 dark:text-gray-300">XML (Extensible Markup Language) was designed in the late 1990s as a universal format for structured documents and data. Unlike JSON and YAML, XML distinguishes between element content and attributes, giving authors two ways to attach information to a node.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>&lt;book isbn="978-0-13-468599-1" language="en"&gt;
+  &lt;title&gt;The Pragmatic Programmer&lt;/title&gt;
+  &lt;author&gt;David Thomas&lt;/author&gt;
+  &lt;price currency="USD"&gt;49.95&lt;/price&gt;
+&lt;/book&gt;</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">The general rule of thumb: metadata goes in attributes, content goes in elements. But this is a convention, not a rule, and teams often disagree on where to draw the line.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Namespaces</h3>
+        <p class="text-gray-700 dark:text-gray-300">When combining XML documents from different sources, element names can collide. XML namespaces solve this by prefixing elements with a URI-based identifier. For example, an SVG element embedded inside an XHTML document uses the SVG namespace to avoid ambiguity.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;body&gt;
+    &lt;svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"&gt;
+      &lt;circle cx="50" cy="50" r="40" fill="blue"/&gt;
+    &lt;/svg&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">Namespaces add complexity, but they are essential in enterprise systems where multiple schemas coexist. Neither JSON nor YAML has an equivalent concept, which is one reason XML persists in domains like healthcare (HL7), finance (FpML), and government data exchange.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">The Same Data in All Three Formats: A Larger Example</h2>
+        <p class="text-gray-700 dark:text-gray-300">Here is a more realistic example representing a server configuration with multiple entries.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">JSON</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>{
+  "servers": [
+    {
+      "name": "web-1",
+      "host": "192.168.1.10",
+      "port": 8080,
+      "ssl": true,
+      "tags": ["production", "frontend"]
+    },
+    {
+      "name": "api-1",
+      "host": "192.168.1.20",
+      "port": 3000,
+      "ssl": false,
+      "tags": ["staging", "backend"]
+    }
+  ]
+}</pre>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">YAML</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>servers:
+  - name: web-1
+    host: 192.168.1.10
+    port: 8080
+    ssl: true
+    tags:
+      - production
+      - frontend
+  - name: api-1
+    host: 192.168.1.20
+    port: 3000
+    ssl: false
+    tags:
+      - staging
+      - backend</pre>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">XML</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>&lt;servers&gt;
+  &lt;server name="web-1" ssl="true"&gt;
+    &lt;host&gt;192.168.1.10&lt;/host&gt;
+    &lt;port&gt;8080&lt;/port&gt;
+    &lt;tags&gt;
+      &lt;tag&gt;production&lt;/tag&gt;
+      &lt;tag&gt;frontend&lt;/tag&gt;
+    &lt;/tags&gt;
+  &lt;/server&gt;
+  &lt;server name="api-1" ssl="false"&gt;
+    &lt;host&gt;192.168.1.20&lt;/host&gt;
+    &lt;port&gt;3000&lt;/port&gt;
+    &lt;tags&gt;
+      &lt;tag&gt;staging&lt;/tag&gt;
+      &lt;tag&gt;backend&lt;/tag&gt;
+    &lt;/tags&gt;
+  &lt;/server&gt;
+&lt;/servers&gt;</pre>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300">Notice how YAML is roughly half the line count of JSON and a third of XML. But also notice how XML can mix attributes and elements to convey structure in ways the other two cannot.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Extended Comparison Table</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left">Feature</th>
+                <th class="px-4 py-2 text-left">JSON</th>
+                <th class="px-4 py-2 text-left">YAML</th>
+                <th class="px-4 py-2 text-left">XML</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <td class="px-4 py-2 font-medium">Year Introduced</td>
+                <td class="px-4 py-2">2001</td>
+                <td class="px-4 py-2">2001</td>
+                <td class="px-4 py-2">1998</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">Data Types</td>
+                <td class="px-4 py-2">String, Number, Boolean, Null, Array, Object</td>
+                <td class="px-4 py-2">Same + Dates, Timestamps</td>
+                <td class="px-4 py-2">All text (types via XSD)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">Multiline Strings</td>
+                <td class="px-4 py-2">Escape with \n</td>
+                <td class="px-4 py-2">Native (| and &gt;)</td>
+                <td class="px-4 py-2">CDATA sections</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">Reusable Fragments</td>
+                <td class="px-4 py-2">No (use $ref with JSON Schema)</td>
+                <td class="px-4 py-2">Anchors &amp; Aliases</td>
+                <td class="px-4 py-2">Entities</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">Attributes</td>
+                <td class="px-4 py-2">No</td>
+                <td class="px-4 py-2">No</td>
+                <td class="px-4 py-2">Yes</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">Typical File Size</td>
+                <td class="px-4 py-2">Medium</td>
+                <td class="px-4 py-2">Small</td>
+                <td class="px-4 py-2">Large</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Decision Flowchart</h2>
+        <p class="text-gray-700 dark:text-gray-300">When starting a new project, ask yourself these questions in order:</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>Is this an API response consumed by code?</strong> Use JSON. It parses fastest and every HTTP client expects it.</li>
+          <li><strong>Is this a configuration file humans will edit?</strong> Use YAML. Comments and clean indentation make maintenance painless.</li>
+          <li><strong>Do you need strict schema validation with namespaces?</strong> Use XML. Industries like healthcare and finance depend on XSD validation.</li>
+          <li><strong>Are you working with an existing ecosystem?</strong> Match what the ecosystem uses. Kubernetes means YAML. Browser APIs mean JSON. SOAP services mean XML.</li>
+          <li><strong>Do you need to embed binary data or mixed content?</strong> XML handles mixed content (text interleaved with elements) better than the other two.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Common Gotchas and Pitfalls</h2>
+        <p class="text-gray-700 dark:text-gray-300">Every format has its sharp edges. Knowing them in advance saves debugging time.</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>JSON trailing commas:</strong> Adding a comma after the last item in an array or object breaks parsing. Many editors have plugins that catch this automatically.</li>
+          <li><strong>YAML boolean gotcha:</strong> The strings <code>yes</code>, <code>no</code>, <code>on</code>, <code>off</code> are interpreted as booleans in YAML 1.1. The country code for Norway (<code>NO</code>) famously becomes <code>false</code>. Quote these values if you mean them as strings.</li>
+          <li><strong>YAML number gotcha:</strong> The string <code>0123</code> is treated as an octal number (83 in decimal) in some YAML parsers. Always quote values that look like numbers but are identifiers.</li>
+          <li><strong>XML encoding:</strong> Forgetting the encoding declaration (<code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</code>) can cause character corruption with non-ASCII text.</li>
+          <li><strong>XML special characters:</strong> The five characters <code>&amp; &lt; &gt; " '</code> must be escaped in XML content. Forgetting to escape an ampersand is the most common XML well-formedness error.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Converting Between Formats</h2>
+        <p class="text-gray-700 dark:text-gray-300">In practice, you often need to convert data between these formats. JSON to YAML is usually lossless because YAML is a superset of JSON (any valid JSON is valid YAML). Going from YAML to JSON loses comments and anchors. XML to JSON conversion is trickier because of attributes, namespaces, and mixed content, which have no direct JSON equivalent.</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-4">When converting, always test the output with the consuming application. Automated converters handle the 90% case well, but edge cases around data types, empty values, and nested structures often need manual adjustment.</p>
       </div>
+
+      
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Which is better for config files, JSON or YAML?</h3>
+            <p class="text-gray-700 dark:text-gray-300">YAML supports comments and uses indentation, making it human-readable. Many tools like Docker Compose, Kubernetes, and GitHub Actions use YAML. However, be careful with indentation errors.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Is XML still used today?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Yes, XML is widely used in SOAP web services, Android layouts, Maven/Gradle build files, SVG graphics, and Office documents (OOXML). It excels in complex document structures requiring namespaces and schema validation.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Can I use comments in JSON?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Standard JSON does not support comments. Extended formats like JSONC (JSON with Comments) and JSON5 allow comments. TypeScript's tsconfig.json and VS Code settings support JSONC.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">What format is best for API responses?</h3>
+            <p class="text-gray-700 dark:text-gray-300">JSON is the de facto standard. It parses quickly, has native support in most languages, and works well with web clients (JavaScript). Use JSON for REST APIs unless you have a specific reason not to.</p>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">How do I prevent YAML indentation errors?</h3>
+            <p class="text-gray-700 dark:text-gray-300">Use 2 spaces instead of tabs. Install EditorConfig or YAML extensions in your IDE for auto-validation. Adding a YAML linter (yamllint) to your CI pipeline also helps.</p>
+          </div>
+        </div>
 
       <!-- Related Tools -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">

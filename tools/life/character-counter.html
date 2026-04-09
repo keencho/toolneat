@@ -733,6 +733,20 @@
               <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">줄바꿈 문자는 글자수에 포함되지 않습니다. 대부분의 플랫폼도 같은 기준을 적용하고 있어요.</p>
             </div>
           </div>
+        
+          <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
+          <p>글자수 세기 도구는 입력 텍스트의 문자, 단어, 문장, 단락 수를 실시간으로 계산합니다. 문자 수는 String.length로, 공백 제외 문자 수는 정규식으로 공백을 제거한 후 계산합니다. 단어 수는 공백으로 분리하여 세고, 문장 수는 마침표·물음표·느낌표를 기준으로 카운트합니다. 바이트 수는 TextEncoder로 UTF-8 인코딩 후 측정합니다.</p>
+
+          
+          <h3 class="text-lg font-semibold mt-6 mb-3">글자수 세기 실전 활용법</h3>
+          <p>글자수 세기는 SNS 게시물, 자기소개서, 블로그 글, 광고 카피 작성에서 필수적입니다. 트위터는 280자, 인스타그램 캡션은 2,200자, 네이버 블로그 제목은 100자 제한이 있습니다. 한국어는 1글자가 2~3바이트를 차지하므로 바이트 수와 글자 수가 다를 수 있습니다.</p><p>자기소개서나 논문 작성 시에는 공백 포함/제외 글자 수를 모두 확인하세요. 대부분의 공모전과 대학교는 공백 포함 기준을 사용하지만, 일부는 공백 제외 기준을 적용합니다. 단어 수와 문장 수 통계는 글의 전체적인 구조를 파악하는 데 도움이 됩니다. 읽기 시간 추정 기능으로 블로그 글이나 발표 자료의 적절한 분량을 확인할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">관련 도구</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/tools/life/ai-detector" class="text-blue-600 dark:text-blue-400 hover:underline">AI 텍스트 감지기</a> - </li>
+            <li><a href="/tools/life/fancy-text" class="text-blue-600 dark:text-blue-400 hover:underline">특수문자 생성기</a> - </li>
+            <li><a href="/tools/life/ascii-unicode" class="text-blue-600 dark:text-blue-400 hover:underline">ASCII/유니코드 변환기</a> - </li>
+          </ul>
         </div>
       </section>
 

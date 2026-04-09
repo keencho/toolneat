@@ -666,6 +666,9 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>Minesweeper is a classic logic puzzle game that became world-famous after being included with Microsoft Windows in 1989. The objective is to clear a grid of hidden mines without detonating any. Using number clues to deduce safe and dangerous cells is the core mechanic, making it an excellent game for developing logical thinking and pattern recognition. Toolneat's Minesweeper can be played directly in your browser with a faithful recreation of the classic Windows design.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
+          <p>Minesweeper is a puzzle game where you logically deduce hidden mine locations. Clicking a cell reveals the number of mines in the surrounding 8 cells. A zero means no adjacent mines, so neighboring cells open automatically. By combining number clues, you can determine mine locations and flag them. Opening all non-mine cells wins the game.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">Controls</h3>
           <ul class="list-disc list-inside space-y-2">
             <li><strong>Left click:</strong> Reveal a cell to check if it is safe.</li>
@@ -767,6 +770,22 @@
               <p class="text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">On Beginner (9x9, 10 mines), under 10 seconds is competitive. Intermediate (16x16, 40 mines) players aim for under 40 seconds. Expert (30x16, 99 mines) in under 100 seconds is impressive, and the world record sits around 30 seconds. For a casual player, simply completing Expert without hitting a mine is an achievement worth celebrating.</p>
             </div>
           </div>
+        </div>
+      </section>
+    
+      <!-- Related Content -->
+      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+          
+          <h3 class="text-lg font-semibold mt-6 mb-3">Logical Solving Techniques</h3>
+          <p>Minesweeper is a pure logic game. If a cell showing 1 has only one unrevealed neighbor remaining, that neighbor must be a mine. Conversely, if a number already has that many flags around it, all remaining unrevealed neighbors are safe. These two basic patterns alone can reveal many cells.</p><p>Advanced techniques involve analyzing differences between adjacent numbers. For example, in a 1-2 pattern, you can deduce mine locations from the difference. Early game, clicking corners or edges often reveals large areas at once. Never click uncertain cells — gather more information from other areas first, then return with a clearer picture.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><a href="/en/tools/game/2048" class="text-blue-600 dark:text-blue-400 hover:underline">2048</a> - Number merging puzzle game.</li>
+            <li><a href="/en/tools/game/memory-game" class="text-blue-600 dark:text-blue-400 hover:underline">Memory Game</a> - Memory training game.</li>
+            <li><a href="/en/tools/game/tetris" class="text-blue-600 dark:text-blue-400 hover:underline">Tetris</a> - Block puzzle game.</li>
+          </ul>
         </div>
       </section>
     </div>

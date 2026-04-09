@@ -541,6 +541,39 @@
       </p>
     </div>
 
+    <!-- Dev Tools Guide -->
+    <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 mb-8">
+      <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Developer Tools Guide</h2>
+        <p>Every developer runs into the same repetitive tasks: formatting a messy JSON response, decoding a Base64 string during debugging, minifying assets before deployment, or quickly generating a UUID for a database record. You could open a terminal and write a one-liner, install a CLI tool, or search for a random website each time. But that breaks your flow.</p>
+        <p>Toolneat's developer tools collection puts all of these utilities in one place, right inside your browser. No accounts, no downloads, no context switching. Paste your input, get your output, and move on with your actual work.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Who are these tools for?</h3>
+        <p><strong>Frontend developers</strong> will find themselves reaching for the color converter, CSS minifier, gradient generator, and box shadow generator on a daily basis. When a designer hands over a HEX code and you need it in HSL for your CSS variables, or when you want to preview how a gradient looks before writing it into your stylesheet, these tools save you from guesswork.</p>
+        <p><strong>Backend developers</strong> deal with data formats constantly. The JSON formatter makes API responses readable in seconds. The JWT decoder lets you inspect token payloads without writing throwaway code. The SQL formatter turns a wall of concatenated SQL into something a human can actually review. The URL encoder handles special characters in query parameters so your API calls don't break.</p>
+        <p><strong>DevOps engineers</strong> benefit from the Cron expression generator (because nobody actually memorizes Cron syntax), the robots.txt generator, and the YAML-JSON converter for switching between configuration formats. These are small tasks that interrupt bigger work when done manually.</p>
+        <p><strong>Students and learners</strong> can use these tools as interactive learning aids. The regex tester lets you experiment with patterns and see matches in real time. The JSON validator gives instant feedback on syntax errors. The hash generator shows how different algorithms produce different outputs from the same input. It's hands-on learning without setting up a development environment.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Tools by category</h3>
+        <p><strong>Encoding and decoding:</strong> Base64 encoder, URL encoder, HTML entity converter, and text escape tool. Encoding is fundamental to how data moves across the web. URLs can't contain spaces or certain special characters. HTML has reserved characters that need escaping. Base64 lets you embed binary data in text-based formats like JSON or email. These tools handle the conversion instantly.</p>
+        <p><strong>Formatters and minifiers:</strong> JSON formatter, SQL formatter, CSS minifier, JS minifier, and HTML minifier. Formatting and minifying serve opposite purposes but you need both. During development, you format code for readability and easier debugging. Before deployment, you minify it to reduce file sizes and improve load times. Having both in one place means you can switch between the two in seconds.</p>
+        <p><strong>Generators:</strong> UUID generator, password generator, Lorem Ipsum generator, JWT generator, UTM generator, and Cron expression generator. Generating unique identifiers, secure passwords, test data, auth tokens, and tracking URLs by hand is error-prone. A typo in a UUID breaks a database reference. A weak password creates a security hole. These generators handle the creation reliably so you don't have to.</p>
+        <p><strong>Validators and testers:</strong> JSON validator, regex tester, diff checker, and color contrast checker. Validation catches errors before they reach production. The JSON validator flags missing commas and brackets. The regex tester shows you exactly what your pattern matches (and what it doesn't). The diff checker highlights differences between two files or code versions. The color contrast checker ensures your design meets WCAG accessibility standards.</p>
+        <p><strong>Converters:</strong> JSON-CSV, XML-JSON, YAML-JSON, and timestamp converter. Different systems speak different data languages. Your API returns JSON but the analyst needs CSV. The legacy system exports XML but the new one expects JSON. The log file shows Unix timestamps but you need human-readable dates. These converters bridge the gap.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Real-world workflow examples</h3>
+        <p><strong>API development workflow:</strong> You're building a REST API with JWT authentication. Start with the JWT generator to create test tokens with custom claims. Use the JWT decoder to verify the payload structure matches your expectations. When the API sends back responses, paste them into the JSON formatter to make them readable. Run the formatted JSON through the JSON validator to confirm the structure is correct. If your endpoints accept query parameters with special characters, use the URL encoder to make sure they're properly escaped.</p>
+        <p><strong>Frontend deployment workflow:</strong> Before pushing to production, run your CSS through the CSS minifier and JavaScript through the JS minifier to reduce bundle sizes. Use the meta tag generator to create proper SEO tags for each page. Preview your Open Graph tags with the OG preview tool to see exactly how links will appear on social media. Check your color choices with the color contrast checker to meet accessibility requirements. Finally, generate a robots.txt file to control search engine crawling.</p>
+        <p><strong>Data migration workflow:</strong> You need to convert legacy XML data to JSON for a new system. Use the XML-JSON converter to transform the data. Clean up the output with the JSON formatter. Validate the result with the JSON validator to catch any conversion issues. If some data needs to go into spreadsheets, use the JSON-CSV converter to export it in a format Excel understands.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">Why browser-based developer tools?</h3>
+        <p><strong>Privacy first:</strong> Everything runs in your browser. Your data never leaves your machine. No server-side processing, no logging, no third-party access. This matters when you're working with production tokens, internal API responses, or proprietary code. You can verify this yourself by checking the network tab in your browser's developer tools.</p>
+        <p><strong>Zero installation:</strong> No npm packages to install, no Python scripts to download, no version conflicts to resolve. Open a tab, use the tool, close the tab. This is especially valuable when you're on a locked-down work computer or a borrowed laptop where you can't install software.</p>
+        <p><strong>Cross-platform consistency:</strong> Whether you're on Windows, macOS, or Linux, the tools work identically. Share a tool URL with a colleague and they'll get the exact same experience regardless of their operating system. No "works on my machine" problems.</p>
+        <p><strong>Always up to date:</strong> Since the tools are web-based, updates are automatic. New tools get added, existing ones get improved, and you don't have to do anything to benefit from the changes. No update notifications, no breaking changes in your workflow.</p>
+      </div>
+    </section>
+
     <!-- Category Filter -->
     <div class="flex flex-wrap justify-center gap-2 mb-8">
       <button class="filter-btn active" data-filter="all">All (35)</button>
@@ -782,6 +815,43 @@
           <div class="tool-info"><div class="tool-name">Color Contrast Checker</div><div class="tool-desc">Check WCAG accessibility color contrast.</div></div>
           <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
+      </div>
+    </section>
+
+    <!-- Dev Tools FAQ -->
+    <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 mb-8">
+      <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+
+        <div class="mb-6">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Are these developer tools free?</h3>
+          <p class="text-gray-600 dark:text-gray-400">Yes, every tool on Toolneat is completely free to use. There's no signup, no subscription, and no usage limits. The site is supported through advertising, so there's never a charge to you. Use the tools as often as you need, for personal projects or professional work.</p>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Is my data sent to a server?</h3>
+          <p class="text-gray-600 dark:text-gray-400">No. All processing happens locally in your browser using JavaScript. Your JSON data, JWT tokens, code snippets, and any other input never leave your machine. Nothing is transmitted, stored, or logged on any server. You can verify this by opening your browser's developer tools and checking the Network tab while using any tool.</p>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Can I use the tools offline?</h3>
+          <p class="text-gray-600 dark:text-gray-400">You need an internet connection to load the page initially. However, once the page is loaded, most tools continue to work even if you lose connectivity, since all processing is done client-side. Keep in mind that refreshing the page while offline will require reconnecting. For frequent use, bookmark your most-used tools for quick access.</p>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Which browsers are supported?</h3>
+          <p class="text-gray-600 dark:text-gray-400">All modern browsers are fully supported, including Chrome, Firefox, Safari, and Edge. The tools are built with standard web technologies (HTML5, CSS3, JavaScript ES6+) and don't rely on any browser-specific features. For the best experience, keep your browser updated to the latest version.</p>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Do the tools work on mobile devices?</h3>
+          <p class="text-gray-600 dark:text-gray-400">Yes, all tools are built with responsive design and work on smartphones and tablets. That said, tools that involve heavy text input or code editing are more comfortable on a desktop or laptop with a full keyboard. For quick conversions, lookups, and generation tasks, mobile works perfectly well.</p>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Is there an API available?</h3>
+          <p class="text-gray-600 dark:text-gray-400">We don't currently offer an API. All tools are designed to be used through the web interface. If you need to automate or process large volumes of data, we recommend integrating the same open-source libraries that power these tools directly into your own project. Many of the underlying libraries are well-documented and available on npm or GitHub.</p>
+        </div>
       </div>
     </section>
   </main>
