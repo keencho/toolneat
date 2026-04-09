@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
-  <link rel="stylesheet" href="/assets/css/output.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
   <script src="/assets/js/common.js"></script>
   <script src="/assets/js/i18n.js"></script>
@@ -712,7 +712,55 @@
   </div>
 </footer>
 
-</div></body>
+</div>
+  <script>
+    (function(){'use strict';
+    const inputArea = document.getElementById('input-area');
+    const outputArea = document.getElementById('output-area');
+    const minifyBtn = document.getElementById('minify-btn');
+    const copyBtn = document.getElementById('copy-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const sampleBtn = document.getElementById('sample-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    const optComments = document.getElementById('opt-comments');
+    const optWhitespace = document.getElementById('opt-whitespace');
+    const optQuotes = document.getElementById('opt-quotes');
+    const optBoolean = document.getElementById('opt-boolean');
+    const originalSize = document.getElementById('original-size');
+    const minifiedSize = document.getElementById('minified-size');
+    const reduction = document.getElementById('reduction');
+    const errorMsg = document.getElementById('error-msg');
+
+    const sampleCode = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 페이지 제목 -->
+  <title>샘플 페이지</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 메인 컨텐츠 -->
+  <div class="container">
+    <h1>안녕하세요!</h1>
+    <p>
+      이것은 샘플 HTML 코드입니다.
+      압축 테스트를 해보세요.
+    </p>
+    <button disabled="disabled" hidden="hidden">
+      테스트 버튼
+    </button>
+  </div>
+  <script>
+    console.log("Hello World!");
+  <\/script>
+</body>
 </html>`;
 
     function showError(msg) {
