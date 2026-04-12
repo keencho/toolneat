@@ -1,133 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Resizer - Toolneat</title>
-  <meta name="description" content="Resize image dimensions online. Specify exact width×height in pixels or scale by percentage. Aspect ratio lock prevents image distortion. Includes presets for Instagram, Facebook, YouTube thumbnails and other social media platforms. No server upload required.">
-  <link rel="canonical" href="https://toolneat.com/en/tools/life/image-resizer">
-  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/life/image-resizer">
-  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/life/image-resizer">
-  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/life/image-resizer">
-  <meta property="og:type" content="website">
+  <title>Aspect Ratios Explained: 16:9, 4:3, 21:9 and When to Use Each - Toolneat</title>
+  <meta name="description" content="A practical breakdown of common aspect ratios. Learn when to use 16:9, 4:3, 21:9, 1:1, and 9:16 for video, social media, and web design.">
+
+  <link rel="canonical" href="https://toolneat.com/blog/aspect-ratio-guide">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/aspect-ratio-guide">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/aspect-ratio-guide">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/aspect-ratio-guide">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="Aspect Ratios Explained: 16:9, 4:3, 21:9 and When to Use Each">
+  <meta property="og:description" content="A practical breakdown of common aspect ratios.">
+  <meta property="og:url" content="https://toolneat.com/blog/aspect-ratio-guide">
   <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#2563eb">
-  <meta property="og:site_name" content="Toolneat">
-  <meta property="og:title" content="Image Resizer - Toolneat">
-  <meta property="og:url" content="https://toolneat.com/en/tools/life/image-resizer">
-    <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
+
   <link rel="stylesheet" href="/assets/css/style.css">
+
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
   <script src="/assets/js/common.js"></script>
   <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/tools-data.js"></script>
   <script src="/assets/js/components.js"></script>
-  <style>
-    .drop-zone {
-      border: 2px dashed #d1d5db;
-      border-radius: 12px;
-      padding: 40px 20px;
-      text-align: center;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-    .drop-zone:hover, .drop-zone.dragover {
-      border-color: #2563eb;
-      background: #eff6ff;
-    }
-    .dark .drop-zone {
-      border-color: #4b5563;
-    }
-    .dark .drop-zone:hover, .dark .drop-zone.dragover {
-      border-color: #3b82f6;
-      background: #1e3a5f;
-    }
-    .preview-container {
-      position: relative;
-      background: repeating-conic-gradient(#e5e7eb 0% 25%, transparent 0% 50%) 50% / 16px 16px;
-      border-radius: 8px;
-      min-height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .dark .preview-container {
-      background: repeating-conic-gradient(#374151 0% 25%, #1f2937 0% 50%) 50% / 16px 16px;
-    }
-    .preview-img {
-      max-width: 100%;
-      max-height: 400px;
-      object-fit: contain;
-    }
-    .preset-btn {
-      padding: 6px 12px;
-      font-size: 13px;
-      border-radius: 6px;
-      border: 1px solid #e5e7eb;
-      background: white;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .preset-btn:hover {
-      border-color: #3b82f6;
-      color: #3b82f6;
-    }
-    .dark .preset-btn {
-      background: #374151;
-      border-color: #4b5563;
-      color: #e5e7eb;
-    }
-    .dark .preset-btn:hover {
-      border-color: #3b82f6;
-      color: #60a5fa;
-    }
-    .size-info {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      background: #f3f4f6;
-      border-radius: 6px;
-      font-size: 13px;
-      font-family: monospace;
-    }
-    .dark .size-info {
-      background: #374151;
-    }
-  </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Image Resizer",
-  "description": "Resize image dimensions online. Specify exact width×height in pixels or scale by percentage. Aspect ratio lock prevents image distortion. Includes presets for Instagram, Facebook, YouTube thumbnails and other social media platforms. No server upload required.",
-  "url": "https://toolneat.com/en/tools/life/image-resizer",
-  "applicationCategory": "MultimediaApplication",
-  "operatingSystem": "Any",
-  "browserRequirements": "Requires JavaScript",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "author": {
-    "@type": "Organization",
-    "name": "Toolneat",
-    "url": "https://toolneat.com"
-  }
-}
-</script>  <script src="/assets/js/tools-data.js"></script>
   <script src="/assets/js/search.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Aspect Ratios Explained: 16:9, 4:3, 21:9 and When to Use Each",
+    "description": "A practical breakdown of common aspect ratios for video, social media, and web design.",
+    "datePublished": "2026-04-11",
+    "dateModified": "2026-04-11",
+    "author": {"@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com"},
+    "publisher": { "@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://toolneat.com/blog/aspect-ratio-guide" },
+    "inLanguage": "en"
+  }
+  </script>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen transition-colors duration-200">
   <div id="header">
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
@@ -596,481 +522,106 @@
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
 </div><main class="flex-1 mt-16 py-10 md:py-14">
-    <div class="container-main">
-      <div class="mb-6">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Image Resizer</h1>
-        <p class="text-gray-600 dark:text-gray-400">Resize images to your desired dimensions. Supports aspect ratio lock, pixel/percent units, and SNS presets.</p>
+    <article class="container-main max-w-3xl">
+      <div class="mb-10">
+        <a href="/en/blog" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">&larr; Blog</a>
+        <span class="inline-block px-3 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 rounded-full mt-4">Life</span>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-2 mb-2">Aspect Ratios Explained: 16:9, 4:3, 21:9 and When to Use Each</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">April 11, 2026 · 5 min read</p>
       </div>
 
-      <div class="card">
-        <!-- Upload Section -->
-        <div id="upload-section">
-          <div class="drop-zone" id="drop-zone">
-            <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-            <p class="text-gray-600 dark:text-gray-400 mb-2">Drag image here or click to select</p>
-            <p class="text-sm text-gray-500">PNG, JPG, WEBP, GIF (max 20MB)</p>
-            <input type="file" id="file-input" accept="image/*" class="hidden">
-          </div>
+      <div class="prose dark:prose-invert max-w-none">
+        <p>YouTube thumbnails need 16:9, Instagram feed posts are 1:1, movies are shot in 21:9... aspect ratios get confusing fast when you're creating content across platforms. Here's a no-fluff breakdown of what each ratio is for and when to use it.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">What Is an Aspect Ratio?</h2>
+        <p>An aspect ratio is the proportional relationship between width and height. 16:9 means 16 units wide and 9 units tall. It's independent of actual pixel count: both 1920x1080 and 3840x2160 are 16:9. Same ratio, different resolutions. Content scales without stretching or squishing.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Common Ratios at a Glance</h2>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">4:3 — The Classic</h3>
+        <p>The standard for old TVs and early computer monitors. Mostly retired now, though the iPad screen is still close to 4:3. Some people actually prefer it for reading and document work since there's more vertical space. Presentation slides used to default to 4:3 before the 16:9 takeover.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">16:9 — Current Standard</h3>
+        <p>The most widely used ratio in 2026. YouTube, Netflix, TV broadcasts, most monitors and laptops. Full HD (1920x1080), QHD (2560x1440), and 4K (3840x2160) are all 16:9. When in doubt, go with 16:9.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">21:9 — Ultrawide</h3>
+        <p>Close to the cinema standard (technically 2.39:1). Ultrawide monitors (3440x1440) use this ratio. Great for video editing and coding with side panels. The tradeoff: regular 16:9 YouTube videos will have black bars on the sides.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">1:1 — Square</h3>
+        <p>Instagram's signature. Clean look on mobile, consistent feed appearance. Also used for profile pictures, album covers, and app icons.</p>
+
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">9:16 — Vertical</h3>
+        <p>Phone held upright. TikTok, YouTube Shorts, Instagram Reels, Instagram Stories. The fastest-growing format in the mobile-first era.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Platform Quick Reference</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm mt-4">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 text-left">Platform</th>
+                <th class="px-4 py-2 text-left">Ratio</th>
+                <th class="px-4 py-2 text-left">Recommended Resolution</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr><td class="px-4 py-2">YouTube</td><td class="px-4 py-2">16:9</td><td class="px-4 py-2">1920x1080</td></tr>
+              <tr><td class="px-4 py-2">YouTube Shorts</td><td class="px-4 py-2">9:16</td><td class="px-4 py-2">1080x1920</td></tr>
+              <tr><td class="px-4 py-2">Instagram Feed</td><td class="px-4 py-2">1:1 or 4:5</td><td class="px-4 py-2">1080x1080</td></tr>
+              <tr><td class="px-4 py-2">Instagram Stories/Reels</td><td class="px-4 py-2">9:16</td><td class="px-4 py-2">1080x1920</td></tr>
+              <tr><td class="px-4 py-2">Twitter (X)</td><td class="px-4 py-2">16:9</td><td class="px-4 py-2">1200x675</td></tr>
+              <tr><td class="px-4 py-2">OG Image</td><td class="px-4 py-2">1.91:1</td><td class="px-4 py-2">1200x630</td></tr>
+              <tr><td class="px-4 py-2">YouTube Thumbnail</td><td class="px-4 py-2">16:9</td><td class="px-4 py-2">1280x720</td></tr>
+            </tbody>
+          </table>
         </div>
 
-        <!-- Editor Section -->
-        <div id="editor-section" class="hidden">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Preview -->
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="font-medium text-gray-900 dark:text-white">Preview</h3>
-                <span id="original-size" class="size-info"></span>
-              </div>
-              <div class="preview-container">
-                <img id="preview-img" class="preview-img" src="" alt="Preview">
-              </div>
-              <div class="mt-2 text-center">
-                <span id="new-size" class="size-info text-blue-600 dark:text-blue-400"></span>
-              </div>
-            </div>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">How to Calculate Ratios</h2>
+        <p>Divide both width and height by their greatest common divisor (GCD). For 1920x1080: GCD is 120, so 1920/120 : 1080/120 = 16:9.</p>
+        <p class="mt-2">In practice, non-standard resolutions like 1366x768 don't reduce to clean ratios. A calculator is faster than doing the math by hand every time.</p>
 
-            <!-- Options -->
-            <div>
-              <h3 class="font-medium text-gray-900 dark:text-white mb-4">Resize Options</h3>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Locking Ratios in CSS</h2>
+        <p>Use the <code>aspect-ratio</code> property to maintain proportions in responsive layouts:</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>.video-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
 
-              <!-- Mode Toggle -->
-              <div class="flex gap-2 mb-4">
-                <button id="mode-pixel" class="flex-1 px-4 py-2 rounded-lg font-medium bg-blue-600 text-white">Pixels</button>
-                <button id="mode-percent" class="flex-1 px-4 py-2 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">Percent</button>
-              </div>
-
-              <!-- Pixel Mode -->
-              <div id="pixel-options">
-                <div class="grid grid-cols-2 gap-5 mb-4">
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Width</label>
-                    <div class="flex">
-                      <input type="number" id="width-input" class="w-full px-3 py-2 rounded-l-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white" min="1" max="10000">
-                      <span class="px-3 py-2 bg-gray-100 dark:bg-gray-600 border border-l-0 border-gray-300 dark:border-gray-600 rounded-r-lg text-gray-600 dark:text-gray-400">px</span>
-                    </div>
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Height</label>
-                    <div class="flex">
-                      <input type="number" id="height-input" class="w-full px-3 py-2 rounded-l-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white" min="1" max="10000">
-                      <span class="px-3 py-2 bg-gray-100 dark:bg-gray-600 border border-l-0 border-gray-300 dark:border-gray-600 rounded-r-lg text-gray-600 dark:text-gray-400">px</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Percent Mode -->
-              <div id="percent-options" class="hidden">
-                <div class="mb-4">
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Scale</label>
-                  <div class="flex items-center gap-4">
-                    <input type="range" id="scale-slider" min="10" max="200" value="100" class="flex-1">
-                    <div class="flex">
-                      <input type="number" id="scale-input" class="w-20 px-3 py-2 rounded-l-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-center" min="10" max="200" value="100">
-                      <span class="px-3 py-2 bg-gray-100 dark:bg-gray-600 border border-l-0 border-gray-300 dark:border-gray-600 rounded-r-lg text-gray-600 dark:text-gray-400">%</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Aspect Ratio -->
-              <div class="mb-4">
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" id="keep-ratio" checked class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                  <span class="text-sm text-gray-700 dark:text-gray-300">Keep aspect ratio</span>
-                  <svg id="ratio-icon" class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
-                  </svg>
-                </label>
-              </div>
-
-              <!-- Presets -->
-              <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Presets</label>
-                <div class="flex flex-wrap gap-2">
-                  <button class="preset-btn" data-w="1920" data-h="1080">1920x1080 (FHD)</button>
-                  <button class="preset-btn" data-w="1280" data-h="720">1280x720 (HD)</button>
-                  <button class="preset-btn" data-w="1080" data-h="1080">1080x1080 (IG)</button>
-                  <button class="preset-btn" data-w="1200" data-h="630">1200x630 (OG)</button>
-                  <button class="preset-btn" data-w="800" data-h="600">800x600</button>
-                  <button class="preset-btn" data-w="640" data-h="480">640x480</button>
-                  <button class="preset-btn" data-w="256" data-h="256">256x256</button>
-                  <button class="preset-btn" data-w="128" data-h="128">128x128</button>
-                </div>
-              </div>
-
-              <!-- Actions -->
-              <div class="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <button id="apply-btn" class="btn btn-primary">Apply</button>
-                <button id="download-btn" class="btn btn-secondary">Download</button>
-                <button id="reset-btn" class="btn btn-secondary ml-auto">Reset</button>
-              </div>
-            </div>
-          </div>
+.square-card {
+  aspect-ratio: 1;
+}</pre>
         </div>
+        <p>No more <code>padding-bottom: 56.25%</code> hacks. One line, all modern browsers.</p>
       </div>
 
-      <!-- Description Section -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What is Image Resizing?</h2>
-        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Image resizing is the process of changing the width and height (resolution) of a photo or graphic. Whether you need to reduce an image for faster web page loading, match social media dimensions, or create icons and thumbnails, resizing is an essential step. This tool works directly in your browser, letting you adjust image dimensions quickly without installing any software.</p>
+      <!-- Related Tool -->
+      <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
+        <h3 class="font-bold text-gray-900 dark:text-white mb-3">Related Tool</h3>
+        <a href="/tools/life/aspect-ratio" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          Try the Aspect Ratio Calculator
+        </a>
+      </div>
 
-          <h3 class="text-lg font-semibold mt-6 mb-3">How It Works</h3>
-          <p>Image resizing redraws the original onto a canvas of the specified size via drawImage(). When downscaling, the browser applies bilinear or bicubic interpolation for smooth results. The aspect ratio lock option automatically calculates one dimension based on the other.</p>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Key Features</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Resize by pixel (px) or percentage (%) values</li>
-            <li>Aspect ratio lock to prevent image distortion</li>
-            <li>Built-in presets for FHD, Instagram, Open Graph, and more</li>
-            <li>Real-time size comparison before and after resizing</li>
-            <li>High-quality PNG download</li>
-            <li>All processing happens in-browser with no server uploads</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">How to Use</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Drag and drop or click to upload your image</li>
-            <li>Select pixel or percentage mode, then enter your target dimensions</li>
-            <li>Check the aspect ratio lock icon; toggle it off if you need independent width/height control</li>
-            <li>Click a preset button to auto-fill common dimensions</li>
-            <li>Click "Apply" to resize, then "Download" to save the result</li>
-          </ol>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Common Use Cases</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Reducing image size for blogs and websites to improve load times</li>
-            <li>Formatting images for Instagram square posts (1080x1080)</li>
-            <li>Creating YouTube thumbnails at 1920x1080 resolution</li>
-            <li>Generating Open Graph images (1200x630) for optimized social media previews</li>
-            <li>Making small icons or favicons for apps and websites</li>
-            <li>Shrinking images for email attachments to stay under size limits</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Tips and Notes</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>With aspect ratio locked, changing one dimension automatically calculates the other</li>
-            <li>Upscaling beyond the original resolution can result in blurry or pixelated images</li>
-            <li>Percentage mode is convenient when you want to scale relative to the original size</li>
-            <li>Use presets to quickly apply recommended dimensions for popular platforms</li>
-            <li>The original file is never modified; a new file is downloaded after resizing</li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Frequently Asked Questions</h3>
-          <div class="space-y-4">
-            <div><h4 class="font-medium">Q: What image formats are supported?</h4><p>All major formats including JPG, PNG, GIF, and WebP are supported for upload.</p></div>
-            <div><h4 class="font-medium">Q: Does resizing reduce image quality?</h4><p>Downscaling preserves quality well. However, upscaling beyond the original dimensions may cause the image to appear blurry or pixelated.</p></div>
-            <div><h4 class="font-medium">Q: Can I resize without maintaining the aspect ratio?</h4><p>Yes, click the aspect ratio lock icon to unlock it, and you can set width and height independently.</p></div>
-            <div><h4 class="font-medium">Q: Can I specify custom dimensions not in the presets?</h4><p>Absolutely. Simply type any width and height values directly into the input fields.</p></div>
-            <div><h4 class="font-medium">Q: Does it work on mobile devices?</h4><p>Yes, it works on mobile browsers. You can resize photos taken on your smartphone right away.</p></div>
-            <div><h4 class="font-medium">Q: Is my image uploaded to a server?</h4><p>No. All processing happens entirely in your browser. Your images never leave your device.</p></div>
-            <div><h4 class="font-medium">Q: Can I resize multiple images at once?</h4><p>Currently images are processed one at a time. After resizing, click "New Image" to continue with the next file.</p></div>
-            <div><h4 class="font-medium">Q: What format is the downloaded file?</h4><p>The result is saved as a PNG file regardless of the original format, ensuring high quality output.</p></div>
-            <div><h4 class="font-medium">Q: Will the file size decrease after resizing?</h4><p>Generally yes, reducing dimensions also reduces file size. The exact size depends on the image content.</p></div>
-            <div><h4 class="font-medium">Q: Can I resize animated GIFs?</h4><p>You can upload GIF files, but only the first frame will be resized. Full animated GIF resizing is not supported.</p></div>
-          </div>
+      <!-- More Articles -->
+      <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="font-bold text-gray-900 dark:text-white mb-4">More Articles</h3>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <a href="/en/blog/image-format-guide" class="block p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+            <p class="font-medium text-gray-900 dark:text-white">Image Format Comparison: JPG vs PNG vs WebP</p>
+            <p class="text-sm text-gray-500 mt-1">Choosing the right format</p>
+          </a>
+          <a href="/en/blog/video-gif-guide" class="block p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+            <p class="font-medium text-gray-900 dark:text-white">How to Convert Video to GIF</p>
+            <p class="text-sm text-gray-500 mt-1">Create auto-playing GIFs for social media</p>
+          </a>
         </div>
-      </section>
-    
-      <!-- Related Content -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          
-          <h3 class="text-lg font-semibold mt-6 mb-3">Image Resizing Practical Guide</h3>
-          <p>Image resizing is the most common task for website optimization, social media uploads, and email attachments. Standard sizes include web banners at 1200×628px, Instagram squares at 1080×1080, and YouTube thumbnails at 1280×720. Enable aspect ratio lock to prevent distortion.</p><p>Downscaling large images significantly reduces file size. A 4000×3000 photo resized to 1920×1440 can shrink 50-70% in size. Conversely, upscaling small images degrades quality, so enlarging beyond the original is not recommended. This tool is especially useful when multiple images need to match the same dimensions.</p>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Related Tools</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><a href="/en/tools/life/image-compressor" class="text-blue-600 dark:text-blue-400 hover:underline">Image Compressor</a> - </li>
-            <li><a href="/en/tools/life/image-crop" class="text-blue-600 dark:text-blue-400 hover:underline">Image Crop</a> - </li>
-            <li><a href="/en/tools/life/aspect-ratio" class="text-blue-600 dark:text-blue-400 hover:underline">Aspect Ratio Calculator</a> - </li>
-          </ul>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">Related Articles</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><a href="/en/blog/image-compress-guide" class="text-blue-600 dark:text-blue-400 hover:underline">Image Compression Guide</a></li>
-          </ul>
-        </div>
-      </section>
-    </div>
+      </div>
+    </article>
   </main>
-  <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
-  <div class="container-main">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
-      <p>&copy; 2026 Toolneat. All rights reserved.</p>
-      <div class="flex items-center gap-4">
-        <a href="/en/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">About</a>
-        <a href="/en/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">Privacy</a>
-        <a href="/en/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">Terms</a>
-      </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-    </div>
-  </div>
-</footer>
-
-</div>
-
-  <script>
-    (function() {
-      'use strict';
-      const dropZone = document.getElementById('drop-zone');
-      const fileInput = document.getElementById('file-input');
-      const uploadSection = document.getElementById('upload-section');
-      const editorSection = document.getElementById('editor-section');
-      const previewImg = document.getElementById('preview-img');
-      const originalSizeEl = document.getElementById('original-size');
-      const newSizeEl = document.getElementById('new-size');
-      const widthInput = document.getElementById('width-input');
-      const heightInput = document.getElementById('height-input');
-      const scaleSlider = document.getElementById('scale-slider');
-      const scaleInput = document.getElementById('scale-input');
-      const keepRatioCheckbox = document.getElementById('keep-ratio');
-      const ratioIcon = document.getElementById('ratio-icon');
-      const modePixel = document.getElementById('mode-pixel');
-      const modePercent = document.getElementById('mode-percent');
-      const pixelOptions = document.getElementById('pixel-options');
-      const percentOptions = document.getElementById('percent-options');
-      const applyBtn = document.getElementById('apply-btn');
-      const downloadBtn = document.getElementById('download-btn');
-      const resetBtn = document.getElementById('reset-btn');
-      const presetBtns = document.querySelectorAll('.preset-btn');
-
-      let originalImage = null;
-      let originalWidth = 0;
-      let originalHeight = 0;
-      let currentBlob = null;
-      let aspectRatio = 1;
-      let isPixelMode = true;
-
-      // Drag & Drop
-      dropZone.addEventListener('click', () => fileInput.click());
-      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
-      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-      dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-        if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-      });
-      fileInput.addEventListener('change', (e) => { if (e.target.files.length) handleFile(e.target.files[0]); });
-
-      function handleFile(file) {
-        if (!file.type.startsWith('image/')) {
-          toast.error('Only image files are supported.');
-          return;
-        }
-        if (file.size > 20 * 1024 * 1024) {
-          toast.error('File must be under 20MB.');
-          return;
-        }
-
-        const img = new Image();
-        img.onload = () => {
-          originalImage = img;
-          originalWidth = img.width;
-          originalHeight = img.height;
-          aspectRatio = img.width / img.height;
-
-          previewImg.src = img.src;
-          originalSizeEl.textContent = `${img.width} x ${img.height} px`;
-          widthInput.value = img.width;
-          heightInput.value = img.height;
-          updateNewSize();
-
-          uploadSection.classList.add('hidden');
-          editorSection.classList.remove('hidden');
-        };
-        img.src = URL.createObjectURL(file);
-      }
-
-      // Mode toggle
-      modePixel.addEventListener('click', () => {
-        isPixelMode = true;
-        modePixel.className = 'flex-1 px-4 py-2 rounded-lg font-medium bg-blue-600 text-white';
-        modePercent.className = 'flex-1 px-4 py-2 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
-        pixelOptions.classList.remove('hidden');
-        percentOptions.classList.add('hidden');
-        widthInput.value = originalWidth;
-        heightInput.value = originalHeight;
-        updateNewSize();
-      });
-
-      modePercent.addEventListener('click', () => {
-        isPixelMode = false;
-        modePercent.className = 'flex-1 px-4 py-2 rounded-lg font-medium bg-blue-600 text-white';
-        modePixel.className = 'flex-1 px-4 py-2 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
-        percentOptions.classList.remove('hidden');
-        pixelOptions.classList.add('hidden');
-        scaleSlider.value = 100;
-        scaleInput.value = 100;
-        updateNewSize();
-      });
-
-      // Width/Height input
-      widthInput.addEventListener('input', () => {
-        if (keepRatioCheckbox.checked && originalImage) {
-          heightInput.value = Math.round(widthInput.value / aspectRatio);
-        }
-        updateNewSize();
-      });
-
-      heightInput.addEventListener('input', () => {
-        if (keepRatioCheckbox.checked && originalImage) {
-          widthInput.value = Math.round(heightInput.value * aspectRatio);
-        }
-        updateNewSize();
-      });
-
-      // Scale slider/input
-      scaleSlider.addEventListener('input', () => {
-        scaleInput.value = scaleSlider.value;
-        updateNewSize();
-      });
-
-      scaleInput.addEventListener('input', () => {
-        scaleSlider.value = scaleInput.value;
-        updateNewSize();
-      });
-
-      // Keep ratio checkbox
-      keepRatioCheckbox.addEventListener('change', () => {
-        ratioIcon.classList.toggle('text-blue-600', keepRatioCheckbox.checked);
-        ratioIcon.classList.toggle('text-gray-400', !keepRatioCheckbox.checked);
-        if (keepRatioCheckbox.checked && originalImage) {
-          heightInput.value = Math.round(widthInput.value / aspectRatio);
-          updateNewSize();
-        }
-      });
-
-      // Presets
-      presetBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const w = parseInt(btn.dataset.w);
-          const h = parseInt(btn.dataset.h);
-          if (!isPixelMode) {
-            modePixel.click();
-          }
-          keepRatioCheckbox.checked = false;
-          ratioIcon.classList.remove('text-blue-600');
-          ratioIcon.classList.add('text-gray-400');
-          widthInput.value = w;
-          heightInput.value = h;
-          updateNewSize();
-        });
-      });
-
-      function updateNewSize() {
-        let w, h;
-        if (isPixelMode) {
-          w = parseInt(widthInput.value) || 0;
-          h = parseInt(heightInput.value) || 0;
-        } else {
-          const scale = parseInt(scaleInput.value) / 100;
-          w = Math.round(originalWidth * scale);
-          h = Math.round(originalHeight * scale);
-        }
-        newSizeEl.textContent = `-> ${w} x ${h} px`;
-      }
-
-      // Apply resize
-      applyBtn.addEventListener('click', () => {
-        if (!originalImage) return;
-
-        let w, h;
-        if (isPixelMode) {
-          w = parseInt(widthInput.value) || originalWidth;
-          h = parseInt(heightInput.value) || originalHeight;
-        } else {
-          const scale = parseInt(scaleInput.value) / 100;
-          w = Math.round(originalWidth * scale);
-          h = Math.round(originalHeight * scale);
-        }
-
-        if (w < 1 || h < 1 || w > 10000 || h > 10000) {
-          toast.error('Size must be between 1-10000px.');
-          return;
-        }
-
-        const canvas = document.createElement('canvas');
-        canvas.width = w;
-        canvas.height = h;
-        const ctx = canvas.getContext('2d');
-
-        // Use better quality for downscaling
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(originalImage, 0, 0, w, h);
-
-        canvas.toBlob((blob) => {
-          currentBlob = blob;
-          previewImg.src = URL.createObjectURL(blob);
-          toast.success('Applied!');
-        }, 'image/png');
-      });
-
-      // Download
-      downloadBtn.addEventListener('click', () => {
-        if (!currentBlob && !originalImage) return;
-
-        if (currentBlob) {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(currentBlob);
-          a.download = 'resized_image.png';
-          a.click();
-        } else {
-          const canvas = document.createElement('canvas');
-          canvas.width = parseInt(widthInput.value) || originalWidth;
-          canvas.height = parseInt(heightInput.value) || originalHeight;
-          const ctx = canvas.getContext('2d');
-          ctx.imageSmoothingEnabled = true;
-          ctx.imageSmoothingQuality = 'high';
-          ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
-          canvas.toBlob((blob) => {
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'resized_image.png';
-            a.click();
-          }, 'image/png');
-        }
-      });
-
-      // Reset
-      resetBtn.addEventListener('click', () => {
-        originalImage = null;
-        currentBlob = null;
-        fileInput.value = '';
-        uploadSection.classList.remove('hidden');
-        editorSection.classList.add('hidden');
-        scaleSlider.value = 100;
-        scaleInput.value = 100;
-        keepRatioCheckbox.checked = true;
-        ratioIcon.classList.add('text-blue-600');
-        ratioIcon.classList.remove('text-gray-400');
-      });
-    })();
-  </script>
+  <div id="footer"></div>
 </body>
 </html>

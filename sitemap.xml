@@ -2109,6 +2109,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/blog/aspect-ratio-guide</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/aspect-ratio-guide"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/aspect-ratio-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/aspect-ratio-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/blog/aspect-ratio-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/aspect-ratio-guide"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/aspect-ratio-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/aspect-ratio-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/blog/barcode-qr-business</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/barcode-qr-business"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/barcode-qr-business"/>
@@ -2266,6 +2284,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/exif-metadata-privacy"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/exif-metadata-privacy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/exif-metadata-privacy"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/blog/favicon-creation-guide</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/favicon-creation-guide"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/favicon-creation-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/favicon-creation-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/blog/favicon-creation-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/favicon-creation-guide"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/favicon-creation-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/favicon-creation-guide"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
