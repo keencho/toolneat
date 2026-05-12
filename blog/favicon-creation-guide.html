@@ -1,62 +1,59 @@
-<!DOCTYPE html><html lang="ko"><head>
-<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359" crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8846557285079359"
+     crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF 페이지 재정렬 - Toolneat</title>
-  <meta name="description" content="PDF 파일의 페이지 순서를 드래그 앤 드롭으로 쉽게 변경합니다. 원하는 순서로 페이지를 재배치하고 새 PDF로 저장하세요. 브라우저에서 안전하게 처리됩니다.">
-  <link rel="canonical" href="https://toolneat.com/tools/pdf/reorder-pdf">
-  <link rel="alternate" hreflang="ko" href="https://toolneat.com/tools/pdf/reorder-pdf">
-  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/tools/pdf/reorder-pdf">
-  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/tools/pdf/reorder-pdf">
+  <title>파비콘 제작 가이드: 브라우저 탭에서 눈에 띄는 법 - Toolneat</title>
+  <meta name="description" content="파비콘 크기, 형식, 제작 방법을 실전 위주로 정리했습니다. ICO, SVG, PNG 차이와 다크 모드 대응까지.">
+
+  <link rel="canonical" href="https://toolneat.com/blog/favicon-creation-guide">
+  <link rel="alternate" hreflang="ko" href="https://toolneat.com/blog/favicon-creation-guide">
+  <link rel="alternate" hreflang="en" href="https://toolneat.com/en/blog/favicon-creation-guide">
+  <link rel="alternate" hreflang="x-default" href="https://toolneat.com/blog/favicon-creation-guide">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Toolneat">
+  <meta property="og:title" content="파비콘 제작 가이드: 브라우저 탭에서 눈에 띄는 법">
+  <meta property="og:description" content="파비콘 크기, 형식, 제작 방법을 실전 위주로 정리했습니다.">
+  <meta property="og:url" content="https://toolneat.com/blog/favicon-creation-guide">
+  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2563eb">
+
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
+
   <link rel="stylesheet" href="/assets/css/style.css">
+
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
   <script src="/assets/js/common.js"></script>
   <script src="/assets/js/i18n.js"></script>
   <script src="/assets/js/tools-data.js"></script>
   <script src="/assets/js/components.js"></script>
-  <script src="/assets/js/search.js" defer=""></script>
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Toolneat">
-  <meta property="og:title" content="PDF 페이지 재정렬 - Toolneat">
-  <meta property="og:description" content="PDF 페이지 순서를 드래그 앤 드롭으로 변경합니다.">
-  <meta property="og:url" content="https://toolneat.com/tools/pdf/reorder-pdf">
-  <meta property="og:image" content="https://toolneat.com/assets/images/og-image.png">
-  <meta property="og:locale" content="ko_KR">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#2563eb">
+  <script src="/assets/js/search.js" defer></script>
+
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"PDF 페이지 재정렬","description":"PDF 파일의 페이지 순서를 드래그 앤 드롭으로 변경합니다.","url":"https://toolneat.com/tools/pdf/reorder-pdf","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"author":{"@type":"Organization","name":"Toolneat"}}
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "파비콘 제작 가이드: 브라우저 탭에서 눈에 띄는 법",
+    "description": "파비콘 크기, 형식, 제작 방법을 실전 위주로 정리했습니다.",
+    "datePublished": "2026-04-07",
+    "dateModified": "2026-04-07",
+    "author": {"@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com"},
+    "publisher": { "@type": "Organization", "name": "Toolneat", "url": "https://toolneat.com" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://toolneat.com/blog/favicon-creation-guide" },
+    "inLanguage": "ko"
+  }
   </script>
-  <style>
-    .drop-zone{border:2px dashed #d1d5db;border-radius:16px;padding:48px 24px;text-align:center;transition:all .2s;cursor:pointer}
-    .dark .drop-zone{border-color:#4b5563}
-    .drop-zone:hover{border-color:#3b82f6;background:#f0f9ff}
-    .dark .drop-zone:hover{background:#1e3a5f}
-    .drop-zone.drag-over{border-color:#3b82f6;background:#eff6ff}
-    .dark .drop-zone.drag-over{background:#1e3a5f}
-    .page-item{background:#fff;border:2px solid #e5e7eb;border-radius:12px;padding:12px;text-align:center;cursor:grab;transition:all .2s;user-select:none}
-    .dark .page-item{background:#374151;border-color:#4b5563}
-    .page-item:hover{border-color:#3b82f6}
-    .page-item.dragging{opacity:0.5;border-color:#3b82f6;transform:scale(0.95)}
-    .page-item.drag-over{border-color:#3b82f6;border-style:dashed;background:#eff6ff}
-    .dark .page-item.drag-over{background:#1e3a5f}
-    .page-preview{width:100%;aspect-ratio:210/297;background:#f3f4f6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;color:#6b7280;margin-bottom:8px}
-    .dark .page-preview{background:#1f2937;color:#9ca3af}
-    .order-badge{position:absolute;top:-8px;right:-8px;width:24px;height:24px;background:#3b82f6;color:#fff;border-radius:50%;font-size:12px;font-weight:bold;display:flex;align-items:center;justify-content:center}
-    .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}
-    .loading-overlay.show{display:flex}
-    .spinner{width:48px;height:48px;border:4px solid #e5e7eb;border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
-  </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen transition-colors duration-200">
   <div id="header">
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60">
   <div class="container-main">
@@ -70,36 +67,36 @@
       <nav class="hidden md:flex items-center gap-2">
         <button class="tools-overlay-trigger nav-dropdown-btn" data-category="dev">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
           </svg>
           <span data-i18n="nav.dev">개발 도구</span>
         </button>
 
         <button class="tools-overlay-trigger nav-dropdown-btn" data-category="pdf">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
           </svg>
           <span data-i18n="nav.pdf">PDF 도구</span>
         </button>
 
         <button class="tools-overlay-trigger nav-dropdown-btn" data-category="life">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
           </svg>
           <span data-i18n="nav.life">생활 도구</span>
         </button>
 
         <button class="tools-overlay-trigger nav-dropdown-btn" data-category="game">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
           <span data-i18n="nav.game">게임</span>
         </button>
 
         <a href="/blog" class="nav-link nav-dropdown-btn">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
           </svg>
           <span data-i18n="nav.blog">블로그</span>
         </a>
@@ -110,7 +107,7 @@
         <!-- Search Button -->
         <button id="header-search-btn" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
           <span class="hidden lg:inline" data-i18n="nav.search">검색</span>
           <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 dark:bg-gray-700 rounded">
@@ -128,20 +125,20 @@
         <!-- Theme Toggle -->
         <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
           <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
           </svg>
           <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
           </svg>
         </button>
 
         <!-- Mobile Menu Button -->
         <button id="menu-toggle" class="icon-btn md:hidden" aria-label="Menu">
           <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
           <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
@@ -152,7 +149,7 @@
       <!-- Mobile Search Button -->
       <button id="mobile-search-btn" class="w-full flex items-center gap-3 py-3 px-3 mb-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
         <span data-i18n="nav.search">검색</span>
       </button>
@@ -169,12 +166,12 @@
         <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
           <span class="flex items-center gap-2">
             <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
             </svg>
             <span data-i18n="nav.dev">개발 도구</span>
           </span>
           <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="mobile-accordion-content hidden pl-4">
@@ -183,7 +180,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.encoding">인코딩/디코딩</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -198,7 +195,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.generators">생성기</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -220,7 +217,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.converters">변환기</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -245,7 +242,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.testers">테스터</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -265,12 +262,12 @@
         <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
           <span class="flex items-center gap-2">
             <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
             </svg>
             <span data-i18n="nav.pdf">PDF 도구</span>
           </span>
           <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="mobile-accordion-content hidden pl-4">
@@ -279,7 +276,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.pdfEdit">PDF 편집</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -297,7 +294,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.pdfConvert">PDF 변환</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -313,12 +310,12 @@
         <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
           <span class="flex items-center gap-2">
             <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
             </svg>
             <span data-i18n="nav.life">생활 도구</span>
           </span>
           <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="mobile-accordion-content hidden pl-4">
@@ -327,7 +324,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.calculators">계산기</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -347,7 +344,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.mediaAi">미디어/AI</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -365,7 +362,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.utilities">유틸리티</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -407,7 +404,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.monitorTest">모니터 테스트</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -422,7 +419,7 @@
             <button class="mobile-sub-accordion-btn w-full flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 text-sm font-medium">
               <span data-i18n="nav.funGames">재미/게임</span>
               <svg class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div class="mobile-sub-content hidden pl-4 space-y-1">
@@ -443,13 +440,13 @@
         <button class="mobile-accordion-btn w-full flex items-center justify-between py-3 text-gray-900 dark:text-white font-medium">
           <span class="flex items-center gap-2">
             <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             <span data-i18n="nav.game">게임</span>
           </span>
           <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="mobile-accordion-content hidden pl-4 space-y-1">
@@ -464,7 +461,7 @@
       <!-- Blog (Mobile) -->
       <a href="/blog" class="nav-link flex items-center gap-2 py-3 text-gray-900 dark:text-white font-medium">
         <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
         </svg>
         <span data-i18n="nav.blog">블로그</span>
       </a>
@@ -500,13 +497,13 @@
       <div class="flex items-center gap-2">
         <div class="relative">
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
           <input type="text" id="tools-dropdown-search" class="w-64 pl-9 pr-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="도구 검색..." data-i18n-placeholder="nav.searchPlaceholder">
         </div>
         <button id="tools-dropdown-close" class="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
@@ -525,343 +522,94 @@
 <div id="tools-dropdown-backdrop" class="hidden fixed inset-0 top-16 z-[55] bg-black/60"></div>
 
 </div><main class="flex-1 mt-16 py-10 md:py-14">
-    <div class="container-main">
-      <div class="mb-6">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">PDF 페이지 재정렬</h1>
-        <p class="text-gray-600 dark:text-gray-400">PDF 파일의 페이지 순서를 드래그 앤 드롭으로 변경합니다.</p>
+    <article class="container-main max-w-3xl">
+      <div class="mb-10">
+        <a href="/blog" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">&larr; 블로그</a>
+        <span class="inline-block px-3 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full mt-4">개발</span>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-2 mb-2">파비콘 제작 가이드: 브라우저 탭에서 눈에 띄는 법</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">2026년 4월 7일 · 6분 읽기</p>
       </div>
 
-      <div class="card">
-        <!-- Drop Zone -->
-        <div id="drop-zone" class="drop-zone">
-          <input type="file" id="file-input" accept=".pdf" class="hidden">
-          <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+      <div class="prose dark:prose-invert max-w-none">
+        <p>브라우저 탭을 20개 열어놓고 작업하다 보면, 결국 파비콘만 보고 탭을 찾게 됩니다. 그만큼 파비콘은 작지만 중요한 존재예요. 근데 막상 만들려고 하면 크기가 몇이어야 하는지, ICO를 써야 하는지 PNG를 써야 하는지 헷갈리기 시작합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">파비콘에 필요한 파일 목록</h2>
+        <p>2026년 기준으로 모든 브라우저와 기기를 커버하려면 이 정도가 필요합니다:</p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li><strong>favicon.ico</strong> — 16x16, 32x32 멀티사이즈. 레거시 브라우저용인데, 아직 필요합니다.</li>
+          <li><strong>favicon.svg</strong> — 벡터라서 어떤 크기에서도 선명. 다크모드 대응도 가능.</li>
+          <li><strong>apple-touch-icon.png</strong> — 180x180. 아이폰 홈 화면 추가 시 사용.</li>
+          <li><strong>favicon-32x32.png, favicon-16x16.png</strong> — PNG 기반 브라우저용.</li>
+        </ul>
+        <p class="mt-3">이 중에서 하나만 골라야 한다면? <strong>SVG</strong>입니다. 하나의 파일로 모든 해상도에 대응하고, CSS 미디어 쿼리로 다크모드까지 처리할 수 있거든요.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">ICO vs PNG vs SVG — 뭘 써야 하나</h2>
+        <p><strong>ICO</strong>는 여러 크기를 하나의 파일에 담을 수 있어서 편리하지만, 2026년에 ICO만 쓰는 건 좀 구식이에요. 다만 오래된 브라우저 호환성 때문에 <code>favicon.ico</code>는 루트에 하나 두는 게 안전합니다.</p>
+        <p class="mt-2"><strong>PNG</strong>는 투명 배경을 지원하고 대부분의 상황에서 잘 동작합니다. 32x32와 16x16 두 가지면 충분해요.</p>
+        <p class="mt-2"><strong>SVG</strong>가 가장 현대적인 선택입니다. 크기에 무관하게 선명하고, 파일 크기도 보통 1KB 미만이에요. 단, Internet Explorer에서는 안 됩니다(IE는 이미 은퇴했지만).</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">SVG 파비콘으로 다크모드 대응하기</h2>
+        <p>SVG의 진짜 장점은 CSS를 내장할 수 있다는 겁니다. 이걸로 다크모드에서 파비콘 색상을 바꿀 수 있어요.</p>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"&gt;
+  &lt;style&gt;
+    circle { fill: #2563eb; }
+    @media (prefers-color-scheme: dark) {
+      circle { fill: #60a5fa; }
+    }
+  &lt;/style&gt;
+  &lt;circle cx="16" cy="16" r="14"/&gt;
+&lt;/svg&gt;</pre>
+        </div>
+        <p>라이트모드에서는 진한 파란색, 다크모드에서는 밝은 파란색으로 자동 전환됩니다. 별도 JavaScript 없이 CSS만으로 동작하는 게 깔끔해요.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">제작 시 주의사항</h2>
+        <p><strong>단순하게 만드세요.</strong> 파비콘은 16x16 픽셀에서도 알아볼 수 있어야 합니다. 로고를 그대로 축소하면 대부분 뭉개져요. 로고의 핵심 도형이나 이니셜 한 글자만 따는 게 훨씬 나아요.</p>
+        <p class="mt-2"><strong>투명 배경을 쓰세요.</strong> 배경색이 들어간 파비콘은 브라우저 테마에 따라 어색하게 보일 수 있습니다.</p>
+        <p class="mt-2"><strong>고대비 색상을 쓰세요.</strong> 작은 아이콘이라 명암 대비가 약하면 그냥 점처럼 보입니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">HTML에 파비콘 넣는 코드</h2>
+        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
+<pre>&lt;link rel="icon" href="/favicon.ico" sizes="any"&gt;
+&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;</pre>
+        </div>
+        <p><code>sizes="any"</code>는 ICO 파일이 여러 크기를 포함한다는 걸 브라우저에 알려줍니다. SVG와 ICO를 함께 선언하면 모던 브라우저는 SVG를, 구형 브라우저는 ICO를 선택합니다.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">파비콘이 안 바뀔 때</h2>
+        <p>파비콘을 교체했는데 브라우저에서 안 바뀌는 경우가 정말 많습니다. 브라우저가 파비콘을 강하게 캐싱하기 때문이에요.</p>
+        <p class="mt-2">해결 방법: 파비콘 URL에 쿼리 파라미터를 붙여보세요. <code>href="/favicon.svg?v=2"</code> 이런 식으로요. 또는 시크릿 모드에서 확인하면 캐시 영향 없이 새 파비콘을 볼 수 있습니다.</p>
+      </div>
+
+      <!-- 관련 도구 -->
+      <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
+        <h3 class="font-bold text-gray-900 dark:text-white mb-3">관련 도구</h3>
+        <a href="/tools/life/favicon-generator" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
-          <p class="text-gray-600 dark:text-gray-400 mb-2">PDF 파일을 드래그하거나 클릭하여 선택</p>
-          <p class="text-sm text-gray-400">PDF 파일만 지원됩니다</p>
-        </div>
-
-        <!-- Edit Section -->
-        <div id="edit-section" class="hidden">
-          <!-- File Info -->
-          <div class="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <svg class="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-3 9h4v1h-4v-1zm0 2h4v1h-4v-1zm-2-2h1v4H8v-4z"></path>
-                </svg>
-                <div>
-                  <p id="file-name" class="font-medium text-gray-900 dark:text-white"></p>
-                  <p id="page-count" class="text-sm text-gray-500"></p>
-                </div>
-              </div>
-              <button id="change-file" class="text-sm text-blue-600 hover:text-blue-700">파일 변경</button>
-            </div>
-          </div>
-
-          <!-- Instructions -->
-          <div class="mb-4 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-            <p class="text-sm text-blue-700 dark:text-blue-300">
-              <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              페이지를 드래그하여 원하는 순서로 재배치하세요
-            </p>
-          </div>
-
-          <!-- Page Grid -->
-          <div class="mb-6">
-            <div id="page-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5"></div>
-          </div>
-
-          <!-- Quick Actions -->
-          <div class="flex gap-3 flex-wrap mb-6">
-            <button id="reverse-btn" class="btn btn-secondary text-sm">순서 뒤집기</button>
-            <button id="reset-btn" class="btn btn-secondary text-sm">원래 순서로</button>
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="flex gap-3 flex-wrap">
-            <button id="download-btn" class="btn btn-primary flex items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-              </svg>
-              다운로드
-            </button>
-          </div>
-        </div>
+          파비콘 생성기로 직접 만들어보기
+        </a>
       </div>
 
-      <!-- Privacy Badge -->
-      <div class="mt-6 flex justify-center">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-          100% 브라우저 처리 - 파일이 서버로 전송되지 않습니다
+      <!-- 다른 글 -->
+      <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="font-bold text-gray-900 dark:text-white mb-4">다른 글 읽기</h3>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <a href="/blog/og-tag-guide" class="block p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+            <p class="font-medium text-gray-900 dark:text-white">Open Graph 태그 완벽 가이드</p>
+            <p class="text-sm text-gray-500 mt-1">SNS 공유 미리보기 최적화</p>
+          </a>
+          <a href="/blog/image-format-guide" class="block p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors">
+            <p class="font-medium text-gray-900 dark:text-white">이미지 포맷 비교: JPG vs PNG vs WebP</p>
+            <p class="text-sm text-gray-500 mt-1">상황별 최적의 이미지 형식</p>
+          </a>
         </div>
       </div>
-
-      <!-- Content Section -->
-      <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">PDF 페이지 재정렬이란?</h2>
-        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">PDF 페이지 재정렬은 기존 PDF 문서의 페이지 순서를 원하는 대로 바꾸는 기능입니다. 스캔 순서가 뒤바뀐 문서를 정리하거나, 발표 자료의 슬라이드 순서를 변경하거나, 제출 서류의 페이지 배열을 조정하는 등 다양한 상황에서 활용할 수 있습니다. 드래그 앤 드롭으로 직관적으로 순서를 바꿀 수 있으며, 모든 처리는 브라우저에서 이루어져 파일이 외부로 전송되지 않습니다.</p>
-
-          
-          
-
-          
-          
-
-          
-          
-
-          
-          
-
-          
-          
-        <h3 class="text-lg font-semibold mt-6 mb-3">문서 작업에서의 활용</h3>
-          <p>PDF 페이지 재정렬은(는) 회의 자료 정리, 계약서 통합, 보고서 제출 같은 일상적인 PDF 작업에서 자주 쓰입니다. 별도 유료 프로그램을 결제하지 않아도 비슷한 결과를 얻을 수 있습니다.</p>
-          </div>
-      </section>
-    
-      <!-- Related Content -->
-      <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          
-          <h3 class="text-lg font-semibold mt-6 mb-3">PDF 페이지 재정렬 활용법</h3>
-          <p>PDF 페이지 재정렬은 프레젠테이션 자료의 순서를 바꾸거나, 여러 문서를 합친 후 논리적 순서로 배치할 때 유용합니다. 드래그 앤 드롭으로 직관적으로 순서를 변경할 수 있어 별도의 학습이 필요 없습니다.</p><p>계약서나 보고서에서 첨부 자료의 순서를 조정하거나, 스캔 문서에서 잘못된 순서로 들어간 페이지를 바로잡을 때 특히 편리합니다. 페이지가 많은 문서에서는 썸네일 미리보기를 활용하여 각 페이지의 내용을 확인하면서 정렬하세요. 재정렬 후에는 다운로드하기 전에 순서가 올바른지 한 번 더 검토하는 것이 좋습니다. 이 도구는 페이지 삭제 도구와 함께 사용하면 불필요한 페이지를 제거하고 남은 페이지를 원하는 순서로 정리할 수 있습니다.</p>
-
-          <h3 class="text-lg font-semibold mt-6 mb-3">같이 보면 좋은 도구</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><a href="/tools/pdf/merge-pdf" class="text-blue-600 dark:text-blue-400 hover:underline">PDF 병합</a> - 여러 PDF를 하나로 합치기</li>
-            <li><a href="/tools/pdf/delete-pdf" class="text-blue-600 dark:text-blue-400 hover:underline">PDF 페이지 삭제</a> - PDF에서 원하는 페이지 삭제</li>
-            <li><a href="/tools/pdf/watermark-pdf" class="text-blue-600 dark:text-blue-400 hover:underline">PDF 워터마크</a> - PDF에 텍스트 워터마크 추가</li>
-            <li><a href="/tools/dev/json-formatter" class="text-blue-600 dark:text-blue-400 hover:underline">JSON 포매터</a> - JSON 정렬 및 검증</li>
-            <li><a href="/tools/dev/utm-generator" class="text-blue-600 dark:text-blue-400 hover:underline">UTM 링크 생성기</a> - 마케팅 캠페인 추적용 UTM 링크 생성</li>
-          </ul>
-        
-          <h3 class="text-lg font-semibold mt-6 mb-3">관련 블로그 글</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li><a href="/blog/pdf-merge-guide" class="text-blue-600 dark:text-blue-400 hover:underline">PDF 합치기 완벽 가이드</a></li>
-          </ul>
-</div>
-      </section>
-    </div>
+    </article>
   </main>
-  <div id="footer">
-<footer class="mt-auto py-10 border-t border-gray-200/60 dark:border-gray-700/60">
-  <div class="container-main">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
-      <p>© 2026 Toolneat. All rights reserved.</p>
-      <div class="flex items-center gap-4">
-        <a href="/pages/about" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.about">소개</a>
-        <a href="/pages/privacy" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-        <a href="/pages/terms" class="nav-link hover:text-gray-900 dark:hover:text-white transition-colors" data-i18n="footer.terms">이용약관</a>
-      </div>
-    </div>
-  </div>
-</footer>
 
-</div>
-    
-  
-
-
-
-    
-  
-
-
-
-    
-  
-
-
-
-    
-  
-
-
-
-
-  <!-- Loading Overlay -->
-  <div id="loading-overlay" class="loading-overlay">
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl text-center">
-      <div class="spinner mx-auto mb-4"></div>
-      <p class="text-gray-600 dark:text-gray-400">처리 중...</p>
-    </div>
-  </div>
-
-  <script>
-    (function(){'use strict';
-    const { PDFDocument } = PDFLib;
-
-    const dropZone = document.getElementById('drop-zone');
-    const fileInput = document.getElementById('file-input');
-    const editSection = document.getElementById('edit-section');
-    const fileNameEl = document.getElementById('file-name');
-    const pageCountEl = document.getElementById('page-count');
-    const pageGrid = document.getElementById('page-grid');
-    const loadingOverlay = document.getElementById('loading-overlay');
-
-    let pdfBytes = null;
-    let fileName = '';
-    let pageOrder = [];
-    let draggedItem = null;
-
-    dropZone.addEventListener('click', () => fileInput.click());
-    dropZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      dropZone.classList.add('drag-over');
-    });
-    dropZone.addEventListener('dragleave', () => {
-      dropZone.classList.remove('drag-over');
-    });
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.classList.remove('drag-over');
-      const file = e.dataTransfer.files[0];
-      if (file && file.type === 'application/pdf') loadPDF(file);
-      else toast.error('PDF 파일만 지원됩니다');
-    });
-    fileInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) loadPDF(file);
-    });
-
-    async function loadPDF(file) {
-      try {
-        loadingOverlay.classList.add('show');
-        fileName = file.name;
-        pdfBytes = await file.arrayBuffer();
-        const pdfDoc = await PDFDocument.load(pdfBytes);
-        const pageCount = pdfDoc.getPageCount();
-        pageOrder = Array.from({length: pageCount}, (_, i) => i);
-
-        fileNameEl.textContent = fileName;
-        pageCountEl.textContent = `${pageCount}페이지`;
-
-        renderPageGrid();
-        dropZone.classList.add('hidden');
-        editSection.classList.remove('hidden');
-      } catch (err) {
-        toast.error('PDF 파일을 읽을 수 없습니다');
-        console.error(err);
-      } finally {
-        loadingOverlay.classList.remove('show');
-      }
-    }
-
-    function renderPageGrid() {
-      pageGrid.innerHTML = '';
-      pageOrder.forEach((origIdx, newIdx) => {
-        const pageItem = document.createElement('div');
-        pageItem.className = 'page-item relative';
-        pageItem.draggable = true;
-        pageItem.dataset.index = newIdx;
-        pageItem.innerHTML = `
-          <span class="order-badge">${newIdx + 1}</span>
-          <div class="page-preview">${origIdx + 1}</div>
-          <p class="text-xs text-gray-500">원본 ${origIdx + 1}페이지</p>
-        `;
-
-        pageItem.addEventListener('dragstart', handleDragStart);
-        pageItem.addEventListener('dragend', handleDragEnd);
-        pageItem.addEventListener('dragover', handleDragOver);
-        pageItem.addEventListener('dragleave', handleDragLeave);
-        pageItem.addEventListener('drop', handleDrop);
-
-        pageGrid.appendChild(pageItem);
-      });
-    }
-
-    function handleDragStart(e) {
-      draggedItem = this;
-      this.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    }
-
-    function handleDragEnd() {
-      this.classList.remove('dragging');
-      document.querySelectorAll('.page-item').forEach(item => {
-        item.classList.remove('drag-over');
-      });
-      draggedItem = null;
-    }
-
-    function handleDragOver(e) {
-      e.preventDefault();
-      if (this !== draggedItem) {
-        this.classList.add('drag-over');
-      }
-    }
-
-    function handleDragLeave() {
-      this.classList.remove('drag-over');
-    }
-
-    function handleDrop(e) {
-      e.preventDefault();
-      if (this !== draggedItem) {
-        const fromIndex = parseInt(draggedItem.dataset.index);
-        const toIndex = parseInt(this.dataset.index);
-        const [moved] = pageOrder.splice(fromIndex, 1);
-        pageOrder.splice(toIndex, 0, moved);
-        renderPageGrid();
-      }
-    }
-
-    document.getElementById('reverse-btn').addEventListener('click', () => {
-      pageOrder.reverse();
-      renderPageGrid();
-    });
-
-    document.getElementById('reset-btn').addEventListener('click', () => {
-      pageOrder = Array.from({length: pageOrder.length}, (_, i) => i);
-      renderPageGrid();
-    });
-
-    document.getElementById('change-file').addEventListener('click', () => {
-      dropZone.classList.remove('hidden');
-      editSection.classList.add('hidden');
-      fileInput.value = '';
-      pdfBytes = null;
-    });
-
-    document.getElementById('download-btn').addEventListener('click', async () => {
-      if (!pdfBytes) return;
-
-      try {
-        loadingOverlay.classList.add('show');
-        const srcDoc = await PDFDocument.load(pdfBytes);
-        const newDoc = await PDFDocument.create();
-
-        for (const origIdx of pageOrder) {
-          const [copiedPage] = await newDoc.copyPages(srcDoc, [origIdx]);
-          newDoc.addPage(copiedPage);
-        }
-
-        const newPdfBytes = await newDoc.save();
-        const blob = new Blob([newPdfBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement('a');
-        const baseName = fileName.replace(/\.pdf$/i, '');
-        a.href = url;
-        a.download = `${baseName}_reordered.pdf`;
-        a.click();
-        URL.revokeObjectURL(url);
-
-        toast.success('PDF가 다운로드되었습니다');
-      } catch (err) {
-        toast.error('PDF 처리 중 오류가 발생했습니다');
-        console.error(err);
-      } finally {
-        loadingOverlay.classList.remove('show');
-      }
-    });
-    })();
-  </script>
-
-
-</body></html>
+  <div id="footer"></div>
+</body>
+</html>
