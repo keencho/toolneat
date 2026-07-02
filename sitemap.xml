@@ -39,6 +39,24 @@
   </url>
 
   <url>
+    <loc>https://toolneat.com/pages/contact</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/pages/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/pages/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/pages/contact"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://toolneat.com/en/pages/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/pages/contact"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/pages/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolneat.com/pages/contact"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
     <loc>https://toolneat.com/pages/privacy</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://toolneat.com/pages/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolneat.com/en/pages/privacy"/>

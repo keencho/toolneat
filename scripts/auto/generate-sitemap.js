@@ -20,6 +20,7 @@ const config = {
   ],
   staticPages: [
     { path: '/pages/about', priority: '0.5', changefreq: 'monthly' },
+    { path: '/pages/contact', priority: '0.5', changefreq: 'monthly' },
     { path: '/pages/privacy', priority: '0.3', changefreq: 'monthly' },
     { path: '/pages/terms', priority: '0.3', changefreq: 'monthly' },
   ],

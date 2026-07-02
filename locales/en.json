@@ -34,7 +34,8 @@
   "footer": {
     "about": "About",
     "privacy": "Privacy",
-    "terms": "Terms"
+    "terms": "Terms",
+    "contact": "Contact"
   },
   "search": {
     "placeholder": "Search tools...",

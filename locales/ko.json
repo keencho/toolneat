@@ -34,7 +34,8 @@
   "footer": {
     "about": "소개",
     "privacy": "개인정보처리방침",
-    "terms": "이용약관"
+    "terms": "이용약관",
+    "contact": "문의"
   },
   "search": {
     "placeholder": "도구 검색...",
