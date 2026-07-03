@@ -573,6 +573,45 @@ address:
 
         <p>벌써 느낌이 오시죠? YAML이 가장 간결하고, XML이 가장 장황합니다.</p>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 265" class="w-full h-auto" role="img" aria-label="같은 데이터를 JSON, YAML, XML로 표현했을 때의 크기 비교 — JSON 45바이트, YAML 31바이트, XML 94바이트">
+            <rect x="10" y="16" width="232" height="170" rx="8" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5"/>
+            <text x="24" y="40" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600" fill="currentColor">JSON</text>
+            <line x1="10" y1="50" x2="242" y2="50" stroke="currentColor" stroke-opacity="0.2" stroke-width="1"/>
+            <text x="24" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">{</text>
+            <text x="24" y="86" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">  "name": "kim",</text>
+            <text x="24" y="102" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">  "tags": ["dev", "web"]</text>
+            <text x="24" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">}</text>
+            <rect x="264" y="16" width="232" height="170" rx="8" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5"/>
+            <text x="278" y="40" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600" fill="currentColor">YAML</text>
+            <line x1="264" y1="50" x2="496" y2="50" stroke="currentColor" stroke-opacity="0.2" stroke-width="1"/>
+            <text x="278" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">name: kim</text>
+            <text x="278" y="86" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">tags:</text>
+            <text x="278" y="102" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">  - dev</text>
+            <text x="278" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">  - web</text>
+            <rect x="518" y="16" width="232" height="170" rx="8" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5"/>
+            <text x="532" y="40" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600" fill="currentColor">XML</text>
+            <line x1="518" y1="50" x2="750" y2="50" stroke="currentColor" stroke-opacity="0.2" stroke-width="1"/>
+            <text x="532" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">&lt;person&gt;</text>
+            <text x="532" y="86" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">  &lt;name&gt;kim&lt;/name&gt;</text>
+            <text x="532" y="102" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">  &lt;tags&gt;</text>
+            <text x="532" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">    &lt;tag&gt;dev&lt;/tag&gt;</text>
+            <text x="532" y="134" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">    &lt;tag&gt;web&lt;/tag&gt;</text>
+            <text x="532" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">  &lt;/tags&gt;</text>
+            <text x="532" y="166" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor" fill-opacity="0.85" xml:space="preserve">&lt;/person&gt;</text>
+            <rect x="24" y="210" width="204" height="14" rx="7" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="24" y="210" width="98" height="14" rx="7" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="24" y="250" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">45바이트</text>
+            <rect x="278" y="210" width="204" height="14" rx="7" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="278" y="210" width="67" height="14" rx="7" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="278" y="250" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">31바이트</text>
+            <rect x="532" y="210" width="204" height="14" rx="7" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="532" y="210" width="204" height="14" rx="7" fill="#f59e0b" fill-opacity="0.25" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="532" y="250" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">94바이트</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">같은 데이터(이름 1개 + 태그 2개)를 담는 데 필요한 크기 — YAML 31바이트, JSON 45바이트, XML 94바이트 (UTF-8, 줄바꿈 포함)</figcaption>
+        </figure>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">JSON: 웹의 표준</h2>
         <p><strong>장점:</strong></p>
         <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">

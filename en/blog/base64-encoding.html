@@ -547,6 +547,59 @@
           <li>Process in 3-byte (24-bit) units. Pad with <code>=</code> if needed</li>
         </ol>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 290" class="w-full h-auto" role="img" aria-label="Base64 mechanics: the three bytes of Man become 24 bits, re-split into four 6-bit groups with values 19, 22, 5, and 46, which map to the characters TWFu">
+            <defs>
+              <marker id="b64-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="currentColor" opacity="0.6"/>
+              </marker>
+            </defs>
+            <text x="16" y="38" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="currentColor" opacity="0.65">ASCII</text>
+            <rect x="94" y="14" width="140" height="34" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="164" y="36" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13.5" fill="currentColor">'M' = 77</text>
+            <rect x="318" y="14" width="140" height="34" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="388" y="36" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13.5" fill="currentColor">'a' = 97</text>
+            <rect x="542" y="14" width="140" height="34" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="612" y="36" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13.5" fill="currentColor">'n' = 110</text>
+            <text x="744" y="70" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="currentColor" opacity="0.65">3 × 8 = 24 bits</text>
+            <line x1="164" y1="48" x2="164" y2="76" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.5"/>
+            <line x1="388" y1="48" x2="388" y2="76" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.5"/>
+            <line x1="612" y1="48" x2="612" y2="76" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.5"/>
+            <text x="16" y="101" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="currentColor" opacity="0.65">Bits</text>
+            <rect x="52" y="80" width="168" height="32" rx="6" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="220" y="80" width="168" height="32" rx="6" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <rect x="388" y="80" width="168" height="32" rx="6" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="556" y="80" width="168" height="32" rx="6" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="66 94 122 150 178 206" y="101" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">010011</text>
+            <text x="234 262 290 318 346 374" y="101" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">010110</text>
+            <text x="402 430 458 486 514 542" y="101" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">000101</text>
+            <text x="570 598 626 654 682 710" y="101" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">101110</text>
+            <line x1="276" y1="72" x2="276" y2="120" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="500" y1="72" x2="500" y2="120" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="16" y="144" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="currentColor" opacity="0.65">Value</text>
+            <text x="136" y="144" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">010011 = 19</text>
+            <text x="304" y="144" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">010110 = 22</text>
+            <text x="472" y="144" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">000101 = 5</text>
+            <text x="640" y="144" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">101110 = 46</text>
+            <line x1="136" y1="152" x2="136" y2="172" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#b64-arrow)"/>
+            <line x1="304" y1="152" x2="304" y2="172" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#b64-arrow)"/>
+            <line x1="472" y1="152" x2="472" y2="172" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#b64-arrow)"/>
+            <line x1="640" y1="152" x2="640" y2="172" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#b64-arrow)"/>
+            <text x="16" y="202" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="currentColor" opacity="0.65">Char</text>
+            <rect x="91" y="176" width="90" height="40" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="136" y="202" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" fill="currentColor">T</text>
+            <rect x="259" y="176" width="90" height="40" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="304" y="202" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" fill="currentColor">W</text>
+            <rect x="427" y="176" width="90" height="40" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="472" y="202" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" fill="currentColor">F</text>
+            <rect x="595" y="176" width="90" height="40" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="640" y="202" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" fill="currentColor">u</text>
+            <text x="380" y="250" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">"Man" → "TWFu"</text>
+            <text x="380" y="274" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">3 bytes (24 bits) → four 6-bit groups → 4 characters · ~33% larger</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">The core of Base64: three 8-bit bytes (24 bits) are re-split into four 6-bit values, each looked up in the 64-character table. Dashed lines mark the original byte boundaries.</figcaption>
+        </figure>
+
         <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
           <p class="mb-2">Converting "Hi":</p>
           <p>H = 01001000, i = 01101001</p>

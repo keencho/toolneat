@@ -537,6 +537,51 @@
 
         <p>Just one exclamation mark, and the result is completely different. That's the essence of hashing.</p>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 365" class="w-full h-auto" role="img" aria-label="Hash function properties: inputs of different lengths all produce fixed-length SHA-256 digests, and the one-letter difference between hello and hallo yields completely different hashes, known as the avalanche effect">
+            <defs>
+              <marker id="hash-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="currentColor" opacity="0.6"/>
+              </marker>
+            </defs>
+            <rect x="16" y="20" width="110" height="36" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="71" y="43" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">"a"</text>
+            <rect x="16" y="72" width="150" height="36" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="91" y="95" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">"hello"</text>
+            <rect x="16" y="124" width="250" height="36" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="141" y="147" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">"The quick brown fox…"</text>
+            <text x="16" y="186" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">Inputs of any length</text>
+            <line x1="130" y1="38" x2="304" y2="78" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#hash-arrow)"/>
+            <line x1="170" y1="90" x2="304" y2="96" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#hash-arrow)"/>
+            <line x1="270" y1="142" x2="304" y2="114" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#hash-arrow)"/>
+            <rect x="310" y="52" width="150" height="88" rx="8" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="2"/>
+            <text x="385" y="90" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="bold" fill="currentColor">Hash function</text>
+            <text x="385" y="114" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">SHA-256</text>
+            <line x1="464" y1="78" x2="514" y2="40" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#hash-arrow)"/>
+            <line x1="464" y1="96" x2="514" y2="90" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#hash-arrow)"/>
+            <line x1="464" y1="114" x2="514" y2="140" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#hash-arrow)"/>
+            <rect x="520" y="20" width="224" height="36" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="632" y="43" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">ca978112ca1b…ee48bb</text>
+            <rect x="520" y="72" width="224" height="36" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="632" y="95" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">2cf24dba5fb0…8b9824</text>
+            <rect x="520" y="124" width="224" height="36" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="632" y="147" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">d7a8fbb307d7…c9e592</text>
+            <text x="520" y="186" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">Always the same length — 256 bits (64 chars)</text>
+            <line x1="16" y1="206" x2="744" y2="206" stroke="currentColor" stroke-opacity="0.15" stroke-width="1.5"/>
+            <text x="16" y="234" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="bold" fill="currentColor">The avalanche effect</text>
+            <rect x="16" y="250" width="100" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="66" y="271" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">hello</text>
+            <line x1="120" y1="266" x2="164" y2="266" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#hash-arrow)"/>
+            <text x="176" y="271" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c…</text>
+            <rect x="16" y="292" width="100" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="66" y="313" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">hallo</text>
+            <line x1="120" y1="308" x2="164" y2="308" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#hash-arrow)"/>
+            <text x="176" y="313" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">d3751d33f9cd5049c4af2b462735457e4d3baf13…</text>
+            <text x="16" y="352" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">The inputs differ by a single letter (e→a), yet the two hashes share nothing.</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">A hash function turns input of any length into a fixed-length fingerprint — and the slightest change flips the entire result.</figcaption>
+        </figure>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Three Key Properties of Hash Functions</h2>
         <p>Hash functions are useful because of these three properties:</p>
         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">

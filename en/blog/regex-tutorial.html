@@ -649,6 +649,31 @@
           <li><code>\w{2,}</code> : 2+ word chars (com, net, org, etc.)</li>
         </ul>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 260" class="w-full h-auto" role="img" aria-label="Anatomy diagram of the email regex ^[\w.-]+@[\w.-]+\.\w{2,}$ broken down into start anchor, character classes, literals, quantifiers, and end anchor">
+            <text x="172" y="66" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" fill="#3b82f6">^</text>
+            <text x="244" y="66" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" fill="#f59e0b">[\w.-]+</text>
+            <text x="316" y="66" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" fill="#3b82f6">@</text>
+            <text x="388" y="66" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" fill="#f59e0b">[\w.-]+</text>
+            <text x="468" y="66" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" fill="#3b82f6">\.</text>
+            <text x="532" y="66" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" fill="#f59e0b">\w{2,}</text>
+            <text x="588" y="66" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" fill="#3b82f6">$</text>
+            <path d="M166 82v8h12v-8 M182 82v8h124v-8 M310 82v8h12v-8 M326 82v8h124v-8 M454 82v8h28v-8 M486 82v8h92v-8 M582 82v8h12v-8" fill="none" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5"/>
+            <path d="M172 90v32 M316 90v32 M468 90v32 M588 90v32 M244 90v82 M532 90v82 M388 90v128" fill="none" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/>
+            <text x="172" y="136" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">start anchor</text>
+            <text x="316" y="136" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">literal @</text>
+            <text x="468" y="136" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">escaped dot</text>
+            <text x="588" y="136" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">end anchor</text>
+            <text x="244" y="186" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">char class + quantifier</text>
+            <text x="244" y="203" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">(username part, 1 or more)</text>
+            <text x="532" y="186" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">\w, 2 or more</text>
+            <text x="532" y="203" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">(TLD: com, org, io…)</text>
+            <text x="388" y="232" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">char class + quantifier</text>
+            <text x="388" y="249" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">(domain name)</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">Anatomy of the email validation regex — shown with anchors (^, $) added for whole-string validation</figcaption>
+        </figure>
+
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">US Phone Number</h3>
         <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
           <p class="text-blue-600">\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}</p>

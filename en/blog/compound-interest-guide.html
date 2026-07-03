@@ -537,6 +537,42 @@
         <p class="mt-2">Compound interest works differently. After the first year, you still earn $500. But now your balance is $10,500, and in year two, you earn 5% on that larger amount: $525. Year three, the interest is calculated on $11,025. Each year, the base amount grows, and the interest grows with it.</p>
         <p class="mt-2">After 10 years of compounding, that same $10,000 becomes $16,289. The difference of $1,289 might not seem dramatic, but stretch the timeline to 30 years and simple interest gives you $25,000 while compound interest delivers $43,219. Same deposit, same rate, wildly different outcome.</p>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 290" class="w-full h-auto" role="img" aria-label="Growth of 10,000 dollars over 20 years at a hypothetical 5 percent annual rate: simple interest grows in a straight line to 20,000 dollars, while compound interest follows an accelerating curve reaching about 16,289 dollars at year 10 and 26,533 dollars at year 20. The widening gap of 6,533 dollars is the compounding effect." font-family="ui-sans-serif, system-ui, sans-serif" fill="currentColor">
+            <text x="60" y="20" font-size="13" opacity="0.7">$10,000 principal · 5% per year (hypothetical)</text>
+            <g stroke="currentColor" opacity="0.12">
+              <line x1="60" y1="175" x2="710" y2="175"/>
+              <line x1="60" y1="100" x2="710" y2="100"/>
+            </g>
+            <line x1="60" y1="36" x2="60" y2="250" stroke="currentColor" opacity="0.35"/>
+            <line x1="60" y1="250" x2="710" y2="250" stroke="currentColor" opacity="0.35"/>
+            <g font-size="12" text-anchor="end" opacity="0.7">
+              <text x="54" y="254">$0</text>
+              <text x="54" y="179">$10k</text>
+              <text x="54" y="104">$20k</text>
+            </g>
+            <g font-size="12" text-anchor="middle" opacity="0.7">
+              <text x="60" y="272">0</text>
+              <text x="222.5" y="272">5 yrs</text>
+              <text x="385" y="272">10 yrs</text>
+              <text x="547.5" y="272">15 yrs</text>
+              <text x="710" y="272">20 yrs</text>
+            </g>
+            <path d="M60,175 L141.3,165.3 L222.5,154.3 L303.8,141.9 L385,127.8 L466.3,112 L547.5,94.1 L628.8,73.8 L710,51 L710,100 Z" fill="#f59e0b" fill-opacity="0.18"/>
+            <line x1="60" y1="175" x2="710" y2="100" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M60,175 L141.3,165.3 L222.5,154.3 L303.8,141.9 L385,127.8 L466.3,112 L547.5,94.1 L628.8,73.8 L710,51" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="385" cy="127.8" r="3.5" fill="#f59e0b"/>
+            <circle cx="710" cy="51" r="3.5" fill="#f59e0b"/>
+            <text x="376" y="116" font-size="12" text-anchor="end" opacity="0.85">$16,289 at yr 10</text>
+            <text x="704" y="42" font-size="13" font-weight="600" text-anchor="end">Compound $26,533</text>
+            <text x="704" y="122" font-size="13" text-anchor="end" opacity="0.85">Simple $20,000</text>
+            <text x="600" y="142" font-size="13" font-weight="600" text-anchor="middle">Compound effect +$6,533</text>
+            <path d="M612,130 L644,95" stroke="currentColor" stroke-width="1.2" opacity="0.6" fill="none"/>
+            <polygon points="651,88 646.7,97.7 641.5,92.9" fill="currentColor" opacity="0.6"/>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">$10,000 at a hypothetical 5% per year — simple interest (blue) grows in a straight line, compound interest (amber) curves upward. After 20 years the gap is $6,533.</figcaption>
+        </figure>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">A Tale of Two Savers</h2>
         <p>Here is a story that stuck with me when I first learned about investing. Alex starts putting away $200 a month at age 25 and stops at 35. That is 10 years of contributions, $24,000 total. Then Alex does nothing, just lets the money sit and compound at 7% annually.</p>
         <p class="mt-2">Jordan waits until 35 to start, then contributes $200 a month all the way to age 65. That is 30 years of contributions, $72,000 total. Same 7% return.</p>

@@ -552,12 +552,95 @@
 
         <p>한글 "안"은 UTF-8에서 3바이트(EC, 95, 88)로 표현되므로, %EC%95%88이 됩니다. 영어 알파벳이나 숫자처럼 안전한 문자는 인코딩하지 않고 그대로 둡니다.</p>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 265" class="w-full h-auto" role="img" aria-label="퍼센트 인코딩 과정: 한글이라는 문자열이 UTF-8 바이트 ED 95 9C EA B8 80으로 변환된 뒤 각 바이트 앞에 퍼센트 기호가 붙어 %ED%95%9C%EA%B8%80이 되는 과정">
+            <defs>
+              <marker id="url-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="currentColor" opacity="0.6"/>
+              </marker>
+            </defs>
+            <rect x="24" y="48" width="100" height="44" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="74" y="76" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="currentColor">한글</text>
+            <text x="162" y="56" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="currentColor" opacity="0.7">UTF-8 인코딩</text>
+            <line x1="124" y1="70" x2="200" y2="70" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#url-flow-arrow)"/>
+            <rect x="208" y="48" width="56" height="44" rx="8" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="236" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">ED</text>
+            <rect x="270" y="48" width="56" height="44" rx="8" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="298" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">95</text>
+            <rect x="332" y="48" width="56" height="44" rx="8" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="360" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">9C</text>
+            <rect x="406" y="48" width="56" height="44" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="434" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">EA</text>
+            <rect x="468" y="48" width="56" height="44" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="496" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">B8</text>
+            <rect x="530" y="48" width="56" height="44" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="558" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">80</text>
+            <text x="298" y="114" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">"한" = 3바이트</text>
+            <text x="496" y="114" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">"글" = 3바이트</text>
+            <line x1="397" y1="126" x2="397" y2="158" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#url-flow-arrow)"/>
+            <text x="409" y="146" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">각 바이트 앞에 "%"</text>
+            <rect x="180" y="164" width="434" height="48" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="397" y="194" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.5" fill="currentColor">%ED%95%9C%EA%B8%80</text>
+            <text x="380" y="246" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">공백 → %20 · A–Z, a–z, 0–9, - _ . ~ 는 인코딩하지 않습니다</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">퍼센트 인코딩: 문자를 UTF-8 바이트로 바꾼 뒤, 각 바이트를 %XX(16진수) 형태로 표기합니다.</figcaption>
+        </figure>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">예약 문자와 비예약 문자</h2>
         <p>URL에서 사용되는 문자는 크게 두 종류로 나뉩니다.</p>
         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
           <li><strong>비예약 문자(Unreserved)</strong>: 인코딩 없이 쓸 수 있는 문자들입니다. A-Z, a-z, 0-9, 그리고 <code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-sm">- _ . ~</code> 네 가지 특수문자가 여기에 해당합니다.</li>
           <li><strong>예약 문자(Reserved)</strong>: URL 구조에서 특별한 의미를 가진 문자들입니다. <code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-sm">: / ? # [ ] @ ! $ &amp; ' ( ) * + , ; =</code> 등이 있습니다. 이 문자들은 본래의 의미로 쓸 때는 그대로 두지만, 데이터의 일부로 쓸 때는 반드시 인코딩해야 합니다.</li>
         </ul>
+
+        <figure class="my-8">
+          <svg viewBox="0 0 760 240" class="w-full h-auto" role="img" aria-label="URL 문자 분류: 비예약 문자는 그대로 사용, 예약 문자는 데이터로 쓸 때 인코딩, 그 외 문자는 항상 인코딩">
+            <text x="16" y="26" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="bold" fill="currentColor">비예약 문자 — 그대로 사용</text>
+            <rect x="16" y="36" width="64" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="48" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">A–Z</text>
+            <rect x="88" y="36" width="64" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="120" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">a–z</text>
+            <rect x="160" y="36" width="64" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="192" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">0–9</text>
+            <rect x="232" y="36" width="40" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="252" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">-</text>
+            <rect x="280" y="36" width="40" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="300" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">_</text>
+            <rect x="328" y="36" width="40" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="348" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">.</text>
+            <rect x="376" y="36" width="40" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="396" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">~</text>
+            <text x="16" y="104" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="bold" fill="currentColor">예약 문자 — URL 구분자, 데이터로 쓸 땐 인코딩 필요</text>
+            <rect x="16" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="36" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">:</text>
+            <rect x="64" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="84" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">/</text>
+            <rect x="112" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="132" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">?</text>
+            <rect x="160" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="180" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">#</text>
+            <rect x="208" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="228" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">&amp;</text>
+            <rect x="256" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="276" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">=</text>
+            <rect x="304" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="324" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">+</text>
+            <rect x="352" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="372" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">@</text>
+            <rect x="400" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="420" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">,</text>
+            <rect x="448" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="468" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">;</text>
+            <text x="16" y="182" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="bold" fill="currentColor">그 외 문자 — 항상 인코딩 (공백, 한글, 이모지 …)</text>
+            <rect x="16" y="192" width="120" height="32" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="76" y="213" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">공백 → %20</text>
+            <rect x="144" y="192" width="160" height="32" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="224" y="213" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">한 → %ED%95%9C</text>
+            <rect x="312" y="192" width="100" height="32" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="362" y="213" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">" → %22</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">RFC 3986의 문자 분류 — 비예약 문자만 인코딩 없이 안전하게 쓸 수 있습니다.</figcaption>
+        </figure>
 
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">JavaScript에서의 URL 인코딩</h2>
         <p>JavaScript에는 URL 인코딩을 위한 함수가 두 개 있는데, 용도가 다릅니다. 이 차이를 모르면 버그가 생기기 쉽습니다.</p>

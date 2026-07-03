@@ -636,6 +636,38 @@
         <p class="mt-2"><strong>타이밍 패턴(Timing Pattern):</strong> 파인더 패턴 사이를 연결하는 흑백 교대 줄입니다. 스캐너가 개별 모듈(셀)의 좌표를 정확히 파악하는 데 사용합니다.</p>
         <p class="mt-2"><strong>데이터 영역:</strong> 나머지 공간에 실제 데이터가 인코딩되어 있습니다. 여기에는 데이터 자체뿐 아니라 오류 정정 코드, 포맷 정보, 버전 정보도 함께 포함됩니다.</p>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 316" class="w-full h-auto" role="img" aria-label="QR코드 구조 모식도 — 세 모서리의 파인더 패턴, 흑백 교대 타이밍 패턴, 데이터 영역, 주변의 콰이어트 존을 표시">
+            <rect x="42" y="32" width="252" height="252" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="5 4" rx="4"/>
+            <rect x="60" y="50" width="216" height="216" fill="none" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.5"/>
+            <path d="M78 50v216M96 50v216M114 50v216M132 50v216M150 50v216M168 50v216M186 50v216M204 50v216M222 50v216M240 50v216M258 50v216M60 68h216M60 86h216M60 104h216M60 122h216M60 140h216M60 158h216M60 176h216M60 194h216M60 212h216M60 230h216M60 248h216" fill="none" stroke="currentColor" stroke-opacity="0.12" stroke-width="1"/>
+            <rect x="60" y="50" width="72" height="72" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="2"/>
+            <rect x="78" y="68" width="36" height="36" fill="#3b82f6"/>
+            <rect x="204" y="50" width="72" height="72" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="2"/>
+            <rect x="222" y="68" width="36" height="36" fill="#3b82f6"/>
+            <rect x="60" y="194" width="72" height="72" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="2"/>
+            <rect x="78" y="212" width="36" height="36" fill="#3b82f6"/>
+            <rect x="133" y="123" width="16" height="16" fill="#f59e0b"/>
+            <rect x="169" y="123" width="16" height="16" fill="#f59e0b"/>
+            <rect x="151" y="123" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <rect x="187" y="123" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <rect x="133" y="159" width="16" height="16" fill="#f59e0b"/>
+            <rect x="133" y="141" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <rect x="133" y="177" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <path d="M151 69h16v16h-16z M169 87h16v16h-16z M169 141h16v16h-16z M223 141h16v16h-16z M259 141h16v16h-16z M151 159h16v16h-16z M187 159h16v16h-16z M241 159h16v16h-16z M169 177h16v16h-16z M223 177h16v16h-16z M259 177h16v16h-16z M151 195h16v16h-16z M205 195h16v16h-16z M241 195h16v16h-16z M169 213h16v16h-16z M223 213h16v16h-16z M259 213h16v16h-16z M151 231h16v16h-16z M187 231h16v16h-16z M241 231h16v16h-16z M169 249h16v16h-16z M205 249h16v16h-16z M259 249h16v16h-16z" fill="currentColor" fill-opacity="0.35"/>
+            <path d="M276 86L368 74 M204 131L368 140 M262 203L368 206 M294 240L368 270" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="378" y="78" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">파인더 패턴</text>
+            <text x="378" y="96" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">위치·크기·방향 감지 (세 모서리에만 존재)</text>
+            <text x="378" y="144" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">타이밍 패턴</text>
+            <text x="378" y="162" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">흑백 교대 줄 — 모듈 좌표의 기준선</text>
+            <text x="378" y="210" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">데이터 영역</text>
+            <text x="378" y="228" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">실제 데이터 + 오류 정정 코드</text>
+            <text x="378" y="274" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">콰이어트 존 (여백)</text>
+            <text x="378" y="292" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">주변 최소 4모듈의 밝은 여백</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">QR코드의 구조 (개념도) — 실제 스캔되는 QR코드가 아닌 각 영역을 단순화한 모식도입니다</figcaption>
+        </figure>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">버전과 데이터 용량</h2>
         <p>QR코드에는 버전 1부터 버전 40까지 총 40개의 버전이 있습니다. 버전 1은 21x21 모듈(가장 작은 사각형 단위) 크기이고, 버전이 하나 올라갈 때마다 4모듈씩 커집니다. 버전 40은 177x177 모듈로 가장 큽니다.</p>
         <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
@@ -655,6 +687,29 @@
           <p class="text-gray-600 dark:text-gray-400">Level H (High): 약 <span class="text-blue-600 font-semibold">30%</span> 복원 가능 - 로고 삽입 시 권장</p>
         </div>
         <p>오류 정정 레벨이 높을수록 QR코드가 커집니다. 같은 데이터라도 Level H는 Level L보다 더 많은 공간이 필요하기 때문입니다. 중앙에 로고를 넣고 싶다면 Level H를 사용해야 안전합니다. 일반적인 URL 링크라면 Level M이면 충분합니다.</p>
+
+        <figure class="my-8">
+          <svg viewBox="0 0 760 232" class="w-full h-auto" role="img" aria-label="QR코드 오류 정정 레벨 4단계 막대 비교 — L 7%, M 15%, Q 25%, H 30% 복원 가능">
+            <rect x="130" y="30" width="380" height="18" rx="9" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="130" y="30" width="27" height="18" rx="9" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="118" y="44" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">L (Low)</text>
+            <text x="167" y="44" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">7% 복원</text>
+            <rect x="130" y="80" width="380" height="18" rx="9" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="130" y="80" width="57" height="18" rx="9" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="118" y="94" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">M (Medium)</text>
+            <text x="197" y="94" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">15% 복원 — 일반 용도 권장</text>
+            <rect x="130" y="130" width="380" height="18" rx="9" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="130" y="130" width="95" height="18" rx="9" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="118" y="144" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">Q (Quartile)</text>
+            <text x="235" y="144" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">25% 복원</text>
+            <rect x="130" y="180" width="380" height="18" rx="9" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="130" y="180" width="114" height="18" rx="9" fill="#f59e0b" fill-opacity="0.25" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="118" y="194" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">H (High)</text>
+            <text x="254" y="194" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">30% 복원 — 로고 삽입 시 권장</text>
+            <text x="130" y="222" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">막대 길이 = 손상되어도 복원 가능한 데이터 비율</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">오류 정정 레벨별 복원 가능 비율 — 레벨이 높을수록 손상에 강하지만 QR코드는 더 복잡해집니다</figcaption>
+        </figure>
 
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">정적 QR코드 vs 동적 QR코드</h2>
         <p>이 차이를 아는 것은 비즈니스에서 QR코드를 활용할 때 매우 중요합니다.</p>

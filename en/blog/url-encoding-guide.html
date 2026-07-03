@@ -545,6 +545,40 @@
 
         <p>For non-ASCII characters like Chinese, Korean, or emoji, the character is first encoded as UTF-8 bytes, then each byte is percent-encoded individually. The Korean character "한" becomes <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%ED%95%9C</code> because its UTF-8 representation is three bytes: ED, 95, 9C.</p>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 265" class="w-full h-auto" role="img" aria-label="Percent-encoding flow: the Korean string 한글 becomes the UTF-8 bytes ED 95 9C EA B8 80, and each byte is prefixed with a percent sign to give %ED%95%9C%EA%B8%80">
+            <defs>
+              <marker id="url-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="currentColor" opacity="0.6"/>
+              </marker>
+            </defs>
+            <rect x="24" y="48" width="100" height="44" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="74" y="76" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="currentColor">한글</text>
+            <text x="162" y="56" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="currentColor" opacity="0.7">UTF-8 encode</text>
+            <line x1="124" y1="70" x2="200" y2="70" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#url-flow-arrow)"/>
+            <rect x="208" y="48" width="56" height="44" rx="8" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="236" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">ED</text>
+            <rect x="270" y="48" width="56" height="44" rx="8" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="298" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">95</text>
+            <rect x="332" y="48" width="56" height="44" rx="8" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="360" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">9C</text>
+            <rect x="406" y="48" width="56" height="44" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="434" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">EA</text>
+            <rect x="468" y="48" width="56" height="44" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="496" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">B8</text>
+            <rect x="530" y="48" width="56" height="44" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="558" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.5" fill="currentColor">80</text>
+            <text x="298" y="114" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">"한" = 3 bytes</text>
+            <text x="496" y="114" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">"글" = 3 bytes</text>
+            <line x1="397" y1="126" x2="397" y2="158" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#url-flow-arrow)"/>
+            <text x="409" y="146" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">prefix each byte with "%"</text>
+            <rect x="180" y="164" width="434" height="48" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="397" y="194" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.5" fill="currentColor">%ED%95%9C%EA%B8%80</text>
+            <text x="380" y="246" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">space → %20 · A–Z, a–z, 0–9, - _ . ~ stay as-is</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">Percent-encoding: the character is converted to UTF-8 bytes, and each byte is written as %XX in hexadecimal.</figcaption>
+        </figure>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Reserved vs. Unreserved Characters</h2>
         <p>Not every character needs encoding. The spec splits them into two groups:</p>
 
@@ -576,6 +610,55 @@
             </tbody>
           </table>
         </div>
+
+        <figure class="my-8">
+          <svg viewBox="0 0 760 240" class="w-full h-auto" role="img" aria-label="URL character classes: unreserved characters are used as-is, reserved characters must be encoded when used as data, and everything else is always encoded">
+            <text x="16" y="26" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="bold" fill="currentColor">Unreserved — used as-is</text>
+            <rect x="16" y="36" width="64" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="48" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">A–Z</text>
+            <rect x="88" y="36" width="64" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="120" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">a–z</text>
+            <rect x="160" y="36" width="64" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="192" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">0–9</text>
+            <rect x="232" y="36" width="40" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="252" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">-</text>
+            <rect x="280" y="36" width="40" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="300" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">_</text>
+            <rect x="328" y="36" width="40" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="348" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">.</text>
+            <rect x="376" y="36" width="40" height="32" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="396" y="57" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">~</text>
+            <text x="16" y="104" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="bold" fill="currentColor">Reserved — URL delimiters; encode when used as data</text>
+            <rect x="16" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="36" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">:</text>
+            <rect x="64" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="84" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">/</text>
+            <rect x="112" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="132" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">?</text>
+            <rect x="160" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="180" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">#</text>
+            <rect x="208" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="228" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">&amp;</text>
+            <rect x="256" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="276" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">=</text>
+            <rect x="304" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="324" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">+</text>
+            <rect x="352" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="372" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">@</text>
+            <rect x="400" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="420" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">,</text>
+            <rect x="448" y="114" width="40" height="32" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="468" y="135" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">;</text>
+            <text x="16" y="182" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="bold" fill="currentColor">Everything else — always encoded (space, non-ASCII, emoji …)</text>
+            <rect x="16" y="192" width="130" height="32" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="81" y="213" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">space → %20</text>
+            <rect x="154" y="192" width="160" height="32" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="234" y="213" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">한 → %ED%95%9C</text>
+            <rect x="322" y="192" width="100" height="32" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="372" y="213" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">" → %22</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">Character classes from RFC 3986 — only unreserved characters are safe to use without encoding.</figcaption>
+        </figure>
 
         <p class="mt-4">Reserved characters only need encoding when they appear outside their designated role. A <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">/</code> in the path is fine because it's serving as a path separator. But a <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">/</code> inside a query parameter value must be encoded as <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">%2F</code>.</p>
 

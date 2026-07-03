@@ -547,6 +547,38 @@
         <p><strong>Advantages:</strong> Total interest paid is significantly less. On a $200,000 loan at 5% over 30 years, the difference in total interest between the two methods can exceed $20,000.</p>
         <p><strong>Disadvantages:</strong> Monthly payments start high and decrease over time. The initial burden can be tough if your income is tight in the early years of the loan.</p>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 330" class="w-full h-auto" role="img" aria-label="Comparison of monthly payment composition: fixed payment amortization versus equal principal repayment, assuming a hypothetical 100,000 dollar loan at 5 percent for 30 years. With fixed payments the bar height stays constant at about 537 dollars per month while the interest share shrinks over time, for about 93,255 dollars of total interest. With equal principal the payment starts near 694 dollars and declines every month, the principal portion stays constant, and total interest is about 75,208 dollars, saving roughly 18,000 dollars." font-family="ui-sans-serif, system-ui, sans-serif" fill="currentColor">
+            <text x="205" y="24" font-size="14" font-weight="600" text-anchor="middle">Fixed Total Payment</text>
+            <text x="555" y="24" font-size="14" font-weight="600" text-anchor="middle">Equal Principal</text>
+            <text x="205" y="92" font-size="12" text-anchor="middle" opacity="0.75">Same payment every month: ~$537</text>
+            <text x="555" y="42" font-size="12" text-anchor="middle" opacity="0.75">1st month ~$694 → declines monthly</text>
+            <path d="M60,102 L350,102 L313.8,131 L277.5,155.1 L241.3,175 L205,191.6 L168.8,205.3 L132.5,216.7 L96.3,226.1 L60,234 Z" fill="#f59e0b" fill-opacity="0.22"/>
+            <path d="M60,234 L96.3,226.1 L132.5,216.7 L168.8,205.3 L205,191.6 L241.3,175 L277.5,155.1 L313.8,131 L350,102 L350,272 L60,272 Z" fill="#3b82f6" fill-opacity="0.25"/>
+            <path d="M60,234 L96.3,226.1 L132.5,216.7 L168.8,205.3 L205,191.6 L241.3,175 L277.5,155.1 L313.8,131 L350,102" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="60" y1="102" x2="350" y2="102" stroke="#f59e0b" stroke-width="2"/>
+            <text x="130" y="155" font-size="13" opacity="0.9">Interest</text>
+            <text x="135" y="250" font-size="13" opacity="0.9">Principal</text>
+            <path d="M410,52 L700,184 L410,184 Z" fill="#f59e0b" fill-opacity="0.22"/>
+            <line x1="410" y1="52" x2="700" y2="184" stroke="#f59e0b" stroke-width="2"/>
+            <rect x="410" y="184" width="290" height="88" fill="#3b82f6" fill-opacity="0.25"/>
+            <line x1="410" y1="184" x2="700" y2="184" stroke="#3b82f6" stroke-width="2"/>
+            <text x="440" y="140" font-size="13" opacity="0.9">Interest</text>
+            <text x="470" y="235" font-size="13" opacity="0.9">Principal</text>
+            <line x1="60" y1="272" x2="350" y2="272" stroke="currentColor" opacity="0.35"/>
+            <line x1="410" y1="272" x2="700" y2="272" stroke="currentColor" opacity="0.35"/>
+            <g font-size="12" text-anchor="middle" opacity="0.65">
+              <text x="62" y="290">Yr 0</text>
+              <text x="348" y="290">Yr 30</text>
+              <text x="412" y="290">Yr 0</text>
+              <text x="698" y="290">Yr 30</text>
+            </g>
+            <text x="205" y="314" font-size="13" text-anchor="middle" opacity="0.85">Total interest ≈ $93,255</text>
+            <text x="555" y="314" font-size="13" text-anchor="middle" opacity="0.85">Total interest ≈ $75,208 (saves ~$18,000)</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">Monthly payment composition for a hypothetical $100,000 loan at 5% over 30 years — blue is principal, amber is interest. Equal principal costs more up front but less in total interest.</figcaption>
+        </figure>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Interest-Only Loans (Balloon Payment)</h2>
         <p>With an interest-only loan, you pay nothing but interest during the loan term and repay the entire principal as a lump sum at maturity. Monthly payments are the lowest of all methods, but total interest is the highest since the principal never decreases.</p>
         <p>A $100,000 loan at 5% for 3 years on interest-only terms means $416.67 monthly and $15,000 in total interest. The same loan with fixed amortization would cost roughly $8,000 in total interest, nearly half as much.</p>

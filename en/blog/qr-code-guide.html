@@ -639,6 +639,38 @@
         <p class="mt-2"><strong>Timing Patterns:</strong> Alternating black-and-white lines connecting the finder patterns. They help the scanner determine the exact coordinates of each module (cell).</p>
         <p class="mt-2"><strong>Data Area:</strong> The remaining space contains the actual encoded data, along with error correction codes, format information, and version information.</p>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 316" class="w-full h-auto" role="img" aria-label="QR code structure schematic showing the three corner finder patterns, the alternating timing pattern, the data area, and the surrounding quiet zone">
+            <rect x="42" y="32" width="252" height="252" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="5 4" rx="4"/>
+            <rect x="60" y="50" width="216" height="216" fill="none" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.5"/>
+            <path d="M78 50v216M96 50v216M114 50v216M132 50v216M150 50v216M168 50v216M186 50v216M204 50v216M222 50v216M240 50v216M258 50v216M60 68h216M60 86h216M60 104h216M60 122h216M60 140h216M60 158h216M60 176h216M60 194h216M60 212h216M60 230h216M60 248h216" fill="none" stroke="currentColor" stroke-opacity="0.12" stroke-width="1"/>
+            <rect x="60" y="50" width="72" height="72" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="2"/>
+            <rect x="78" y="68" width="36" height="36" fill="#3b82f6"/>
+            <rect x="204" y="50" width="72" height="72" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="2"/>
+            <rect x="222" y="68" width="36" height="36" fill="#3b82f6"/>
+            <rect x="60" y="194" width="72" height="72" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="2"/>
+            <rect x="78" y="212" width="36" height="36" fill="#3b82f6"/>
+            <rect x="133" y="123" width="16" height="16" fill="#f59e0b"/>
+            <rect x="169" y="123" width="16" height="16" fill="#f59e0b"/>
+            <rect x="151" y="123" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <rect x="187" y="123" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <rect x="133" y="159" width="16" height="16" fill="#f59e0b"/>
+            <rect x="133" y="141" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <rect x="133" y="177" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <path d="M151 69h16v16h-16z M169 87h16v16h-16z M169 141h16v16h-16z M223 141h16v16h-16z M259 141h16v16h-16z M151 159h16v16h-16z M187 159h16v16h-16z M241 159h16v16h-16z M169 177h16v16h-16z M223 177h16v16h-16z M259 177h16v16h-16z M151 195h16v16h-16z M205 195h16v16h-16z M241 195h16v16h-16z M169 213h16v16h-16z M223 213h16v16h-16z M259 213h16v16h-16z M151 231h16v16h-16z M187 231h16v16h-16z M241 231h16v16h-16z M169 249h16v16h-16z M205 249h16v16h-16z M259 249h16v16h-16z" fill="currentColor" fill-opacity="0.35"/>
+            <path d="M276 86L368 74 M204 131L368 140 M262 203L368 206 M294 240L368 270" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="378" y="78" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">Finder patterns</text>
+            <text x="378" y="96" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">Detect position, size, rotation (three corners only)</text>
+            <text x="378" y="144" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">Timing pattern</text>
+            <text x="378" y="162" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">Alternating line — coordinate reference for modules</text>
+            <text x="378" y="210" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">Data area</text>
+            <text x="378" y="228" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">Encoded data + error correction codes</text>
+            <text x="378" y="274" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="currentColor">Quiet zone (margin)</text>
+            <text x="378" y="292" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">At least 4 modules of light margin around the code</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">Anatomy of a QR code (simplified schematic — not a real scannable code)</figcaption>
+        </figure>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Versions and Data Capacity</h2>
         <p>QR codes come in 40 versions. Version 1 is 21x21 modules (the smallest square unit), and each subsequent version adds 4 modules per side. Version 40 is 177x177 modules.</p>
         <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 text-sm">
@@ -658,6 +690,29 @@
           <p class="text-gray-600 dark:text-gray-400">Level H (High): recovers about <span class="text-blue-600 font-semibold">30%</span> - recommended when embedding logos</p>
         </div>
         <p>Higher error correction means a larger QR code for the same data, because more space is devoted to redundancy. If you want to embed a logo in the center, use Level H for safety. For a standard URL link, Level M is sufficient.</p>
+
+        <figure class="my-8">
+          <svg viewBox="0 0 760 232" class="w-full h-auto" role="img" aria-label="Bar comparison of the four QR error correction levels — L recovers 7 percent, M 15 percent, Q 25 percent, H 30 percent">
+            <rect x="130" y="30" width="380" height="18" rx="9" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="130" y="30" width="27" height="18" rx="9" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="118" y="44" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">L (Low)</text>
+            <text x="167" y="44" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">recovers 7%</text>
+            <rect x="130" y="80" width="380" height="18" rx="9" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="130" y="80" width="57" height="18" rx="9" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="118" y="94" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">M (Medium)</text>
+            <text x="197" y="94" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">recovers 15% — recommended default</text>
+            <rect x="130" y="130" width="380" height="18" rx="9" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="130" y="130" width="95" height="18" rx="9" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="118" y="144" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">Q (Quartile)</text>
+            <text x="235" y="144" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">recovers 25%</text>
+            <rect x="130" y="180" width="380" height="18" rx="9" fill="currentColor" fill-opacity="0.08"/>
+            <rect x="130" y="180" width="114" height="18" rx="9" fill="#f59e0b" fill-opacity="0.25" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="118" y="194" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">H (High)</text>
+            <text x="254" y="194" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">recovers 30% — best when embedding a logo</text>
+            <text x="130" y="222" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">Bar length = share of the code that can be damaged and still recovered</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">Error correction levels — higher levels survive more damage but make the QR code denser</figcaption>
+        </figure>
 
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Static vs. Dynamic QR Codes</h2>
         <p>This distinction matters significantly for business use cases.</p>

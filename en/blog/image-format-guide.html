@@ -578,6 +578,48 @@
         <p><strong>Print and publishing:</strong> Use high-quality PNG or TIFF. Lossy formats may show noticeable quality loss in print.</p>
         <p><strong>Email attachments:</strong> JPG is the safest bet. It's universally compatible across email clients and keeps file sizes reasonable.</p>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 410" class="w-full h-auto" role="img" aria-label="Image format decision flowchart — photos get WebP or JPG, transparent backgrounds get PNG or WebP, logos and icons get SVG, everything else gets PNG">
+            <defs>
+              <marker id="fmt-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0 0L8 4L0 8z" fill="currentColor" fill-opacity="0.6"/>
+              </marker>
+            </defs>
+            <rect x="30" y="28" width="240" height="56" rx="8" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="150" y="61" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="currentColor">Is it a photo?</text>
+            <rect x="460" y="28" width="270" height="56" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="595" y="54" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" fill="currentColor">WebP</text>
+            <text x="595" y="72" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">JPG if compatibility matters</text>
+            <line x1="270" y1="56" x2="450" y2="56" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#fmt-arrow)"/>
+            <text x="360" y="48" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">Yes</text>
+            <line x1="150" y1="84" x2="150" y2="126" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#fmt-arrow)"/>
+            <text x="162" y="110" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">No</text>
+            <rect x="30" y="132" width="240" height="56" rx="8" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="150" y="158" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="currentColor">Need a transparent</text>
+            <text x="150" y="176" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="currentColor">background?</text>
+            <rect x="460" y="132" width="270" height="56" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="595" y="158" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" fill="currentColor">PNG or WebP</text>
+            <text x="595" y="176" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">WebP if file size matters</text>
+            <line x1="270" y1="160" x2="450" y2="160" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#fmt-arrow)"/>
+            <text x="360" y="152" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">Yes</text>
+            <line x1="150" y1="188" x2="150" y2="230" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#fmt-arrow)"/>
+            <text x="162" y="214" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">No</text>
+            <rect x="30" y="236" width="240" height="56" rx="8" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="150" y="269" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="currentColor">Is it a logo or icon?</text>
+            <rect x="460" y="236" width="270" height="56" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="595" y="262" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" fill="currentColor">SVG</text>
+            <text x="595" y="280" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">Vector — sharp at any size</text>
+            <line x1="270" y1="264" x2="450" y2="264" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#fmt-arrow)"/>
+            <text x="360" y="256" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">Yes</text>
+            <line x1="150" y1="292" x2="150" y2="334" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#fmt-arrow)"/>
+            <text x="162" y="318" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">No</text>
+            <rect x="30" y="340" width="240" height="56" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="150" y="366" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" fill="currentColor">PNG</text>
+            <text x="150" y="384" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" fill-opacity="0.7">Screenshots and general graphics</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">Image format decision flow — three questions cover most situations</figcaption>
+        </figure>
+
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Things to Watch When Converting</h2>
         <p>Converting a JPG to PNG won't restore lost quality. Once data is discarded by lossy compression, it's gone forever. Conversely, converting PNG to JPG reduces file size but permanently removes transparency information.</p>
         <p>The best practice is to keep your original source files and convert to the appropriate format as needed for each use case. When you need to convert image formats, try the tools below.</p>

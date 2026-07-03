@@ -552,6 +552,51 @@
           <p class="mt-2 text-gray-500">Header.Payload.Signature</p>
         </div>
 
+        <figure class="my-8">
+          <svg viewBox="0 0 760 280" class="w-full h-auto" role="img" aria-label="JWT 구조: 점으로 구분된 헤더, 페이로드, 서명 세 부분과 각 부분의 디코딩 결과">
+            <defs>
+              <marker id="jwt-anat-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="currentColor" opacity="0.6"/>
+              </marker>
+            </defs>
+            <rect x="16" y="16" width="210" height="36" rx="8" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="121" y="39" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">eyJhbGciOiJIUzI1NiIs…</text>
+            <text x="238" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" fill="currentColor">.</text>
+            <rect x="250" y="16" width="210" height="36" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="355" y="39" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">eyJzdWIiOiIxMjM0NTY3…</text>
+            <text x="472" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" fill="currentColor">.</text>
+            <rect x="484" y="16" width="260" height="36" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="614" y="39" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">SflKxwRJSMeKKF2QT4fw…</text>
+            <line x1="121" y1="56" x2="128" y2="92" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#jwt-anat-arrow)"/>
+            <line x1="355" y1="56" x2="378" y2="92" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#jwt-anat-arrow)"/>
+            <line x1="614" y1="56" x2="629" y2="92" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#jwt-anat-arrow)"/>
+            <rect x="16" y="100" width="226" height="162" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="129" y="124" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="bold" fill="currentColor">Header (헤더)</text>
+            <text x="32" y="148" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">{</text>
+            <text x="44" y="166" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">"alg": "HS256",</text>
+            <text x="44" y="184" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">"typ": "JWT"</text>
+            <text x="32" y="202" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="currentColor">}</text>
+            <text x="129" y="246" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="currentColor" opacity="0.7">누구나 디코딩 가능</text>
+            <rect x="267" y="100" width="226" height="162" rx="8" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="380" y="124" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="bold" fill="currentColor">Payload (페이로드)</text>
+            <text x="283" y="146" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">{</text>
+            <text x="295" y="163" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">"sub": "1234567890",</text>
+            <text x="295" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">"name": "John Doe",</text>
+            <text x="295" y="197" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">"iat": 1516239022</text>
+            <text x="283" y="214" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="currentColor">}</text>
+            <text x="380" y="246" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="currentColor" opacity="0.7">암호화 아님 — 민감정보 금지</text>
+            <rect x="518" y="100" width="226" height="162" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="631" y="124" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="bold" fill="currentColor">Signature (서명)</text>
+            <text x="534" y="148" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">HMACSHA256(</text>
+            <text x="546" y="165" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">base64Url(header) +</text>
+            <text x="546" y="182" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">"." + base64Url(payload),</text>
+            <text x="546" y="199" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">secret</text>
+            <text x="534" y="216" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="currentColor">)</text>
+            <text x="631" y="246" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="currentColor" opacity="0.7">비밀키 없이는 위조 불가</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">JWT는 Base64Url로 인코딩된 세 부분(헤더 · 페이로드 · 서명)을 점(.)으로 이어붙인 문자열입니다.</figcaption>
+        </figure>
+
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-6 mb-3">1. Header (헤더)</h3>
         <p>토큰 타입과 서명 알고리즘 정보. Base64Url로 인코딩됩니다.</p>
         <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl my-4 font-mono text-sm">
@@ -588,6 +633,47 @@
           <li>이후 요청마다 <code>Authorization: Bearer {token}</code> 헤더로 전송</li>
           <li>서버가 서명 검증 후 payload 정보 사용</li>
         </ol>
+
+        <figure class="my-8">
+          <svg viewBox="0 0 760 260" class="w-full h-auto" role="img" aria-label="JWT 서명 검증 흐름: 서버가 비밀키로 서명해 토큰을 발급하고, 클라이언트가 보낸 토큰의 서명을 서버가 재계산해 원본 서명과 비교">
+            <defs>
+              <marker id="jwt-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="currentColor" opacity="0.6"/>
+              </marker>
+            </defs>
+            <circle cx="125" cy="34" r="12" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="125" y="38.5" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor">1</text>
+            <circle cx="380" cy="34" r="12" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="380" y="38.5" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor">2</text>
+            <circle cx="635" cy="34" r="12" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5"/>
+            <text x="635" y="38.5" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor">3</text>
+            <rect x="16" y="56" width="218" height="104" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="125" y="80" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="bold" fill="currentColor">서버: 토큰 발급</text>
+            <text x="125" y="103" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="currentColor">header + payload를</text>
+            <text x="125" y="121" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="currentColor">비밀키(secret)로 서명해</text>
+            <text x="125" y="139" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="currentColor">JWT 생성</text>
+            <line x1="238" y1="108" x2="282" y2="108" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#jwt-flow-arrow)"/>
+            <rect x="288" y="56" width="184" height="104" rx="8" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="380" y="80" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="bold" fill="currentColor">클라이언트</text>
+            <text x="380" y="103" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="currentColor">토큰 저장 후 요청마다</text>
+            <text x="380" y="122" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="currentColor">Authorization:</text>
+            <text x="380" y="138" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="currentColor">Bearer eyJhbGci…</text>
+            <line x1="476" y1="108" x2="520" y2="108" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#jwt-flow-arrow)"/>
+            <rect x="526" y="56" width="218" height="104" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="635" y="80" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="bold" fill="currentColor">서버: 서명 검증</text>
+            <text x="635" y="103" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="currentColor">받은 header+payload로</text>
+            <text x="635" y="121" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="currentColor">서명을 다시 계산해</text>
+            <text x="635" y="139" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="currentColor">토큰의 서명과 비교</text>
+            <line x1="590" y1="160" x2="490" y2="204" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#jwt-flow-arrow)"/>
+            <line x1="680" y1="160" x2="664" y2="204" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" marker-end="url(#jwt-flow-arrow)"/>
+            <rect x="400" y="208" width="170" height="36" rx="8" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="485" y="231" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">일치 → 유효한 토큰 ✓</text>
+            <rect x="584" y="208" width="160" height="36" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="664" y="231" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="currentColor">불일치 → 거부 ✗</text>
+            <text x="16" y="231" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.7">페이로드가 1글자만 바뀌어도 서명이 달라집니다.</text>
+          </svg>
+          <figcaption class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">서명 검증 흐름 — 서버는 토큰을 저장하지 않고, 서명을 재계산해 위조 여부만 확인합니다.</figcaption>
+        </figure>
 
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">세션 vs JWT</h2>
         <div class="overflow-x-auto">
