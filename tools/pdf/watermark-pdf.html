@@ -663,6 +663,27 @@
           <h3 class="text-lg font-bold mt-8 mb-2">PDF 워터마크란?</h3>
           <p class="text-gray-600 dark:text-gray-400 mb-4">PDF 워터마크는 문서의 모든 페이지에 반투명 텍스트를 겹쳐 넣는 기능입니다. 문서의 소유권을 표시하거나, 초안/기밀 상태를 알리거나, 무단 복제를 방지하는 용도로 널리 사용됩니다. 이 도구를 사용하면 별도 소프트웨어 없이 브라우저에서 바로 워터마크를 추가할 수 있으며, 위치, 크기, 회전 각도, 투명도, 색상을 세밀하게 조절할 수 있습니다.</p>
 
+          <h3 class="text-lg font-bold mt-8 mb-2">한글은 입력할 수 없습니다</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">먼저 알아두셔야 할 제약입니다. 워터마크 글자는 PDF 표준 글꼴인 <strong>Helvetica</strong>로 그려지는데, 이 글꼴에는 한글 글리프가 없습니다. 한글을 입력하면 글자가 깨지는 것이 아니라 <strong>변환 자체가 오류로 끝납니다.</strong> <code>CONFIDENTIAL</code>, <code>DRAFT</code>, <code>COPY</code>, <code>SAMPLE</code>처럼 영문과 숫자, 기본 기호로 작성해 주세요. 한글 워터마크가 꼭 필요하다면 한글 글꼴을 내장할 수 있는 데스크톱 PDF 편집기를 써야 합니다.</p>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">워터마크는 보호 장치가 아닙니다</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">중요한 오해를 하나 짚고 갑니다. 여기서 넣는 워터마크는 페이지 위에 <strong>텍스트 객체를 하나 더 얹는 것</strong>입니다. 내용과 합쳐져 이미지가 되는 것이 아니므로, PDF 편집 도구를 쓸 줄 아는 사람은 그 객체만 골라 지울 수 있습니다.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">그러니 유출을 막는 수단으로 기대하면 안 됩니다. 워터마크의 실제 쓸모는 <strong>맥락을 알리는 것</strong>에 있습니다. 확정본이 아님을 표시해 오래된 초안이 최종본처럼 돌아다니는 일을 막고, 배포처마다 다른 문구를 넣어 어느 경로로 나간 사본인지 추적하고, 인쇄물이 섞였을 때 한눈에 구분하게 해줍니다. 진짜 보호가 필요하면 열람 암호나 문서 권한 설정을 함께 써야 합니다.</p>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">읽기를 방해하지 않게 설정하기</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">투명도는 본문 가독성과 워터마크 존재감 사이의 저울질입니다. <strong>20~30% 수준</strong>이면 내용을 읽는 데 지장이 없으면서도 문구가 분명히 보입니다. 그 이상으로 진하게 하면 아래 글자와 겹쳐 본문이 읽기 어려워지고, 10% 아래로 내리면 화면에서는 보여도 인쇄하면 거의 사라집니다.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">각도는 <strong>45도 대각선</strong>이 관례입니다. 가로로 눕히면 본문 한두 줄을 집중적으로 가리지만, 대각선은 여러 줄에 얇게 걸쳐 방해가 덜합니다. 글자 크기는 페이지 폭의 절반 남짓이 적당하며, 문구가 길수록 크기를 줄여야 여백을 넘지 않습니다. 색은 회색 계열이 무난하고, 경고성을 강조하려면 붉은 계열을 쓰되 투명도를 더 낮추세요.</p>
+
+          <h3 class="text-lg font-bold mt-8 mb-2">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">특정 페이지에만 넣을 수 있나요?</h4>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">이 도구는 모든 페이지에 동일하게 적용합니다. 일부 페이지에만 필요하다면 분할 도구로 해당 부분을 떼어내 워터마크를 넣고 병합 도구로 다시 합치는 방법이 있습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">이미지나 로고를 워터마크로 넣을 수 있나요?</h4>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">텍스트만 지원합니다. 로고를 넣어야 한다면 이미지 워터마크 도구로 각 페이지를 처리하거나 데스크톱 편집기를 사용하세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">워터마크가 본문 뒤에 깔리게 할 수 있나요?</h4>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">본문 위에 그려집니다. 투명도를 낮추면 아래 글자가 비쳐 보이므로 실사용에서는 뒤에 깔린 것과 비슷하게 읽힙니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">파일이 서버로 올라가나요?</h4>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">올라가지 않습니다. 문서를 읽고 워터마크를 그려 저장하는 전 과정이 브라우저 안에서 이루어집니다. 대외비 표시를 붙이려는 문서일수록 이 점이 중요할 텐데, 개발자 도구의 네트워크 탭으로 요청이 없음을 직접 확인할 수 있습니다.</p>
+
           
 
           
