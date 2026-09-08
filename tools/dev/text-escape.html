@@ -603,6 +603,31 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>텍스트 이스케이프는 프로그래밍에서 특수문자를 안전하게 표현하기 위해 특정 형식으로 변환하는 과정입니다. 문자열 안에 따옴표, 백슬래시, 꺾쇠괄호 같은 문자가 포함되면 코드 해석에 문제가 생길 수 있습니다. 이스케이프 처리는 이런 충돌을 방지하고 데이터를 의도한 대로 전달하기 위한 필수 기법입니다. JSON API 응답, HTML 렌더링, JavaScript 문자열, URL 파라미터 등 거의 모든 웹 개발 영역에서 이스케이프가 사용됩니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">네 가지 형식은 규칙이 전부 다릅니다</h3>
+          <p>같은 문자라도 어느 문맥에 넣느냐에 따라 바꿔야 하는 대상과 방식이 달라집니다. 형식을 잘못 고르면 이스케이프를 했는데도 깨집니다.</p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>JSON</strong> — 큰따옴표는 <code>\"</code>, 백슬래시는 <code>\\</code>, 줄바꿈은 <code>\n</code>. 작은따옴표는 건드리지 않습니다. JSON 문자열은 큰따옴표로만 감싸기 때문입니다.</li>
+            <li><strong>JavaScript</strong> — JSON과 비슷하지만 작은따옴표와 백틱도 처리 대상입니다. 어떤 따옴표로 감쌀지 자유롭기 때문입니다.</li>
+            <li><strong>HTML</strong> — <code>&lt;</code>는 <code>&amp;lt;</code>, <code>&gt;</code>는 <code>&amp;gt;</code>, <code>&amp;</code>는 <code>&amp;amp;</code>로 바꿉니다. 태그로 해석되는 것을 막는 것이 목적입니다.</li>
+            <li><strong>URL</strong> — 안전하지 않은 문자를 <code>%</code> 뒤 16진수 두 자리로 바꿉니다. 공백이 <code>%20</code>이 되는 그 방식입니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">순서를 틀리면 깨집니다</h3>
+          <p>여러 문맥이 겹칠 때 자주 발생하는 실수입니다. HTML 속성 안에 자바스크립트를 넣고 그 안에 문자열을 두는 경우처럼 계층이 쌓이면, <strong>안쪽부터 바깥쪽 순서로</strong> 이스케이프해야 합니다. 순서가 뒤바뀌면 앞서 넣은 이스케이프 문자가 다시 이스케이프되어 <code>\\n</code>처럼 백슬래시가 늘어납니다.</p>
+          <p>특히 <strong>백슬래시를 가장 먼저 처리</strong>해야 합니다. 큰따옴표를 <code>\"</code>로 바꾼 뒤에 백슬래시를 <code>\\</code>로 바꾸면, 방금 넣은 이스케이프용 백슬래시까지 변환되어 결과가 망가집니다. 이 도구는 그 순서를 지켜 처리하므로 직접 구현할 때만 주의하면 됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">이스케이프는 보안 대책이 아닙니다</h3>
+          <p>흔한 오해입니다. 이스케이프는 <strong>문맥에 맞는 표현으로 바꾸는 것</strong>이지 그 자체가 방어 수단은 아닙니다. HTML 이스케이프를 했다고 XSS가 막히는 것이 아니라, <em>출력되는 위치에 맞는</em> 이스케이프를 했을 때만 막힙니다. HTML 본문용 이스케이프를 자바스크립트 문맥에 그대로 쓰면 여전히 뚫립니다.</p>
+          <p>SQL은 특히 그렇습니다. 따옴표를 이스케이프하는 방식으로 인젝션을 막으려는 시도는 문자 인코딩 조합에 따라 우회될 수 있습니다. SQL에서는 이스케이프 대신 <strong>파라미터 바인딩</strong>을 써야 합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">되돌렸는데 원본과 다릅니다</h4>
+          <p>이스케이프 형식이 서로 다른 경우입니다. JSON으로 변환한 문자열을 HTML 모드로 되돌리면 규칙이 맞지 않아 결과가 어긋납니다. 변환할 때 쓴 형식과 같은 형식으로 되돌리세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">한글도 변환되나요?</h4>
+          <p>JSON과 JavaScript 모드에서 한글은 그대로 둡니다. 유니코드 문자를 그대로 담을 수 있기 때문입니다. URL 모드에서는 UTF-8 바이트로 바뀌어 한 글자가 <code>%XX</code> 세 개가 됩니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">줄바꿈이 사라졌습니다</h4>
+          <p>사라진 것이 아니라 <code>\n</code>이라는 두 글자로 바뀐 것입니다. 코드에 붙여넣으면 다시 줄바꿈으로 해석됩니다. 눈에 보이는 줄바꿈이 필요하다면 되돌리기를 실행하세요.</p>
+
           <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
           <p>텍스트 이스케이프 도구는 대상 컨텍스트에 따라 다른 이스케이프 규칙을 적용합니다. HTML에서는 &lt;, &gt;, &amp;, " 등을 엔티티로 변환하고, JSON에서는 ", \, 제어문자를 백슬래시 시퀀스로 변환합니다. URL에서는 예약 문자를 %XX 형태의 퍼센트 인코딩으로 변환합니다. 각 문자를 순회하며 해당 컨텍스트의 이스케이프 테이블과 대조하여 치환하는 방식으로 동작합니다.</p>
 

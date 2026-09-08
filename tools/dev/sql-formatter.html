@@ -654,6 +654,28 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>SQL 포맷터는 복잡하거나 읽기 어려운 SQL 쿼리를 일관된 형식으로 정리해주는 온라인 도구입니다. 적절한 들여쓰기와 줄바꿈을 자동으로 추가하여 쿼리의 구조를 한눈에 파악할 수 있게 만들어 줍니다. 반대로 포맷팅된 SQL을 한 줄로 압축하는 Minify 기능도 제공합니다. 데이터베이스 개발, 디버깅, 코드 리뷰, 문서 작성 등 SQL을 다루는 모든 상황에서 생산성을 높여 줍니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">방언을 맞춰야 하는 이유</h3>
+          <p>SQL은 표준이 있지만 데이터베이스마다 문법이 조금씩 다릅니다. 그래서 이 도구는 표준 SQL 외에 MySQL, PostgreSQL, MariaDB, SQLite, SQL Server, Oracle PL/SQL, BigQuery를 따로 지원합니다. 방언을 잘못 고르면 <strong>포매터가 문법을 이해하지 못해 줄바꿈이 엉뚱한 곳에 들어가거나 키워드 인식에 실패합니다.</strong></p>
+          <p>차이가 드러나는 지점은 이런 것들입니다. 식별자를 감싸는 문자가 MySQL은 백틱, PostgreSQL과 표준은 큰따옴표, SQL Server는 대괄호입니다. 문자열을 잇는 방법도 표준은 <code>||</code>인데 MySQL은 <code>CONCAT()</code>을 씁니다. Oracle의 <code>DECODE</code>나 SQL Server의 <code>TOP</code>처럼 그 방언에만 있는 키워드도 있습니다. 쿼리를 돌리는 DB에 맞춰 고르시면 됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">대문자 키워드가 관례인 이유</h3>
+          <p>SQL은 키워드 대소문자를 구분하지 않습니다. <code>select</code>든 <code>SELECT</code>든 똑같이 동작합니다. 그런데도 <code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>를 대문자로 쓰는 관례가 굳은 이유는 <strong>키워드와 이름을 눈으로 구분하기 위해서</strong>입니다.</p>
+          <p>테이블명과 컬럼명이 소문자일 때 키워드만 대문자면 쿼리 구조가 즉시 눈에 들어옵니다. 특히 컬럼 이름이 <code>order</code>나 <code>group</code>처럼 키워드와 겹칠 때 어느 쪽인지 바로 알 수 있습니다. 이 도구의 키워드 대문자 옵션이 그 변환을 대신해 줍니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">압축은 언제 쓰나</h3>
+          <p>포맷의 반대 방향인 압축 버튼은 줄바꿈과 여분의 공백을 걷어내 쿼리를 한 줄로 만듭니다. <strong>코드에 문자열로 박아 넣을 때</strong>나 <strong>로그·설정 파일에 한 줄로 기록할 때</strong> 씁니다. 여러 줄 쿼리를 그대로 붙이면 들여쓰기 공백이 문자열에 섞여 지저분해지기 때문입니다.</p>
+          <p>다만 압축한 쿼리는 사람이 읽기 어려우니 저장소에 커밋할 코드라면 정렬된 형태를 유지하는 편이 낫습니다. 리뷰에서 어느 줄이 바뀌었는지 보이는 것도 정렬된 쪽이 유리합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">쿼리 성능이 좋아지나요?</h4>
+          <p>아닙니다. 포매팅은 공백과 줄바꿈만 바꿀 뿐 실행 계획에 영향을 주지 않습니다. 데이터베이스는 파싱 단계에서 공백을 무시하므로 정렬 여부와 속도는 무관합니다. 성능 개선은 인덱스와 조인 방식의 문제입니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">문법 오류도 잡아주나요?</h4>
+          <p>포매터는 검증기가 아닙니다. 문법이 틀린 쿼리도 대체로 정렬은 됩니다. 다만 구조를 파악하지 못할 정도로 어긋나면 결과가 어색해지므로, 정렬 결과가 이상하다면 문법을 의심해 볼 단서는 됩니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">주석은 유지되나요?</h4>
+          <p>유지됩니다. 한 줄 주석과 블록 주석 모두 보존되며 위치도 대체로 지켜집니다. 다만 줄바꿈이 재배치되면서 주석이 붙는 위치가 원래 의도와 미묘하게 달라질 수 있으니 결과를 확인하세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">쿼리가 서버로 전송되나요?</h4>
+          <p>전송되지 않습니다. 포매팅은 브라우저에 내려받은 스크립트가 기기 안에서 수행합니다. 다만 실제 운영 쿼리에는 테이블 구조가 드러나므로, 어떤 도구를 쓰든 사내 스키마를 외부 사이트에 붙여넣기 전 사내 정책을 확인하는 습관은 필요합니다.</p>
+
           
 
           
