@@ -653,6 +653,30 @@ hobbies:
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>YAML과 JSON은 현대 소프트웨어 개발에서 가장 많이 사용되는 데이터 직렬화 형식입니다. YAML은 들여쓰기 기반의 간결한 문법으로 Kubernetes, Docker Compose, GitHub Actions 등 DevOps 설정 파일에 널리 쓰이고, JSON은 가볍고 파싱이 빠른 구조로 REST API와 웹 애플리케이션의 표준 데이터 형식이 되었습니다. 이 도구를 사용하면 브라우저에서 바로 두 형식 간 변환을 수행할 수 있어, 별도 라이브러리 설치나 코딩 없이도 작업이 가능합니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">YAML은 JSON의 상위 집합입니다</h3>
+          <p>YAML 1.2 명세는 JSON을 유효한 YAML로 규정합니다. 즉 <strong>모든 JSON은 그대로 YAML이지만 그 반대는 아닙니다.</strong> YAML에는 주석, 앵커와 별칭, 여러 문서를 <code>---</code>로 구분해 한 파일에 담는 기능, 여러 줄 문자열 표기처럼 JSON에 대응물이 없는 요소가 있습니다. 그래서 YAML을 JSON으로 바꾸면 <strong>주석이 사라집니다.</strong> 설정 파일에서 각 항목이 왜 그 값인지 적어둔 설명이 통째로 없어지므로, 원본 YAML은 따로 보관해 두는 편이 좋습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">들여쓰기 규칙이 엄격합니다</h3>
+          <p>YAML 오류의 대부분은 문법이 아니라 공백에서 나옵니다. <strong>탭 문자는 들여쓰기에 쓸 수 없고</strong> 반드시 공백이어야 합니다. 에디터가 탭을 자동 삽입하도록 설정돼 있으면 눈으로는 멀쩡해 보이는 파일이 파싱에 실패합니다. 오류 메시지가 가리키는 줄에 이상이 없다면 그 앞줄의 들여쓰기나 탭 혼입을 의심해 보세요.</p>
+          <p>중첩 깊이도 공백 개수로만 결정되므로, 한 파일 안에서 두 칸과 네 칸을 섞어 쓰면 의도와 다른 구조가 됩니다. JSON에서 YAML로 변환할 때 이 도구의 들여쓰기 옵션으로 칸 수를 지정할 수 있으니, 기존 파일에 붙여 넣을 것이라면 그쪽 관례에 맞춰 두세요.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">따옴표를 생략하면 생기는 일</h3>
+          <p>YAML은 따옴표 없는 값의 타입을 알아서 추론합니다. 편리하지만 예상치 못한 결과를 낳기도 합니다. 대표적으로 <code>no</code>, <code>off</code>, <code>yes</code>, <code>on</code>은 문자열이 아니라 불리언으로 해석될 수 있습니다. 국가 코드 <code>NO</code>(노르웨이)를 따옴표 없이 적으면 <code>false</code>가 되어버리는 문제가 실제로 자주 보고됩니다.</p>
+          <p>앞자리가 0인 숫자도 주의해야 합니다. <code>08</code>이나 <code>011</code> 같은 값은 8진수로 읽히거나 오류가 날 수 있어, 우편번호나 사번처럼 자릿수를 맞춘 값은 반드시 따옴표로 감싸야 합니다. 버전 번호 <code>1.10</code>을 그대로 두면 숫자 1.1이 되어 뒤의 0이 사라집니다. 문자열로 다뤄야 할 값에는 습관적으로 따옴표를 붙이는 것이 안전합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">이 도구의 변환 규칙</h3>
+          <p>JSON을 YAML로 내보낼 때 몇 가지 설정이 고정되어 있습니다. <strong>줄바꿈을 넣지 않습니다</strong> — 긴 문자열이라도 임의로 접지 않으므로 값이 중간에 끊겨 읽기 어려워지는 일이 없습니다. <strong>앵커와 별칭을 만들지 않습니다</strong> — 같은 내용이 여러 곳에 나와도 <code>&amp;anchor</code>로 묶지 않고 매번 펼쳐 씁니다. 파일은 조금 길어지지만 사람이 읽기 쉽고, 앵커를 지원하지 않는 도구에 넣어도 문제가 없습니다. 따옴표가 필요한 자리에는 작은따옴표 대신 <strong>큰따옴표</strong>를 씁니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">주석을 살릴 방법은 없나요?</h4>
+          <p>없습니다. 주석은 데이터가 아니라서 파싱 단계에서 버려지고, JSON에는 주석 문법 자체가 없습니다. 왕복 변환으로 YAML을 정리할 생각이라면 주석이 모두 사라진다는 점을 감안하세요. 설명을 남겨야 한다면 <code>_comment</code> 같은 키를 데이터에 넣는 방법이 있지만 그 키를 읽는 쪽에서 무시하도록 처리해야 합니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">한 파일에 문서가 여러 개인 YAML은 되나요?</h4>
+          <p><code>---</code>로 구분된 다중 문서는 JSON 하나로 옮길 수 없습니다. 쿠버네티스 매니페스트가 대표적인데, 이런 파일은 문서 단위로 잘라 하나씩 변환하는 편이 확실합니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">여러 줄 문자열은 어떻게 되나요?</h4>
+          <p>YAML의 <code>|</code>(줄바꿈 유지)와 <code>&gt;</code>(줄바꿈을 공백으로 접기)는 각각 다른 결과의 문자열을 만들며, JSON으로 가면 <code>\n</code>이 포함된 평범한 문자열이 됩니다. 반대로 JSON에서 YAML로 갈 때는 줄바꿈이 들어 있어도 이 도구는 블록 표기 대신 따옴표 문자열로 내보냅니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">입력한 설정 파일이 유출되지 않나요?</h4>
+          <p>변환이 브라우저 안에서만 이루어지고 서버로 전송되는 값이 없습니다. 다만 설정 파일에 접속 정보나 토큰이 들어 있다면, 어떤 도구를 쓰든 화면에 띄우기 전에 그 값들을 지우고 구조만 남기는 습관을 들이는 편이 좋습니다.</p>
+
           
 
           

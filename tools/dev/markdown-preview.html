@@ -777,6 +777,33 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>마크다운 미리보기는 마크다운(Markdown) 문법으로 작성한 텍스트를 실시간으로 HTML 렌더링 결과를 확인할 수 있는 온라인 에디터입니다. 마크다운은 2004년 존 그루버가 개발한 경량 마크업 언어로, 읽기 쉬운 텍스트 형식으로 작성하면 구조화된 HTML 문서로 변환됩니다. 개발자 문서, README 파일, 기술 블로그, 위키 등 다양한 곳에서 표준 문서 포맷으로 활용되고 있습니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">GitHub 문법을 지원합니다</h3>
+          <p>이 미리보기는 GitHub Flavored Markdown 확장을 켜둔 상태로 렌더링합니다. 원래 마크다운에는 없던 다음 문법이 그대로 동작합니다.</p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>표</strong> — <code>|</code>와 <code>-</code>로 그린 표. 구분선에 콜론을 넣어 <code>:---</code>은 왼쪽, <code>---:</code>은 오른쪽, <code>:---:</code>은 가운데 정렬을 지정합니다.</li>
+            <li><strong>할 일 목록</strong> — <code>- [ ]</code>와 <code>- [x]</code>로 체크박스를 만듭니다.</li>
+            <li><strong>취소선</strong> — <code>~~지운 글~~</code>.</li>
+            <li><strong>코드 블록 구문 강조</strong> — 백틱 세 개 뒤에 <code>js</code>, <code>python</code>처럼 언어를 적으면 색이 입혀집니다.</li>
+            <li><strong>수식</strong> — 달러 기호로 감싼 LaTeX 표기를 조판해 보여줍니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">줄바꿈이 여기서는 그대로 반영됩니다</h3>
+          <p>알아두면 혼란을 줄일 수 있는 차이가 하나 있습니다. 표준 마크다운에서는 문장 끝에 그냥 엔터를 치면 줄이 나뉘지 않고 앞 문장에 이어 붙습니다. 줄을 바꾸려면 줄 끝에 <strong>공백 두 개</strong>를 넣거나 빈 줄을 하나 두어야 합니다.</p>
+          <p>이 미리보기는 엔터 한 번을 그대로 줄바꿈으로 처리하도록 설정되어 있습니다. 편집기에서 보이는 모양과 결과가 일치해 쓰기 편하지만, <strong>같은 문서를 다른 곳에 붙여넣으면 결과가 달라질 수 있습니다.</strong> 여기서는 나뉘어 보이던 줄이 GitHub README나 정적 사이트 생성기에서는 한 문단으로 이어질 수 있으니, 어디에 올릴 문서인지에 따라 공백 두 개를 명시적으로 넣어두는 편이 안전합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">HTML을 섞어 쓸 때</h3>
+          <p>마크다운 안에는 HTML 태그를 직접 넣을 수 있습니다. 다만 이 미리보기는 렌더링 결과를 화면에 그리기 전에 위험한 태그와 속성을 걸러냅니다. <code>&lt;script&gt;</code>나 <code>onclick</code> 같은 것이 제거되므로, 그런 코드를 넣었는데 아무 일도 일어나지 않는다면 정상 동작입니다. <code>&lt;details&gt;</code>, <code>&lt;kbd&gt;</code>, <code>&lt;img&gt;</code>처럼 문서에 흔히 쓰이는 태그는 그대로 살아남습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">작성한 내용이 저장되나요?</h4>
+          <p>저장되지 않습니다. 입력한 글은 브라우저 메모리에만 있고 서버로 전송되지 않으므로, 탭을 닫거나 새로고침하면 사라집니다. 긴 문서를 작성 중이라면 중간중간 복사해 두세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">표가 깨져 보입니다</h4>
+          <p>표 바로 위에 빈 줄이 없으면 앞 문단에 흡수되어 표로 인식되지 않는 경우가 많습니다. 그리고 헤더 아래 구분선(<code>|---|---|</code>)의 칸 수가 헤더 칸 수와 정확히 같아야 합니다. 셀 안에 <code>|</code> 문자를 넣어야 한다면 <code>\|</code>로 이스케이프하세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">중첩 목록의 들여쓰기는 몇 칸인가요?</h4>
+          <p>보통 두 칸이나 네 칸을 쓰며, 한 문서 안에서 일관되기만 하면 됩니다. 다만 번호 목록 아래에 하위 항목을 넣을 때는 번호와 점, 공백까지 합한 너비(<code>1. </code>이면 세 칸)만큼 들여써야 안정적으로 인식됩니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">결과를 HTML 파일로 가져갈 수 있나요?</h4>
+          <p>미리보기 영역을 브라우저에서 그대로 복사하면 서식이 유지된 채 워드나 메일 본문에 붙습니다. HTML 소스 자체가 필요하다면 개발자 도구에서 해당 영역의 요소를 복사하세요.</p>
+
           
 
           

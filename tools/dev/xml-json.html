@@ -597,6 +597,33 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <p>XML과 JSON은 데이터를 구조적으로 표현하기 위해 가장 많이 사용되는 두 가지 형식입니다. XML은 태그 기반의 마크업 언어로 SOAP API, 설정 파일, 문서 교환 등에 널리 사용되며, JSON은 가볍고 간결한 구조로 REST API와 웹 애플리케이션에서 표준적으로 쓰입니다. 이 도구를 사용하면 별도의 프로그래밍 없이 브라우저에서 바로 두 형식 간 변환을 수행할 수 있습니다.</p>
 
+          <h3 class="text-lg font-semibold mt-6 mb-3">두 형식은 표현력이 다릅니다</h3>
+          <p>XML을 JSON으로 옮길 때 가장 먼저 부딪히는 문제는 XML에 있는 개념이 JSON에는 없다는 점입니다. XML은 요소(element)와 별개로 <strong>속성(attribute)</strong>을 가지며, 같은 이름의 자식이 여러 번 반복될 수 있고, 텍스트와 자식 요소가 한 요소 안에 섞일 수도 있습니다. JSON에는 객체와 배열, 원시값밖에 없으므로 이 차이를 어떤 규칙으로든 메워야 합니다.</p>
+          <p>이 도구는 compact 표기를 사용합니다. 속성은 <code>_attributes</code>, 텍스트 내용은 <code>_text</code>라는 별도 키로 들어갑니다. 예를 들어 <code>&lt;user id="7"&gt;민수&lt;/user&gt;</code>는 <code>{"user":{"_attributes":{"id":"7"},"_text":"민수"}}</code>가 됩니다. 속성이 없어도 마찬가지여서 <code>&lt;user&gt;민수&lt;/user&gt;</code>는 <code>{"user":"민수"}</code>가 아니라 <code>{"user":{"_text":"민수"}}</code>입니다. 값을 꺼낼 때 <code>_text</code>를 한 번 더 거쳐야 한다는 점을 기억해 두세요.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">반복 요소가 배열이 되는 조건</h3>
+          <p>실무에서 가장 자주 겪는 함정입니다. XML에는 배열이라는 개념이 없고 같은 태그가 여러 번 나올 뿐이라, 변환기는 <strong>실제로 등장한 횟수</strong>를 보고 배열 여부를 정합니다. 항목이 두 개 이상이면 배열이 되지만, <strong>항목이 하나뿐이면 배열이 아니라 단일 객체가 됩니다.</strong></p>
+          <p>같은 API가 결과가 한 건일 때와 여러 건일 때 서로 다른 모양의 JSON을 내놓는다는 뜻입니다. 받는 쪽 코드에서 <code>data.items.map(...)</code>처럼 배열을 가정하고 있으면 결과가 한 건인 날 갑자기 오류가 납니다. 변환 결과를 코드에 붙이기 전에 <code>Array.isArray()</code>로 확인하거나, 항상 배열로 감싸주는 정규화 단계를 두는 편이 안전합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">숫자처럼 보여도 문자열입니다</h3>
+          <p>XML은 타입 정보를 담지 않습니다. <code>&lt;price&gt;1000&lt;/price&gt;</code>의 1000이 숫자인지 문자열인지 XML 자체로는 알 수 없으므로, 변환 결과에서는 <code>"1000"</code>이라는 문자열이 됩니다. <code>&lt;active&gt;true&lt;/active&gt;</code>도 불리언이 아니라 <code>"true"</code>입니다. 변환한 JSON을 그대로 비교 연산에 쓰면 <code>"0"</code>이 참으로 평가되는 것 같은 문제가 생기므로, 숫자로 다룰 값은 명시적으로 변환해야 합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">사용 방법</h3>
+          <p>왼쪽 칸에 XML을, 또는 반대 방향이라면 JSON을 붙여넣고 변환 버튼을 누르면 오른쪽에 결과가 나타납니다. <strong>들여쓰기</strong> 옵션을 켜면 두 칸 들여쓰기로 정렬되고, 끄면 공백 없이 한 줄로 압축되어 나옵니다. 파일에 그대로 저장할 것이라면 정렬된 쪽이, 코드에 상수로 박아 넣거나 전송량을 줄일 목적이라면 압축된 쪽이 편합니다.</p>
+          <p><strong>XML 선언 무시</strong> 옵션은 <code>&lt;?xml version="1.0"?&gt;</code> 줄을 결과에서 빼줍니다. JSON으로 변환할 때 이 선언은 대개 필요 없는 정보라 켜두면 결과가 깔끔해집니다. 무엇을 넣어야 할지 감이 오지 않으면 샘플 버튼으로 예시 데이터를 불러와 구조를 먼저 확인해 보세요.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">변환했다가 되돌리면 원본과 똑같아지나요?</h4>
+          <p>구조는 보존되지만 글자 단위로 같지는 않습니다. 들여쓰기와 줄바꿈, 태그 사이의 공백, 주석, XML 선언은 변환 과정에서 사라지거나 재생성됩니다. 자식이 하나뿐이던 반복 요소가 배열이 아닌 객체로 바뀌는 문제도 되돌릴 때 그대로 따라옵니다. 서명이 걸린 문서처럼 바이트가 일치해야 하는 XML에는 이 방식을 쓰면 안 됩니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">네임스페이스가 있는 XML도 되나요?</h4>
+          <p>변환은 됩니다. 다만 <code>soap:Envelope</code> 같은 접두사가 붙은 태그는 접두사를 포함한 이름이 그대로 JSON 키가 됩니다. 콜론이 들어간 키는 자바스크립트에서 점 표기로 접근할 수 없으므로 <code>obj["soap:Envelope"]</code>처럼 대괄호로 읽어야 합니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">CDATA 구역은 어떻게 처리되나요?</h4>
+          <p><code>&lt;![CDATA[...]]&gt;</code> 안의 내용은 텍스트로 취급되어 <code>_cdata</code> 키에 담깁니다. HTML 조각처럼 특수문자가 많은 값을 XML에 넣을 때 쓰이는 표기인데, JSON에는 이스케이프 규칙이 따로 없으므로 변환 후에는 그냥 문자열이 됩니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">파일이 큰데 처리할 수 있나요?</h4>
+          <p>변환이 브라우저에서 이루어지므로 문서 전체를 메모리에 올립니다. 수 메가바이트 수준이면 대개 문제없지만 그보다 크면 탭이 잠시 멈춘 것처럼 보일 수 있습니다. 대용량 파일을 반복 처리해야 한다면 서버 측 스트리밍 파서를 쓰는 편이 맞습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">입력한 데이터가 어디로 전송되나요?</h4>
+          <p>전송되지 않습니다. 변환은 브라우저에 내려받은 스크립트가 기기 안에서 수행하며 서버로 오가는 요청이 없습니다. 사내 시스템 응답처럼 외부에 노출하기 곤란한 데이터도 그대로 붙여넣을 수 있습니다.</p>
+
           
 
           
