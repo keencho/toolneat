@@ -652,7 +652,27 @@
       <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">ASCII/유니코드 변환기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>ASCII/유니코드 변환기는 문자를 코드 포인트로, 또는 코드를 문자로 변환하는 도구입니다. 프로그래밍 중 특수 문자의 코드값을 확인하거나, 코드 포인트를 실제 문자로 복원할 때 유용합니다. 10진수, 16진수, 유니코드 이스케이프, HTML 엔티티 등 다양한 형식을 지원하며, 웹 개발이나 문자 인코딩 관련 작업에서 자주 쓰이는 필수 도구입니다.</p>
+          <p>ASCII/유니코드 변환기는 문자를 코드 포인트로, 또는 코드를 문자로 변환하는 도구입니다. 프로그래밍 중 특수 문자의 코드값을 확인하거나, 코드 포인트를 실제 문자로 복원할 때 유용합니다. 10진수, 16진수, 유니코드 이스케이프, HTML 엔티티 등 다양한 형식을 지원하며, 웹 개발이나 문자 인코딩 관련 작업에서 자주 쓰이는 필수 도구입니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">ASCII와 유니코드의 관계</h3>
+          <p>ASCII는 1963년에 만들어진 표준으로 영문 대소문자, 숫자, 기본 기호를 합쳐 <strong>128자</strong>만 정의합니다. 한 글자에 7비트면 충분했습니다. 당연히 한글이나 한자, 이모지는 들어갈 자리가 없었습니다.</p>
+          <p>유니코드는 세상의 모든 문자에 고유 번호를 부여하려는 표준입니다. 중요한 점은 <strong>앞의 128자를 ASCII와 똑같이 배치했다는 것</strong>입니다. 그래서 영문만 있는 문서는 ASCII로 읽든 유니코드로 읽든 결과가 같습니다. 호환성을 지키려는 설계였고, 덕분에 전환이 순조로웠습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">코드 포인트와 인코딩은 다릅니다</h3>
+          <p>혼동하기 쉬운 지점입니다. <strong>코드 포인트</strong>는 문자에 붙은 번호로, 한글 '가'는 <code>U+AC00</code>입니다. <strong>인코딩</strong>은 그 번호를 실제 바이트로 어떻게 적을지 정한 규칙입니다.</p>
+          <p>같은 '가'라도 UTF-8에서는 3바이트(<code>EA B0 80</code>), UTF-16에서는 2바이트로 저장됩니다. 파일이 깨져 보이는 문제는 대부분 코드 포인트가 아니라 <strong>인코딩을 잘못 해석한 것</strong>이 원인입니다. UTF-8로 저장된 한글 파일을 EUC-KR로 열면 글자가 뭉개지는 이유입니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">한글 코드 영역</h3>
+          <p>유니코드에서 완성형 한글은 <code>U+AC00</code>(가)부터 <code>U+D7A3</code>(힣)까지 <strong>11,172자</strong>가 연속으로 배치되어 있습니다. 초성 19개, 중성 21개, 종성 28개를 조합한 수와 정확히 일치합니다.</p>
+          <p>규칙적으로 배열되어 있어서 계산으로 자모를 분리할 수 있습니다. 코드 포인트에서 <code>0xAC00</code>을 뺀 뒤 588로 나누면 초성 번호가, 나머지를 28로 나누면 중성 번호가, 그 나머지가 종성 번호가 됩니다. 한글 초성 검색 기능이 이 원리로 구현됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">이모지도 변환되나요?</h4>
+          <p>됩니다. 이모지도 유니코드 문자라 고유한 코드 포인트가 있습니다. 다만 피부색이나 가족 이모지처럼 여러 문자를 결합한 것은 코드 포인트가 여러 개로 나옵니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">유니코드 이스케이프는 어디에 쓰나요?</h4>
+          <p><code>\uAC00</code> 형식은 자바스크립트나 JSON 문자열에서 유니코드 문자를 표현할 때 씁니다. 파일 인코딩이 불확실한 환경에 값을 넣어야 할 때 안전한 방법입니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">눈에 안 보이는 문자도 있나요?</h4>
+          <p>있습니다. 제로 폭 공백처럼 화면에 표시되지 않는 문자가 섞여 들어가 비교가 실패하거나 검색이 안 되는 일이 있습니다. 코드 포인트로 변환해 보면 그런 문자의 존재를 확인할 수 있습니다.</p></p>
 
           
           

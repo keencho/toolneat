@@ -716,7 +716,30 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">2048 게임이란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>2048은 2014년 이탈리아 개발자 가브리엘레 치룰리(Gabriele Cirulli)가 만든 슬라이딩 블록 퍼즐 게임입니다. 4x4 격자 위에서 같은 숫자의 타일을 합쳐 2048 타일을 만드는 것이 목표입니다. 간단한 규칙이지만 깊은 전략이 필요해 전 세계적으로 큰 인기를 끌었으며, 수학적 사고력과 공간 추론 능력을 기르는 데 도움이 됩니다. Toolneat에서는 설치 없이 브라우저에서 바로 즐길 수 있으며, PC와 모바일 모두 지원합니다.</p>
+          <p>2048은 2014년 이탈리아 개발자 가브리엘레 치룰리(Gabriele Cirulli)가 만든 슬라이딩 블록 퍼즐 게임입니다. 4x4 격자 위에서 같은 숫자의 타일을 합쳐 2048 타일을 만드는 것이 목표입니다. 간단한 규칙이지만 깊은 전략이 필요해 전 세계적으로 큰 인기를 끌었으며, 수학적 사고력과 공간 추론 능력을 기르는 데 도움이 됩니다. Toolneat에서는 설치 없이 브라우저에서 바로 즐길 수 있으며, PC와 모바일 모두 지원합니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">기본 전략: 한쪽 모서리를 지키세요</h3>
+          <p>2048에서 가장 널리 통하는 원칙은 <strong>가장 큰 타일을 한 모서리에 고정하는 것</strong>입니다. 큰 타일이 판 가운데를 돌아다니면 주변이 막혀 합칠 기회를 잃습니다.</p>
+          <p>구체적으로는 방향키 <strong>세 개만 사용하는 방법</strong>이 있습니다. 예를 들어 왼쪽 아래를 거점으로 정했다면 아래·왼쪽·오른쪽만 쓰고 <strong>위쪽은 다른 수가 전혀 없을 때만</strong> 누릅니다. 위를 누르는 순간 아래줄이 통째로 올라가 거점이 무너지기 때문입니다.</p>
+          <p>거점이 있는 줄은 큰 수부터 작은 수로 <strong>내림차순으로 배열</strong>해 두면 연쇄 합치기가 쉬워집니다. 1024, 512, 256, 128이 한 줄에 순서대로 놓여 있으면 한 번의 이동으로 줄줄이 합쳐집니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">2048은 끝이 아닙니다</h3>
+          <p>2048 타일을 만들면 축하 메시지가 뜨지만 게임은 계속됩니다. 그대로 이어가면 4096, 8192까지 노릴 수 있습니다.</p>
+          <p>이론상 도달 가능한 최대 타일은 <strong>131072</strong>입니다. 4×4 판에 들어갈 수 있는 칸이 16개라 각 칸을 2의 거듭제곱으로 채웠을 때의 한계값입니다. 다만 새 타일이 2 또는 4로 무작위 등장하므로 실제로 여기까지 가는 것은 거의 불가능합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">지는 이유는 대개 하나입니다</h3>
+          <p>게임 오버는 빈 칸이 없고 합칠 수 있는 이웃도 없을 때 발생합니다. 이 상황에 이르는 원인은 대부분 <strong>급하게 움직인 것</strong>입니다.</p>
+          <p>한 수를 두기 전에 <strong>그 수가 거점 줄을 흔들지 않는지</strong> 확인하는 습관을 들이세요. 그리고 작은 타일을 방치하지 마세요. 4나 8이 판 여기저기 흩어져 있으면 빈 칸을 잡아먹어 운신의 폭이 좁아집니다. 큰 수를 노리기 전에 작은 수부터 정리하는 편이 오래 버팁니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">되돌리기가 없나요?</h4>
+          <p>없습니다. 한 수의 결과를 감수하는 것이 이 게임의 핵심이라 원작에도 되돌리기가 없습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">새 타일은 항상 2인가요?</h4>
+          <p>대부분 2이고 가끔 4가 나옵니다. 4가 나오면 판이 빨리 차오르므로 조금 불리합니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">최고 점수가 저장되나요?</h4>
+          <p>브라우저에 저장되어 다시 방문해도 유지됩니다. 다만 같은 기기의 같은 브라우저에서만 보이며, 브라우저 데이터를 지우면 사라집니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">모바일 조작은 어떻게 하나요?</h4>
+          <p>화면을 원하는 방향으로 쓸면 됩니다. 짧고 분명하게 쓸어야 방향이 정확히 인식됩니다.</p></p>
 
           
           

@@ -886,7 +886,34 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">Cron 표현식 알아보기</h3>
-          <p>Cron 표현식은 Unix/Linux 기반 시스템에서 작업 스케줄링을 정의하기 위해 사용하는 문자열 포맷입니다. 분(minute), 시(hour), 일(day of month), 월(month), 요일(day of week) 총 5개의 필드로 구성되어 있으며, 각 필드에 숫자나 특수 문자를 조합해 실행 시점을 지정합니다. 서버 운영자라면 로그 정리, DB 백업, 캐시 초기화 같은 반복 작업을 자동화할 때 반드시 알아야 하는 개념입니다. 이 도구는 cron 문법에 익숙하지 않더라도 시각적 인터페이스로 원하는 스케줄을 쉽게 만들 수 있도록 도와줍니다. 직접 표현식을 입력해 파싱하는 역방향 모드도 지원하므로, 다른 사람이 작성한 crontab을 분석할 때도 유용합니다.</p>
+          <p>Cron 표현식은 Unix/Linux 기반 시스템에서 작업 스케줄링을 정의하기 위해 사용하는 문자열 포맷입니다. 분(minute), 시(hour), 일(day of month), 월(month), 요일(day of week) 총 5개의 필드로 구성되어 있으며, 각 필드에 숫자나 특수 문자를 조합해 실행 시점을 지정합니다. 서버 운영자라면 로그 정리, DB 백업, 캐시 초기화 같은 반복 작업을 자동화할 때 반드시 알아야 하는 개념입니다. 이 도구는 cron 문법에 익숙하지 않더라도 시각적 인터페이스로 원하는 스케줄을 쉽게 만들 수 있도록 도와줍니다. 직접 표현식을 입력해 파싱하는 역방향 모드도 지원하므로, 다른 사람이 작성한 crontab을 분석할 때도 유용합니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">다섯 칸의 의미</h3>
+          <p>표현식은 공백으로 구분된 다섯 칸이며 왼쪽부터 <strong>분, 시, 일, 월, 요일</strong>입니다. 각 칸에 쓰는 기호는 네 가지뿐입니다.</p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><code>*</code> — 모든 값. 분 칸의 별표는 매분이라는 뜻입니다.</li>
+            <li><code>,</code> — 나열. <code>1,15</code>는 1일과 15일입니다.</li>
+            <li><code>-</code> — 범위. 요일 칸의 <code>1-5</code>는 월요일부터 금요일입니다.</li>
+            <li><code>/</code> — 간격. <code>*/10</code>은 10분마다입니다.</li>
+          </ul>
+          <p>요일은 0이 일요일이고 6이 토요일입니다. 7도 일요일로 받아주는 구현이 많지만 0을 쓰는 편이 안전합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">일과 요일을 동시에 쓰면 OR입니다</h3>
+          <p>가장 많이 틀리는 규칙입니다. 세 번째 칸(일)과 다섯 번째 칸(요일)에 <strong>둘 다 구체적인 값을 넣으면 AND가 아니라 OR로 동작합니다.</strong></p>
+          <p><code>0 0 1 * 1</code>은 "매월 1일이면서 월요일"이 아니라 <strong>"매월 1일 또는 매주 월요일"</strong>입니다. 한 달에 대여섯 번 실행됩니다. "매월 첫 번째 월요일"처럼 두 조건을 모두 만족시키려면 cron만으로는 표현할 수 없고, 매주 월요일에 실행하되 스크립트 안에서 날짜가 7일 이하인지 확인하는 방식으로 처리해야 합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">실무에서 챙길 것</h3>
+          <p><strong>시간대를 확인하세요.</strong> cron은 시스템 시간대를 따릅니다. UTC 서버에 <code>0 9 * * *</code>을 넣으면 한국 시간 오후 6시입니다. <code>date</code>로 먼저 확인하고 필요하면 crontab 상단에 <code>CRON_TZ=Asia/Seoul</code>을 선언하세요.</p>
+          <p><strong>정각을 피하세요.</strong> 많은 작업이 <code>0 * * * *</code>에 몰리면 그 순간 부하가 집중됩니다. <code>7 * * * *</code>처럼 분을 어긋나게 두면 분산됩니다.</p>
+          <p><strong>겹침을 막으세요.</strong> 5분마다 도는 작업이 6분 걸리면 이전 실행이 끝나기 전에 다음이 시작됩니다. cron은 이를 막아주지 않으므로 스크립트에서 잠금 파일을 쓰거나 <code>flock</code>으로 감싸야 합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">1초 단위로 실행할 수 있나요?</h4>
+          <p>표준 cron의 최소 단위는 1분입니다. 더 짧은 주기가 필요하면 스크립트 안에서 반복하거나 별도의 스케줄러를 쓰세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">서버가 꺼져 있던 시간의 작업은요?</h4>
+          <p>실행되지 않고 그냥 지나갑니다. 놓친 작업을 나중에 실행해 주는 기능은 없습니다. 반드시 실행되어야 하는 작업이라면 별도의 보정 로직이 필요합니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">스크립트가 수동으로는 되는데 cron에서는 안 됩니다</h4>
+          <p>환경변수 차이가 대부분의 원인입니다. cron은 최소한의 환경에서 실행되어 <code>PATH</code>가 짧습니다. 명령어를 절대 경로로 쓰거나 스크립트 첫머리에서 환경을 직접 설정하세요.</p></p>
 
           
           

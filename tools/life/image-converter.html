@@ -642,7 +642,27 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
-          <p>이미지 변환기는 Canvas API로 원본 이미지를 로드한 후 toBlob() 또는 toDataURL()로 다른 형식으로 변환합니다. JPEG, PNG, WebP 간 변환을 지원하며, PNG→JPEG 변환 시 투명 영역을 배경색으로 채웁니다. WebP 형식은 JPEG보다 25~35% 더 작은 파일을 생성하면서 유사한 품질을 유지합니다.</p>
+          <p>이미지 변환기는 Canvas API로 원본 이미지를 로드한 후 toBlob() 또는 toDataURL()로 다른 형식으로 변환합니다. JPEG, PNG, WebP 간 변환을 지원하며, PNG→JPEG 변환 시 투명 영역을 배경색으로 채웁니다. WebP 형식은 JPEG보다 25~35% 더 작은 파일을 생성하면서 유사한 품질을 유지합니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">어떤 형식으로 바꿔야 하나</h3>
+          <p>목적에 따라 답이 정해져 있습니다. <strong>사진</strong>은 JPG나 WebP, <strong>투명 배경이 필요한 로고와 아이콘</strong>은 PNG, <strong>웹사이트에 올릴 이미지</strong>는 WebP가 기본입니다.</p>
+          <p>가장 흔한 실수는 <strong>사진을 PNG로 저장하는 것</strong>입니다. PNG는 손실 없이 저장하는 형식이라 색이 복잡한 사진에서는 파일이 JPG의 몇 배로 커집니다. 반대로 <strong>로고를 JPG로 저장하면</strong> 투명 배경이 흰색으로 채워지고 글자 가장자리에 뿌연 노이즈가 생깁니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">한 번 잃은 화질은 돌아오지 않습니다</h3>
+          <p>JPG는 저장할 때마다 데이터를 버리는 손실 압축입니다. 그래서 <strong>JPG를 PNG로 바꿔도 화질이 좋아지지 않습니다.</strong> 이미 버려진 정보는 복원되지 않고, 파일 크기만 커집니다.</p>
+          <p>같은 이유로 JPG를 열어 편집하고 다시 JPG로 저장하는 과정을 반복하면 손실이 누적됩니다. 여러 번 편집할 계획이라면 <strong>작업 중에는 PNG로 두고 마지막에 한 번만 JPG로 내보내는 것</strong>이 원칙입니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">투명도 처리에 주의</h3>
+          <p>PNG나 WebP처럼 투명 배경을 지원하는 형식에서 JPG로 바꾸면 투명 영역이 사라집니다. JPG에는 알파 채널이 없기 때문입니다. 투명한 부분은 배경색으로 채워지며, 이 색이 실제 사용할 배경과 다르면 <strong>이미지 주변에 네모난 테두리가 생긴 것처럼 보입니다.</strong></p>
+          <p>투명도를 유지하면서 용량도 줄이고 싶다면 WebP가 답입니다. 알파 채널을 지원하면서 PNG보다 훨씬 작습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">WebP를 아직 못 여는 곳이 있나요?</h4>
+          <p>브라우저는 모두 지원합니다. 문제가 되는 쪽은 오래된 이미지 편집 프로그램이나 일부 업로드 폼입니다. 상대가 열지 못한다면 JPG로 변환해 보내세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">여러 장을 한 번에 바꿀 수 있나요?</h4>
+          <p>여러 파일을 선택해 한 번에 변환할 수 있습니다. 다만 모두 브라우저 메모리에서 처리되므로 수십 장을 고화질로 넣으면 느려질 수 있습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">촬영 정보가 유지되나요?</h4>
+          <p>변환 과정에서 이미지를 다시 그리므로 EXIF 정보는 대체로 사라집니다. 촬영 위치가 지워진다는 점에서는 개인정보에 유리하지만, 날짜 정보로 사진을 관리한다면 원본을 보관하세요.</p></p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">비슷한 도구 살펴보기</h3>
           <ul class="list-disc list-inside space-y-2">

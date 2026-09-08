@@ -801,7 +801,32 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">색상 변환기란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>색상 변환기는 HEX, RGB, HSL, RGBA, HSLA, HEX8 등 웹 개발과 디자인에서 쓰이는 주요 색상 형식을 실시간으로 상호 변환해주는 도구입니다. 디자이너가 Figma에서 뽑은 HEX 색상을 CSS의 HSL로 바꿔야 하거나, 개발자가 JavaScript에서 계산한 RGB 값을 HEX로 변환해야 할 때 매번 공식을 외울 필요 없이 한 번에 처리할 수 있습니다. 색상 하나를 입력하면 6가지 형식 변환값이 동시에 표시되고, 보색/명도/채도 변형까지 제안해주어 색상 팔레트를 구성할 때도 유용합니다.</p>
+          <p>색상 변환기는 HEX, RGB, HSL, RGBA, HSLA, HEX8 등 웹 개발과 디자인에서 쓰이는 주요 색상 형식을 실시간으로 상호 변환해주는 도구입니다. 디자이너가 Figma에서 뽑은 HEX 색상을 CSS의 HSL로 바꿔야 하거나, 개발자가 JavaScript에서 계산한 RGB 값을 HEX로 변환해야 할 때 매번 공식을 외울 필요 없이 한 번에 처리할 수 있습니다. 색상 하나를 입력하면 6가지 형식 변환값이 동시에 표시되고, 보색/명도/채도 변형까지 제안해주어 색상 팔레트를 구성할 때도 유용합니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">형식마다 잘하는 일이 다릅니다</h3>
+          <p>같은 색을 여러 방식으로 적을 수 있지만 <strong>편한 상황이 각각 다릅니다.</strong></p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>HEX</strong> — 짧아서 옮겨 적기 좋습니다. 디자인 도구와 CSS에서 가장 널리 쓰입니다.</li>
+            <li><strong>RGB</strong> — 빛의 삼원색을 0~255로 표현합니다. 코드에서 값을 계산할 때 다루기 쉽습니다.</li>
+            <li><strong>HSL</strong> — 색상, 채도, 명도로 나눕니다. <strong>색을 조정할 때 압도적으로 편합니다.</strong> 같은 색의 밝은 버전이 필요하면 명도 하나만 올리면 됩니다.</li>
+            <li><strong>CMYK</strong> — 인쇄용입니다. 화면과 원리가 반대라 정확한 변환이 어렵습니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">HSL로 팔레트 만들기</h3>
+          <p>실전에서 가장 쓸모 있는 활용법입니다. 브랜드 색을 정했다면 HSL로 바꾼 뒤 <strong>색상값은 고정하고 명도만 단계별로 조정</strong>하세요. 그러면 같은 계열의 밝고 어두운 변형이 자연스럽게 만들어집니다. 버튼의 기본·호버·비활성 상태를 이 방식으로 잡으면 색이 따로 놀지 않습니다.</p>
+          <p>보색은 색상값에 180을 더하면 됩니다. 색상값이 20인 주황의 보색은 200인 파랑입니다. 30도씩 떨어뜨리면 유사색, 120도씩 나누면 삼각 배색이 됩니다. 감으로 고르는 것보다 훨씬 안정적인 조합이 나옵니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">CMYK 변환은 참고용입니다</h3>
+          <p>화면은 빛을 더해 색을 만들고 인쇄는 잉크를 겹쳐 빛을 빼는 방식이라, 두 체계가 표현할 수 있는 색의 범위가 다릅니다. <strong>화면의 선명한 형광색 계열은 인쇄로 재현되지 않습니다.</strong> 변환값을 그대로 넣으면 실제 인쇄물이 눈에 띄게 칙칙해 보이는 이유입니다.</p>
+          <p>정확한 인쇄색이 필요하다면 색상 프로파일을 적용한 전문 도구를 쓰거나, 인쇄소에 팬톤 번호로 지정하는 편이 확실합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">세 자리 HEX는 무엇인가요?</h4>
+          <p><code>#F00</code>처럼 짧게 쓰는 표기로, 각 자리를 두 번 반복한 것과 같습니다. <code>#FF0000</code>과 동일합니다. 각 자리가 같은 문자로 이루어진 색만 축약할 수 있습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">투명도는 어떻게 넣나요?</h4>
+          <p>HEX는 뒤에 두 자리를 더해 여덟 자리로, RGB와 HSL은 <code>rgba()</code>·<code>hsla()</code> 형식으로 표현합니다. 값은 0(완전 투명)에서 1(불투명) 사이입니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">변환하면 색이 조금 달라집니다</h4>
+          <p>반올림 때문입니다. RGB는 정수만 쓰고 HSL은 백분율로 표현해, 왕복 변환에서 1 정도의 오차가 생길 수 있습니다. 눈으로는 구분되지 않는 수준입니다.</p></p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
           <p>색상 변환기는 입력된 색상 값을 파싱한 후 내부적으로 RGB 색공간으로 통일합니다. RGB 값을 기반으로 수학적 공식을 적용하여 HSL, HSV, CMYK 등 다른 색공간으로 변환합니다. 예를 들어 HEX #FF6B35를 입력하면, 먼저 16진수를 R=255, G=107, B=53으로 분리하고, HSL 변환 공식을 적용하여 H=16°, S=100%, L=60%를 계산합니다. CMYK 변환은 RGB 값을 0~1 범위로 정규화한 뒤 K=1-max(R,G,B), C=(1-R-K)/(1-K) 공식으로 산출합니다.</p>

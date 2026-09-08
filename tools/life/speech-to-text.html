@@ -588,7 +588,32 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">음성 인식(STT)이란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>음성 인식(Speech to Text, STT)은 사람의 말을 실시간으로 텍스트로 변환하는 기술입니다. 이 도구는 브라우저에 내장된 Web Speech API를 활용하여 별도의 프로그램 설치 없이 음성을 텍스트로 바꿔줍니다. 회의록 작성, 인터뷰 기록, 받아쓰기, 메모 등 키보드 입력이 불편한 상황에서 특히 유용합니다.</p>
+          <p>음성 인식(Speech to Text, STT)은 사람의 말을 실시간으로 텍스트로 변환하는 기술입니다. 이 도구는 브라우저에 내장된 Web Speech API를 활용하여 별도의 프로그램 설치 없이 음성을 텍스트로 바꿔줍니다. 회의록 작성, 인터뷰 기록, 받아쓰기, 메모 등 키보드 입력이 불편한 상황에서 특히 유용합니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">음성이 외부로 전송됩니다</h3>
+          <p>이 사이트의 다른 도구와 다른 점이라 먼저 밝힙니다. 이 도구는 브라우저에 내장된 음성 인식 기능을 사용하는데, <strong>크롬 계열에서는 인식 처리를 위해 녹음된 음성이 브라우저 제조사 서버로 전송됩니다.</strong> 녹음이 이 기기를 벗어나지 않는다고 볼 수 없습니다.</p>
+          <p>일상적인 메모나 초안 작성에는 문제가 없지만, <strong>비공개 회의나 개인 상담처럼 민감한 대화를 받아쓰는 용도라면 이 점을 감안하세요.</strong> 그런 경우에는 기기 내부에서만 처리하는 전용 프로그램을 쓰는 편이 안전합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">인식률을 올리는 요령</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>또박또박, 다만 자연스럽게.</strong> 지나치게 천천히 말하면 오히려 단어 경계를 잘못 잡습니다. 평소 속도로 발음만 분명하게 하세요.</li>
+            <li><strong>조용한 곳에서.</strong> 배경 음악이나 다른 사람의 말소리가 섞이면 정확도가 급격히 떨어집니다.</li>
+            <li><strong>마이크와의 거리를 일정하게.</strong> 20~30cm를 유지하고 말하는 도중 움직이지 마세요.</li>
+            <li><strong>문장 단위로 끊으세요.</strong> 한 번에 길게 말하기보다 문장마다 잠깐 쉬면 인식 결과가 안정적입니다.</li>
+          </ul>
+          <p>고유명사, 전문 용어, 사람 이름은 특히 자주 틀립니다. 이런 단어가 많은 내용이라면 받아쓴 뒤 검토하는 시간을 감안해야 합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">문장부호는 직접 넣어야 합니다</h3>
+          <p>한국어 인식에서는 마침표나 쉼표가 자동으로 붙지 않는 경우가 많습니다. 받아쓴 결과가 문장부호 없이 이어진 긴 덩어리로 나오는 것이 정상입니다. 초안을 빠르게 뽑는 용도로 쓰고 정리는 나중에 한다고 생각하시면 됩니다.</p>
+          <p>화자 구분도 되지 않습니다. 여러 사람이 대화하는 회의를 받아쓰면 누가 한 말인지 섞여 나오므로, 회의록 용도라면 화자 분리를 지원하는 전용 서비스가 필요합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">브라우저가 지원하지 않는다고 나옵니다</h4>
+          <p>이 기능은 크롬과 엣지 등 일부 브라우저에서만 동작합니다. 파이어폭스는 지원하지 않으므로 크롬 계열에서 사용하세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">녹음 파일을 넣어 변환할 수 있나요?</h4>
+          <p>없습니다. 마이크로 들어오는 실시간 음성만 인식합니다. 저장된 파일을 변환하려면 파일 업로드를 지원하는 별도 서비스를 써야 합니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">중간에 자꾸 멈춥니다</h4>
+          <p>말이 없는 구간이 길어지면 인식이 자동으로 종료되는 경우가 있습니다. 이어서 하려면 다시 시작하시면 되고, 긴 내용은 중간중간 결과를 복사해 두시는 편이 안전합니다.</p></p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
           <p>음성 인식은 Web Speech API의 SpeechRecognition 인터페이스를 사용합니다. 마이크로 캡처한 오디오를 브라우저의 음성 인식 엔진(또는 클라우드 서비스)이 처리합니다. 오디오 신호를 음소 단위로 분석하고, 언어 모델을 사용하여 가장 가능성 높은 텍스트로 변환합니다. 실시간(continuous) 모드와 단일 발화 모드를 지원합니다.</p>

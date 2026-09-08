@@ -546,7 +546,33 @@
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">대소문자 변환기 안내</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <h3 class="text-lg font-semibold mt-6 mb-3">대소문자 변환기란?</h3>
-          <p>대소문자 변환기는 텍스트를 다양한 케이스(Case) 형식으로 즉시 변환하는 온라인 도구입니다. 프로그래밍에서는 변수명, 함수명, 클래스명, 상수명 등을 작성할 때 언어별 컨벤션에 맞는 네이밍 규칙을 따라야 합니다. 이 도구는 camelCase, PascalCase, snake_case, kebab-case 같은 프로그래밍 전용 형식부터 UPPERCASE, lowercase, Title Case 같은 일반 텍스트 형식까지 10가지를 한 번에 지원합니다. 기존 텍스트의 형식을 자동 감지하여 변환하므로, 이미 snake_case로 작성된 텍스트도 camelCase로 깔끔하게 변환됩니다. 네이밍 컨벤션은 프로그래밍 초기부터 존재했으며, C 언어에서는 snake_case가, Smalltalk에서는 camelCase가 대중화되었습니다. 오늘날에는 언어마다 공식 스타일 가이드가 있어 JavaScript는 camelCase를, Python의 PEP 8은 snake_case를, CSS는 kebab-case를 표준으로 사용합니다. 일관된 네이밍은 코드 가독성을 크게 향상시키고 팀 협업에서 불필요한 논쟁을 줄여줍니다.</p>
+          <p>대소문자 변환기는 텍스트를 다양한 케이스(Case) 형식으로 즉시 변환하는 온라인 도구입니다. 프로그래밍에서는 변수명, 함수명, 클래스명, 상수명 등을 작성할 때 언어별 컨벤션에 맞는 네이밍 규칙을 따라야 합니다. 이 도구는 camelCase, PascalCase, snake_case, kebab-case 같은 프로그래밍 전용 형식부터 UPPERCASE, lowercase, Title Case 같은 일반 텍스트 형식까지 10가지를 한 번에 지원합니다. 기존 텍스트의 형식을 자동 감지하여 변환하므로, 이미 snake_case로 작성된 텍스트도 camelCase로 깔끔하게 변환됩니다. 네이밍 컨벤션은 프로그래밍 초기부터 존재했으며, C 언어에서는 snake_case가, Smalltalk에서는 camelCase가 대중화되었습니다. 오늘날에는 언어마다 공식 스타일 가이드가 있어 JavaScript는 camelCase를, Python의 PEP 8은 snake_case를, CSS는 kebab-case를 표준으로 사용합니다. 일관된 네이밍은 코드 가독성을 크게 향상시키고 팀 협업에서 불필요한 논쟁을 줄여줍니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">어디에 무엇을 쓰나</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>camelCase</strong> — 자바스크립트와 자바의 변수·함수. <code>userName</code></li>
+            <li><strong>PascalCase</strong> — 클래스와 컴포넌트 이름. <code>UserProfile</code></li>
+            <li><strong>snake_case</strong> — 파이썬 변수·함수, 데이터베이스 컬럼. <code>user_name</code></li>
+            <li><strong>kebab-case</strong> — CSS 클래스, URL 경로, 파일명. <code>user-profile</code></li>
+            <li><strong>SCREAMING_SNAKE_CASE</strong> — 상수와 환경변수. <code>MAX_RETRY_COUNT</code></li>
+          </ul>
+          <p>규칙을 지키는 실익은 분명합니다. 이름만 보고 <strong>그것이 클래스인지 변수인지 상수인지 구분</strong>할 수 있어 코드를 읽는 속도가 빨라집니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">경계를 넘을 때가 문제입니다</h3>
+          <p>실무에서 변환이 자주 필요해지는 이유는 <strong>시스템마다 관례가 다르기 때문</strong>입니다. 데이터베이스 컬럼은 <code>created_at</code>인데 자바스크립트에서는 <code>createdAt</code>으로 쓰고 싶고, API 응답 키는 또 다를 수 있습니다.</p>
+          <p>여기서 중요한 원칙이 있습니다. <strong>변환은 경계에서 한 번만 하세요.</strong> 데이터를 받는 지점에서 프로젝트 규칙에 맞게 바꾸고, 그 안에서는 일관되게 씁니다. 코드 여기저기에서 두 형식을 섞어 쓰기 시작하면 어떤 이름이 맞는지 매번 확인해야 합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">약어에서 갈립니다</h3>
+          <p>변환이 기계적으로 되지 않는 유일한 지점이 약어입니다. <code>user_id</code>를 camelCase로 바꾸면 <code>userId</code>인데, <code>api_url</code>은 <code>apiUrl</code>일까요 <code>apiURL</code>일까요.</p>
+          <p>구글 자바 스타일 가이드를 비롯한 다수의 규약은 <strong>약어도 일반 단어처럼 취급</strong>할 것을 권합니다. 즉 <code>apiUrl</code>, <code>parseHttpRequest</code>, <code>XmlParser</code>가 됩니다. 이 방식의 장점은 <strong>기계적 변환이 항상 가능하다는 것</strong>입니다. <code>HTTPSConnection</code>처럼 대문자가 연달아 붙으면 단어 경계를 알 수 없어 자동 변환이 실패합니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">한글도 변환되나요?</h4>
+          <p>한글에는 대소문자 개념이 없어 그대로 유지됩니다. 구분자만 바뀝니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">URL에는 무엇을 쓰나요?</h4>
+          <p>kebab-case가 표준입니다. 검색엔진이 하이픈을 단어 구분자로 인식하고, 주소는 대소문자를 구분하는 환경이 있어 소문자로 통일하는 편이 안전합니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">여러 줄을 한 번에 바꿀 수 있나요?</h4>
+          <p>여러 줄을 붙여넣으면 각 줄이 개별적으로 변환됩니다. 컬럼 목록을 한꺼번에 바꿀 때 유용합니다.</p></p>
 
           
           

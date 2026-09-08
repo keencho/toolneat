@@ -617,7 +617,31 @@
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
 
           <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">개행문자란?</h3>
-          <p>개행문자(Line Ending)는 텍스트 파일에서 한 줄의 끝을 표시하는 보이지 않는 특수 문자입니다. 문제는 운영체제마다 서로 다른 개행문자를 사용한다는 점입니다. Windows는 CRLF(\r\n), Unix/Linux/macOS는 LF(\n), 클래식 Mac OS는 CR(\r)을 사용합니다. 이 차이 때문에 서로 다른 OS에서 만든 파일을 열거나 공유할 때 글자 깨짐, 스크립트 오류 등 여러 문제가 생길 수 있습니다.</p>
+          <p>개행문자(Line Ending)는 텍스트 파일에서 한 줄의 끝을 표시하는 보이지 않는 특수 문자입니다. 문제는 운영체제마다 서로 다른 개행문자를 사용한다는 점입니다. Windows는 CRLF(\r\n), Unix/Linux/macOS는 LF(\n), 클래식 Mac OS는 CR(\r)을 사용합니다. 이 차이 때문에 서로 다른 OS에서 만든 파일을 열거나 공유할 때 글자 깨짐, 스크립트 오류 등 여러 문제가 생길 수 있습니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">왜 두 가지가 생겼나</h3>
+          <p>타자기 시대의 유산입니다. 종이에 글을 칠 때는 두 동작이 필요했습니다. 활자 위치를 맨 왼쪽으로 되돌리는 <strong>캐리지 리턴(CR)</strong>과 종이를 한 줄 올리는 <strong>라인 피드(LF)</strong>입니다. 초기 컴퓨터는 이 관행을 그대로 가져와 둘 다 보냈고, 윈도우가 그 방식을 이어받았습니다.</p>
+          <p>유닉스는 "어차피 줄을 바꾸는 것이니 하나면 충분하다"고 판단해 LF만 씁니다. 맥은 예전에 CR만 쓰다가 macOS로 넘어오면서 유닉스 방식을 따랐습니다. 지금 실무에서 마주치는 것은 사실상 <strong>CRLF(윈도우)와 LF(그 외 전부)</strong> 두 가지입니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">실제로 터지는 문제들</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>셸 스크립트가 실행되지 않습니다.</strong> 윈도우에서 작성한 스크립트를 리눅스에 올리면 첫 줄의 인터프리터 경로 끝에 <code>\r</code>이 붙어 "그런 파일이 없습니다" 오류가 납니다. 가장 흔하고 원인 찾기 어려운 사례입니다.</li>
+            <li><strong>Git에서 파일 전체가 변경으로 표시됩니다.</strong> 한 글자도 안 고쳤는데 모든 줄이 바뀐 것으로 나오면 줄바꿈이 통째로 바뀐 경우입니다.</li>
+            <li><strong>메모장에서 한 줄로 보입니다.</strong> LF만 있는 파일을 구형 메모장으로 열면 줄바꿈이 무시됐습니다. 최근 버전은 개선됐습니다.</li>
+            <li><strong>문자열 비교가 실패합니다.</strong> 눈에 보이지 않는 <code>\r</code>이 값 끝에 남아 있어 같은 값인데도 다르다고 판정됩니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">근본 대책은 설정입니다</h3>
+          <p>파일마다 변환하는 것은 임시방편입니다. 팀으로 개발한다면 저장소에 <code>.gitattributes</code>를 두고 줄바꿈 규칙을 명시하는 것이 정석입니다. 텍스트 파일은 저장소에 LF로 저장하고, 각자 작업 환경에서 알아서 처리하도록 두면 개인 설정에 상관없이 일관성이 유지됩니다.</p>
+          <p>에디터에도 기본 줄바꿈을 지정해 두세요. 대부분의 편집기가 하단 상태 표시줄에 현재 파일의 줄바꿈 형식을 보여주며 클릭 한 번으로 바꿀 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">내 파일이 어느 형식인지 어떻게 아나요?</h4>
+          <p>대부분의 코드 편집기가 상태 표시줄에 CRLF 또는 LF로 표시합니다. 여기에 붙여넣어도 어떤 형식이 섞여 있는지 확인할 수 있습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">두 형식이 섞여 있으면 어떻게 되나요?</h4>
+          <p>한 파일에 섞이는 경우가 실제로 있으며 가장 골치 아픈 상태입니다. 도구마다 다르게 해석하므로 한쪽으로 통일하는 것이 좋습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">내용이 서버로 전송되나요?</h4>
+          <p>전송되지 않습니다. 변환이 브라우저 안에서만 이루어집니다.</p></p>
 
           
           

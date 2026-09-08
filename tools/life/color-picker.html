@@ -654,7 +654,31 @@
       <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">색상 피커(스포이드)란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>색상 피커(스포이드)는 화면의 어떤 위치에서든 원하는 색상을 정확하게 추출할 수 있는 도구입니다. 브라우저의 EyeDropper API를 활용하여 웹 페이지는 물론, Figma, Photoshop, Slack 등 다른 앱에서도 색상을 가져올 수 있습니다. 디자이너와 개발자가 작업 중 특정 색상을 빠르게 확인하고 복사하는 데 유용합니다.</p>
+          <p>색상 피커(스포이드)는 화면의 어떤 위치에서든 원하는 색상을 정확하게 추출할 수 있는 도구입니다. 브라우저의 EyeDropper API를 활용하여 웹 페이지는 물론, Figma, Photoshop, Slack 등 다른 앱에서도 색상을 가져올 수 있습니다. 디자이너와 개발자가 작업 중 특정 색상을 빠르게 확인하고 복사하는 데 유용합니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">화면 어디서든 색을 집어올 수 있습니다</h3>
+          <p>스포이드 기능은 브라우저 창 안이 아니라 <strong>화면 전체</strong>에서 색을 가져옵니다. 다른 브라우저 탭은 물론 포토샵, 이미지 뷰어, 심지어 동영상 재생 화면의 한 점도 집을 수 있습니다. 캡처해서 편집기에 불러오는 과정이 필요 없습니다.</p>
+          <p>다만 이 기능은 <strong>크롬 계열 데스크톱 브라우저에서만</strong> 동작합니다. 파이어폭스와 사파리, 모바일에서는 버튼이 나타나지 않거나 눌러도 반응하지 않습니다. 그런 환경에서는 색상 입력창에 값을 직접 넣어 확인하는 방식으로 쓰시면 됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">HEX, RGB, HSL 언제 무엇을 쓰나</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>HEX</strong> — <code>#2563EB</code> 형식. 짧아서 CSS와 디자인 도구에 붙여넣기 좋습니다. 가장 널리 쓰입니다.</li>
+            <li><strong>RGB</strong> — 빨강·초록·파랑을 0~255로 표현합니다. 코드에서 값을 계산하거나 투명도를 함께 다룰 때 편합니다.</li>
+            <li><strong>HSL</strong> — 색상·채도·명도로 나눕니다. <strong>색을 조정할 때 가장 직관적입니다.</strong> 같은 색의 밝은 버전이 필요하면 명도만 올리면 되기 때문입니다.</li>
+          </ul>
+          <p>팔레트를 만들 때 HSL이 특히 유용합니다. 색상값을 고정하고 명도만 다르게 하면 자연스러운 색 단계가 만들어집니다. 반면 HEX로 같은 작업을 하려면 세 값을 동시에 바꿔야 해서 감으로 맞추게 됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">집은 색을 바로 쓰기 전에</h3>
+          <p>화면에서 집은 색은 그 화면의 색 보정이 적용된 값입니다. 모니터마다 조금씩 다르게 보이므로, 정확한 색이 중요한 작업이라면 원본 파일의 색상값을 확인하는 편이 확실합니다.</p>
+          <p>그리고 글자 색으로 쓸 값이라면 <strong>배경과의 대비를 반드시 확인하세요.</strong> 보기에 예쁜 색도 본문 글자로 쓰면 접근성 기준(4.5:1)에 못 미치는 경우가 많습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">스포이드 버튼이 안 보입니다</h4>
+          <p>브라우저가 지원하지 않는 경우입니다. 크롬이나 엣지 데스크톱 버전에서 시도해 보세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">투명도도 가져오나요?</h4>
+          <p>가져오지 않습니다. 화면에 최종적으로 보이는 색만 읽으므로, 반투명한 요소는 뒤에 깔린 색과 섞인 결과값이 나옵니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">집은 색이 저장되나요?</h4>
+          <p>저장되지 않습니다. 필요한 값은 복사해 두세요. 어떤 정보도 서버로 전송되지 않습니다.</p></p>
 
           
 

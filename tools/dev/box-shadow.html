@@ -634,7 +634,35 @@
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">CSS Box Shadow 생성기 안내</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <h3 class="text-lg font-bold mt-8 mb-2">CSS Box Shadow란?</h3>
-          <p>box-shadow는 HTML 요소 주위에 그림자 효과를 만드는 CSS 속성입니다. 카드 UI, 버튼 호버 효과, 모달 팝업 등 웹 디자인 전반에서 깊이감과 입체감을 표현할 때 사용됩니다. 한 요소에 여러 개의 그림자를 쉼표로 구분하여 겹칠 수 있으며, 외부 그림자와 내부(inset) 그림자를 조합해 다채로운 효과를 만들 수 있습니다. 이 생성기를 사용하면 슬라이더 조작만으로 원하는 그림자를 시각적으로 디자인하고, 완성된 CSS 코드를 바로 복사할 수 있습니다. box-shadow 속성은 CSS3 명세에서 도입되었으며, 그 이전에는 이미지를 잘라 붙이거나 별도의 div 레이어를 쌓아야 비슷한 효과를 낼 수 있었습니다. 현재는 모든 주요 브라우저에서 벤더 프리픽스 없이 지원되며, Material Design이나 Apple의 Human Interface Guidelines에서도 그림자를 통한 고도(elevation) 시스템을 권장하고 있어 현대 UI 설계의 핵심 요소로 자리잡았습니다.</p>
+          <p>box-shadow는 HTML 요소 주위에 그림자 효과를 만드는 CSS 속성입니다. 카드 UI, 버튼 호버 효과, 모달 팝업 등 웹 디자인 전반에서 깊이감과 입체감을 표현할 때 사용됩니다. 한 요소에 여러 개의 그림자를 쉼표로 구분하여 겹칠 수 있으며, 외부 그림자와 내부(inset) 그림자를 조합해 다채로운 효과를 만들 수 있습니다. 이 생성기를 사용하면 슬라이더 조작만으로 원하는 그림자를 시각적으로 디자인하고, 완성된 CSS 코드를 바로 복사할 수 있습니다. box-shadow 속성은 CSS3 명세에서 도입되었으며, 그 이전에는 이미지를 잘라 붙이거나 별도의 div 레이어를 쌓아야 비슷한 효과를 낼 수 있었습니다. 현재는 모든 주요 브라우저에서 벤더 프리픽스 없이 지원되며, Material Design이나 Apple의 Human Interface Guidelines에서도 그림자를 통한 고도(elevation) 시스템을 권장하고 있어 현대 UI 설계의 핵심 요소로 자리잡았습니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">다섯 개 값의 역할</h3>
+          <p><code>box-shadow: 0 4px 12px 0 rgba(0,0,0,0.15)</code> 같은 값에서 각 숫자가 하는 일입니다.</p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>가로 오프셋</strong> — 그림자를 좌우로 옮깁니다. 대개 0으로 둡니다.</li>
+            <li><strong>세로 오프셋</strong> — 아래로 내립니다. 빛이 위에서 온다고 가정하므로 양수를 씁니다.</li>
+            <li><strong>흐림 반경</strong> — 그림자의 부드러움. 클수록 멀리 떠 있는 느낌이 납니다.</li>
+            <li><strong>확산 반경</strong> — 그림자 자체를 키우거나 줄입니다. 음수를 주면 안쪽으로 좁아집니다.</li>
+            <li><strong>색상</strong> — 투명도를 포함한 색.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">자연스러운 그림자의 조건</h3>
+          <p>초보자가 만든 그림자가 어색해 보이는 이유는 대개 <strong>너무 진하고 너무 또렷하기</strong> 때문입니다. 실제 그림자는 훨씬 옅고 부드럽습니다.</p>
+          <p>세 가지만 지키면 크게 나아집니다. 첫째, <strong>불투명도를 0.1~0.2 사이</strong>로 낮추세요. 검정 100%는 거의 쓰이지 않습니다. 둘째, <strong>흐림 반경을 세로 오프셋의 두 배 이상</strong>으로 잡으세요. 4px 내렸다면 흐림은 8px 이상입니다. 셋째, <strong>순수한 검정 대신 배경색 계열의 어두운 색</strong>을 쓰면 화면에 더 잘 녹아듭니다.</p>
+          <p>한 단계 더 나아가려면 <strong>그림자를 두 겹으로 겹치세요.</strong> 가까운 곳에 작고 진한 그림자를, 먼 곳에 크고 옅은 그림자를 두면 실제 조명과 비슷해집니다. 쉼표로 여러 그림자를 나열하면 됩니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">높이로 위계를 만드세요</h3>
+          <p>그림자의 크기는 <strong>그 요소가 얼마나 위에 떠 있는지</strong>를 나타냅니다. 이 규칙을 일관되게 적용하면 화면의 정보 구조가 직관적으로 전달됩니다.</p>
+          <p>카드처럼 배경에 가까운 요소는 작은 그림자를, 드롭다운은 중간을, 모달처럼 화면 위에 완전히 떠 있는 요소는 큰 그림자를 씁니다. <strong>단계를 서너 개로 정해두고 재사용하는 것</strong>이 요령입니다. 요소마다 다른 그림자를 쓰면 통일감이 사라집니다.</p>
+          <p>다크 모드에서는 그림자가 잘 보이지 않습니다. 어두운 배경에 어두운 그림자는 표시가 나지 않기 때문입니다. 이럴 때는 그림자 대신 <strong>배경을 한 단계 밝게</strong> 하거나 옅은 테두리로 경계를 표현하는 방식이 더 효과적입니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">inset은 언제 쓰나요?</h4>
+          <p>그림자를 요소 안쪽에 그립니다. 눌린 버튼이나 입력창처럼 <strong>파여 있는 느낌</strong>을 낼 때 씁니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">성능에 영향이 있나요?</h4>
+          <p>보통은 없습니다. 다만 흐림 반경이 매우 크거나 애니메이션으로 계속 바꾸면 부담이 됩니다. 호버 효과에는 그림자 값을 바꾸는 대신 투명도나 변형을 쓰는 편이 부드럽습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">테두리와 무엇이 다른가요?</h4>
+          <p>테두리는 요소의 크기에 포함되어 레이아웃에 영향을 주지만 그림자는 그렇지 않습니다. 그래서 호버 시 그림자를 키워도 주변 요소가 밀리지 않습니다.</p></p>
 
           <h3 class="text-lg font-bold mt-8 mb-2">동작 방식</h3>
           <p>box-shadow는 요소의 border-box를 기준으로 그림자를 렌더링합니다. 브라우저는 먼저 요소의 경계 상자와 동일한 크기의 사각형을 생성하고, offset-x와 offset-y만큼 위치를 이동시킵니다. 그런 다음 spread 값에 따라 사각형을 확장하거나 축소하고, 가우시안 블러 알고리즘을 적용하여 blur 값만큼 가장자리를 부드럽게 만듭니다. 예를 들어 <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">box-shadow: 4px 8px 16px -2px rgba(0,0,0,0.15)</code>는 그림자를 오른쪽 4px, 아래쪽 8px 이동시키고, 16px 블러를 적용한 뒤, spread -2px로 전체 크기를 약간 줄여 요소보다 살짝 작은 부드러운 그림자를 만듭니다. inset 키워드를 추가하면 동일한 계산이 요소 내부에서 수행되어 눌린 듯한 효과를 냅니다. 렌더링은 GPU가 처리하므로 일반적인 사용에서는 성능 걱정이 없지만, 애니메이션과 결합할 때는 will-change: box-shadow 선언이 도움이 됩니다.</p>

@@ -614,7 +614,30 @@
       <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">텍스트 음성 변환(TTS)이란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>텍스트 음성 변환(Text to Speech, TTS)은 입력된 텍스트를 사람의 음성으로 읽어주는 기술입니다. 이 도구는 브라우저에 내장된 Web Speech API의 음성 합성 기능을 사용하며, 운영체제와 브라우저에 설치된 음성 엔진을 활용합니다. 외국어 발음 확인부터 문서 교정, 접근성 지원까지 다양한 용도로 활용할 수 있습니다.</p>
+          <p>텍스트 음성 변환(Text to Speech, TTS)은 입력된 텍스트를 사람의 음성으로 읽어주는 기술입니다. 이 도구는 브라우저에 내장된 Web Speech API의 음성 합성 기능을 사용하며, 운영체제와 브라우저에 설치된 음성 엔진을 활용합니다. 외국어 발음 확인부터 문서 교정, 접근성 지원까지 다양한 용도로 활용할 수 있습니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">목소리는 기기에 설치된 것을 씁니다</h3>
+          <p>이 도구는 음성을 내려받지 않고 <strong>운영체제에 이미 설치된 음성 엔진</strong>을 호출합니다. 그래서 목록에 나오는 목소리가 사람마다 다릅니다. 윈도우와 맥, 안드로이드와 아이폰이 각각 다른 엔진을 쓰기 때문입니다. 같은 문장을 읽혀도 기기마다 억양과 음색이 달라집니다.</p>
+          <p>한국어 목소리가 하나도 안 보인다면 시스템에 한국어 음성이 설치되지 않은 경우입니다. 윈도우는 <em>설정 → 시간 및 언어 → 음성</em>에서 한국어 음성 패키지를 추가하면 목록에 나타납니다. 크롬은 기기 음성 외에 자체 제공 음성도 함께 보여주는 편이라 선택지가 가장 많습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">교정 도구로 써보세요</h3>
+          <p>가장 실용적인 쓰임새입니다. 글을 소리로 들으면 <strong>눈으로 읽을 때 놓치던 오류가 잡힙니다.</strong> 직접 쓴 글은 뇌가 의도한 대로 읽어버려서 조사가 틀리거나 단어가 빠져도 그냥 넘어가는데, 귀로 들으면 어색한 지점에서 걸립니다.</p>
+          <p>문장이 지나치게 긴 것도 소리로 들으면 드러납니다. 읽는 사람이 숨 쉴 곳 없이 이어지는 문장은 글에서도 읽기 어렵습니다. 속도를 조금 느리게 두고 들으면 더 잘 잡힙니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">읽기 결과를 다듬는 법</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>숫자와 단위</strong> — <code>3.5kg</code> 같은 표기는 엔진마다 다르게 읽습니다. 정확히 들려주려면 "삼점오 킬로그램"처럼 풀어 쓰세요.</li>
+            <li><strong>영어 섞인 문장</strong> — 한국어 음성은 영어 단어를 한글 발음으로 읽는 경우가 많습니다. 발음 확인이 목적이라면 영어 음성으로 바꿔 그 부분만 따로 들으세요.</li>
+            <li><strong>쉼표를 활용하세요</strong> — 쉼표와 마침표에서 실제로 쉬어 갑니다. 끊어 읽기가 어색하면 문장부호를 조정하는 것이 가장 간단한 해결책입니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">음성 파일로 저장할 수 있나요?</h4>
+          <p>저장 기능은 없습니다. 브라우저가 소리를 직접 재생하는 방식이라 파일로 뽑아낼 수 없습니다. 파일이 필요하다면 화면 녹화 도구로 소리를 함께 녹음하는 우회 방법이 있습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">입력한 글이 외부로 나가나요?</h4>
+          <p>기기에 설치된 음성으로 읽는 경우에는 나가지 않습니다. 다만 브라우저가 자체 제공하는 온라인 음성을 선택하면 처리를 위해 텍스트가 전송될 수 있습니다. 민감한 내용이라면 목록에서 기기 음성을 고르세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">긴 글도 되나요?</h4>
+          <p>브라우저에 따라 한 번에 처리하는 길이에 제한이 있어 중간에 끊길 수 있습니다. 문단 단위로 나눠 실행하는 편이 안정적입니다.</p></p>
 
           
 

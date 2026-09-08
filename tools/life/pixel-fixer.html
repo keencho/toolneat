@@ -679,7 +679,32 @@
       <section class="mt-10 bg-white dark:bg-gray-800 rounded-xl p-5 shadow border border-gray-200 dark:border-gray-600">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">픽셀 수리 도구란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p>픽셀 수리 도구는 LCD 및 OLED 디스플레이에서 발생하는 스턱픽셀(stuck pixel)을 소프트웨어적으로 복구하는 온라인 도구입니다. 빠르게 변하는 랜덤 색상 노이즈를 해당 픽셀 영역에 집중적으로 표시하여 멈춘 트랜지스터를 자극하고 정상 작동하도록 유도합니다. JScreenFix와 동일한 원리를 사용하며, 별도의 프로그램 설치 없이 브라우저에서 바로 실행할 수 있습니다.</p>
+          <p>픽셀 수리 도구는 LCD 및 OLED 디스플레이에서 발생하는 스턱픽셀(stuck pixel)을 소프트웨어적으로 복구하는 온라인 도구입니다. 빠르게 변하는 랜덤 색상 노이즈를 해당 픽셀 영역에 집중적으로 표시하여 멈춘 트랜지스터를 자극하고 정상 작동하도록 유도합니다. JScreenFix와 동일한 원리를 사용하며, 별도의 프로그램 설치 없이 브라우저에서 바로 실행할 수 있습니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">고칠 수 있는 것과 없는 것</h3>
+          <p>기대치를 먼저 맞추는 편이 좋습니다. 이 방법으로 되살릴 가능성이 있는 것은 <strong>스턱픽셀뿐입니다.</strong></p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>스턱픽셀</strong> — 특정 색으로 고정된 상태. 소자는 살아 있으므로 자극으로 풀릴 수 있습니다. <strong>복구 대상입니다.</strong></li>
+            <li><strong>데드픽셀</strong> — 아예 켜지지 않는 상태. 회로가 끊어진 것이라 어떤 방법으로도 되살아나지 않습니다.</li>
+            <li><strong>번인</strong> — 소자가 물리적으로 노화된 것. 영구 손상입니다.</li>
+          </ul>
+          <p>구분하는 방법은 색을 바꿔가며 확인하는 것입니다. 검은 화면에서 컬러 점으로 보이면 스턱픽셀, 흰 화면에서 검은 점으로 보이면 데드픽셀일 가능성이 높습니다. 데드픽셀 테스트 도구로 먼저 확인하세요.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">얼마나 돌려야 하나</h3>
+          <p>정해진 답은 없지만 <strong>최소 20~30분</strong>은 돌려보는 것이 일반적입니다. 반응이 없으면 한 시간 이상 두거나 몇 번에 나눠 시도합니다. <strong>몇 시간을 돌려도 변화가 없으면 스턱픽셀이 아니거나 복구되지 않는 상태</strong>로 보고 포기하는 편이 낫습니다.</p>
+          <p>성공률 자체가 높지 않습니다. 되면 다행이고 안 되어도 이상한 일이 아니라는 정도로 생각하세요. 복구되었다가 시간이 지나 다시 고정되는 경우도 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">주의할 점</h3>
+          <p>색이 빠르게 깜빡이므로 <strong>광과민성 발작 병력이 있다면 사용하지 마세요.</strong> 화면을 계속 응시할 필요가 없으니 실행해 두고 자리를 비우시면 됩니다.</p>
+          <p>화면을 손가락이나 천으로 누르는 방법이 인터넷에 돌아다니는데 <strong>권하지 않습니다.</strong> 성공률이 낮은 반면 패널 내부 층을 손상시켜 오히려 영구적인 얼룩을 만들 위험이 있습니다. 보증 기간 중이라면 무리한 시도보다 교환 문의가 낫습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">화면에 무리가 가지 않나요?</h4>
+          <p>일반적인 영상 재생과 다르지 않은 수준이라 짧은 시간 실행은 문제되지 않습니다. 다만 며칠씩 계속 켜두는 것은 권하지 않습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">전체 화면으로 해야 하나요?</h4>
+          <p>불량화소가 있는 영역을 덮기만 하면 됩니다. 위치를 정확히 안다면 그 부분에 맞춰도 되고, 모르겠으면 전체 화면으로 실행하세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">노트북과 휴대폰에서도 되나요?</h4>
+          <p>화면 종류와 무관하게 시도할 수 있습니다. 다만 OLED는 정지 화면 노출에 민감하므로 장시간 실행은 피하세요.</p></p>
 
           
           

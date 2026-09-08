@@ -603,7 +603,27 @@
       <section class="mt-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">PDF 페이지 재정렬이란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">PDF 페이지 재정렬은 기존 PDF 문서의 페이지 순서를 원하는 대로 바꾸는 기능입니다. 스캔 순서가 뒤바뀐 문서를 정리하거나, 발표 자료의 슬라이드 순서를 변경하거나, 제출 서류의 페이지 배열을 조정하는 등 다양한 상황에서 활용할 수 있습니다. 드래그 앤 드롭으로 직관적으로 순서를 바꿀 수 있으며, 모든 처리는 브라우저에서 이루어져 파일이 외부로 전송되지 않습니다.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">PDF 페이지 재정렬은 기존 PDF 문서의 페이지 순서를 원하는 대로 바꾸는 기능입니다. 스캔 순서가 뒤바뀐 문서를 정리하거나, 발표 자료의 슬라이드 순서를 변경하거나, 제출 서류의 페이지 배열을 조정하는 등 다양한 상황에서 활용할 수 있습니다. 드래그 앤 드롭으로 직관적으로 순서를 바꿀 수 있으며, 모든 처리는 브라우저에서 이루어져 파일이 외부로 전송되지 않습니다.
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">순서가 어긋나는 흔한 원인</h3>
+          <p>재정렬이 필요해지는 상황은 대개 정해져 있습니다. <strong>양면 스캔</strong>이 가장 많습니다. 앞면을 전부 스캔한 뒤 뒷면을 스캔하면 1, 3, 5… 다음에 2, 4, 6…이 오는 순서로 저장됩니다. 이럴 때는 홀수 장과 짝수 장을 번갈아 배치해야 원래 순서가 됩니다.</p>
+          <p>급지 장치로 스캔했는데 <strong>뒷면이 역순</strong>으로 들어간 경우도 흔합니다. 마지막 장의 뒷면이 먼저 저장되기 때문입니다. 미리보기로 실제 순서를 먼저 파악한 뒤 옮기는 편이 헷갈리지 않습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">내용은 그대로 유지됩니다</h3>
+          <p>순서를 바꿔도 <strong>화질이 떨어지거나 텍스트가 사라지지 않습니다.</strong> 페이지 객체의 배치 순서만 다시 지정하는 작업이라, 각 페이지 안의 글자와 이미지는 원본 그대로입니다. 텍스트 선택과 검색도 계속 됩니다.</p>
+          <p>다만 <strong>페이지를 가리키던 요소는 끊길 수 있습니다.</strong> 목차의 링크, 책갈피, 상호 참조가 원래 번호를 가리키고 있었다면 순서가 바뀐 뒤 엉뚱한 곳으로 이동합니다. 이런 요소가 있는 문서라면 결과물에서 링크를 확인하세요.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">작업 순서 요령</h3>
+          <p>페이지가 많을 때는 <strong>먼저 지울 것을 지우고 그다음 순서를 잡는 편</strong>이 빠릅니다. 필요 없는 페이지를 남겨둔 채 정렬하면 옮기는 횟수가 늘어납니다. 삭제는 페이지 삭제 도구를 쓰시면 됩니다.</p>
+          <p>반대로 여러 문서를 합쳐 하나로 만들 계획이라면, 먼저 병합한 뒤 한 번에 정렬하는 것이 낫습니다. 문서별로 정렬해 두어도 합치는 과정에서 다시 손봐야 하는 경우가 많습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">페이지를 뒤집힌 순서로 한 번에 바꿀 수 있나요?</h4>
+          <p>일괄 뒤집기 기능은 없어 하나씩 옮겨야 합니다. 페이지가 아주 많다면 분할 도구로 나눈 뒤 병합할 때 순서를 지정하는 방법이 더 빠를 수 있습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">방향이 잘못된 페이지도 고칠 수 있나요?</h4>
+          <p>이 도구는 순서만 다룹니다. 눕거나 뒤집힌 페이지는 PDF 회전 도구를 쓰세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">원본이 바뀌나요?</h4>
+          <p>바뀌지 않습니다. 결과는 새 파일로 내려받게 되며 원본은 그대로 남습니다.</p></p>
 
           
 
