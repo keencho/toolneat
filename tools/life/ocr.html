@@ -558,7 +558,33 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-5 md:p-8 ring-1 ring-gray-100 dark:ring-gray-700">
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">OCR 텍스트 추출이란?</h2>
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
-          <p class="text-gray-600 dark:text-gray-400 mb-4">OCR(Optical Character Recognition, 광학 문자 인식)은 이미지 속 문자를 컴퓨터가 읽을 수 있는 텍스트로 변환하는 기술입니다. 스캔 문서, 사진, 스크린샷 등 다양한 이미지에서 텍스트를 자동으로 추출하여 편집, 검색, 복사할 수 있는 형태로 만들어줍니다. 이 도구는 Tesseract.js 엔진을 기반으로 한국어, 영어, 일본어, 중국어 등 100개 이상의 언어를 지원합니다.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">OCR(Optical Character Recognition, 광학 문자 인식)은 이미지 속 문자를 컴퓨터가 읽을 수 있는 텍스트로 변환하는 기술입니다. 스캔 문서, 사진, 스크린샷 등 다양한 이미지에서 텍스트를 자동으로 추출하여 편집, 검색, 복사할 수 있는 형태로 만들어줍니다. 이 도구는 Tesseract.js 엔진을 사용하며 한국어, 영어, 일본어, 그리고 한국어와 영어가 섞인 문서를 인식할 수 있습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">처음 실행이 느린 이유</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">인식을 처음 시작하면 한동안 진행률이 오르지 않습니다. 고장이 아니라 <strong>선택한 언어의 학습 데이터를 내려받는 중</strong>입니다. 언어당 수 메가바이트에서 십수 메가바이트라 회선 속도에 따라 수십 초가 걸릴 수 있습니다. 한 번 받아두면 브라우저가 캐시하므로 같은 언어로는 다음부터 빠릅니다.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">인식 자체도 서버가 아니라 <strong>기기의 CPU로 처리합니다.</strong> 그래서 이미지가 크고 글자가 많을수록 오래 걸리고, 처리 중에는 브라우저가 잠시 무거워질 수 있습니다. 대신 문서가 외부로 나가지 않습니다.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">언어 선택이 정확도를 좌우합니다</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">한국어 문서에 영어 설정으로 돌리면 글자를 알아보지 못하고 엉뚱한 문자를 뱉습니다. 반대로 <strong>영어만 있는 문서에 "한국어 + 영어"를 쓰면 오히려 정확도가 떨어질 수 있습니다.</strong> 후보 문자 집합이 넓어지면서 혼동이 늘기 때문입니다.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">문서에 실제로 있는 언어만 고르는 것이 원칙입니다. 한글 본문에 영어 용어가 섞인 기술 문서처럼 정말 두 언어가 함께 있을 때만 조합 옵션을 쓰세요.</p>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3">인식률을 올리는 방법</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">OCR 결과는 후처리보다 <strong>입력 이미지 품질</strong>에서 거의 결정됩니다. 결과가 나쁘면 다시 찍는 편이 빠릅니다.</p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>수평을 맞추세요.</strong> 기울어진 사진은 인식률이 크게 떨어집니다. 문서 가장자리가 화면과 나란하도록 정면에서 찍으세요.</li>
+            <li><strong>그림자를 피하세요.</strong> 손이나 몸의 그림자가 문서에 지면 그 부분이 통째로 인식되지 않습니다. 조명을 정면에서 받거나 창가에서 촬영하세요.</li>
+            <li><strong>해상도는 충분히.</strong> 글자 높이가 화면에서 20픽셀은 넘어야 합니다. 너무 작으면 확대해도 소용없습니다.</li>
+            <li><strong>대비를 확보하세요.</strong> 흰 종이에 검은 글자가 가장 잘 읽힙니다. 색지나 형광펜이 겹친 부분은 놓치기 쉽습니다.</li>
+            <li><strong>손글씨는 기대하지 마세요.</strong> Tesseract는 인쇄체 인식 엔진이라 손글씨 정확도가 매우 낮습니다.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">표나 단이 나뉜 문서는 어떻게 되나요?</h4>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">표의 칸 구조나 2단 편집은 유지되지 않습니다. 글자를 읽는 순서가 뒤섞여 나올 수 있으므로, 단이 나뉜 문서라면 한 단씩 잘라서 따로 처리하는 편이 낫습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">PDF도 넣을 수 있나요?</h4>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">이미지 파일만 지원합니다. PDF라면 PDF → 이미지 도구로 페이지를 이미지로 변환한 뒤 넣으세요. 참고로 텍스트가 살아 있는 PDF라면 OCR 없이 그대로 복사하면 됩니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">문서가 서버로 전송되나요?</h4>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">전송되지 않습니다. 인식 엔진과 학습 데이터를 브라우저로 내려받아 기기 안에서 처리합니다. 신분증이나 계약서처럼 민감한 문서도 외부로 나가지 않습니다.</p>
 
           
 
