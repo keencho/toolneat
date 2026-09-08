@@ -692,7 +692,37 @@
     </section>
 
     <!-- FAQ Section -->
-    
+    <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 mb-8">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">파일이 서버로 가지 않는다는 것</h2>
+      <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+        <p>여기 있는 아홉 개 도구는 모두 브라우저 안에서 PDF를 처리합니다. 페이지를 열 때 <code>pdf-lib</code>와 <code>PDF.js</code> 라이브러리를 내려받고, 이후 파일 읽기와 편집, 저장까지 전부 사용자 기기에서 이루어집니다. 파일이 업로드되지 않으니 업로드 용량 제한이나 처리 대기열도 없고, 작업이 끝난 파일이 서버 어딘가에 남아 있을 걱정도 없습니다. 계약서나 신분증 사본처럼 밖으로 내보내기 곤란한 문서를 다룰 때 실질적인 차이가 됩니다. 확인해보고 싶다면 개발자 도구의 네트워크 탭을 열어둔 채로 작업해보면 파일이 오가는 요청이 없다는 것을 직접 볼 수 있습니다.</p>
+        <p>대신 처리 속도가 기기 성능에 좌우됩니다. 수백 페이지짜리 문서나 고해상도 스캔본은 브라우저가 메모리에 전부 올려야 해서 오래된 기기에서는 버거울 수 있습니다.</p>
+
+        <h3 class="text-lg font-semibold mt-6 mb-3">하려는 작업에 맞는 도구 고르기</h3>
+        <ul class="list-disc list-inside space-y-2">
+          <li><strong>여러 파일을 하나로</strong> — PDF 병합. 순서를 정해 이어 붙입니다.</li>
+          <li><strong>한 파일을 여러 개로</strong> — PDF 분할. 특정 페이지만 따로 빼낼 때 씁니다.</li>
+          <li><strong>필요 없는 페이지 정리</strong> — PDF 페이지 삭제. 순서만 바꾸려면 페이지 재정렬을 쓰세요.</li>
+          <li><strong>방향이 잘못된 스캔본</strong> — PDF 회전. 페이지별로 각도를 지정할 수 있습니다.</li>
+          <li><strong>배포 전 표시 남기기</strong> — PDF 워터마크. 사본임을 명시하거나 유출 경로를 추적할 때 씁니다.</li>
+          <li><strong>형식 바꾸기</strong> — 이미지를 모아 PDF로 만들거나(이미지 → PDF), 반대로 각 페이지를 이미지로 뽑아냅니다(PDF → 이미지).</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold mt-6 mb-3">압축 도구는 원리가 다릅니다</h3>
+        <p>PDF 압축은 나머지 도구와 동작 방식이 다르므로 미리 알아두는 편이 좋습니다. 이 도구는 각 페이지를 화면에 그린 다음 그 결과를 JPEG 이미지로 저장하고, 그 이미지들을 모아 새 PDF를 만듭니다. 그래서 <strong>본문 텍스트가 이미지로 바뀝니다.</strong> 압축한 뒤에는 글자를 드래그해 복사할 수 없고 문서 내 검색도 되지 않습니다.</p>
+        <p>이 방식은 스캔 문서나 사진이 많은 파일에서 효과가 큽니다. 반대로 글자만 있는 문서는 원래도 용량이 작기 때문에 압축 후 오히려 커지는 경우가 있습니다. 품질을 50 아래로 내리면 렌더링 배율까지 낮아져 글자가 눈에 띄게 흐려지므로, 인쇄할 문서라면 70 이상을 권합니다. 텍스트를 살려야 한다면 압축 대신 필요 없는 페이지를 삭제하는 쪽이 낫습니다.</p>
+
+        <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+        <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">암호가 걸린 PDF도 편집할 수 있나요?</h4>
+        <p>열람 암호가 설정된 파일은 처리되지 않습니다. PDF 뷰어에서 암호를 풀어 저장한 뒤 다시 올려주세요. 편집 제한만 걸린 파일은 도구에 따라 동작이 갈립니다.</p>
+        <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">워터마크에 한글을 넣을 수 있나요?</h4>
+        <p>넣을 수 없습니다. 워터마크는 PDF 표준 글꼴인 Helvetica로 글자를 그리는데, 이 글꼴은 한글을 표현하지 못해 한글을 입력하면 오류가 납니다. 영문과 숫자, 기본 기호로 입력해 주세요. 병합이나 회전처럼 기존 문서를 그대로 다루는 도구에서는 문서 안의 한글이 아무 영향 없이 유지됩니다.</p>
+        <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">파일 크기 제한이 있나요?</h4>
+        <p>도구 자체에 걸어둔 제한은 없습니다. 실질적인 한계는 브라우저가 쓸 수 있는 메모리이며, 큰 파일은 처리 중 탭이 잠시 멈춘 것처럼 보일 수 있습니다. 그럴 때는 분할 도구로 나눠서 작업하면 수월합니다.</p>
+        <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">작업한 파일이 서버에 남나요?</h4>
+        <p>남지 않습니다. 애초에 서버로 전송되지 않으며, 처리는 브라우저 메모리에서만 이루어지고 탭을 닫으면 사라집니다. 결과물은 사용자가 직접 내려받은 파일만 남습니다.</p>
+      </div>
+    </section>
   </main>
 
   <div id="footer">

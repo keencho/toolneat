@@ -669,8 +669,28 @@
       </div>
     </section>
     <!-- Life Tools FAQ -->
-    
+    <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 mb-8">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">쓰임새별로 묶어 놓았습니다</h2>
+      <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
+        <p>생활 도구는 성격이 제각각이라 위쪽 필터로 갈래를 좁혀 찾는 편이 빠릅니다. <strong>계산기</strong>는 연봉 실수령액이나 대출 상환액처럼 공식이 정해진 값을 다루고, <strong>이미지</strong>는 크기 조정·압축·형식 변환·워터마크처럼 파일을 손보는 작업입니다. <strong>모니터</strong>는 새로 산 화면의 불량 화소를 점검하는 용도이고, <strong>유틸리티</strong>에는 QR 코드, 타이머, 단위 변환, OCR처럼 어디에도 묶이지 않는 것들이 들어 있습니다.</p>
 
+        <h3 class="text-lg font-semibold mt-6 mb-3">권한을 물어보는 도구들</h3>
+        <p>네 개 도구는 브라우저가 권한을 요청합니다. 웹캠 테스트와 QR 스캐너는 카메라를, 마이크 테스트는 마이크를, 화면 녹화는 공유할 창이나 화면을 고르라고 합니다. 모두 브라우저 표준 기능을 통해 접근하므로 주소창에 표시가 뜨고 언제든 취소할 수 있으며, 여기서 들어온 영상과 소리는 화면에 보여주거나 파일로 저장하는 데만 쓰입니다. 권한 창을 한 번 거부했다면 주소창 왼쪽 자물쇠 아이콘에서 다시 허용할 수 있습니다.</p>
+
+        <h3 class="text-lg font-semibold mt-6 mb-3">한 가지 예외</h3>
+        <p>이미지 편집, PDF 작업, 각종 계산은 전부 기기 안에서 끝나고 파일이 외부로 나가지 않습니다. 배경 제거처럼 무거운 작업도 인공지능 모델을 브라우저로 내려받아 그 자리에서 돌립니다. 다만 <strong>음성 → 텍스트 변환은 다릅니다.</strong> 이 도구는 브라우저에 내장된 음성 인식 기능을 쓰는데, 크롬 계열에서는 인식 처리를 위해 녹음된 음성이 브라우저 제조사 서버로 전송됩니다. 민감한 대화를 받아쓰는 용도라면 이 점을 감안하세요. 반대 방향인 텍스트 → 음성은 기기에 설치된 음성으로 재생하므로 전송이 없습니다.</p>
+
+        <h3 class="text-lg font-semibold mt-6 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">자주 묻는 질문</h3>
+        <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">계산기 결과를 그대로 믿어도 되나요?</h4>
+        <p>연봉이나 대출 계산기는 공개된 공식과 기준에 따라 계산하지만 개인별 공제 항목, 상품별 우대 조건까지 반영하지는 못합니다. 대략적인 규모를 가늠하는 용도로 쓰고, 실제 금액은 해당 기관에서 확인하세요.</p>
+        <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">불량 화소와 잔상은 어떻게 다른가요?</h4>
+        <p>불량 화소는 특정 지점이 항상 같은 색으로 고정된 하드웨어 결함이라 어떤 화면을 띄워도 그대로입니다. 잔상은 같은 이미지를 오래 띄워 남은 흔적이라 시간이 지나거나 색이 바뀌는 화면을 재생하면 옅어집니다. 데드픽셀 테스트로 전자를, 번인 테스트로 후자를 확인할 수 있습니다.</p>
+        <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">OCR이 한글도 읽나요?</h4>
+        <p>읽습니다. 다만 정확도는 원본 상태에 크게 좌우됩니다. 초점이 맞고 글자가 반듯한 이미지는 잘 인식되지만, 기울어진 사진이나 손글씨, 배경이 복잡한 이미지는 오류가 늘어납니다. 촬영본이라면 수평을 맞추고 그림자가 지지 않게 다시 찍는 편이 후처리보다 빠릅니다.</p>
+        <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">모바일에서도 다 되나요?</h4>
+        <p>대부분 됩니다. 다만 화면 녹화는 데스크톱 브라우저에서만 동작하고, 카메라나 마이크를 쓰는 도구는 기기와 브라우저 조합에 따라 권한 처리 방식이 달라질 수 있습니다.</p>
+      </div>
+    </section>
   </main>
 
   <div id="footer">

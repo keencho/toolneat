@@ -104,3 +104,6 @@ http-client.private.env.json
 
 # Github Copilot persisted session migrations, see: https://github.com/microsoft/copilot-intellij-feedback/issues/712#issuecomment-3322062215
 .idea/**/copilot.data.migration.*.xml
+
+# 로컬 전용 메모 (git identity, 빌드 주의사항) - 절대 커밋 금지
+LOCAL-NOTES.md
