@@ -6,7 +6,7 @@
  * 스톱워치 페이지에서 대출 계산기를 추천하는 식의 조합이 남아 있었다.
  * 애드센스가 지적한 "가치가 별로 없는 콘텐츠" 판단에 불리하고 사용자에게도 쓸모없다.
  *
- * 점수 = 공통 태그 수 x 3 + (같은 카테고리면 1)
+ * 점수 = 공통 태그의 IDF 가중합(1/문서빈도). 0.35 미만은 버린다.
  *
  * 사용법:  node scripts/auto/fix-cross-links.js [--dry]
  * 참고:    docs/adsense-plan.md Phase 0-7
@@ -16,10 +16,15 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..', '..');
 const DRY = process.argv.includes('--dry');
-const LINK_COUNT = 5;
+const LINK_COUNT = 5;   // 확실한 매칭이 많을 때 최대 몇 개까지 싣나
+const MIN_LINKS = 3;    // 이만큼은 채우려고 같은 카테고리에서 보충한다
+const STRONG = 0.35;    // 이 점수 이상이면 '확실한 매칭'
 
 // 크로스링크 섹션에 쓰이는 헤딩 (표현은 페이지마다 다름 - 그대로 유지한다)
-const HEADINGS = ['같이 보면 좋은 도구', '관련 도구', '이런 도구도 추천', '함께 쓰면 좋은 도구'];
+const HEADINGS = [
+  '같이 보면 좋은 도구', '관련 도구', '이런 도구도 추천',
+  '함께 쓰면 좋은 도구', '비슷한 도구 살펴보기',
+];
 
 // 태그 어휘가 특이해서 자동 계산으로는 겹치는 도구가 안 나오는 경우. 직접 지정한다.
 const FALLBACK = {
@@ -32,6 +37,32 @@ const FALLBACK = {
   'base-converter': ['ascii-unicode', 'unit-converter', 'percent-calculator', 'morse-code'],
   'fake-chat': ['meme-generator', 'fancy-text', 'emoji-picker', 'image-watermark'],
   'tip-calculator': ['percent-calculator', 'salary-calculator', 'loan-calculator', 'compound-calculator'],
+
+  // CSS 시각 효과
+  'box-shadow': ['gradient-generator', 'color-picker', 'color-converter', 'css-minifier'],
+  'gradient-generator': ['box-shadow', 'color-palette', 'color-picker', 'color-converter'],
+  'color-contrast': ['color-picker', 'color-converter', 'color-palette', 'gradient-generator'],
+  // 텍스트 처리
+  'diff-checker': ['character-counter', 'case-converter', 'line-ending', 'text-escape'],
+  'line-ending': ['diff-checker', 'text-escape', 'case-converter', 'character-counter'],
+  'lorem-ipsum': ['character-counter', 'fancy-text', 'case-converter', 'korean-name-generator'],
+  'character-counter': ['lorem-ipsum', 'diff-checker', 'case-converter', 'typing-test'],
+  'morse-code': ['ascii-unicode', 'base-converter', 'text-to-speech', 'fancy-text'],
+  // SEO / 메타
+  'robots-txt': ['meta-tag-generator', 'og-preview', 'utm-generator'],
+  // 이미지
+  'image-blur': ['image-crop', 'image-watermark', 'image-resizer', 'image-compressor'],
+  'favicon-generator': ['image-resizer', 'image-crop', 'image-converter', 'og-preview'],
+  'video-to-gif': ['image-compressor', 'image-converter', 'screen-recorder', 'image-resizer'],
+  'youtube-thumbnail': ['image-resizer', 'image-crop', 'image-converter', 'og-preview'],
+  'emoji-picker': ['fancy-text', 'ascii-unicode', 'meme-generator', 'character-counter'],
+  // 계산기 / 날짜
+  'age-calculator': ['dday-calculator', 'sleep-calculator', 'percent-calculator', 'unit-converter'],
+  'salary-calculator': ['loan-calculator', 'compound-calculator', 'tip-calculator', 'percent-calculator'],
+  'korean-name-generator': ['lottery-generator', 'roulette', 'dice-roller', 'fancy-text'],
+  // 기타
+  'memory-game': ['2048', 'minesweeper', 'snake', 'tetris'],
+  'merge-pdf': ['split-pdf', 'reorder-pdf', 'delete-pdf', 'compress-pdf'],
 };
 
 // tools-data.js는 브라우저용 전역 스크립트라 shim을 씌워 읽는다
@@ -60,22 +91,29 @@ function related(tool, all) {
 
   const mine = new Set((tool.tags || []).map(s => s.toLowerCase()));
 
-  return all
+  const scored = all
     .filter(t => t.id !== tool.id)
     .map(t => {
-      let shared = 0;
-      for (const tag of t.tags || []) if (mine.has(tag.toLowerCase())) shared++;
-      const same = t.category === tool.category;
-      return { tool: t, score: shared * 3 + (same ? 2 : 0), shared, same };
+      // IDF 가중: 흔한 태그일수록 덜 쳐준다. convert(11개), image(12개) 같은 범용
+      // 태그가 카테고리를 넘어 엉뚱한 도구를 끌어오는 것을 막는다.
+      let score = 0;
+      for (const tag of new Set((t.tags || []).map(s => s.toLowerCase()))) {
+        if (mine.has(tag)) score += 1 / (DF[tag] || 1);
+      }
+      return { tool: t, score, same: t.category === tool.category };
     })
-    // 태그가 하나도 안 겹치면 같은 카테고리라도 제외한다. 목록을 5개로 채우려고
-    // 무관한 도구를 넣느니 3개만 두는 편이 낫다.
-    // 다른 카테고리는 태그 2개 이상을 요구한다 - 한 개만 겹치는 경우는 대개 우연한 충돌이다.
-    // (url-encoder의 percent가 퍼센트 계산기와, coin-flip의 flip이 이미지 뒤집기와 걸리는 식)
-    .filter(r => r.shared >= (r.same ? 1 : 2))
-    .sort((a, b) => b.score - a.score || a.tool.id.localeCompare(b.tool.id))
-    .slice(0, LINK_COUNT)
-    .map(r => r.tool);
+    // 목록을 5개로 채우려고 무관한 도구를 넣느니 2~3개만 두는 편이 낫다.
+    // convert(11개) + 변환(8개)만 겹치는 0.216 구간이 전부 오탐이라 0.35로 끊었다.
+    // format 태그는 "파일 형식"과 "코드 정렬" 두 뜻으로 쓰여 동음이의 충돌을 만든다.
+    .sort((a, b) => b.score - a.score || Number(b.same) - Number(a.same) || a.tool.id.localeCompare(b.tool.id));
+
+  const strong = scored.filter(r => r.score >= STRONG);
+  if (strong.length >= MIN_LINKS) return strong.slice(0, LINK_COUNT).map(r => r.tool);
+
+  // 확실한 매칭이 부족하면 같은 카테고리에서 채운다. 태그가 하나라도 겹쳐야
+  // 하므로 완전히 무관한 도구는 들어오지 않는다. 그래도 모자라면 모자란 대로 둔다.
+  const filler = scored.filter(r => r.score < STRONG && r.same && r.score > 0);
+  return [...strong, ...filler].slice(0, MIN_LINKS).map(r => r.tool);
 }
 
 function buildList(tools, lang, indent) {
@@ -90,6 +128,27 @@ function buildList(tools, lang, indent) {
 
 const all = loadTools();
 const byPath = new Map(all.map(t => [t.path, t]));
+
+// 태그별 문서 빈도 (몇 개 도구에 붙어 있는지)
+const DF = {};
+for (const t of all) {
+  for (const tag of new Set((t.tags || []).map(s => s.toLowerCase()))) DF[tag] = (DF[tag] || 0) + 1;
+}
+
+// FALLBACK에 오타나 없는 도구 id가 들어가면 조용히 링크가 빠지므로 기동 시 검증한다
+{
+  const ids = new Set(all.map(t => t.id));
+  const bad = [];
+  for (const [k, v] of Object.entries(FALLBACK)) {
+    if (!ids.has(k)) bad.push(k + ' (키)');
+    for (const id of v) if (!ids.has(id)) bad.push(k + ' -> ' + id);
+  }
+  if (bad.length) {
+    console.error('FALLBACK에 존재하지 않는 도구 id가 있습니다:');
+    for (const b of bad) console.error('  ' + b);
+    process.exit(1);
+  }
+}
 
 let changed = 0, skipped = 0, noMatch = 0;
 
