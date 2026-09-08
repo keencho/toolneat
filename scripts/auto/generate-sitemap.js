@@ -13,6 +13,12 @@ const path = require('path');
 const BASE_URL = 'https://toolneat.com';
 const ROOT_DIR = path.join(__dirname, '..', '..');
 
+// 애드센스 "가치가 별로 없는 콘텐츠" 대응: EN 페이지를 색인 대상에서 제외하는 동안
+// sitemap에서도 빼둔다. EN 페이지는 noindex 상태이므로 hreflang alternate도 함께 뺀다.
+// KO 승인 후 되돌리기: 이 값을 true로 바꾸고 재생성 + node scripts/auto/en-noindex.js --remove
+// 참고: docs/adsense-plan.md Phase 0-2
+const INCLUDE_EN = false;
+
 // Configuration for different page types
 const config = {
   mainPages: [
@@ -58,6 +64,14 @@ function generateUrlEntry(koPath, priority, changefreq) {
   // Handle root path to avoid trailing slash
   const koUrlPath = koPath === '/' ? '' : koPath;
   const enUrlPath = koPath === '/' ? '/en' : `/en${koPath}`;
+
+  if (!INCLUDE_EN) {
+    return `  <url>
+    <loc>${BASE_URL}${koUrlPath}</loc>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+  }
 
   return `  <url>
     <loc>${BASE_URL}${koUrlPath}</loc>
@@ -128,7 +142,7 @@ ${urls.join('\n\n')}
   fs.writeFileSync(outputPath, sitemap, 'utf8');
 
   console.log(`✅ Sitemap generated: ${outputPath}`);
-  console.log(`   Total URLs: ${urls.length * 2} (ko + en)`);
+  console.log(`   Total URLs: ${urls.length * (INCLUDE_EN ? 2 : 1)} (${INCLUDE_EN ? 'ko + en' : 'ko only — EN excluded'})`);
 }
 
 generateSitemap();

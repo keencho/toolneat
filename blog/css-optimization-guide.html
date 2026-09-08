@@ -573,11 +573,11 @@
         <div class="space-y-4">
           <div>
             <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">CSS 최소화로 성능이 얼마나 개선되나요?</h3>
-            <p class="text-gray-700 dark:text-gray-300">이 주제에 대한 자세한 내용은 위 본문을 참고하시거나, 관련 도구를 직접 사용해 보세요.</p>
+            <p class="text-gray-700 dark:text-gray-300">공백과 주석을 걷어내는 것만으로 보통 원본의 15~25%가 줄어든다. 다만 대부분의 서버가 gzip이나 brotli 압축을 함께 적용하기 때문에 전송 단계의 실질 차이는 그보다 작다. 체감 속도에 훨씬 크게 작용하는 것은 파일 크기보다 사용하지 않는 규칙의 양과 렌더링 차단 여부다. 첫 화면에 필요한 CSS만 인라인하고 나머지를 지연 로드하는 편이 효과가 크다.</p>
           </div>
           <div>
             <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">사용하지 않는 CSS를 찾는 방법은?</h3>
-            <p class="text-gray-700 dark:text-gray-300">이 주제에 대한 자세한 내용은 위 본문을 참고하시거나, 관련 도구를 직접 사용해 보세요.</p>
+            <p class="text-gray-700 dark:text-gray-300">크롬 개발자 도구에서 Ctrl+Shift+P를 누르고 Show Coverage를 실행한 뒤 페이지를 새로고침하면 파일별 미사용 바이트 비율이 표시된다. 다만 이 수치는 측정 시점에 렌더링된 상태 기준이라 모달이나 호버처럼 조건부로 나타나는 스타일까지 미사용으로 잡힌다는 한계가 있다. 빌드 단계에서는 PurgeCSS나 Tailwind의 content 스캔이 정적 분석으로 걸러준다.</p>
           </div>
           
           

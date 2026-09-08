@@ -632,19 +632,19 @@
         <div class="space-y-4">
           <div>
             <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">WebP를 모든 브라우저에서 지원하나요?</h3>
-            <p class="text-gray-700 dark:text-gray-300">이 주제에 대한 자세한 내용은 위 본문을 참고하시거나, 관련 도구를 직접 사용해 보세요.</p>
+            <p class="text-gray-700 dark:text-gray-300">현재 주요 브라우저는 모두 지원한다. 크롬·파이어폭스·엣지는 오래전부터 지원했고, 가장 늦었던 사파리도 2020년 14 버전(macOS Big Sur, iOS 14)부터 지원한다. 실무에서 걸리는 쪽은 오히려 브라우저가 아니라 오래된 이미지 편집 도구나 일부 업로드 폼이다. <code>&lt;picture&gt;</code> 요소로 WebP를 먼저 두고 JPG를 fallback으로 지정하면 안전하다.</p>
           </div>
           <div>
             <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">AVIF는 WebP보다 나은가요?</h3>
-            <p class="text-gray-700 dark:text-gray-300">이 주제에 대한 자세한 내용은 위 본문을 참고하시거나, 관련 도구를 직접 사용해 보세요.</p>
+            <p class="text-gray-700 dark:text-gray-300">압축률만 놓고 보면 그렇다. 같은 화질에서 WebP보다 대략 20~30% 더 작고, 특히 사진 계열에서 차이가 두드러진다. HDR과 12비트 색심도도 지원한다. 다만 인코딩 속도가 느려 이미지를 대량으로 변환할 때 체감되고, 사파리는 16 버전부터 지원한다. 트래픽 비용이 중요하면 AVIF, 호환성과 빌드 속도가 중요하면 WebP가 무난한 선택이다.</p>
           </div>
           <div>
             <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">투명도가 필요할 때는 어떤 형식?</h3>
-            <p class="text-gray-700 dark:text-gray-300">이 주제에 대한 자세한 내용은 위 본문을 참고하시거나, 관련 도구를 직접 사용해 보세요.</p>
+            <p class="text-gray-700 dark:text-gray-300">PNG가 기본이지만 파일이 크다. 사진에 투명 배경이 필요한 경우라면 WebP가 알파 채널을 지원하면서 PNG보다 훨씬 작다. 로고나 아이콘처럼 도형 위주의 이미지는 SVG가 정답이다. 해상도에 관계없이 선명하고 CSS로 색을 바꿀 수도 있다. GIF도 투명도를 지원하기는 하지만 1비트라 반투명 표현이 안 되고 가장자리가 계단처럼 깨진다.</p>
           </div>
           <div>
             <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">인쇄용 이미지에는 어떤 형식?</h3>
-            <p class="text-gray-700 dark:text-gray-300">이 주제에 대한 자세한 내용은 위 본문을 참고하시거나, 관련 도구를 직접 사용해 보세요.</p>
+            <p class="text-gray-700 dark:text-gray-300">인쇄는 300dpi가 기준이라 웹용 72dpi 이미지를 그대로 넘기면 흐릿하게 나온다. 사진은 손실 없는 TIFF가 표준이고, 인쇄소 입고용으로는 이미지를 PDF에 담아 전달하는 경우가 많다. 인쇄는 CMYK 색공간을 쓰는데 WebP와 PNG는 RGB만 지원하므로 인쇄 원고로는 적합하지 않다. 최종 납품 전에 인쇄소가 요구하는 형식과 색공간을 확인하는 것이 확실하다.</p>
           </div>
         </div>
 
