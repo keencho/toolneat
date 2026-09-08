@@ -555,6 +555,38 @@
           <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">화면 녹화란?</h3>
           <p>화면 녹화 도구는 브라우저의 화면 공유(Screen Capture) API를 활용하여 별도 프로그램 설치 없이 화면을 녹화하고 WEBM 파일로 저장하는 도구입니다. 전체 화면, 특정 앱 창, 브라우저 탭 중 원하는 녹화 범위를 선택할 수 있으며, 마이크 음성도 함께 녹음할 수 있습니다. 튜토리얼 제작, 버그 리포트 첨부, 온라인 강의 녹화, 프레젠테이션 기록 등 다양한 상황에서 빠르게 활용할 수 있습니다.</p>
 
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">녹화 범위 세 가지, 소리가 다르게 잡힙니다</h3>
+          <p>공유 창에서 <strong>전체 화면</strong>, <strong>창</strong>, <strong>브라우저 탭</strong> 중 하나를 고릅니다. 화면만 보면 비슷하지만 <strong>시스템 소리가 잡히는 범위가 다릅니다.</strong></p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>브라우저 탭</strong> — 그 탭에서 나는 소리를 깔끔하게 담습니다. 웹 강의나 웹 앱 시연에 가장 적합합니다.</li>
+            <li><strong>전체 화면</strong> — 크롬 기준으로 시스템 소리를 함께 담을 수 있지만, 공유 시작 창에서 <strong>"시스템 오디오 공유" 체크박스를 켜야</strong> 합니다. 이걸 놓쳐서 무음으로 녹화되는 경우가 가장 흔합니다.</li>
+            <li><strong>창</strong> — 개별 앱 창은 시스템 소리를 담지 못하는 경우가 많습니다. 소리가 필요하면 전체 화면이나 탭을 고르세요.</li>
+          </ul>
+          <p>맥에서는 운영체제 제약으로 시스템 소리 캡처가 제한됩니다. 소리가 꼭 필요하다면 맥 기본 화면 기록이나 별도 프로그램을 쓰는 편이 확실합니다.</p>
+
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">저장 형식은 WebM입니다</h3>
+          <p>녹화 결과는 <strong>WebM(VP9 코덱)</strong>으로 저장됩니다. MP4로는 나오지 않습니다. 크롬·엣지·파이어폭스에서는 그대로 재생되고 유튜브 업로드도 문제없지만, 다음 경우에는 변환이 필요합니다.</p>
+          <ul class="list-disc list-inside space-y-2">
+            <li>윈도우 기본 미디어 플레이어나 맥 QuickTime에서 열리지 않을 때</li>
+            <li>카카오톡이나 일부 메신저로 보낼 때 미리보기가 안 뜰 때</li>
+            <li>프리미어·파이널컷 같은 편집 프로그램에 넣을 때</li>
+          </ul>
+          <p>VLC를 쓰면 변환 없이 재생되고, 짧은 영상이라면 GIF 변환 도구로 바꿔 문서에 붙이는 방법도 있습니다.</p>
+
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">녹화 전 확인할 것</h3>
+          <p>다시 찍는 일을 줄이려면 시작 전에 몇 가지를 정리해 두세요. <strong>알림을 꺼두는 것</strong>이 가장 중요합니다. 녹화 도중 메신저 알림이 뜨면 대화 내용이 그대로 영상에 남습니다. 윈도우는 집중 지원, 맥은 방해 금지 모드를 켜면 됩니다.</p>
+          <p>브라우저 탭에 개인 정보가 담긴 페이지가 열려 있지 않은지, 북마크 바에 사내 링크가 노출되지 않는지도 확인하세요. 전체 화면 녹화라면 바탕화면 파일 이름까지 다 찍힙니다. 그리고 <strong>녹화 중에는 탭을 닫으면 안 됩니다.</strong> 브라우저가 녹화를 유지하고 있어서 창을 닫으면 그때까지의 영상도 저장되지 않습니다.</p>
+
+          <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mt-6 mb-2">자주 묻는 질문</h3>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">녹화 시간 제한이 있나요?</h4>
+          <p>도구가 걸어둔 제한은 없습니다. 다만 영상 데이터를 브라우저 메모리에 쌓아두는 구조라 길어질수록 부담이 커집니다. 긴 녹화는 10~15분 단위로 끊어 저장하는 편이 안전합니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">영상이 서버로 올라가나요?</h4>
+          <p>올라가지 않습니다. 화면 데이터가 기기 밖으로 나가지 않고 브라우저 안에서 인코딩되어 곧바로 다운로드됩니다. 사내 시스템 화면을 녹화해도 외부로 전송되지 않습니다.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">마이크와 시스템 소리를 같이 담을 수 있나요?</h4>
+          <p>됩니다. 화면 공유 시 시스템 오디오를 켜고 마이크 권한도 허용하면 두 소리가 하나의 트랙으로 합쳐져 녹음됩니다. 다만 스피커로 소리를 들으면서 마이크로 말하면 울림이 생기므로 헤드셋을 쓰세요.</p>
+          <h4 class="font-semibold text-gray-900 dark:text-white mt-4 mb-1">모바일에서도 되나요?</h4>
+          <p>안 됩니다. 화면 공유 기능이 데스크톱 브라우저에만 있어서 모바일에서는 동작하지 않습니다. 휴대폰 화면은 기기 자체의 화면 기록 기능을 쓰세요.</p>
+
           
 
           
@@ -574,7 +606,7 @@
       <section class="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <div class="prose prose-gray dark:prose-invert max-w-none text-sm">
           <h3 class="text-lg font-semibold mt-6 mb-3">작동 원리</h3>
-          <p>화면 녹화는 navigator.mediaDevices.getDisplayMedia()로 화면 캡처 스트림을 얻고, MediaRecorder API로 비디오를 인코딩합니다. VP8/VP9(WebM) 또는 H.264(MP4) 코덱으로 실시간 인코딩하며, ondataavailable 이벤트로 청크 데이터를 수집합니다. 녹화 완료 후 Blob으로 결합하여 다운로드할 수 있습니다.</p>
+          <p>화면 녹화는 navigator.mediaDevices.getDisplayMedia()로 화면 캡처 스트림을 얻고, MediaRecorder API로 비디오를 인코딩합니다. VP9 코덱의 WebM 형식으로 실시간 인코딩하며, ondataavailable 이벤트로 청크 데이터를 수집합니다. 녹화 완료 후 Blob으로 결합하여 다운로드할 수 있습니다.</p>
 
           <h3 class="text-lg font-semibold mt-6 mb-3">같이 보면 좋은 도구</h3>
           <ul class="list-disc list-inside space-y-2">
