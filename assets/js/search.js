@@ -45,10 +45,10 @@
 
   // Category-specific colors for icons
   const categoryColors = {
-    dev: 'from-blue-500 to-blue-600',
-    life: 'from-green-500 to-green-600',
-    pdf: 'from-red-500 to-red-600',
-    game: 'from-purple-500 to-pink-500'
+    dev: 'text-[#3B6EA5] dark:text-[#7FA8D4]',
+    life: 'text-[#4F8A5B] dark:text-[#86BA92]',
+    pdf: 'text-[#B5553F] dark:text-[#DE8D78]',
+    game: 'text-[#7A5EA8] dark:text-[#B298D8]'
   };
 
   /**
@@ -329,14 +329,14 @@
       const path = getToolPath(tool, lang);
       const categoryLabel = categoryLabels[tool.category][lang];
       const categoryIcon = categoryIcons[tool.category];
-      const categoryColor = categoryColors[tool.category] || 'from-blue-500 to-blue-600';
+      const categoryColor = categoryColors[tool.category] || 'text-[#3B6EA5] dark:text-[#7FA8D4]';
 
       return `
         <a href="${path}"
            class="search-result flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition-colors ${isSelected ? 'bg-blue-50 dark:bg-blue-900/30' : ''}"
            data-index="${index}">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br ${categoryColor} flex items-center justify-center flex-shrink-0 shadow-md">
-            <span class="text-white">
+          <div class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
+            <span class="${categoryColor}">
               ${categoryIcon}
             </span>
           </div>

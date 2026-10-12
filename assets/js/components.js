@@ -362,10 +362,10 @@
 
       // Category colors
       const colorMap = {
-        dev: 'from-blue-500 to-blue-600',
-        life: 'from-green-500 to-green-600',
-        pdf: 'from-red-500 to-red-600',
-        game: 'from-purple-500 to-pink-500'
+        dev: 'text-[#3B6EA5] dark:text-[#7FA8D4]',
+        life: 'text-[#4F8A5B] dark:text-[#86BA92]',
+        pdf: 'text-[#B5553F] dark:text-[#DE8D78]',
+        game: 'text-[#7A5EA8] dark:text-[#B298D8]'
       };
 
       grid.innerHTML = tools.map(tool => {
@@ -375,8 +375,8 @@
 
         return `
           <a href="${path}" class="tool-grid-item group relative flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <div class="flex-shrink-0 w-8 h-8 rounded-md bg-gradient-to-br ${gradient} flex items-center justify-center">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex-shrink-0 w-8 h-8 rounded-md bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+              <svg class="w-4 h-4 ${gradient}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
               </svg>
             </div>
